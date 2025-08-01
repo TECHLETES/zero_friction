@@ -10,8 +10,9 @@ repos:
       - id: nbstripout-autoadd
         name: nbstripout (auto-add notebooks)
         entry: scripts/hooks/nbstripout-autoadd.sh
-        language: script
+        language: python
         types: [jupyter]
+        additional_dependencies: [nbstripout]
 
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.5.0
