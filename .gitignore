@@ -1,0 +1,96 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# macOS files
+.DS_Store
+
+# mypy type checker cache
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype
+.pytype/
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+
+# Test output
+test-results/
+
+# Build / distribution
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage tools
+.tox/
+.nox/
+
+# Python wheels
+*.whl
+
+# Editable installs
+*.egg-link
+
+# dotenv files (if used for secrets)
+.env
+.env.*
+
+# Poetry
+poetry.lock
+
+# PDM
+__pypackages__/
+
+# PyInstaller
+*.spec
+
+# Log files
+*.log
+
+# Temporary files
+*.bak
+*.swp
+*.swo
+*~
+
+# Local notebooks
+notebooks-local/
+
+# direnv
+.direnv/

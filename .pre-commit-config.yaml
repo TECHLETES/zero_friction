@@ -1,0 +1,20 @@
+repos:
+  - repo: local
+    hooks:
+    - id: prevent-manual-requirements-edits
+      name: Prevent manual changes to requirements.txt
+      entry: scripts/hooks/check-requirements.sh
+      language: script
+      types: [text]
+
+  
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.1
+    hooks:
+      - id: nbstripout
