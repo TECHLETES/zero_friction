@@ -57,18 +57,8 @@ setup_secret_management() {
 
 
   # Dev dependencies
-  step "Installing development dependencies using pip-tools"
-  pip install pip-tools
-  succesfull "pip-tools installed."
-
-  echo "Compiling requirements using pip-tools..."
-
-  if [[ -f "requirements.in" ]]; then
-    pip-compile requirements.in --output-file requirements.txt
-    success "Dev dependencies installed."
-  else
-    warn "requirements-dev.txt not found. Skipping."
-  fi
+  step "Setting up development dependencies"
+  ./scripts/dependency.sh
 
   # Install direnv
   step "Installing direnv..."
