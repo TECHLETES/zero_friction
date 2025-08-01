@@ -54,8 +54,6 @@ setup_secret_management() {
   source venv/bin/activate
   success "Virtual environment activated."
 
-
-
   # Dev dependencies
   step "Setting up development dependencies"
   ./scripts/dependency.sh
@@ -92,6 +90,11 @@ setup_secret_management() {
   else
     warn ".pre-commit-config.yaml not found. Skipping hook installation."
   fi
+
+  sudo apt update
+  sudo apt install locales
+  sudo locale-gen en_US.UTF-8
+  sudo update-locale LANG=en_US.UTF-8
 
   # Set baseline secrets
   step "Setting baseline secrets with detect-secrets..."
