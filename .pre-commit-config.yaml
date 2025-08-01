@@ -1,31 +1,27 @@
 repos:
   - repo: local
     hooks:
-    - id: prevent-manual-requirements-edits
-      name: Prevent manual changes to requirements.txt
-      entry: scripts/hooks/check-requirements.sh
-      language: script
-      types: [text]
+      - id: prevent-manual-requirements-edits
+        name: Prevent manual changes to requirements.txt
+        entry: scripts/hooks/check-requirements.sh
+        language: script
+        types: [text]
 
-  
+      - id: nbstripout-autoadd
+        name: nbstripout (auto-add notebooks)
+        entry: scripts/hooks/nbstripout-autoadd.sh
+        language: script
+        types: [jupyter]
+
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.5.0
     hooks:
       - id: detect-secrets
         args: ['--baseline', '.secrets.baseline']
 
-  - repo: https://github.com/kynan/nbstripout
-    rev: 0.8.1
-    hooks:
-      - id: nbstripout
-        args: ["--diff"]
-
   - repo: https://github.com/mwouts/jupytext
-    rev: v1.14.1
+    rev: v1.14.7
     hooks:
       - id: jupytext
-        name: jupytext
-        entry: jupytext --pre-commit-mode --set-formats "ipynb,py:percent"
+        args: [--sync]
         require_serial: true
-        types_or: [jupyter]
-
