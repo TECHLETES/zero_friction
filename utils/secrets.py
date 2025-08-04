@@ -6,7 +6,7 @@ import re
 import subprocess
 
 
-def get_secret(path: str, env_var: str = None) -> str:
+def get_secret(path: str, env_var: str | None = None) -> str:
     """
     Fetch a secret from 1Password CLI and optionally set it as an environment variable.
 

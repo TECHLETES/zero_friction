@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 
 
-def add_project_root(marker: str = ".git") -> Path:
+def add_project_root(marker: str = ".git") -> None:
     path = Path(__file__).resolve()
     for parent in path.parents:
         if (parent / marker).exists():
