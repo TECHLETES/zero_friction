@@ -47,3 +47,11 @@ repos:
       - id: jupytext
         args: [--sync]
         require_serial: true
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.4
+    hooks:
+      - id: ruff
+        name: Ruff (linting + extra isort + rules)
+        args: [--fix]
+        types: [python]

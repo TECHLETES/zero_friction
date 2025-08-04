@@ -6,7 +6,7 @@ A modern, production-ready Python project template with hybrid dependency manage
 
 ### Prerequisites
 
-- Python 3.11 or later
+- Python 3.12 or later
 - git
 - curl
 - sudo access (for system package installation)

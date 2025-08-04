@@ -54,7 +54,7 @@ setup_development_environment() {
   step "Verifying required system packages..."
   
   info "Checking for Python 3..."
-  command -v python3 >/dev/null || error "Python 3 is not installed. Please install Python 3.11 or later."
+  command -v python3 >/dev/null || error "Python 3 is not installed. Please install Python 3.12 or later."
   PYTHON_VERSION=$(python3 --version | cut -d' ' -f2)
   success "Python $PYTHON_VERSION found."
   
