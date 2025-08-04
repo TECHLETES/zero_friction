@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+# Dependency management script for hybrid setup:
+# - Production dependencies: requirements.in -> requirements.txt (via pip-tools)
+# - Development dependencies: pyproject.toml [project.optional-dependencies.dev]
+
 # Config
 VENV_DIR="venv"
 
@@ -28,10 +32,14 @@ fi
 echo -e "${YELLOW}🧮 Compiling requirements.txt from requirements.in...${RESET}"
 pip-compile requirements.in
 
-echo -e "${YELLOW}📥 Installing compiled dependencies...${RESET}"
+echo -e "${YELLOW}📥 Installing production dependencies...${RESET}"
 pip install -r requirements.txt
 
-echo -e "${YELLOW}🔍 Verifying environment with pip check...${RESET}"
+echo -e "${YELLOW}�️ Installing development dependencies...${RESET}"
+pip install -e .[dev]
+
+echo -e "${YELLOW}�🔍 Verifying environment with pip check...${RESET}"
 pip check
 
 echo -e "${GREEN}✅ Setup complete! All dependencies are installed and compatible.${RESET}"
+echo -e "${GREEN}📋 Installed: Production deps (requirements.txt) + Development deps (pyproject.toml)${RESET}"

@@ -1,12 +1,14 @@
 repos:
   - repo: local
     hooks:
+      # Prevent manual requirements.txt files
       - id: prevent-manual-requirements-edits
         name: Prevent manual changes to requirements.txt
         entry: scripts/hooks/check-requirements.sh
         language: script
         types: [text]
 
+      # Strip notebook outputs
       - id: nbstripout-autoadd
         name: nbstripout (auto-add notebooks)
         entry: scripts/hooks/nbstripout-autoadd.sh
@@ -14,15 +16,32 @@ repos:
         types: [jupyter]
         additional_dependencies: [nbstripout]
 
+  # Secrets scanning
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.5.0
     hooks:
       - id: detect-secrets
         args: ['--baseline', '.secrets.baseline']
 
+  # Notebook/text sync
   - repo: https://github.com/mwouts/jupytext
     rev: v1.14.7
     hooks:
       - id: jupytext
         args: [--sync]
         require_serial: true
+
+  # Code formatting: Black
+  - repo: https://github.com/psf/black
+    rev: 25.1.0
+    hooks:
+      - id: black
+        language_version: python3
+
+  # Import sorting: isort (Black compatible)
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: ["--profile=black"]
+        language_version: python3
