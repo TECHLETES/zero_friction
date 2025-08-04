@@ -34,6 +34,8 @@ dev = [
     "black",
     "mypy",
     "ruff",
+    "beartype",
+    "pytest-beartype",
     "pip-tools",  # for managing requirements.in/txt
 ]
 
@@ -61,6 +63,7 @@ addopts = [
     "--cov-report=term-missing",
     "--cov-report=html",
     "--cov-report=xml",
+    "--beartype-packages=utils,example",
 ]
 testpaths = ["tests"]
 python_files = ["test_*.py", "*_test.py"]

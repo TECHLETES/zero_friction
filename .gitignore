@@ -13,7 +13,7 @@ ENV/
 .ipynb_checkpoints/
 
 # VSCode settings
-.vscode/
+# .vscode/
 
 # PyCharm settings
 .idea/
@@ -25,6 +25,8 @@ ENV/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+.ruff_cache/
 
 # Pyre type checker
 .pyre/
