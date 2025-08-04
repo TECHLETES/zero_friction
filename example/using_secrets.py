@@ -6,4 +6,4 @@ api_key = get_secret("op://Shared with all/RAGFLow API Key/credential")
 if api_key:
     print(f"API_KEY is set: {api_key}")
 else:
-    print("API_KEY is not set.")  # test
+    print("API_KEY is not set.")
