@@ -24,14 +24,6 @@ repos:
         additional_dependencies: [black]
         types: [python]
 
-      # Auto-format Python imports with isort
-      - id: isort-autoformat
-        name: Auto-sort imports with isort
-        entry: scripts/hooks/isort-autoformat.sh
-        language: python
-        additional_dependencies: [isort]
-        types: [python]
-
 
   # Secrets scanning
   - repo: https://github.com/Yelp/detect-secrets

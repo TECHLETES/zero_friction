@@ -1,8 +1,10 @@
 # A tiny helper module to load secrets at runtime if you can’t rely on direnv
 # This uses the 1Password CLI to fetch secrets on-the-fly in any script or app
 
-import subprocess, re
 import os
+import re
+import subprocess
+
 
 def get_secret(path: str, env_var: str = None) -> str:
     """
@@ -22,8 +24,10 @@ def get_secret(path: str, env_var: str = None) -> str:
     # Validate path format: op://Vault name/Item name/field
     pattern = r"^op://[^/]+/[^/]+/[^/]+$"
     if not re.match(pattern, path):
-        raise ValueError("Secret path must be of the form 'op://Vault name/Item name/field'")
-    secret = subprocess.check_output(['op', 'read', path]).decode().strip()
+        raise ValueError(
+            "Secret path must be of the form 'op://Vault name/Item name/field'"
+        )
+    secret = subprocess.check_output(["op", "read", path]).decode().strip()
     if env_var:
         os.environ[env_var] = secret
     return secret
