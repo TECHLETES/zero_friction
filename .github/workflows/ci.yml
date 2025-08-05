@@ -51,7 +51,7 @@ jobs:
           pip install --require-hashes -r requirements-dev.txt
 
       - name: Run pip-audit
-        run: pip-audit --fail-on high
+        run: pip-audit --progress-spinner off
 
       - name: Black formatting check
         run: black --check .
