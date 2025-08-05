@@ -1,8 +1,10 @@
-# Python Basic Template
 
-A modern, production-ready Python project template with hybrid dependency management, secret management, and comprehensive development tooling.
+# Python Basic Template (TECHLETES)
+
+A modern, production-ready Python project template for TECHLETES, a data & AI consultancy. Includes hybrid dependency management, secure secret management, and comprehensive development tooling for internal use by TECHLETES employees.
 
 ## 🚀 Quick Start
+
 
 ### Prerequisites
 
@@ -10,6 +12,7 @@ A modern, production-ready Python project template with hybrid dependency manage
 - git
 - curl
 - sudo access (for system package installation)
+- 1Password CLI (see [docs/0_setup.md](docs/0_setup.md) for setup instructions)
 
 ### One-Command Setup
 
@@ -33,9 +36,11 @@ This will set up everything you need for development!
 - **detect-secrets** for preventing secrets in git
 - **Environment variable management** with direnv
 
+
 ### 🛠️ **Development Tools**
-- **Code formatting**: Black, isort
-- **Linting**: flake8, mypy
+- **Code formatting**: Black
+- **Linting & import sorting**: Ruff (replaces flake8, isort, pyupgrade)
+- **Type checking**: mypy & beartype
 - **Testing**: pytest with coverage
 - **Pre-commit hooks** for code quality
 - **Jupyter notebook support** with nbstripout
@@ -43,23 +48,42 @@ This will set up everything you need for development!
 ### 📦 **Project Structure**
 ```
 python_basic_template/
-├── docs/                           # Documentation
-│   ├── dependency_management.md    # Dependency workflow guide
-│   └── secret_management.md        # Secret management guide
-├── example/                        # Example code
-│   ├── using_secrets.py            # Secret management examples
-│   └── using_secrets.ipynb         # Jupyter notebook examples
+├── .github/
+│   └── workflows/                  # GitHub Actions workflows
+├── docs/                           # Documentation (setup, secrets, dependencies, quality, progress)
+│   ├── 0_setup.md
+│   ├── 1_secret_management.md
+│   ├── 2_dependency_management.md
+│   ├── 3_pre_commit_hooks.md
+│   ├── 4_code_quality.md
+│   └── progress.md
+├── example/                        # Example code and notebooks
+│   ├── __init__.py
+│   ├── using_secrets.py
+│   └── using_secrets.ipynb
 ├── scripts/                        # Setup and utility scripts
-│   ├── setup.sh                    # Complete development setup
-│   ├── dependency.sh               # Dependency management
-│   └── hooks/                      # Git hooks
+│   ├── setup.sh
+│   ├── dependency.sh
+│   ├── new-branch.sh
+│   └── hooks/
+│       ├── black-autoformat.sh
+│       ├── check-requirements.sh
+│       └── nbstripout-autoadd.sh
 ├── utils/                          # Utility modules
-│   ├── secrets.py                  # Secret management utilities
-│   └── utils.py                    # General utilities
-├── .github/workflows/              # GitHub Actions
+│   ├── __init__.py
+│   ├── secrets.py
+│   └── utils.py
+├── tests/                          # (Empty) Test directory scaffold
 ├── pyproject.toml                  # Project configuration & dev dependencies
-├── requirements.in                 # Production dependencies
-└── requirements.txt                # Compiled production dependencies
+├── requirements.txt                # Compiled production dependencies
+├── requirements-dev.txt            # Compiled dev dependencies
+├── .pre-commit-config.yaml         # Pre-commit hooks config
+├── .envrc                          # direnv environment config
+├── .secrets.baseline               # Secret detection baseline
+├── CODE_OF_CONDUCT.md              # Contributor code of conduct
+├── CONTRIBUTING.md                 # Contribution guidelines
+├── setup.py                        # (Optional) Legacy setup script
+└── README.md                       # Project overview (this file)
 ```
 
 ## 🏗️ Dependency Management
@@ -137,15 +161,16 @@ git add pyproject.toml
 git commit -m "Add development tool"
 ```
 
+mypy .
+
 ### Code Quality
 
 ```bash
 # Format code
 black .
-isort .
 
-# Lint code
-flake8 .
+# Lint and fix code
+ruff check . --fix
 mypy .
 
 # Run tests
@@ -212,16 +237,17 @@ All development tools are configured in `pyproject.toml`:
 
 ## 📚 Documentation
 
-- **[Dependency Management](docs/dependency_management.md)** - Detailed dependency workflow
-- **[Secret Management](docs/secret_management.md)** - Secure secret handling guide
+0. **[Setup](docs/0_setup.md)** - Guide to setup the development environment 
+1. **[Secret Management](docs/3_secret_management.md)** - Secure secret handling guide
+2. **[Dependency Management](docs/2_dependency_management.md)** - Detailed dependency workflow
+3. **[Pre Commit Hooks](docs/3_pre_commit_hooks.md)** - Pre commit hooks to ensure safety and quality
+4. **[Code Quality](docs/4_code_quality.md)** - Rules and guidelines on code quality and how it is enforced
+
+
 
 ## 🤝 Contributing
 
-1. **Setup development environment**: `./scripts/setup.sh`
-2. **Create feature branch**: `git checkout -b feature/my-feature`
-3. **Make changes** and ensure tests pass
-4. **Pre-commit hooks** will run automatically
-5. **Submit pull request**
+This template is for use by TECHLETES employees. See [CONTRIBUTING.md](CONTRIBUTING.md) for internal contribution guidelines, required 1Password CLI setup, and branch workflow.
 
 ## 📄 License
 

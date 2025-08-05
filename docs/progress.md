@@ -59,13 +59,11 @@ Below are subject‑specific action items to further enhance our DevOps maturity
 
 * Add a CI job to validate `requirements.txt` against `requirements.in` (`pip-compile --dry-run`)
 * Enable Dependabot or Renovate to automate dependency updates
-* Consider adopting **PEP 621** metadata in `pyproject.toml` for standardized packaging
 
 ## 2.3 Code Quality
 
 * Enforce **test coverage thresholds** (e.g., `pytest --cov`, coverage badge)
 * Introduce **commit message linting** (e.g., conventional commits with `commitlint`)
-* Add **CODEOWNERS** and require reviews from code owners in branch rules
 
 ## 2.4 CI/CD
 
@@ -73,18 +71,6 @@ Below are subject‑specific action items to further enhance our DevOps maturity
 * Add a staging deployment workflow to automatically build and test a Docker image
 * Integrate **release automation** (auto‑generate changelogs, tag releases)
 * Cache dependencies and artifacts to speed up pipelines
-
-## 2.5 Packaging & Distribution
-
-* Scaffold `setup.py` / `pyproject.toml` with metadata for publishing
-* Configure GitHub Packages or private PyPI for internal distribution
-* Automate packaging & publish step in CI upon tag release
-
-## 2.6 Observability & Monitoring
-
-* Provide a logging and metrics template (e.g., `structlog`, Prometheus client)
-* Integrate Sentry or similar error monitoring in template
-* Add a health‑check endpoint stub for service readiness/liveness
 
 ## 2.7 Infrastructure as Code
 
