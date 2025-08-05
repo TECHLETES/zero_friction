@@ -87,6 +87,7 @@ omit = [
     "*/venv/*",
     "*/__init__.py",
     "setup.py",
+    # Add any other files you want to exclude from test coverage
 ]
 
 [tool.coverage.report]
