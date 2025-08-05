@@ -69,7 +69,9 @@ jobs:
       - name: Generate coverage badge
         uses: tj-actions/coverage-badge-py@v2
         with:
-          coverage-file: coverage.xml
+          working-directory: .
+          output: coverage.svg
+          overwrite: true
 
       - name: Commit badge
         uses: stefanzweifel/git-auto-commit-action@v5
