@@ -47,9 +47,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/thom-techlete/python_basic_template"
-Repository = "https://github.com/thom-techlete/python_basic_template"
-Issues = "https://github.com/thom-techlete/python_basic_template/issues"
+Homepage = "https://github.com/TECHLETES/python_basic_template"
+Repository = "https://github.com/TECHLETES/python_basic_template"
+Issues = "https://github.com/TECHLETES/python_basic_template/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]
@@ -82,6 +82,7 @@ source = ["utils", "example"]
 omit = [
     "*/__pycache__/*",
     "*/tests/*",
+    "*/example/*",
     "*/.venv/*",
     "*/venv/*",
     "*/__init__.py",

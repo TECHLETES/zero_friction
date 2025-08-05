@@ -63,3 +63,29 @@ repos:
         name: Ruff (linting + extra isort + rules)
         args: [--fix]
         types: [python]
+  
+  # - repo: local
+  #   hooks:
+  #     - id: pytest
+  #       name: Run pytest with coverage & beartype
+  #       entry: pytest --cov --cov-fail-under=80 --beartype-packages=utils,example
+  #       language: python
+  #       additional_dependencies:
+  #         - pytest
+  #         - pytest-cov
+  #         - pytest-beartype
+  #       pass_filenames: false
+  #       always_run: true
+  #       stages: [pre-commit]
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: Run pytest with coverage & beartype
+        entry: bash scripts/hooks/precommit_pytest.sh
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+
+
