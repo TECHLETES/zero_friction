@@ -57,7 +57,7 @@ jobs:
         run: black --check .
 
       - name: Ruff linting
-        run: ruff .
+        run: ruff check .
 
       - name: Type checking with mypy
         run: mypy .

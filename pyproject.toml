@@ -128,7 +128,7 @@ respect-gitignore = true
 extend-exclude = ["migrations"]
 
 # Enable popular rule sets
-select = [
+lint.select = [
   "E",  # pycodestyle
   "F",  # pyflakes
   "I",  # isort
@@ -137,7 +137,7 @@ select = [
 ]
 
 # Rules to ignore (common ones)
-ignore = [
+lint.ignore = [
   "B008",  # Do not perform function calls in argument defaults
   "E501",  # Line too long (Black handles this)
 ]
