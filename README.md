@@ -90,24 +90,30 @@ python_basic_template/
 
 This project uses a **hybrid dependency management approach**:
 
-### Production Dependencies
-- Add to `requirements.in`
-- Compiled to `requirements.txt` via pip-tools
-- Install with: `pip install -r requirements.txt`
 
-### Development Dependencies
-- Defined in `pyproject.toml` under `[project.optional-dependencies.dev]`
-- Install with: `pip install -e .[dev]`
+### Production dependencies
+- Declared under `dependencies` in `pyproject.toml` 
+- Locked to `requirements.txt` via pip-tools
+
+### Development dependencies
+- Declared under `[project.optional-dependencies].dev` in `pyproject.toml` 
+- Locked to `requirements-dev.txt` via pip-tools
+
+This setup ensures:
+
+- Clear separation of runtime vs. tooling packages
+- Fully pinned, reproducible installs using lockfiles
+- One declarative manifest (`pyproject.toml`) for all dependencies
 
 ### Installation Options
 
 | Command | What it installs |
 |---------|------------------|
-| `pip install -e .` | Minimal (production only) |
-| `pip install -e .[dev]` | Full development setup |
-| `./scripts/dependency.sh` | Both production + development |
+| `./scripts/dependency.sh --prod` | Production setup only |
+| `./scripts/dependency.sh --dev` |  Development setup only |
+| `./scripts/dependency.sh` | Both production + development (Default) |
 
-**📖 Detailed guide**: [docs/dependency_management.md](docs/dependency_management.md)
+**📖 Detailed guide**: [docs/2_dependency_management.md](docs/2_dependency_management.md)
 
 ## 🔐 Secret Management
 
@@ -116,9 +122,9 @@ Secure secret handling with 1Password CLI integration:
 - **Environment variables** loaded via direnv
 - **1Password CLI** for secure secret retrieval
 - **detect-secrets** prevents accidental commits
-- **Example usage** in `example/using_secrets.py`
+- **Example usage** in [example/using_secrets.py](example/using_secrets.py)
 
-**📖 Detailed guide**: [docs/secret_management.md](docs/secret_management.md)
+**📖 Detailed guide**: [docs/1_secret_management.md](docs/1_secret_management.md)
 
 ## 🛠️ Development Workflow
 
@@ -127,45 +133,16 @@ Secure secret handling with 1Password CLI integration:
 ```bash
 # Complete setup (recommended for new developers)
 ./scripts/setup.sh
-
-# Or manual setup
-python3 -m venv venv
-source venv/bin/activate
-pip install -e .[dev]
-pre-commit install
 ```
 
-### Adding Dependencies
-
-**Production dependency:**
-```bash
-# 1. Add to requirements.in
-echo "requests" >> requirements.in
-
-# 2. Compile and install
-./scripts/dependency.sh
-
-# 3. Commit both files
-git add requirements.in requirements.txt
-git commit -m "Add requests dependency"
-```
-
-**Development tool:**
-```bash
-# 1. Add to pyproject.toml [project.optional-dependencies.dev]
-# 2. Install
-pip install -e .[dev]
-
-# 3. Commit
-git add pyproject.toml
-git commit -m "Add development tool"
-```
-
-mypy .
+**For manual set-up see**: [docs/0_setup.md](docs/0_setup.md)
 
 ### Code Quality
 
 ```bash
+# Typing check
+mypy .
+
 # Format code
 black .
 
@@ -201,9 +178,9 @@ pytest tests/test_specific.py
 
 | File | Purpose |
 |------|---------|
-| `pyproject.toml` | Project metadata, dev dependencies, tool config |
-| `requirements.in` | Production dependencies (human-edited) |
+| `pyproject.toml` | Project metadata, (dev) dependencies, tool config |
 | `requirements.txt` | Compiled production dependencies (auto-generated) |
+| `requirements-dev.txt` | Compiled development dependencies (auto-generated) |
 | `.pre-commit-config.yaml` | Pre-commit hooks configuration |
 | `.envrc` | Environment variables (direnv) |
 | `.secrets.baseline` | Secret detection baseline |
@@ -212,10 +189,10 @@ pytest tests/test_specific.py
 
 All development tools are configured in `pyproject.toml`:
 - **Black**: Code formatting (88 char line length)
-- **isort**: Import sorting (Black compatible)
+- **ruff**: Sorting, linting, formatting (replaces flake8, isort, pyupgrade)
 - **pytest**: Test configuration with coverage
 - **mypy**: Type checking
-- **flake8**: Linting rules
+- **beartype**: Type checking at runtime (more extensive then mypy)
 
 ## 🚀 Using This Template
 
@@ -230,7 +207,7 @@ All development tools are configured in `pyproject.toml`:
 
 ### Customization
 
-- **Add your production dependencies** to `requirements.in`
+- **Add your production dependencies** to `pyproject.toml`
 - **Modify tool configurations** in `pyproject.toml`
 - **Update documentation** in `docs/`
 - **Add your modules** alongside `utils/`
@@ -238,7 +215,7 @@ All development tools are configured in `pyproject.toml`:
 ## 📚 Documentation
 
 0. **[Setup](docs/0_setup.md)** - Guide to setup the development environment 
-1. **[Secret Management](docs/3_secret_management.md)** - Secure secret handling guide
+1. **[Secret Management](docs/1_secret_management.md)** - Secure secret handling guide
 2. **[Dependency Management](docs/2_dependency_management.md)** - Detailed dependency workflow
 3. **[Pre Commit Hooks](docs/3_pre_commit_hooks.md)** - Pre commit hooks to ensure safety and quality
 4. **[Code Quality](docs/4_code_quality.md)** - Rules and guidelines on code quality and how it is enforced
