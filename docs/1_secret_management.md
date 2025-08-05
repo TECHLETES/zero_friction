@@ -1,55 +1,8 @@
-# Secret management
+# 1. Secret management
 
 We use **1Password CLI** (`op`) and **GitHub Secrets** to fetch secrets securely—**no plaintext `.env` files** are ever stored in Git.
 
-Perform all of the following in your development environment on WSL.
-
-### 1.2.1 Prerequisites (from scratch)
-
-1. Verify 1Password cli is set up correctly
-    
-    ```bash
-    op --version
-    ```
-    
-    This should show the version number. If not check the steps from 1.1.1
-    
-2. **Create virtual environment**
-    
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
-    
-3. **Install Dev Dependencies**
-    
-    ```bash
-    pip install -r requirements-dev.txt
-    ```
-    
-4. **Install Direnv** and allow
-    
-    ```bash
-    sudo apt install direnv
-    direnv allow
-    ```
-    
-5. Then add this to your shell profile (`~/.bashrc` )
-    
-    ```bash
-    eval "$(direnv hook bash)"
-    ```
-    
-6. Then reload your shell:
-    
-    ```bash
-    source ~/.bashrc
-    ```
-    
-
----
-
-### 1.2.2 Local Development
+## 1.1 Local Development
 
 1. **Authentication for 1Password is handled automatically**
     
@@ -101,7 +54,7 @@ On each commit, secrets are blocked and notebook outputs cleared:
 
 ---
 
-### 1.2.3 CI / GitHub Actions
+## 1.2 CI / GitHub Actions
 
 For CI, we **do not** use 1Password directly. Instead, define your secrets in **GitHub Settings > Secrets**:
 
@@ -124,7 +77,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.12'
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -141,8 +94,11 @@ This way, CI runners receive secrets securely from GitHub and never see 1Passwor
 
 ---
 
-### 1.2.4 Rotating & Auditing
+## 1.3 Rotating & Auditing
 
-- **Rotate** immediately in 1Password or GitHub when a secret is compromised.
+- **Rotate** immediately in 1Password or GitHub when a secret is compromised. Follow this action plan:
+    
+    [Compromised secret action plan](https://www.notion.so/Compromised-secret-action-plan-24517d03144d805eba09e65cd5fe6a49?pvs=21)
+    
 - **Audit** with `detect-secrets scan > .secrets.baseline` after updates.
 - Maintain a clear **playbook** in `SECURITY.md` for incident response.
