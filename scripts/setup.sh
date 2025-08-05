@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
 # Complete development environment setup script for Python Basic Template
 # This script sets up everything a developer needs to start working on the project:
@@ -17,98 +17,85 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 RESET='\033[0m'
 
-step() {
-  echo -e "${CYAN}👉 $1${RESET}"
-}
-
-success() {
-  echo -e "${GREEN}✅ $1${RESET}"
-}
-
-warn() {
-  echo -e "${YELLOW}⚠️ $1${RESET}"
-}
-
-error() {
-  echo -e "${RED}❌ $1${RESET}"
-  exit 1
-}
-
-info() {
-  echo -e "${BLUE}ℹ️ $1${RESET}"
-}
-
-section() {
+step()   { echo -e "${CYAN}👉 $1${RESET}"; }
+success(){ echo -e "${GREEN}✅ $1${RESET}"; }
+warn()   { echo -e "${YELLOW}⚠️ $1${RESET}"; }
+error()  { echo -e "${RED}❌ $1${RESET}"; exit 1; }
+info()   { echo -e "${BLUE}ℹ️ $1${RESET}"; }
+section(){
   echo -e "\n${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
   echo -e "${BLUE}🔧 $1${RESET}"
   echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 }
 
-# ------------------------------------------------------
-# � SECTION: Complete Development Environment Setup
-# ------------------------------------------------------
-
 setup_development_environment() {
   section "SYSTEM REQUIREMENTS CHECK"
-  
   step "Verifying required system packages..."
-  
   info "Checking for Python 3..."
-  command -v python3 >/dev/null || error "Python 3 is not installed. Please install Python 3.12 or later."
+  command -v python3 >/dev/null || error "Python 3 is not installed. Please install Python 3.12+."
   PYTHON_VERSION=$(python3 --version | cut -d' ' -f2)
   success "Python $PYTHON_VERSION found."
-  
+
   info "Checking for pip..."
   command -v pip >/dev/null || error "pip is not installed. Please install pip."
   PIP_VERSION=$(pip --version | cut -d' ' -f2)
   success "pip $PIP_VERSION found."
-  
+
   info "Checking for curl..."
   command -v curl >/dev/null || error "curl is not installed. Please install curl."
   success "curl is available."
-  
+
   info "Checking for git..."
   command -v git >/dev/null || error "git is not installed. Please install git."
   GIT_VERSION=$(git --version | cut -d' ' -f3)
   success "git $GIT_VERSION found."
 
   section "VIRTUAL ENVIRONMENT SETUP"
-  
   step "Creating Python virtual environment..."
-  if [ -d "venv" ]; then
-    warn "Virtual environment already exists. Removing old one..."
-    rm -rf venv
+  if [ -d "$VENV_DIR" ]; then
+    warn "Virtual environment already exists."
+    echo -e "${YELLOW}Choose an option:${RESET}"
+    echo "  1) Skip creating a new virtual environment (keep existing)"
+    echo "  2) Remove old one and create a new virtual environment"
+    read -p "Enter 1 or 2 [default: 2]: " VENV_CHOICE
+    VENV_CHOICE=${VENV_CHOICE:-2}
+    if [ "$VENV_CHOICE" = "1" ]; then
+      success "Keeping existing virtual environment."
+      source $VENV_DIR/bin/activate
+    elif [ "$VENV_CHOICE" = "2" ]; then
+      warn "Removing old virtual environment..."
+      rm -rf $VENV_DIR
+      python3 -m venv $VENV_DIR
+      source $VENV_DIR/bin/activate
+      success "Virtual environment created and activated."
+    else
+      error "Invalid choice. Exiting."
+    fi
+  else
+    python3 -m venv $VENV_DIR
+    source $VENV_DIR/bin/activate
+    success "Virtual environment created and activated."
   fi
-  
-  python3 -m venv venv
-  source venv/bin/activate
-  success "Virtual environment created and activated."
-  
+
   step "Upgrading pip in virtual environment..."
   pip install --upgrade pip
   PIP_NEW_VERSION=$(pip --version | cut -d' ' -f2)
   success "pip upgraded to version $PIP_NEW_VERSION."
 
   section "HYBRID DEPENDENCY MANAGEMENT"
-  
   info "This project uses a hybrid dependency approach:"
-  info "• Production dependencies: requirements.in → requirements.txt (via pip-tools)"
-  info "• Development dependencies: pyproject.toml [project.optional-dependencies.dev]"
-  
-  step "Installing dependency management tools..."
+  info "  • Production deps  : declared in $PYPROJECT → locked to $PROD_LOCK"
+  info "  • Development deps : declared in $PYPROJECT [project.optional-dependencies.dev] → locked to $DEV_LOCK"
+
+  step "Installing dependency management tools (pip-tools, build, wheel)..."
   pip install pip-tools build wheel
   success "pip-tools, build, and wheel installed."
-  
-  step "Running dependency setup script..."
+
+  step "Running dependency setup script (compiles & installs deps)..."
   ./scripts/dependency.sh
-  success "All dependencies installed successfully."
-  
-  step "Verifying dependency installation..."
-  pip list --format=columns
-  success "Dependency verification complete."
+  success "Production and development dependencies installed."
 
   section "SYSTEM LOCALE CONFIGURATION"
-  
   step "Updating system locales..."
   sudo apt update
   sudo apt install -y locales
@@ -117,11 +104,9 @@ setup_development_environment() {
   success "System locales configured."
 
   section "DIRENV SETUP"
-  
   step "Installing direnv for environment variable management..."
   sudo apt install -y direnv
   success "direnv installed."
-
   step "Configuring direnv shell integration..."
   PROFILE="${HOME}/.bashrc"
   if ! grep -q 'direnv hook bash' "$PROFILE"; then
@@ -130,11 +115,7 @@ setup_development_environment() {
   else
     warn "direnv hook already present in $PROFILE."
   fi
-
-  step "Reloading shell configuration..."
-  source "$PROFILE"
   success "Shell configuration reloaded."
-
   step "Enabling direnv for this project..."
   if [ -f ".envrc" ]; then
     direnv allow
@@ -144,136 +125,83 @@ setup_development_environment() {
   fi
 
   section "PRE-COMMIT HOOKS SETUP"
-  
   step "Installing pre-commit hooks..."
   if [[ -f ".pre-commit-config.yaml" ]]; then
-    source venv/bin/activate
     pre-commit install
     success "Pre-commit hooks installed."
-    
     step "Updating pre-commit hook repositories..."
     pre-commit autoupdate
-    success "Pre-commit hooks updated to latest versions."
-    
+    success "Pre-commit hooks updated."
     step "Running pre-commit on all files (initial check)..."
-    pre-commit run --all-files || warn "Some pre-commit checks failed. This is normal for initial setup."
-    info "Pre-commit will now run automatically on git commits."
+    pre-commit run --all-files || warn "Some pre-commit checks failed (initial run)."
+    info "Pre-commit will now run automatically on commits."
   else
-    warn ".pre-commit-config.yaml not found. Skipping hook installation."
+    warn ".pre-commit-config.yaml not found. Skipping hooks install."
   fi
 
   section "SECRET MANAGEMENT SETUP"
-  
   step "Checking 1Password CLI integration..."
   if op --version &>/dev/null; then
-    success "1Password CLI is installed and accessible."
-    
+    success "1Password CLI is installed."
     step "Testing 1Password connection..."
     if op account list &>/dev/null; then
-      success "1Password CLI is connected to your account."
+      success "1Password CLI is connected."
     else
-      warn "1Password CLI is installed but not connected to your account."
-      info "You may need to sign in: op signin"
+      warn "1Password CLI not signed in."
     fi
   else
-    warn "1Password CLI not found."
-    info "1Password CLI must be installed on Windows with CLI integration enabled and linked to WSL."
-    info "Follow the instructions here:"
-    info "https://www.notion.so/techletes/Python-Basic-Template-Repository-24117d03144d809f92f9dc682d17d347"
-    info "Re-run this setup script after installing 1Password CLI."
+    error "1Password CLI not found. Install & configure before secrets workflow."
+    exit 1
   fi
-
-  step "Setting up secrets baseline with detect-secrets..."
+  step "Initializing secrets baseline with detect-secrets..."
   if [ -f ".secrets.baseline" ]; then
-    warn "Existing .secrets.baseline found. Backing up..."
-    cp .secrets.baseline .secrets.baseline.backup
+    warn "Existing .secrets.baseline found; backing up."
+    cp .secrets.baseline .secrets.baseline.bak
   fi
-  
   detect-secrets scan > .secrets.baseline
-  success "Secrets baseline created in .secrets.baseline."
-  
-  step "Verifying secrets configuration..."
+  success "Secrets baseline created."
   detect-secrets audit .secrets.baseline
   success "Secrets configuration verified."
 
   section "DEVELOPMENT TOOLS VERIFICATION"
-  
-  step "Verifying installed development tools..."
-  
-  info "Checking Black (code formatter)..."
-  black --version
-  success "Black is working."
-  
-  info "Checking isort (import sorter)..."
-  isort --version
-  success "isort is working."
-  
-  info "Checking flake8 (linter)..."
-  flake8 --version
-  success "flake8 is working."
-  
-  info "Checking mypy (type checker)..."
-  mypy --version
-  success "mypy is working."
-  
-  info "Checking pytest (test runner)..."
-  pytest --version
-  success "pytest is working."
+  step "Verifying development tools..."
+  for tool in black ruff mypy pytest beartype; do
+    info "Checking $tool..."
+    "pip show $tool" &>/dev/null && success "$tool is installed." || warn "$tool missing."
+  done
 
   section "PROJECT VALIDATION"
-  
   step "Running final project validation..."
-  
-  info "Checking Python imports..."
-  python -c "import utils.secrets; import utils.utils; print('✅ All project modules import successfully')"
-  
-  info "Running syntax check on all Python files..."
-  find . -name "*.py" -not -path "./venv/*" -exec python -m py_compile {} \;
-  success "All Python files have valid syntax."
-  
-  if [ -f "requirements.txt" ] && [ -s "requirements.txt" ]; then
+  info "Checking imports..."
+  python - <<'PYCODE'
+import utils.secrets, utils.utils
+print("✅ All project modules import successfully")
+PYCODE
+  info "Syntax-checking all Python files..."
+  find . -name "*.py" -not -path "./$VENV_DIR/*" -exec python -m py_compile {} \;
+  success "Python syntax valid."
+  if [ -s "$PROD_LOCK" ]; then
     info "Verifying production dependencies..."
     pip check
-    success "All dependencies are compatible."
+    success "Dependencies compatible."
   else
-    info "No production dependencies to verify (requirements.txt is empty)."
+    info "No prod dependencies to verify."
   fi
 
   section "SETUP COMPLETE"
-  
-  echo -e "\n${GREEN}🎉 DEVELOPMENT ENVIRONMENT SETUP COMPLETE! 🎉${RESET}\n"
-  
-  echo -e "${BLUE}📋 What was installed:${RESET}"
-  echo -e "   • Python virtual environment (venv/)"
-  echo -e "   • Production dependencies (from requirements.txt)"
-  echo -e "   • Development tools (from pyproject.toml)"
-  echo -e "   • Pre-commit hooks for code quality"
-  echo -e "   • Secret management with detect-secrets"
-  echo -e "   • direnv for environment variables"
-  
-  echo -e "\n${BLUE}🚀 Next steps:${RESET}"
-  echo -e "   1. Restart your terminal or run: source ~/.bashrc"
-  echo -e "   2. Test the setup: python example/using_secrets.py"
-  echo -e "   3. Start coding! The environment is ready."
-  
-  echo -e "\n${BLUE}💡 Useful commands:${RESET}"
-  echo -e "   • Activate environment: source venv/bin/activate"
-  echo -e "   • Install new production dep: Add to requirements.in, run ./scripts/dependency.sh"
-  echo -e "   • Install new dev tool: Add to pyproject.toml, run pip install -e .[dev]"
-  echo -e "   • Run tests: pytest"
-  echo -e "   • Format code: black . && isort ."
-  echo -e "   • Type check: mypy ."
-  
-  if ! op --version &>/dev/null || ! op account list &>/dev/null; then
-    echo -e "\n${YELLOW}⚠️ 1Password CLI setup incomplete:${RESET}"
-    echo -e "   Install and configure 1Password CLI to use secret management features."
-  fi
-  
-  echo -e "\n${GREEN}Happy coding! 🐍✨${RESET}"
+  echo -e "\n${GREEN}🎉 DEVELOPMENT ENVIRONMENT SETUP COMPLETE!${RESET}\n"
+  echo -e "${BLUE}Installed:${RESET}"
+  echo "  • $VENV_DIR/"
+  echo "  • Production deps ($PROD_LOCK)"
+  echo "  • Dev tools ($DEV_LOCK)"
+  echo "  • Pre-commit hooks"
+  echo "  • Secret baseline (.secrets.baseline)"
+  echo "  • direnv"
+  echo -e "\n${BLUE}Next steps:${RESET}"
+  echo " 1. Restart terminal or run: source ~/.bashrc"
+  echo " 2. Test with: python example/using_secrets.py"
+  echo " 3. Start coding!"
 }
 
-# ------------------------------------------------------
-# 🏁 Main Execution
-# ------------------------------------------------------
-
+# Main
 setup_development_environment

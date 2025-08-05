@@ -1,27 +1,53 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
-# Dependency management script for hybrid setup:
-# - Production dependencies: requirements.in -> requirements.txt (via pip-tools)
-# - Development dependencies: pyproject.toml [project.optional-dependencies.dev]
-
-# Config
-VENV_DIR="venv"
+# Hybrid dependency management script:
+# Usage:
+#   ./dependency.sh          # install both prod & dev
+#   ./dependency.sh --prod   # install only production deps
+#   ./dependency.sh --dev    # install only development deps
 
 # Colors
 YELLOW='\033[1;33m'
 GREEN='\033[1;32m'
 RESET='\033[0m'
 
-echo -e "${YELLOW}📦 Activating virtualenv...${RESET}"
-if [ -f "$VENV_DIR/bin/activate" ]; then
-    source "$VENV_DIR/bin/activate"
+# Parse args
+INSTALL_PROD=false
+INSTALL_DEV=false
+
+if [ $# -eq 0 ]; then
+  INSTALL_PROD=true
+  INSTALL_DEV=true
 else
-    echo "❌ No virtualenv found at $VENV_DIR. Run: python -m venv $VENV_DIR"
+  for arg in "$@"; do
+    case $arg in
+      --prod)
+        INSTALL_PROD=true
+        ;;
+      --dev)
+        INSTALL_DEV=true
+        ;;
+      *)
+        echo "❌ Unknown option: $arg"
+        echo "Usage: $0 [--prod] [--dev]"
+        exit 1
+        ;;
+    esac
+  done
+fi
+
+echo -e "${YELLOW}⏳ Activating virtualenv at '${VENV_DIR}'...${RESET}"
+if [ -f "${VENV_DIR}/bin/activate" ]; then
+    # shellcheck disable=SC1090
+    source "${VENV_DIR}/bin/activate"
+else
+    echo "❌ Virtualenv not found at '${VENV_DIR}'."
+    echo "   Create one with: python -m venv ${VENV_DIR}"
     exit 1
 fi
 
-echo -e "${YELLOW}🔍 Checking pip-tools...${RESET}"
+echo -e "${YELLOW}🔍 Ensuring pip-tools is installed...${RESET}"
 if ! pip show pip-tools &>/dev/null; then
     echo -e "${YELLOW}➡️ Installing pip-tools...${RESET}"
     pip install pip-tools
@@ -29,17 +55,30 @@ else
     echo -e "${GREEN}✅ pip-tools is already installed.${RESET}"
 fi
 
-echo -e "${YELLOW}🧮 Compiling requirements.txt from requirements.in...${RESET}"
-pip-compile requirements.in
+if [ "$INSTALL_PROD" = true ]; then
+  echo -e "${YELLOW}🧮 Compiling production lockfile from '${PYPROJECT}'...${RESET}"
+  pip-compile "${PYPROJECT}" \
+      --output-file="${PROD_LOCK}" \
+      --generate-hashes
 
-echo -e "${YELLOW}📥 Installing production dependencies...${RESET}"
-pip install -r requirements.txt
+  echo -e "${YELLOW}📥 Installing production dependencies...${RESET}"
+  pip install --require-hashes -r "${PROD_LOCK}"
+fi
 
-echo -e "${YELLOW}�️ Installing development dependencies...${RESET}"
-pip install -e .[dev]
+if [ "$INSTALL_DEV" = true ]; then
+  echo -e "${YELLOW}🛠 Compiling development lockfile from '${PYPROJECT}' extras...${RESET}"
+  pip-compile "${PYPROJECT}" \
+      --extra=dev \
+      --output-file="${DEV_LOCK}" \
+      --generate-hashes
 
-echo -e "${YELLOW}�🔍 Verifying environment with pip check...${RESET}"
+  echo -e "${YELLOW}📥 Installing development dependencies...${RESET}"
+  pip install --require-hashes -r "${DEV_LOCK}"
+fi
+
+echo -e "${YELLOW}🔎 Verifying installed packages...${RESET}"
 pip check
 
-echo -e "${GREEN}✅ Setup complete! All dependencies are installed and compatible.${RESET}"
-echo -e "${GREEN}📋 Installed: Production deps (requirements.txt) + Development deps (pyproject.toml)${RESET}"
+echo -e "${GREEN}🎉 Setup complete!${RESET}"
+[ "$INSTALL_PROD" = true ] && echo -e "${GREEN}  • Production deps from ${PROD_LOCK}${RESET}"
+[ "$INSTALL_DEV" = true ] && echo -e "${GREEN}  • Dev deps from ${DEV_LOCK}${RESET}"

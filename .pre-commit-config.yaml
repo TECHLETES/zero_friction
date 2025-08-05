@@ -34,7 +34,7 @@ repos:
 
   # Notebook/text sync
   - repo: https://github.com/mwouts/jupytext
-    rev: v1.14.7
+    rev: v1.17.2
     hooks:
       - id: jupytext
         args: [--sync]
