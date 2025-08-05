@@ -1,4 +1,6 @@
 
+![Test Coverage](./coverage.svg)
+
 # Python Basic Template (TECHLETES)
 
 A modern, production-ready Python project template for TECHLETES, a data & AI consultancy. Includes hybrid dependency management, secure secret management, and comprehensive development tooling for internal use by TECHLETES employees.
