@@ -42,7 +42,8 @@ dev = [
     "ruff",
     "beartype",
     "pytest-beartype",
-    "pip-tools",  # for managing requirements.in/txt
+    "pip-audit>=2.9.0",
+    "pip-tools",  # for managing requirement*.txt
 ]
 
 [project.urls]
@@ -79,9 +80,11 @@ python_functions = ["test_*"]
 [tool.coverage.run]
 source = ["utils", "example"]
 omit = [
-    "*/tests/*",
-    "*/venv/*",
     "*/__pycache__/*",
+    "*/tests/*",
+    "*/.venv/*",
+    "*/venv/*",
+    "*/__init__.py",
     "setup.py",
 ]
 
@@ -97,6 +100,8 @@ exclude_lines = [
     "if __name__ == .__main__.:",
     "class .*\\bProtocol\\):",
     "@(abc\\.)?abstractmethod",
+    "except ImportError",
+    "pass",
 ]
 
 [tool.mypy]

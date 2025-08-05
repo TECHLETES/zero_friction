@@ -3,34 +3,61 @@
 name: CI
 
 on:
-  push:
+  pull_request:
     branches:
       - main
       - staging
-  pull_request:
 
 jobs:
-  test:
-    name: Run Tests
+  lint-and-test:
+    name: Lint & Test
     runs-on: ubuntu-latest
-
-    env:
-      API_KEY: ${{ secrets.API_KEY }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-
+    strategy:
+      matrix:
+        python-version: ['3.12']
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12'
+          python-version: ${{ matrix.python-version }}
+
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements*.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install pip-tools
+        run: pip install pip-tools
+
+      - name: Validate lockfiles
+        run: |
+          pip-compile --dry-run --generate-hashes \
+            --output-file=requirements.txt pyproject.toml
+          pip-compile --dry-run --generate-hashes --extra=dev \
+            --output-file=requirements-dev.txt pyproject.toml
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          pip install --require-hashes -r requirements.txt
+          pip install --require-hashes -r requirements-dev.txt
+          
+      - name: Run pip-audit
+        run: pip-audit --fail-on high
 
-      - name: Run tests
-        run: |
-          pytest
+      - name: Black formatting check
+        run: black --check .
+
+      - name: Ruff linting
+        run: ruff .
+
+      - name: Type checking with mypy
+        run: mypy .
+
+      - name: Run tests with pytest
+        run: pytest --cov

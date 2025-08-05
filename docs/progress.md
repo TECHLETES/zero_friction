@@ -51,13 +51,11 @@ Below are subject‑specific action items to further enhance our DevOps maturity
 ## 2.1 Secrets Management
 
 * Add automated secret rotation scan and enforcement in CI (e.g., 1Password rotation policy check)
-* Integrate **`pip-audit`** or **`safety`** for dependency vulnerability scanning
 * Evaluate centralized secrets store (e.g., Vault) for dynamic credentials in CI/CD
 * Enforce environment‑specific secret vaults (dev, staging, prod)
 
 ## 2.2 Dependency Management
 
-* Add a CI job to validate `requirements.txt` against `requirements.in` (`pip-compile --dry-run`)
 * Enable Dependabot or Renovate to automate dependency updates
 
 ## 2.3 Code Quality
@@ -80,7 +78,6 @@ Below are subject‑specific action items to further enhance our DevOps maturity
 
 ## 2.8 Documentation & Onboarding
 
-* Create `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, and `README.md` badges for code quality status
 * Automate documentation generation (e.g., Sphinx/MkDocs) in CI
 * Provide Notion templates or a docs portal scaffold
 

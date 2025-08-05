@@ -24,6 +24,13 @@ repos:
         additional_dependencies: [black]
         types: [python]
 
+  # Dependency vulnerability scanning
+  - repo: https://github.com/pypa/pip-audit
+    rev: v2.9.0
+    hooks:
+      - id: pip-audit
+        args: ['--progress-spinner', 'off']
+        stages: [pre-commit]
 
   # Secrets scanning
   - repo: https://github.com/Yelp/detect-secrets
@@ -31,6 +38,7 @@ repos:
     hooks:
       - id: detect-secrets
         args: ['--baseline', '.secrets.baseline']
+        exclude: ^tests/
 
   # Notebook/text sync
   - repo: https://github.com/mwouts/jupytext
