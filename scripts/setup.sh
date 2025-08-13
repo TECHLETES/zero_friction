@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# configuration
+export VENV_DIR="venv"
+export PYPROJECT="pyproject.toml"
+export PROD_LOCK="requirements.txt"
+export DEV_LOCK="requirements-dev.txt"
+
 # Complete development environment setup script for Python Basic Template
 # This script sets up everything a developer needs to start working on the project:
 # - Virtual environment

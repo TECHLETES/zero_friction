@@ -27,6 +27,7 @@ classifiers = [
 # Add project dependencies here. pip-tools will read them from here, do not use a requirements file!
 dependencies = [
   "flask>=2.2.0,<3.0.0", # Example dependency, replace with your own
+  "requests"
 ]
 
 [project.optional-dependencies]
@@ -43,6 +44,7 @@ dev = [
     "pytest-beartype",
     "pip-audit>=2.9.0",
     "pip-tools",  # for managing requirement*.txt
+    "rich",
 ]
 
 [project.urls]

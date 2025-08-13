@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Configuration
+export VENV_DIR="${VENV_DIR:-venv}"
+export PYPROJECT="${PYPROJECT:-pyproject.toml}"
+export PROD_LOCK="${PROD_LOCK:-requirements.txt}"
+export DEV_LOCK="${DEV_LOCK:-requirements-dev.txt}"
+
 # Hybrid dependency management script:
 # Usage:
 #   ./dependency.sh          # install both prod & dev
