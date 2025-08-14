@@ -2,11 +2,21 @@ repos:
   - repo: local
     hooks:
       # Prevent manual requirements.txt files
-      - id: prevent-manual-requirements-edits
-        name: Prevent manual changes to requirements.txt
-        entry: scripts/hooks/check-requirements.sh
-        language: script
-        types: [text]
+      - id: verify-prod-lockfile
+        name: Verify production lockfile is up-to-date
+        entry: ./scripts/verify-lockfile.sh
+        args: ["requirements.txt"]
+        language: python
+        files: ^requirements\.txt$
+        additional_dependencies: [pip-tools]
+
+      - id: verify-dev-lockfile
+        name: Verify development lockfile is up-to-date
+        entry: ./scripts/verify-lockfile.sh
+        args: ["requirements-dev.txt"]
+        language: python
+        files: ^requirements-dev\.txt$
+        additional_dependencies: [pip-tools]
 
       # Strip notebook outputs
       - id: nbstripout-autoadd

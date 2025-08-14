@@ -128,6 +128,7 @@ line-length = 88
 fix = true
 respect-gitignore = true
 extend-exclude = ["migrations"]
+dummy-variable-rgx = "^_|^__|^pytest$"
 
 # Enable popular rule sets
 lint.select = [
