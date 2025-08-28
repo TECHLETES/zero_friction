@@ -45,6 +45,10 @@ else { .\scripts\dependency.ps1 }
 Step "Installing developer tools"
 pip install pre-commit detect-secrets nbstripout pip-audit jupytext pytest pytest-cov pytest-beartype beartype
 
+# 6. Installing project
+Step "Installing project in editable mode"
+pip install -e .
+
 # 6. pre-commit hooks
 Step "Installing pre-commit hooks"
 pre-commit install -c .pre-commit-windows.yaml
