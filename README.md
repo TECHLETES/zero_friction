@@ -16,12 +16,21 @@ A modern, production-ready Python project template for TECHLETES, a data & AI co
 - sudo access (for system package installation)
 - 1Password CLI (see [docs/0_setup.md](docs/0_setup.md) for setup instructions)
 
-### One-Command Setup
+### Linux: One-Command Setup
 
 ```bash
 git clone https://github.com/thom-techlete/python_basic_template.git
 cd python_basic_template
 ./scripts/setup.sh
+```
+
+### Windows setup
+
+```powershell
+git clone https://github.com/thom-techlete/python_basic_template.git
+cd python_basic_template
+# If activation is blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+.\scripts\setup.ps1
 ```
 
 This will set up everything you need for development!
