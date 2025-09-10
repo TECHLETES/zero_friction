@@ -3,18 +3,20 @@ repos:
     hooks:
       # Verify requirements lockfiles
       - id: verify-prod-lockfile
-        name: Verify prod lockfile (Linux)
-        entry: ./scripts/hooks/verify-prod-lockfile.sh
-        language: system
-        pass_filenames: false
-        stages: [pre-commit]
+        name: Verify production lockfile is up-to-date
+        entry: ./scripts/verify-lockfile.sh
+        args: ["requirements.txt"]
+        language: python
+        files: ^requirements\.txt$
+        additional_dependencies: [pip-tools]
 
       - id: verify-dev-lockfile
-        name: Verify dev lockfile (Linux)
-        entry: ./scripts/hooks/verify-dev-lockfile.sh
-        language: system
-        pass_filenames: false
-        stages: [pre-commit]
+        name: Verify development lockfile is up-to-date
+        entry: ./scripts/verify-lockfile.sh
+        args: ["requirements-dev.txt"]
+        language: python
+        files: ^requirements-dev\.txt$
+        additional_dependencies: [pip-tools]
 
       # Strip notebook outputs
       - id: nbstripout-autoadd
