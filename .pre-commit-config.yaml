@@ -1,12 +1,20 @@
 repos:
   - repo: local
     hooks:
-      # Prevent manual requirements.txt files
-      - id: prevent-manual-requirements-edits
-        name: Prevent manual changes to requirements.txt
-        entry: scripts/hooks/check-requirements.sh
-        language: script
-        types: [text]
+      # Verify requirements lockfiles
+      - id: verify-prod-lockfile
+        name: Verify prod lockfile (Linux)
+        entry: ./scripts/hooks/verify-prod-lockfile.sh
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+
+      - id: verify-dev-lockfile
+        name: Verify dev lockfile (Linux)
+        entry: ./scripts/hooks/verify-dev-lockfile.sh
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
 
       # Strip notebook outputs
       - id: nbstripout-autoadd

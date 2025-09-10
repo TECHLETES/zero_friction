@@ -1,11 +1,19 @@
 repos:
   - repo: local
     hooks:
-      - id: prevent-manual-requirements-edits
-        name: Prevent manual changes to requirements.txt
-        entry: powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\hooks\\check-requirements.ps1
+      - id: verify-prod-lockfile
+        name: Verify prod lockfile (Windows)
+        entry: powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\hooks\\verify-prod-lockfile.ps1
         language: system
-        types: [text]
+        pass_filenames: false
+        stages: [pre-commit]
+
+      - id: verify-dev-lockfile
+        name: Verify dev lockfile (Windows)
+        entry: powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\hooks\\verify-dev-lockfile.ps1
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
 
   - repo: https://github.com/kynan/nbstripout
     rev: 0.8.1
