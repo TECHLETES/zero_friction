@@ -35,6 +35,30 @@ cd python_basic_template
 
 This will set up everything you need for development!
 
+### Common setup issues
+
+#### Issue: Windows setup Powershell Execution Policy
+
+If you see an error like:
+
+```
+File .\setup.ps1 cannot be loaded. The file .\setup.ps1 is not digitally signed. You cannot run this script on the current system. For more information about running scripts and setting execution policy, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
+```
+
+Windows is blocking unsigned scripts by default. To fix this:
+
+1. Open PowerShell **as your normal user** (no need for admin).
+2. Run:
+   ```powershell
+   Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+Restart PowerShell and try again:
+
+```powershell
+.\scripts\setup.ps1
+```
+
+This only changes the policy for your user account. It allows you to run local scripts while still requiring downloaded scripts to be unblocked (Unblock-File) before execution.
+
 ## 📋 Features
 
 ### 🔧 **Modern Dependency Management**
