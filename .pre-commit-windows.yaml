@@ -40,7 +40,7 @@ repos:
         exclude: ^tests/
 
   - repo: https://github.com/mwouts/jupytext
-    rev: v1.17.2
+    rev: v1.17.3
     hooks:
       - id: jupytext
         args: [--sync]
@@ -53,7 +53,7 @@ repos:
         args: ["--config-file=pyproject.toml"]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.8
+    rev: v0.12.12
     hooks:
       - id: ruff
         args: [--fix]
