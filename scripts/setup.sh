@@ -26,22 +26,63 @@ section(){
 }
 
 is_wsl() {
-  # true if running inside WSL
   grep -qi "microsoft" /proc/sys/kernel/osrelease 2>/dev/null || [[ -n "${WSL_DISTRO_NAME:-}" ]]
 }
 
 has_cmd() { command -v "$1" >/dev/null 2>&1; }
+
+# Universal package installation function
+install_package() {
+  local package_name=$1
+  step "Attempting to install $package_name..."
+  if has_cmd apt-get; then
+    sudo apt-get update
+    sudo apt-get install -y "$package_name"
+  elif has_cmd dnf; then
+    sudo dnf install -y "$package_name"
+  elif has_cmd yum; then
+    sudo yum install -y "$package_name"
+  else
+    error "Could not find apt-get, dnf, or yum. Please install '$package_name' manually."
+    return 1
+  fi
+  success "$package_name installed successfully."
+}
 
 setup_development_environment() {
   section "system requirements check"
   step "verifying required system packages"
   has_cmd python3 || error "Python 3 is not installed. Install Python 3.12+."
   success "Python $(python3 --version | cut -d' ' -f2) found."
-  has_cmd pip || error "pip is not installed."
-  success "pip $(pip --version | cut -d' ' -f2) found."
+
+  # Check for python3.12-venv and install if missing
+  if python3.12 -c "import venv" &>/dev/null; then
+    success "python3.12-venv is available."
+  else
+    warn "python3.12-venv module not found."
+    install_package "python3.12-venv"
+  fi
+
+  # Check for pip and install if missing
+  if has_cmd pip; then
+    success "pip $(pip --version | cut -d' ' -f2) found."
+  else
+    warn "pip not found."
+    install_package "python3-pip"
+  fi
+
   has_cmd git || error "git is not installed."
   success "git $(git --version | cut -d' ' -f3) found."
+
+  if has_cmd direnv; then
+    success "direnv found."
+  else
+    warn "direnv not found."
+    install_package "direnv"
+  fi
+  
   if has_cmd curl; then success "curl available."; else warn "curl not found. Some optional steps may be skipped."; fi
+
 
   section "virtual environment setup"
   step "creating Python virtual environment"
