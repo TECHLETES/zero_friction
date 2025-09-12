@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # configuration
-export VENV_DIR="venv"
+export VENV_DIR=".venv"
 export PYPROJECT="pyproject.toml"
 export PROD_LOCK="requirements.txt"
 export DEV_LOCK="requirements-dev.txt"
