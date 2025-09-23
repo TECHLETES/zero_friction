@@ -100,7 +100,8 @@ if [ "$INSTALL_PROD" = true ]; then
   info "Compiling production lockfile: '${PROD_LOCK}'"
   pip-compile "${PYPROJECT}" \
       --output-file="${PROD_LOCK}" \
-      --generate-hashes
+      --generate-hashes \
+      --strip-extras
 fi
 
 if [ "$INSTALL_DEV" = true ]; then
@@ -108,7 +109,8 @@ if [ "$INSTALL_DEV" = true ]; then
   pip-compile "${PYPROJECT}" \
       --extra=dev \
       --output-file="${DEV_LOCK}" \
-      --generate-hashes
+      --generate-hashes \
+      --strip-extras
 fi
 
 success "All required lockfiles compiled."
