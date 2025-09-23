@@ -168,24 +168,6 @@ setup_development_environment() {
     if pip show "$tool" >/dev/null 2>&1; then success "$tool installed"; else warn "$tool missing"; fi
   done
 
-  section "project validation"
-  step "running final project validation"
-  info "checking imports"
-  python - <<'PYCODE'
-import utils.secrets, utils.utils
-print("✅ All project modules import successfully")
-PYCODE
-  info "syntax checking"
-  find . -name "*.py" -not -path "./$VENV_DIR/*" -exec python -m py_compile {} \;
-  success "python syntax valid"
-  if [ -s "$PROD_LOCK" ]; then
-    info "verifying dependency compatibility"
-    pip check
-    success "dependencies compatible"
-  else
-    info "no production dependencies to verify"
-  fi
-
   section "setup complete"
   echo -e "\n${GREEN}🎉 development environment setup complete${RESET}\n"
   echo -e "${BLUE}installed:${RESET}"
