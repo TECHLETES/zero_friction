@@ -5,20 +5,19 @@
 
 A modern, production-ready Python project template for TECHLETES, a data & AI consultancy. Includes hybrid dependency management, secure secret management, and comprehensive development tooling for internal use by TECHLETES employees.
 
-
-## Read this first!
+## READ THIS FIRST!
 
 *This section lists the essential rules for using this template. Read it before you start.*
 
 ### Secrets and environment
-* *Never* put secrets in code, notebooks, or  `.env` files!
+* **Never** put secrets in code, notebooks, or  `.env` files!
 * Load secrets using 1Password with the helper in code
         from utils.secrets import get_secret
         API_KEY = get_secret("op://<vault>/<item>/<field>")
 * See [docs/1_secret_management.md](docs/1_secret_management.md) for mor info on managing secrets.
 
 ### Dependencies
-* *Do not* run `pip install` manually in the terminal!
+* **Do not** run `pip install` manually in the terminal!
   Why: it creates unpinned installs that differ per user and will break CI
 * Always declare packages in pyproject.toml only
 * Run the helper script to handle the package install for you
@@ -42,8 +41,9 @@ A modern, production-ready Python project template for TECHLETES, a data & AI co
 
 ### Git and commits
 * Pre commit is a tool that runs checks before every commit to keep code safe and consistent.
+* **Important:** The pre-commit checks require certain packages that are installed in the virtual environment when you setup this repo. Therefore, you should **always commit while the virtual environment is active**. 
 * Your commit can be blocked if a check fails. This is normal and protects the repo.
-* *Always check if your changes have been committed and pushed successfully!*
+* **Always check if your changes have been committed and pushed successfully!**
 * You can also run the pre-commit checks manually on all files before committing, using:
       `pre-commit run --all-files`
 * If a pre commit check fails and you are stuck, see the troubleshooting section in 
