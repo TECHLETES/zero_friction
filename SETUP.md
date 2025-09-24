@@ -47,6 +47,7 @@ git clone https://github.com/thom-techlete/python_basic_template.git
 cd python_basic_template
 
 # 3. Run the setup script
+# If activation is blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 .\scripts\setup.ps1
 ```
 
