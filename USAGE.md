@@ -10,7 +10,7 @@ This guide covers the day-to-day development workflow, including dependency mana
     source venv/bin/activate
 
     # Windows
-    .\venv\Scripts\Activate.ps1
+    .venv/Scripts/Activate.ps1
     ```
 
 2.  **Code**: Create or modify your Python modules, notebooks, and documentation.
