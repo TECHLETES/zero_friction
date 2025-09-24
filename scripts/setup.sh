@@ -32,11 +32,15 @@ is_wsl() {
 has_cmd() { command -v "$1" >/dev/null 2>&1; }
 
 # Universal package installation function
+APT_UPDATED=""
 install_package() {
   local package_name=$1
   step "Attempting to install $package_name..."
   if has_cmd apt-get; then
-    sudo apt-get update
+    if [[ -z "${APT_UPDATED}" ]]; then
+      sudo apt-get update
+      APT_UPDATED="1"
+    fi
     sudo apt-get install -y "$package_name"
   elif has_cmd dnf; then
     sudo dnf install -y "$package_name"
@@ -49,19 +53,32 @@ install_package() {
   success "$package_name installed successfully."
 }
 
+
 setup_development_environment() {
   section "system requirements check"
   step "verifying required system packages"
   has_cmd python3 || error "Python 3 is not installed. Install Python 3.12+."
   success "Python $(python3 --version | cut -d' ' -f2) found."
 
-  # Check for python3.12-venv and install if missing
-  if python3.12 -c "import venv" &>/dev/null; then
-    success "python3.12-venv is available."
+  # Ensure the venv module exists for the active python3
+  PY_MINOR="$(python3 -c 'import sys; print(f\"{sys.version_info.major}.{sys.version_info.minor}\")')"
+  if python3 -c "import venv" &>/dev/null; then
+    success "python${PY_MINOR} venv module is available."
   else
-    warn "python3.12-venv module not found."
-    install_package "python3.12-venv"
+    warn "venv module missing for python${PY_MINOR}."
+    # Best effort install per distro
+    if has_cmd apt-get; then
+      install_package "python${PY_MINOR}-venv" || warn "could not install python${PY_MINOR}-venv automatically"
+    elif has_cmd dnf; then
+      # On Fedora venv is in the python base package
+      install_package "python${PY_MINOR}" || true
+    elif has_cmd yum; then
+      install_package "python${PY_MINOR}" || true
+    else
+      warn "install the appropriate python venv package manually"
+    fi
   fi
+
 
   # Check for pip and install if missing
   if has_cmd pip; then
@@ -88,8 +105,15 @@ setup_development_environment() {
   step "creating Python virtual environment"
   if [ -d "$VENV_DIR" ]; then
     warn "virtual environment already exists"
-    read -p "Enter 1 to keep, 2 to recreate [default: 2]: " VENV_CHOICE
-    VENV_CHOICE=${VENV_CHOICE:-2}
+    if [[ -n "${VENV_CHOICE:-}" ]]; then
+      info "VENV_CHOICE preset to ${VENV_CHOICE}"
+    elif [[ "${CI:-}" == "true" || "${NONINTERACTIVE:-}" == "1" ]]; then
+      VENV_CHOICE=2
+      info "non interactive mode active. defaulting to recreate"
+    else
+      read -p "Enter 1 to keep, 2 to recreate [default: 2]: " VENV_CHOICE
+      VENV_CHOICE=${VENV_CHOICE:-2}
+    fi
     if [ "$VENV_CHOICE" = "1" ]; then
       success "keeping existing virtual environment"
       # shellcheck disable=SC1090
@@ -111,6 +135,7 @@ setup_development_environment() {
     success "virtual environment created and activated"
   fi
 
+
   step "upgrading pip in virtual environment"
   python -m pip install --upgrade pip
   success "pip upgraded to $(pip --version | cut -d' ' -f2)."
@@ -119,7 +144,7 @@ setup_development_environment() {
   info "production deps in $PYPROJECT to $PROD_LOCK"
   info "development deps in $PYPROJECT extra [dev] to $DEV_LOCK"
   step "installing pip tools"
-  pip install pip-tools build wheel
+  python -m pip install pip-tools build wheel
   success "pip tools installed"
 
   step "running dependency setup script"
@@ -127,44 +152,47 @@ setup_development_environment() {
   success "dependencies installed"
 
   section "system locale configuration"
-  if has_cmd apt; then
-    step "ensuring locales"
-    sudo apt update
-    sudo apt install -y locales
+  step "ensuring locales"
+  if has_cmd apt-get; then
+    sudo apt-get update
+    sudo apt-get install -y locales
     sudo locale-gen en_US.UTF-8
     sudo update-locale LANG=en_US.UTF-8
-    success "locales configured"
+    success "locales configured for Debian family"
+  elif has_cmd dnf || has_cmd yum; then
+    # On Fedora and RHEL locales are typically available. Configure via localectl.
+    if has_cmd localectl; then
+      sudo localectl set-locale LANG=en_US.UTF-8
+      success "locales configured via localectl"
+    else
+      warn "localectl not found. verify locale manually"
+    fi
   else
-    warn "apt not available. skipping locale setup"
+    warn "no known package manager detected for locale configuration"
   fi
 
+
   section "direnv setup"
-  if has_cmd apt; then
-    step "installing direnv"
-    sudo apt install -y direnv
-    success "direnv installed"
-    step "configuring direnv shell integration"
-    PROFILE="${HOME}/.bashrc"
-    if ! grep -q 'direnv hook bash' "$PROFILE"; then
-      echo 'eval "$(direnv hook bash)"' >> "$PROFILE"
-      success "added direnv hook to $PROFILE"
-    else
-      warn "direnv hook already present in $PROFILE"
-    fi
-    step "enabling direnv for this project"
-    if [ -f ".envrc" ]; then
-      direnv allow || true
-      success "direnv enabled for this project"
-    else
-      warn ".envrc not found. skipping allow"
-    fi
+  step "configuring direnv shell integration"
+  PROFILE="${HOME}/.bashrc"
+  if ! grep -q 'direnv hook bash' "$PROFILE"; then
+    echo 'eval "$(direnv hook bash)"' >> "$PROFILE"
+    success "added direnv hook to $PROFILE"
   else
-    warn "apt not available. install direnv manually if desired"
+    warn "direnv hook already present in $PROFILE"
+  fi
+  step "enabling direnv for this project"
+  if [ -f ".envrc" ]; then
+    direnv allow || true
+    success "direnv enabled for this project"
+  else
+    warn ".envrc not found. skipping allow"
   fi
 
   section "pre commit hooks setup"
   step "installing pre commit hooks"
   if [[ -f ".pre-commit-config.yaml" ]]; then
+    python -m pip install pre-commit detect-secrets || true
     pre-commit install
     success "pre commit hooks installed"
     step "updating pre commit repos"
@@ -206,26 +234,31 @@ setup_development_environment() {
   section "development tools verification"
   step "verifying development tools"
   for tool in black ruff mypy pytest beartype; do
-    if pip show "$tool" >/dev/null 2>&1; then success "$tool installed"; else warn "$tool missing"; fi
+    if python -m pip show "$tool" >/dev/null 2>&1; then success "$tool installed"; else warn "$tool missing"; fi
   done
 
   section "project validation"
   step "running final project validation"
   info "checking imports"
-  python - <<'PYCODE'
-import utils.secrets, utils.utils
+
+  # Use the venv python explicitly and fail fast if imports break
+  "$VENV_DIR/bin/python" - <<'PYCODE'
+import importlib
+mods = ["utils.secrets", "utils.utils"]
+for m in mods:
+    importlib.import_module(m)
 print("✅ All project modules import successfully")
 PYCODE
-  info "syntax checking"
-  find . -name "*.py" -not -path "./$VENV_DIR/*" -exec python -m py_compile {} \;
-  success "python syntax valid"
+
+  find . -name "*.py" -not -path "./$VENV_DIR/*" -exec "$VENV_DIR/bin/python" -m py_compile {} \;
+
   if [ -s "$PROD_LOCK" ]; then
-    info "verifying dependency compatibility"
-    pip check
+    "$VENV_DIR/bin/python" -m pip check
     success "dependencies compatible"
   else
     info "no production dependencies to verify"
   fi
+
 
   section "setup complete"
   echo -e "\n${GREEN}🎉 development environment setup complete${RESET}\n"
