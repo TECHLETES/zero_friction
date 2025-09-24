@@ -137,8 +137,9 @@ setup_development_environment() {
 
 
   step "upgrading pip in virtual environment"
+  python -m ensurepip --upgrade >/dev/null 2>&1 || true
   python -m pip install --upgrade pip
-  success "pip upgraded to $(pip --version | cut -d' ' -f2)."
+  success "pip upgraded to $("$VENV_DIR/bin/python" -m pip --version | awk '{print $2}')."
 
   section "hybrid dependency management"
   info "production deps in $PYPROJECT to $PROD_LOCK"
@@ -154,7 +155,6 @@ setup_development_environment() {
   section "system locale configuration"
   step "ensuring locales"
   if has_cmd apt-get; then
-    sudo apt-get update
     sudo apt-get install -y locales
     sudo locale-gen en_US.UTF-8
     sudo update-locale LANG=en_US.UTF-8
@@ -221,6 +221,12 @@ setup_development_environment() {
       error "1Password CLI not found. install and configure before secrets workflow"
     fi
   fi
+
+   # Ensure detect-secrets is available before using it
+  if ! command -v detect-secrets >/dev/null 2>&1; then
+    python -m pip install detect-secrets
+  fi
+  
   step "initializing secrets baseline"
   if [ -f ".secrets.baseline" ]; then
     warn "existing .secrets.baseline found. backing up"
@@ -241,7 +247,10 @@ setup_development_environment() {
   step "running final project validation"
   info "checking imports"
 
-  # Use the venv python explicitly and fail fast if imports break
+  section "project validation"
+  step "running final project validation"
+  info "checking imports"
+
   "$VENV_DIR/bin/python" - <<'PYCODE'
 import importlib
 mods = ["utils.secrets", "utils.utils"]
