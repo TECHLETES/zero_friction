@@ -20,7 +20,7 @@ A modern, production-ready Python project template for TECHLETES, a data & AI co
 
 ```bash
 git clone https://github.com/TECHLETES/{REPO_NAME}.git
-cd python_basic_template
+cd {REPO_NAME}
 ./scripts/setup.sh
 ```
 
@@ -28,7 +28,7 @@ cd python_basic_template
 
 ```powershell
 git clone https://github.com/TECHLETES/{REPO_NAME}.git
-cd python_basic_template
+cd {REPO_NAME}
 # If activation is blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 .\scripts\setup.ps1
 ```
