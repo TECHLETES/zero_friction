@@ -4,7 +4,7 @@ repos:
       # Verify requirements lockfiles
       - id: verify-prod-lockfile
         name: Verify production lockfile is up-to-date
-        entry: ./scripts/verify-lockfile.sh
+        entry: ./scripts/hooks/verify-lockfile.sh
         args: ["requirements.txt"]
         language: python
         files: ^requirements\.txt$
@@ -12,7 +12,7 @@ repos:
 
       - id: verify-dev-lockfile
         name: Verify development lockfile is up-to-date
-        entry: ./scripts/verify-lockfile.sh
+        entry: ./scripts/hooks/verify-lockfile.sh
         args: ["requirements-dev.txt"]
         language: python
         files: ^requirements-dev\.txt$
@@ -52,14 +52,14 @@ repos:
 
   # Notebook/text sync
   - repo: https://github.com/mwouts/jupytext
-    rev: v1.17.2
+    rev: v1.17.3
     hooks:
       - id: jupytext
         args: [--sync]
         require_serial: true
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.17.1
+    rev: v1.18.2
     hooks:
       - id: mypy
         name: Type check with mypy
@@ -67,7 +67,7 @@ repos:
 
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.8
+    rev: v0.13.1
     hooks:
       - id: ruff
         name: Ruff (linting + extra isort + rules)

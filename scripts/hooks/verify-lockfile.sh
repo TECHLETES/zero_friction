@@ -16,18 +16,25 @@ echo "Verifying integrity of '$LOCKFILE_TO_CHECK'..."
 # Determine which compile command to run based on the filename
 if [[ "$LOCKFILE_TO_CHECK" == "requirements-dev.txt" ]]; then
     # Compile development dependencies
-    pip-compile "$PYPROJECT_FILE" --extra=dev --output-file="$TEMP_LOCKFILE" > /dev/null
+    pip-compile "$PYPROJECT_FILE" --extra=dev --output-file="$TEMP_LOCKFILE" --generate-hashes --strip-extras --quiet > /dev/null
 else
     # Compile production dependencies by default
-    pip-compile "$PYPROJECT_FILE" --output-file="$TEMP_LOCKFILE" > /dev/null
+    pip-compile "$PYPROJECT_FILE" --output-file="$TEMP_LOCKFILE" --generate-hashes --strip-extras --quiet > /dev/null
 fi
 
-# Compare the officially generated temp file with the one being committed.
-# The `diff -q` command is quiet and exits with a non-zero status if files differ.
-if ! diff -q "$LOCKFILE_TO_CHECK" "$TEMP_LOCKFILE"; then
+# Function to normalize a requirements file by removing the header comments
+# and keeping only the actual dependency lines
+normalize_requirements() {
+    local file="$1"
+    # Skip lines that start with # and extract only the actual requirements
+    grep -v '^#' "$file" | grep -v '^$' | sort
+}
+
+# Compare the normalized content (excluding headers)
+if ! diff -q <(normalize_requirements "$LOCKFILE_TO_CHECK") <(normalize_requirements "$TEMP_LOCKFILE") > /dev/null; then
     echo "❌ Error: '$LOCKFILE_TO_CHECK' has been manually edited or is out of date." >&2
     echo "   It does not match the expected output based on '$PYPROJECT_FILE'." >&2
-    echo "   To fix this, run 'rm requirements.txt' and then './scripts/dependency.sh' and commit the resulting changes." >&2
+    echo "   To fix this, run 'rm $LOCKFILE_TO_CHECK' and then './scripts/dependency.sh' and commit the resulting changes." >&2
     rm "$TEMP_LOCKFILE" # Always clean up
     exit 1
 fi
