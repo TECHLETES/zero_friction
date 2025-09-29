@@ -291,11 +291,11 @@ All development tools are configured in `pyproject.toml`:
 ## 📚 Documentation
 
 0. **[Setup](docs/0_setup.md)** - Guide to setup the development environment 
-1. **[Secret Management](docs/1_secret_management.md)** - Secure secret handling guide
-2. **[Dependency Management](docs/2_dependency_management.md)** - Detailed dependency workflow
-3. **[Pre Commit Hooks](docs/3_pre_commit_hooks.md)** - Pre commit hooks to ensure safety and quality
+1. **[Usage](docs/1_usage.md)** - Guide for daily usage of this repository
+2. **[Secret Management](docs/2_secret_management.md)** - Secure secret handling guide
+3. **[Dependency Management](docs/3_dependency_management.md)** - Detailed dependency workflow
 4. **[Code Quality](docs/4_code_quality.md)** - Rules and guidelines on code quality and how it is enforced
-
+5. **[Pre Commit Hooks](docs/5_pre_commit_hooks.md)** - Pre commit hooks to ensure safety and quality
 
 
 ## 🤝 Contributing
