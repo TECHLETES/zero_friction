@@ -72,6 +72,16 @@ This automatically installs:
 - All 8 client packages under `sdk/`  
 - Core dependencies (`requests`, `pandas`, `python-dotenv`, etc.)  
 
+If you manage dependencies with `pyproject.toml` and `setuptools`, you can add the package directly to your `project.dependencies` (or `dependencies` section) like this:
+
+```toml
+dependencies = [
+    ...
+    "zero-friction @ git+https://github.com/TECHLETES/zero_friction.git@main"
+    ...
+]
+```
+
 ---
 
 ## 🧑‍💻 Option 2: Local editable install (for development)
@@ -81,7 +91,6 @@ Clone the repo and install locally:
 ```bash
 git clone https://github.com/TECHLETES/zero_friction.git
 cd zero_friction
-pip install -r requirements.dev.txt
 ```
 
 This installs all clients and `zero_friction` in editable mode so changes are picked up immediately.
