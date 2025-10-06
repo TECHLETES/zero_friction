@@ -1,4 +1,4 @@
-# ZF-SDK – Unified SDK for Zero Friction APIs
+# zero_friction – Unified SDK for Zero Friction APIs
 
 This repository provides a **unified Python SDK** for interacting with the full suite of **Zero Friction** APIs.
 
@@ -11,7 +11,7 @@ You can install the entire SDK with a **single command**, while still using each
 ## 📁 Repository structure
 
 ```
-ZF-SDK/
+zero_friction/
 ├── sdk/                        # Contains 8 modular API client packages
 │   ├── attachments_client/     # Project folder
 │   │   ├── setup.py
@@ -63,7 +63,7 @@ ZF-SDK/
 Install everything — all SDK clients + the unified `zero_friction` package — with a single line:
 
 ```bash
-pip install "git+https://github.com/TECHLETES/ZF-SDK.git@main"
+pip install "git+https://github.com/TECHLETES/zero_friction.git@main"
 ```
 
 This automatically installs:
@@ -79,8 +79,8 @@ This automatically installs:
 Clone the repo and install locally:
 
 ```bash
-git clone https://github.com/TECHLETES/ZF-SDK.git
-cd ZF-SDK
+git clone https://github.com/TECHLETES/zero_friction.git
+cd zero_friction
 pip install -r requirements.dev.txt
 ```
 
@@ -137,8 +137,8 @@ ZF_PASSWORD=
 Clone the repository and create a feature branch:
 
 ```bash
-git clone https://github.com/TECHLETES/ZF-SDK.git
-cd ZF-SDK
+git clone https://github.com/TECHLETES/zero_friction.git
+cd zero_friction
 git checkout -b feature/my-feature
 ```
 
@@ -148,23 +148,6 @@ Add or update your logic in:
 - `zero_friction/business_logic/`
 
 Run tests or examples to validate your changes.
-
----
-
-## ☁️ Using in CI/CD or cloud deployments
-
-When installing from a **private GitHub repo**, use a fine-grained Personal Access Token (PAT):
-
-```bash
-pip install "git+https://${GITHUB_PAT}@github.com/TECHLETES/ZF-SDK.git@main"
-```
-
-### To generate a PAT:
-1. Go to **GitHub → Settings → Developer settings → Personal access tokens (fine-grained)**
-2. Click **Generate new token**
-3. Choose **TECHLETES** as the resource owner
-4. Set repository permissions → **Contents: Read-only**
-5. Copy and store your token securely (e.g., as `${GITHUB_PAT}` in CI/CD secrets)
 
 ---
 

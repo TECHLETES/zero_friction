@@ -6,25 +6,25 @@
 #
 annotated-types==0.7.0
     # via pydantic
-attachments-client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/attachments_client
+attachments-client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/attachments_client
     # via zero-friction (pyproject.toml)
-billing-client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/billing_client
+billing-client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/billing_client
     # via zero-friction (pyproject.toml)
 certifi==2025.4.26
     # via requests
 charset-normalizer==3.4.2
     # via requests
-communication-client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/communication_client
+communication-client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/communication_client
     # via zero-friction (pyproject.toml)
-configuration-client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/configuration_client
+configuration-client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/configuration_client
     # via zero-friction (pyproject.toml)
-forecasting-client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/forecasting_client
+forecasting-client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/forecasting_client
     # via zero-friction (pyproject.toml)
 idna==3.10
     # via requests
-masterdata-client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/masterdata_client
+masterdata-client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/masterdata_client
     # via zero-friction (pyproject.toml)
-metering-client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/metering_client
+metering-client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/metering_client
     # via zero-friction (pyproject.toml)
 numpy==2.2.6
     # via pandas
@@ -59,7 +59,7 @@ pytz==2025.2
     # via pandas
 ratelimit==2.2.1
     # via zero-friction (pyproject.toml)
-regionalregulations-client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/regionalregulations_client
+regionalregulations-client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/regionalregulations_client
     # via zero-friction (pyproject.toml)
 requests==2.32.3
     # via zero-friction (pyproject.toml)
