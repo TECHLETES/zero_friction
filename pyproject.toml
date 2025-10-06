@@ -39,6 +39,10 @@ dependencies = [
   "ratelimit"
 ]
 
+[project.optional-dependencies]
+dev = [
+]
+
 [project.urls]
 Homepage = "https://github.com/TECHLETES/zero_friction"
 Repository = "https://github.com/TECHLETES/zero_friction"
