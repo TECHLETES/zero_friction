@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zero-friction"
+version = "0.1.0"
+description = "Zero Friction SDK for Python"
+readme = "README.md"
+keywords = ["python", "sdk", "zero friction", "api client"]
+requires-python = ">=3.9"
+authors = [
+    {name = "Dominic Istha", email = "dominic@techletes.ai"},
+    {name = "Thom Ezechiels", email = "thom@techletes.ai"},
+]
+maintainers = [
+  {name = "Dominic Istha", email = "dominic@techletes.ai"},
+  {name = "Techletes DevOps Team", email = "dev@techletes.ai"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+  "attachments_client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/attachments_client",
+  "billing_client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/billing_client",
+  "communication_client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/communication_client",
+  "configuration_client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/configuration_client",
+  "forecasting_client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/forecasting_client",
+  "masterdata_client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/masterdata_client",
+  "metering_client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/metering_client",
+  "regionalregulations_client @ git+https://github.com/TECHLETES/ZF-SDK.git@main#subdirectory=sdk/regionalregulations_client",
+  "requests",
+  "python-dotenv",
+  "pandas",
+  "ratelimit"
+]
+
+[project.urls]
+Homepage = "https://github.com/TECHLETES/zero_friction"
+Repository = "https://github.com/TECHLETES/zero_friction"
+Issues = "https://github.com/TECHLETES/zero_friction/issues"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["zero_friction*"]

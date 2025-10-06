@@ -1,0 +1,35 @@
+# ClassDescriptionListApiResponseDTO
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**errors** | [**List[LocalisedErrorDTO]**](LocalisedErrorDTO.md) |  | [optional] 
+**success** | **bool** |  | [optional] 
+**applicable_entities_count** | **int** |  | [optional] 
+**requested_entities_count** | **int** |  | [optional] 
+**succeeded_entities_count** | **int** |  | [optional] [readonly] 
+**is_synchronous** | **bool** |  | [optional] 
+**data** | [**List[ClassDescription]**](ClassDescription.md) | The updated entity in case of modifications or creation | [optional] 
+
+## Example
+
+```python
+from configuration_client.models.class_description_list_api_response_dto import ClassDescriptionListApiResponseDTO
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ClassDescriptionListApiResponseDTO from a JSON string
+class_description_list_api_response_dto_instance = ClassDescriptionListApiResponseDTO.from_json(json)
+# print the JSON string representation of the object
+print(ClassDescriptionListApiResponseDTO.to_json())
+
+# convert the object into a dict
+class_description_list_api_response_dto_dict = class_description_list_api_response_dto_instance.to_dict()
+# create an instance of ClassDescriptionListApiResponseDTO from a dict
+class_description_list_api_response_dto_from_dict = ClassDescriptionListApiResponseDTO.from_dict(class_description_list_api_response_dto_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

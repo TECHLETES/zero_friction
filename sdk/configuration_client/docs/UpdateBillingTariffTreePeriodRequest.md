@@ -1,0 +1,31 @@
+# UpdateBillingTariffTreePeriodRequest
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**product_id** | **str** |  | [optional] 
+**activity_period** | [**DateRange**](DateRange.md) |  | [optional] 
+**billing_tariff_ids** | **List[str]** |  | [optional] 
+
+## Example
+
+```python
+from configuration_client.models.update_billing_tariff_tree_period_request import UpdateBillingTariffTreePeriodRequest
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of UpdateBillingTariffTreePeriodRequest from a JSON string
+update_billing_tariff_tree_period_request_instance = UpdateBillingTariffTreePeriodRequest.from_json(json)
+# print the JSON string representation of the object
+print(UpdateBillingTariffTreePeriodRequest.to_json())
+
+# convert the object into a dict
+update_billing_tariff_tree_period_request_dict = update_billing_tariff_tree_period_request_instance.to_dict()
+# create an instance of UpdateBillingTariffTreePeriodRequest from a dict
+update_billing_tariff_tree_period_request_from_dict = UpdateBillingTariffTreePeriodRequest.from_dict(update_billing_tariff_tree_period_request_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -1,0 +1,4021 @@
+openapi: 3.0.1
+info:
+  title: RegionalRegulations
+  description: Regional Regulations API
+  version: '1.0'
+servers:
+  - url: https://api.zerofriction.co/api/reg
+paths:
+  /SocialTariff/exports/customerPortfolio:
+    post:
+      tags:
+        - SocialTariff
+      summary: Creates a social tariff export for customer portfolio.
+      description: Creates a social tariff export for customer portfolio.
+      operationId: post-socialtariff-exports-customerportfolio
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Format - uuid. Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Tenant ID:
+              value: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Format - uuid. Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Organisation ID:
+              value: '{{zf-ouuid}}'
+      requestBody:
+        description: The request containing parameters for the export creation.
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateCustomerPortfolioSocialTariffExportRequest'
+            example:
+              startDateTime: string
+              endDateTime: string
+              onlyMutations: true
+          text/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateCustomerPortfolioSocialTariffExportRequest'
+            example:
+              startDateTime: string
+              endDateTime: string
+              onlyMutations: true
+          application/*+json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateCustomerPortfolioSocialTariffExportRequest'
+            example:
+              startDateTime: string
+              endDateTime: string
+              onlyMutations: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
+              example:
+                errors:
+                  - key: { }
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: { }
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+                data:
+                  id: string
+                  entityType: { }
+                  createdDateTime: string
+                  discriminator: string
+                  _etag: string
+                  requireAttention: true
+                  hasErrors: true
+                  hasWarnings: true
+                  isReadOnly: true
+                  organisationId: string
+                  startDateTime: string
+                  endDateTime: string
+                  generated: true
+                  internalFilePath: string
+                  filename: string
+                  type: { }
+                  onlyMutations: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
+              example:
+                errors:
+                  - key: { }
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: { }
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+                data:
+                  id: string
+                  entityType: { }
+                  createdDateTime: string
+                  discriminator: string
+                  _etag: string
+                  requireAttention: true
+                  hasErrors: true
+                  hasWarnings: true
+                  isReadOnly: true
+                  organisationId: string
+                  startDateTime: string
+                  endDateTime: string
+                  generated: true
+                  internalFilePath: string
+                  filename: string
+                  type: { }
+                  onlyMutations: true
+  /SocialTariff/exports:
+    post:
+      tags:
+        - SocialTariff
+      summary: "Legacy endpoint for creating a social tariff export.\r\nMaintained for backwards compatibility.\r\nRedirects to the CreateExportCustomerPortfolio method."
+      description: "Legacy endpoint for creating a social tariff export.\r\nMaintained for backwards compatibility.\r\nRedirects to the CreateExportCustomerPortfolio method."
+      operationId: post-socialtariff-exports
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Format - uuid. Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Tenant ID:
+              value: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Format - uuid. Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Organisation ID:
+              value: '{{zf-ouuid}}'
+      requestBody:
+        description: The request containing parameters for the export creation.
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateCustomerPortfolioSocialTariffExportRequest'
+            example:
+              startDateTime: string
+              endDateTime: string
+              onlyMutations: true
+          text/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateCustomerPortfolioSocialTariffExportRequest'
+            example:
+              startDateTime: string
+              endDateTime: string
+              onlyMutations: true
+          application/*+json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateCustomerPortfolioSocialTariffExportRequest'
+            example:
+              startDateTime: string
+              endDateTime: string
+              onlyMutations: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
+              example:
+                errors:
+                  - key: { }
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: { }
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+                data:
+                  id: string
+                  entityType: { }
+                  createdDateTime: string
+                  discriminator: string
+                  _etag: string
+                  requireAttention: true
+                  hasErrors: true
+                  hasWarnings: true
+                  isReadOnly: true
+                  organisationId: string
+                  startDateTime: string
+                  endDateTime: string
+                  generated: true
+                  internalFilePath: string
+                  filename: string
+                  type: { }
+                  onlyMutations: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
+              example:
+                errors:
+                  - key: { }
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: { }
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+                data:
+                  id: string
+                  entityType: { }
+                  createdDateTime: string
+                  discriminator: string
+                  _etag: string
+                  requireAttention: true
+                  hasErrors: true
+                  hasWarnings: true
+                  isReadOnly: true
+                  organisationId: string
+                  startDateTime: string
+                  endDateTime: string
+                  generated: true
+                  internalFilePath: string
+                  filename: string
+                  type: { }
+                  onlyMutations: true
+    get:
+      tags:
+        - SocialTariff
+      summary: Retrieves a paginated list of all social tariff exports.
+      description: Retrieves a paginated list of all social tariff exports.
+      operationId: get-socialtariff-exports
+      parameters:
+        - name: orderBy
+          in: query
+          description: The property to order the results by.
+          schema:
+            type: string
+        - name: continuationToken
+          in: header
+          description: The token for continuation of paged results.
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Format - uuid. Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Tenant ID:
+              value: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Format - uuid. Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Organisation ID:
+              value: '{{zf-ouuid}}'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SocialTariffExportDTOPagedResponseModelDTOApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialTariffExportDTOPagedResponseModelDTOApiResponseDTO'
+              example:
+                errors:
+                  - key: { }
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: { }
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+                data:
+                  results:
+                    - id: string
+                      entityType: { }
+                      createdDateTime: string
+                      discriminator: string
+                      _etag: string
+                      requireAttention: true
+                      hasErrors: true
+                      hasWarnings: true
+                      isReadOnly: true
+                      organisationId: string
+                      startDateTime: string
+                      endDateTime: string
+                      generated: true
+                      internalFilePath: string
+                      filename: string
+                      type: { }
+                      onlyMutations: true
+                  hasNextPage: true
+                  nextPageToken: string
+                  totalRecords: 0
+                  sortableFields:
+                    - string
+                  aggregateDetails:
+                    - code: string
+                      translation: string
+                      value: 0
+                      valueDate: string
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SocialTariffExportDTOPagedResponseModelDTOApiResponseDTO'
+              example:
+                errors:
+                  - key: { }
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: { }
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+                data:
+                  results:
+                    - id: string
+                      entityType: { }
+                      createdDateTime: string
+                      discriminator: string
+                      _etag: string
+                      requireAttention: true
+                      hasErrors: true
+                      hasWarnings: true
+                      isReadOnly: true
+                      organisationId: string
+                      startDateTime: string
+                      endDateTime: string
+                      generated: true
+                      internalFilePath: string
+                      filename: string
+                      type: { }
+                      onlyMutations: true
+                  hasNextPage: true
+                  nextPageToken: string
+                  totalRecords: 0
+                  sortableFields:
+                    - string
+                  aggregateDetails:
+                    - code: string
+                      translation: string
+                      value: 0
+                      valueDate: string
+  /SocialTariff/exports/claimsProtectedCustomers:
+    post:
+      tags:
+        - SocialTariff
+      summary: Creates a social tariff export for claims protected customers.
+      description: Creates a social tariff export for claims protected customers.
+      operationId: post-socialtariff-exports-claimsprotectedcustomers
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Format - uuid. Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Tenant ID:
+              value: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Format - uuid. Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Organisation ID:
+              value: '{{zf-ouuid}}'
+      requestBody:
+        description: The request containing parameters for the export creation.
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateClaimsProtectedCustomersSocialTariffExportRequest'
+            example:
+              year: 0
+          text/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateClaimsProtectedCustomersSocialTariffExportRequest'
+            example:
+              year: 0
+          application/*+json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateClaimsProtectedCustomersSocialTariffExportRequest'
+            example:
+              year: 0
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
+              example:
+                errors:
+                  - key: { }
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: { }
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+                data:
+                  id: string
+                  entityType: { }
+                  createdDateTime: string
+                  discriminator: string
+                  _etag: string
+                  requireAttention: true
+                  hasErrors: true
+                  hasWarnings: true
+                  isReadOnly: true
+                  organisationId: string
+                  startDateTime: string
+                  endDateTime: string
+                  generated: true
+                  internalFilePath: string
+                  filename: string
+                  type: { }
+                  onlyMutations: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
+              example:
+                errors:
+                  - key: { }
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: { }
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+                data:
+                  id: string
+                  entityType: { }
+                  createdDateTime: string
+                  discriminator: string
+                  _etag: string
+                  requireAttention: true
+                  hasErrors: true
+                  hasWarnings: true
+                  isReadOnly: true
+                  organisationId: string
+                  startDateTime: string
+                  endDateTime: string
+                  generated: true
+                  internalFilePath: string
+                  filename: string
+                  type: { }
+                  onlyMutations: true
+  '/SocialTariff/exports/{expuuid}':
+    delete:
+      tags:
+        - SocialTariff
+      summary: Deletes a specific social tariff export.
+      description: Deletes a specific social tariff export.
+      operationId: delete-socialtariff-exports-expuuid
+      parameters:
+        - name: expuuid
+          in: path
+          description: The unique identifier of the export to delete.
+          required: true
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Format - uuid. Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Tenant ID:
+              value: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Format - uuid. Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Organisation ID:
+              value: '{{zf-ouuid}}'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+        '204':
+          description: No Content
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BooleanApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanApiResponseDTO'
+              example:
+                errors:
+                  - key: { }
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: { }
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+                data: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BooleanApiResponseDTO'
+              example:
+                errors:
+                  - key: { }
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: { }
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+                data: true
+  '/SocialTariff/exports/{expuuid}/download':
+    post:
+      tags:
+        - SocialTariff
+      summary: Downloads a specific social tariff export file.
+      description: Downloads a specific social tariff export file.
+      operationId: post-socialtariff-exports-expuuid-download
+      parameters:
+        - name: expuuid
+          in: path
+          description: The unique identifier of the export to download.
+          required: true
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Format - uuid. Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Tenant ID:
+              value: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Format - uuid. Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Organisation ID:
+              value: '{{zf-ouuid}}'
+      responses:
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                type: string
+                format: binary
+              example: string
+            text/json:
+              schema:
+                type: string
+                format: binary
+              example: string
+  /SocialTariff/exports/delete/bulk:
+    delete:
+      tags:
+        - SocialTariff
+      summary: Deletes multiple social tariff exports in bulk.
+      description: Deletes multiple social tariff exports in bulk.
+      operationId: delete-socialtariff-exports-delete-bulk
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Format - uuid. Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Tenant ID:
+              value: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Format - uuid. Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Organisation ID:
+              value: '{{zf-ouuid}}'
+      requestBody:
+        description: The request containing the identifiers of exports to delete.
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/BulkDeleteSocialTariffsRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+              quickFilter: string
+          text/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/BulkDeleteSocialTariffsRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+              quickFilter: string
+          application/*+json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/BulkDeleteSocialTariffsRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+              quickFilter: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: { }
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: { }
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: { }
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: { }
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  /SocialTariff/export/download/bulk:
+    post:
+      tags:
+        - SocialTariff
+      summary: Downloads multiple social tariff exports as a ZIP archive.
+      description: Downloads multiple social tariff exports as a ZIP archive.
+      operationId: post-socialtariff-export-download-bulk
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Format - uuid. Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Tenant ID:
+              value: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Format - uuid. Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          examples:
+            Organisation ID:
+              value: '{{zf-ouuid}}'
+      requestBody:
+        description: The request containing the identifiers of exports to include in the ZIP file.
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/BulkDownloadSocialTariffsRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+              quickFilter: string
+              socialTariffIds:
+                - string
+          text/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/BulkDownloadSocialTariffsRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+              quickFilter: string
+              socialTariffIds:
+                - string
+          application/*+json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/BulkDownloadSocialTariffsRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+              quickFilter: string
+              socialTariffIds:
+                - string
+      responses:
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                type: string
+                format: binary
+              example: string
+            text/json:
+              schema:
+                type: string
+                format: binary
+              example: string
+components:
+  schemas:
+    AdvanceAmountChangedBy:
+      enum:
+        - systeminvoicecalculation
+        - customer
+        - customerservicerepresentative
+      type: string
+    AdvanceAmountLimitType:
+      enum:
+        - fixed
+        - percentage
+      type: string
+    AdvanceCalculationFallbackReason:
+      enum:
+        - na
+        - deviationtoolow
+        - accuracytoolow
+        - estimationfailed
+        - estimationfailedanddeviationtoolow
+        - manuallyoverridden
+      type: string
+    AdvanceFrequency:
+      enum:
+        - none
+        - monthly
+        - quarterly
+        - halfyearly
+      type: string
+    AdvanceRecalculationType:
+      enum:
+        - none
+        - usingpreviousinvoice
+        - usingestimatedinvoice
+      type: string
+    AggregateDetailsDTO:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        translation:
+          type: string
+          nullable: true
+        value:
+          type: number
+          format: double
+          nullable: true
+        valueDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    AggregationFrequency:
+      enum:
+        - none
+        - daily
+        - monthly
+        - yearly
+      type: string
+    AggregationType:
+      enum:
+        - Max
+        - Avg
+        - Sum
+        - Min
+      type: string
+    AnnualStatementOrigin:
+      enum:
+        - scheduledrun
+        - manual
+      type: string
+    AnnualStatementStatus:
+      enum:
+        - created
+        - generationinprogress
+        - generated
+        - generationfailed
+      type: string
+    ApiResponseDTO:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalisedErrorDTO'
+          nullable: true
+        success:
+          type: boolean
+        applicableEntitiesCount:
+          type: integer
+          format: int32
+        requestedEntitiesCount:
+          type: integer
+          format: int32
+        succeededEntitiesCount:
+          type: integer
+          format: int32
+          readOnly: true
+        isSynchronous:
+          type: boolean
+      additionalProperties: false
+    AppEnvironment:
+      enum:
+        - development
+        - staging
+        - production
+        - cli
+      type: string
+    AttachmentVisibility:
+      enum:
+        - internal
+        - portal
+        - portalandmovein
+      type: string
+    AttributeType:
+      enum:
+        - meterserialnumber
+        - externalidentifier
+        - meteringtype
+        - direction
+        - parentmeterserialnumber
+        - unitofmeasure
+        - timeofuse
+        - utilitytype
+        - externalreference
+      type: string
+    BankStatementCreditDebit:
+      enum:
+        - unknown
+        - debit
+        - credit
+      type: string
+    BankTransactionType:
+      enum:
+        - unknown
+        - sddreversal
+        - sctreceived
+      type: string
+    BaseQueryParams:
+      type: object
+      properties:
+        flexSearch:
+          type: string
+          nullable: true
+        includeOnlyIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        excludeIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    BillingCalculationStreamStatus:
+      enum:
+        - open
+        - finished
+      type: string
+    BillingCalculationType:
+      enum:
+        - consumption
+        - subscription
+        - attribute
+        - consumptionunit
+        - customentityproperty
+      type: string
+    BillingCompletenessQuickFilter:
+      enum:
+        - all
+        - waiting
+        - inputmissing
+        - manuallycorrected
+        - previousstillopen
+        - missingadvances
+      type: string
+    BillingCompletenessStatus:
+      enum:
+        - waiting
+        - gatheringinput
+        - inputmissing
+        - pendingcalculation
+        - calculating
+        - closed
+        - previousnotclosed
+        - manuallycorrected
+        - waitingforapproval
+        - manuallyclosed
+        - waitingfornextestimation
+      type: string
+    BillingCompletenessTariffInputType:
+      enum:
+        - paymentmethod
+        - customentityproperty
+      type: string
+    BillingItemLevel:
+      enum:
+        - contract
+        - service
+      type: string
+    BillingItemTariffCalculationType:
+      enum:
+        - unitprice
+        - tiered
+        - volume
+        - stairstep
+        - condition
+      type: string
+    BillingItemTariffConditionType:
+      enum:
+        - paymentmethod
+        - customentitypropertytype
+      type: string
+    BillingRelationScenarioType:
+      enum:
+        - advanceamountchanged
+      type: string
+    BillingScope:
+      enum:
+        - contract
+        - location
+      type: string
+    BillingTariffInputType:
+      enum:
+        - none
+        - fixed
+        - costcomponent
+      type: string
+    BooleanApiResponseDTO:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalisedErrorDTO'
+          nullable: true
+        success:
+          type: boolean
+        applicableEntitiesCount:
+          type: integer
+          format: int32
+        requestedEntitiesCount:
+          type: integer
+          format: int32
+        succeededEntitiesCount:
+          type: integer
+          format: int32
+          readOnly: true
+        isSynchronous:
+          type: boolean
+        data:
+          type: boolean
+          description: The updated entity in case of modifications or creation
+      additionalProperties: false
+    BulkDeleteSocialTariffsRequest:
+      type: object
+      properties:
+        onlyValidate:
+          type: boolean
+        queryParams:
+          allOf:
+            - $ref: '#/components/schemas/ReadExportsQueryParams'
+          nullable: true
+        quickFilter:
+          type: string
+          nullable: true
+      additionalProperties: false
+    BulkDownloadSocialTariffsRequest:
+      type: object
+      properties:
+        onlyValidate:
+          type: boolean
+        queryParams:
+          allOf:
+            - $ref: '#/components/schemas/BaseQueryParams'
+          nullable: true
+        quickFilter:
+          type: string
+          nullable: true
+        socialTariffIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    CalculatedLineStatus:
+      enum:
+        - created
+        - transferred
+        - approved
+      type: string
+    CollectionCaseQuickFilter:
+      enum:
+        - all
+        - active
+        - requiresmanualintervention
+        - closed
+        - requireattention
+      type: string
+    CollectionChargeType:
+      enum:
+        - none
+        - fixed
+        - percentageofopenamount
+        - tieredpercentageofopenamount
+      type: string
+    CollectionFlowStatus:
+      enum:
+        - active
+        - manuallyclosed
+        - automaticallyclosed
+      type: string
+    CollectionStepLevel:
+      enum:
+        - collection
+        - reminder
+        - noticeofdefault
+      type: string
+    CollectionStepStatus:
+      enum:
+        - pending
+        - waitingformanualsend
+        - closed
+        - inprogress
+        - skipped
+        - generatingdocuments
+        - failed
+        - printing
+      type: string
+    CollectionStepType:
+      enum:
+        - communication
+        - manualintervention
+      type: string
+    CommunicationDocumentType:
+      enum:
+        - maindocument
+        - additionaldocument
+        - emailbody
+      type: string
+    CommunicationEntryQuickFilter:
+      enum:
+        - all
+        - failed
+      type: string
+    CommunicationEntryStatus:
+      enum:
+        - generating
+        - sending
+        - failed
+        - successful
+        - skipped
+      type: string
+    CommunicationType:
+      enum:
+        - postal
+        - none
+        - email
+        - manual
+        - skipifsdd
+        - sms
+      type: string
+    ConsumerGroupOrigin:
+      enum:
+        - manual
+        - systemgenerated
+      type: string
+    ConsumerGroupSuggestion:
+      enum:
+        - frompropertygroup
+        - originmanual
+        - originsystemgenerated
+      type: string
+    ConsumptionOrigin:
+      enum:
+        - actual
+        - manual
+        - frompreviousyear
+        - fromconsumergroup
+        - forecast
+      type: string
+    ContactType:
+      enum:
+        - email
+        - telephone
+        - mobiletelephone
+        - website
+      type: string
+    ContractBillingMethod:
+      enum:
+        - credit
+        - prepayment
+      type: string
+    ContractQuickFilter:
+      enum:
+        - all
+        - ongoing
+        - draft
+        - blocked
+        - requireattention
+      type: string
+    ContractScenarioType:
+      enum:
+        - welcome
+        - termination
+        - locationsadded
+        - locationsremoved
+      type: string
+    ContractServicesUpdatedAction:
+      enum:
+        - servicesadded
+        - servicesremoved
+        - servicesupdated
+        - servicescorrected
+      type: string
+    ContractStatus:
+      enum:
+        - draft
+        - sent
+        - signed
+        - cancelled
+        - terminated
+      type: string
+    CountryCode:
+      enum:
+        - aut
+        - bel
+        - bgr
+        - cyp
+        - cze
+        - dnk
+        - est
+        - fin
+        - fra
+        - deu
+        - grc
+        - hun
+        - irl
+        - ita
+        - lva
+        - ltu
+        - lux
+        - mlt
+        - nld
+        - pol
+        - prt
+        - rou
+        - svk
+        - esp
+        - swe
+        - gbr
+        - che
+        - isl
+        - nor
+        - rus
+        - blr
+        - ukr
+        - mda
+        - srb
+        - alb
+        - mne
+        - mkd
+        - tur
+        - lie
+        - smr
+        - and
+        - mco
+        - bih
+        - bra
+        - usa
+        - sgp
+        - zaf
+        - cuw
+      type: string
+    CreateClaimsProtectedCustomersSocialTariffExportRequest:
+      type: object
+      properties:
+        year:
+          type: integer
+          format: int32
+      additionalProperties: false
+    CreateCustomerPortfolioSocialTariffExportRequest:
+      type: object
+      properties:
+        startDateTime:
+          type: string
+          format: date-time
+        endDateTime:
+          type: string
+          format: date-time
+        onlyMutations:
+          type: boolean
+      additionalProperties: false
+    CustAgingBucketType:
+      enum:
+        - anyopenexcloverdue
+        - anyoverdue
+        - anyoverdue30
+        - anyoverdue60
+        - anyoverdue90
+        - anyoverduemorethan90
+      type: string
+    CustomEntityPropertyTypeTagColor:
+      enum:
+        - blue
+        - slate
+        - green
+        - yellow
+        - orange
+        - red
+      type: string
+    CustomEntityPropertyValueType:
+      enum:
+        - string
+        - number
+        - decimal
+        - boolean
+        - datetime
+        - dropdown
+      type: string
+    CustomerBalance:
+      enum:
+        - equaltozero
+        - smallerthanzero
+        - greaterthanzero
+      type: string
+    CustomerGroupQuickFilter:
+      enum:
+        - all
+      type: string
+    CustomerQuickFilter:
+      enum:
+        - all
+        - supplied
+        - unsupplied
+        - requireattention
+      type: string
+    CustomerScenarioType:
+      enum:
+        - portalconfirmation
+        - portalresetpassword
+        - annualstatement
+      type: string
+    CustomerType:
+      enum:
+        - person
+        - organization
+      type: string
+    DataExportCommunicationType:
+      enum:
+        - manualdownload
+        - ftp
+        - sftp
+        - ftps
+      type: string
+    DataExportInvoiceFormatType:
+      enum:
+        - lord
+        - bdo
+        - sapisu
+      type: string
+    DataFrequency:
+      enum:
+        - pt1m
+        - pt5m
+        - pt15m
+        - pt30m
+        - pt1h
+        - p1d
+        - na
+      type: string
+    DataImportCommunicationType:
+      enum:
+        - sftp
+        - ftp
+        - ftps
+        - inboundemail
+        - manualupload
+        - configuredplugin
+        - inboundapi
+      type: string
+    DataImportMeteringFormatType:
+      enum:
+        - elvaco_1104
+        - elvaco_1112
+        - customcsv
+        - kamstrupready_v1
+        - izarcenter
+        - flamco
+        - cadis
+        - climaways
+        - equinox_sinapsi
+        - siemens_synco
+        - cadislora
+        - ycongouda
+        - synergirbisgen3
+        - synergirbisgen1_2
+        - engelmann
+        - inboundapi
+        - synergirbisgen4
+      type: string
+    DataImportMigrationFormatType:
+      enum:
+        - zf_bulkimport
+      type: string
+    DataType:
+      enum:
+        - text
+        - number
+        - date
+        - dateandtime
+        - enumeration
+      type: string
+    Direction:
+      enum:
+        - offtake
+        - injection
+        - na
+      type: string
+    DnsRecordMeaning:
+      enum:
+        - mailcname
+        - mx
+        - spf
+        - dkim1
+        - dkim2
+      type: string
+    DnsRecordStatus:
+      enum:
+        - unverified
+        - valid
+        - error
+      type: string
+    DocumentOutputFormat:
+      enum:
+        - pdf
+        - html
+        - xml
+      type: string
+    DomainProblemDataType:
+      enum:
+        - generalproductissue
+        - generalbillingitemissue
+        - generalcompanybankaccountissue
+        - message
+        - generalexportjobissue
+        - generaltemplateissue
+        - serviceconsumptioncalculationissue
+        - billingcalculationissue
+        - mandateissue
+        - tariffcalculationissue
+        - allocationcalculationissue
+        - daterangeissue
+        - taxperiodissue
+      type: string
+    EavEstimationRunStatus:
+      enum:
+        - gatheringdata
+        - estimating
+      type: string
+    EmailConfirmationType:
+      enum:
+        - advanceamountchanged
+        - ibanchanged
+        - paymentmethodchanged
+      type: string
+    EntityAttachmentGroupQuickFilter:
+      enum:
+        - all
+      type: string
+    EntityAttachmentOrigin:
+      enum:
+        - customer
+        - contract
+        - product
+        - entityattachmentgroup
+      type: string
+    EntityAttachmentQuickFilter:
+      enum:
+        - all
+        - visibletocustomer
+      type: string
+    EntityAttributeType:
+      enum:
+        - capacity
+        - quota
+        - surface
+        - occupants
+        - propertyquota
+      type: string
+    EntitySubjectType:
+      enum:
+        - none
+        - customer
+        - contract
+        - meter
+        - servicelocation
+        - invoice
+        - importjob
+        - propertygroup
+        - payment
+        - communicationentry
+        - exportjob
+        - dataexport
+        - dataimport
+        - entityattribute
+        - asset
+        - bankaccount
+        - billingitem
+        - billingtariff
+        - costcomponent
+        - costcomponentvalue
+        - model
+        - numbersequence
+        - billingparameters
+        - product
+        - taxcode
+        - template
+        - billingrelation
+        - transaction
+        - dataimportfileformat
+        - dataexportfileformat
+        - tenant
+        - consumption
+        - attachment
+        - exportjobline
+        - culturetable
+        - collectioncase
+        - collectionflowstep
+        - consumptionunittype
+        - incominginvoice
+        - moverequest
+        - activityentry
+        - commententry
+        - problem
+        - relatedentity
+        - customeragingreport
+        - billingcompleteness
+        - propertygroupbillingconfiguration
+        - propertygroupbillingperiod
+        - collectionflow
+        - configuredplugin
+        - organizationscenarios
+        - paymentterms
+        - paymentdelaysetting
+        - paymentparameters
+        - domainauthenticationparameters
+        - communicationparameters
+        - organization
+        - incominginvoicecomponent
+        - costallocationcomponent
+        - scheduledattempt
+        - plugintrigger
+        - exportentitycontainer
+        - externalbankstatement
+        - externalbanktransaction
+        - externalmeasurement
+        - importjobentityissue
+        - intermediateexportformat
+        - consumptionunit
+        - calculatedconsumption
+        - propertygroupmeteringconfiguration
+        - measurement
+        - externalchannel
+        - serviceconsumption
+        - purgerequest
+        - migrationversion
+        - formulaconsumption
+        - templatedataobject
+        - dataupgradebaseline
+        - processrequest
+        - validationrequest
+        - postprocessrequest
+        - outgoingbankingtransaction
+        - incomingmutation
+        - outgoingmutation
+        - incomingbankingtransaction
+        - customerbankaccount
+        - pluginmanualtrigger
+        - billingcustomer
+        - enumsymboltranslation
+        - scenariotranslation
+        - syntheticloadprofile
+        - consumergroup
+        - estimablecontract
+        - plugininboundwebhooktrigger
+        - pluginmappingentry
+        - eavestimationrun
+        - customentitypropertytype
+        - customentityproperty
+        - pluginfeedentry
+        - regionalregulationsconfiguration
+        - entityattachment
+        - entityattachmentgroup
+        - propertygroupforecastingconfiguration
+        - prepaymenttransaction
+        - customeragingheader
+        - estimatedbillingcompleteness
+        - estimatedinvoice
+        - customergroup
+        - meteringissue
+        - meteringparameters
+        - mutingrule
+        - reportmappingentry
+        - meteringimport
+        - prepaymentaccount
+        - user
+        - role
+        - baseimport
+        - systemusagerecord
+        - portalsettings
+        - annualstatement
+        - organizationscenario
+        - accounting
+        - socialtariffexport
+        - socialtariffimportheader
+        - socialtariffimportline
+      type: string
+    Enumeration:
+      type: string
+    EnvelopePosition:
+      enum:
+        - left
+        - right
+      type: string
+    ErrorCode:
+      enum:
+        - ASSET_ALREADY_EXISTS
+        - ASSET_DOES_NOT_EXIST
+        - TRANSLATION_ALREADY_EXISTS
+        - TRANSLATION_DOES_NOT_EXIST
+        - TRANSLATION_HAS_NO_CHANGES
+        - TRANSLATION_HAS_NO_DEFAULT
+        - NUMBER_SEQUENCE_DOES_NOT_EXIST
+        - BANK_ACCOUNT_NOT_FOUND
+        - BANK_ACCOUNT_ALREADY_EXISTS
+        - BILLING_ITEM_ALREADY_EXISTS
+        - BILLING_RELATION_NOT_BLOCKED
+        - BILLING_RELATION_BLOCKED
+        - BILLING_RELATION_DOES_NOT_EXIST
+        - BILLING_RELATION_NOT_DUE
+        - CANNOT_CREATE_ORG_FROM_ORG
+        - CHANNEL_NOT_FOUND
+        - CONTRACT_HAS_NO_ADVANCE_FREQUENCY
+        - CONTACT_ENTRY_NOT_FOUND
+        - CONTRACTUAL_ADVANCE_AMOUNT_CANNOT_BE_EMPTY_WHEN_ADVANCE_FREQUENCY_IS_NOT_NONE
+        - CONTRACT_HAS_NO_SERVICES
+        - CONTRACT_IS_ALREADY_SIGNED
+        - CONTRACT_IS_NOT_SIGNED
+        - CONTRACT_NOT_FOUND
+        - COULD_NOT_APPROVE_INVOICE
+        - COULD_NOT_CREATE_BILLED_SERVICE
+        - COULD_NOT_CREATE_BILLING_RELATION
+        - COULD_NOT_CREATE_CONTRACT
+        - COULD_NOT_CREATE_CUSTOMER
+        - COULD_NOT_CREATE_INVOICE
+        - COULD_NOT_CREATE_METER
+        - COULD_NOT_CREATE_SERVICELOCATION
+        - COULD_NOT_GENERATE_CONTRACT_NUMBER
+        - COULD_NOT_GENERATE_CUSTOMER_NUMBER
+        - COULD_NOT_GENERATE_INVOICE_NUMBER
+        - COULD_NOT_UPLOAD_FILE
+        - CUSTOMER_ALREADY_EXISTS
+        - CUSTOMER_DOES_NOT_EXIST
+        - CUSTOMER_IS_NOT_AN_ORGANIZATION
+        - CUSTOMER_IS_NOT_A_PERSON
+        - DATAIMPORT_DOES_NOT_EXIST
+        - DATAIMPORT_NAME_ALREADY_EXISTS
+        - DOCUMENT_CATEGORY_NOT_SUPPORTED
+        - DUPLICATE_CHANNEL
+        - DUPLICATE_FORMAT_PROVIDER_NAME
+        - DUPLICATE_SERVICE
+        - DUPLICATE_SERVICELOCATION
+        - END_DATE_NOT_AFTER_GIVEN_DATE
+        - END_DATE_NOT_AFTER_OR_EQUAL_TO_GIVEN_DATE
+        - FIELD_CANNOT_BE_EMPTY
+        - FIELD_CANNOT_BE_LOWER_OR_EQUAL_TO_ZERO
+        - FIELD_CANNOT_BE_NULL
+        - FIELD_CANNOT_CONTAIN_SPECIAL_CHARACTERS
+        - FIELD_NOT_AN_ENUM
+        - FIELD_NOT_A_COUNTRY
+        - FIELD_NOT_A_GUID
+        - FIELD_MUST_BE_HIGHER_THAN_OR_EQUAL_TO_ZERO
+        - FIELD_CAN_ONLY_CONTAIN_ALPHANUMERICAL_CHARACTERS
+        - FIELDS_MUST_BE_EQUAL
+        - FILEFORMATPROVIDER_ALREADY_EXISTS
+        - FILEFORMATPROVIDER_DOES_NOT_EXIST
+        - FILEFORMATPROVIDER_WITH_THIS_NAME_ALREADY_EXISTS
+        - IBAN_EMPTY
+        - IBAN_INVALID_COUNTRY
+        - IBAN_MODULE_CHECK_FAILED
+        - IBAN_TOO_BIG
+        - IBAN_TOO_SHORT
+        - INSTANCE_NAME_ALREADY_USED
+        - INSTANCE_DUPLICATE_IN_LIST
+        - INVALID_ENDDATETIME
+        - INVALID_ENDDATETIME_OR_FORMAT
+        - INVALID_CULTURE_NAME
+        - INVALID_INTERVAL
+        - INVALID_NUMBERFORMAT
+        - INVALID_NUMBERSEQUENCE_REFERENCE_ENTITY
+        - INVALID_NUMBERSEQUENCE_SEGMENT_TYPE
+        - INVALID_STARTDATETIME
+        - INVALID_STARTDATETIME_OR_FORMAT
+        - INVALID_TIMEZONE
+        - INVALID_VALUE
+        - INVOICE_DOES_NOT_EXIST
+        - INVOICE_LINE_SPANS_MULTIPLE_TAX_RATE_PERIODS
+        - INVOICE_LINE_SPANS_NO_TAX_RATE_PERIODS
+        - INVOICE_NOT_APPROVED_STATUS
+        - INVOICE_NOT_CREATED_STATUS
+        - INVOICE_TEMPLATE_NOT_CONFIGURED
+        - INVOICE_TYPE_NOT_SUPPORTED_FOR_GENERATION
+        - LIST_CANNOT_BE_EMPTY
+        - METER_ALREADY_EXISTS
+        - METER_DOES_NOT_EXIST
+        - METER_NOT_CONFIRMED
+        - METER_NOT_REQUESTED_OR_REMOVED
+        - METER_REMOVED
+        - MISSING_DATETIMEFORMAT
+        - MISSING_DELIMITER
+        - MISSING_ENDDATETIME
+        - MISSING_METERSN_OR_EXTERNAL_IDENTIFIER
+        - MISSING_NAME
+        - MISSING_NUMBERDECIMALSEPERATOR
+        - MISSING_NUMBERTHOUSANDSSEPERATOR
+        - MISSING_TIMEZONE
+        - MODEL_ALREADY_EXISTS
+        - MODEL_BRANDNAME_EMPTY
+        - MODEL_DOES_NOT_EXIST
+        - MODEL_NAME_EMPTY
+        - NOT_ALL_SEGMENTS_PROVIDED
+        - NO_ADVANCE_FREQUENCY_BUT_AMOUNT_PROVIDED
+        - NO_CONTRACTUAL_AMOUNT_BUT_ADVANCE_FREQUENCY_PROVIDED
+        - NO_DEFAULT_TAXCODE_FOR_ADVANCES_SPECIFIED
+        - NO_FILES_PROVIDED
+        - ONE_OR_MORE_FILES_NOT_CORRECT_TYPE
+        - PAYMENT_METHOD_ALREADY_USED
+        - PAYMENT_METHOD_EMPTY
+        - PRODUCT_DOES_NOT_EXIST
+        - PROVIDER_ALREADY_CONTAINS_INSTANCE_FOR_ORG_AND_DIR
+        - PROVIDER_ALREADY_CONTAINS_INSTANCE_WITH_SAME_NAME
+        - SDD_REQUIRES_BANK_ACCOUNT
+        - SERVICELOCATION_DOES_NOT_EXIST
+        - SERVICE_ALREADY_EXISTS
+        - TAXCODE_FOR_DEFAULT_ADVANCE_RATE_CANNOT_BE_DELETED
+        - TAXCODE_ALREADY_EXISTS
+        - TAXCODE_DOES_NOT_EXIST
+        - TAX_CODE_NOT_FOUND
+        - TEMPLATE_ALREADY_CONTAINS_DOCUMENT_FOR_CATEGORY_AND_TYPE
+        - TEMPLATE_ALREADY_EXISTS
+        - TEMPLATE_DOES_NOT_EXIST
+        - TEMPLATE_HAS_ERRORS
+        - VALUE_DIRECTION_MISMATCH
+        - VALUE_METERINGTYPE_MISMATCH
+        - VALUE_MULTIPLE_CHANNEL_CANDIDATES
+        - VALUE_NO_CHANNEL_CANDIDATES
+        - VALUE_TIMEOFUSE_MISMATCH
+        - VALUE_UNITOFMEASURE_MISMATCH
+        - BILLING_RELATION_NOT_FOUND
+        - INVALID_BILLING_CALCULATION_TYPE
+        - PRODUCT_ALREADY_EXISTS
+        - BILLING_ITEM_DOES_NOT_EXIST
+        - CANCELLATION_ITEM_DOES_NOT_EXIST
+        - BILLING_TARIFF_DOES_NOT_EXIST
+        - TARIFF_PERIOD_INCOMPLETE
+        - DATE_CANNOT_BE_BEFORE_1900_01_01
+        - FIELD_MUST_BE_EMPTY_FEATURE_NOT_YET_AVAILABLE
+        - CONSUMPTION_PERIOD_INCOMPLETE
+        - DUPLICATE_CONTRACT_NUMBER
+        - INVOICE_NOT_GENERATED_STATUS
+        - PRODUCT_HAS_NO_BILLING_ITEMS
+        - INVOICE_RECALCULATION_NOT_SUPPORTED
+        - ARCHIVE_DIRECTORY_CANNOT_BE_EMPTY_WHEN_DELETE_AFTER_UPLOAD
+        - FIELD_NOT_AN_EMAILADRESS
+        - COST_COMPONENT_DOES_NOT_EXIST
+        - COST_COMPONENT_ALREADY_EXISTS
+        - COST_COMPONENT_VALUE_DOES_NOT_EXIST
+        - BILLING_TARIFF_UNIT_PRICE_NOT_ALLOWED_FOR_FORMULA
+        - BILLING_TARIFF_MISSING_EXPRESSION
+        - BILLING_TARIFF_INPUT_MISSING_REFERENCE
+        - BILLING_TARIFF_INPUT_INVALID_REFERENCE
+        - TARIFF_INPUT_UNSUPPORTED_INPUT_TYPE
+        - TARIFF_INPUT_VARIABLE_NOT_DEFINED
+        - TARIFF_INPUT_EXPRESSION_UNPARSABLE
+        - TARIFF_INPUT_CANNOT_PROCESS_EXPRESSION
+        - ENTITY_ATTRIBUTE_DOES_NOT_EXIST
+        - ENTITY_ATTRIBUTE_ALREADY_EXISTS_FOR_SUBJECT_ID_AND_TYPE_AND_ATTRIBUTE_TYPE
+        - ORGANIZATION_CODE_ALREADY_EXISTS
+        - ORGANIZATION_DOES_NOT_EXIST
+        - ORGANIZATION_NOT_FOUND
+        - MISSING_ORGANIZATION_LOGO
+        - ASSET_IS_NOT_AN_IMAGE
+        - CULTURE_NOT_FOUND
+        - DATA_PROVIDER_PARAMETERS_DO_NOT_MATCH_TYPE
+        - CANNOT_BILL_UNBILLED_PERIODS
+        - INVOICE_IS_ALREADY_CREDITED
+        - NEED_DEFAULT_BANK_ACCOUNT
+        - NEED_DEFAULT_BANK_ACCOUNT_FOR_SDD
+        - PAYMENT_DOES_NOT_EXIST
+        - PAYMENT_IS_NOT_CREATED
+        - PAYMENT_CANNOT_BE_PROCESSED
+        - CONTRACT_NUMBER_CANNOT_BE_EMPTY
+        - ACCOUNT_NUMBER_CANNOT_BE_EMPTY
+        - COMMUNICATION_TYPES_DO_NOT_MATCH
+        - INVOICE_ALREADY_EXISTS
+        - APPROVED_INVOICES_CANNOT_BE_DELETED
+        - CREATED_INVOICES_CANNOT_BE_CREDITED
+        - CATCH_ALL_COMMUNICATION_PREFERENCE_CANNOT_BE_ADDED_WHEN_OTHERS_EXIST
+        - TEMPLATE_HAS_WRONG_USECASE
+        - ATTACHMENT_FILE_DOES_NOT_EXIST
+        - NO_TAXCODE_SPECIFIED
+        - TEMPLATE_DATATYPE_NOT_CONFIGURED
+        - USER_HAS_NO_EMAIL_ADDRESS
+        - USER_HAS_NO_POSTAL_ADDRESS
+        - NO_TEMPLATE_FOR_EMAIL_BODY
+        - CANNOT_PROVIDE_VALUES_FOR_BUILTIN_FILE_FORMAT
+        - CANNOT_PROVIDE_VALUES_FOR_OTHER_IMPORT_THAN_METERING
+        - IMPORTJOB_DOES_NOT_EXIST
+        - IMPORTJOB_HAS_INCORRECT_STATUS
+        - MISSING_CUSTOMER_BANK_ACCOUNT
+        - PAYMENTS_ARE_DISABLED
+        - ONLY_INBOUND_PAYMENTS_CAN_BE_MATCHED
+        - NO_CUSTOMER_FOUND_FOR_PAYMENT
+        - CREDITED_INVOICES_FOLLOWED_BY_A_NEWER_INVOICE_CANNONT_BE_DELETED
+        - NOT_A_VALID_FORMAT_STRING
+        - DATE_IS_NOT_VALID
+        - EMAIL_COMMUNICATION_PREFERENCE_REQUIRES_EMAILADDRESS_CONTACT_ENTRY
+        - TRANSACTION_REFERENCE_DOES_NOT_EXIST
+        - EXPORTJOB_HAS_INCORRECT_STATUS
+        - INVALID_DEBIT_CREDIT_INDICATOR
+        - INVALID_TRANSACTION_TO_SETTLE
+        - COMPANY_BANK_ACCOUNT_NOT_FOUND
+        - DATAEXPORT_ALREADY_EXISTS
+        - DATAEXPORT_DOES_NOT_EXIST
+        - COULD_NOT_CREATE_DOMAIN_WITH_SENDGRID
+        - NO_DOMAIN_AUTHENTICATION_PARAMETERS_EXIST_FOR_ORGANISATION
+        - COULD_NOT_VALIDATE_DOMAIN_WITH_SENDGRID
+        - SENDER_EMAIL_DOMAIN_NOT_AUTHENTICATED
+        - PROPERTY_DOES_NOT_EXIST
+        - INVOICE_MONTH_MUST_BE_EMPTY_WHEN_INVOICE_FREQUENCY_IS_NOT_YEARLY
+        - PROPERTY_WITH_GIVEN_NAME_ALREADY_EXISTS
+        - MANAGEMENT_DETAILS_CANNOT_CONTAIN_DOUBLES
+        - SANDBOX_MODE_NEEDS_RECIPIENT_EMAIL
+        - POSTAL_NOT_SUPPORTED_FOR_NOW
+        - SERVICE_LOCATION_RELATION_DOES_NOT_EXIST
+        - TEMPLATE_HAS_NO_USECASE
+        - PROBLEM_NOT_FOUND
+        - PROBLEM_ALREADY_RESOLVED
+        - ALREADY_ACTIVE_MANDATE
+        - MANDATE_DOES_NOT_EXIST
+        - MANDATE_IS_NOT_REQUESTED
+        - COULD_NOT_GENERATE_MANDATE_NUMBER
+        - PROPERTY_FOR_THIS_ADDRESS_ALREADY_EXISTS
+        - SERVICE_LOCATION_IS_ALREADY_PART_OF_A_PROPERTY_AT_THIS_MOMENT
+        - UNSUPPORTED_DATA_FORMAT_FOR_PAYMENT_REQUEST_DATA_EXPORT
+        - FILE_COULD_NOT_BE_GENERATED
+        - MISSING_ACTIVE_MANDATE
+        - NO_SERVICE_LOCATION_FOUND
+        - NO_PROTOCOL_SPECIFIED
+        - SSH_CONNECTION_FAILED
+        - FAILED_CONNECTING_TO_SOURCE
+        - MISSING_COMMUNICATION_SCENARIO
+        - UNKNOWN_TEMPLATE_DATA_TYPE
+        - FIELD_NOT_A_VALID_TIMEZONE
+        - MISSING_INTERNAL_PAYMENT_REFUND_DATAEXPORT
+        - ADVANCE_FREQUENCY_CANNOT_BE_SLOWER_THAN_INVOICE_FREQUENCY
+        - CANNOT_ADD_MULTIPLE_VALUES_FOR_CONSTANT_SEGMENT_TYPE
+        - CREDITED_INVOICE_NOT_FOUND
+        - NOT_IMPLEMENTED_YET
+        - AT_LEAST_ONE_ENTITY_MUST_EXIST_FOR_REQUIRE_ATTENTION
+        - MISSING_INTERNAL_PAYMENT_REQUEST_DATAEXPORT
+        - EXPORTJOB_DOES_NOT_EXIST
+        - NO_PROBLEMS_FOUND
+        - FIELD_MUST_BE_EMPTY
+        - FILE_TOO_BIG
+        - DATAEXPORT_FILEFORMAT_DOES_NOT_EXISTS
+        - DATAEXPORT_FILEFORMAT_SETTINGS_CATEGORY_DOES_NOT_MATCH
+        - DATAEXPORT_FILEFORMAT_ALREADY_EXISTS
+        - NO_PAYMENT_PARAMETERS_FOUND
+        - NO_EXTERNAL_BANK_TRANSACTION_FOUND
+        - PROCESSED_TRANSACTIONS_CANNOT_BE_IGNORED
+        - RESUBMISSION_LIMIT_REACHED
+        - TRANSACTION_NOT_A_SDD_REVERSAL
+        - DATE_IS_IN_THE_PAST
+        - TRANSACTION_DOES_NOT_EXIST
+        - DATE_FORMAT_NOT_VALID
+        - TENANT_NOT_FOUND
+        - TENANT_NAME_TAKEN
+        - EXPORTJOBLINE_DOES_NOT_EXIST
+        - DATAIMPORT_FILEFORMAT_DOES_NOT_EXISTS
+        - DATAIMPORT_FILEFORMAT_SETTINGS_CATEGORY_DOES_NOT_MATCH
+        - DATAIMPORT_FILEFORMAT_ALREADY_EXISTS
+        - DUPLICATE_ENTITY_ATTRIBUTE_VALUES
+        - ENTITY_ATTRIBUTE_NOT_COMPATIBLE_WITH_SUBJECT_TYPE
+        - METER_NOT_INSTALLED
+        - PROPERTY_SERVICE_LOCATIONS_INCORRECT
+        - PROPERTY_MANAGEMENT_DETAILS_INCORRECT
+        - FTP_FILE_UPLOAD_FAILED
+        - EXPORTJOB_HAS_NO_DATA
+        - BILLING_ITEM_CALCULATION_CAN_NOT_BE_CHANGED
+        - PORT_OUT_OF_RANGE
+        - EXTERNAL_BANK_TRANSACTION_ALREADY_PROCESSED
+        - PAYMENT_IGNORED
+        - TRANSACTIONS_ALREADY_LINKED
+        - DOMAIN_NAME_ALREADY_TAKEN
+        - MEASUREMENT_CONTEXT_INVALID
+        - MEASUREMENTS_UNLINKED
+        - MEASUREMENT_NOT_FOUND
+        - BANK_TRANSACTIONS_FAILED_PROCESSING
+        - ACCOUNT_HOLDER_EMPTY
+        - CUSTOMER_ID_MISSING
+        - COULD_NOT_REVERSE_TRANSACTION
+        - PAYMENT_TERMS_DO_NOT_EXIST
+        - PAYMENT_TERMS_USED_BY_ORGANISATION_CANNOT_BE_DELETED
+        - PAYMENT_TERMS_ALREADY_EXIST
+        - SIGNED_MANDATES_NEED_AN_IBAN
+        - UNITOFMEASURE_NOT_SUPPORTED_FOR_SUBSCRIPTION
+        - UNITOFMEASURE_NOT_SUPPORTED_FOR_CONSUMPTION
+        - UNITOFMEASURE_NOT_SUPPORTED
+        - UNITOFMEASURE_NOT_SUPPORTED_FOR_ATTRIBUTE
+        - UNITOFMEASURE_NOT_SUPPORTED_FOR_CONSUMPTIONUNIT
+        - UNITOFMEASURE_NOT_SUPPORTED_FOR_CUSTOMENTITYPROPERTY
+        - CONTRACT_NOT_SUPPORTED_FOR_NOW
+        - UTILITY_TYPE_NOT_SUPPORTED_FOR_SUBSCRIPTION
+        - METERING_TYPE_NOT_SUPPORTED_FOR_SUBSCRIPTION
+        - LIST_CONTAINS_DUPLICATES
+        - PROPERTY_HAS_NO_QUOTA
+        - SERVICELOCATION_HAS_NO_QUOTA
+        - PROPERTY_HAS_NO_MATCHING_AGGREGATING_METERS
+        - PROPERTY_HAS_NO_MATCHING_COMMUNAL_METERS
+        - FIELD_CANNOT_BE_LOWER_THAN_ZERO
+        - CREDIT_NOTE_IN_UNSUPPLIED_PERIOD_CANNOT_BE_REMOVED
+        - INVOICED_ADVANCES_CANNOT_BE_CREDITED
+        - CREDIT_NOTE_CANNOT_BE_CREDITED
+        - ONLY_CORE_SUPPORTED_FOR_NOW
+        - CHANNEL_NOT_ACTIVE
+        - ENTITY_TRANSLATION_ALREADY_EXISTS
+        - NO_CULTURE_TABLE_FOUND_FOR_THIS_TENANT
+        - ENTITY_TRANSLATION_DOES_NOT_EXIST
+        - LIST_DOES_NOT_CONTAIN_GIVEN_CULTURE
+        - CULTURE_NOT_SUPPORTED_BY_TENANT
+        - TRANSLATED_FIELDS_CANNOT_BE_EMPTY
+        - UNSUPPORTED_FILE_EXTENSION
+        - INVOICE_NOT_SETTLED
+        - BILLING_COMPLETENESS_ALREADY_CALCULATING
+        - BILLING_COMPLETENESS_NOT_FOUND
+        - BILLING_COMPLETENESS_WRONG_STATUS
+        - SERVICELOCATION_EXTERNALID_ALREADY_USED
+        - MANDATE_ALREADY_EXISTS
+        - MISSING_RECEIVER
+        - CONTRACT_TERMINATION_NOT_ON_OR_AFTER_SUPPLYSTARTDATE
+        - NO_LOCK_CREATED
+        - PAYMENT_DELAY_DOES_NOT_EXIST
+        - PAYMENT_DELAY_ALREADY_EXISTS_FOR_TYPE
+        - PAYMENT_RETRY_PARAMETERS_HAS_DUPLICATE_RETRY_ATTEMPT
+        - PAYMENT_RETRY_PARAMETERS_HAS_MISSING_RETRY_ATTEMPT
+        - DUPLICATE_INVOICE_NUMBER
+        - INVOICE_NOT_FOUND
+        - INVOICE_DOCUMENT_NOT_INCLUDED_IN_IMPORTJOB
+        - IMPORTED_CONTRACTS_HAVE_NO_BILLING_RELATION
+        - DUPLICATE_METER_NUMBER
+        - METER_CANNOT_BE_INSTALLED_IN_MULTIPLE_LOCATIONS
+        - PREVIOUS_COMPLETENESS_PERIOD_NOT_CLOSED
+        - UNSUPPORTED_ENTITY_SUBJECT_TYPE
+        - PRODUCT_MISSES_GIVEN_SERVICE
+        - COLLECTION_CASE_DOES_NOT_EXIST
+        - COLLECTION_CASE_ALREADY_CLOSED
+        - INVOICE_ALREADY_IN_COLLECTION
+        - COLLECTION_CASE_WORKLOW_NOT_FOUND
+        - COLLECTION_CASE_MANUAL_INTERVENTION_NOT_ALLOWED
+        - COLLECTION_STEP_NOT_FOUND
+        - RANGE_UPPER_LIMIT_MUST_BE_HIGHER_THAN_LOWER_LIMIT
+        - COLLECTION_STEP_PARAMETERS_DO_NOT_MATCH_CHARGE_TYPE
+        - COLLECTION_STEP_TIER_FROMT_TO_RANGE_OVERLAPS
+        - COULD_NOT_GENERATE_COLLECTION_CASE_NUMBER
+        - TEMPLATE_HAS_WRONG_TARGET_TYPE
+        - TEMPLATE_HAS_NO_TARGET_TYPE
+        - COLLECTION_TEMPLATE_NOT_CONFIGURED
+        - COLLECTION_NOT_ENABLED
+        - INVOICE_CREATION_DATE_BEFORE_COLLECTION_BORDER_DATE
+        - INVALID_WRITE_OFF
+        - COLLECTION_STEP_ALREADY_CLOSED
+        - COLLECTION_STEP_HAS_WRONG_STATUS
+        - COLLECTION_FLOW_NOT_FOUND
+        - COLLECTION_CASE_ALREADY_EXISTS
+        - FIELD_MUST_BE_NULL_WHEN_NO_COMMUNICATION
+        - FIELD_MUST_BE_NULL_WHEN_NO_CHARGE
+        - NO_DATA_EXPORT_EXISTS_FOR_TYPE
+        - DEBIT_SCT_PAYMENT_ALREADY_EXISTS
+        - BILLING_TARIFF_EXPRESSION_NOT_ALLOWED_FOR_FORMULA
+        - BILLING_TARIFF_MISSING_UNIT_PRICE
+        - TRANSACTION_HAS_NO_OPEN_AMOUNT
+        - PREVIOUS_COLLECTION_STEP_NOT_EXECUTED
+        - NEXT_COLLECTION_STEP_ALREADY_EXECUTED
+        - STEP_HAS_NO_DOCUMENT
+        - CONSUMPTION_UNIT_TYPE_ALREADY_EXISTS
+        - CONSUMPTION_UNIT_TYPE_DOES_NOT_EXIST
+        - CONSUMPTION_UNIT_DOES_NOT_EXIST
+        - CONSUMPTION_UNIT_UNIQUE_CONSTRAINT
+        - INVALID_TARIFF_CALCULATION_TYPE
+        - FILE_NOT_FOUND
+        - TEMPLATE_IS_BUILTIN
+        - CANNOT_BE_LARGER_THAN_140_CHARACTERS
+        - MANDATE_WITH_IBAN_ALREADY_EXISTS
+        - IBAN_ALREADY_EXISTS_FOR_CUSTOMER
+        - ENDNOTE_ENDDATE_MUST_MATCH_CONTRACT_ENDDATE
+        - UTILITY_TYPE_NOT_SUPPORTED_FOR_SUBSCRIPTION_ON_CONTRACT
+        - COST_ALLOCATION_COMPONENT_ALREADY_EXISTS
+        - COST_ALLOCATION_COMPONENT_DOES_NOT_EXIST
+        - CONTRACT_CAN_ONLY_HAVE_SERVICES_OF_ONE_PROPERTY_GROUP
+        - PRODUCT_NOT_PROVIDED
+        - BILLING_COMPLETENESS_CAN_ONLY_BE_BILLED_VIA_PROPERTY_GROUP
+        - PROP_GROUP_CALC_CONFIGURATION_ALREADY_EXISTS
+        - PROP_GROUP_CALC_CONFIGURATION_CONTAINS_NO_BILLING_ITEMS
+        - NO_CUSTOMER_BANK_ACCOUNT_EXISTS_WITH_GIVEN_IBAN
+        - UTILITY_TYPE_REQUIRED_FOR_SUBSCRIPTION_ON_SERVICE
+        - INTERMEDIATE_INVOICING_DATE_CANNOT_BE_OUTSIDE_COMPLETENESS_PERIOD
+        - INTERMEDIATE_INVOICING_NOT_ALLOWED_BEFORE_CLOSED_BILLINGCOMPLETENESS_PERIODS
+        - PROPERTY_METERING_CONFIGURATION_NOT_FOUND
+        - DUPLICATE_OUTPUT_CHANNEL
+        - PROPERTY_METERING_CONFIGURATION_NOT_VALIDATED
+        - OUTPUT_CHANNEL_NOT_FOUND
+        - NO_MATCHING_METERS_FOUND
+        - NO_SERVICECONSUMPTIONS_FOUND
+        - MISSING_SERVICECONSUMPTIONS
+        - MISSING_SERVICECONSUMPTIONS_FOR_COMPLETE_PERIOD
+        - NO_METERCONSUMPTIONS_FOUND
+        - MISSING_METERCONSUMPTIONS_FOR_COMPLETE_PERIOD
+        - BILLING_CONFIGURATION_FOR_PROPERTY_DOES_NOT_EXIST
+        - PROP_GROUP_CALC_CONFIGURATION_NAMES_MUST_BE_UNIQUE
+        - PROPERTY_GROUP_BILLING_CONFIGURATION_REQUIRED_INCOMING_INVOICE_COMPONENTS_MUST_BE_UNIQUE
+        - INCOMING_INVOICE_ALREADY_EXISTS
+        - INCOMING_INVOICE_COMPONENT_DOES_NOT_EXIST
+        - SERVICE_LOCATION_ALREADY_USED_IN_OTHER_PROPERTY_GROUP_BILLING_CONFIGURATION
+        - PROPERTY_GROUP_BILLING_CONFIGURATION_ALREADY_EXISTS
+        - UNITOFMEASURE_ISNOT_PERIODBASED
+        - INVOICE_FREQUENCY_MUST_BE_NULL_OR_EQUAL_TO_PROPERTY_GROUP_CONFIG_FOR_COST_ALLOCATION
+        - ADVANCE_FREQUENCY_MUST_BE_NULL_OR_EQUAL_TO_PROPERTY_GROUP_CONFIG_FOR_COST_ALLOCATION
+        - INCOMING_INVOICE_DOES_NOT_EXIST
+        - PROPERTY_GROUP_BILLING_CONFIGURATION_COST_ALLOCATION_NOT_ENABLED
+        - PROPERTY_GROUP_BILLING_PERIOD_DOES_NOT_EXIST
+        - INCOMING_INVOICE_COMPONENT_NOT_LINKED_IN_PERIOD
+        - NO_CHANNELS_FOUND
+        - MISSING_CONSUMPTIONS
+        - PROPERTY_GROUP_BILLING_CONFIGURATION_COST_ALLOCATION_NOT_VALIDATED
+        - PROPERTY_GROUP_BILLING_PERIOD_LOCKED
+        - PROPERTY_GROUP_BILLING_PERIOD_OVERLAP
+        - PROPERTY_GROUP_BILLING_PERIOD_GAP
+        - PROPERTY_GROUP_BILLING_PERIOD_MISSING_TARIFFS
+        - PROPERTY_GROUP_BILLING_PERIOD_MISSING_CONFIGURATIONS
+        - PROPERTY_GROUP_BILLING_PERIOD_NOT_LOCKED
+        - PROPERTY_GROUP_BILLING_PERIOD_HAS_NO_SEQUENTIAL_PERIODS
+        - NO_MATCHING_CHANNELS_FOUND
+        - NEXT_INVOICE_DATE_NOT_ALLOWED_FOR_COST_ALLOCATION
+        - CONTRACT_WRONG_STATUS
+        - PROPERTY_GROUP_HAS_NO_LOCKED_BILLING_PERIOD
+        - BILLING_RELATION_NOT_PART_OF_PROPERTY
+        - CANNOT_INVOICE_UPFRONT_WITH_CONSUMPTION
+        - CANNOT_HAVE_ADVANCE_FREQUENCY_AND_INVOICING_UPFRONT
+        - PRODUCT_MUST_HAVE_ONE_REGULAR_BILLING_ITEM
+        - CUSTOMER_DETAILS_MISSING
+        - SERVICELOCATION_DETAILS_MISSING
+        - MOVEREQUEST_NOT_FOUND
+        - MOVEREQUEST_WRONG_STATUS
+        - CUSTOMER_ALREADY_CREATED_OR_LINKED
+        - MISSING_CUSTOMER_ID
+        - MISSING_SERVICELOCATION_ID
+        - MULTIPLE_CONTRACTS_FOUND
+        - MISSING_METER
+        - MOVEREQUEST_FAILED_PROCESSING
+        - COULD_NOT_TERMINATE_CONTRACT
+        - MOVEREQUEST_CONTRACT_ALREADY_PROCESSED
+        - NO_TEMPLATE_FOR_LETTER
+        - UNKNOWN_PLUGIN
+        - PLUGIN_ALREADY_INSTALLED
+        - INSTALLEDPLUGIN_NOT_FOUND
+        - INVALID_PLUGIN_CONFIGURATION
+        - MOVE_REQUEST_ALREADY_EXISTS
+        - INVOICE_LINE_CANNOT_SPAN_MULTIPLE_YEARS
+        - TOO_MANY_METERS
+        - TOO_MANY_SERVICELOCATIONS
+        - NO_MATCHING_STAIR_STEP
+        - IBAN_INVALID
+        - ADVANCE_AMOUNT_TO_LOW
+        - DUPLICATE_MEASUREMENT_ENDDATETIME
+        - NO_MATCHING_COMMUNICATION_PREFERENCE
+        - COULD_NOT_UPDATE_CUSTOMER_INVOICE_ADDRESS
+        - DUPLICATE_MEASUREMENT_FOR_ROUNDED_ENDDATETIME
+        - FIELD_MUST_BE_TRUE
+        - OUTGOING_BANKING_TRANSACTION_DOES_NOT_EXIST
+        - OUTGOING_BANKING_TRANSACTION_INCORRECT_STATUS
+        - OUTGOING_BANKING_TRANSACTION_INCORRECT_TYPE
+        - OUTGOING_BANKING_TRANSACTION_COLLECTION_DATE_NOT_VALID
+        - OUTGOING_BANKING_TRANSACTION_MISSING_INVOICEIDS
+        - OUTGOING_BANKING_TRANSACTION_NO_ENTRIES_ADDED
+        - OUTGOING_BANKING_TRANSACTION_LOCKED
+        - OUTGOING_BANKING_TRANSACTION_CONTAINS_ERRORS
+        - OUTGOING_BANKING_TRANSACTION_CONTAINS_INVOICES
+        - OUTGOING_MUTATION_DOES_NOT_EXIST
+        - OUTGOING_MUTATION_TRANSACTION_INCORRECT_STATUS
+        - INVOICE_WRONG_PAYMENT_STATUS
+        - AMOUNT_CANNOT_BE_ZERO_OR_NEGATIVE
+        - AMOUNT_CANNOT_BE_ZERO_OR_POSITIVE
+        - CANNOT_OVERWRITE_COLLECTION_DATE_WHEN_NO_NEW_BATCH
+        - COULD_NOT_PARSE_BANK_FILE
+        - BANK_FILE_CONTAINS_NO_STATEMENTS
+        - PAYMENT_ALREADY_REVERSED
+        - TRANSACTION_ALREADY_REVERSED
+        - INVALID_BANK_STATEMENT_INCOMING_BANKING_TRANSACTION_FORMAT_TYPE
+        - INVALID_PAYMENT_OUTGOING_BANKING_TRANSACTION_FORMAT_TYPE
+        - UNSUPPORTED_OUTGOING_BANKING_TRANSACTION_FORMAT_TYPE
+        - BIC_EMPTY
+        - SEPA_CREDITOR_EMPTY
+        - COMPANY_BANK_ACCOUNT_INVALID
+        - INCOMING_BANKING_TRANSACTION_DOES_NOT_EXIST
+        - INCOMING_BANKING_TRANSACTION_ALREADY_EXISTS
+        - INCOMING_BANKING_TRANSACTION_INCORRECT_STATUS
+        - INCOMING_MUTATION_NO_MATCH_FOUND
+        - OUTGOING_BANKING_TRANSACTION_ALREADY_CONFIRMED
+        - OUTGOING_MUTATION_ALREADY_CONFIRMED
+        - INCOMING_MUTATION_IBAN_DOES_NOT_MATCH_OUTGOING_MUTATION_IBAN
+        - NO_MATCHING_OUTGOING_PAYMENT_REQUEST_BANKING_TRANSACTION_FOUND
+        - NO_MATCHING_OUTGOING_PAYMENT_REQUEST_MUTATION_FOUND
+        - NO_MATCHING_OUTGOING_REFUND_BANKING_TRANSACTION_FOUND
+        - NO_MATCHING_OUTGOING_REFUND_MUTATION_FOUND
+        - NO_MATCHING_INCOMING_MUTATIONS_FOUND_FOR_IBAN
+        - INCOMING_MUTATION_DOES_NOT_EXIST
+        - INCOMING_MUTATION_INCORRECT_STATUS
+        - PAYMENT_FOR_MUTATION_ALREADY_EXISTS
+        - INVOICE_CHANGE_PAYMENT_METHOD_NOT_ALLOWED
+        - INCOMING_MUTATION_INVALID_TYPE
+        - OUTGOING_MUTATION_INVALID_TYPE
+        - INVOICE_WRONG_STATUS
+        - ACTION_NOT_SUPPORTED_FOR_MIGRATED_DATA
+        - IMPORTJOB_DOES_NOT_SUPPORT_DOWNLOAD
+        - NO_FUNCTIONS_IN_FORMULA
+        - FUNCTION_NOT_FOUND
+        - NO_MATCHING_INPUTPARAMETER_DEFINED
+        - RUNTIMEPARAMETER_NOT_FOUND
+        - RUNTIMEPARAMETER_TYPE_MISMATCH
+        - FIXEDPARAMETER_TYPE_MISMATCH
+        - OUTPUTPARAMETER_NOT_FOUND
+        - MULTIPLE_OUTPUTPARAMETERS_FOUND
+        - FUNCTION_REFERENCED_IS_AFTER_THIS_FUNCTION
+        - FUNCTION_REFERENCED_OUTPUT_TYPE_MISMATCH
+        - LAST_FUNCTION_OUTPUT_TYPE_INCORRECT
+        - CREDIT_NOTE_NOT_APPROVED
+        - PROCESSING_FAILED
+        - PROCESSING_FINAL_UPDATE_FAILED
+        - COULD_NOT_SIGN_MANDATE
+        - COULD_NOT_UPDATE_PROPERTYYGROUPBILLINGCONFIGURATION
+        - COULD_NOT_CREATE_ENTITY_ATTRIBUTE
+        - COULD_NOT_CREATE_PROPERTYGROUP
+        - PLUGINTRIGGER_NOT_FOUND
+        - PLUGINTRIGGER_NOT_RUN_YET
+        - INSTALLEDPLUGIN_NOT_ENABLED
+        - INSTALLEDPLUGIN_DOES_NOT_SUPPORT_MANUAL_TRIGGER
+        - INSTALLEDPLUGIN_DOES_NOT_SUPPORT_CONFIG_TRIGGER
+        - MIGRATION_MODE_CANNOT_BE_REENABLED
+        - ENUM_NOT_TRANSLATABLE
+        - FIELD_MUST_BE_NULL
+        - INVALID_TELEPHONE_NUMBER
+        - INSTALLEDPLUGIN_DOES_NOT_SUPPORT_QUERY_TRIGGER
+        - UNSUPPORTED_QUERY_TYPE
+        - INCOMING_MUTATION_DUPLICATE
+        - BILLING_ITEMS_HAS_DUPLICATE_ORDER
+        - LIST_TOO_LARGE
+        - DATAFREQUENCY_NOT_SUPPORTED
+        - INSTALLEDPLUGIN_DOES_NOT_SUPPORT_INBOUND_WEBHOOK_TRIGGER
+        - DOCUMENT_CANNOT_BE_EXTERNALLY_PRINTED
+        - COLLECTION_CASE_COMMUNICATION_NOT_ALLOWED
+        - CUSTOM_ENTITY_PROPERTY_TYPE_ALREADY_EXISTS
+        - CUSTOM_ENTITY_PROPERTY_TYPE_DOES_NOT_EXIST
+        - CUSTOM_ENTITY_PROPERTY_ALREADY_EXISTS_FOR_SUBJECT_ID_AND_TYPE_AND_PROPERTY_TYPE
+        - CUSTOM_ENTITY_PROPERTY_DOES_NOT_EXIST
+        - CONSUMER_GROUP_NOT_FOUND
+        - LOAD_PROFILE_NOT_FOUND
+        - LOAD_PROFILE_HAS_NO_DATA_FOR_THIS_YEAR
+        - CANNOT_CONVERT_UNITOFMEASURE
+        - CONTRACT_TERMINATED_BEFORE_YEAR
+        - CONTRACT_HAS_NO_CONSUMPTION_SERVICES
+        - ESTIMATION_RUN_IN_PROGRESS
+        - ESTIMATION_RUN_NOT_FOUND
+        - SERVICE_MISSING_ESTIMATION
+        - ESTIMATION_NOT_POSSIBLE_BEFORE_FIRST_YEAR
+        - SERVICE_MISSING_ESTIMATION_IN_UNIT_OF_MEASURE
+        - UNSUPPORTED_AGGREGATION_FREQUENCY
+        - NO_INVOICE_LINES
+        - CUSTOM_ENTITY_PROPERTY_TYPE_NOT_SUPPORTED
+        - SSIN_CANNOT_BE_PROVIDED_FOR_ORGANIZATIONS
+        - SSIN_REQUIRED_WHEN_SSIN_COUNTRY_PROVIDED
+        - SSIN_INVALID
+        - SSIN_COUNTRY_REQUIRED_WHEN_SSIN_PROVIDED
+        - COUNTRY_NOT_SUPPORTED_FOR_SSIN
+        - EDIT_PRODUCT_NOT_ALLOWED_FOR_COST_ALLOCATION
+        - NOT_CONFIGURED
+        - SOCIAL_TARIFF_EXPORT_NOT_FOUND
+        - SOCIAL_TARIFF_EXPORT_NOT_GENERATED
+        - SOCIAL_TARIFF_EXPORT_ALREADY_EXISTS
+        - ADVANCE_AMOUNT_NOT_IN_RANGE
+        - INTERNAL_ATTACHMENTS_NOT_SUPPORTED
+        - MOVE_IN_ATTACHMENTS_NOT_SUPPORTED
+        - COULD_NOT_UPDATE_ATTACHMENT_FROM_OTHER_ENTITY
+        - COULD_NOT_DELETE_ATTACHMENT_FROM_OTHER_ENTITY
+        - APPROVAL_ONLY_AVAILABLE_ON_MOVE_IN
+        - INVALID_FILE_SIZE
+        - CUSTOMER_ALREADY_IN_COLLECTION
+        - COULD_NOT_SIGN_ATTACHMENT
+        - DUPLICATE_FORM_KEY
+        - ATTACHMENT_FILE_ALREADY_EXISTS
+        - ENTIY_ATTACHMENT_GROUP_DOES_NOT_EXISTS
+        - ENTIY_ATTACHMENT_ALREADY_EXISTS
+        - INVALID_INVOICE_TYPE
+        - UNSUPPORTED_ORIGIN
+        - FILEFORMAT_CONTAINS_ERRORS
+        - COULD_NOT_DOWNLOAD_FILE
+        - NO_MATCHING_CONTRACTS_FOR_ESTIMATION_FOUND
+        - UNSUPPORTED_YEAR
+        - INVALID_REGIONAL_REGULATIONS_CONFIG
+        - CONSUMER_GROUP_NOT_MANUAL
+        - AMOUNT_CANNOT_BE_NEGATIVE
+        - CONSUMER_GROUP_CODE_IN_USE
+        - PREPAYMENT_NOT_SUPPORTED
+        - PREPAYMENT_ACTION_NOT_SUPPORTED
+        - PREPAYMENT_METER_CANNOT_BE_PARENT_OF_PREPAYMENT_METER
+        - METER_INVALID_TYPE
+        - PERCENTAGE_NOT_IN_RANGE
+        - BILLING_TARIFF_GAP_DETAILS
+        - TAX_RATE_GAP_DETAILS
+        - TAX_CODE_TAX_RATE_GAP_DETAILS
+        - TARIFF_INPUT_GAP_DETAILS
+        - TARIFF_INPUT_GAP_DETAILS_NAMED
+        - COULD_NOT_ESTIMATE_INVOICE
+        - MISSING_ESTIMABLE_BILLING_ITEMS
+        - MISSING_RECEIVING_PERIOD
+        - MISSING_RECEIVING_PERIOD_FOR_ESTIMATION
+        - INVALID_COMMUNICATION_TYPE
+        - FAILED_SENDING_EMAIL
+        - FAILED_SENDING_SMS
+        - MESSAGE_UNDELIVERABLE
+        - INVALID_DELIVERY_ADDRESS
+        - EMAIL_DROPPED
+        - EMAIL_BLOCKED
+        - EMAIL_INVALID
+        - DATE_CANNOT_BE_OUTSIDE_COMPLETENESS_PERIOD
+        - DATE_MUST_MATCH_ADVANCE_PERIOD
+        - PERIOD_CANNOT_OVERLAP_WITH_ANOTHER_ADVANCE
+        - CONTRACT_TERMINATION_NOT_AFTER_SUPPLYENDDATE
+        - ACTIVE_PRODUCT_NOT_FOUND_FOR_CONTRACT
+        - CONTRACT_ALREADY_TERMINATED_ON_ANOTHER_DATE
+        - PERIOD_CANNOT_OVERLAP_PERIOD_WITH_OTHER_PRODUCT
+        - ADVANCE_CANNOT_BE_APPROVED_WHEN_ENDNOTE_IS_ALREADY_MADE
+        - TARIFFPERIOD_CAN_NOT_HAVE_TIERED_STAIRSTEP_VOLUME_TARIFF_WITH_OPEN_START_OR_END_DATES
+        - TARIFFPERIOD_TIERED_STAIRSTEP_VOLUME_TARIFF_WITH_OPEN_START_OR_END_DATES_EXISTS
+        - CUSTOMERGROUP_ALREADY_EXISTS
+        - CUSTOMERGROUP_DOES_NOT_EXIST
+        - COLLECTION_FLOW_ALREADY_EXISTS
+        - MISSING_PROPERTY_GROUP_ON_SERVICE_LOCATION
+        - MISSING_COMPANY_ON_PROPERTY_GROUP
+        - MISSING_COMPANY_IBAN_ON_PROPERTY_GROUP
+        - TRANSACTION_COULD_NOT_BE_MAPPED_TO_COMPANY
+        - UNSUPPORTED_CONTRACTS_WITH_MULTIPLE_COMPANIES
+        - UNSUPPORTED_COMPANY_BANK_ACCOUNTS_WITH_MULTIPLE_COMPANIES
+        - MISSING_CONTRACT_ON_CUSTOMER
+        - CONTRACTSERVICELOCATION_HAS_NO_SERVICES
+        - CONTRACT_HAS_NO_SERVICELOCATIONS
+        - BILLING_SCOPE_INVALID
+        - BILLING_SCOPE_CONTRACT_NOT_SUPPORTED
+        - UTILITY_TYPE_NOT_SUPPORTED_FOR_SCOPE_CONTRACT
+        - BILLING_ITEM_CALCULATION_TYPE_NOT_SUPPORTED
+        - DATE_NOT_IN_CONTRACT_SUPPLY_RANGE
+        - NO_MATCHING_SERVICE_FOUND
+        - METERINGISSUE_NOT_FOUND
+        - METERINGISSUE_NOT_UNRESOLVED
+        - CONTRACT_MAXIMUM_LOCATION_LIMIT_REACHED
+        - INVOICE_ESTIMATION_NOT_ENABLED
+        - ADVANCE_LIMIT_TYPE_NOT_SUPPORTED
+        - VALIDATIONRULES_SHOULD_BE_UNIQUE
+        - BULK_RESOLUTION_NOT_ALLOWED
+        - INCORRECT_METERING_ISSUE_RESOLUTION
+        - FIELD_MUST_BE_CHANGED
+        - AWAITING_BANK_CONFIRMATION
+        - CREATED_INVOICE_CANT_BE_PAID
+        - CONSUMPTION_MEASUREMENT_MISMATCH
+        - TRANSACTION_SETTLEMENT_NOT_FOUND
+        - SERVICELOCATION_SERVICES_MISSING
+        - POSTALCODE_IS_NOT_THE_CORRECT_LENGHT
+        - UBL_COUNTRY_NOT_SUPPORTED
+        - UBL_VATNUMBER_INVALID_FORMAT
+        - UBL_VATNUMBER_INVALID_FORMAT_CUSTOMER
+        - UBL_VATNUMBER_REQUIRED
+        - UBL_VATNUMBER_REQUIRED_CUSTOMER
+        - UBL_REGISTRATION_NAME_REQUIRED
+        - UBL_VATNUMBER_EMPTY
+        - UBL_EXPORT_CONTAINS_VALIDATION_ERRORS
+        - UBL_EXPORT_NOT_GENERATED
+        - UBL_INVOICE_NOT_GENERATED
+        - UBL_INVOICES_NOT_GENERATED
+        - UBL_INVOICE_IN_PROGRESS
+        - UBL_INVOICES_IN_PROGRESS
+        - UBL_INVOICE_INVALID_CUSTOMERTYPE
+        - UBL_INVOICES_INVALID_CUSTOMERTYPE
+        - UBL_INVOICE_AMOUNTS_INVALID
+        - QR_GENERATION_FAILED
+        - TOO_MANY_DECIMALS
+        - CANNOT_CREATE_ADVANCE_TEMPLATE_DATAOBJECT_WITH_AMOUNT_NEGATIVE
+        - INVALID_URL
+        - TEMPLATE_DATA_CONTAINER_NOT_FOUND
+        - INVALID_TEMPLATE_DATA_OBJECT_TYPE
+        - PAYMENTLINK_GENERATION_FAILED
+        - CANNOT_DISABLE_INVOICE_COLLECTION_ANYMORE
+        - INVOICE_LINE_TYPE_NOT_SUPPORTED
+        - VALUE_TOO_OLD
+        - CANNOT_CHANGE_TIMEZONE_ANYMORE
+        - PAYMENT_REFERENCE_INVALID
+        - COULD_NOT_CALCULATE_DUE_DATE
+        - BILLING_TARIFFS_INCOHERENT_CONDITIONS
+        - PREPAYMENT_ACCOUNT_COULD_NOT_BE_SET
+        - PREPAYMENT_SHARED_BALANCE_METER_CANNOT_BE_INSTALLED_ON_MULTI_CONTRACT_SERVICELOCATION
+        - PREPAYMENT_MULTIPLE_CONTRACTS_FOR_SAME_UTILILTY_TYPE
+        - TIER_CALCULATION_METHOD_CAN_NOT_BE_TARIFF_PERIOD_FOR_NON_CONSUMPTION_BILLING_ITEM
+        - MEASUREMENT_READINGDATE_TOO_OLD
+        - PREPAYMENT_ACCOUNT_DOES_NOT_EXIST
+        - METERING_TYPE_NOT_SUPPORTED
+        - UTILITY_TYPE_NOT_SUPPORTED
+        - DIRECTION_VALUE_NOT_SUPPORTED
+        - INVALID_CUSTOM_ENTITY_PROPERTY_ENTITY_SUBJECT_TYPE
+        - INVALID_CUSTOM_ENTITY_PROPERTY_VALUE_TYPE
+        - DEVICE_ID_NOT_FOUND
+        - MISSING_METER_SERIAL_NUMBER
+        - BILLING_METHODS_NOT_MATCHING
+        - ADMIN_USER_NOT_FOUND
+        - USER_ALREADY_EXISTS
+        - USER_NOT_FOUND
+        - ROLE_NOT_FOUND
+        - ROLE_NOT_IN_SCOPE
+        - ROLE_ALREADY_EXISTS
+        - PERMISSION_INVALID
+        - IMPORT_COLUMN_MISMATCH
+        - IMPORT_INVALID_UNITPRICE
+        - IMPORT_INVALID_ORIGIN
+        - IMPORT_INVALID_TARIFFTYPE
+        - IMPORT_BILLINGTARIFF_ALREADYEXISTS
+        - IMPORT_PREVIOUS_BILLINGTARIFF_NOTFOUND
+        - IMPORT_CALCULATIONTYPE_DOES_NOT_MATCH
+        - IMPORT_NUMBER_IS_NOT_A_DECIMAL
+        - IMPORT_TIER_KEY_IS_NOT_THE_SAME_AS_PREVIOUS_TARIFF
+        - IMPORT_CEP_COLUMN_NOT_FOUND_IN_FILE
+        - IMPORT_CEP_DOES_NOT_MATCH_PREVIOUS_TARIFF
+        - IMPORT_NEED_BOTH_SDD_AND_SCT
+        - IMPORT_MISSING_TARIFF_FOR_CEP
+        - IMPORT_AMOUNT_OF_CEP_VALUES_DOES_NOT_MATCH
+        - IMPORT_ALREADY_LOCKED
+        - IMPORT_NOT_LOCKED
+        - SERVICE_LOCATION_HAS_INSTALLED_METERS
+        - SERVICE_LOCATION_IS_PART_OF_PROPERTY_GROUP
+        - SERVICE_LOCATION_HAS_CONTRACTS
+        - IMPORT_CANT_HAVE_ORIGIN_BILLINGITEM_WITH_PRODUCT
+        - END_CANT_BE_BEFORE_START
+        - CONSTANT_SEGMENT_TYPE_SINGLE_VALUE
+        - SERVICELOCATIONS_DO_NOT_HAVE_PREPAYMENT_METERS_FOR_CONTRACT_DATE_RANGE
+        - DIFFERENT_DECIMAL_SEPARATOR_CONFIGURED
+        - DIFFERENT_THOUSANDS_SEPARATOR_CONFIGURED
+        - DIFFERENT_THOUSANDS_OR_DECIMAL_SEPARATOR_CONFIGURED
+        - DIFFERENT_DATE_FORMAT_CONFIGURED
+        - DUPLICATE_TIER_IN_LIST
+        - SERVICELOCATION_ALREADY_HAS_SHAREDBALANCEMETER_AND_SERVICE_SUPPLIED_FOR_CONTRACT_DATE_RANGE
+        - UNINSTALL_METER_SERVICELOCATIONS_DO_NOT_HAVE_PREPAYMENT_METERS_FOR_CONTRACT_DATE_RANGE
+        - INSTALL_SHARED_BALANCE_METER_SERVICELOCATION_HAS_MORE_THEN_ONE_CONTRACT
+        - USER_HAS_NO_MOBILE_PHONENUMBER
+        - INVOICE_NOT_APPROVALINPROGRESS_STATUS
+        - INVALID_CONTRACT_BILLING_METHOD
+        - FEATURE_NOT_YET_AVAILABLE
+        - INVALID_NUMBER_SEPARATOR
+        - INVALID_DATE_FORMAT
+        - INVALID_TIMEZONE_CONFIGURED
+        - INVALID_METERING_TYPE
+        - METERING_IMPORT_UNITOFMEASURE_NOT_SUPPORTED
+        - METERING_IMPORT_UNITOFMEASURE_NOT_SUPPORTED_INFO
+        - INVALID_UTILITY_TYPE
+        - INVALID_DIRECTION_VALUE
+        - COLLECTION_STEP_EXECUTION_DATE_ALREADY_REACHED
+        - COLLECTION_STEP_HAS_WRONG_TYPE
+        - COLLECTION_STEP_HAS_WRONG_COMMUNICATION_TYPE
+        - SANDBOX_MODE_NEEDS_RECIPIENT_PHONE
+        - ANNUAL_STATEMENT_ALREADY_GENERATED
+        - ANNUAL_STATEMENT_GENERATION_IN_PROGRESS
+        - ANNUAL_STATEMENTS_FEATURE_NOT_ENABLED
+        - TEMPLATE_NOT_FOUND
+        - CONFIRMATION_TOKEN_MISSING
+        - RESET_PASSWORD_TOKEN_MISSING
+        - EMAIL_CANNOT_BE_CHANGED
+        - USER_CANNOT_BE_CHANGED
+        - ANNUAL_STATEMENT_WRONG_STATUS
+        - ANNUAL_STATEMENT_DOES_NOT_EXIST
+        - WRONG_STATUS
+        - INVALID_FILE
+        - COULD_NOT_PARSE_MEASUREMENT_FILE
+        - DATE_IS_IN_FUTURE
+        - CONFIRM_PASSWORD_DOES_NOT_MATCH
+        - PASSWORD_MINIMUM_LENGTH_12
+        - INCOMING_MUTATION_INVALID_AMOUNTS_TO_SETTLE
+        - LIMIT_TOO_BIG
+        - CUSTOMER_HAS_NO_DATA_FOR_ANNUAL_STATEMENT
+        - FIELD_SHOULD_CONTAIN_AT_LEAST_ONE_CHARACTER
+        - IMPORT_BILLINGTARIFF_ALREADYEXISTS_IN_THE_SAME_FILE
+        - PINGEN_NOT_ENABLED
+        - GENERAL_LEDGER_CATEGORY_NOT_FOUND
+        - METERING_IMPORT_VALUE_WAS_EMPTY
+        - PORTAL_PAGE_NOTIFICATION_ALREADY_EXISTS_FOR_PAGE_IDENTIFIER
+        - METER_CANNOT_HAVE_ITSELF_AS_PARENT
+        - REQUESTED_FILE_NOT_FOUND
+        - BUILT_IN_FILE_FORMAT_MISSING
+        - METERING_IMPORT_NO_ADDITIONAL_INFO
+        - UNKNOWN
+      type: string
+    EstimatedAnnualVolumeOrigin:
+      enum:
+        - manual
+        - frompreviousyear
+        - fromconsumergroup
+        - forecast
+      type: string
+    ExecutionStatus:
+      enum:
+        - unknown
+        - uploaded
+        - ignored
+        - processed
+        - failed
+        - processedwitherrors
+        - readallcontents
+        - processing
+      type: string
+    ExportJobLineStatus:
+      enum:
+        - created
+        - gatheringdata
+        - ready
+      type: string
+    ExportJobStatus:
+      enum:
+        - created
+        - generating
+        - generated
+        - transferred
+        - failed
+        - gatheringdata
+        - ready
+        - gathereddata
+        - transferring
+      type: string
+    ExportJobsQuickFilter:
+      enum:
+        - all
+        - created
+        - failed
+        - generated
+        - exported
+        - requireattention
+      type: string
+    ExportOutgoingBankingTransactionPaymentRefundFormatType:
+      enum:
+        - pain_001001003
+      type: string
+    ExportOutgoingBankingTransactionPaymentRequestFormatType:
+      enum:
+        - pain_008001002
+      type: string
+    ExportSettingsCategoryType:
+      enum:
+        - invoice
+      type: string
+    ExportStatus:
+      enum:
+        - notexported
+        - exported
+      type: string
+    ExternalMeasurementsQuickFilter:
+      enum:
+        - all
+        - contextinvalid
+        - linked
+        - unlinked
+        - unprocessed
+      type: string
+    FileSizeType:
+      enum:
+        - b
+        - kb
+        - mb
+        - gb
+      type: string
+    FlatConsumptionAggregates:
+      enum:
+        - min
+        - max
+        - avg
+        - total
+        - mindate
+        - maxdate
+      type: string
+    FormulaFunctionCategory:
+      enum:
+        - billing
+        - consumptions
+        - contracts
+        - math
+        - meterconfig
+        - meters
+      type: string
+    FormulaFunctionInputParameterReferenceType:
+      enum:
+        - fixed
+        - runtimeparameter
+        - formulafunctionoutput
+      type: string
+    FormulaFunctionType:
+      enum:
+        - getmeterslinkedtopropertygroup
+        - getmatchingchannelsformeters
+        - getserviceconsumptionsforexternalchannels
+        - aggregateconsumptions
+        - subtractconsumptions
+        - getmeterconsumptionsforexternalchannels
+        - gettotaloutputchannelconsumption
+        - gettotalmonthssuppliedforproperty
+        - dividevalues
+        - multiplyvalues
+        - gettotalincominginvoicecomponentvalue
+        - aggregatetotalconsumptions
+        - applycorrectionfactortoconsumptions
+        - addvalues
+        - subtractvalues
+      type: string
+    FormulaType:
+      enum:
+        - calculatedconsumption
+        - calculatedtariff
+      type: string
+    FractionFrequency:
+      enum:
+        - daily
+        - hourly
+      type: string
+    FtpProtocol:
+      enum:
+        - none
+        - ssl2
+        - ssl3
+        - tls
+        - default
+        - tls11
+        - tls12
+      type: string
+    GeneralLedgerCategory:
+      enum:
+        - product
+        - billingitem
+        - taxcode
+        - collectionflow
+        - bankaccount
+        - waitingaccount
+      type: string
+    GeneralLedgerMappingStatus:
+      enum:
+        - unlinked
+        - linked
+      type: string
+    IbanConfirmationStatus:
+      enum:
+        - unspecified
+        - known
+        - unknownfirst
+        - unknownsecond
+      type: string
+    ImportCategoryType:
+      enum:
+        - metering
+        - bankstatement
+        - migration
+      type: string
+    ImportContractInvoiceDateHandling:
+      enum:
+        - donothing
+        - recalculateinvoicedates
+        - nextinvoicedateminusfrequency
+      type: string
+    ImportJobEntityIssueStage:
+      enum:
+        - validation
+        - processing
+      type: string
+    ImportJobEntityType:
+      enum:
+        - externalmeasurement
+        - banktransaction
+        - property
+        - servicelocation
+        - meter
+        - calculationgroup
+        - customer
+        - customermandate
+        - contract
+        - payment
+        - invoice
+        - attachment
+        - entityattribute
+        - contractedservice
+        - invoiceline
+        - billingcompleteness
+        - meterchannel
+        - service
+        - communicationpreferences
+        - consumptionunit
+        - intermediateinvoicing
+        - propertygroupbillingconfiguration
+        - prepaymentaccount
+      type: string
+    ImportJobStatus:
+      enum:
+        - created
+        - reading
+        - storing
+        - stored
+        - processing
+        - processed
+        - failed
+        - validating
+        - validated
+        - invalid
+        - postprocessing
+        - finished
+      type: string
+    ImportJobsQuickFilter:
+      enum:
+        - all
+        - stored
+        - ongoing
+        - requireattention
+        - completed
+      type: string
+    ImportStatus:
+      enum:
+        - created
+        - validating
+        - processing
+        - finished
+        - failed
+        - undone
+      type: string
+    ImportType:
+      enum:
+        - billingtariff
+      type: string
+    IncomingBankingTransactionFormatType:
+      enum:
+        - camt053_001_02
+      type: string
+    IncomingBankingTransactionQuickFilter:
+      enum:
+        - all
+        - ready
+        - closed
+        - attention
+        - resolveissues
+        - requireattention
+      type: string
+    IncomingBankingTransactionStatus:
+      enum:
+        - created
+        - processing
+        - matching
+        - resolveissues
+        - readytoprocess
+        - closed
+      type: string
+    IncomingMutationPaymentMethod:
+      enum:
+        - sddconfirmations
+        - reversals
+        - sct
+        - unknown
+      type: string
+    IncomingMutationQuickFilter:
+      enum:
+        - all
+        - banktransfers
+        - bankconfirmations
+        - reversals
+        - resolveissues
+      type: string
+    IncomingMutationStatus:
+      enum:
+        - created
+        - ignored
+        - resolveissues
+        - readytoprocess
+        - processing
+        - processed
+        - failed
+        - matched
+      type: string
+    IncomingMutationType:
+      enum:
+        - incomingtransfer
+        - outgoingtransfer
+        - paymentrequestreversal
+        - refundreversal
+        - unknown
+        - paymentrequesttransactionconfirmation
+        - paymentrequestmutationconfirmation
+        - refundtransactionconfirmation
+        - refundmutationconfirmation
+        - requestconfirmation
+        - refundconfirmation
+      type: string
+    IncrementationType:
+      enum:
+        - delta
+        - cumul
+        - na
+      type: string
+    InputMissingReason:
+      enum:
+        - unknown
+        - missingadvances
+        - missingreceivingperiods
+        - missingtariffs
+        - invoicecreationfailed
+        - invoicelinecalculationfailed
+        - missingreceivingperiodsfortieredtariffcalculation
+        - missingbillingitems
+        - missingcustomentityproperty
+        - missingaskingperiods
+        - askingperiodscontainsgap
+        - missingtaxrate
+        - missingpropertygrouponlocation
+        - propertygroupnotfound
+        - servicelocationnotfound
+        - missingcep
+        - missingmeter
+        - firstmeasurementonwrongdate
+        - nomeasurementonstart
+        - nomeasurementonend
+        - nomeasurementsfound
+        - lastmeasurementonwrongdate
+        - measurementnotwithindeviationwindow
+        - noproductfound
+      type: string
+    InvoiceAmount:
+      enum:
+        - positive
+        - negative
+      type: string
+    InvoiceExportType:
+      enum:
+        - invoicetoexcel
+        - invoicelinestoexcel
+        - createexportjob
+        - invoicetoxml
+        - integration
+      type: string
+    InvoiceFrequency:
+      enum:
+        - monthly
+        - quarterly
+        - halfyearly
+        - yearly
+      type: string
+    InvoiceLineType:
+      enum:
+        - advance
+        - previouslyadvanced
+        - charge
+        - vatpennydifference
+      type: string
+    InvoiceQuickFilter:
+      enum:
+        - all
+        - toapprove
+        - tosend
+        - readyforpaymentcollection
+        - toexport
+        - unpaid
+        - overdue
+        - requireattention
+      type: string
+    InvoiceScenarioType:
+      enum:
+        - advance
+        - correctionnote
+        - creditnote
+        - endnote
+        - incidentalnote
+        - invoice
+      type: string
+    InvoiceStatus:
+      enum:
+        - created
+        - approvalinprogress
+        - approved
+        - settled
+        - generated
+        - generationfailed
+      type: string
+    InvoiceType:
+      enum:
+        - advance
+        - invoice
+        - endnote
+        - creditnote
+        - incidentalnote
+        - correctionnote
+      type: string
+    Level:
+      enum:
+        - low
+        - moderate
+        - high
+      type: string
+    LocalisationLevel:
+      enum:
+        - none
+        - partial
+        - all
+      type: string
+    LocalisedErrorDTO:
+      type: object
+      properties:
+        key:
+          allOf:
+            - $ref: '#/components/schemas/ErrorCode'
+        correlationId:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+        messageValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalisedErrorDTOMessageValue'
+          nullable: true
+      additionalProperties: false
+    LocalisedErrorDTOMessageValue:
+      type: object
+      properties:
+        dataType:
+          allOf:
+            - $ref: '#/components/schemas/DataType'
+          nullable: true
+        value:
+          type: string
+          nullable: true
+        capitalize:
+          type: boolean
+      additionalProperties: false
+    ManagementRelationType:
+      enum:
+        - owner
+        - propertymanager
+      type: string
+    MandateStatus:
+      enum:
+        - requested
+        - cancelled
+        - signed
+      type: string
+    MandateType:
+      enum:
+        - core
+        - b2b
+      type: string
+    MeasurementSource:
+      enum:
+        - importjob
+        - moverequest
+        - measurementimport
+      type: string
+    MessageType:
+      enum:
+        - informational
+        - warning
+        - error
+      type: string
+    MeterQuickFilter:
+      enum:
+        - all
+        - installed
+        - inactive
+        - requireattention
+      type: string
+    MeterReadingFrequency:
+      enum:
+        - hourly
+        - daily
+        - weekly
+        - monthly
+        - bimonthly
+        - quarterly
+        - halfyearly
+        - yearly
+      type: string
+    MeterStatus:
+      enum:
+        - requested
+        - installed
+        - removed
+      type: string
+    MeterType:
+      enum:
+        - individual
+        - aggregating
+        - communal
+        - root
+        - prepayment
+      type: string
+    MeteringImportMeasurementsQuickFilter:
+      enum:
+        - invalid
+        - valid
+        - notprocessed
+        - processed
+      type: string
+    MeteringImportQuickFilter:
+      enum:
+        - all
+        - toprocess
+        - processed
+        - formatissues
+        - invalid
+        - issues
+      type: string
+    MeteringImportStatus:
+      enum:
+        - uploading
+        - uploadfailed
+        - invalidformat
+        - validating
+        - valid
+        - validationfailed
+        - toprocess
+        - processing
+        - processed
+        - processedwithissues
+      type: string
+    MeteringImportType:
+      enum:
+        - measurements
+      type: string
+    MeteringIssueError:
+      enum:
+        - consumptionnegative
+        - measurementfrequencytoolow
+      type: string
+    MeteringIssueErrorGroup:
+      enum:
+        - measurement
+        - meterreadingfrequency
+      type: string
+    MeteringIssueQuickFilter:
+      enum:
+        - all
+        - unresolved
+        - requireattention
+      type: string
+    MeteringIssueResolutionReason:
+      enum:
+        - newmeasurementimportjob
+        - measurementdeleted
+        - newmeasurementmanuallyadded
+        - newmeasurementmoverequest
+        - measurementvalidated
+      type: string
+    MeteringIssueResolutionType:
+      enum:
+        - manual
+        - automatic
+      type: string
+    MeteringIssueStatus:
+      enum:
+        - unresolved
+        - ignored
+        - resolved
+        - muted
+      type: string
+    MeteringIssuesGroupBy:
+      enum:
+        - none
+        - meter
+      type: string
+    MeteringType:
+      enum:
+        - none
+        - energy
+        - volume
+        - volumeflow
+        - flowtemp
+        - returntemp
+        - difftemp
+        - balance
+      type: string
+    Month:
+      enum:
+        - january
+        - february
+        - march
+        - april
+        - may
+        - june
+        - july
+        - august
+        - september
+        - october
+        - november
+        - december
+      type: string
+    MoveRequestQuickFilter:
+      enum:
+        - all
+        - tobeprocessed
+        - processed
+        - rejected
+      type: string
+    MoveRequestScenarioType:
+      enum:
+        - acknowledgemovein
+        - rejectmovein
+        - acknowledgemoveout
+        - rejectmoveout
+      type: string
+    MoveRequestStatus:
+      enum:
+        - new
+        - pendingatcustomer
+        - pendingatsupplier
+        - processed
+        - rejected
+        - gatheringdata
+      type: string
+    MoveRequestType:
+      enum:
+        - movein
+        - moveout
+      type: string
+    MutingRuleQuickFilter:
+      enum:
+        - all
+        - expired
+        - active
+      type: string
+    MutingRuleTimePeriod:
+      enum:
+        - day
+        - week
+        - month
+      type: string
+    NullQuickFilter:
+      enum:
+        - default
+      type: string
+    NumberOfAddresses:
+      enum:
+        - one
+        - multiple
+      type: string
+    NumberSequenceReferenceEntity:
+      enum:
+        - customer
+        - contract
+        - invoice
+        - mandate
+        - exportjob
+        - collectioncase
+        - bankingtransaction
+      type: string
+    NumberSequenceSegmentType:
+      enum:
+        - constant
+        - year
+        - invoicetype
+        - date
+      type: string
+    NumberSign:
+      enum:
+        - negative
+        - positive
+      type: string
+    OutgoingBankingTransactionQuickFilter:
+      enum:
+        - all
+        - readytosend
+        - toconfirm
+        - closed
+        - dateexpired
+        - resolveissues
+        - open
+      type: string
+    OutgoingBankingTransactionStatus:
+      enum:
+        - created
+        - closed
+        - toconfirmbybank
+        - cancelled
+        - readytosend
+        - resolveissues
+        - dateexpired
+        - partiallyclosed
+      type: string
+    OutgoingBankingTransactionType:
+      enum:
+        - paymentrequests
+        - paymentrefunds
+      type: string
+    OutgoingMutationQuickFilter:
+      enum:
+        - all
+        - invoices
+        - manualentries
+        - resolveissues
+      type: string
+    OutgoingMutationStatus:
+      enum:
+        - created
+        - readytosend
+        - resolveissues
+        - toconfirmbybank
+        - closed
+        - reversed
+        - failedtoclose
+        - failedtoreverse
+        - cancelled
+      type: string
+    OutgoingMutationType:
+      enum:
+        - invoice
+        - customer
+      type: string
+    PaymentDelay:
+      enum:
+        - delayuntilfixeddayofmonth
+        - delaynumberofdays
+      type: string
+    PaymentMethod:
+      enum:
+        - sct
+        - sdd
+      type: string
+    PaymentProcessStatus:
+      enum:
+        - readyforpaymentcollection
+        - pendingpaymentexport
+        - pendingpaymentcollectionconfirmation
+        - paid
+        - paymentrejected
+        - waitingforpayment
+      type: string
+    PaymentQuickFilter:
+      enum:
+        - all
+        - reversed
+      type: string
+    PaymentRetryAction:
+      enum:
+        - retryonfixedday
+        - daysafterreversal
+      type: string
+    PaymentReversalReason:
+      enum:
+        - manualreverse
+        - unpaiddirectdebit
+        - reversalsepadirectdebit
+        - rejectdomesticdirectdebit
+        - unknownbankaccount
+        - terminatedbankaccount
+        - blockedbankaccount
+        - unsupportedbankaccount
+        - invalidsequencetype
+        - insufficientfunds
+        - invalidmandate
+        - debtordeceased
+        - refusalbydebtor
+        - refusalotherreason
+        - maximumamountperiodreached
+      type: string
+    PaymentReversalReasonCode:
+      enum:
+        - ac01
+        - ac04
+        - ac06
+        - ag02
+        - am04
+        - md01
+        - md06
+        - md07
+        - ms02
+        - ms03
+        - sl01
+        - ag01
+        - am02
+      type: string
+    PaymentTermsFrequency:
+      enum:
+        - day
+        - week
+        - month
+      type: string
+    PaymentType:
+      enum:
+        - incomingtransfer
+        - outgoingtransfer
+        - directdebit
+      type: string
+    PingenCulture:
+      enum:
+        - en
+        - de
+        - nl
+        - fr
+      type: string
+    PluginFeedActivityType:
+      enum:
+        - movein
+        - moveout
+        - emailconfirmed
+        - advanceamountchanged
+        - attachmentviewed
+        - attachmentsigned
+        - invoicegenerated
+      type: string
+    PluginFeedStatus:
+      enum:
+        - new
+        - pendingatcustomer
+        - pendingatsupplier
+        - processed
+        - rejected
+        - deleted
+      type: string
+    PluginFeedTopic:
+      enum:
+        - movein
+        - moveout
+        - communication
+        - useraction
+        - invoice
+      type: string
+    PluginTriggerDataType:
+      enum:
+        - cultureupdated
+        - productcreated
+        - productupdated
+        - featureflagsupdated
+        - customercreated
+        - customerdetailschanged
+        - servicelocationcreated
+        - servicelocationupdated
+        - servicelocationdeleted
+        - contractremoved
+        - contractsigned
+        - contractservicesupdated
+        - contractterminated
+        - mailsent
+        - generatepaymentlink
+        - advanceamountupdated
+        - invoiceavailable
+        - invoicepaymentdetailschanged
+        - meterinstalled
+        - meterreconfigured
+        - meteruninstalled
+        - invoiceassignedtocollectioncase
+        - collectioncaseclosed
+        - documentprinted
+        - documentprintingfailed
+        - contractupdated
+        - entityattachmentgroupcreated
+        - entityattachmentgroupupdated
+        - entityattachmentgroupdeleted
+        - externaldocumentdeliveryfailed
+        - invoiceregenerated
+        - invoiceexportrequested
+        - transactioncreated
+        - measurementsstored
+        - consumptionprocessed
+        - consumptiondeleted
+        - documentapprovedforprinting
+        - productentityattachmentsforcustomerchanged
+        - entityattachmentcreated
+        - entityattachmentupdated
+        - entityattachmentdeleted
+      type: string
+    PluginTriggerPriority:
+      enum:
+        - a
+        - b
+        - c
+        - d
+        - e
+      type: string
+    PluginType:
+      enum:
+        - enduserportal
+        - httprequestwithpreviousresponse
+        - brunatawms
+        - zendeskcrm
+        - freshdeskcrm
+        - fortesmetering
+        - pingendocumentprinting
+        - zerofrictiondemometering
+        - twikey
+        - paytbillingplugin
+        - sendgridemailsending
+        - tkbtrustit
+        - fortesmeteringv3
+        - bergerlevrault
+        - webhooksubscription
+        - accounting
+      type: string
+    PortalEmailType:
+      enum:
+        - confirmemail
+        - resetpassword
+      type: string
+    PortalNotificationType:
+      enum:
+        - neutral
+        - warning
+        - important
+      type: string
+    PortalPageIdentifier:
+      enum:
+        - startpage
+        - login
+        - register
+        - movein
+        - moveout
+        - consumptions
+        - invoices
+        - mydetails
+        - overview
+        - forgotpassword
+      type: string
+    PrepaymentAccountStatus:
+      enum:
+        - draft
+        - signed
+      type: string
+    PrepaymentTransactionOrigin:
+      enum:
+        - paypoint
+        - wiretransfer
+        - stripe
+      type: string
+    PrepaymentTransactionStatus:
+      enum:
+        - pending
+        - successful
+        - failed
+        - cancelled
+      type: string
+    PrepaymentTransactionType:
+      enum:
+        - creditreset
+        - creditincrementaladjustment
+        - credittopup
+        - debitreset
+        - debitincrementaladjustment
+      type: string
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    ProblemLevel:
+      enum:
+        - error
+        - warning
+      type: string
+    ProblemResolutionStatus:
+      enum:
+        - unresolved
+        - manualresolution
+        - automaticresolution
+      type: string
+    ProductExportStatus:
+      enum:
+        - new
+        - current
+      type: string
+    ProductItemPeriodicityType:
+      enum:
+        - regular
+        - onmovein
+        - onmoveout
+        - fixedamount
+        - fixedduration
+      type: string
+    PropertyGroupBillingPeriodTariffStatus:
+      enum:
+        - nocalculatedtariffsrequired
+        - calculatedtariffsmissing
+        - calculatedtariffsavailable
+      type: string
+    PropertyGroupQuickFilter:
+      enum:
+        - all
+        - requireattention
+      type: string
+    PropertyGroupType:
+      enum:
+        - building
+        - project
+      type: string
+    PropertyType:
+      enum:
+        - value
+        - array
+        - object
+        - xmlattribute
+      type: string
+    ReadExportsQueryParams:
+      type: object
+      properties:
+        flexSearch:
+          type: string
+          nullable: true
+        includeOnlyIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        excludeIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    ScenarioGroupingType:
+      enum:
+        - invoice
+        - collectioncase
+        - contract
+        - moverequest
+        - personalinformation
+      type: string
+    ScheduledJobRecurrence:
+      enum:
+        - none
+        - pt5m
+        - pt1h
+        - pt1d
+      type: string
+    ScheduledJobType:
+      enum:
+        - billingadvancerun
+        - meterdataimport
+      type: string
+    SentStatus:
+      enum:
+        - notsent
+        - sending
+        - printing
+        - skipped
+        - sent
+        - failed
+      type: string
+    ServiceLocationQuickFilter:
+      enum:
+        - all
+        - supplied
+        - unsupplied
+        - requireattention
+      type: string
+    ServiceStatus:
+      enum:
+        - supplied
+        - unsupplied
+        - requested
+        - removed
+      type: string
+    SocialTariffExportDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or sets the unique identifier.
+          nullable: true
+        entityType:
+          allOf:
+            - $ref: '#/components/schemas/EntitySubjectType'
+          description: Gets or sets the type of the entity.
+          nullable: true
+        createdDateTime:
+          type: string
+          description: Gets or sets the date and time when the entity was created.
+          format: date-time
+        discriminator:
+          type: string
+          description: Gets or sets the discriminator value.
+          nullable: true
+        _etag:
+          type: string
+          description: Gets or sets the ETag value.
+          nullable: true
+        requireAttention:
+          type: boolean
+          description: Gets a value indicating whether the entity requires attention.
+          readOnly: true
+        hasErrors:
+          type: boolean
+          description: Gets or sets a value indicating whether the entity has errors.
+        hasWarnings:
+          type: boolean
+          description: Gets or sets a value indicating whether the entity has warnings.
+        isReadOnly:
+          type: boolean
+          description: Gets or sets a value indicating whether the entity is read-only.
+        organisationId:
+          type: string
+          description: Gets or sets the organization identifier.
+          nullable: true
+        startDateTime:
+          type: string
+          format: date-time
+        endDateTime:
+          type: string
+          format: date-time
+        generated:
+          type: boolean
+        internalFilePath:
+          type: string
+          nullable: true
+        filename:
+          type: string
+          nullable: true
+        type:
+          allOf:
+            - $ref: '#/components/schemas/SocialTariffExportType'
+          nullable: true
+        onlyMutations:
+          type: boolean
+      additionalProperties: false
+    SocialTariffExportDTOApiResponseDTO:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalisedErrorDTO'
+          nullable: true
+        success:
+          type: boolean
+        applicableEntitiesCount:
+          type: integer
+          format: int32
+        requestedEntitiesCount:
+          type: integer
+          format: int32
+        succeededEntitiesCount:
+          type: integer
+          format: int32
+          readOnly: true
+        isSynchronous:
+          type: boolean
+        data:
+          allOf:
+            - $ref: '#/components/schemas/SocialTariffExportDTO'
+          description: The updated entity in case of modifications or creation
+          nullable: true
+      additionalProperties: false
+    SocialTariffExportDTOPagedResponseModelDTO:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialTariffExportDTO'
+          nullable: true
+        hasNextPage:
+          type: boolean
+        nextPageToken:
+          type: string
+          nullable: true
+        totalRecords:
+          type: integer
+          format: int32
+        sortableFields:
+          type: array
+          items:
+            type: string
+          nullable: true
+        aggregateDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/AggregateDetailsDTO'
+          nullable: true
+      additionalProperties: false
+    SocialTariffExportDTOPagedResponseModelDTOApiResponseDTO:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalisedErrorDTO'
+          nullable: true
+        success:
+          type: boolean
+        applicableEntitiesCount:
+          type: integer
+          format: int32
+        requestedEntitiesCount:
+          type: integer
+          format: int32
+        succeededEntitiesCount:
+          type: integer
+          format: int32
+          readOnly: true
+        isSynchronous:
+          type: boolean
+        data:
+          allOf:
+            - $ref: '#/components/schemas/SocialTariffExportDTOPagedResponseModelDTO'
+          description: The updated entity in case of modifications or creation
+          nullable: true
+      additionalProperties: false
+    SocialTariffExportType:
+      enum:
+        - customerportfolio
+        - claimsprotectedcustomers
+      type: string
+    SshAuthenticationMethod:
+      enum:
+        - password
+        - privatekey
+      type: string
+    StatusCode:
+      enum:
+        - active
+        - inactive
+        - failed
+      type: string
+    SyntheticLoadProfileOrigin:
+      enum:
+        - manual
+        - systemgenerated
+      type: string
+    SystemUsageRecordType:
+      enum:
+        - servicelocationsactivewithoutservicesonly
+        - servicelocationsactivewithservicesonly
+        - servicelocationsinactivewithoutservicesonly
+        - servicelocationsinactivewithservicesonly
+        - servicelocationswithmorethanallowedmeters
+        - metersreceivingmeteringwithoutlinkedaddress
+        - measurementscreated
+        - invoicescreated
+        - documentssentviapostal
+        - documentssentviaemail
+        - contracthistoricalmoveins
+        - contractmoveins
+        - contracthistoricalmoveouts
+        - contractmoveouts
+        - users
+        - activeintegration
+        - servicelocationsactive
+        - servicelocationsinactive
+        - databasesize
+        - filesize
+        - smssent
+      type: string
+    TariffOrigin:
+      enum:
+        - product
+        - billingitem
+      type: string
+    TemplateAssetType:
+      enum:
+        - css
+        - headertemplate
+        - footertemplate
+        - image
+        - constant
+      type: string
+    TemplateObjectType:
+      enum:
+        - invoice
+        - collectioncase
+        - moverequest
+        - contract
+        - billingrelation
+        - invoiceubl
+        - portalcustomer
+        - annualstatement
+      type: string
+    TemplateUsecase:
+      enum:
+        - pdf
+        - email
+      type: string
+    TierCalculationMethod:
+      enum:
+        - invoiceperiod
+        - tariffperiod
+      type: string
+    TransactionQuickFilter:
+      enum:
+        - all
+        - topay
+        - torefund
+        - onlyopen
+        - onlyclosed
+      type: string
+    TransactionReferenceType:
+      enum:
+        - payment
+        - invoice
+        - collectionstep
+      type: string
+    TransactionStatus:
+      enum:
+        - notsettled
+        - partiallysettled
+        - settled
+        - reversed
+      type: string
+    TransactionSubType:
+      enum:
+        - adjustbalance
+        - incomingpayment
+        - outgoingpayment
+      type: string
+    TransactionType:
+      enum:
+        - invoice
+        - payment
+        - reversal
+        - collectionfee
+        - writeoff
+      type: string
+    TranslationStatus:
+      enum:
+        - defaulttranslation
+        - missingtranslation
+        - translated
+      type: string
+    UblTranslations:
+      enum:
+        - invoices
+        - vatnumber
+        - invoice
+        - vatnumberorganisationnumber
+      type: string
+    UnitOfMeasure:
+      enum:
+        - none
+        - wh
+        - kwh
+        - mwh
+        - gwh
+        - j
+        - kj
+        - mj
+        - gj
+        - day
+        - month
+        - year
+        - litre
+        - m3
+        - units
+        - m3_h
+        - celcius
+        - k
+        - kw
+      type: string
+    UpdateContractProductParameter:
+      enum:
+        - fromcontractstartdate
+        - fromfirstopenperiod
+        - fromsupplieddate
+        - fromdatebasedonspecificperiod
+      type: string
+    UserQuickFilter:
+      enum:
+        - all
+        - users
+        - admins
+        - customroles
+      type: string
+    UtilityType:
+      enum:
+        - none
+        - heat
+        - cooling
+        - hottapwater
+        - water
+        - electricity
+        - gas
+        - rainwater
+        - services
+      type: string
+    ValueProviderType:
+      enum:
+        - servicelocationidfrominvoicelines
+        - attachmentidfrominvoice
+        - contractidfrominvoice
+        - servicelocationidfrominvoicelinesfallbacktocontractservicelocationid
+        - customeridfrominvoice
+      type: string
+    WriteOffHandlingType:
+      enum:
+        - nowriteoff
+        - openamount
+        - chargeamount
+      type: string
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: apim-sub
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
+tags:
+  - name: SocialTariff
+    description: "Controller responsible for managing social tariff operations for Belgian regulations.\r\nProvides endpoints for creating, downloading, listing and deleting social tariff exports."

@@ -1,0 +1,30 @@
+# GetOutgoingBankingTransactionExportRequest
+
+Represents a request to export data for specific outgoing banking transactions.  This DTO is used to retrieve transaction data in a format suitable for export.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**outgoing_banking_transaction_ids** | **List[str]** | A list of IDs for the outgoing banking transactions to be included in the export. | [optional] 
+
+## Example
+
+```python
+from billing_client.models.get_outgoing_banking_transaction_export_request import GetOutgoingBankingTransactionExportRequest
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of GetOutgoingBankingTransactionExportRequest from a JSON string
+get_outgoing_banking_transaction_export_request_instance = GetOutgoingBankingTransactionExportRequest.from_json(json)
+# print the JSON string representation of the object
+print(GetOutgoingBankingTransactionExportRequest.to_json())
+
+# convert the object into a dict
+get_outgoing_banking_transaction_export_request_dict = get_outgoing_banking_transaction_export_request_instance.to_dict()
+# create an instance of GetOutgoingBankingTransactionExportRequest from a dict
+get_outgoing_banking_transaction_export_request_from_dict = GetOutgoingBankingTransactionExportRequest.from_dict(get_outgoing_banking_transaction_export_request_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
