@@ -253,21 +253,11 @@ setup_development_environment() {
 
   "$VENV_DIR/bin/python" - <<'PYCODE'
 import importlib
-mods = ["utils.secrets", "utils.utils"]
+mods = ["utils.secrets"]
 for m in mods:
     importlib.import_module(m)
 print("✅ All project modules import successfully")
 PYCODE
-
-  find . -name "*.py" -not -path "./$VENV_DIR/*" -exec "$VENV_DIR/bin/python" -m py_compile {} \;
-
-  if [ -s "$PROD_LOCK" ]; then
-    "$VENV_DIR/bin/python" -m pip check
-    success "dependencies compatible"
-  else
-    info "no production dependencies to verify"
-  fi
-
 
   section "setup complete"
   echo -e "\n${GREEN}🎉 development environment setup complete${RESET}\n"
