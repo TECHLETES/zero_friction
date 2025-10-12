@@ -61,7 +61,7 @@ setup_development_environment() {
   success "Python $(python3 --version | cut -d' ' -f2) found."
 
   # Ensure the venv module exists for the active python3
-  PY_MINOR="$(python3 -c 'import sys; print(f\"{sys.version_info.major}.{sys.version_info.minor}\")')"
+  PY_MINOR="$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")"
   if python3 -c "import venv" &>/dev/null; then
     success "python${PY_MINOR} venv module is available."
   else
