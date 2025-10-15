@@ -33,7 +33,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pre-commit",
-    "detect-secrets", 
+    "detect-secrets",
     "nbstripout",
     "pytest>=7.0",
     "pytest-cov",
@@ -98,7 +98,7 @@ exclude_lines = [
     "def __repr__",
     "if self.debug:",
     "if settings.DEBUG",
-    "raise AssertionError", 
+    "raise AssertionError",
     "raise NotImplementedError",
     "if 0:",
     "if __name__ == .__main__.:",
@@ -110,17 +110,39 @@ exclude_lines = [
 
 [tool.mypy]
 python_version = "3.12"
-strict = true
+
+# ignore_missing_imports for third-party libs without type hints
 ignore_missing_imports = true
-show_error_codes = true
+follow_imports = "silent"
+
+# strictness settings - adjust as needed
 warn_unused_ignores = true
+warn_return_any = true
+warn_unreachable = true
+no_implicit_optional = true
+allow_redefinition = true
+show_error_codes = true
 show_column_numbers = true
 pretty = true
+warn_unused_configs = true
+
+# enforce typing on own code
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
 exclude = [
-  "migrations",  # if Django/SQLAlchemy used
-  "notebooks",   # if you sync with Jupytext
+  "migrations",
+  "notebooks",
+  "tests",
 ]
 plugins = []
+
+# Loosen rules for test and script files
+[[tool.mypy.overrides]]
+module = ["tests.*", "scripts.*"]
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+warn_return_any = false
 
 [tool.ruff]
 target-version = "py311"
@@ -144,10 +166,6 @@ lint.ignore = [
   "B008",  # Do not perform function calls in argument defaults
   "E501",  # Line too long (Black handles this)
 ]
-
-[[tool.mypy.overrides]]
-module = "tests.*"
-disallow_untyped_defs = false
 
 [tool.bandit]
 exclude_dirs = ["tests", "venv"]

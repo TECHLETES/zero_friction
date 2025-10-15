@@ -33,7 +33,7 @@ repos:
         language: python
         additional_dependencies: [black]
         types: [python]
-        
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
     hooks:
@@ -54,7 +54,7 @@ repos:
     rev: v2.9.0
     hooks:
       - id: pip-audit
-        args: ['--progress-spinner', 'off']
+        args: ["--progress-spinner", "off", "-r", "requirements.txt"]
         stages: [pre-commit]
 
   # Secrets scanning
@@ -62,7 +62,7 @@ repos:
     rev: v1.5.0
     hooks:
       - id: detect-secrets
-        args: ['--baseline', '.secrets.baseline']
+        args: ["--baseline", ".secrets.baseline"]
         exclude: ^tests/
 
   # Notebook/text sync
@@ -88,7 +88,7 @@ repos:
         name: Ruff (linting + extra isort + rules)
         args: [--fix]
         types: [python]
-  
+
   # - repo: local
   #   hooks:
   #     - id: pytest
@@ -113,4 +113,27 @@ repos:
         always_run: true
         stages: [pre-commit]
 
+  # Frontend hooks (uncomment if you have a frontend in the `web/` directory)
+      # - id: frontend-lint
+      #   name: Frontend lint
+      #   entry: bash -c "cd web && npm run lint -- --fix"
+      #   language: system
+      #   files: ^web/
+      #   pass_filenames: false
+      #   additional_dependencies: []
 
+      # - id: frontend-typecheck
+      #   name: Frontend typecheck
+      #   entry: bash -c "cd web && npm run typecheck"
+      #   language: system
+      #   files: ^web/
+      #   pass_filenames: false
+      #   additional_dependencies: []
+
+      # - id: frontend-tests
+      #   name: Frontend tests
+      #   entry: bash -c "cd web && npm run test:run"
+      #   language: system
+      #   files: ^web/
+      #   pass_filenames: false
+      #   additional_dependencies: []
