@@ -97,7 +97,7 @@ setup_development_environment() {
     warn "direnv not found."
     install_package "direnv"
   fi
-  
+
   if has_cmd curl; then success "curl available."; else warn "curl not found. Some optional steps may be skipped."; fi
 
 
@@ -226,7 +226,7 @@ setup_development_environment() {
   if ! command -v detect-secrets >/dev/null 2>&1; then
     python -m pip install detect-secrets
   fi
-  
+
   step "initializing secrets baseline"
   if [ -f ".secrets.baseline" ]; then
     warn "existing .secrets.baseline found. backing up"

@@ -73,4 +73,3 @@ $env:PYTHONPATH = (Get-Location).Path
 python -c "import utils.secrets; print('✅ All project modules import successfully')"
 
 Ok "🎉 Windows setup complete"
-

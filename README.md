@@ -37,16 +37,16 @@ A modern, production-ready Python project template for TECHLETES, a data & AI co
             return a + b
   Why: your editor can catch mistakes early and mypy can check types automatically
 * Put shared helpers in utils
-* Use jupyter notebooks only for small tests / development. 
+* Use jupyter notebooks only for small tests / development.
 
 ### Git and commits
 * Pre commit is a tool that runs checks before every commit to keep code safe and consistent.
-* **Important:** The pre-commit checks require certain packages that are installed in the virtual environment when you setup this repo. Therefore, you should **always commit while the virtual environment is active**. 
+* **Important:** The pre-commit checks require certain packages that are installed in the virtual environment when you setup this repo. Therefore, you should **always commit while the virtual environment is active**.
 * Your commit can be blocked if a check fails. This is normal and protects the repo.
 * **Always check if your changes have been committed and pushed successfully!**
 * You can also run the pre-commit checks manually on all files before committing, using:
       `pre-commit run --all-files`
-* If a pre commit check fails and you are stuck, see the troubleshooting section in 
+* If a pre commit check fails and you are stuck, see the troubleshooting section in
 
 ## 🚀 Quick Start
 
@@ -168,11 +168,11 @@ This project uses a **hybrid dependency management approach**:
 
 
 ### Production dependencies
-- Declared under `dependencies` in `pyproject.toml` 
+- Declared under `dependencies` in `pyproject.toml`
 - Locked to `requirements.txt` via pip-tools
 
 ### Development dependencies
-- Declared under `[project.optional-dependencies].dev` in `pyproject.toml` 
+- Declared under `[project.optional-dependencies].dev` in `pyproject.toml`
 - Locked to `requirements-dev.txt` via pip-tools
 
 This setup ensures:
@@ -290,7 +290,7 @@ All development tools are configured in `pyproject.toml`:
 
 ## 📚 Documentation
 
-0. **[Setup](docs/0_setup.md)** - Guide to setup the development environment 
+0. **[Setup](docs/0_setup.md)** - Guide to setup the development environment
 1. **[Usage](docs/1_usage.md)** - Guide for daily usage of this repository
 2. **[Secret Management](docs/2_secret_management.md)** - Secure secret handling guide
 3. **[Dependency Management](docs/3_dependency_management.md)** - Detailed dependency workflow

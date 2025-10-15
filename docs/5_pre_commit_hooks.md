@@ -135,19 +135,19 @@ This is useful to verify changes or fix all issues in one go.
 ### 3.5.1 Locale warnings (WSL or CI environments)
 
 - If you see:
-    
+
     ```bash
     setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
     ```
-    
+
 - Fix it by running:
-    
+
     ```bash
     sudo apt install locales
     sudo locale-gen en_US.UTF-8
     sudo update-locale LANG=en_US.UTF-8
     ```
-    
+
 
 ### 3.5.2 `nbstripout: command not found`
 

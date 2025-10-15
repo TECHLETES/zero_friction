@@ -1,4 +1,4 @@
-# Don't use requirement.in or manually modified requirements.txt! 
+# Don't use requirement.in or manually modified requirements.txt!
 # We use pip-tools to manage dependencies. It reads and builds dpendencies from pyproject.toml.
 requirements.in
 

@@ -37,29 +37,29 @@ The provided script automates compilation and installation of both production an
 1. Activates the project virtual environment (`venv/bin/activate`).
 2. Installs or verifies **pip-tools**.
 3. Compiles the production lockfile from `pyproject.toml`:
-    
+
     ```bash
     pip-compile pyproject.toml --output-file=requirements.txt --generate-hashes
     ```
-    
+
 4. Installs production packages:
-    
+
     ```bash
     pip install --require-hashes -r requirements.txt
     ```
-    
+
 5. Compiles the development lockfile from the `dev` extras:
-    
+
     ```bash
     pip-compile pyproject.toml --extra=dev --output-file=requirements-dev.txt --generate-hashes
     ```
-    
+
 6. Installs development packages:
-    
+
     ```bash
     pip install --require-hashes -r requirements-dev.txt
     ```
-    
+
 7. Runs `pip check` to validate compatibility.
 
 ---
@@ -85,14 +85,14 @@ If migrating from a legacy `requirements.in` workflow:
 2. **Move all tooling dependencies** into `[project.optional-dependencies.dev]`.
 3. **Remove** the old `requirements.in` file.
 4. **Regenerate** lockfiles:
-    
+
     ```bash
     pip-compile pyproject.toml --output-file=requirements.txt --generate-hashes
     pip-compile pyproject.toml --extra=dev --output-file=requirements-dev.txt --generate-hashes
     ```
-    
+
 5. **Install** with:
-    
+
     ```bash
     ./scripts/dependency.sh
     ```
