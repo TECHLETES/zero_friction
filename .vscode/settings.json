@@ -1,8 +1,12 @@
 {
-    "python.analysis.typeCheckingMode": "standard",
-    "python.linting.mypyEnabled": true,
-    "python.linting.enabled": true,
-    "python.linting.mypyArgs": ["--config-file=pyproject.toml"],
-    "ruff.enable": true,
-    "ruff.args": ["--config=pyproject.toml"],
+  "python.analysis.typeCheckingMode": "standard",
+  "python.linting.enabled": true,
+  "python.linting.mypyArgs": [
+    "--config-file=pyproject.toml"
+  ],
+  "python.linting.mypyEnabled": true,
+  "ruff.args": [
+    "--config=pyproject.toml"
+  ],
+  "ruff.enable": true
 }
