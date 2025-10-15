@@ -29,6 +29,31 @@ is_wsl() {
   grep -qi "microsoft" /proc/sys/kernel/osrelease 2>/dev/null || [[ -n "${WSL_DISTRO_NAME:-}" ]]
 }
 
+get_ssh_key() {
+  local host="github.com"
+  local config_file="$HOME/.ssh/config"
+  local key=""
+
+  if [ -f "$config_file" ]; then
+    key=$(awk -v host="$host" '
+      tolower($0) ~ tolower("host " host) { in_block=1; next }
+      in_block && /^host / { in_block=0 }
+      in_block && tolower($1) == "identityfile" { print $2; exit }
+    ' "$config_file")
+  fi
+
+  # If key found, make it absolute path
+  if [ -n "$key" ]; then
+    if [[ $key != /* ]]; then
+      key="$HOME/.ssh/$key"
+    fi
+  else
+    # Fallback to default
+    key="$HOME/.ssh/id_rsa"
+  fi
+
+  echo "$key"
+}
 has_cmd() { command -v "$1" >/dev/null 2>&1; }
 
 # Universal package installation function
@@ -54,7 +79,7 @@ install_package() {
 }
 
 
-setup_development_environment() {
+check_system_requirements() {
   section "system requirements check"
   step "verifying required system packages"
   has_cmd python3 || error "Python 3 is not installed. Install Python 3.12+."
@@ -79,7 +104,6 @@ setup_development_environment() {
     fi
   fi
 
-
   # Check for pip and install if missing
   if has_cmd pip; then
     success "pip $(pip --version | cut -d' ' -f2) found."
@@ -100,7 +124,63 @@ setup_development_environment() {
 
   if has_cmd curl; then success "curl available."; else warn "curl not found. Some optional steps may be skipped."; fi
 
+  section "docker setup"
+  step "checking for Docker and Docker Compose"
+  if has_cmd apt-get; then
+    if ! command -v docker &> /dev/null; then
+      step "Docker not found. Installing Docker..."
 
+      # Remove old versions
+      sudo apt-get remove -y docker docker-engine docker.io containerd runc || true
+
+      # Update packages
+      sudo apt-get update -y
+      sudo apt-get install -y ca-certificates curl gnupg lsb-release
+
+      # Add Docker’s official GPG key
+      sudo mkdir -p /etc/apt/keyrings
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+      # Set up the Docker repository
+      echo \
+        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+        https://download.docker.com/linux/ubuntu \
+        $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+      # Install Docker
+      sudo apt-get update -y
+      sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+      # Enable & start Docker
+      sudo systemctl enable docker
+      sudo systemctl start docker
+
+      success "Docker installed successfully."
+    else
+      success "Docker is already installed."
+    fi
+
+    # Check & install Docker Compose (v2 CLI plugin)
+    if ! docker compose version &> /dev/null; then
+      step "Docker Compose plugin not found. Installing..."
+      sudo apt-get install -y docker-compose-plugin
+      success "Docker Compose installed successfully."
+    else
+      success "Docker Compose is already installed."
+    fi
+
+    # Verification
+    step "verifying installation"
+    docker --version
+    docker compose version
+
+    success "Docker and Docker Compose are ready to use!"
+  else
+    warn "Docker installation only supported on Debian/Ubuntu systems with apt-get."
+  fi
+}
+
+setup_virtual_environment() {
   section "virtual environment setup"
   step "creating Python virtual environment"
   if [ -d "$VENV_DIR" ]; then
@@ -135,12 +215,13 @@ setup_development_environment() {
     success "virtual environment created and activated"
   fi
 
-
   step "upgrading pip in virtual environment"
   python -m ensurepip --upgrade >/dev/null 2>&1 || true
   python -m pip install --upgrade pip
   success "pip upgraded to $("$VENV_DIR/bin/python" -m pip --version | awk '{print $2}')."
+}
 
+setup_dependencies() {
   section "hybrid dependency management"
   info "production deps in $PYPROJECT to $PROD_LOCK"
   info "development deps in $PYPROJECT extra [dev] to $DEV_LOCK"
@@ -151,7 +232,9 @@ setup_development_environment() {
   step "running dependency setup script"
   ./scripts/dependency.sh
   success "dependencies installed"
+}
 
+configure_locale() {
   section "system locale configuration"
   step "ensuring locales"
   if has_cmd apt-get; then
@@ -170,8 +253,9 @@ setup_development_environment() {
   else
     warn "no known package manager detected for locale configuration"
   fi
+}
 
-
+setup_direnv() {
   section "direnv setup"
   step "configuring direnv shell integration"
   PROFILE="${HOME}/.bashrc"
@@ -188,7 +272,9 @@ setup_development_environment() {
   else
     warn ".envrc not found. skipping allow"
   fi
+}
 
+setup_pre_commit() {
   section "pre commit hooks setup"
   step "installing pre commit hooks"
   if [[ -f ".pre-commit-config.yaml" ]]; then
@@ -196,6 +282,7 @@ setup_development_environment() {
     pre-commit install
     success "pre commit hooks installed"
     step "updating pre commit repos"
+
     pre-commit autoupdate
     success "pre commit hooks updated"
     step "running pre commit on all files"
@@ -203,7 +290,9 @@ setup_development_environment() {
   else
     warn ".pre-commit-config.yaml not found. skipping"
   fi
+}
 
+setup_secrets() {
   section "secret management setup"
   step "checking 1password cli"
   if has_cmd op; then
@@ -222,7 +311,7 @@ setup_development_environment() {
     fi
   fi
 
-   # Ensure detect-secrets is available before using it
+  # Ensure detect-secrets is available before using it
   if ! command -v detect-secrets >/dev/null 2>&1; then
     python -m pip install detect-secrets
   fi
@@ -236,17 +325,17 @@ setup_development_environment() {
   success "secrets baseline created"
   detect-secrets audit .secrets.baseline || warn "manual review of baseline recommended"
   success "secrets configuration verified"
+}
 
+verify_tools() {
   section "development tools verification"
   step "verifying development tools"
   for tool in black ruff mypy pytest beartype; do
     if python -m pip show "$tool" >/dev/null 2>&1; then success "$tool installed"; else warn "$tool missing"; fi
   done
+}
 
-  section "project validation"
-  step "running final project validation"
-  info "checking imports"
-
+validate_project() {
   section "project validation"
   step "running final project validation"
   info "checking imports"
@@ -258,7 +347,9 @@ for m in mods:
     importlib.import_module(m)
 print("✅ All project modules import successfully")
 PYCODE
+}
 
+print_completion() {
   section "setup complete"
   echo -e "\n${GREEN}🎉 development environment setup complete${RESET}\n"
   echo -e "${BLUE}installed:${RESET}"
@@ -272,6 +363,19 @@ PYCODE
   echo "  1. restart terminal or run: source ~/.bashrc"
   echo "  2. test with: python example/using_secrets.py"
   echo "  3. start coding"
+}
+
+setup_development_environment() {
+  check_system_requirements
+  setup_virtual_environment
+  setup_dependencies
+  configure_locale
+  setup_direnv
+  setup_pre_commit
+  setup_secrets
+  verify_tools
+  validate_project
+  print_completion
 }
 
 setup_development_environment

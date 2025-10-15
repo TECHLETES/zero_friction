@@ -35,7 +35,7 @@ repos:
         types: [python]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.2.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -67,7 +67,7 @@ repos:
 
   # Notebook/text sync
   - repo: https://github.com/mwouts/jupytext
-    rev: v1.17.3
+    rev: v1.18.0rc0
     hooks:
       - id: jupytext
         args: [--sync]
@@ -82,7 +82,7 @@ repos:
 
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.13.1
+    rev: v0.14.0
     hooks:
       - id: ruff
         name: Ruff (linting + extra isort + rules)
