@@ -5,10 +5,11 @@ set -euo pipefail
 # Configuration
 # -----------------------------------------------------------------------------
 # Use environment variables if they exist, otherwise set sensible defaults.
-export VENV_DIR="${VENV_DIR:-venv}"
+export VENV_DIR="${VENV_DIR:-.venv}"
 export PYPROJECT="${PYPROJECT:-pyproject.toml}"
 export PROD_LOCK="${PROD_LOCK:-requirements.txt}"
 export DEV_LOCK="${DEV_LOCK:-requirements-dev.txt}"
+export EXTRA_LOCK="${EXTRA_LOCK:-requirements-full.txt}"
 
 # -----------------------------------------------------------------------------
 # Script Info
@@ -17,9 +18,10 @@ export DEV_LOCK="${DEV_LOCK:-requirements-dev.txt}"
 # Compiles lockfiles first, then installs, to ensure a robust workflow.
 #
 # Usage:
-#   ./scripts/dependency.sh          # Compile and install both prod & dev
+#   ./scripts/dependency.sh          # Compile and install both prod, dev & extra
 #   ./scripts/dependency.sh --prod   # Compile and install only prod
 #   ./scripts/dependency.sh --dev    # Compile and install only dev
+#   ./scripts/dependency.sh --extra    # Compile and install only extra
 
 # -----------------------------------------------------------------------------
 # UI Functions
@@ -42,11 +44,13 @@ error()   { echo -e "${RED}❌ $1${RESET}"; exit 1; }
 # -----------------------------------------------------------------------------
 INSTALL_PROD=false
 INSTALL_DEV=false
+INSTALL_EXTRA=false
 
 # Default to both if no arguments are provided
 if [ $# -eq 0 ]; then
   INSTALL_PROD=true
   INSTALL_DEV=true
+  INSTALL_EXTRA=true
 else
   for arg in "$@"; do
     case $arg in
@@ -56,8 +60,11 @@ else
       --dev)
         INSTALL_DEV=true
         ;;
+      --extra)
+        INSTALL_EXTRA=true
+        ;;
       *)
-        error "Unknown option: $arg. Usage: $0 [--prod] [--dev]"
+        error "Unknown option: $arg. Usage: $0 [--prod] [--dev] [--extra]"
         ;;
     esac
   done
@@ -113,6 +120,15 @@ if [ "$INSTALL_DEV" = true ]; then
       --strip-extras
 fi
 
+if [ "$INSTALL_EXTRA" = true ]; then
+  info "Compiling extra lockfile: '${EXTRA_LOCK}'"
+  pip-compile "${PYPROJECT}" \
+      --extra=extra \
+      --output-file="${EXTRA_LOCK}" \
+      --strip-extras
+fi
+
+
 success "All required lockfiles compiled."
 
 # -----------------------------------------------------------------------------
@@ -134,6 +150,12 @@ if [ "$INSTALL_DEV" = true ]; then
   pip install --require-hashes -r "${DEV_LOCK}"
 fi
 
+if [ "$INSTALL_EXTRA" = true ]; then
+  info "Installing development dependencies from '${EXTRA_LOCK}'..."
+  # The extra requirements should include the prod ones, but `pip install` handles duplicates gracefully.
+  pip install -r "${EXTRA_LOCK}"
+fi
+
 success "All required dependencies installed."
 
 # -----------------------------------------------------------------------------
@@ -148,3 +170,4 @@ echo
 success "Dependency setup complete!"
 [ "$INSTALL_PROD" = true ] && echo "  • Production dependencies updated from '${PROD_LOCK}'"
 [ "$INSTALL_DEV" = true ] && echo "  • Development dependencies updated from '${DEV_LOCK}'"
+[ "$INSTALL_EXTRA" = true ] && echo "  • Extra dependencies updated from '${EXTRA_LOCK}'"

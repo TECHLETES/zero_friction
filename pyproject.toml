@@ -47,6 +47,12 @@ dev = [
     "rich",
 ]
 
+# Add your extra dependencies here. These are custom packages not on PyPI.
+# For example the 'zero-friction' package that needs to be installed via GitHub.
+extra = [
+  # "zero-friction @ git+https://github.com/TECHLETES/zero_friction.git@main"
+]
+
 [project.urls]
 Homepage = "https://github.com/TECHLETES/python_basic_template"
 Repository = "https://github.com/TECHLETES/python_basic_template"

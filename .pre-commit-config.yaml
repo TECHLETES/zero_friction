@@ -18,6 +18,14 @@ repos:
         files: ^requirements-dev\.txt$
         additional_dependencies: [pip-tools==7.5.0]
 
+      - id: verify-full-lockfile
+        name: Verify extra lockfile is up-to-date
+        entry: ./scripts/hooks/verify-lockfile.sh
+        args: ["requirements-full.txt"]
+        language: python
+        files: ^requirements-full\.txt$
+        additional_dependencies: [pip-tools==7.5.0]
+
       # Strip notebook outputs
       - id: nbstripout-autoadd
         name: nbstripout (auto-add notebooks)

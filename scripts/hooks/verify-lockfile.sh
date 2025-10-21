@@ -17,6 +17,9 @@ echo "Verifying integrity of '$LOCKFILE_TO_CHECK'..."
 if [[ "$LOCKFILE_TO_CHECK" == "requirements-dev.txt" ]]; then
     # Compile development dependencies
     pip-compile "$PYPROJECT_FILE" --extra=dev --output-file="$TEMP_LOCKFILE" --generate-hashes --strip-extras --quiet > /dev/null
+elif [[ "$LOCKFILE_TO_CHECK" == "requirements-full.txt" ]]; then
+    # Compile extra dependencies
+    pip-compile "$PYPROJECT_FILE" --extra=extra --output-file="$TEMP_LOCKFILE" --strip-extras --quiet > /dev/null
 else
     # Compile production dependencies by default
     pip-compile "$PYPROJECT_FILE" --output-file="$TEMP_LOCKFILE" --generate-hashes --strip-extras --quiet > /dev/null
