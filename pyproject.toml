@@ -50,7 +50,7 @@ dev = [
     "beartype",
     "pytest-beartype",
     "pip-audit>=2.9.0",
-    "pip-tools",  # for managing requirement*.txt
+    "pip-tools==7.5.0",  # for managing requirement*.txt
     "rich",
 ]
 

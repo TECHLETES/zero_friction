@@ -105,7 +105,6 @@ info "Compiling production lockfile: '${PROD_LOCK}'"
 pip-compile "${PYPROJECT}" \
     --extra=extra \
     --output-file="${PROD_LOCK}" \
-    --allow-unsafe \
     --generate-hashes \
     --strip-extras
 
@@ -114,7 +113,6 @@ pip-compile "${PYPROJECT}" \
     --extra=dev \
     --extra=extra \
     --output-file="${DEV_LOCK}" \
-    --allow-unsafe \
     --generate-hashes \
     --strip-extras
 
@@ -135,12 +133,12 @@ step "PHASE 2: Installing dependencies..."
 
 if [ "$INSTALL_PROD" = true ]; then
   info "Installing production dependencies from '${PROD_LOCK}'..."
-  pip install -r "${PROD_LOCK}"
+  pip install --require-hashes -r "${PROD_LOCK}"
 fi
 
 if [ "$INSTALL_DEV" = true ]; then
   info "Installing development dependencies from '${DEV_LOCK}'..."
-  pip install -r "${DEV_LOCK}"
+  pip install --require-hashes -r "${DEV_LOCK}"
 fi
 
 if [ "$INSTALL_SLIM" = true ]; then

@@ -202,6 +202,31 @@ This layered approach ensures:
 | `./scripts/dependency.sh --dev` | Development only | CI/testing environments |
 | `./scripts/dependency.sh` | Core + Extra + Dev | Complete development setup (Default) |
 
+### Security and Hash Verification
+
+This project uses **hash-based verification** for maximum security against supply chain attacks:
+
+- **Lockfiles include SHA256 hashes** for each dependency
+- **Installation verifies packages** against these hashes
+- **Prevents tampering** during the dependency supply chain
+
+#### When Hash Verification Fails
+
+Some packages **cannot be hashed** due to:
+- Private packages from git repositories
+- Local development packages (`file://` URLs)
+- Packages with dynamic content
+
+**For these cases**, modify `scripts/dependency.sh`:
+1. Remove `--require-hashes` from `pip install` commands
+2. Remove `--generate-hashes` from corresponding `pip-compile` commands
+
+**⚠️ Security Warning:** Only disable hashes for packages that genuinely cannot be hashed. Keep verification enabled wherever possible.
+
+#### The `--allow-unsafe` Flag
+
+All `pip-compile` commands include `--allow-unsafe` to handle packages with complex dependency trees that pip-tools might otherwise reject as "unsafe" due to unpinned dependencies or compatibility issues.
+
 ### Adding Dependencies
 
 When adding new packages to your project, choose the appropriate section in `pyproject.toml`:
