@@ -9,7 +9,7 @@ export VENV_DIR="${VENV_DIR:-.venv}"
 export PYPROJECT="${PYPROJECT:-pyproject.toml}"
 export PROD_LOCK="${PROD_LOCK:-requirements.txt}"
 export DEV_LOCK="${DEV_LOCK:-requirements-dev.txt}"
-export EXTRA_LOCK="${EXTRA_LOCK:-requirements-full.txt}"
+export SLIM_LOCK="${SLIM_LOCK:-requirements-slim.txt}"
 
 # -----------------------------------------------------------------------------
 # Script Info
@@ -18,10 +18,10 @@ export EXTRA_LOCK="${EXTRA_LOCK:-requirements-full.txt}"
 # Compiles lockfiles first, then installs, to ensure a robust workflow.
 #
 # Usage:
-#   ./scripts/dependency.sh          # Compile and install both prod, dev & extra
-#   ./scripts/dependency.sh --prod   # Compile and install only prod
+#   ./scripts/dependency.sh          # Compile and install dev (which includes all)
+#   ./scripts/dependency.sh --prod   # Compile and install only prod (full production)
 #   ./scripts/dependency.sh --dev    # Compile and install only dev
-#   ./scripts/dependency.sh --extra    # Compile and install only extra
+#   ./scripts/dependency.sh --slim   # Compile and install only slim (core only)
 
 # -----------------------------------------------------------------------------
 # UI Functions
@@ -44,13 +44,11 @@ error()   { echo -e "${RED}❌ $1${RESET}"; exit 1; }
 # -----------------------------------------------------------------------------
 INSTALL_PROD=false
 INSTALL_DEV=false
-INSTALL_EXTRA=false
+INSTALL_SLIM=false
 
-# Default to both if no arguments are provided
+# Default to dev if no arguments are provided
 if [ $# -eq 0 ]; then
-  INSTALL_PROD=true
   INSTALL_DEV=true
-  INSTALL_EXTRA=true
 else
   for arg in "$@"; do
     case $arg in
@@ -60,11 +58,11 @@ else
       --dev)
         INSTALL_DEV=true
         ;;
-      --extra)
-        INSTALL_EXTRA=true
+      --slim)
+        INSTALL_SLIM=true
         ;;
       *)
-        error "Unknown option: $arg. Usage: $0 [--prod] [--dev] [--extra]"
+        error "Unknown option: $arg. Usage: $0 [--prod] [--dev] [--slim]"
         ;;
     esac
   done
@@ -103,33 +101,30 @@ fi
 
 step "PHASE 1: Compiling lockfiles from '${PYPROJECT}'..."
 
-if [ "$INSTALL_PROD" = true ]; then
-  info "Compiling production lockfile: '${PROD_LOCK}'"
-  pip-compile "${PYPROJECT}" \
-      --output-file="${PROD_LOCK}" \
-      --generate-hashes \
-      --strip-extras
-fi
+info "Compiling production lockfile: '${PROD_LOCK}'"
+pip-compile "${PYPROJECT}" \
+    --extra=extra \
+    --output-file="${PROD_LOCK}" \
+    --allow-unsafe \
+    --generate-hashes \
+    --strip-extras
 
-if [ "$INSTALL_DEV" = true ]; then
-  info "Compiling development lockfile: '${DEV_LOCK}'"
-  pip-compile "${PYPROJECT}" \
-      --extra=dev \
-      --output-file="${DEV_LOCK}" \
-      --generate-hashes \
-      --strip-extras
-fi
+info "Compiling development lockfile: '${DEV_LOCK}'"
+pip-compile "${PYPROJECT}" \
+    --extra=dev \
+    --extra=extra \
+    --output-file="${DEV_LOCK}" \
+    --allow-unsafe \
+    --generate-hashes \
+    --strip-extras
 
-if [ "$INSTALL_EXTRA" = true ]; then
-  info "Compiling extra lockfile: '${EXTRA_LOCK}'"
-  pip-compile "${PYPROJECT}" \
-      --extra=extra \
-      --output-file="${EXTRA_LOCK}" \
-      --strip-extras
-fi
+info "Compiling slim lockfile: '${SLIM_LOCK}'"
+pip-compile "${PYPROJECT}" \
+    --output-file="${SLIM_LOCK}" \
+    --generate-hashes \
+    --strip-extras
 
-
-success "All required lockfiles compiled."
+success "All lockfiles compiled."
 
 # -----------------------------------------------------------------------------
 # PHASE 2: INSTALL DEPENDENCIES FROM THE (NOW VERIFIED) LOCKFILES
@@ -140,20 +135,18 @@ step "PHASE 2: Installing dependencies..."
 
 if [ "$INSTALL_PROD" = true ]; then
   info "Installing production dependencies from '${PROD_LOCK}'..."
-  # We use --require-hashes for a secure install.
-  pip install --require-hashes -r "${PROD_LOCK}"
+  pip install -r "${PROD_LOCK}"
 fi
 
 if [ "$INSTALL_DEV" = true ]; then
   info "Installing development dependencies from '${DEV_LOCK}'..."
-  # The dev requirements should include the prod ones, but `pip install` handles duplicates gracefully.
-  pip install --require-hashes -r "${DEV_LOCK}"
+  pip install -r "${DEV_LOCK}"
 fi
 
-if [ "$INSTALL_EXTRA" = true ]; then
-  info "Installing development dependencies from '${EXTRA_LOCK}'..."
-  # The extra requirements should include the prod ones, but `pip install` handles duplicates gracefully.
-  pip install -r "${EXTRA_LOCK}"
+if [ "$INSTALL_SLIM" = true ]; then
+  info "Installing slim dependencies from '${SLIM_LOCK}'..."
+  # The slim requirements are the core ones.
+  pip install --require-hashes -r "${SLIM_LOCK}"
 fi
 
 success "All required dependencies installed."
@@ -168,6 +161,11 @@ success "Environment check passed."
 # --- Final Summary ---
 echo
 success "Dependency setup complete!"
-[ "$INSTALL_PROD" = true ] && echo "  • Production dependencies updated from '${PROD_LOCK}'"
-[ "$INSTALL_DEV" = true ] && echo "  • Development dependencies updated from '${DEV_LOCK}'"
-[ "$INSTALL_EXTRA" = true ] && echo "  • Extra dependencies updated from '${EXTRA_LOCK}'"
+echo "  • All lockfiles compiled"
+if [ $# -eq 0 ]; then
+  echo "  • Development dependencies (including all) installed from '${DEV_LOCK}'"
+else
+  [ "$INSTALL_PROD" = true ] && echo "  • Production dependencies installed from '${PROD_LOCK}'"
+  [ "$INSTALL_DEV" = true ] && echo "  • Development dependencies installed from '${DEV_LOCK}'"
+  [ "$INSTALL_SLIM" = true ] && echo "  • Slim dependencies installed from '${SLIM_LOCK}'"
+fi

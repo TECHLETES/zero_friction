@@ -24,13 +24,20 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 
-# Add project dependencies here. pip-tools will read them from here, do not use a requirements file!
+# Core production dependencies required for the application to run.
+# These are compiled into requirements-slim.txt (core only) and included in all other requirement files.
+# Add only dependencies that are needed in production environments.
 dependencies = [
   "flask>=2.2.0,<3.0.0", # Example dependency, replace with your own
   "requests"
 ]
 
+# Optional dependency groups for different environments and use cases.
+# These are used by pip-compile with --extra flags to generate different requirement files.
 [project.optional-dependencies]
+# Development and testing dependencies.
+# Includes code quality tools, testing frameworks, and development utilities.
+# Compiled into requirements-dev.txt (core + extra + dev).
 dev = [
     "pre-commit",
     "detect-secrets",
@@ -47,8 +54,9 @@ dev = [
     "rich",
 ]
 
-# Add your extra dependencies here. These are custom packages not on PyPI.
-# For example the 'zero-friction' package that needs to be installed via GitHub.
+# Additional production dependencies.
+# Includes private packages or optional features not in the core dependencies.
+# Compiled into requirements.txt (core + extra).
 extra = [
   # "zero-friction @ git+https://github.com/TECHLETES/zero_friction.git@main"
 ]

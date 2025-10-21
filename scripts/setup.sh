@@ -6,6 +6,7 @@ export VENV_DIR="${VENV_DIR:-.venv}"
 export PYPROJECT="${PYPROJECT:-pyproject.toml}"
 export PROD_LOCK="${PROD_LOCK:-requirements.txt}"
 export DEV_LOCK="${DEV_LOCK:-requirements-dev.txt}"
+export SLIM_LOCK="${SLIM_LOCK:-requirements-slim.txt}"
 
 # ui helpers
 GREEN='\033[0;32m'
@@ -225,6 +226,7 @@ setup_dependencies() {
   section "hybrid dependency management"
   info "production deps in $PYPROJECT to $PROD_LOCK"
   info "development deps in $PYPROJECT extra [dev] to $DEV_LOCK"
+  info "slim deps in $PYPROJECT without extra [extra] to $SLIM_LOCK"
   step "installing pip tools"
   python -m pip install pip-tools build wheel
   success "pip tools installed"
@@ -354,7 +356,8 @@ print_completion() {
   echo -e "\n${GREEN}🎉 development environment setup complete${RESET}\n"
   echo -e "${BLUE}installed:${RESET}"
   echo "  • $VENV_DIR/"
-  echo "  • production deps ($PROD_LOCK)"
+  echo "  • core production deps ($PROD_LOCK)"
+  echo "  • slim production deps ($SLIM_LOCK)"
   echo "  • dev tools ($DEV_LOCK)"
   echo "  • pre commit hooks"
   echo "  • secret baseline (.secrets.baseline)"

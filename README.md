@@ -21,13 +21,15 @@ A modern, production-ready Python project template for TECHLETES, a data & AI co
   Why: it creates unpinned installs that differ per user and will break CI
 * Always declare packages in pyproject.toml only
 * Run the helper script to handle the package install for you
-    All dependencies
+    All dependencies (dev + extra + core)
         ./scripts/dependency.sh
-    Production only
+    Production dependencies (core + extra)
         ./scripts/dependency.sh --prod
-    Development only
+    Development dependencies only
         ./scripts/dependency.sh --dev
-* After you change pyproject.toml run the script again. This will update requirements.txt and requirements-dev.txt automatically.
+    Core dependencies only (minimal)
+        ./scripts/dependency.sh --slim
+* After you change pyproject.toml run the script again. This will update all requirement files automatically.
 
 ### Coding
 * Prefer small functions and clear modules so code is easy to test and reuse
@@ -150,9 +152,10 @@ python_basic_template/
 │   ├── secrets.py
 │   └── utils.py
 ├── tests/                          # (Empty) Test directory scaffold
-├── pyproject.toml                  # Project configuration & dev dependencies
-├── requirements.txt                # Compiled production dependencies
-├── requirements-dev.txt            # Compiled dev dependencies
+├── pyproject.toml                  # Project configuration & all dependencies
+├── requirements-slim.txt           # Compiled core dependencies only
+├── requirements.txt                # Compiled production dependencies (core + extra)
+├── requirements-dev.txt            # Compiled all dependencies (core + extra + dev)
 ├── .pre-commit-config.yaml         # Pre-commit hooks config
 ├── .envrc                          # direnv environment config
 ├── .secrets.baseline               # Secret detection baseline
@@ -164,30 +167,68 @@ python_basic_template/
 
 ## 🏗️ Dependency Management
 
-This project uses a **hybrid dependency management approach**:
+This project uses a **layered dependency management approach** with three distinct groups:
 
+### Core Dependencies
+- **Purpose**: Essential runtime requirements needed in all environments
+- **Location**: `dependencies` section in `pyproject.toml`
+- **Compiled to**: `requirements-slim.txt`
+- **Examples**: Flask, requests, database drivers
 
-### Production dependencies
-- Declared under `dependencies` in `pyproject.toml`
-- Locked to `requirements.txt` via pip-tools
+### Extra Dependencies
+- **Purpose**: Additional production features and optional components
+- **Location**: `[project.optional-dependencies].extra` in `pyproject.toml`
+- **Compiled to**: `requirements.txt` (core + extra)
+- **Examples**: Private packages, optional integrations, performance libraries
 
-### Development dependencies
-- Declared under `[project.optional-dependencies].dev` in `pyproject.toml`
-- Locked to `requirements-dev.txt` via pip-tools
+### Development Dependencies
+- **Purpose**: Development tools, testing frameworks, and code quality tools
+- **Location**: `[project.optional-dependencies].dev` in `pyproject.toml`
+- **Compiled to**: `requirements-dev.txt` (core + extra + dev)
+- **Examples**: pytest, black, mypy, pre-commit
 
-This setup ensures:
-
-- Clear separation of runtime vs. tooling packages
-- Fully pinned, reproducible installs using lockfiles
-- One declarative manifest (`pyproject.toml`) for all dependencies
+This layered approach ensures:
+- **Minimal deployments** with slim requirements for containers/lambdas
+- **Full production** setup with all features enabled
+- **Complete development** environment with all tooling
+- **Reproducible builds** with fully pinned, hashed lockfiles
 
 ### Installation Options
 
-| Command | What it installs |
-|---------|------------------|
-| `./scripts/dependency.sh --prod` | Production setup only |
-| `./scripts/dependency.sh --dev` |  Development setup only |
-| `./scripts/dependency.sh` | Both production + development (Default) |
+| Command | Dependencies Installed | Use Case |
+|---------|----------------------|----------|
+| `./scripts/dependency.sh --slim` | Core only | Minimal deployments, containers, lambdas |
+| `./scripts/dependency.sh --prod` | Core + Extra | Full production environment |
+| `./scripts/dependency.sh --dev` | Development only | CI/testing environments |
+| `./scripts/dependency.sh` | Core + Extra + Dev | Complete development setup (Default) |
+
+### Adding Dependencies
+
+When adding new packages to your project, choose the appropriate section in `pyproject.toml`:
+
+```toml
+# Core dependencies - Essential runtime requirements
+dependencies = [
+    "flask>=2.2.0,<3.0.0",  # Web framework
+    "requests",              # HTTP client
+    "sqlalchemy",            # Database ORM
+]
+
+# Extra dependencies - Optional production features
+[project.optional-dependencies]
+extra = [
+    "redis",                 # Caching
+    "celery",               # Task queue
+    "gunicorn",             # Production server
+]
+
+# Dev dependencies - Development and testing tools
+dev = [
+    "pytest>=7.0",          # Testing framework
+    "black",                # Code formatter
+    "mypy",                 # Type checker
+]
+```
 
 **📖 Detailed guide**: [docs/2_dependency_management.md](docs/2_dependency_management.md)
 
@@ -254,9 +295,10 @@ pytest tests/test_specific.py
 
 | File | Purpose |
 |------|---------|
-| `pyproject.toml` | Project metadata, (dev) dependencies, tool config |
-| `requirements.txt` | Compiled production dependencies (auto-generated) |
-| `requirements-dev.txt` | Compiled development dependencies (auto-generated) |
+| `pyproject.toml` | Project metadata, all dependencies, tool config |
+| `requirements-slim.txt` | Compiled core dependencies only (auto-generated) |
+| `requirements.txt` | Compiled production dependencies: core + extra (auto-generated) |
+| `requirements-dev.txt` | Compiled all dependencies: core + extra + dev (auto-generated) |
 | `.pre-commit-config.yaml` | Pre-commit hooks configuration |
 | `.envrc` | Environment variables (direnv) |
 | `.secrets.baseline` | Secret detection baseline |
