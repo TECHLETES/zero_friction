@@ -77,19 +77,19 @@ The script follows a two-phase approach: **compile all lockfiles first**, then *
 3. Compiles the **slim lockfile** (core dependencies only):
 
     ```bash
-    pip-compile pyproject.toml --output-file=requirements-slim.txt --generate-hashes --strip-extras --allow-unsafe
+    pip-compile pyproject.toml --output-file=requirements-slim.txt --generate-hashes --strip-extras
     ```
 
 4. Compiles the **production lockfile** (core + extra):
 
     ```bash
-    pip-compile pyproject.toml --extra=extra --output-file=requirements.txt --generate-hashes --strip-extras --allow-unsafe
+    pip-compile pyproject.toml --extra=extra --output-file=requirements.txt --generate-hashes --strip-extras
     ```
 
 5. Compiles the **development lockfile** (core + extra + dev):
 
     ```bash
-    pip-compile pyproject.toml --extra=dev --extra=extra --output-file=requirements-dev.txt --generate-hashes --strip-extras --allow-unsafe
+    pip-compile pyproject.toml --extra=dev --extra=extra --output-file=requirements-dev.txt --generate-hashes --strip-extras
     ```
 
 #### Phase 2: Install Selected Dependencies
@@ -133,16 +133,6 @@ Some packages **cannot be hashed** due to:
    - Example: Change `pip-compile pyproject.toml --output-file=requirements-slim.txt --generate-hashes --strip-extras` to `pip-compile pyproject.toml --output-file=requirements-slim.txt --strip-extras`
 
 **⚠️ Security Warning:** Only disable hashes for packages that genuinely cannot be hashed. Keep hash verification enabled wherever possible to maintain supply chain security.
-
-#### The `--allow-unsafe` Flag
-
-The `--allow-unsafe` flag is included in all `pip-compile` commands to handle packages that pip-tools considers "unsafe":
-
-- **Allows packages** that have unpinned dependencies or other issues
-- **Enables compilation** of complex dependency trees that might otherwise fail
-- **Required for many common packages** that have indirect dependencies with compatibility issues
-
-This flag is generally safe to use as it doesn't compromise security - it just allows pip-tools to work with packages that have dependency resolution challenges.
 
 ---
 

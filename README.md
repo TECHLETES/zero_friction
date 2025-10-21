@@ -223,10 +223,6 @@ Some packages **cannot be hashed** due to:
 
 **⚠️ Security Warning:** Only disable hashes for packages that genuinely cannot be hashed. Keep verification enabled wherever possible.
 
-#### The `--allow-unsafe` Flag
-
-All `pip-compile` commands include `--allow-unsafe` to handle packages with complex dependency trees that pip-tools might otherwise reject as "unsafe" due to unpinned dependencies or compatibility issues.
-
 ### Adding Dependencies
 
 When adding new packages to your project, choose the appropriate section in `pyproject.toml`:
