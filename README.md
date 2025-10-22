@@ -21,22 +21,24 @@ A modern, production-ready Python project template for TECHLETES, a data & AI co
   Why: it creates unpinned installs that differ per user and will break CI
 * Always declare packages in pyproject.toml only
 * Run the helper script to handle the package install for you
-    All dependencies (dev + extra + core)
-        ./scripts/dependency.sh
-    Production dependencies (core + extra)
-        ./scripts/dependency.sh --prod
-    Development dependencies only
-        ./scripts/dependency.sh --dev
-    Core dependencies only (minimal)
-        ./scripts/dependency.sh --slim
+- All dependencies (dev + extra + core): `./scripts/dependency.sh` or `./scripts/dependency.sh --dev`
+  - Install this locally for developement
+- Production dependencies (core + extra): `./scripts/dependency.sh --prod`
+  - Install this in staging or production environments. It contains all needed to run the project without dev tools.
+- Core dependencies only (minimal): `./scripts/dependency.sh --slim`
+  - Use this in CI pipelines. It contains the core dependencies to run the project, nothing more. 
+        
 * After you change pyproject.toml run the script again. This will update all requirement files automatically.
+* If you remove dependencies from pyproject.toml that are no longeer needed, delete your virtualenvironment and run the script.
 
 ### Coding
 * Prefer small functions and clear modules so code is easy to test and reuse
 * Use type hints to show expected inputs and outputs
   Example
+  ```
         def add(a: int, b: int) -> int:
             return a + b
+  ```
   Why: your editor can catch mistakes early and mypy can check types automatically
 * Put shared helpers in utils
 * Use jupyter notebooks only for small tests / development.
