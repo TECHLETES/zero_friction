@@ -20,6 +20,7 @@ from .sdk_utils import create_config, wrap_api_call, create_api_classes_for_clie
 from .config import ZeroFrictionConfig
 
 from zero_friction.patches.patched_customers_api import PatchedCustomersApi
+from zero_friction.patches.core import apply_patches
 
 class SDKClient:
     def __init__(
@@ -28,6 +29,8 @@ class SDKClient:
             ):
         if not isinstance(config, ZeroFrictionConfig):
             raise TypeError("config must be an instance of ZeroFrictionConfig.")
+        
+        apply_patches()
 
         self.config = config
         self.oauth_token = self.config.oauth_token
