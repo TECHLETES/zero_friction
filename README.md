@@ -100,16 +100,12 @@ This installs all clients and `zero_friction` in editable mode so changes are pi
 Here’s a minimal working example to test that everything is correctly installed:
 
 ```python
-from zero_friction.auth import get_oauth_token
-from zero_friction.sdk_client import SDKClient
-from zero_friction.config import ZeroFrictionConfig
+from zero_friction.core.sdk_client import SDKClient
+from zero_friction.core.config import ZeroFrictionConfig
 
-# Get OAuth token from environment
-token = get_oauth_token()
-
-# Initialize SDK
-sdk = SDKClient(oauth_token=token)
+# Set up Zero Friction API client
 config = ZeroFrictionConfig()
+sdk = SDKClient(config=config)
 
 # Example: Get contract by UUID
 contract = sdk.masterdata_client.contracts_api.get_contracts_contractuuid(
@@ -131,13 +127,13 @@ print(customer.data.to_dict())
 The SDK loads credentials automatically from a `.env` file in your project root.  
 Add at least the following variables:
 
+```
 ZF_API_KEY=
 ZF_TENANT_ID=
 ZF_ORG_ID=
 ZF_CLIENT_ID=
 ZF_CLIENT_SECRET=
-ZF_USERNAME=
-ZF_PASSWORD=
+```
 
 ---
 
