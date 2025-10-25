@@ -27,7 +27,7 @@ class PatchedBillingCalculationTypeParametersDTO(_Base):
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
-        extra="forbid",
+        extra="allow",
     )
 
     def to_dict(self) -> Dict[str, Any]:
