@@ -104,11 +104,16 @@ if [ "$INSTALL_PROD" = true ]; then
 fi
 
 if [ "$INSTALL_DEV" = true ]; then
-  info "Compiling development lockfile: '${DEV_LOCK}'"
-  pip-compile "${PYPROJECT}" \
-      --extra=dev \
-      --output-file="${DEV_LOCK}" \
-      --strip-extras
+  # Check if dev dependencies exist in pyproject.toml
+  if python3 -c "import tomllib; d = tomllib.load(open('${PYPROJECT}', 'rb')); deps = d.get('project', {}).get('optional-dependencies', {}).get('dev', []); print(len(deps) > 0)" 2>/dev/null | grep -q True; then
+    info "Compiling development lockfile: '${DEV_LOCK}'"
+    pip-compile "${PYPROJECT}" \
+        --extra=dev \
+        --output-file="${DEV_LOCK}" \
+        --strip-extras
+  else
+    info "No dev dependencies found in '${PYPROJECT}', skipping '${DEV_LOCK}' compilation."
+  fi
 fi
 
 success "All required lockfiles compiled."
@@ -125,7 +130,7 @@ if [ "$INSTALL_PROD" = true ]; then
   pip install -r "${PROD_LOCK}"
 fi
 
-if [ "$INSTALL_DEV" = true ]; then
+if [ "$INSTALL_DEV" = true ] && [ -f "${DEV_LOCK}" ]; then
   info "Installing development dependencies from '${DEV_LOCK}'..."
   # The dev requirements should include the prod ones, but `pip install` handles duplicates gracefully.
   pip install -r "${DEV_LOCK}"
@@ -144,4 +149,4 @@ success "Environment check passed."
 echo
 success "Dependency setup complete!"
 [ "$INSTALL_PROD" = true ] && echo "  • Production dependencies updated from '${PROD_LOCK}'"
-[ "$INSTALL_DEV" = true ] && echo "  • Development dependencies updated from '${DEV_LOCK}'"
+[ "$INSTALL_DEV" = true ] && [ -f "${DEV_LOCK}" ] && echo "  • Development dependencies updated from '${DEV_LOCK}'"

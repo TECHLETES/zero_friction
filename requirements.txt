@@ -61,7 +61,7 @@ ratelimit==2.2.1
     # via zero-friction (pyproject.toml)
 regionalregulations-client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/regionalregulations_client
     # via zero-friction (pyproject.toml)
-requests==2.32.3
+requests==2.32.5
     # via zero-friction (pyproject.toml)
 six==1.17.0
     # via python-dateutil
@@ -82,7 +82,7 @@ typing-inspection==0.4.0
     # via pydantic
 tzdata==2025.2
     # via pandas
-urllib3==2.4.0
+urllib3==2.6.2
     # via
     #   attachments-client
     #   billing-client
@@ -93,3 +93,4 @@ urllib3==2.4.0
     #   metering-client
     #   regionalregulations-client
     #   requests
+    #   zero-friction (pyproject.toml)
