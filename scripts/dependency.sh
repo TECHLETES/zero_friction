@@ -77,7 +77,12 @@ if [ -f "${VENV_DIR}/bin/activate" ]; then
     source "${VENV_DIR}/bin/activate"
     success "Virtual environment activated."
 else
-    error "Virtualenv not found at '${VENV_DIR}'. Please run setup script first."
+    info "Creating virtual environment at '${VENV_DIR}'..."
+    python3 -m venv "${VENV_DIR}"
+    success "Virtual environment created."
+    # shellcheck disable=SC1090
+    source "${VENV_DIR}/bin/activate"
+    success "Virtual environment activated."
 fi
 
 step "Ensuring pip-tools is installed..."
@@ -93,34 +98,64 @@ fi
 # MAJOR CHANGE: The script is now split into a COMPILE phase and an INSTALL phase.
 # =============================================================================
 
+# Check if there are extra optional dependencies
+HAS_EXTRA_DEPS=false
+if python3 -c "import tomllib; d = tomllib.load(open('${PYPROJECT}', 'rb')); deps = d.get('project', {}).get('optional-dependencies', {}).get('extra', []); exit(0 if len(deps) > 0 else 1)" 2>/dev/null; then
+  HAS_EXTRA_DEPS=true
+fi
+
 # -----------------------------------------------------------------------------
 # PHASE 1: COMPILE ALL REQUIRED LOCKFILES
 # -----------------------------------------------------------------------------
 # This block runs first to ensure our lockfiles are valid before we try to
 # install from them. This prevents errors if a file was manually edited.
+#
+# Logic:
+# - Always compile requirements.txt and requirements-dev.txt
+# - If extra deps exist: requirements.txt includes extra, requirements-slim.txt is core only
+# - If no extra deps: requirements.txt is core, no slim file is created
 
 step "PHASE 1: Compiling lockfiles from '${PYPROJECT}'..."
 
-info "Compiling production lockfile: '${PROD_LOCK}'"
-pip-compile "${PYPROJECT}" \
-    --extra=extra \
-    --output-file="${PROD_LOCK}" \
-    --generate-hashes \
-    --strip-extras
+if [ "$HAS_EXTRA_DEPS" = true ]; then
+  info "Extra dependencies detected. Compiling production lockfile with extras: '${PROD_LOCK}'"
+  pip-compile "${PYPROJECT}" \
+      --extra=extra \
+      --output-file="${PROD_LOCK}" \
+      --generate-hashes \
+      --strip-extras
+else
+  info "No extra dependencies. Compiling base production lockfile: '${PROD_LOCK}'"
+  pip-compile "${PYPROJECT}" \
+      --output-file="${PROD_LOCK}" \
+      --generate-hashes \
+      --strip-extras
+fi
 
 info "Compiling development lockfile: '${DEV_LOCK}'"
-pip-compile "${PYPROJECT}" \
-    --extra=dev \
-    --extra=extra \
-    --output-file="${DEV_LOCK}" \
-    --generate-hashes \
-    --strip-extras
+if [ "$HAS_EXTRA_DEPS" = true ]; then
+  pip-compile "${PYPROJECT}" \
+      --extra=dev \
+      --extra=extra \
+      --output-file="${DEV_LOCK}" \
+      --generate-hashes \
+      --strip-extras
+else
+  pip-compile "${PYPROJECT}" \
+      --extra=dev \
+      --output-file="${DEV_LOCK}" \
+      --generate-hashes \
+      --strip-extras
+fi
 
-info "Compiling slim lockfile: '${SLIM_LOCK}'"
-pip-compile "${PYPROJECT}" \
-    --output-file="${SLIM_LOCK}" \
-    --generate-hashes \
-    --strip-extras
+# Only compile slim if there are extra dependencies
+if [ "$HAS_EXTRA_DEPS" = true ]; then
+  info "Compiling slim lockfile (core only): '${SLIM_LOCK}'"
+  pip-compile "${PYPROJECT}" \
+      --output-file="${SLIM_LOCK}" \
+      --generate-hashes \
+      --strip-extras
+fi
 
 success "All lockfiles compiled."
 
@@ -166,4 +201,7 @@ else
   [ "$INSTALL_PROD" = true ] && echo "  • Production dependencies installed from '${PROD_LOCK}'"
   [ "$INSTALL_DEV" = true ] && echo "  • Development dependencies installed from '${DEV_LOCK}'"
   [ "$INSTALL_SLIM" = true ] && echo "  • Slim dependencies installed from '${SLIM_LOCK}'"
+fi
+if [ "$HAS_EXTRA_DEPS" = true ]; then
+  echo "  • Slim requirements file available: ${SLIM_LOCK}"
 fi

@@ -29,7 +29,10 @@ classifiers = [
 # Add only dependencies that are needed in production environments.
 dependencies = [
   "flask>=2.2.0,<3.0.0", # Example dependency, replace with your own
-  "requests"
+  "requests",
+  "urllib3>=2.6.3,<3.0.0",
+  "werkzeug>=3.1.5,<4.0.0",
+  "filelock>=3.20.1,<4.0.0",
 ]
 
 # Optional dependency groups for different environments and use cases.
