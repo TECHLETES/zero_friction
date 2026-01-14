@@ -12,7 +12,6 @@ set -euo pipefail
 #   ./scripts/dependency.sh --no-sync    # Compile only, skip sync
 #   ./scripts/dependency.sh --check      # Check for package updates
 #   ./scripts/dependency.sh --update     # Check and auto-update packages
-#   ./scripts/dependency.sh --update -y  # Update without prompting
 #
 # This script replaces the previous pip-tools workflow with uv, which provides:
 # - Faster dependency resolution
@@ -44,7 +43,6 @@ PROD_MODE=false
 SKIP_SYNC=false
 CHECK_UPDATES=false
 AUTO_UPDATE=false
-UPDATE_YES=false
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -64,11 +62,6 @@ while [ $# -gt 0 ]; do
       AUTO_UPDATE=true
       CHECK_UPDATES=true
       shift
-      # Check for -y flag
-      if [ $# -gt 0 ] && [ "$1" = "-y" ]; then
-        UPDATE_YES=true
-        shift
-      fi
       ;;
     -h|--help)
       echo "Usage: $0 [OPTIONS]"
@@ -78,7 +71,6 @@ while [ $# -gt 0 ]; do
       echo "  --no-sync           Lock only, skip sync"
       echo "  --check             Check for package updates"
       echo "  --update            Check and update packages (interactive)"
-      echo "  --update -y         Update packages without prompting"
       echo "  -h, --help          Show this help message"
       exit 0
       ;;
@@ -98,6 +90,32 @@ success "uv is installed ($(uv --version))"
 # =============================================================================
 # HELPER FUNCTIONS FOR UPDATES
 # =============================================================================
+
+get_major_version() {
+    local version=$1
+    echo "$version" | cut -d. -f1
+}
+
+get_current_version_from_spec() {
+    local spec=$1
+    # Extract version from spec like "package>=1.2.3,<2.0.0"
+    # Gets the first version number found
+    echo "$spec" | grep -oP '[0-9]+\.[0-9]+\.[0-9]+|[0-9]+\.[0-9]+' | head -1
+}
+
+is_major_version_bump() {
+    local current_version=$1
+    local new_version=$2
+    
+    if [ -z "$current_version" ]; then
+        return 1  # No current version, so not a bump
+    fi
+    
+    local current_major=$(get_major_version "$current_version")
+    local new_major=$(get_major_version "$new_version")
+    
+    [ "$current_major" != "$new_major" ]
+}
 
 get_latest_version() {
     local package=$1
@@ -139,7 +157,6 @@ parse_pyproject() {
 
 check_and_update_deps() {
     local auto_update=$1
-    local force_yes=$2
     
     step "Checking for package updates..."
     
@@ -155,21 +172,30 @@ check_and_update_deps() {
     
     # Check for updates - use temp files instead of associative array for compatibility
     local updates_file=$(mktemp)
-    trap "rm -f $updates_file" RETURN
+    local major_updates_file=$(mktemp)
+    trap "rm -f $updates_file $major_updates_file" RETURN
     
     while read -r package_spec; do
         # Extract package name (everything before version operators)
         local package_name=$(echo "$package_spec" | sed 's/[><=~!@].*//')
+        local current_version=$(get_current_version_from_spec "$package_spec")
         
         printf "Checking $package_name (current: $package_spec)... "
         
         local latest_version
         latest_version=$(get_latest_version "$package_name" 2>/dev/null) || latest_version=""
         
-        if [ -n "$latest_version" ]; then
-            printf "→ $latest_version (UPDATE AVAILABLE)\n"
-            # Store: original_spec|package_name|new_version
-            echo "$package_spec|$package_name|$latest_version" >> "$updates_file"
+        if [ -n "$latest_version" ] && [ "$latest_version" != "$current_version" ]; then
+            # Check if it's a major version bump
+            if is_major_version_bump "$current_version" "$latest_version"; then
+                printf "→ $latest_version (MAJOR UPDATE AVAILABLE)\n"
+                # Store in major updates file: original_spec|package_name|new_version
+                echo "$package_spec|$package_name|$latest_version" >> "$major_updates_file"
+            else
+                printf "→ $latest_version (UPDATE AVAILABLE)\n"
+                # Store in regular updates file
+                echo "$package_spec|$package_name|$latest_version" >> "$updates_file"
+            fi
         else
             printf "✓ up to date\n"
         fi
@@ -177,21 +203,43 @@ check_and_update_deps() {
     
     echo
     local update_count=0
+    local major_update_count=0
     if [ -f "$updates_file" ] && [ -s "$updates_file" ]; then
         update_count=$(wc -l < "$updates_file")
     fi
-    info "Updates available: $update_count"
+    if [ -f "$major_updates_file" ] && [ -s "$major_updates_file" ]; then
+        major_update_count=$(wc -l < "$major_updates_file")
+    fi
     
-    if [ "$update_count" -eq 0 ]; then
+    local total_updates=$((update_count + major_update_count))
+    info "Updates available: $total_updates"
+    if [ "$major_update_count" -gt 0 ]; then
+        echo -e "${RED}⚠️  Major version updates detected: $major_update_count${RESET}"
+    fi
+    
+    if [ "$total_updates" -eq 0 ]; then
         success "All packages are up to date!"
         return 0
     fi
     
-    # Show updates available
-    info "Updates found:"
-    while IFS='|' read -r orig_spec pkg_name new_version; do
-        info "  $pkg_name → $new_version"
-    done < "$updates_file"
+    # Show major updates with warning
+    if [ "$major_update_count" -gt 0 ]; then
+        echo
+        echo -e "${RED}⚠️  MAJOR VERSION UPDATES (Breaking changes possible):${RESET}"
+        while IFS='|' read -r orig_spec pkg_name new_version; do
+            local current=$(get_current_version_from_spec "$orig_spec")
+            echo -e "${RED}  $pkg_name: $current → $new_version${RESET}"
+        done < "$major_updates_file"
+    fi
+    
+    # Show regular updates
+    if [ "$update_count" -gt 0 ]; then
+        echo
+        info "Minor/Patch updates:"
+        while IFS='|' read -r orig_spec pkg_name new_version; do
+            info "  $pkg_name → $new_version"
+        done < "$updates_file"
+    fi
     echo
     
     if [ "$auto_update" = false ]; then
@@ -199,31 +247,66 @@ check_and_update_deps() {
         return 0
     fi
     
-    # Ask user if they want to update (unless --yes flag is used)
-    if [ "$force_yes" = false ]; then
-        read -p "Do you want to update pyproject.toml with these versions? (y/N): " -r response
-        response=${response,,}  # Convert to lowercase
+    # Handle major version updates separately
+    local approved_major_updates_file=$(mktemp)
+    if [ "$major_update_count" -gt 0 ]; then
+        echo
+        echo -e "${YELLOW}Review MAJOR version updates carefully (may contain breaking changes):${RESET}"
+        while IFS='|' read -r orig_spec pkg_name new_version <&3; do
+            local current=$(get_current_version_from_spec "$orig_spec")
+            read -p "Update $pkg_name from $current to $new_version? (y/N): " -r response
+            response=${response,,}
+            if [[ "$response" =~ ^(y|yes)$ ]]; then
+                echo "$orig_spec|$pkg_name|$new_version" >> "$approved_major_updates_file"
+                info "✓ Approved $pkg_name update"
+            else
+                info "✗ Skipped $pkg_name update"
+            fi
+        done 3< "$major_updates_file"
+        echo
+    fi
+    
+    # Ask user about regular updates
+    if [ "$update_count" -gt 0 ]; then
+        read -p "Update $update_count minor/patch packages? (y/N): " -r response
+        response=${response,,}
         if [[ ! "$response" =~ ^(y|yes)$ ]]; then
             info "Update cancelled."
+            rm -f "$approved_major_updates_file" "$updates_file" "$major_updates_file"
             return 0
         fi
-    else
-        info "Auto-updating due to --yes flag..."
     fi
+    
+    # Combine approved updates
+    local final_updates=$(mktemp)
+    [ -f "$approved_major_updates_file" ] && [ -s "$approved_major_updates_file" ] && cat "$approved_major_updates_file" >> "$final_updates"
+    [ -f "$updates_file" ] && [ -s "$updates_file" ] && cat "$updates_file" >> "$final_updates"
+    
+    if [ ! -s "$final_updates" ]; then
+        info "No updates to apply."
+        rm -f "$approved_major_updates_file" "$updates_file" "$major_updates_file" "$final_updates"
+        return 0
+    fi
+    
+    # Count approved updates
+    local approved_count=$(wc -l < "$final_updates")
+    step "Applying $approved_count package update(s) to pyproject.toml..."
     
     # Update pyproject.toml
     local updated_content
     updated_content=$(cat "$PYPROJECT")
+    local applied_count=0
     
     while IFS='|' read -r orig_spec pkg_name new_version; do
         # Escape special regex characters in the original spec
         local escaped_spec=$(echo "$orig_spec" | sed 's/[[\.*^$/]/\\&/g')
         # Replace the old spec with package name pinned to new version (==)
         updated_content=$(echo "$updated_content" | sed "s/\"${escaped_spec}\"/\"${pkg_name}==${new_version}\"/g")
-    done < "$updates_file"
+        applied_count=$((applied_count + 1))
+    done < "$final_updates"
     
     echo "$updated_content" > "$PYPROJECT"
-    success "Updated $update_count packages in pyproject.toml"
+    success "Updated $applied_count packages in pyproject.toml"
     
     # Run uv lock to update the lock file
     step "Updating uv.lock..."
@@ -232,6 +315,8 @@ check_and_update_deps() {
     
     echo
     info "Done! You may want to run 'uv sync' to install the updated packages."
+    
+    rm -f "$approved_major_updates_file" "$updates_file" "$major_updates_file" "$final_updates"
 }
 
 # =============================================================================
@@ -239,7 +324,7 @@ check_and_update_deps() {
 # =============================================================================
 
 if [ "$CHECK_UPDATES" = true ]; then
-    check_and_update_deps "$AUTO_UPDATE" "$UPDATE_YES"
+    check_and_update_deps "$AUTO_UPDATE"
     exit 0
 fi
 
