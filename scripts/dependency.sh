@@ -99,31 +99,139 @@ success "uv is installed ($(uv --version))"
 # HELPER FUNCTIONS FOR UPDATES
 # =============================================================================
 
+get_latest_version() {
+    local package=$1
+    
+    # Fetch latest version from PyPI API
+    local json_response=$(curl -s "https://pypi.org/pypi/${package}/json" 2>/dev/null)
+    
+    if [ -z "$json_response" ]; then
+        return 1
+    fi
+    
+    # Extract version from JSON (basic extraction, no jq dependency)
+    local version=$(echo "$json_response" | grep -oP '"version":\s*"\K[^"]+' | head -1)
+    
+    if [ -n "$version" ]; then
+        echo "$version"
+        return 0
+    fi
+    return 1
+}
+
+parse_pyproject() {
+    # Extract full package specifications from dependencies sections only
+    # Matches entries like: "package", "package>=1.0", "package>=1.0,<2.0", etc.
+    # Only in 'dependencies' and 'dev' sections, skipping classifiers
+    awk '
+    /^\[project\]$/ {in_deps=1; next}
+    /^\[project.optional-dependencies/ {in_deps=2; next}
+    /^\[/ && !/^\[project/ {in_deps=0; next}
+    (in_deps==1 || in_deps==2) && /^\s*"[a-zA-Z0-9_\-\.@]+/ && !/^dependencies|^dev/ {
+        # Skip lines that contain these patterns (from classifiers and config)
+        if ($0 !~ /::/) {
+            match($0, /"([^"]+)"/, arr)
+            if (arr[1]) print arr[1]
+        }
+    }
+    ' "$PYPROJECT"
+}
+
 check_and_update_deps() {
     local auto_update=$1
     local force_yes=$2
     
-    step "Checking for package updates using Python script..."
+    step "Checking for package updates..."
     
-    if [ ! -f "$SCRIPTS_DIR/update_deps.py" ]; then
-        error "update_deps.py not found at $SCRIPTS_DIR/update_deps.py"
+    if [ ! -f "$PYPROJECT" ]; then
+        error "pyproject.toml not found!"
     fi
     
-    # Run the update script with appropriate flags
-    local python_cmd="python $SCRIPTS_DIR/update_deps.py"
+    # Parse current packages
+    local packages=$(parse_pyproject)
+    local pkg_count=$(echo "$packages" | wc -l)
+    info "Found $pkg_count pinned packages"
+    echo
     
-    if [ "$auto_update" = true ]; then
-        if [ "$force_yes" = true ]; then
-            $python_cmd --yes
+    # Check for updates - use temp files instead of associative array for compatibility
+    local updates_file=$(mktemp)
+    trap "rm -f $updates_file" RETURN
+    
+    while read -r package_spec; do
+        # Extract package name (everything before version operators)
+        local package_name=$(echo "$package_spec" | sed 's/[><=~!@].*//')
+        
+        printf "Checking $package_name (current: $package_spec)... "
+        
+        local latest_version
+        latest_version=$(get_latest_version "$package_name" 2>/dev/null) || latest_version=""
+        
+        if [ -n "$latest_version" ]; then
+            printf "→ $latest_version (UPDATE AVAILABLE)\n"
+            # Store: original_spec|package_name|new_version
+            echo "$package_spec|$package_name|$latest_version" >> "$updates_file"
         else
-            $python_cmd
+            printf "✓ up to date\n"
+        fi
+    done <<< "$packages"
+    
+    echo
+    local update_count=0
+    if [ -f "$updates_file" ] && [ -s "$updates_file" ]; then
+        update_count=$(wc -l < "$updates_file")
+    fi
+    info "Updates available: $update_count"
+    
+    if [ "$update_count" -eq 0 ]; then
+        success "All packages are up to date!"
+        return 0
+    fi
+    
+    # Show updates available
+    info "Updates found:"
+    while IFS='|' read -r orig_spec pkg_name new_version; do
+        info "  $pkg_name → $new_version"
+    done < "$updates_file"
+    echo
+    
+    if [ "$auto_update" = false ]; then
+        info "To apply updates, run: ./scripts/dependency.sh --update"
+        return 0
+    fi
+    
+    # Ask user if they want to update (unless --yes flag is used)
+    if [ "$force_yes" = false ]; then
+        read -p "Do you want to update pyproject.toml with these versions? (y/N): " -r response
+        response=${response,,}  # Convert to lowercase
+        if [[ ! "$response" =~ ^(y|yes)$ ]]; then
+            info "Update cancelled."
+            return 0
         fi
     else
-        # Just check, don't update
-        info "Checking for available updates..."
-        $python_cmd
-        info "To apply updates, run: ./scripts/dependency.sh --update"
+        info "Auto-updating due to --yes flag..."
     fi
+    
+    # Update pyproject.toml
+    local updated_content
+    updated_content=$(cat "$PYPROJECT")
+    
+    while IFS='|' read -r orig_spec pkg_name new_version; do
+        # Escape special regex characters in the original spec
+        local escaped_spec=$(echo "$orig_spec" | sed 's/[[\.*^$/]/\\&/g')
+        # Replace the old spec with package name pinned to new version (==)
+        updated_content=$(echo "$updated_content" | sed "s/\"${escaped_spec}\"/\"${pkg_name}==${new_version}\"/g")
+    done < "$updates_file"
+    
+    echo "$updated_content" > "$PYPROJECT"
+    success "Updated $update_count packages in pyproject.toml"
+    
+    # Run uv lock to update the lock file
+    step "Updating uv.lock..."
+    uv lock
+    success "Lock file updated"
+    
+    echo
+    info "Done! You may want to run 'uv sync' to install the updated packages."
 }
 
 # =============================================================================
