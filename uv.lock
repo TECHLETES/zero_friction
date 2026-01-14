@@ -899,7 +899,7 @@ dependencies = [
     { name = "werkzeug" },
 ]
 
-[package.optional-dependencies]
+[package.dev-dependencies]
 dev = [
     { name = "beartype" },
     { name = "black" },
@@ -917,25 +917,29 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "beartype", marker = "extra == 'dev'", specifier = "==0.22.9" },
-    { name = "black", marker = "extra == 'dev'", specifier = "==25.12.0" },
-    { name = "detect-secrets", marker = "extra == 'dev'", specifier = "==1.5.0" },
     { name = "filelock", specifier = "==3.20.3" },
     { name = "flask", specifier = "==3.1.2" },
-    { name = "mypy", marker = "extra == 'dev'", specifier = "==1.19.1" },
-    { name = "nbstripout", marker = "extra == 'dev'", specifier = "==0.8.2" },
-    { name = "pip-audit", marker = "extra == 'dev'", specifier = "==2.10.0" },
-    { name = "pre-commit", marker = "extra == 'dev'", specifier = "==4.5.1" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = "==9.0.2" },
-    { name = "pytest-beartype", marker = "extra == 'dev'", specifier = "==0.2.0" },
-    { name = "pytest-cov", marker = "extra == 'dev'", specifier = "==7.0.0" },
     { name = "requests", specifier = "==2.32.5" },
-    { name = "rich", marker = "extra == 'dev'", specifier = "==14.2.0" },
-    { name = "ruff", marker = "extra == 'dev'", specifier = "==0.14.11" },
     { name = "urllib3", specifier = "==2.6.3" },
     { name = "werkzeug", specifier = "==3.1.5" },
 ]
-provides-extras = ["dev", "extra"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "beartype", specifier = "==0.22.9" },
+    { name = "black", specifier = "==25.12.0" },
+    { name = "detect-secrets", specifier = "==1.5.0" },
+    { name = "mypy", specifier = "==1.19.1" },
+    { name = "nbstripout", specifier = "==0.8.2" },
+    { name = "pip-audit", specifier = "==2.10.0" },
+    { name = "pre-commit", specifier = "==4.5.1" },
+    { name = "pytest", specifier = "==9.0.2" },
+    { name = "pytest-beartype", specifier = "==0.2.0" },
+    { name = "pytest-cov", specifier = "==7.0.0" },
+    { name = "rich", specifier = "==14.2.0" },
+    { name = "ruff", specifier = "==0.14.11" },
+]
+extra = []
 
 [[package]]
 name = "pytokens"

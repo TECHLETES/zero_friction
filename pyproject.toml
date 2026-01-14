@@ -37,7 +37,7 @@ dependencies = [
 
 # Optional dependency groups for different environments and use cases.
 # These are used by pip-compile with --extra flags to generate different requirement files.
-[project.optional-dependencies]
+[dependency-groups]
 # Development and testing dependencies.
 # Includes code quality tools, testing frameworks, and development utilities.
 # Compiled into requirements-dev.txt (core + extra + dev).
