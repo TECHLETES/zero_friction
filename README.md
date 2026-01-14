@@ -18,18 +18,16 @@ A modern, production-ready Python project template for TECHLETES, a data & AI co
 
 ### Dependencies
 * **Do not** run `pip install` manually in the terminal!
-  Why: it creates unpinned installs that differ per user and will break CI
-* Always declare packages in pyproject.toml only
-* Run the helper script to handle the package install for you
-- All dependencies (dev + extra + core): `./scripts/dependency.sh` or `./scripts/dependency.sh --dev`
-  - Install this locally for developement
-- Production dependencies (core + extra): `./scripts/dependency.sh --prod`
-  - Install this in staging or production environments. It contains all needed to run the project without dev tools.
-- Core dependencies only (minimal): `./scripts/dependency.sh --slim`
-  - Use this in CI pipelines. It contains the core dependencies to run the project, nothing more. 
-        
-* After you change pyproject.toml run the script again. This will update all requirement files automatically.
-* If you remove dependencies from pyproject.toml that are no longeer needed, delete your virtualenvironment and run the script.
+  Why: it bypasses the lock file and creates inconsistencies across environments
+* Always declare packages in `pyproject.toml` only
+* Use `uv sync` to install dependencies from the lock file
+* Common commands:
+  - First time setup: `./scripts/dependency.sh`
+  - Install deps: `uv sync`
+  - Add a package: Edit `pyproject.toml`, then run `uv lock && uv sync`
+  - Check for updates: `./scripts/dependency.sh --check`
+  - Update packages: `./scripts/dependency.sh --update`
+* The lock file (`uv.lock`) ensures everyone uses the same versions
 
 ### Coding
 * Prefer small functions and clear modules so code is easy to test and reuse
@@ -61,6 +59,7 @@ A modern, production-ready Python project template for TECHLETES, a data & AI co
 - curl
 - sudo access (for system package installation)
 - 1Password CLI (see [docs/0_setup.md](docs/0_setup.md) for setup instructions)
+- **uv** (see [Installing uv](#installing-uv) below if you don't have it yet)
 
 ### Linux: One-Command Setup
 
@@ -79,6 +78,26 @@ cd {REPO_NAME}
 ```
 
 This will set up everything you need for development!
+
+### Installing uv
+
+If you don't have `uv` installed yet, follow these instructions for your platform:
+
+#### Linux / macOS
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Then restart your terminal.
+
+#### Verify Installation
+
+```bash
+uv --version
+```
+
+You should see something like: `uv 0.x.x`
 
 ### Common setup issues
 
@@ -107,9 +126,10 @@ This only changes the policy for your user account. It allows you to run local s
 ## 📋 Features
 
 ### 🔧 **Modern Dependency Management**
-- **Hybrid approach**: Production dependencies via `pip-tools`, development tools via `pyproject.toml`
-- **Reproducible builds** with pinned versions
-- **Clean separation** between production and development dependencies
+- **uv-powered**: Fast, reliable dependency resolution and installation
+- **Reproducible builds** with `uv.lock` lockfile
+- **Single source of truth** in `pyproject.toml`
+- **Simple, clear workflow** - no hash verification hassles
 
 ### 🔐 **Secret Management**
 - **1Password CLI integration** for secure secret handling
@@ -132,6 +152,7 @@ python_basic_template/
 │   └── workflows/                  # GitHub Actions workflows
 ├── docs/                           # Documentation (setup, secrets, dependencies, quality, progress)
 │   ├── 0_setup.md
+│   ├── 1_usage.md
 │   ├── 1_secret_management.md
 │   ├── 2_dependency_management.md
 │   ├── 3_pre_commit_hooks.md
@@ -143,117 +164,169 @@ python_basic_template/
 │   └── using_secrets.ipynb
 ├── scripts/                        # Setup and utility scripts
 │   ├── setup.sh
-│   ├── dependency.sh
+│   ├── dependency.sh               # uv-based dependency management
+│   ├── update_deps.py              # Update package versions
 │   ├── new-branch.sh
 │   └── hooks/
 │       ├── black-autoformat.sh
-│       ├── check-requirements.sh
-│       └── nbstripout-autoadd.sh
+│       ├── nbstripout-autoadd.sh
+│       └── precommit_pytest.sh
 ├── utils/                          # Utility modules
 │   ├── __init__.py
 │   ├── secrets.py
 │   └── utils.py
-├── tests/                          # (Empty) Test directory scaffold
-├── pyproject.toml                  # Project configuration & all dependencies
-├── requirements-slim.txt           # Compiled core dependencies only
-├── requirements.txt                # Compiled production dependencies (core + extra)
-├── requirements-dev.txt            # Compiled all dependencies (core + extra + dev)
+├── tests/                          # Test directory
+├── pyproject.toml                  # Project config & dependencies (single source of truth)
+├── uv.lock                         # Locked dependency versions (auto-generated)
 ├── .pre-commit-config.yaml         # Pre-commit hooks config
 ├── .envrc                          # direnv environment config
 ├── .secrets.baseline               # Secret detection baseline
 ├── CODE_OF_CONDUCT.md              # Contributor code of conduct
 ├── CONTRIBUTING.md                 # Contribution guidelines
-├── setup.py                        # (Optional) Legacy setup script
 └── README.md                       # Project overview (this file)
 ```
 
-## 🏗️ Dependency Management
+## 🏗️ Dependency Management with uv
 
-This project uses a **layered dependency management approach** with three distinct groups:
+This project uses **uv** for fast, reliable dependency management. uv provides a single-file lock format and unified workflow for all dependency tasks.
 
-### Core Dependencies
-- **Purpose**: Essential runtime requirements needed in all environments
-- **Location**: `dependencies` section in `pyproject.toml`
-- **Compiled to**: `requirements-slim.txt`
-- **Examples**: Flask, requests, database drivers
+### First Time Setup
 
-### Extra Dependencies
-- **Purpose**: Additional production features and optional components
-- **Location**: `[project.optional-dependencies].extra` in `pyproject.toml`
-- **Compiled to**: `requirements.txt` (core + extra)
-- **Examples**: Private packages, optional integrations, performance libraries
+```bash
+# Step 1: Make sure uv is installed (see "Installing uv" section above)
+uv --version
 
-### Development Dependencies
-- **Purpose**: Development tools, testing frameworks, and code quality tools
-- **Location**: `[project.optional-dependencies].dev` in `pyproject.toml`
-- **Compiled to**: `requirements-dev.txt` (core + extra + dev)
-- **Examples**: pytest, black, mypy, pre-commit
+# Step 2: Setup environment and lock dependencies
+./scripts/dependency.sh
+```
 
-This layered approach ensures:
-- **Minimal deployments** with slim requirements for containers/lambdas
-- **Full production** setup with all features enabled
-- **Complete development** environment with all tooling
-- **Reproducible builds** with fully pinned, hashed lockfiles
+The `dependency.sh` script will:
+1. ✅ Create a virtual environment (`.venv`)
+2. ✅ Lock all dependencies into `uv.lock`
+3. ✅ Sync and install everything
 
-### Installation Options
+**Important:** With uv, you don't need to activate the virtual environment! Instead:
+- Use `uv run python script.py` to run Python scripts
+- Use `uv run pytest` to run tests
+- Use `uv run mypy .` to run type checking
 
-| Command | Dependencies Installed | Use Case |
-|---------|----------------------|----------|
-| `./scripts/dependency.sh --slim` | Core only | Minimal deployments, containers, lambdas |
-| `./scripts/dependency.sh --prod` | Core + Extra | Full production environment |
-| `./scripts/dependency.sh --dev` | Development only | CI/testing environments |
-| `./scripts/dependency.sh` | Core + Extra + Dev | Complete development setup (Default) |
+(Optional) If you prefer traditional shell activation:
+```bash
+source .venv/bin/activate  # Linux/macOS
+# or: .venv\Scripts\activate  # Windows PowerShell
+```
 
-### Security and Hash Verification
+### Quick Start
 
-This project uses **hash-based verification** for maximum security against supply chain attacks:
+```bash
+# First time: setup environment and lock dependencies
+./scripts/dependency.sh
 
-- **Lockfiles include SHA256 hashes** for each dependency
-- **Installation verifies packages** against these hashes
-- **Prevents tampering** during the dependency supply chain
+# Day-to-day: install locked dependencies
+uv sync
 
-#### When Hash Verification Fails
+# Add a new package
+# 1. Edit pyproject.toml and add the package
+# 2. Run: uv lock && uv sync
 
-Some packages **cannot be hashed** due to:
-- Private packages from git repositories
-- Local development packages (`file://` URLs)
-- Packages with dynamic content
+# Check for updates (without installing)
+./scripts/dependency.sh --check
 
-**For these cases**, modify `scripts/dependency.sh`:
-1. Remove `--require-hashes` from `pip install` commands
-2. Remove `--generate-hashes` from corresponding `pip-compile` commands
+# Update packages (interactive prompt)
+./scripts/dependency.sh --update
 
-**⚠️ Security Warning:** Only disable hashes for packages that genuinely cannot be hashed. Keep verification enabled wherever possible.
+# Update packages (auto-confirm all)
+./scripts/dependency.sh --update -y
+```
 
-### Adding Dependencies
+### Dependency Layers
 
-When adding new packages to your project, choose the appropriate section in `pyproject.toml`:
+Dependencies are organized into three logical groups:
+
+| Layer | Location | Purpose | Installed With |
+|-------|----------|---------|-----------------|
+| **Core** | `dependencies` | Essential runtime packages | `uv sync` |
+| **Extra** | `[project.optional-dependencies].extra` | Optional production features | `uv sync` |
+| **Dev** | `[project.optional-dependencies].dev` | Development and testing tools | `uv sync` (default) |
+
+**Example structure in `pyproject.toml`:**
 
 ```toml
-# Core dependencies - Essential runtime requirements
+# Core dependencies - Always installed
 dependencies = [
-    "flask>=2.2.0,<3.0.0",  # Web framework
-    "requests",              # HTTP client
-    "sqlalchemy",            # Database ORM
+    "flask>=2.2.0,<3.0.0",
+    "requests",
+    "sqlalchemy",
 ]
 
-# Extra dependencies - Optional production features
 [project.optional-dependencies]
+# Extra production features
 extra = [
-    "redis",                 # Caching
-    "celery",               # Task queue
-    "gunicorn",             # Production server
+    "redis",
+    "celery",
 ]
 
-# Dev dependencies - Development and testing tools
+# Development tools
 dev = [
-    "pytest>=7.0",          # Testing framework
-    "black",                # Code formatter
-    "mypy",                 # Type checker
+    "pytest>=7.0",
+    "black",
+    "mypy",
+    "pre-commit",
 ]
 ```
 
-**📖 Detailed guide**: [docs/2_dependency_management.md](docs/2_dependency_management.md)
+### Common Workflows
+
+**Install all dependencies (development setup):**
+```bash
+uv sync
+```
+
+**Install production dependencies only:**
+```bash
+uv sync --no-dev
+```
+
+**Check for outdated packages:**
+```bash
+./scripts/dependency.sh --check
+```
+
+**Update packages (interactive - asks for confirmation):**
+```bash
+./scripts/dependency.sh --update
+```
+
+**Update packages automatically (no prompts):**
+```bash
+./scripts/dependency.sh --update -y
+```
+
+**Update a specific package:**
+```bash
+# Edit pyproject.toml to the version you want, then:
+uv lock
+uv sync
+```
+
+### Lock File
+
+The `uv.lock` file contains:
+- All direct and transitive dependencies
+- Pinned versions ensuring reproducibility
+- Python version compatibility info
+
+**Always commit `uv.lock` to version control** to ensure consistent environments across team members and CI/CD.
+
+### Benefits Over pip-tools
+
+- ⚡ **Much faster** dependency resolution
+- 📝 **Simpler lock format** - one file, human-readable
+- 🔄 **Unified workflow** - one tool for all dependency tasks
+- 🛡️ **Better error messages** - clearer dependency conflict reporting
+- 🚀 **Modern Python packaging** - supports PEP 508, PEP 517, PEP 660
+
+**📖 Detailed guide**: [docs/3_dependency_management.md](docs/3_dependency_management.md)
 
 ## 🔐 Secret Management
 
