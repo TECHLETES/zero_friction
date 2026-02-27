@@ -13,6 +13,14 @@ venv/
 env/
 ENV/
 
+# CSV and Excel files
+*.csv
+*.xlsx
+*.xls
+*.xlsm
+*.xlsb
+*.ods
+
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
