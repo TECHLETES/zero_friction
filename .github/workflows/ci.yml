@@ -7,6 +7,10 @@ on:
     branches:
       - main
       - staging
+  push:
+    branches:
+      - main
+      - staging
 
 permissions:
   contents: write
@@ -29,44 +33,43 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Cache pip
-        uses: actions/cache@v3
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements*.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
-      - name: Install pip-tools
-        run: pip install pip-tools
-
-      - name: Validate lockfiles
-        run: |
-          pip-compile --dry-run --generate-hashes \
-            --output-file=requirements.txt pyproject.toml
-          pip-compile --dry-run --generate-hashes --extra=dev \
-            --output-file=requirements-dev.txt pyproject.toml
+          enable-cache: true
 
       - name: Install dependencies
-        run: |
-          pip install --require-hashes -r requirements.txt
-          pip install --require-hashes -r requirements-dev.txt
+        run: uv sync
 
       - name: Run pip-audit
-        run: pip-audit --progress-spinner off -r requirements.txt
+        run: uv run pip-audit --progress-spinner off --desc --ignore CVE-2026-1703
 
       - name: Black formatting check
-        run: black --check .
+        run: uv run black --check .
 
       - name: Ruff linting
-        run: ruff check .
+        run: uv run ruff check . --fix
+
+      - name: isort import sorting check
+        run: uv run isort . --check-only --profile=black
 
       - name: Type checking with mypy
-        run: mypy .
+        run: uv run mypy . --config-file=pyproject.toml
+
+      - name: Run pyupgrade
+        run: uv run pyupgrade --py312-plus --diff .
+
+      - name: Codespell check
+        run: uv run codespell . --skip=*.lock
+
+      - name: Bandit security check
+        run: uv run bandit -r utils example -ll --skip B101
+
+      - name: Pydocstyle check
+        run: uv run pydocstyle utils example
 
       - name: Run tests with coverage
-        run: |
-          pytest --cov --cov-report=term --cov-report=xml
+        run: uv run pytest --cov --cov-report=term --cov-report=xml
 
       - name: Generate coverage badge
         uses: tj-actions/coverage-badge-py@v2

@@ -1,0 +1,47 @@
+version: 2
+
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "02:00"
+      timezone: Europe/Amsterdam
+    open-pull-requests-limit: 1
+    labels:
+      - dependencies
+      - github-actions
+    commit-message:
+      prefix: deps
+      include: scope
+    rebase-strategy: auto
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "02:00"
+      timezone: Europe/Amsterdam
+    open-pull-requests-limit: 1
+    labels:
+      - dependencies
+      - python
+    commit-message:
+      prefix: deps
+      include: scope
+    rebase-strategy: auto
+    groups:
+      python-production:
+        dependency-type: production
+        patterns:
+          - "*"
+      python-development:
+        dependency-type: development
+        patterns:
+          - "*"
