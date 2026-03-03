@@ -57,11 +57,7 @@ jobs:
         run: uv run pytest --cov --cov-report=term --cov-report=xml
 
       - name: Generate coverage badge
-        uses: tj-actions/coverage-badge-py@v2
-        with:
-          working-directory: .
-          output: coverage.svg
-          overwrite: true
+        run: uv run genbadge coverage -i coverage.xml -o coverage.svg
 
       - name: Commit badge
         uses: stefanzweifel/git-auto-commit-action@v5
