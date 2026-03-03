@@ -60,7 +60,9 @@ jobs:
         run: uv run genbadge coverage -i coverage.xml -o coverage.svg
 
       - name: Commit badge
+        if: github.event_name == 'pull_request'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update coverage badge"
           file_pattern: coverage.svg
+          branch: ${{ github.head_ref }}
