@@ -199,3 +199,6 @@ skips = ["B101", "B601"]
 ignore = [
     "CVE-2026-1703",  # Path traversal in pip when extracting malicious wheels
 ]
+
+[tool.uv]
+required-version = ">=0.9.25,<1.0.0"
