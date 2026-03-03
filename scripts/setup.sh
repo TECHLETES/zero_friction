@@ -208,15 +208,14 @@ setup_pre_commit() {
   section "pre commit hooks setup"
   step "installing pre commit hooks"
   if [[ -f ".pre-commit-config.yaml" ]]; then
-    python -m pip install pre-commit detect-secrets || true
-    pre-commit install
+    $VENV_DIR/bin/pre-commit install
     success "pre commit hooks installed"
     step "updating pre commit repos"
 
-    pre-commit autoupdate
+    $VENV_DIR/bin/pre-commit autoupdate
     success "pre commit hooks updated"
     step "running pre commit on all files"
-    pre-commit run --all-files || warn "some pre commit checks failed"
+    $VENV_DIR/bin/pre-commit run --all-files || warn "some pre commit checks failed"
   else
     warn ".pre-commit-config.yaml not found. skipping"
   fi
@@ -224,36 +223,15 @@ setup_pre_commit() {
 
 setup_secrets() {
   section "secret management setup"
-  step "checking 1password cli"
-  if has_cmd op; then
-    success "1password cli is installed"
-    if op account list >/dev/null 2>&1; then
-      success "1password cli is connected"
-    else
-      warn "1password cli not signed in"
-    fi
-  else
-    # In WSL users sometimes rely on Windows 1Password
-    if is_wsl; then
-      warn "op not found in WSL. if you use Windows 1Password, install op in WSL or skip this"
-    else
-      error "1Password CLI not found. install and configure before secrets workflow"
-    fi
-  fi
-
-  # Ensure detect-secrets is available before using it
-  if ! command -v detect-secrets >/dev/null 2>&1; then
-    python -m pip install detect-secrets
-  fi
 
   step "initializing secrets baseline"
   if [ -f ".secrets.baseline" ]; then
     warn "existing .secrets.baseline found. backing up"
     cp .secrets.baseline .secrets.baseline.bak
   fi
-  detect-secrets scan > .secrets.baseline
+  $VENV_DIR/bin/detect-secrets scan > .secrets.baseline
   success "secrets baseline created"
-  detect-secrets audit .secrets.baseline || warn "manual review of baseline recommended"
+  $VENV_DIR/bin/detect-secrets audit .secrets.baseline || warn "manual review of baseline recommended"
   success "secrets configuration verified"
 }
 
