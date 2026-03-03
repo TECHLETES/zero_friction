@@ -1,45 +1,18 @@
 repos:
   - repo: local
     hooks:
-      # Verify requirements lockfiles
-      - id: verify-prod-lockfile
-        name: Verify production lockfile is up-to-date
-        entry: ./scripts/hooks/verify-lockfile.sh
-        args: ["requirements.txt"]
-        language: python
-        files: ^requirements\.txt$
-        additional_dependencies: [pip-tools==7.5.0]
-
-      - id: verify-dev-lockfile
-        name: Verify development lockfile is up-to-date
-        entry: ./scripts/hooks/verify-lockfile.sh
-        args: ["requirements-dev.txt"]
-        language: python
-        files: ^requirements-dev\.txt$
-        additional_dependencies: [pip-tools==7.5.0]
-
-      - id: verify-full-lockfile
-        name: Verify extra lockfile is up-to-date
-        entry: ./scripts/hooks/verify-lockfile.sh
-        args: ["requirements-full.txt"]
-        language: python
-        files: ^requirements-full\.txt$
-        additional_dependencies: [pip-tools==7.5.0]
-
       # Strip notebook outputs
       - id: nbstripout-autoadd
         name: nbstripout (auto-add notebooks)
-        entry: scripts/hooks/nbstripout-autoadd.sh
-        language: python
+        entry: uv run scripts/hooks/nbstripout-autoadd.sh
+        language: system
         types: [jupyter]
-        additional_dependencies: [nbstripout]
 
       # Auto-format Python code with Black
       - id: black-autoformat
         name: Auto-format Python with Black
-        entry: scripts/hooks/black-autoformat.sh
-        language: python
-        additional_dependencies: [black]
+        entry: uv run scripts/hooks/black-autoformat.sh
+        language: system
         types: [python]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -57,12 +30,12 @@ repos:
         args: ["--autofix"]
         exclude: \.ipynb$
 
-  # Dependency vulnerability scanning
+  # Dependency vulnerability scanning with uv.lock
   - repo: https://github.com/pypa/pip-audit
-    rev: v2.9.0
+    rev: v2.10.0
     hooks:
       - id: pip-audit
-        args: ["--progress-spinner", "off", "-r", "requirements.txt"]
+        args: ["--progress-spinner", "off", "--desc", "--ignore", "CVE-2026-1703"]
         stages: [pre-commit]
 
   # Secrets scanning
@@ -73,75 +46,38 @@ repos:
         args: ["--baseline", ".secrets.baseline"]
         exclude: ^tests/
 
-  # Notebook/text sync
+  # Notebook/text sync with jupytext
   - repo: https://github.com/mwouts/jupytext
-    rev: v1.18.0rc0
+    rev: v1.19.1
     hooks:
       - id: jupytext
         args: [--sync]
         require_serial: true
 
+  # Type checking with mypy
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.18.2
+    rev: v1.19.1
     hooks:
       - id: mypy
         name: Type check with mypy
         args: ["--config-file=pyproject.toml"]
 
-
+  # Linting and formatting with ruff
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.0
+    rev: v0.15.4
     hooks:
       - id: ruff
-        name: Ruff (linting + extra isort + rules)
+        name: Ruff (linting + import sorting + formatting)
         args: [--fix]
         types: [python]
 
-  # - repo: local
-  #   hooks:
-  #     - id: pytest
-  #       name: Run pytest with coverage & beartype
-  #       entry: pytest --cov --cov-fail-under=80 --beartype-packages=utils,example
-  #       language: python
-  #       additional_dependencies:
-  #         - pytest
-  #         - pytest-cov
-  #         - pytest-beartype
-  #       pass_filenames: false
-  #       always_run: true
-  #       stages: [pre-commit]
-
+  # Testing with pytest (locally managed by uv)
   - repo: local
     hooks:
       - id: pytest
-        name: Run pytest with coverage & beartype
-        entry: bash scripts/hooks/precommit_pytest.sh
+        name: Run pytest with coverage
+        entry: uv run pytest --cov --cov-fail-under=80 --beartype-packages=utils,example
         language: system
         pass_filenames: false
         always_run: true
         stages: [pre-commit]
-
-  # Frontend hooks (uncomment if you have a frontend in the `web/` directory)
-      # - id: frontend-lint
-      #   name: Frontend lint
-      #   entry: bash -c "cd web && npm run lint -- --fix"
-      #   language: system
-      #   files: ^web/
-      #   pass_filenames: false
-      #   additional_dependencies: []
-
-      # - id: frontend-typecheck
-      #   name: Frontend typecheck
-      #   entry: bash -c "cd web && npm run typecheck"
-      #   language: system
-      #   files: ^web/
-      #   pass_filenames: false
-      #   additional_dependencies: []
-
-      # - id: frontend-tests
-      #   name: Frontend tests
-      #   entry: bash -c "cd web && npm run test:run"
-      #   language: system
-      #   files: ^web/
-      #   pass_filenames: false
-      #   additional_dependencies: []

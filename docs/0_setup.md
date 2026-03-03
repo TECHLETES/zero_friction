@@ -59,11 +59,12 @@ After the script finishes, **restart your terminal or PowerShell session** to en
 The setup script is designed to create a consistent and reproducible development environment by automating the following steps:
 
 1.  **System Checks**: Verifies that Python, Git, and other required tools are installed.
-2.  **Virtual Environment**: Creates an isolated Python virtual environment in a `venv/` directory.
-3.  **Dependency Installation**: Installs all production and development dependencies using `pip-tools` for pinned, reproducible builds.
-4.  **Pre-Commit Hooks**: Sets up automated code quality checks that run before every commit.
-5.  **Secret Management**: Initializes `detect-secrets` to prevent accidental credential exposure and prepares for 1Password integration.
-6.  **Environment Variables**: Configures `direnv` (on Linux/macOS) to automatically manage environment variables when you enter the project directory.
+2.  **Virtual Environment**: Creates an isolated Python virtual environment in a `.venv/` directory.
+3.  **Dependency Installation**: Installs all production and development dependencies using `uv` for fast, reproducible builds.
+4.  **Lock File Generation**: Creates `uv.lock` to ensure consistent dependency versions across all team members and CI/CD.
+5.  **Pre-Commit Hooks**: Sets up automated code quality checks that run before every commit.
+6.  **Secret Management**: Initializes `detect-secrets` to prevent accidental credential exposure and prepares for 1Password integration.
+7.  **Environment Variables**: Configures `direnv` (on Linux/macOS) to automatically manage environment variables when you enter the project directory.
 
 ## 🛟 Common Setup Issues
 

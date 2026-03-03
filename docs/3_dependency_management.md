@@ -1,263 +1,545 @@
-# 3. Dependency Management
+# 3. Dependency Management with uv
 
-This project uses a **layered dependency management approach** leveraging **pip-tools** with a single source of truth in **`pyproject.toml`**, generating three distinct lockfiles for different deployment scenarios.
+This project uses **uv** for fast, reliable dependency management with a single source of truth in **`pyproject.toml`**. uv generates a single, simple lockfile (`uv.lock`) for reproducible builds across all environments.
 
 ---
 
 ## 3.1 Dependency Layers Overview
 
-The project organizes dependencies into three distinct layers:
+The project organizes dependencies into three distinct layers, all defined in `pyproject.toml`:
 
 ### Core Dependencies
-- **Purpose**: Essential runtime requirements needed in all environments
+- **Purpose**: Essential runtime requirements needed for the application to function
 - **Location**: `dependencies` section in `pyproject.toml`
-- **Compiled to**: `requirements-slim.txt`
-- **Use cases**: Minimal deployments, containers, AWS Lambda functions
+- **Installed with**: Always included in all `uv sync` commands
+- **Use cases**: Production deployments, containers, minimal environments
 - **Examples**: Flask, requests, database drivers, core business logic libraries
 
 ### Extra Dependencies
 - **Purpose**: Additional production features and optional components
-- **Location**: `[project.optional-dependencies].extra` in `pyproject.toml`
-- **Compiled to**: `requirements.txt` (core + extra)
-- **Use cases**: Full production deployments with all features
+- **Location**: `[dependency-groups].extra` in `pyproject.toml` (PEP 735 format)
+- **Installed with**: `uv sync` (default includes in dev) or explicitly with `uv sync --group extra`
+- **Skip with**: `uv sync --no-group extra`
+- **Use cases**: Full production deployments with optional features
 - **Examples**: Redis clients, monitoring tools, performance libraries, private packages
 
 ### Development Dependencies
 - **Purpose**: Development tools, testing frameworks, and code quality tools
-- **Location**: `[project.optional-dependencies].dev` in `pyproject.toml`
-- **Compiled to**: `requirements-dev.txt` (core + extra + dev)
+- **Location**: `[dependency-groups].dev` in `pyproject.toml` (PEP 735 format)
+- **Installed with**: `uv sync` (default includes during development)
+- **Skip with**: `uv sync --no-group dev`
 - **Use cases**: Local development, CI/CD pipelines, testing environments
-- **Examples**: pytest, black, mypy, pre-commit, debugging tools
+- **Examples**: pytest, black, mypy, pre-commit, ruff
+
+### Dependency Structure in pyproject.toml
+
+Using **PEP 735 format** with `[dependency-groups]`:
+
+```toml
+# Core dependencies (always installed)
+dependencies = [
+    "flask>=3.1.0,<4.0.0",
+    "requests>=2.32.0,<3.0.0",
+    "sqlalchemy>=2.0.0,<3.0.0",
+]
+
+# Optional dependency groups (managed with --group flags)
+[dependency-groups]
+
+# Additional production features (optional)
+extra = [
+    "redis>=4.0.0,<5.0.0",
+    "celery>=5.2.0,<6.0.0",
+]
+
+# Development tools (development only)
+dev = [
+    "pytest>=9.0.0,<10.0.0",
+    "black>=25.12.0,<26.0.0",
+    "mypy>=1.19.0,<2.0.0",
+    "ruff>=0.14.0,<1.0.0",
+]
+```
 
 This layered approach ensures:
 
-- **Minimal deployments** with only essential dependencies
-- **Flexible production** setups with optional feature control
-- **Complete development** environments with all tooling
-- **Reproducible builds** with fully pinned, hashed lockfiles
 - **Clear separation** between runtime, optional, and tooling packages
-
----
-
-## 3.2 Using the helper script (`./scripts/dependency.sh`)
-
-The provided script automates compilation and installation across all dependency layers.
-
-```bash
-# Install all dependencies (core + extra + dev) - Default for development
-./scripts/dependency.sh
-
-# Install core dependencies only - Minimal deployment
-./scripts/dependency.sh --slim
-
-# Install production dependencies (core + extra) - Full production deployment
-./scripts/dependency.sh --prod
-
-# Install development dependencies only - CI testing environments
-./scripts/dependency.sh --dev
-```
+- **Flexible deployments** with control over which packages are installed
+- **Reproducible builds** with single-file lockfile (`uv.lock`)
+- **Fast dependency resolution** with uv's optimized algorithm
+- **Version safety** with pinned versions in the lock file
 
 ### Installation Matrix
 
-| Command | Core | Extra | Dev | Use Case |
-|---------|------|-------|-----|----------|
-| `--slim` | ✅ | ❌ | ❌ | Containers, Lambda, minimal deployments |
-| `--prod` | ✅ | ✅ | ❌ | Production servers with all features |
-| `--dev` | ❌ | ❌ | ✅ | CI environments, testing only |
-| (default) | ✅ | ✅ | ✅ | Local development, complete setup |
-
-### 3.2.1 Under the hood (manual steps)
-
-The script follows a two-phase approach: **compile all lockfiles first**, then **install selected dependencies**.
-
-#### Phase 1: Compile All Lockfiles
-
-1. Activates the project virtual environment (`.venv/bin/activate`).
-2. Installs or verifies **pip-tools**.
-3. Compiles the **slim lockfile** (core dependencies only):
-
-    ```bash
-    pip-compile pyproject.toml --output-file=requirements-slim.txt --generate-hashes --strip-extras
-    ```
-
-4. Compiles the **production lockfile** (core + extra):
-
-    ```bash
-    pip-compile pyproject.toml --extra=extra --output-file=requirements.txt --generate-hashes --strip-extras
-    ```
-
-5. Compiles the **development lockfile** (core + extra + dev):
-
-    ```bash
-    pip-compile pyproject.toml --extra=dev --extra=extra --output-file=requirements-dev.txt --generate-hashes --strip-extras
-    ```
-
-#### Phase 2: Install Selected Dependencies
-
-6. Installs packages based on the selected option:
-   - `--slim`: `pip install --require-hashes -r requirements-slim.txt`
-   - `--prod`: `pip install -r requirements.txt`
-   - `--dev`: `pip install -r requirements-dev.txt`
-   - (default): `pip install -r requirements-dev.txt`
-
-7. Runs `pip check` to validate compatibility.
-
-#### Why Two Phases?
-
-This approach ensures **lockfile consistency** before installation, preventing errors from manually edited or corrupted requirement files.
-
-### 3.2.2 Hash Requirements and Security
-
-By default, the script uses **hash-based verification** for maximum security:
-
-- **`--generate-hashes`** during compilation creates SHA256 hashes for each dependency
-- **`--require-hashes`** during installation verifies packages against these hashes
-
-This prevents **supply chain attacks** by ensuring installed packages match exactly what was specified.
-
-#### When to Disable Hash Verification
-
-Some packages **cannot be hashed** due to:
-- Private packages from git repositories
-- Local development packages (`file://` URLs)
-- Packages with dynamic content that changes between installs
-
-**For these cases, you can disable hash verification:**
-
-1. **In `scripts/dependency.sh`**, modify the relevant `pip install` commands:
-   - Remove `--require-hashes` from the install command
-   - Example: Change `pip install --require-hashes -r requirements-slim.txt` to `pip install -r requirements-slim.txt`
-
-2. **In `scripts/dependency.sh`**, modify the corresponding `pip-compile` commands:
-   - Remove `--generate-hashes` from the compile command
-   - Example: Change `pip-compile pyproject.toml --output-file=requirements-slim.txt --generate-hashes --strip-extras` to `pip-compile pyproject.toml --output-file=requirements-slim.txt --strip-extras`
-
-**⚠️ Security Warning:** Only disable hashes for packages that genuinely cannot be hashed. Keep hash verification enabled wherever possible to maintain supply chain security.
+| Scenario | Command | Core | Extra | Dev | Use Case |
+|----------|---------|------|-------|-----|----------|
+| Development (all groups) | `uv sync` | ✅ | ✅ | ✅ | Full environment for coding |
+| Production (core + extra) | `uv sync --no-group dev` | ✅ | ✅ | ❌ | Production servers |
+| Production minimal (core only) | `uv sync --no-group dev --no-group extra` | ✅ | ❌ | ❌ | Minimal deployments |
+| Development without extra | `uv sync --no-group extra` | ✅ | ❌ | ✅ | Local development, no optional features |
+| Only extra (unusual) | `uv sync --only-group extra` | ❌ | ✅ | ❌ | Feature testing only |
+| Only dev (testing) | `uv sync --only-group dev` | ❌ | ❌ | ✅ | CI/test environments without core |
 
 ---
 
-## 3.3 Best Practices and Rules
+## 3.2 Understanding Dependency Groups (PEP 735)
 
-### Dependency Classification Guidelines
+This project uses **PEP 735 format** with `[dependency-groups]` for modern dependency management. This is the standard supported by uv and enables flexible grouping of optional dependencies.
 
-**Core Dependencies** (`dependencies`):
-- Database drivers (psycopg2, pymongo)
-- Web frameworks (Flask, FastAPI)
-- HTTP clients (requests, httpx)
-- Essential business logic libraries
-- Authentication libraries
+### What Are Dependency Groups?
 
-**Extra Dependencies** (`[project.optional-dependencies].extra`):
-- Caching clients (redis, memcached)
-- Message queues (celery, rq)
-- Monitoring tools (sentry-sdk, prometheus-client)
-- Performance libraries (uvloop, orjson)
-- Private/internal packages
+Dependency groups are named collections of packages in the `[dependency-groups]` section. Unlike the older `[project.optional-dependencies]` format, PEP 735 groups are:
+- **Easier to manage** - Clear syntax in a single section
+- **Better supported** - Native support in modern tools like uv
+- **More flexible** - Arbitrary naming and multiple groups
+- **Lockfile-aware** - All groups locked together in `uv.lock`
 
-**Dev Dependencies** (`[project.optional-dependencies].dev`):
-- Testing frameworks (pytest, coverage)
-- Code quality tools (black, ruff, mypy)
-- Development utilities (pre-commit, rich)
-- Documentation tools (sphinx, mkdocs)
+### Pre-defined Groups in This Project
 
-### Rules and Best Practices
+| Group | Purpose | Default Included | When to Use |
+|-------|---------|------------------|------------|
+| `extra` | Optional production features | ✅ in dev, ❌ in prod | Feature flags, optional integrations |
+| `dev` | Development and testing tools | ✅ in dev mode | Local development, CI/CD |
 
-| ✅ Do This | ❌ Don't Do This |
-| --- | --- |
-| Declare all deps in `pyproject.toml` only | Scatter deps across multiple files |
-| Use `./scripts/dependency.sh` or manual pip-compile | Run `pip install <package>` manually |
-| Commit all three lockfiles (`*requirements*.txt`) | Edit lockfiles by hand |
-| Choose the right dependency layer | Mix runtime and tooling dependencies |
-| Use `--slim` for minimal deployments | Use full lockfile for containers |
-| Regenerate lockfiles after changing `pyproject.toml` | Forget to update lockfiles |
-| Run `pip check` after installation | Skip integrity verification |
+### Adding Custom Groups
 
----
-
-## 3.4 Adding New Dependencies
-
-When adding packages, choose the appropriate section in `pyproject.toml`:
+You can add additional groups as needed:
 
 ```toml
-# Core dependencies - Essential runtime requirements
-# These go in ALL deployment scenarios
+[dependency-groups]
+
+# Standard groups
+extra = ["redis>=4.0.0,<5.0.0"]
+dev = ["pytest>=9.0.0,<10.0.0"]
+
+# Custom groups (examples)
+docs = [          # Documentation generation
+    "sphinx>=7.0.0,<8.0.0",
+    "sphinx-rtd-theme>=2.0.0,<3.0.0",
+]
+
+test = [          # Just testing, minimal tooling
+    "pytest>=9.0.0,<10.0.0",
+    "pytest-cov>=7.0.0,<8.0.0",
+]
+
+perf = [          # Performance optimization tools
+    "py-spy>=0.3.14,<1.0.0",
+    "memory-profiler>=0.61.0,<1.0.0",
+]
+```
+
+Then install with:
+```bash
+uv sync --group docs         # Include docs group with core
+uv sync --group perf --group test  # Multiple custom groups
+uv sync --only-group docs    # Only docs (advanced)
+```
+
+---
+
+## 3.3 Version Constraints and Pinning
+
+All dependencies use **semantic versioning** with flexible constraints:
+
+```toml
+# Format: >=CURRENT.Y.Z,<NEXT_MAJOR.0.0
 dependencies = [
-    "flask>=2.2.0,<3.0.0",  # Web framework
-    "requests>=2.28.0",      # HTTP client
-    "sqlalchemy>=2.0.0",     # Database ORM
-    "pydantic>=2.0.0",       # Data validation
+    "flask>=3.1.0,<4.0.0",      # Allows 3.1.x, 3.2.x, 3.3.x, etc.
+    "requests>=2.32.0,<3.0.0",  # Allows 2.32.x, 2.33.x, etc.
+    "sqlalchemy>=2.0.0,<3.0.0", # Allows 2.0.x, 2.1.x, etc.
 ]
+```
 
-[project.optional-dependencies]
-# Extra dependencies - Optional production features
-# These go in FULL production deployments only
+### Version Constraint Strategy
+
+- **`>=X.Y.Z`**: Minimum compatible version (includes patches and minor updates)
+- **`<X+1.0.0`**: Maximum version (prevents major breaking changes)
+- **Why this approach**:
+  - ✅ Allows security patches and bug fixes (patch updates)
+  - ✅ Allows new features (minor updates)
+  - ❌ Prevents major breaking changes
+  - 🔒 Ensures stability while staying current
+
+### Examples of Good vs Bad Constraints
+
+| ❌ Bad | ✅ Good | Why |
+|--------|---------|-----|
+| `flask` | `flask>=3.1.0,<4.0.0` | Explicit version range for reproducibility |
+| `"flask==3.1.2"` | `flask>=3.1.0,<4.0.0` | Allows patches without manual updates |
+| `"flask>=3.1.0"` | `flask>=3.1.0,<4.0.0` | Prevents breaking major updates |
+| `"flask>=2.0.0"` | `flask>=3.1.0,<4.0.0` | Too loose, allows old versions |
+
+---
+
+## 3.4 Working with uv
+
+### First-Time Setup
+
+```bash
+# Install uv if you haven't already
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Run the setup script - creates environment and locks dependencies
+./scripts/setup.sh
+```
+
+This creates:
+- `.venv/` - Isolated Python environment
+- `uv.lock` - Locked versions of all dependencies
+
+### Day-to-Day Workflow
+
+```bash
+# Syncing existing dependencies (most common operation)
+# Downloads and installs packages according to uv.lock
+uv sync
+
+# Adding a new dependency
+# 1. Edit pyproject.toml and add the package with version constraints
+# 2. Update the lock file
+uv lock
+# 3. Install the new packages
+uv sync
+```
+
+### Update Workflows
+
+#### Safe Updates (patch + minor versions)
+
+```bash
+# Updates uv.lock with newest compatible patch/minor versions
+# Example: 3.1.2 → 3.2.5 (but not 4.0.0)
+uv lock
+uv sync
+```
+
+#### Major Version Updates
+
+```bash
+# Updates uv.lock allowing major version changes
+# Example: 3.x.x → 4.0.0 (may have breaking changes!)
+# Use this carefully and test thoroughly
+uv lock --upgrade
+uv sync
+```
+
+#### Updating a Specific Package
+
+```bash
+# Edit pyproject.toml:
+# Change: "requests>=2.32.0,<3.0.0"
+# To:     "requests>=2.35.0,<3.0.0"
+
+# Then lock and sync
+uv lock
+uv sync
+```
+
+#### Installing Additional Groups
+
+If `extra` dependencies are optional:
+
+```bash
+# Install core + extra but not dev
+uv sync --extra extra
+
+# Install specific groups
+uv sync --group dev --group extra
+```
+
+---
+
+## 3.5 The Lock File (`uv.lock`)
+
+The `uv.lock` file is the source of truth for reproducible builds.
+
+### What It Contains
+
+```
+# Human-readable format showing all transitive dependencies
+# Each package with pinned version, hashes, and metadata
+[[package]]
+name = "requests"
+version = "2.32.5"
+requires-python = ">=3.7"
+
+[[package]]
+name = "urllib3"
+version = "2.6.3"
+requires-python = ">=2.7,!=3.0.*,!=3.1.*"
+```
+
+### Best Practices
+
+- ✅ **Always commit `uv.lock`** to version control
+- ✅ **Keep `uv.lock` in sync** with `pyproject.toml`
+- ✅ **Review lock file changes** in pull requests for security updates
+- ❌ **Never edit `uv.lock` manually** - always use `uv lock` command
+- ❌ **Don't add git patterns** that exclude `uv.lock`
+
+### Why Commit the Lock File?
+
+The lock file ensures:
+- All team members use identical dependency versions
+- CI/CD deployments are reproducible
+- No surprise dependency differences between environments
+- Security issues can be tracked and resolved consistently
+
+---
+
+## 3.6 Adding New Dependencies
+
+### Step-by-Step Process
+
+**1. Determine the right layer:**
+- Is it needed for the app to run? → `dependencies`
+- Is it optional production feature? → `[dependency-groups].extra`
+- Is it development/testing tool? → `[dependency-groups].dev`
+
+**2. Edit `pyproject.toml`:**
+
+For core dependencies:
+```toml
+dependencies = [
+    # Existing dependencies...
+    "newvalidator>=1.5.0,<2.0.0",  # Add with version constraint
+]
+```
+
+For optional groups:
+```toml
+[dependency-groups]
+
 extra = [
-    "redis>=4.0.0",          # Caching
-    "celery>=5.2.0",         # Task queue
-    "sentry-sdk>=1.12.0",    # Error monitoring
-    "gunicorn>=20.1.0",      # Production WSGI server
+    # Existing extra dependencies...
+    "redis>=4.0.0,<5.0.0",  # Add new optional dependency
 ]
 
-# Dev dependencies - Development and testing tools
-# These go in DEVELOPMENT environments only
 dev = [
-    "pytest>=7.0",           # Testing framework
-    "black>=22.0",           # Code formatter
-    "mypy>=1.0",             # Type checker
-    "pre-commit>=2.20.0",    # Git hooks
+    # Existing dev dependencies...
+    "pytest-mock>=3.10.0,<4.0.0",  # Add new dev dependency
 ]
 ```
 
-### Decision Tree: Where to Put Dependencies
+**3. Lock and sync:**
 
-```
-Is this package needed for the app to run?
-├─ Yes: Is it absolutely essential?
-│  ├─ Yes → `dependencies` (core)
-│  └─ No → `[project.optional-dependencies].extra`
-└─ No: Is it for development/testing?
-   └─ Yes → `[project.optional-dependencies].dev`
-```
-
-## 3.5 Migration from Older Setups
-
-### From Legacy `requirements.in` Workflow:
-
-1. **Classify dependencies** into core, extra, and dev categories
-2. **Move essential runtime deps** into `[project.dependencies]`
-3. **Move optional production deps** into `[project.optional-dependencies].extra`
-4. **Move tooling dependencies** into `[project.optional-dependencies].dev`
-5. **Remove** old `requirements.in` files
-6. **Regenerate** all lockfiles:
-
-    ```bash
-    ./scripts/dependency.sh
-    ```
-
-### From Two-File Setup (requirements.txt + requirements-dev.txt):
-
-1. **Audit existing requirements.txt** - split into core vs extra
-2. **Move accordingly** to `dependencies` and `[project.optional-dependencies].extra`
-3. **Move dev requirements** to `[project.optional-dependencies].dev`
-4. **Regenerate** with the helper script
-
-## 3.6 Troubleshooting
-
-### Common Issues
-
-**Dependency conflicts between layers:**
 ```bash
-pip check  # Identify conflicts
-# Review and resolve version constraints in pyproject.toml
+uv lock      # Updates uv.lock with the new package and its dependencies
+uv sync      # Installs the new package(s)
 ```
 
-**Lockfile out of sync:**
+### Classification Decision Tree
+
+```
+Is this package necessary for the app to function?
+├─ Yes: Is it absolutely core?
+│  ├─ Yes → dependencies (core)
+│  └─ No → [dependency-groups].extra
+└─ No: Is it for development/testing/tooling?
+   └─ Yes → [dependency-groups].dev
+```
+
+### Examples
+
+**Core Dependencies** (needed for production):
+- `flask` - Web framework
+- `requests` - HTTP client
+- `sqlalchemy` - ORM
+- `pydantic` - Data validation
+- `psycopg2-binary` - PostgreSQL driver
+
+**Extra Dependencies** (optional features):
+- `redis` - Caching
+- `celery` - Task queue
+- `sentry-sdk` - Error monitoring
+- `prometheus-client` - Metrics
+
+**Dev Dependencies** (development only):
+- `pytest` - Testing
+- `black` - Code formatter
+- `mypy` - Type checker
+- `ruff` - Linter
+- `pre-commit` - Git hooks
+
+---
+
+## 3.7 Common Workflows
+
+### Checking for Updates
+
 ```bash
-# Force regeneration of all lockfiles
-./scripts/dependency.sh
+# See what updates are available without installing
+# (Review changes and test in a branch first)
+uv lock --dry-run
+
+# Or just check what uv would update
+uv pip list --outdated
 ```
 
-**Package in wrong layer:**
-- Check if a "dev" package is actually needed at runtime
-- Move production packages from "dev" to "core" or "extra"
-- Use the decision tree above to classify correctly
+### Installing for Different Scenarios
+
+```bash
+# Development setup (all groups - default)
+uv sync
+
+# Production server (core + extra, no dev)
+uv sync --no-group dev
+
+# Minimal production (core only, no extra, no dev)
+uv sync --no-group dev --no-group extra
+
+# Development without optional features (core + dev, no extra)
+uv sync --no-group extra
+
+# Only a specific group (advanced)
+uv sync --only-group dev        # dev only (no core dependencies!)
+uv sync --only-group extra      # extra only (no core dependencies!)
+
+# Multiple specific groups
+uv sync --group dev --group extra   # Combined with core automatically
+```
+
+### Understanding Group Flags
+
+| Flag | Behavior |
+|------|----------|
+| `uv sync` | Includes all: core + extra + dev |
+| `--no-group dev` | Excludes: removes dev group |
+| `--no-group extra` | Excludes: removes extra group |
+| `--only-group dev` | Includes ONLY: dev group (⚠️ no core!) |
+| `--group extra` | Includes: core + this group |
+
+### Cleaning Up
+
+```bash
+# Remove virtual environment
+rm -rf .venv
+
+# Recreate from scratch
+uv sync
+```
+
+### Troubleshooting Dependency Conflicts
+
+```bash
+# If you get dependency conflicts, inspect what's installed
+pip list
+
+# Check if there are any conflicts
+pip check
+
+# Review the conflict in pyproject.toml and adjust version constraints
+# Then retry:
+uv lock
+uv sync
+```
+
+---
+
+## 3.8 Migration from Requirements Files
+
+If you're coming from an older pip-tools setup with `requirements.txt` files:
+
+1. **Audit dependencies** - Identify which packages are core vs extra vs dev
+2. **Update `pyproject.toml`** with proper layer assignments using **PEP 735**:
+   ```toml
+   # Core runtime (always installed)
+   dependencies = [
+       "flask>=3.1.0,<4.0.0",
+       # ... more core packages
+   ]
+
+   # Optional dependency groups
+   [dependency-groups]
+
+   # Optional features (install with --group extra)
+   extra = [
+       "redis>=4.0.0,<5.0.0",
+       # ... more extra packages
+   ]
+
+   # Development tools (install by default, skip with --no-group dev)
+   dev = [
+       "pytest>=9.0.0,<10.0.0",
+       # ... more dev packages
+   ]
+   ```
+3. **Lock everything** with `uv lock`
+4. **Sync** with `uv sync` (or `uv sync --no-group dev` for production)
+5. **Delete old requirement files** (they're no longer needed)
+
+---
+
+## 3.9 Running Commands with uv
+
+You can run Python scripts and commands without explicitly activating the virtual environment:
+
+```bash
+# Run a Python script
+uv run python script.py
+
+# Run pytest
+uv run pytest
+
+# Run mypy
+uv run mypy .
+
+# Run black
+uv run black .
+
+# Run ruff
+uv run ruff check . --fix
+
+# Run any command with the virtual environment active
+uv run <any-command>
+```
+
+Or activate the environment manually:
+
+```bash
+# Linux / macOS
+source .venv/bin/activate
+
+# Windows
+.venv\Scripts\Activate.ps1
+
+# Then use tools normally
+pytest
+mypy .
+black .
+```
+
+---
+
+## 3.10 Best Practices Summary
+
+### Do ✅
+
+- Declare all dependencies in `pyproject.toml` only
+- Use semantic versioning: `>=X.Y.Z,<X+1.0.0`
+- Run `uv lock` after updating `pyproject.toml`
+- Run `uv sync` to install locked versions
+- Commit `uv.lock` to version control
+- Review dependency changes in pull requests
+- Use different sections for core/extra/dev packages
+- Pin to maximum major version to prevent breaking changes
+
+### Don't ❌
+
+- Edit `uv.lock` manually (use `uv lock` command)
+- Run `pip install` manually in the terminal
+- Use exact version pinning (`==3.1.2`) - use ranges instead
+- Forget to run `uv lock` after editing `pyproject.toml`
+- Exclude `uv.lock` from git (it should be committed)
+- Mix dependencies from different sources without documentation
+- Ignore dependency vulnerability warnings
+
+---
+
+## 3.11 Additional Resources
+
+- **uv Documentation**: https://docs.astral.sh/uv/
+- **uv Lock File Format**: https://docs.astral.sh/uv/concepts/lock-files/
+- **Python Packaging Guides**: https://packaging.python.org/
+- **Semantic Versioning**: https://semver.org/

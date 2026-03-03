@@ -7,10 +7,10 @@ This guide covers the day-to-day development workflow, including dependency mana
 1.  **Activate Environment**: Navigate to the project directory. If you configured `direnv` during setup, the environment will activate automatically. Otherwise, activate it manually:
     ```bash
     # Linux / macOS
-    source venv/bin/activate
+    source .venv/bin/activate
 
     # Windows
-    .venv/Scripts/Activate.ps1
+    .venv\Scripts\Activate.ps1
     ```
 
 2.  **Code**: Create or modify your Python modules, notebooks, and documentation.
@@ -42,6 +42,26 @@ This guide covers the day-to-day development workflow, including dependency mana
     git commit -m "Your descriptive commit message"
     ```
     At this point, the pre-commit hooks will run automatically. See the troubleshooting guide below if any checks fail.
+
+### 🔄 Adding or Updating Dependencies
+
+When you need to add or update dependencies, follow this workflow:
+
+```bash
+# 1. Edit pyproject.toml and add/update your dependency with version constraints
+# Example: "requests>=2.28.0,<3.0.0"
+
+# 2. Update the lock file (safe update - patch + minor versions only)
+uv lock
+
+# 3. Or upgrade to major versions if breaking changes are acceptable
+uv lock --upgrade
+
+# 4. Sync your environment with the updated dependencies
+uv sync
+```
+
+Always use version constraints like `>=X.Y.Z,<X+1.0.0` to allow patch/minor updates while preventing major version breaks.
 
 ## 🪝 Understanding and Troubleshooting Pre-Commit Hooks
 

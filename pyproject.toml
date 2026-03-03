@@ -25,43 +25,45 @@ classifiers = [
 ]
 
 # Core production dependencies required for the application to run.
-# These are compiled into requirements-slim.txt (core only) and included in all other requirement files.
-# Add only dependencies that are needed in production environments.
+# Pinned with >= and < to allow patch/minor updates while preventing major version breaks.
+# Add only dependencies that are needed for the app to run in production.
 dependencies = [
-  "flask==3.1.2", # Example dependency, replace with your own
-  "requests==2.32.5",
-  "urllib3==2.6.3",
-  "werkzeug==3.1.5",
-  "filelock==3.20.3",
+  "flask>=3.1.0,<4.0.0",  # Example dependency, replace with your own
+  "requests>=2.32.0,<3.0.0",
+  "urllib3>=2.6.0,<3.0.0",
+  "werkzeug>=3.1.0,<4.0.0",
+  "filelock>=3.20.0,<4.0.0",
 ]
 
 # Optional dependency groups for different environments and use cases.
-# These are used by pip-compile with --extra flags to generate different requirement files.
+# Managed by uv (PEP 735 format) and locked in uv.lock for reproducible builds.
+# Install with: uv sync (all groups), uv sync --no-group dev (no dev), uv sync --only-group extra (extra only), etc.
 [dependency-groups]
-# Development and testing dependencies.
-# Includes code quality tools, testing frameworks, and development utilities.
-# Compiled into requirements-dev.txt (core + extra + dev).
-dev = [
-    "pre-commit==4.5.1",
-    "detect-secrets==1.5.0",
-    "nbstripout==0.8.2",
-    "pytest==9.0.2",
-    "pytest-cov==7.0.0",
-    "black==25.12.0",
-    "mypy==1.19.1",
-    "ruff==0.14.11",
-    "beartype==0.22.9",
-    "pytest-beartype==0.2.0",
-    "pip-audit==2.10.0",
-    "rich==14.2.0",
-]
 
-# Additional production dependencies.
-# Includes private packages or optional features not in the core dependencies.
-# Compiled into requirements.txt (core + extra).
+# Additional production features and optional components.
+# Install with: uv sync --group extra or uv sync --no-group extra
 extra = [
   # "zero-friction @ git+https://github.com/TECHLETES/zero_friction.git@main"
 ]
+
+# Development and testing dependencies.
+# Includes code quality tools, testing frameworks, and development utilities.
+# Install with: uv sync (default includes dev) or uv sync --no-group dev to skip
+dev = [
+    "pre-commit>=4.5.0,<5.0.0",
+    "detect-secrets>=1.5.0,<2.0.0",
+    "nbstripout>=0.8.0,<1.0.0",
+    "pytest>=9.0.0,<10.0.0",
+    "pytest-cov>=7.0.0,<8.0.0",
+    "black>=25.12.0,<26.0.0",
+    "mypy>=1.19.0,<2.0.0",
+    "ruff>=0.14.0,<1.0.0",
+    "beartype>=0.22.0,<1.0.0",
+    "pytest-beartype>=0.2.0,<1.0.0",
+    "pip-audit>=2.10.0,<3.0.0",
+    "rich>=14.2.0,<15.0.0",
+]
+
 
 [project.urls]
 Homepage = "https://github.com/TECHLETES/python_basic_template"
