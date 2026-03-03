@@ -42,7 +42,7 @@ jobs:
         run: uv sync
 
       - name: Run pip-audit
-        run: uv run pip-audit --progress-spinner off --desc --ignore CVE-2026-1703
+        run: uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
 
       - name: Black formatting check
         run: uv run black --check .

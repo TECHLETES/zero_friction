@@ -36,7 +36,9 @@ repos:
     rev: v2.10.0
     hooks:
       - id: pip-audit
-        args: ["--progress-spinner", "off", "--desc", "--ignore", "CVE-2026-1703"]
+        args: ["--progress-spinner", "off", "--desc"]
+        entry: uv run bash scripts/run-pip-audit.sh
+        language: system
         stages: [pre-commit]
 
   # Secrets scanning

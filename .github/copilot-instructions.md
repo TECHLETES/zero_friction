@@ -232,6 +232,23 @@ uv run mypy . --config-file=pyproject.toml
 # - Import from typing: from typing import Optional, Union, Any
 ```
 
+### Manage CVE Exclusions for pip-audit
+```bash
+# Edit pyproject.toml [tool.pip-audit] section to add/remove exclusions
+# Both pre-commit and CI will automatically use the updated list
+
+[tool.pip-audit]
+ignore = [
+    "CVE-2026-1703",  # Brief explanation of why this CVE is excluded
+    "CVE-2024-XXXXX",  # Add new exclusions here
+]
+
+# Run pip-audit locally to verify
+uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
+
+# Script automatically reads from pyproject.toml and applies exclusions
+```
+
 ### Debug Pre-Commit Hook Failures
 ```bash
 # Run a specific hook manually

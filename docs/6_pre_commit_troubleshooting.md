@@ -391,29 +391,68 @@ python -m json.tool .secrets.baseline > /dev/null
 
 ### pip-audit (Dependency Vulnerabilities)
 
-**Problem:** Known vulnerability that's not fixable
+#### Adding a CVE Exclusion
 
-**Solutions:**
-```bash
-# Ignore specific CVE (temporary)
-- id: pip-audit
-  args: ["--ignore", "CVE-2026-1234"]
+**Problem:** A vulnerability is reported but you need to exclude it (false positive, known mitigated risk, or fix not available).
 
-# Or update dependencies
-uv lock --upgrade
-uv sync
+**Solution:** Add to `pyproject.toml` in the centralized `[tool.pip-audit]` section:
+
+```toml
+[tool.pip-audit]
+# Centralized CVE/PYSEC exclusions for pip-audit
+# Used by both pre-commit hooks and CI workflows via scripts/run-pip-audit.sh
+ignore = [
+    "CVE-2026-1703",  # Path traversal in pip (only affects pip extraction)
+    "CVE-2024-XXXXX",  # Your new exclusion with explanation
+]
 ```
 
-**Problem:** "pyright", "autopep8" or old packages show vulnerabilities
+**Workflow:**
+1. Run pip-audit to see the vulnerability:
+   ```bash
+   uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
+   ```
+2. Identify the CVE/PYSEC ID from the output
+3. Add the ID to the `ignore` list in `pyproject.toml`
+4. Document why it's excluded (false positive, mitigated, etc.)
+5. Both pre-commit (local) and CI (GitHub Actions) will automatically pick up the change
 
-**Solution:** Review dependencies in `pyproject.toml`:
+**Important:**
+- All exclusions go in **ONE place**: `pyproject.toml [tool.pip-audit]`
+- The `scripts/run-pip-audit.sh` wrapper reads from `pyproject.toml` and applies the exclusions
+- Never add `--ignore-vuln` directly to pre-commit config or CI workflow—it goes out of sync
+- Commit changes to `pyproject.toml` like any other code change
+
+#### Updating Dependencies to Fix Vulnerabilities
+
+**Problem:** Vulnerability has a fix available
+
+**Solution:** Upgrade the vulnerable package:
 ```bash
 # Check which package needs updating
 uv pip show <package>
 
-# Update if available
+# Update the dependency
 uv lock --upgrade-package <package>
+uv sync
+
+# Run pip-audit to verify
+uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
 ```
+
+#### Verifying Exclusions Work
+
+**Test locally:**
+```bash
+# Run pip-audit with exclusions from pyproject.toml
+uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
+
+# Or run pre-commit manually
+pre-commit run pip-audit --all-files
+```
+
+**Test in CI:**
+Push changes to a branch → GitHub will run CI and show if pip-audit passes
 
 ---
 

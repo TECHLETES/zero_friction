@@ -63,6 +63,49 @@ uv sync
 
 Always use version constraints like `>=X.Y.Z,<X+1.0.0` to allow patch/minor updates while preventing major version breaks.
 
+### 🔐 Managing CVE Exclusions for pip-audit
+
+If `pip-audit` reports a vulnerability that you need to exclude (false positive, known mitigated risk, or awaiting upstream fix):
+
+**1. Run pip-audit to see the vulnerability:**
+```bash
+uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
+```
+
+**2. Add the CVE to `pyproject.toml`:**
+```toml
+[tool.pip-audit]
+# Centralized CVE/PYSEC exclusions
+# Both pre-commit and CI automatically use this list
+ignore = [
+    "CVE-2026-1703",  # Path traversal in pip (only affects pip extraction)
+    "CVE-2024-XXXXX",  # Add your exclusion with explanation here
+]
+```
+
+**3. Document why it's excluded:**
+- Is it a false positive?
+- Is the risk mitigated in your use case?
+- Are you waiting for an upstream fix?
+- Include the reason in the comment above the CVE
+
+**4. Test locally:**
+```bash
+# Pre-commit hook
+pre-commit run pip-audit --all-files
+
+# Or run directly
+uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
+```
+
+**Important:**
+- Exclusions are centralized in ONE place: `pyproject.toml [tool.pip-audit]`
+- Both local pre-commit and GitHub Actions CI automatically use the same list
+- Never edit the pre-commit config or CI workflow directly for CVE exclusions—they go out of sync
+- Treat CVE exclusions like other code changes: review, commit, and push normally
+
+See [Pre-Commit Troubleshooting](./6_pre_commit_troubleshooting.md#pip-audit-dependency-vulnerabilities) for more details.
+
 ## 🪝 Understanding and Troubleshooting Pre-Commit Hooks
 
 Pre-commit hooks are automated checks that run on your code *before* a commit is finalized. They enforce code quality, consistency, and security, preventing common mistakes from entering the codebase.
