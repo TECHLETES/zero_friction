@@ -1,47 +1,29 @@
 version: 2
 
-updates:
-  - package-ecosystem: github-actions
-    directory: /
+multi-ecosystem-groups:
+  all-updates:
     schedule:
-      interval: weekly
-      day: monday
-      time: "02:00"
-      timezone: Europe/Amsterdam
-    open-pull-requests-limit: 1
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Amsterdam"
     labels:
-      - dependencies
-      - github-actions
+      - "dependencies"
+      - "dependabot"
     commit-message:
-      prefix: deps
-      include: scope
-    rebase-strategy: auto
-    groups:
-      github-actions:
-        patterns:
-          - "*"
+      prefix: "deps"
+      include: "scope"
+    target-branch: "main"
 
-  - package-ecosystem: pip
-    directory: /
-    schedule:
-      interval: weekly
-      day: monday
-      time: "02:00"
-      timezone: Europe/Amsterdam
-    open-pull-requests-limit: 1
-    labels:
-      - dependencies
-      - python
-    commit-message:
-      prefix: deps
-      include: scope
-    rebase-strategy: auto
-    groups:
-      python-production:
-        dependency-type: production
-        patterns:
-          - "*"
-      python-development:
-        dependency-type: development
-        patterns:
-          - "*"
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    multi-ecosystem-group: "all-updates"
+    patterns:
+      - "*"
+
+  - package-ecosystem: "uv"
+    directory: "/"
+    multi-ecosystem-group: "all-updates"
+    patterns:
+      - "*"
