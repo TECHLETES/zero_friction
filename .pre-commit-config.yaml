@@ -25,6 +25,7 @@ repos:
       - id: check-symlinks
       - id: check-yaml
       - id: check-added-large-files
+      - id: check-merge-conflict
       - id: detect-private-key
       - id: pretty-format-json
         args: ["--autofix"]
@@ -62,6 +63,24 @@ repos:
         name: Type check with mypy
         args: ["--config-file=pyproject.toml"]
 
+  # Import sorting with isort (must run before formatters)
+  - repo: https://github.com/PyCQA/isort
+    rev: 8.0.1
+    hooks:
+      - id: isort
+        name: isort (import sorting)
+        args: [--profile=black]
+        types: [python]
+
+  # Modernize Python syntax
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.21.2
+    hooks:
+      - id: pyupgrade
+        name: pyupgrade (modernize Python syntax)
+        args: [--py312-plus]
+        types: [python]
+
   # Linting and formatting with ruff
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.15.4
@@ -69,6 +88,34 @@ repos:
       - id: ruff
         name: Ruff (linting + import sorting + formatting)
         args: [--fix]
+        types: [python]
+
+  # Spell checking
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+      - id: codespell
+        name: codespell (spell check)
+        types: [python]
+        args: [--skip=*.lock]
+
+  # Security scanning
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.9.4
+    hooks:
+      - id: bandit
+        name: bandit (security check)
+        args: [-ll, --skip, B101]
+        exclude: ^tests/
+        types: [python]
+
+  # Docstring validation
+  - repo: https://github.com/PyCQA/pydocstyle
+    rev: 6.3.0
+    hooks:
+      - id: pydocstyle
+        name: pydocstyle (docstring validation)
+        exclude: ^(tests/|example/)
         types: [python]
 
   # Testing with pytest (locally managed by uv)

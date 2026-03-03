@@ -1,5 +1,9 @@
-# A tiny helper module to load secrets at runtime if you can’t rely on direnv
-# This uses the 1Password CLI to fetch secrets on-the-fly in any script or app
+"""Helper module to load secrets at runtime using 1Password CLI.
+
+This module provides utilities to fetch secrets on-the-fly in scripts and apps
+when you can't rely on direnv. It uses the 1Password CLI to securely retrieve
+and manage secrets at runtime.
+"""
 
 import os
 import re
