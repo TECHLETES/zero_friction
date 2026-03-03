@@ -2,6 +2,11 @@
 requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[project.urls]
+Homepage = "https://github.com/TECHLETES/python_basic_template"
+Repository = "https://github.com/TECHLETES/python_basic_template"
+Issues = "https://github.com/TECHLETES/python_basic_template/issues"
+
 [project]
 name = "python-basic-template"
 version = "0.1.0"
@@ -9,7 +14,6 @@ description = "A basic Python project template with full DevOps tooling support.
 readme = "README.md"
 requires-python = ">=3.12,<4.0"
 keywords = ["devops", "template", "python"]
-license = {text = "MIT"}
 authors = [
     {name = "Thom Ezechiels", email = "thom@techletes.ai"},
 ]
@@ -64,12 +68,6 @@ dev = [
     "rich>=14.2.0,<15.0.0",
 ]
 
-
-[project.urls]
-Homepage = "https://github.com/TECHLETES/python_basic_template"
-Repository = "https://github.com/TECHLETES/python_basic_template"
-Issues = "https://github.com/TECHLETES/python_basic_template/issues"
-
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["utils*", "example*"]
@@ -79,8 +77,8 @@ exclude = ["tests*"]
 line-length = 88
 target-version = ["py312"]
 
-[tool.pytest.ini_options]
-minversion = "6.0"
+[tool.pytest]
+minversion = "9.0"
 addopts = [
     "--strict-markers",
     "--strict-config",
@@ -139,7 +137,6 @@ warn_return_any = true
 warn_unreachable = true
 no_implicit_optional = true
 allow_redefinition = true
-show_error_codes = true
 show_column_numbers = true
 pretty = true
 warn_unused_configs = true
