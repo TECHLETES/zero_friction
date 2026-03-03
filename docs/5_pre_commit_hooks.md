@@ -107,13 +107,12 @@ Make sure `.secrets.baseline` stays committed and up to date.
 
 ### 3.3.4 Enforcing Dependency Workflow
 
-The custom `prevent-manual-requirements-edits` hook ensures that `requirements.txt` is only modified via `pip-compile` and never edited manually.
+The custom `prevent-manual-requirements-edits` hook ensures that the lock file is only modified via `uv lock` and never edited manually.
 
 To add a package:
 
 ```bash
-echo "package-name" >> requirements.in
-./scripts/dependency.sh
+uv add package-name
 ```
 
 ---

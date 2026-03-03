@@ -22,11 +22,9 @@ A modern, production-ready Python project template for TECHLETES, a data & AI co
 * Always declare packages in `pyproject.toml` only
 * Use `uv sync` to install dependencies from the lock file
 * Common commands:
-  - First time setup: `./scripts/dependency.sh`
+  - First time setup: `uv sync`
   - Install deps: `uv sync`
   - Add a package: Edit `pyproject.toml`, then run `uv lock && uv sync`
-  - Check for updates: `./scripts/dependency.sh --check`
-  - Update packages: `./scripts/dependency.sh --update`
 * The lock file (`uv.lock`) ensures everyone uses the same versions
 
 ### Coding
@@ -447,7 +445,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 rm -rf venv
 python3 -m venv venv
 source venv/bin/activate
-./scripts/dependency.sh
+uv sync
 ```
 
 **Pre-commit hook failures:**

@@ -158,8 +158,8 @@ This project uses a hybrid approach where dependencies are declared in `pyprojec
 
 *   **To Add a Production Dependency**:
     1.  Add the package name (e.g., `"pandas"`) to the `dependencies` list in `pyproject.toml`.
-    2.  Run the dependency script to update the lockfile: `./scripts/dependency.sh`
+    2.  Run `uv lock && uv sync` to update the lockfile
 
 *   **To Add a Development-Only Dependency**:
     1.  Add the package name (e.g., `"ipykernel"`) to the `dev` list under `[project.optional-dependencies]` in `pyproject.toml`.
-    2.  Run the dependency script: `./scripts/dependency.sh`
+    2.  Run `uv lock && uv sync`

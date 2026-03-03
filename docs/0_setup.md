@@ -272,24 +272,24 @@ This project uses a hybrid approach to dependency management:
 
 You can use the helper script or perform each step manually:
 
-**3.3.1 Usage of `dependency.sh`**
+**3.3.1 Using `uv sync`**
 
 - Install both production and development dependencies:
 
     ```
-    ./scripts/dependency.sh
+    uv sync
     ```
 
 - Install only production dependencies:
 
     ```
-    ./scripts/dependency.sh --prod
+    uv sync --no-dev
     ```
 
 - Install only development dependencies:
 
     ```
-    ./scripts/dependency.sh --dev
+    uv sync --only-dev
     ```
 
 

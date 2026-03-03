@@ -139,7 +139,7 @@ For full details, see `docs/0_setup.md`. Key steps include:
 
 1. **System Requirements**: Python 3.12+, pip, curl, git
 2. **Virtual Environment**: Remove old `venv`, create and activate new one
-3. **Dependency Management**: Use `scripts/dependency.sh` to install prod/dev dependencies and lock files
+3. **Dependency Management**: Use `uv sync` to install prod/dev dependencies and lock files
 4. **Locale Configuration**: Ensure `en_US.UTF-8` is available
 5. **direnv Setup**: (Optional) For automatic environment variable loading
 6. **Pre-commit Hooks**: Install and update hooks, run all checks

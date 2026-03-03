@@ -5,6 +5,11 @@
     "--config-file=pyproject.toml"
   ],
   "python.linting.mypyEnabled": true,
+  "python.testing.pytestArgs": [
+    "."
+  ],
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
   "ruff.args": [
     "--config=pyproject.toml"
   ],
