@@ -19,67 +19,51 @@ jobs:
   lint-and-test:
     name: Lint & Test
     runs-on: ubuntu-latest
+    env:
+      PRE_COMMIT_HOME: ${{ github.workspace }}/.pre-commit-cache
     strategy:
       matrix:
         python-version: ['3.12']
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
         with:
           persist-credentials: true
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
+          cache-dependency-glob: "uv.lock"
 
       - name: Install dependencies
         run: uv sync
 
-      - name: Run pip-audit
-        run: uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
+      - name: Cache pre-commit hooks
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/.pre-commit-cache
+          key: pre-commit-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('.pre-commit-config.yaml') }}
+          restore-keys: |
+            pre-commit-${{ runner.os }}-${{ matrix.python-version }}-
 
-      - name: Black formatting check
-        run: uv run black --check .
-
-      - name: Ruff linting
-        run: uv run ruff check . --fix
-
-      - name: isort import sorting check
-        run: uv run isort . --check-only --profile=black
-
-      - name: Type checking with mypy
-        run: uv run mypy . --config-file=pyproject.toml
-
-      - name: Run pyupgrade
-        run: uv run pyupgrade --py312-plus --diff .
-
-      - name: Codespell check
-        run: uv run codespell . --skip=*.lock
-
-      - name: Bandit security check
-        run: uv run bandit -r utils example -ll --skip B101
-
-      - name: Pydocstyle check
-        run: uv run pydocstyle utils example
+      - name: Run pre-commit hooks
+        run: uv run pre-commit run --all-files
 
       - name: Run tests with coverage
         run: uv run pytest --cov --cov-report=term --cov-report=xml
 
       - name: Generate coverage badge
-        uses: tj-actions/coverage-badge-py@v2
-        with:
-          working-directory: .
-          output: coverage.svg
-          overwrite: true
+        run: uv run genbadge coverage -i coverage.xml -o coverage.svg
 
       - name: Commit badge
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: update coverage badge"
           file_pattern: coverage.svg
+          branch: ${{ github.head_ref }}
