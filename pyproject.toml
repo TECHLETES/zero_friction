@@ -14,25 +14,21 @@ description = "A basic Python project template with full DevOps tooling support.
 readme = "README.md"
 requires-python = ">=3.12,<4.0"
 keywords = ["devops", "template", "python"]
-authors = [
-    {name = "Thom Ezechiels", email = "thom@techletes.ai"},
-]
-maintainers = [
-  { name = "Techletes DevOps Team", email = "dev@techletes.ai" }
-]
+authors = [{ name = "Thom Ezechiels", email = "thom@techletes.ai" }]
+maintainers = [{ name = "Techletes DevOps Team", email = "dev@techletes.ai" }]
 classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.12",
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
 ]
 
 # Core production dependencies required for the application to run.
 # Pinned with >= and < to allow patch/minor updates while preventing major version breaks.
 # Add only dependencies that are needed for the app to run in production.
 dependencies = [
-  "flask>=3.1.3,<4.0.0",  # Example dependency, replace with your own
+  "flask>=3.1.3,<4.0.0",     # Example dependency, replace with your own
   "requests>=2.32.0,<3.0.0",
   "urllib3>=2.6.0,<3.0.0",
   "werkzeug>=3.1.6,<4.0.0",
@@ -43,6 +39,29 @@ dependencies = [
 # Managed by uv (PEP 735 format) and locked in uv.lock for reproducible builds.
 # Install with: uv sync (all groups), uv sync --no-group dev (no dev), uv sync --only-group extra (extra only), etc.
 [dependency-groups]
+# Development and testing dependencies.
+# Includes code quality tools, testing frameworks, and development utilities.
+# Install with: uv sync (default includes dev) or uv sync --no-group dev to skip
+dev = [
+  "pre-commit>=4.5.0,<5.0.0",
+  "detect-secrets>=1.5.0,<2.0.0",
+  "nbstripout>=0.8.0,<1.0.0",
+  "pytest>=9.0.0,<10.0.0",
+  "pytest-cov>=7.0.0,<8.0.0",
+  "black>=25.12.0,<27.0.0",
+  "mypy>=1.19.0,<2.0.0",
+  "ruff>=0.14.0,<1.0.0",
+  "beartype>=0.22.0,<1.0.0",
+  "pytest-beartype>=0.2.0,<1.0.0",
+  "pip-audit>=2.10.0,<3.0.0",
+  "rich>=14.2.0,<15.0.0",
+  "isort>=5.13.0,<9.0.0",
+  "pyupgrade>=3.15.0,<4.0.0",
+  "codespell>=2.2.0,<3.0.0",
+  "bandit>=1.7.0,<2.0.0",
+  "pydocstyle>=6.3.0,<7.0.0",
+  "genbadge[coverage]>=1.1.0,<2.0.0",
+]
 
 # Additional production features and optional components.
 # Install with: uv sync --group extra or uv sync --no-group extra
@@ -50,29 +69,6 @@ extra = [
   # "zero-friction @ git+https://github.com/TECHLETES/zero_friction.git@main"
 ]
 
-# Development and testing dependencies.
-# Includes code quality tools, testing frameworks, and development utilities.
-# Install with: uv sync (default includes dev) or uv sync --no-group dev to skip
-dev = [
-    "pre-commit>=4.5.0,<5.0.0",
-    "detect-secrets>=1.5.0,<2.0.0",
-    "nbstripout>=0.8.0,<1.0.0",
-    "pytest>=9.0.0,<10.0.0",
-    "pytest-cov>=7.0.0,<8.0.0",
-    "black>=25.12.0,<27.0.0",
-    "mypy>=1.19.0,<2.0.0",
-    "ruff>=0.14.0,<1.0.0",
-    "beartype>=0.22.0,<1.0.0",
-    "pytest-beartype>=0.2.0,<1.0.0",
-    "pip-audit>=2.10.0,<3.0.0",
-    "rich>=14.2.0,<15.0.0",
-    "isort>=5.13.0,<9.0.0",
-    "pyupgrade>=3.15.0,<4.0.0",
-    "codespell>=2.2.0,<3.0.0",
-    "bandit>=1.7.0,<2.0.0",
-    "pydocstyle>=6.3.0,<7.0.0",
-    "genbadge[coverage]>=1.1.0,<2.0.0",
-]
 
 [tool.setuptools.packages.find]
 where = ["."]
@@ -86,14 +82,14 @@ target-version = ["py312"]
 [tool.pytest]
 minversion = "9.0"
 addopts = [
-    "--strict-markers",
-    "--strict-config",
-    "--cov=utils",
-    "--cov=example",
-    "--cov-report=term-missing",
-    "--cov-report=html",
-    "--cov-report=xml",
-    "--beartype-packages=utils,example",
+  "--strict-markers",
+  "--strict-config",
+  "--cov=utils",
+  "--cov=example",
+  "--cov-report=term-missing",
+  "--cov-report=html",
+  "--cov-report=xml",
+  "--beartype-packages=utils,example",
 ]
 testpaths = ["tests"]
 python_files = ["test_*.py", "*_test.py"]
@@ -104,30 +100,30 @@ pythonpath = ["."]
 [tool.coverage.run]
 source = ["utils", "example"]
 omit = [
-    "*/__pycache__/*",
-    "*/tests/*",
-    "*/example/*",
-    "*/.venv/*",
-    "*/venv/*",
-    "*/__init__.py",
-    "setup.py",
-    # Add any other files you want to exclude from test coverage
+  "*/__pycache__/*",
+  "*/tests/*",
+  "*/example/*",
+  "*/.venv/*",
+  "*/venv/*",
+  "*/__init__.py",
+  "setup.py",
+  # Add any other files you want to exclude from test coverage
 ]
 
 [tool.coverage.report]
 exclude_lines = [
-    "pragma: no cover",
-    "def __repr__",
-    "if self.debug:",
-    "if settings.DEBUG",
-    "raise AssertionError",
-    "raise NotImplementedError",
-    "if 0:",
-    "if __name__ == .__main__.:",
-    "class .*\\bProtocol\\):",
-    "@(abc\\.)?abstractmethod",
-    "except ImportError",
-    "pass",
+  "pragma: no cover",
+  "def __repr__",
+  "if self.debug:",
+  "if settings.DEBUG",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if 0:",
+  "if __name__ == .__main__.:",
+  "class .*\\bProtocol\\):",
+  "@(abc\\.)?abstractmethod",
+  "except ImportError",
+  "pass",
 ]
 
 [tool.mypy]
@@ -151,11 +147,7 @@ warn_unused_configs = true
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
 
-exclude = [
-  "migrations",
-  "notebooks",
-  "tests",
-]
+exclude = ["migrations", "notebooks", "tests"]
 plugins = []
 
 # Loosen rules for test and script files
@@ -166,7 +158,7 @@ disallow_incomplete_defs = false
 warn_return_any = false
 
 [tool.ruff]
-target-version = "py311"
+target-version = "py312"
 line-length = 88
 fix = true
 respect-gitignore = true
@@ -184,8 +176,8 @@ lint.select = [
 
 # Rules to ignore (common ones)
 lint.ignore = [
-  "B008",  # Do not perform function calls in argument defaults
-  "E501",  # Line too long (Black handles this)
+  "B008", # Do not perform function calls in argument defaults
+  "E501", # Line too long (Black handles this)
 ]
 
 [tool.bandit]
@@ -197,7 +189,7 @@ skips = ["B101", "B601"]
 # Used by both pre-commit hooks and CI workflows via scripts/run-pip-audit.sh
 # See docs/6_pre_commit_troubleshooting.md for explanation of each exclusion
 ignore = [
-    "CVE-2026-1703",  # Path traversal in pip when extracting malicious wheels
+  "CVE-2026-1703", # Path traversal in pip when extracting malicious wheels
 ]
 
 [tool.uv]
