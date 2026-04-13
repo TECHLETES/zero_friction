@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=61.0", "wheel", "pip>=26.0,<27.0.0", "uv>=0.9.25,<1.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project.urls]
@@ -46,6 +46,7 @@ dev = [
   "pre-commit>=4.5.0,<5.0.0",
   "detect-secrets>=1.5.0,<2.0.0",
   "nbstripout>=0.8.0,<1.0.0",
+  "ipykernel>=6.29.0,<7.0.0",
   "pytest>=9.0.0,<10.0.0",
   "pytest-cov>=7.0.0,<8.0.0",
   "black>=25.12.0,<27.0.0",
@@ -186,7 +187,7 @@ skips = ["B101", "B601"]
 
 [tool.pip-audit]
 # Centralized CVE/PYSEC exclusions for pip-audit
-# Used by both pre-commit hooks and CI workflows via scripts/run-pip-audit.sh
+# Used by both pre-commit hooks and CI workflows via scripts/hooks/run-pip-audit.sh
 # See docs/6_pre_commit_troubleshooting.md for explanation of each exclusion
 ignore = [
   "CVE-2026-1703", # Path traversal in pip when extracting malicious wheels

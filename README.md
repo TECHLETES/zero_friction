@@ -14,7 +14,7 @@ A modern, production-ready Python project template for TECHLETES, a data & AI co
 * Load secrets using 1Password with the helper in code
         from utils.secrets import get_secret
         API_KEY = get_secret("op://<vault>/<item>/<field>")
-* See [docs/1_secret_management.md](docs/1_secret_management.md) for mor info on managing secrets.
+* See [docs/2_secret_management.md](docs/2_secret_management.md) for more info on managing secrets.
 
 ### Dependencies
 * **Do not** run `pip install` manually in the terminal!
@@ -50,76 +50,15 @@ A modern, production-ready Python project template for TECHLETES, a data & AI co
 
 ## 🚀 Quick Start
 
-### Prerequisites
+**For the fastest supported setup path from clone to working environment, see [docs/quickstart.md](docs/quickstart.md).**
 
-- Python 3.12 or later
-- git
-- curl
-- sudo access (for system package installation)
-- 1Password CLI (see [docs/0_setup.md](docs/0_setup.md) for setup instructions)
-- **uv** (see [Installing uv](#installing-uv) below if you don't have it yet)
+The quickstart guide covers:
+- Choosing between devcontainer (recommended for Windows, macOS, and mixed-OS teams) and host setup (Linux)
+- Step-by-step bootstrap for each path
+- First-success verification checks
+- First-day commands to run
 
-### Linux: One-Command Setup
-
-```bash
-git clone https://github.com/TECHLETES/{REPO_NAME}.git
-cd {REPO_NAME}
-./scripts/setup.sh
-```
-
-### Windows setup
-
-```powershell
-git clone https://github.com/TECHLETES/{REPO_NAME}.git
-cd {REPO_NAME}
-.\scripts\setup.ps1
-```
-
-This will set up everything you need for development!
-
-### Installing uv
-
-If you don't have `uv` installed yet, follow these instructions for your platform:
-
-#### Linux / macOS
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-Then restart your terminal.
-
-#### Verify Installation
-
-```bash
-uv --version
-```
-
-You should see something like: `uv 0.x.x`
-
-### Common setup issues
-
-#### Issue: Windows setup Powershell Execution Policy
-
-If you see an error like:
-
-```
-File .\setup.ps1 cannot be loaded. The file .\setup.ps1 is not digitally signed. You cannot run this script on the current system. For more information about running scripts and setting execution policy, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
-```
-
-Windows is blocking unsigned scripts by default. To fix this:
-
-1. Open PowerShell **as your normal user** (no need for admin).
-2. Run:
-   ```powershell
-   Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-Restart PowerShell and try again:
-
-```powershell
-.\scripts\setup.ps1
-```
-
-This only changes the policy for your user account. It allows you to run local scripts while still requiring downloaded scripts to be unblocked (Unblock-File) before execution.
+Detailed setup and customization guides are linked in the [📚 Documentation](#-documentation) section.
 
 ## 📋 Features
 
@@ -141,20 +80,30 @@ This only changes the policy for your user account. It allows you to run local s
 - **Type checking**: mypy & beartype
 - **Testing**: pytest with coverage
 - **Pre-commit hooks** for code quality
-- **Jupyter notebook support** with nbstripout
+- **Jupyter notebook support** with nbstripout and `ipykernel`
 
 ### 📦 **Project Structure**
 ```
 python_basic_template/
+├── .devcontainer/
+│   ├── Dockerfile                  # Devcontainer image definition
+│   ├── devcontainer.json           # VS Code devcontainer configuration
+│   └── post-create.sh              # Container bootstrap commands
+├── .vscode/
+│   └── extensions.json             # Recommended VS Code extensions
+├── .dockerignore                   # Docker build context exclusions
 ├── .github/
 │   └── workflows/                  # GitHub Actions workflows
-├── docs/                           # Documentation (setup, secrets, dependencies, quality, progress)
+├── docs/                           # Documentation (setup, secrets, dependencies, quality, containers)
+│   ├── quickstart.md               # ⚡ Fast path from clone to working environment
 │   ├── 0_setup.md
 │   ├── 1_usage.md
-│   ├── 1_secret_management.md
-│   ├── 2_dependency_management.md
-│   ├── 3_pre_commit_hooks.md
+│   ├── 2_secret_management.md
+│   ├── 3_dependency_management.md
 │   ├── 4_code_quality.md
+│   ├── 5_pre_commit_hooks.md
+│   ├── 6_pre_commit_troubleshooting.md
+│   ├── 7_devcontainers.md
 │   └── progress.md
 ├── example/                        # Example code and notebooks
 │   ├── __init__.py
@@ -162,17 +111,16 @@ python_basic_template/
 │   └── using_secrets.ipynb
 ├── scripts/                        # Setup and utility scripts
 │   ├── setup.sh
-│   ├── dependency.sh               # uv-based dependency management
-│   ├── update_deps.py              # Update package versions
+│   ├── run-pip-audit.sh            # pip-audit wrapper used in hooks and CI
 │   ├── new-branch.sh
 │   └── hooks/
 │       ├── black-autoformat.sh
 │       ├── nbstripout-autoadd.sh
-│       └── precommit_pytest.sh
+│       ├── precommit_pytest.sh
+│       └── verify-lockfile.sh
 ├── utils/                          # Utility modules
 │   ├── __init__.py
-│   ├── secrets.py
-│   └── utils.py
+│   └── secrets.py
 ├── tests/                          # Test directory
 ├── pyproject.toml                  # Project config & dependencies (single source of truth)
 ├── uv.lock                         # Locked dependency versions (auto-generated)
@@ -188,52 +136,7 @@ python_basic_template/
 
 This project uses **uv** for fast, reliable dependency management. uv provides a single-file lock format and unified workflow for all dependency tasks.
 
-### First Time Setup
-
-```bash
-# Step 1: Make sure uv is installed (see "Installing uv" section above)
-uv --version
-
-# Step 2: Setup environment and dependencies
-./scripts/setup.sh
-```
-
-The `setup.sh` script will:
-1. ✅ Create a virtual environment (`.venv`)
-2. ✅ Lock all dependencies into `uv.lock`
-3. ✅ Sync and install everything
-
-**Important:** You don't need to manually activate the virtual environment for most uv commands:
-- Use `uv run python script.py` to run Python scripts
-- Use `uv run pytest` to run tests
-- Use `uv run mypy .` to run type checking
-
-(Optional) If you prefer traditional shell activation:
-```bash
-source .venv/bin/activate  # Linux/macOS
-# or: .venv\Scripts\activate  # Windows PowerShell
-```
-
-### Quick Start
-
-```bash
-# First time: setup environment and lock dependencies
-./scripts/setup.sh
-
-# Day-to-day: sync dependencies (install/update from uv.lock)
-uv sync
-
-# Add a new package
-# 1. Edit pyproject.toml and add the package with version constraints
-# 2. Run: uv lock && uv sync
-
-# Update dependencies (updates uv.lock with newer compatible versions)
-# For patch + minor updates (safe):
-uv lock
-
-# For major version updates (breaking changes possible):
-uv lock --upgrade
-```
+After initial setup (see [quickstart.md](docs/quickstart.md)), use these workflows for day-to-day dependency management.
 
 ### Dependency Layers
 
@@ -242,8 +145,8 @@ Dependencies are organized into three logical groups:
 | Layer | Location | Purpose | Installed With |
 |-------|----------|---------|-----------------|
 | **Core** | `dependencies` | Essential runtime packages | `uv sync` |
-| **Extra** | `[project.optional-dependencies].extra` | Optional production features | `uv sync` |
-| **Dev** | `[project.optional-dependencies].dev` | Development and testing tools | `uv sync` (default) |
+| **Extra** | `[dependency-groups].extra` | Optional production features | `uv sync --group extra` |
+| **Dev** | `[dependency-groups].dev` | Development and testing tools | `uv sync` (default) |
 
 **Example structure in `pyproject.toml`:**
 
@@ -255,7 +158,7 @@ dependencies = [
     "sqlalchemy",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 # Extra production features
 extra = [
     "redis",
@@ -331,18 +234,20 @@ Secure secret handling with 1Password CLI integration:
 - **detect-secrets** prevents accidental commits
 - **Example usage** in [example/using_secrets.py](example/using_secrets.py)
 
-**📖 Detailed guide**: [docs/1_secret_management.md](docs/1_secret_management.md)
+**📖 Detailed guide**: [docs/2_secret_management.md](docs/2_secret_management.md)
 
 ## 🛠️ Development Workflow
 
 ### Setup Development Environment
 
 ```bash
-# Complete setup (recommended for new developers)
+# Linux host setup
 ./scripts/setup.sh
 ```
 
-**For manual set-up see**: [docs/0_setup.md](docs/0_setup.md)
+Use [docs/quickstart.md](docs/quickstart.md) to choose between the devcontainer path and the Linux host setup path.
+
+**For detailed setup guidance see**: [docs/0_setup.md](docs/0_setup.md)
 
 ### Code Quality
 
@@ -408,7 +313,7 @@ All development tools are configured in `pyproject.toml`:
 2. **Update project metadata** in `pyproject.toml`:
    - Change `name`, `description`, `authors`
    - Update repository URLs
-3. **Run setup**: `./scripts/setup.sh`
+3. **Bootstrap your environment** with [docs/quickstart.md](docs/quickstart.md)
 4. **Start coding**!
 
 ### Customization
@@ -420,12 +325,17 @@ All development tools are configured in `pyproject.toml`:
 
 ## 📚 Documentation
 
-0. **[Setup](docs/0_setup.md)** - Guide to setup the development environment
+**Start here:**
+- **[Quickstart](docs/quickstart.md)** - Fastest path from clone to working environment
+
+**Detailed guides:**
+0. **[Setup](docs/0_setup.md)** - Full guide to setup the development environment
 1. **[Usage](docs/1_usage.md)** - Guide for daily usage of this repository
 2. **[Secret Management](docs/2_secret_management.md)** - Secure secret handling guide
 3. **[Dependency Management](docs/3_dependency_management.md)** - Detailed dependency workflow
 4. **[Code Quality](docs/4_code_quality.md)** - Rules and guidelines on code quality and how it is enforced
 5. **[Pre Commit Hooks](docs/5_pre_commit_hooks.md)** - Pre commit hooks to ensure safety and quality
+6. **[Devcontainers](docs/7_devcontainers.md)** - Devcontainer setup, customization, and troubleshooting
 
 
 ## 🤝 Contributing
@@ -442,9 +352,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 **Virtual environment issues:**
 ```bash
-rm -rf venv
-python3 -m venv venv
-source venv/bin/activate
+rm -rf .venv
 uv sync
 ```
 
@@ -462,7 +370,7 @@ pre-commit run --all-files
 **Dependency conflicts:**
 ```bash
 pip check  # Identify conflicts
-# Review and resolve in requirements.in or pyproject.toml
+# Review and resolve in pyproject.toml, then run uv lock && uv sync
 ```
 
 ---

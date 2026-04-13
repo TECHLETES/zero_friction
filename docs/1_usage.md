@@ -69,7 +69,7 @@ If `pip-audit` reports a vulnerability that you need to exclude (false positive,
 
 **1. Run pip-audit to see the vulnerability:**
 ```bash
-uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
+uv run bash scripts/hooks/run-pip-audit.sh --progress-spinner off --desc
 ```
 
 **2. Add the CVE to `pyproject.toml`:**
@@ -95,7 +95,7 @@ ignore = [
 pre-commit run pip-audit --all-files
 
 # Or run directly
-uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
+uv run bash scripts/hooks/run-pip-audit.sh --progress-spinner off --desc
 ```
 
 **Important:**

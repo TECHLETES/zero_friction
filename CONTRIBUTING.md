@@ -5,9 +5,14 @@
 Thank you for your interest in contributing! This repository serves as the official Python project template for TECHLETES, a data & AI consultancy. All contributors are TECHLETES employees, and contributions should reflect our standards of professionalism, quality, and collaboration.
 
 
-## Prerequisite: 1Password CLI Setup
+## Prerequisite: Choose Your Development Environment
 
-Before starting, you must set up the 1Password CLI for secret management. This is required for all TECHLETES Python projects and for running the setup scripts.
+Windows contributors should use the devcontainer workflow documented in
+`docs/7_devcontainers.md`. Linux and macOS contributors can use the host setup
+documented in `docs/0_setup.md`.
+
+1Password CLI is required only when you need secret-backed workflows on the host.
+Inside the devcontainer it is optional.
 
 ### 0.1.1 Set-up 1Password (CLI)
 
@@ -42,24 +47,22 @@ Before starting, you must set up the 1Password CLI for secret management. This i
 ## Getting Started
 
 1. **Clone the repository** (forking is not required for internal TECHLETES projects).
-2. **Automatic setup (recommended):**
-   After cloning, run the setup script to configure your environment:
+2. **Recommended setup path:**
+   - On Windows, clone inside WSL storage, open the repo in VS Code, and run
+     `Dev Containers: Reopen in Container`.
+   - On Linux/macOS, run the host setup script:
+     ```bash
+     ./scripts/setup.sh
+     ```
+   - Do not run `./scripts/setup.sh` inside the devcontainer. The container
+     bootstraps itself with `uv sync --frozen` and
+     `uv run pre-commit install --install-hooks`.
+   For a detailed breakdown, see `docs/0_setup.md` and `docs/7_devcontainers.md`.
+3. **Set up pre-commit hooks if needed:**
+   The devcontainer post-create step already installs them. On host setups, the
+   setup script installs them as part of onboarding. If you need to reinstall:
    ```bash
-   bash scripts/setup.sh
-   ```
-   This script will:
-   - Check for Python 3.12+, pip, curl, and git
-   - Create and activate a virtual environment
-   - Install and lock all dependencies (prod & dev)
-   - Set up pre-commit hooks
-   - Check and configure system locale
-   - Install and configure direnv (if available)
-   - Initialize secret scanning baseline
-   - Validate your environment and dependencies
-   For a detailed breakdown or manual steps, see `docs/0_setup.md`.
-3. **Set up pre-commit hooks** (required):
-   ```bash
-   pre-commit install
+   uv run pre-commit install --install-hooks
    ```
 
 
@@ -98,8 +101,8 @@ This script will:
 ### 3. Run all checks locally
 
 ```bash
-pre-commit run --all-files
-pytest
+uv run pre-commit run --all-files
+uv run pytest
 ```
 
 ### 4. Update documentation if your change affects usage or APIs
@@ -137,17 +140,21 @@ pytest
 
 For full details, see `docs/0_setup.md`. Key steps include:
 
-1. **System Requirements**: Python 3.12+, pip, curl, git
-2. **Virtual Environment**: Remove old `venv`, create and activate new one
+1. **System Requirements**: Python 3.12+, git, and either Docker Desktop + WSL2
+   for Windows or a host shell environment on Linux/macOS
+2. **Virtual Environment**: Use the repo-local `.venv` on both host and
+   devcontainer workflows
 3. **Dependency Management**: Use `uv sync` to install prod/dev dependencies and lock files
 4. **Locale Configuration**: Ensure `en_US.UTF-8` is available
 5. **direnv Setup**: (Optional) For automatic environment variable loading
 6. **Pre-commit Hooks**: Install and update hooks, run all checks
-7. **Secret Management**: Set up 1Password CLI and initialize `detect-secrets` baseline
+7. **Secret Management**: Set up 1Password CLI only when you need secret-backed
+   workflows
 8. **Tool Verification**: Confirm Black, Ruff, Mypy, Beartype, and pytest are installed
 9. **Project Validation**: Import modules, syntax check all Python files, verify dependencies
 
-All of these are automated by `scripts/setup.sh`.
+The host path is automated by `scripts/setup.sh`. The container path is automated
+by `.devcontainer/post-create.sh`.
 
 
 ## Workplace Standards

@@ -244,7 +244,7 @@ ignore = [
 ]
 
 # Run pip-audit locally to verify
-uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
+uv run bash scripts/hooks/run-pip-audit.sh --progress-spinner off --desc
 
 # Script automatically reads from pyproject.toml and applies exclusions
 ```

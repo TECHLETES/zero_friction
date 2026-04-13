@@ -400,7 +400,7 @@ python -m json.tool .secrets.baseline > /dev/null
 ```toml
 [tool.pip-audit]
 # Centralized CVE/PYSEC exclusions for pip-audit
-# Used by both pre-commit hooks and CI workflows via scripts/run-pip-audit.sh
+# Used by both pre-commit hooks and CI workflows via scripts/hooks/run-pip-audit.sh
 ignore = [
     "CVE-2026-1703",  # Path traversal in pip (only affects pip extraction)
     "CVE-2024-XXXXX",  # Your new exclusion with explanation
@@ -410,7 +410,7 @@ ignore = [
 **Workflow:**
 1. Run pip-audit to see the vulnerability:
    ```bash
-   uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
+   uv run bash scripts/hooks/run-pip-audit.sh --progress-spinner off --desc
    ```
 2. Identify the CVE/PYSEC ID from the output
 3. Add the ID to the `ignore` list in `pyproject.toml`
@@ -419,7 +419,7 @@ ignore = [
 
 **Important:**
 - All exclusions go in **ONE place**: `pyproject.toml [tool.pip-audit]`
-- The `scripts/run-pip-audit.sh` wrapper reads from `pyproject.toml` and applies the exclusions
+- The `scripts/hooks/run-pip-audit.sh` wrapper reads from `pyproject.toml` and applies the exclusions
 - Never add `--ignore-vuln` directly to pre-commit config or CI workflow—it goes out of sync
 - Commit changes to `pyproject.toml` like any other code change
 
@@ -437,7 +437,7 @@ uv lock --upgrade-package <package>
 uv sync
 
 # Run pip-audit to verify
-uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
+uv run bash scripts/hooks/run-pip-audit.sh --progress-spinner off --desc
 ```
 
 #### Verifying Exclusions Work
@@ -445,7 +445,7 @@ uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
 **Test locally:**
 ```bash
 # Run pip-audit with exclusions from pyproject.toml
-uv run bash scripts/run-pip-audit.sh --progress-spinner off --desc
+uv run bash scripts/hooks/run-pip-audit.sh --progress-spinner off --desc
 
 # Or run pre-commit manually
 pre-commit run pip-audit --all-files
