@@ -18,7 +18,7 @@ The following hooks are currently configured:
 | `detect-secrets` | Detect and prevent committing secrets |
 | `jupytext` | Sync `.ipynb` and `.py` notebook pairs |
 | `mypy` | Type check Python code with mypy |
-| `ruff` | Lint Python code with Ruff (includes isort) |
+| `ruff` | Lint Python code with Ruff (includes import sorting) |
 
 The configuration is stored in the `.pre-commit-config.yaml` file at the project root.
 
@@ -81,7 +81,7 @@ The `mypy` hook performs static type checking on Python code to catch type-relat
 The `ruff` hook provides fast Python linting and includes:
 
 - Code quality checks (similar to flake8)
-- Import sorting (replacing isort)
+- Import sorting (handled by Ruff)
 - Security vulnerability detection
 - Performance and bug detection
 - Automatically fixes issues where possible

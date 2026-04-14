@@ -76,7 +76,7 @@ Detailed setup and customization guides are linked in the [📚 Documentation](#
 
 ### 🛠️ **Development Tools**
 - **Code formatting**: Black
-- **Linting & import sorting**: Ruff (replaces flake8, isort, pyupgrade)
+- **Linting & import sorting**: Ruff (replaces flake8 and pyupgrade)
 - **Type checking**: mypy & beartype
 - **Testing**: pytest with coverage
 - **Pre-commit hooks** for code quality
@@ -304,7 +304,7 @@ pytest tests/test_specific.py
 
 All development tools are configured in `pyproject.toml`:
 - **Black**: Code formatting (88 char line length)
-- **ruff**: Sorting, linting, formatting (replaces flake8, isort, pyupgrade)
+- **ruff**: Sorting, linting, formatting (replaces flake8 and pyupgrade)
 - **pytest**: Test configuration with coverage
 - **mypy**: Type checking
 - **beartype**: Type checking at runtime (more extensive then mypy)

@@ -78,52 +78,15 @@ pre-commit autoupdate
 
 ## Import & Code Formatting Hooks
 
-### isort (Import Sorting)
-
-**Problem:** isort conflicts with Black formatting
-
-**Solution:** Ensure Black profile is enabled:
-```yaml
-- repo: https://github.com/PyCQA/isort
-  hooks:
-    - id: isort
-      args: [--profile=black]  # Must specify Black profile!
-```
-
-**Problem:** isort changes files every run (unstable)
-
-**Solutions:**
-```bash
-# Verify pyproject.toml isort config (if any)
-cat pyproject.toml | grep -A 10 "\[tool.isort\]"
-
-# Clear cache
-rm -rf .isort.cache
-
-# Run with verbose output
-pre-commit run isort --all-files --verbose
-
-# Common fix: ensure consistent profile
-run: uv run isort --profile=black .
-```
-
-**Problem:** "Known third party modules not recognized"
-
-**Solution:** Add to `.isort.cfg` or `pyproject.toml`:
-```toml
-[tool.isort]
-profile = "black"
-known_first_party = ["utils", "example"]  # Your local packages
-```
+Ruff handles import sorting in this repo, so dedicated import-sorting setup is not used. Black remains the canonical formatter, and Ruff provides linting plus import-sorting corrections.
 
 ### Black (Code Formatter)
 
-**Problem:** Black conflicts with other formatters (ruff, isort)
+**Problem:** Black conflicts with other formatters (ruff)
 
 **Solution:** Ensure execution order and compatible configs:
-1. isort runs FIRST
-2. Then Black
-3. Then ruff
+1. Black runs FIRST
+2. Then ruff
 
 **Problem:** "Cannot parse file" or "Unexpected token"
 
@@ -150,20 +113,9 @@ target-version = ["py312"]
 
 ### Ruff (Linting & Formatting)
 
-**Problem:** Ruff conflicts with isort or Black
+**Problem:** Ruff conflicts with Black
 
-**Solution:** Disable overlapping rules in `pyproject.toml`:
-```toml
-[tool.ruff]
-line-length = 88
-
-[tool.ruff.lint]
-# Ensure ruff doesn't override isort
-ignore = ["I"]  # Ignore import sorting (handled by isort)
-
-[tool.ruff.lint.isort]
-profile = "black"
-```
+**Solution:** Use consistent line-length and keep formatting rules aligned between Ruff and Black.
 
 **Problem:** Ruff fails with "E501: line too long" even after Black
 
@@ -189,7 +141,6 @@ ruff config
 # Try running in isolation
 ruff check --fix .
 black .
-isort .
 ```
 
 ### pyupgrade (Python Modernization)
@@ -767,23 +718,17 @@ grep "rev:" .pre-commit-config.yaml
 
 ### Import/Format/Lint Cycle (A Modifies, B Undoes, C Redoes)
 
-**Problem:** isort, Black, and ruff keep changing files back and forth.
+**Problem:** Black and ruff keep changing files back and forth.
 
-**Solution:** Ensure proper hook order:
+**Solution:** Ensure proper hook order and compatible configuration:
 ```yaml
-# 1. Import sorting FIRST
-- repo: https://github.com/PyCQA/isort
-  hooks:
-    - id: isort
-      args: [--profile=black]
-
-# 2. Python modernization
+# 1. Python modernization
 - repo: https://github.com/asottile/pyupgrade
   hooks:
     - id: pyupgrade
       args: [--py312-plus]
 
-# 3. Linting + formatting LAST
+# 2. Linting + formatting LAST
 - repo: https://github.com/astral-sh/ruff-pre-commit
   hooks:
     - id: ruff
@@ -792,12 +737,9 @@ grep "rev:" .pre-commit-config.yaml
 
 And ensure config compatibility:
 ```toml
-[tool.isort]
-profile = "black"
-
 [tool.black]
 line-length = 88
-
+```
 [tool.ruff]
 line-length = 88
 ignore = ["I"]  # Don't let ruff handle imports

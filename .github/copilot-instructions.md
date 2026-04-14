@@ -152,7 +152,7 @@ uv.lock                             # Locked dependency versions (auto-generated
 
 ### Code Style
 - **Line length:** 88 characters (Black formatter)
-- **Imports:** Sorted by isort (Black profile), auto-fixed by pre-commit
+- **Imports:** Sorted by Ruff import-sorting rules, auto-fixed by pre-commit
 - **Modernization:** pyupgrade auto-converts old syntax (Python 3.12+)
 - **Docstrings:** Checked by pydocstyle (Google style recommended)
 
@@ -180,7 +180,6 @@ All 16+ hooks run automatically when you commit (if venv is active).
 |------|---------|------------|
 | `detect-secrets` | Blocks secrets from being committed | ❌ Manual fix required |
 | `black` | Code formatting (88-char lines) | ✅ Auto-fixes |
-| `isort` | Import sorting (Black profile) | ✅ Auto-fixes |
 | `pyupgrade` | Modernizes Python syntax | ✅ Auto-fixes |
 | `ruff` | Comprehensive linting | ✅ Most auto-fixed |
 | `mypy` | Static type checking | ❌ Manual fix required |
@@ -193,7 +192,7 @@ All 16+ hooks run automatically when you commit (if venv is active).
 
 ### CI/CD Pipeline (.github/workflows/ci.yml)
 Runs on every PR and merge to `main`/`staging`:
-1. Lint & format check (black, ruff, isort)
+1. Lint & format check (black, ruff)
 2. Type checking (mypy)
 3. Security scanning (bandit, pip-audit, detect-secrets)
 4. Unit tests (pytest)

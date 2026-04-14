@@ -58,8 +58,8 @@ Quality tools enforce style, consistency, and early bug detection. Ruff, Black, 
 
 Ruff provides fast linting and catches many code issues before commit.
 
-- Replaces flake8, isort, and pyupgrade in a single fast tool
-- Configured via `pyproject.toml` with enabled rules: E (pycodestyle), F (pyflakes), I (isort), B (bugbear), UP (pyupgrade)
+- Replaces flake8 and pyupgrade in a single fast tool
+- Configured via `pyproject.toml` with enabled rules: E (pycodestyle), F (pyflakes), I (import sorting), B (bugbear), UP (pyupgrade)
 - Automatically fixes issues when possible
 - Target version set to Python 3.11+ with 88-character line length
 

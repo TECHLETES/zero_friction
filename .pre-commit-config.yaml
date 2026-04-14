@@ -68,15 +68,6 @@ repos:
         name: Type check with mypy
         args: ["--config-file=pyproject.toml"]
 
-  # Import sorting with isort (must run before formatters)
-  - repo: https://github.com/PyCQA/isort
-    rev: 8.0.1
-    hooks:
-      - id: isort
-        name: isort (import sorting)
-        args: [--profile=black]
-        types: [python]
-
   # Modernize Python syntax
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.21.2
