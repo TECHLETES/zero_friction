@@ -64,6 +64,9 @@ For each phase:
 
 After all phases complete, verify the work hangs together and report results.
 
+- Confirm the final changes comply with the repository's pre-commit checks.
+- If any pre-commit hook would fail, do not finalize the task; instead create a follow-up fix task for Coder and rerun verification.
+
 ## Parallelization Rules
 
 **RUN IN PARALLEL when:**

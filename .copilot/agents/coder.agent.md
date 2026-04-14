@@ -49,3 +49,9 @@ These coding principles are mandatory:
 9. Quality
 - Favor deterministic, testable behavior.
 - Keep tests simple and focused on verifying observable behavior.
+
+10. Pre-commit Compliance
+- Use the repository's pre-commit configuration as the gate for completed work.
+- After making changes, verify the modified files pass the repo's pre-commit checks before finalizing.
+- If code does not comply, fix the issues until the hooks succeed.
+- Prefer running the equivalent of `pre-commit run --files <changed-files>` or `pre-commit run --all-files` where available.
