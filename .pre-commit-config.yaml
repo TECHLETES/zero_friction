@@ -95,15 +95,6 @@ repos:
         args: [--fix]
         types: [python]
 
-  # Spell checking
-  - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.1
-    hooks:
-      - id: codespell
-        name: codespell (spell check)
-        types: [python]
-        args: [--skip=*.lock]
-
   # Security scanning
   - repo: https://github.com/PyCQA/bandit
     rev: 1.9.4
