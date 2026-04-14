@@ -81,10 +81,13 @@ Detailed setup and customization guides are linked in the [📚 Documentation](#
 - **Testing**: pytest with coverage
 - **Pre-commit hooks** for code quality
 - **Jupyter notebook support** with nbstripout and `ipykernel`
+- **Shared Copilot agents** versioned in the repo for optional install into VS Code/Copilot
 
 ### 📦 **Project Structure**
 ```
 python_basic_template/
+├── .copilot/
+│   └── agents/                     # Shared Copilot agent definitions for optional install
 ├── .devcontainer/
 │   ├── Dockerfile                  # Devcontainer image definition
 │   ├── devcontainer.json           # VS Code devcontainer configuration
@@ -111,6 +114,7 @@ python_basic_template/
 │   └── using_secrets.ipynb
 ├── scripts/                        # Setup and utility scripts
 │   ├── setup.sh
+│   ├── install-copilot-agents.sh   # Installs repo-shared Copilot agents into ~/.copilot/agents
 │   ├── run-pip-audit.sh            # pip-audit wrapper used in hooks and CI
 │   ├── new-branch.sh
 │   └── hooks/
@@ -314,7 +318,8 @@ All development tools are configured in `pyproject.toml`:
    - Change `name`, `description`, `authors`
    - Update repository URLs
 3. **Bootstrap your environment** with [docs/quickstart.md](docs/quickstart.md)
-4. **Start coding**!
+4. **Optionally install the shared Copilot agents** with `./scripts/install-copilot-agents.sh`
+5. **Start coding**!
 
 ### Customization
 
@@ -336,6 +341,23 @@ All development tools are configured in `pyproject.toml`:
 4. **[Code Quality](docs/4_code_quality.md)** - Rules and guidelines on code quality and how it is enforced
 5. **[Pre Commit Hooks](docs/5_pre_commit_hooks.md)** - Pre commit hooks to ensure safety and quality
 6. **[Devcontainers](docs/7_devcontainers.md)** - Devcontainer setup, customization, and troubleshooting
+
+### Shared Copilot Agents
+
+This template now ships four shared agent definitions in `.copilot/agents/`:
+
+- `Orchestrator`
+- `Planner`
+- `Coder`
+- `Designer`
+
+Install them into the current VS Code/Copilot environment with:
+
+```bash
+./scripts/install-copilot-agents.sh
+```
+
+Use `--link` if you want your local agent files to track repo edits in place, or `--force` to replace existing files. If you work in Remote WSL or a devcontainer, run the script in that same remote environment so it installs into the correct `~/.copilot/agents` home.
 
 
 ## 🤝 Contributing

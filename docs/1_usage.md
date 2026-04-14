@@ -43,6 +43,35 @@ This guide covers the day-to-day development workflow, including dependency mana
     ```
     At this point, the pre-commit hooks will run automatically. See the troubleshooting guide below if any checks fail.
 
+## Optional Copilot Agents
+
+This template includes four shared Copilot agent definitions in
+`.copilot/agents/`:
+
+- `Orchestrator`
+- `Planner`
+- `Coder`
+- `Designer`
+
+Install them into the current environment with:
+
+```bash
+./scripts/install-copilot-agents.sh
+```
+
+Useful variants:
+
+```bash
+# Replace existing installed copies
+./scripts/install-copilot-agents.sh --force
+
+# Symlink instead of copy so repo edits are picked up immediately
+./scripts/install-copilot-agents.sh --link --force
+```
+
+If VS Code is connected to WSL or a devcontainer, run the installer there so it
+targets the correct remote `~/.copilot/agents` directory.
+
 ### 🔄 Adding or Updating Dependencies
 
 When you need to add or update dependencies, follow this workflow:

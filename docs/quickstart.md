@@ -38,6 +38,19 @@ Then:
 
 The container bootstrap runs the project sync for you. Do not run `./scripts/setup.sh` inside the devcontainer.
 
+### Optional: install the shared Copilot agents
+
+If you want the repository's `Orchestrator`, `Planner`, `Coder`, and `Designer`
+agents available in Copilot, run:
+
+```bash
+./scripts/install-copilot-agents.sh
+```
+
+Run that command in the same environment where VS Code is attached. For
+example, if you are using Remote WSL or a devcontainer, run it there so the
+files land in that environment's `~/.copilot/agents` directory.
+
 ## Host fast path
 
 Choose this path if you are on Linux and want to work directly on your machine.
@@ -67,6 +80,17 @@ If your shell is not auto-activating the environment after setup, open a new ter
 ```bash
 source .venv/bin/activate
 ```
+
+### Optional: install the shared Copilot agents
+
+If you want the repository's shared Copilot agents in this environment, run:
+
+```bash
+./scripts/install-copilot-agents.sh
+```
+
+The script copies the repo versions into `~/.copilot/agents` by default. Use
+`--link` if you prefer symlinks while iterating on the agent definitions.
 
 ## First-success checks
 
