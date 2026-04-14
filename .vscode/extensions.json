@@ -6,6 +6,25 @@
     "ms-python.vscode-pylance",
     "ms-python.mypy-type-checker",
     "charliermarsh.ruff",
-    "ms-toolsai.jupyter"
+    "ms-toolsai.jupyter",
+    "astral-sh.ty",
+    "charliermarsh.ruff",
+    "ms-python.autopep8",
+    "ms-python.black-formatter",
+    "ms-python.debugpy",
+    "mgesbert.python-path",
+    "docker.docker",
+    "dbaeumer.vscode-eslint",
+    "tamasfe.even-better-toml",
+    "cweijan.vscode-excel",
+    "GitHub.copilot-chat",
+    "github.vscode-github-actions",
+    "GitHub.vscode-pull-request-github",
+    "ms-azuretools.vscode-azure-github-copilot",
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-mysql",
+    "mtxr.sqltools-driver-pg",
+    "mtxr.sqltools-driver-sqlite",
+    "ms-ossdata.vscode-pgsql"
   ]
 }
