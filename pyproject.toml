@@ -71,7 +71,6 @@ extra = [
   # "zero-friction @ git+https://github.com/TECHLETES/zero_friction.git@main"
 ]
 
-
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["utils*", "example*"]
@@ -149,7 +148,18 @@ warn_unused_configs = true
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
 
-exclude = ["migrations", "notebooks", "tests"]
+# Specify which folders/files to type check (adjust as needed)
+files = ["example"]
+
+exclude = '''
+(?x)(
+    ^migrations/
+  | ^notebooks/
+  | ^tests/
+  | ^\.venv/
+  | ^venv/
+)
+'''
 plugins = []
 
 # Loosen rules for test and script files
