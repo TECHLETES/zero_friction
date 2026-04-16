@@ -162,13 +162,6 @@ exclude = '''
 '''
 plugins = []
 
-# Loosen rules for test and script files
-[[tool.mypy.overrides]]
-module = ["tests.*", "scripts.*"]
-disallow_untyped_defs = false
-disallow_incomplete_defs = false
-warn_return_any = false
-
 [tool.ruff]
 target-version = "py312"
 line-length = 88
@@ -193,7 +186,7 @@ lint.ignore = [
 ]
 
 [tool.bandit]
-exclude_dirs = ["tests", "venv"]
+exclude_dirs = ["tests", ".venv"]
 skips = ["B101", "B601"]
 
 [tool.pip-audit]
