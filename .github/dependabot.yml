@@ -1,29 +1,33 @@
 version: 2
 
-multi-ecosystem-groups:
-  all-updates:
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "06:00"
-      timezone: "Europe/Amsterdam"
-    labels:
-      - "dependencies"
-      - "dependabot"
-    commit-message:
-      prefix: "deps"
-      include: "scope"
-    target-branch: "main"
-
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    multi-ecosystem-group: "all-updates"
-    patterns:
-      - "*"
-
+  # Python dependencies (uv project)
   - package-ecosystem: "uv"
     directory: "/"
-    multi-ecosystem-group: "all-updates"
-    patterns:
-      - "*"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 0
+
+  # Web dependencies via package.json (Bun-compatible through npm ecosystem)
+  - package-ecosystem: "npm"
+    directory: "/web"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 0
+    commit-message:
+      prefix: "deps"
+    versioning-strategy: increase-if-necessary
+
+  # Dockerfile base images
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 0
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 0
