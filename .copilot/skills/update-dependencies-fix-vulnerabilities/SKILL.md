@@ -33,7 +33,7 @@ The skill uses a three-phase approach:
 Use the `run-pip-audit.sh` helper script to scan for Python vulnerabilities. This script automatically applies CVE exclusions from `pyproject.toml` `[tool.pip-audit]`.
 
 ```bash
-./scripts/hooks/run-pip-audit.sh --progress-spinner off --desc
+./scripts/hooks/run-pip-audit.sh
 ```
 
 **Capture Output**: Document all reported CVEs with:
@@ -312,7 +312,7 @@ Once bun.lock is updated and all packages installed:
 
 | Task | Command/File |
 |------|---------|
-| Scan Python | `./scripts/hooks/run-pip-audit.sh --progress-spinner off --desc` |
+| Scan Python | `./scripts/hooks/run-pip-audit.sh` |
 | View ignored CVEs | `pyproject.toml` → `[tool.pip-audit]` `ignore` |
 | Lock Python deps | `uv lock` |
 | Install Python deps | `uv sync` |
