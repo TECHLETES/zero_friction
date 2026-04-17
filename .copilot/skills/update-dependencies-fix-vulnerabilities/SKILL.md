@@ -347,7 +347,7 @@ Use commit message format: `security: <description of what was updated>`
 
 ---
 
-## Phase 3: Pull Request and Summary
+## Phase 3: Pull  Request and Summary
 
 ### Step 3a: Push Branch to Remote
 
@@ -357,17 +357,23 @@ git push origin security-updates-dependencies
 
 ### Step 3b: Create Pull Request with Detailed Summary
 
-Create a PR from `security-updates-dependencies` to the base branch (staging/main/master) with a comprehensive description covering:
+Create a PR from `security-updates-dependencies` to the base branch (staging/main/master) with a comprehensive description.
 
 #### PR Title Format
 ```
 security: fix vulnerability updates in Python and JavaScript dependencies
 ```
+**Note**: If major version bumps or breaking changes were required, prefix the title with `[breaking]`:
+`security: [breaking] fix critical vulnerability updates with breaking changes`
 
 #### PR Description Template
 
 ```markdown
 ## Security Update Summary
+
+### Major / Breaking Changes
+<!-- List any major version bumps or API-breaking changes here. If none, state "None". -->
+- **package-name**: Updated from 1.x to 2.x. (Describe breaking change or required code updates)
 
 ### Python Vulnerabilities Fixed
 - **pypdf**: Updated from 6.10.0 → 6.10.2
@@ -524,6 +530,7 @@ gh pr create \
 - Exception: Document and justify any LOW severity CVEs left unfixed in PR description
 - Never commit unresolved CRITICAL vulnerabilities
 - Document reasoning in PR for any vulnerabilities that cannot be fixed
+- **Breaking Changes**: If a fix requires a major version bump or breaking change, ensure the PR title starts with `[breaking]` and the `Major / Breaking Changes` section of the description clearly lists these updates.
 
 **For JavaScript/Bun:**
 - Stop when: All CRITICAL and HIGH vulnerabilities are analyzed
