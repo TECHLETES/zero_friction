@@ -18,22 +18,22 @@ This guide covers the day-to-day development workflow, including dependency mana
 3.  **Run Quality Checks (Optional)**: Before committing, you can run the same checks that the pre-commit hooks use:
     ```bash
     # Format code
-    black .
+    uv run black .
 
     # Lint for errors and sort imports
-    ruff check . --fix
+    uv run ruff check . --fix
 
     # Check static types
-    mypy .
+    uv run mypy . --config-file=pyproject.toml
     ```
 
 4.  **Run Tests**: Ensure all existing functionality still works.
     ```bash
     # Run all tests
-    pytest
+    uv run pytest
 
     # Run tests with a coverage report
-    pytest --cov
+    uv run pytest --cov
     ```
 
 5.  **Commit Code**: Stage your files and commit them.
@@ -199,14 +199,14 @@ If a hook fails, your commit will be aborted. **This is not an error with your c
 *   **Common Error**: `Secrets detected!` followed by a list of findings.
 *   **How to Fix**:
     1.  **NEVER IGNORE THIS HOOK** unless you are 100% certain it is a false positive.
-    2.  Remove the detected secret from your code. Use the project's secret management system instead (see `docs/1_secret_management.md`).
+    2.  Remove the detected secret from your code. Use the project's secret management system instead (see `docs/2_secret_management.md`).
     3.  **For False Positives**: If the detected string is not a secret, you must update the baseline file to tell `detect-secrets` to ignore it in the future:
         ```bash
         # Re-scan the project and overwrite the baseline
-        detect-secrets scan > .secrets.baseline
+        detect-secrets scan > .secret.baseline
 
         # Add the new baseline to your staged files
-        git add .secrets.baseline
+        git add .secret.baseline
         ```
     4.  Commit again.
 
@@ -226,12 +226,12 @@ If a hook fails, your commit will be aborted. **This is not an error with your c
 
 ## 🏗️ Managing Dependencies
 
-This project uses a hybrid approach where dependencies are declared in `pyproject.toml` and locked to `requirements.txt` files for reproducibility.
+This project uses `uv` with `pyproject.toml` as the dependency source of truth and `uv.lock` for reproducible installs.
 
 *   **To Add a Production Dependency**:
-    1.  Add the package name (e.g., `"pandas"`) to the `dependencies` list in `pyproject.toml`.
-    2.  Run `uv lock && uv sync` to update the lockfile
+    1.  Add the package name (e.g., `"pandas>=2.0.0,<3.0.0"`) to the `dependencies` list in `pyproject.toml`.
+    2.  Run `uv lock && uv sync` to update `uv.lock` and the environment.
 
 *   **To Add a Development-Only Dependency**:
-    1.  Add the package name (e.g., `"ipykernel"`) to the `dev` list under `[project.optional-dependencies]` in `pyproject.toml`.
-    2.  Run `uv lock && uv sync`
+    1.  Add the package name (e.g., `"ipykernel>=6.29.0,<7.0.0"`) to `[dependency-groups].dev` in `pyproject.toml`.
+    2.  Run `uv lock && uv sync`.

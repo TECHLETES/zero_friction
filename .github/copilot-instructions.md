@@ -59,8 +59,8 @@ A production-ready Python project template for TECHLETES employees. Features mod
 ```bash
 git clone https://github.com/TECHLETES/python_basic_template.git
 cd python_basic_template
-./scripts/setup.sh        # Linux/macOS
-.\scripts\setup.ps1       # Windows
+./scripts/setup.sh        # Linux host setup
+# On Windows or macOS, prefer the devcontainer workflow from docs/quickstart.md
 ```
 
 ### Activate Virtual Environment (Every Session)
@@ -76,12 +76,12 @@ direnv allow                        # If using direnv
 |------|---------|
 | **Install/update deps** | `uv sync` |
 | **Add new package** | Edit `pyproject.toml`, then `uv lock && uv sync` |
-| **Run tests** | `pytest` or `make test` |
-| **Run tests with coverage** | `pytest --cov` |
+| **Run tests** | `uv run pytest` |
+| **Run tests with coverage** | `uv run pytest --cov` |
 | **Format code** | `uv run black .` |
 | **Lint and fix** | `uv run ruff check . --fix` |
 | **Type check** | `uv run mypy . --config-file=pyproject.toml` |
-| **Pre-commit all files** | `pre-commit run --all-files` |
+| **Pre-commit all files** | `uv run pre-commit run --all-files` |
 | **Load secret** | `from utils.secrets import get_secret; api_key = get_secret("op://...")` |
 
 ---
@@ -103,16 +103,15 @@ tests/
     └── test_*.py                  # Unit tests (prefix: test_)
 
 scripts/
-├── setup.sh / setup.ps1           # Environment initialization
+├── setup.sh                       # Linux host environment initialization
+├── install-copilot-agents.sh      # Installs repo-shared Copilot agents and skills
 ├── new-branch.sh                  # Git workflow helper
 └── hooks/                         # Pre-commit hook scripts
-    ├── black-autoformat.sh
     ├── nbstripout-autoadd.sh      # Auto-strip notebook outputs
-    ├── precommit_pytest.sh        # Run tests on commit
-    └── verify-lockfile.sh         # Ensure uv.lock is valid
+    └── run-pip-audit.sh           # pip-audit wrapper used in hooks and CI
 
 .github/
-├── workflows/ci.yml               # GitHub Actions: lint, type check, test, coverage
+├── workflows/ci.yml               # GitHub Actions: pre-commit, tests, coverage, devcontainer smoke
 ├── pull_request_template.md       # PR checklist (includes security review)
 └── dependabot.yml                 # Automated dependency updates
 
@@ -166,7 +165,7 @@ uv.lock                             # Locked dependency versions (auto-generated
 - **Branch naming:** Use `./scripts/new-branch.sh` to create feature branches
 - **Commits:** Must pass all pre-commit checks (linting, tests, type checking, security)
 - **Pre-commit hooks:** Run automatically on `git commit` (venv must be active)
-- **Manual pre-check:** `pre-commit run --all-files` before committing
+- **Manual pre-check:** `uv run pre-commit run --all-files` before committing
 - **Force push only if:** Rebasing your own unpushed branch
 
 ---
@@ -251,12 +250,12 @@ uv run bash scripts/hooks/run-pip-audit.sh --progress-spinner off --desc
 ### Debug Pre-Commit Hook Failures
 ```bash
 # Run a specific hook manually
-pre-commit run black --all-files
-pre-commit run mypy --all-files
-pre-commit run bandit --all-files
+uv run pre-commit run black --all-files
+uv run pre-commit run mypy --all-files
+uv run pre-commit run bandit --all-files
 
 # Run all hooks
-pre-commit run --all-files
+uv run pre-commit run --all-files
 
 # See logs if a Python tool failed
 # Edit the file to fix the issue, then commit again

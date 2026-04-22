@@ -4,9 +4,6 @@ set -euo pipefail
 # configuration
 export VENV_DIR="${VENV_DIR:-.venv}"
 export PYPROJECT="${PYPROJECT:-pyproject.toml}"
-export PROD_LOCK="${PROD_LOCK:-requirements.txt}"
-export DEV_LOCK="${DEV_LOCK:-requirements-dev.txt}"
-export SLIM_LOCK="${SLIM_LOCK:-requirements-slim.txt}"
 
 # ui helpers
 GREEN='\033[0;32m'
@@ -225,13 +222,13 @@ setup_secrets() {
   section "secret management setup"
 
   step "initializing secrets baseline"
-  if [ -f ".secrets.baseline" ]; then
-    warn "existing .secrets.baseline found. backing up"
-    cp .secrets.baseline .secrets.baseline.bak
+  if [ -f ".secret.baseline" ]; then
+    warn "existing .secret.baseline found. backing up"
+    cp .secret.baseline .secret.baseline.bak
   fi
-  $VENV_DIR/bin/detect-secrets scan > .secrets.baseline
+  $VENV_DIR/bin/detect-secrets scan > .secret.baseline
   success "secrets baseline created"
-  $VENV_DIR/bin/detect-secrets audit .secrets.baseline || warn "manual review of baseline recommended"
+  $VENV_DIR/bin/detect-secrets audit .secret.baseline || warn "manual review of baseline recommended"
   success "secrets configuration verified"
 }
 
@@ -256,7 +253,7 @@ print_completion() {
   echo "  • $VENV_DIR/"
   echo "  • uv.lock (all dependencies locked and synced)"
   echo "  • pre commit hooks"
-  echo "  • secret baseline (.secrets.baseline)"
+  echo "  • secret baseline (.secret.baseline)"
   echo "  • direnv"
   echo -e "\n${BLUE}next steps:${RESET}"
   echo "  1. restart terminal or run: source ~/.bashrc"

@@ -18,7 +18,7 @@ Mypy checks type correctness at development and commit time, catching bugs befor
 **Run manually:**
 
 ```bash
-mypy . --config-file=pyproject.toml
+uv run mypy . --config-file=pyproject.toml
 ```
 
 **What it checks:**
@@ -41,13 +41,13 @@ Beartype enforces type correctness at runtime for annotated functions and classe
 Beartype is automatically enabled during pytest execution through the `--beartype-packages` configuration in `pyproject.toml`:
 
 ```bash
-pytest  # Beartype is automatically enabled for utils and example packages
+uv run pytest  # Beartype is automatically enabled for utils and example packages
 ```
 
 To run tests without beartype (for performance):
 
 ```bash
-RUNTIME_TYPECHECK=false pytest
+RUNTIME_TYPECHECK=false uv run pytest
 ```
 
 ## 4.2 Quality
@@ -61,12 +61,12 @@ Ruff provides fast linting and catches many code issues before commit.
 - Replaces flake8 and pyupgrade in a single fast tool
 - Configured via `pyproject.toml` with enabled rules: E (pycodestyle), F (pyflakes), I (import sorting), B (bugbear), UP (pyupgrade)
 - Automatically fixes issues when possible
-- Target version set to Python 3.11+ with 88-character line length
+- Target version set to Python 3.12 with 88-character line length
 
 **Run manually:**
 
 ```bash
-ruff check . --fix
+uv run ruff check . --fix
 ```
 
 **What it catches:**
@@ -83,12 +83,12 @@ Black is the opinionated formatter used to ensure all code is styled consistentl
 - Used alongside Ruff for full formatting consistency
 - Auto-formats code during pre-commit hooks
 - Configured in `pyproject.toml` with 88-character line length and Python 3.12 target
-- Integrated with the pre-commit `black-autoformat` hook
+- Integrated with the pre-commit `black` hook
 
 **Run manually:**
 
 ```bash
-black .
+uv run black .
 ```
 
 **What it does:**
@@ -102,7 +102,7 @@ black .
 All tools are configured in `pyproject.toml`:
 
 - **MyPy**: Strict mode enabled with Python 3.12 target, excludes migrations and notebooks
-- **Ruff**: Targets Python 3.11+ with rules E, F, I, B, UP enabled, respects .gitignore
+- **Ruff**: Targets Python 3.12 with rules E, F, I, B, UP enabled, respects .gitignore
 - **Black**: 88-character line length, Python 3.12 target version
 - **Beartype**: Automatically enabled for `utils` and `example` packages during testing
 - **Pytest**: Configured with coverage reporting and beartype integration
@@ -122,20 +122,17 @@ To run all quality checks manually:
 
 ```bash
 # Format code
-black .
+uv run black .
 
 # Lint and fix issues
-ruff check . --fix
+uv run ruff check . --fix
 
 # Type check
-mypy .
+uv run mypy . --config-file=pyproject.toml
 
 # Run tests with beartype
-pytest
-```
+uv run pytest
 
-Or use pre-commit to run all configured hooks:
-
-```bash
-pre-commit run --all-files
+# Or use pre-commit to run all configured hooks:
+uv run pre-commit run --all-files
 ```

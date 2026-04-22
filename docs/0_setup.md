@@ -111,7 +111,7 @@ The `./scripts/setup.sh` script automates:
 1. **System requirements check** – Verifies Python 3.12+, Git, `uv`, `direnv`, and other required tools, installing missing packages with `apt-get`, `dnf`, or `yum` when possible
 2. **Virtual environment and dependencies** – Materializes `.venv/`, runs `uv lock`, and runs `uv sync`
 3. **Pre-commit hooks** – Installs Git hooks, runs `pre-commit autoupdate`, and runs `pre-commit run --all-files`
-4. **Secrets baseline** – Creates `.secrets.baseline` with `detect-secrets`
+4. **Secrets baseline** – Creates `.secret.baseline` with `detect-secrets`
 5. **direnv configuration** – Appends the bash hook to `~/.bashrc` and runs `direnv allow` when `.envrc` exists
 6. **System configuration** – Configures locales and, on `apt-get`-based Linux, installs Docker and Docker Compose if they are missing
 

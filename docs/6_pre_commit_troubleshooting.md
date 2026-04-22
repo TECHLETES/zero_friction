@@ -311,11 +311,11 @@ example = "exec(code)"  # noqa: S303
 **Solutions:**
 ```bash
 # Audit and update baseline
-detect-secrets scan > .secrets.baseline
-detect-secrets audit .secrets.baseline
+detect-secrets scan > .secret.baseline
+detect-secrets audit .secret.baseline
 
 # If certain patterns are always false positives
-detect-secrets scan --all-files > .secrets.baseline
+detect-secrets scan --all-files > .secret.baseline
 ```
 
 **Problem:** Baseline file corrupted or out of sync
@@ -323,20 +323,20 @@ detect-secrets scan --all-files > .secrets.baseline
 **Fixes:**
 ```bash
 # Regenerate baseline
-rm .secrets.baseline
-detect-secrets scan > .secrets.baseline
+rm .secret.baseline
+detect-secrets scan > .secret.baseline
 
 # Verify it's valid JSON
-python -m json.tool .secrets.baseline > /dev/null
+python -m json.tool .secret.baseline > /dev/null
 ```
 
 **Problem:** Valid test credentials flagged as secrets
 
-**Solution:** Add exemption in `.secrets.baseline`:
+**Solution:** Add exemption in `.secret.baseline`:
 ```bash
 # Or in hook, exclude test files
 - id: detect-secrets
-  args: ["--baseline", ".secrets.baseline"]
+  args: ["--baseline", ".secret.baseline"]
   exclude: ^tests/|\.txt$
 ```
 

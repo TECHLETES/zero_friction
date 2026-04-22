@@ -12,13 +12,22 @@ The following hooks are currently configured:
 
 | Hook ID | Purpose |
 | --- | --- |
-| `prevent-manual-requirements-edits` | Block manual edits to `requirements.txt` |
 | `nbstripout-autoadd` | Strip notebook outputs and auto-stage cleaned files |
-| `black-autoformat` | Auto-format Python code with Black |
+| `black` | Auto-format Python code with Black |
+| `trailing-whitespace` and `end-of-file-fixer` | Basic text hygiene |
+| `check-toml`, `check-json`, `check-yaml`, `check-symlinks` | Validate common config files |
+| `check-added-large-files` and `check-merge-conflict` | Prevent common Git mistakes |
+| `detect-private-key` | Block private keys |
+| `pretty-format-json` | Reformat JSON files |
+| `pip-audit` | Check Python dependencies for known vulnerabilities |
 | `detect-secrets` | Detect and prevent committing secrets |
 | `jupytext` | Sync `.ipynb` and `.py` notebook pairs |
 | `mypy` | Type check Python code with mypy |
+| `pyupgrade` | Modernize Python syntax for Python 3.12 |
 | `ruff` | Lint Python code with Ruff (includes import sorting) |
+| `bandit` | Run Python security linting |
+| `pydocstyle` | Validate docstring conventions |
+| `pytest` | Run tests with coverage in pre-commit |
 
 The configuration is stored in the `.pre-commit-config.yaml` file at the project root.
 
@@ -30,13 +39,17 @@ The configuration is stored in the `.pre-commit-config.yaml` file at the project
 
 From now on, every time you run `git commit`, `pre-commit` will:
 
-1. Block manual edits to `requirements.txt`
-2. Strip outputs from notebooks using `nbstripout-autoadd`
-3. Auto-format Python code with Black
+1. Strip outputs from notebooks using `nbstripout-autoadd`
+2. Auto-format Python code with Black
+3. Run text and config hygiene checks
 4. Detect any committed secrets with `detect-secrets`
-5. Sync `.ipynb` and `.py` files using `jupytext`
-6. Type check Python code with `mypy`
-7. Lint Python code with `ruff` (includes import sorting)
+5. Audit dependencies with `pip-audit`
+6. Sync `.ipynb` and `.py` files using `jupytext`
+7. Type check Python code with `mypy`
+8. Modernize syntax with `pyupgrade`
+9. Lint and sort imports with `ruff`
+10. Run security and docstring checks with `bandit` and `pydocstyle`
+11. Run pytest with coverage
 
 If any hook fails, the commit is blocked until the issue is resolved.
 
@@ -56,16 +69,16 @@ The `nbstripout-autoadd` hook is a **local wrapper** that:
 
 ### 3.3.2 Code Formatting and Quality
 
-#### Black Auto-formatting
+#### Black Formatting
 
-The `black-autoformat` hook automatically formats Python code to ensure consistent style across the project. Black is an opinionated code formatter that:
+The `black` hook automatically formats Python code to ensure consistent style across the project. Black is an opinionated code formatter that:
 
 - Ensures consistent indentation and spacing
 - Formats imports and function definitions
 - Handles line length and string formatting
 - Automatically fixes formatting issues
 
-If Black makes changes to your files, they will be automatically staged for commit.
+If Black makes changes to your files, re-stage them before retrying the commit.
 
 #### Type Checking with MyPy
 
@@ -97,22 +110,25 @@ To avoid accidentally committing secrets (API keys, tokens, etc.), the project u
 If you intentionally add or rotate secrets:
 
 ```bash
-detect-secrets scan > .secrets.baseline
-git add .secrets.baseline
+detect-secrets scan > .secret.baseline
+git add .secret.baseline
 ```
 
-Make sure `.secrets.baseline` stays committed and up to date.
+Make sure `.secret.baseline` stays committed and up to date.
 
 ---
 
 ### 3.3.4 Enforcing Dependency Workflow
 
-The custom `prevent-manual-requirements-edits` hook ensures that the lock file is only modified via `uv lock` and never edited manually.
+This repository does not use `requirements.txt` as the primary dependency contract. Dependencies are declared in `pyproject.toml` and locked in `uv.lock`, and the pre-commit pipeline enforces safety through `pip-audit` plus the repo's `uv` workflow.
 
 To add a package:
 
 ```bash
-uv add package-name
+# 1. Edit pyproject.toml
+# 2. Regenerate the lock file and sync the environment
+uv lock
+uv sync
 ```
 
 ---
@@ -150,13 +166,11 @@ This is useful to verify changes or fix all issues in one go.
 
 ### 3.5.2 `nbstripout: command not found`
 
-This means `nbstripout` isn’t installed in the hook’s environment. Make sure your `.pre-commit-config.yaml` includes:
+This usually means the project environment has not been synced yet. This repo uses a local hook script that runs through `uv`, so ensure dependencies are installed:
 
-```yaml
-  additional_dependencies: [nbstripout]
+```bash
+uv sync
 ```
-
-in the `nbstripout-autoadd` hook definition.
 
 ### 3.5.3 MyPy Type Checking Issues
 

@@ -155,5 +155,5 @@ This way, CI runners receive secrets securely from GitHub and never see 1Passwor
 
     [Compromised secret action plan](https://www.notion.so/Compromised-secret-action-plan-24517d03144d805eba09e65cd5fe6a49?pvs=21)
 
-- **Audit** with `detect-secrets scan > .secrets.baseline` after updates.
+- **Audit** with `detect-secrets scan > .secret.baseline` after updates.
 - Maintain a clear **playbook** in `SECURITY.md` for incident response.
