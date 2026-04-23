@@ -1,0 +1,120 @@
+repos:
+  - repo: local
+    hooks:
+      # Strip notebook outputs
+      - id: nbstripout-autoadd
+        name: nbstripout (auto-add notebooks)
+        entry: uv run scripts/hooks/nbstripout-autoadd.sh
+        language: system
+        types: [jupyter]
+
+  # Python formatter
+  - repo: https://github.com/psf/black
+    rev: 25.9.0
+    hooks:
+      - id: black
+        name: Black (python formatter)
+        language_version: python3.12
+        types: [python]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+        exclude: coverage\.svg$
+      - id: check-toml
+      - id: check-json
+      - id: check-symlinks
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: pretty-format-json
+        args: ["--autofix"]
+        exclude: \.ipynb$
+
+  # Dependency vulnerability scanning with uv.lock
+  - repo: https://github.com/pypa/pip-audit
+    rev: v2.10.0
+    hooks:
+      - id: pip-audit
+        args: ["--progress-spinner", "off", "--desc"]
+        entry: uv run bash scripts/hooks/run-pip-audit.sh
+        language: system
+        stages: [pre-commit]
+
+  # Secrets scanning
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: ["--baseline", ".secret.baseline"]
+        exclude: ^tests/
+
+  # Notebook/text sync with jupytext
+  - repo: https://github.com/mwouts/jupytext
+    rev: v1.19.1
+    hooks:
+      - id: jupytext
+        args: [--sync]
+        require_serial: true
+
+  # Type checking with mypy
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.19.1
+    hooks:
+      - id: mypy
+        name: Type check with mypy
+        args: ["--config-file=pyproject.toml"]
+        pass_filenames: false
+
+  # Modernize Python syntax
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.21.2
+    hooks:
+      - id: pyupgrade
+        name: pyupgrade (modernize Python syntax)
+        args: [--py312-plus]
+        types: [python]
+
+  # Linting and formatting with ruff
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.4
+    hooks:
+      - id: ruff
+        name: Ruff (linting + import sorting + formatting)
+        args: [--fix]
+        types: [python]
+
+  # Security scanning
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.9.4
+    hooks:
+      - id: bandit
+        name: bandit (security check)
+        args: [-ll, --skip, B101]
+        exclude: ^tests/
+        types: [python]
+
+  # Docstring validation
+  - repo: https://github.com/PyCQA/pydocstyle
+    rev: 6.3.0
+    hooks:
+      - id: pydocstyle
+        name: pydocstyle (docstring validation)
+        # Adjust this regex for the target repo's non-production directories.
+        exclude: ^(tests/|example/)
+        types: [python]
+
+  # Testing with pytest (locally managed by uv)
+  - repo: local
+    hooks:
+      - id: pytest
+        name: Run pytest with coverage
+        # Replace the beartype package list for the target repo when needed.
+        entry: uv run pytest --cov --cov-fail-under=80 --beartype-packages=your_package
+        language: system
+        pass_filenames: false
+        types: [python]
+        stages: [pre-commit]

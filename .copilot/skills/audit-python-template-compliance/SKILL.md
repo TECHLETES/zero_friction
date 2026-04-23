@@ -40,8 +40,9 @@ available validation commands, and finish with a concise audit report.
 ## Required References
 
 - Read the template baseline in [template-baseline](./references/template-baseline.md).
-- Use the concrete values in [template-config-settings](./references/template-config-settings.md)
-  when the audit needs exact tool settings instead of capability-level checks.
+- Use the asset index in [template-config-settings](./references/template-config-settings.md)
+  and its linked literal templates when the audit needs exact tool settings
+  instead of capability-level checks.
 - Follow the execution sequence in [audit-procedure](./references/audit-procedure.md).
 - Use the final structure in [audit-report-template](./assets/audit-report-template.md).
 
@@ -61,7 +62,8 @@ By the end of the run, produce all of the following when feasible:
 
 - Start from the closest controlling files: `pyproject.toml`,
   `.pre-commit-config.yaml`, `.github/workflows/`, `.devcontainer/`,
-  `README.md`, `docs/`, first-party packages, and test entry points.
+  `scripts/hooks/`, `README.md`, `docs/`, first-party packages, and test entry
+  points.
 - Keep the first edits small and validate immediately.
 - Parallelize only independent slices, such as docs versus CI copy edits, after
   you know they do not share the same controlling config.

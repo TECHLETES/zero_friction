@@ -51,12 +51,14 @@ Primary evidence set:
 - secret helper modules
 - package `__init__.py` files for runtime typing setup
 - tests and smoke checks
-- helper scripts such as setup, new-branch, and audit wrappers
+- helper scripts such as setup, new-branch, hook wrappers under
+   `scripts/hooks/`, and audit wrappers
 - Copilot assets under `.copilot/` when present
 
-Use `template-config-settings.md` to compare concrete values for tool settings
-such as pytest `addopts`, mypy strictness flags, Ruff rule sets, Bandit skips,
-pre-commit hook revisions, and devcontainer editor settings.
+Use `template-config-settings.md` and its linked literal asset files to compare
+concrete values for tool settings such as pytest `addopts`, mypy strictness
+flags, Ruff rule sets, Bandit skips, pre-commit hook revisions, delegated hook
+scripts, and devcontainer editor settings.
 
 If a baseline file is missing, treat that as a finding rather than continuing as
 though the capability exists.
@@ -95,7 +97,8 @@ Recommended order:
 2. Quality and security gates
    `.pre-commit-config.yaml`, pip-audit, Bandit, detect-secrets
 3. Automation and environment setup
-   `scripts/`, `.github/workflows/`, `.devcontainer/`, `.envrc`
+   `scripts/`, `scripts/hooks/`, `.github/workflows/`, `.devcontainer/`,
+   `.envrc`
 4. Code and tests
    runtime typing hooks, helper modules, missing tests
 5. Documentation

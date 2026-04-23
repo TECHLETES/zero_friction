@@ -1,0 +1,34 @@
+version: 2
+
+updates:
+  # Python dependencies (uv project)
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 0
+
+  # Web dependencies via package.json (Bun-compatible through npm ecosystem)
+  # Remove or adjust this entry if the target repo does not ship a /web app.
+  - package-ecosystem: "npm"
+    directory: "/web"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 0
+    commit-message:
+      prefix: "deps"
+    versioning-strategy: increase-if-necessary
+
+  # Dockerfile base images
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 0
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 0

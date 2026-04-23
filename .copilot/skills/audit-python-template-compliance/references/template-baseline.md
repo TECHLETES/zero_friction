@@ -9,7 +9,7 @@ When template sources disagree, prefer them in this order:
 
 1. Executable config and automation
    `pyproject.toml`, `.pre-commit-config.yaml`, `.github/workflows/`,
-   `.devcontainer/`, `scripts/`
+  `.devcontainer/`, `scripts/`, especially `scripts/hooks/`
 2. Contributor-facing contract docs
    `README.md`, `CONTRIBUTING.md`, `docs/`
 3. Example code and tests
@@ -18,7 +18,8 @@ Do not copy stale prose over working automation. Align the docs to the actual
 behavior unless the automation is clearly outdated and should be changed.
 
 When you need exact comparison values for tool configuration, use
-`template-config-settings.md` alongside this baseline.
+`template-config-settings.md` and the linked literal asset templates alongside
+this baseline.
 
 ## Baseline Areas
 
@@ -66,6 +67,8 @@ When you need exact comparison values for tool configuration, use
 - Bandit is configured for security scanning.
 - pip-audit exclusions are centralized in `pyproject.toml` under
   `[tool.pip-audit]`, not duplicated ad hoc in hooks or CI.
+- Hook wrapper scripts under `scripts/hooks/` are part of the baseline when
+  pre-commit or CI delegates shared logic there.
 - Secret scanning uses `detect-secrets` plus a committed baseline file.
 - Notebook cleanup and synchronization are part of the repo contract when the
   repo includes notebooks.
@@ -173,6 +176,8 @@ exception.
 - `scripts/setup.sh`
 - `scripts/new-branch.sh`
 - `scripts/install-copilot-agents.sh`
+- `scripts/hooks/nbstripout-autoadd.sh`
+- `scripts/hooks/run-pip-audit.sh`
 - `.copilot/agents/` and `.copilot/skills/` when the repo ships shared Copilot
   assets
 - Repo-local first-party package initialization that enables runtime type checks
