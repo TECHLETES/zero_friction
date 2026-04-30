@@ -194,7 +194,7 @@ skips = ["B101", "B601"]
 # Used by both pre-commit hooks and CI workflows via scripts/hooks/run-pip-audit.sh
 # See docs/6_pre_commit_troubleshooting.md for explanation of each exclusion
 ignore = [
-  "CVE-2026-1703", # Path traversal in pip when extracting malicious wheels
+  "CVE-2026-3219" # pip 26.0.1 pip handles concatenated tar and ZIP files as ZIP files regardless of filename or whether a file is both a tar and ZIP file. This behavior could result in confusing installation behavior, such as installing "incorrect" files according to the filename of the archive. New behavior only proceeds with installation if the file identifies uniquely as a ZIP or tar archive, not as both.
 ]
 
 [tool.uv]

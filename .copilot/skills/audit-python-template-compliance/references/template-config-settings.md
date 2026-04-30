@@ -1,16 +1,19 @@
 # Template Config Assets
 
-This reference now acts as an index to generalized literal config files stored
-under `assets/config-template/`.
+This reference acts as the copy-first index for config files shipped with this
+skill.
 
-Use these asset files when you need to compare a target repository against the
-template's actual config shape, syntax, comments, and default settings.
+When a target repository needs one of these config surfaces, copy the matching
+shipped file as the base instead of recreating the file by hand. Prefer a
+matching literal file shipped directly in this skill directory when one exists;
+otherwise copy the file from `assets/config-template/`. After copying, replace
+only the approved target-specific values.
 
 ## Generalization Rules
 
 The asset files intentionally preserve the template's literal file structure,
-formatting, and most current settings. Only these classes of values are
-generalized with comments or placeholders:
+formatting, comments, and current settings. Only these classes of values should
+be generalized after the copy step:
 
 - runtime dependencies and optional production dependencies
 - target-repository identity values such as repo URLs or project names
@@ -20,6 +23,9 @@ generalized with comments or placeholders:
 
 If an asset file and the current repository diverge, the repository file is the
 source of truth and the asset should be updated.
+
+Do not synthesize these files from memory or rewrite them section-by-section
+when a shipped base file exists.
 
 ## Asset Files
 
@@ -58,11 +64,11 @@ source of truth and the asset should be updated.
 
 ## How To Use During Audits
 
-1. Start by comparing the target repo's controlling config files against these
-   literal templates.
-2. Treat placeholders and comments in the asset files as required
-   generalization points, not deviations.
-3. Record findings when the target repo diverges from the template's tooling,
-   workflow, or structure beyond those approved generalization points.
-4. Fall back to the live repository files when an asset has not yet been added
-   for a config surface you need.
+1. Identify whether the needed config file is shipped directly with this skill
+   or under `assets/config-template/`, then copy that file as the base.
+2. Replace only the approved target-specific values and placeholders after the
+   copy step.
+3. Record findings when the target repo still diverges from the template's
+   tooling, workflow, or structure beyond those approved generalization points.
+4. Fall back to the live repository files only when this skill does not yet
+   ship a base file for the config surface you need.

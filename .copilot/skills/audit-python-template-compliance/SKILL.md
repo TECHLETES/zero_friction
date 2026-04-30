@@ -1,6 +1,6 @@
 ---
 name: audit-python-template-compliance
-description: 'Audit a Python repository against the TECHLETES python_basic_template and bring it into compliance. Use when you need to compare a repo to the template, review drift in pyproject/pre-commit/CI/devcontainer/docs/secrets workflow, remediate gaps, rerun the audit, validate the repo, and produce a compliance report.'
+description: 'Audit a Python repository against the TECHLETES python_basic_template and bring it into compliance. Use when you need to align a repo to the template by copying the shipped config bases, review drift in pyproject/pre-commit/CI/devcontainer/docs/secrets workflow, remediate gaps, rerun the audit, validate the repo, and produce a compliance report.'
 argument-hint: 'Target repository path or repo name, plus any approved exceptions from the template'
 user-invocable: true
 ---
@@ -31,18 +31,22 @@ available validation commands, and finish with a concise audit report.
 1. Confirm the target repository and record any approved exceptions before
    changing files.
 2. Treat executable configuration as the source of truth when prose docs drift.
-3. Generalize template-specific values instead of copying them literally.
-   Package names, repo URLs, excluded directories, cache volume names, and
-   secret references must match the target repository.
-4. Fix root causes first. Do not patch around validation failures with
+3. For config-bearing files shipped with this skill, copy the provided file as
+  the base instead of recreating it. Prefer a matching literal file from this
+  skill directory first, then from `assets/config-template/`, and only after
+  that replace the approved target-specific values.
+4. Package names, repo URLs, excluded directories, cache volume names, and
+  secret references must match the target repository.
+5. Fix root causes first. Do not patch around validation failures with
    one-off exceptions unless the user explicitly approves the deviation.
 
 ## Required References
 
 - Read the template baseline in [template-baseline](./references/template-baseline.md).
 - Use the asset index in [template-config-settings](./references/template-config-settings.md)
-  and its linked literal templates when the audit needs exact tool settings
-  instead of capability-level checks.
+  as the default copy source for config files. When a matching shipped file
+  exists, copy it first and then make only the approved target-specific
+  substitutions.
 - Follow the execution sequence in [audit-procedure](./references/audit-procedure.md).
 - Use the final structure in [audit-report-template](./assets/audit-report-template.md).
 
@@ -64,6 +68,9 @@ By the end of the run, produce all of the following when feasible:
   `.pre-commit-config.yaml`, `.github/workflows/`, `.devcontainer/`,
   `scripts/hooks/`, `README.md`, `docs/`, first-party packages, and test entry
   points.
+- When a config surface has a shipped base file in this skill, copy that file
+  into place before making local adjustments. Do not rebuild those configs from
+  memory.
 - Keep the first edits small and validate immediately.
 - Parallelize only independent slices, such as docs versus CI copy edits, after
   you know they do not share the same controlling config.

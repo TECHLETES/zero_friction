@@ -17,9 +17,9 @@ When template sources disagree, prefer them in this order:
 Do not copy stale prose over working automation. Align the docs to the actual
 behavior unless the automation is clearly outdated and should be changed.
 
-When you need exact comparison values for tool configuration, use
-`template-config-settings.md` and the linked literal asset templates alongside
-this baseline.
+When you need exact config values for tool configuration, use
+`template-config-settings.md` and the shipped asset files as the base, then
+apply only the allowed target-specific substitutions.
 
 ## Baseline Areas
 
@@ -125,16 +125,17 @@ this baseline.
 - If the repo ships Copilot customizations, the repo should keep those assets
   versioned and installable from the repository.
 
-## Generalize, Do Not Copy Literally
+## Copy As Base, Then Generalize Target Values
 
-Some template values are examples and must be rewritten for the target repo.
+For shipped config surfaces, copy the provided base file first. Only the
+target-specific values below should be rewritten for the target repo.
 
 | Template surface | Template example | Generalize for target repo |
 | --- | --- | --- |
 | First-party packages | `utils`, `example` | Use the target repo's actual importable packages across setuptools, pytest, coverage, mypy, beartype, and smoke tests |
 | Project URLs | `TECHLETES/python_basic_template` | Point to the target repository's actual homepage, repo, and issues URLs |
 | Devcontainer names | `python-basic-template` | Rename the container and cache volumes for the target repository |
-| Excluded directories | `migrations`, `notebooks`, `.venv`, `tests` | Exclude the target repo's generated, vendored, or non-source directories instead of copying the template list blindly |
+| Excluded directories | `migrations`, `notebooks`, `.venv`, `tests` | Adjust the copied list only where the target repo's generated, vendored, or non-source directories differ |
 | Coverage scope | `utils`, `example` | Measure the target repo's production packages, not examples or template names |
 | Secret references | `op://...` examples | Use the target team's real vault/item/field references |
 | Example dependencies | Flask, requests, etc. | Keep only packages the target repo actually uses |

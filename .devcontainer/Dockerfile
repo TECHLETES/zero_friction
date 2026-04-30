@@ -8,6 +8,13 @@ ADD https://astral.sh/uv/${UV_VERSION}/install.sh /tmp/uv-installer.sh
 RUN env UV_UNMANAGED_INSTALL="/usr/local/bin" sh /tmp/uv-installer.sh \
     && rm /tmp/uv-installer.sh
 
+RUN rm -f /etc/apt/sources.list.d/yarn.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        bubblewrap \
+        socat \
+    && rm -rf /var/lib/apt/lists/*
+
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
     PYTHONDONTWRITEBYTECODE=1
 

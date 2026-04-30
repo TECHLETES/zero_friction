@@ -55,10 +55,11 @@ Primary evidence set:
    `scripts/hooks/`, and audit wrappers
 - Copilot assets under `.copilot/` when present
 
-Use `template-config-settings.md` and its linked literal asset files to compare
-concrete values for tool settings such as pytest `addopts`, mypy strictness
+Use `template-config-settings.md` and its shipped config files as the default
+base for concrete tool settings such as pytest `addopts`, mypy strictness
 flags, Ruff rule sets, Bandit skips, pre-commit hook revisions, delegated hook
-scripts, and devcontainer editor settings.
+scripts, and devcontainer editor settings. When a matching shipped file exists,
+copy it first and then replace only the approved target-specific values.
 
 If a baseline file is missing, treat that as a finding rather than continuing as
 though the capability exists.
@@ -121,11 +122,17 @@ baseline.
 
 Rules:
 
-1. Generalize template details to the target repo.
+1. For shipped config surfaces, copy the matching file from this skill as the
+   base before editing. Prefer files shipped directly with the skill, then
+   `assets/config-template/`.
 2. Prefer adding missing baseline capabilities over documenting gaps away.
 3. If the target repo already has an equivalent mechanism, align and document it
    instead of replacing it unnecessarily.
 4. Keep edits reversible and validate the touched slice immediately.
+
+For missing or substantially divergent config files, do not rebuild them from
+memory. Start from the shipped base file, then apply target-specific
+substitutions.
 
 ### Focused Validation After Each Edit Slice
 
@@ -203,6 +210,6 @@ Use these rules when the target repo does not match the template cleanly.
   then document the equivalence.
 - Docs contradict automation: trust the executable config first.
 - Target repo contains stale template placeholders: replace them with target repo
-  values rather than copying more template text.
+   values after copying the shipped base file rather than recreating the config.
 - Validation unavailable due to environment: report it explicitly, with the
   exact command that could not be run.
