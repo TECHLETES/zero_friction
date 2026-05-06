@@ -6,6 +6,9 @@ mode="copy"
 force="true"
 install_agents="true"
 install_skills="true"
+audit_skill_name="audit-python-template-compliance"
+audit_skill_manifest="assets/config-template-manifest.txt"
+audit_skill_generated_dir="assets/config-template"
 
 usage() {
   cat <<'EOF'
@@ -128,6 +131,53 @@ install_copilot_component() {
   return 0
 }
 
+install_audit_template_skill() {
+  local skill_dir="$1"
+  local target_skill_dir="$2"
+  local mode_arg="$3"
+  local manifest_path="${skill_dir}/${audit_skill_manifest}"
+  local generated_dir="${target_skill_dir}/${audit_skill_generated_dir}"
+
+  if [[ ! -f "${manifest_path}" ]]; then
+    echo "  Missing ${audit_skill_manifest} for ${audit_skill_name}" >&2
+    return 1
+  fi
+
+  if [[ "${mode_arg}" == "link" ]]; then
+    echo "  ${audit_skill_name}: link mode falls back to copy so repo config assets can be materialized"
+  fi
+
+  mkdir -p "${target_skill_dir}"
+  cp -r "${skill_dir}/." "${target_skill_dir}"
+  rm -rf "${generated_dir}"
+  mkdir -p "${generated_dir}"
+
+  local copied_assets=0
+
+  while IFS= read -r relative_path || [[ -n "${relative_path}" ]]; do
+    if [[ -z "${relative_path}" || "${relative_path}" =~ ^# ]]; then
+      continue
+    fi
+
+    local source_path="${repo_root}/${relative_path}"
+    local target_path="${generated_dir}/${relative_path}"
+
+    if [[ ! -e "${source_path}" ]]; then
+      echo "  Missing repo asset for ${audit_skill_name}: ${relative_path}" >&2
+      return 1
+    fi
+
+    mkdir -p "$(dirname "${target_path}")"
+    cp -r "${source_path}" "${target_path}"
+    copied_assets=$((copied_assets + 1))
+  done < "${manifest_path}"
+
+  echo "  Copied ${audit_skill_name}/"
+  echo "  Materialized ${copied_assets} repo config asset(s)"
+
+  return 0
+}
+
 # Install agents
 if [[ "${install_agents}" == "true" ]]; then
   echo "Installing Copilot Agents..."
@@ -176,7 +226,9 @@ install_skills_function() {
       fi
     fi
 
-    if [[ "${mode_arg}" == "link" ]]; then
+    if [[ "${skill_name}" == "${audit_skill_name}" ]]; then
+      install_audit_template_skill "${skill_dir}" "${target_skill_dir}" "${mode_arg}"
+    elif [[ "${mode_arg}" == "link" ]]; then
       ln -s "${skill_dir}" "${target_skill_dir}"
       echo "  Linked ${skill_name}/"
     else

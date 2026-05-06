@@ -1,5 +1,0 @@
-* text=auto
-*.sh eol=lf
-*.ps1 eol=crlf
-*.py eol=lf
-*.ipynb -text

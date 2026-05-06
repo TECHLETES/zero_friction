@@ -31,10 +31,12 @@ available validation commands, and finish with a concise audit report.
 1. Confirm the target repository and record any approved exceptions before
    changing files.
 2. Treat executable configuration as the source of truth when prose docs drift.
-3. For config-bearing files shipped with this skill, copy the provided file as
-  the base instead of recreating it. Prefer a matching literal file from this
-  skill directory first, then from `assets/config-template/`, and only after
-  that replace the approved target-specific values.
+3. For config-bearing files indexed by this skill, copy the provided base file
+  instead of recreating it. Use files shipped directly with this skill when
+  they exist; otherwise use the repo-sourced assets materialized from
+  `assets/config-template-manifest.txt` into `assets/config-template/` at
+  install time, and only after that replace the approved target-specific
+  values.
 4. Package names, repo URLs, excluded directories, cache volume names, and
   secret references must match the target repository.
 5. Fix root causes first. Do not patch around validation failures with
@@ -44,9 +46,9 @@ available validation commands, and finish with a concise audit report.
 
 - Read the template baseline in [template-baseline](./references/template-baseline.md).
 - Use the asset index in [template-config-settings](./references/template-config-settings.md)
-  as the default copy source for config files. When a matching shipped file
-  exists, copy it first and then make only the approved target-specific
-  substitutions.
+  as the default copy source for config files. When a matching shipped file or
+  materialized repo asset exists, copy it first and then make only the
+  approved target-specific substitutions.
 - Follow the execution sequence in [audit-procedure](./references/audit-procedure.md).
 - Use the final structure in [audit-report-template](./assets/audit-report-template.md).
 
@@ -68,9 +70,9 @@ By the end of the run, produce all of the following when feasible:
   `.pre-commit-config.yaml`, `.github/workflows/`, `.devcontainer/`,
   `scripts/hooks/`, `README.md`, `docs/`, first-party packages, and test entry
   points.
-- When a config surface has a shipped base file in this skill, copy that file
-  into place before making local adjustments. Do not rebuild those configs from
-  memory.
+- When a config surface has a shipped base file or a materialized repo asset in
+  this skill, copy that file into place before making local adjustments. Do not
+  rebuild those configs from memory.
 - Keep the first edits small and validate immediately.
 - Parallelize only independent slices, such as docs versus CI copy edits, after
   you know they do not share the same controlling config.
