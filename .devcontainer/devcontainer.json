@@ -54,7 +54,8 @@
   },
   "mounts": [
     "source=python-template-uv-cache,target=/home/vscode/.cache/uv,type=volume",
-    "source=python-template-pre-commit-cache,target=/home/vscode/.cache/pre-commit,type=volume"
+    "source=python-template-pre-commit-cache,target=/home/vscode/.cache/pre-commit,type=volume",
+    "source=${localEnv:HOME},target=/host-home,type=bind,consistency=cached"
   ],
   "name": "python-basic-template",
   "postCreateCommand": "bash .devcontainer/post-create.sh",
