@@ -62,12 +62,19 @@ this skill at install time:
 
 - `../assets/config-template/.github/workflows/ci.yml`
 - `../assets/config-template/.github/dependabot.yml`
+- `../assets/config-template/.github/pull_request_template.md`
+- `../assets/config-template/.github/copilot-instructions.md`
+- `../assets/config-template/.github/ISSUE_TEMPLATE/config.yml`
+- `../assets/config-template/.github/ISSUE_TEMPLATE/bug-report.md`
+- `../assets/config-template/.github/ISSUE_TEMPLATE/docs_update.md`
+- `../assets/config-template/.github/ISSUE_TEMPLATE/feature-request.md`
 
 ### Devcontainer
 
 - `../assets/config-template/.devcontainer/devcontainer.json`
 - `../assets/config-template/.devcontainer/Dockerfile`
 - `../assets/config-template/.devcontainer/post-create.sh`
+- `../assets/config-template/.devcontainer/.dockerignore`
 
 ### VS Code Workspace
 

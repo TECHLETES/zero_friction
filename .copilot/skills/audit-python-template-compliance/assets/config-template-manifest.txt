@@ -3,9 +3,16 @@ pyproject.toml
 .pre-commit-config.yaml
 .github/workflows/ci.yml
 .github/dependabot.yml
+.github/pull_request_template.md
+.github/copilot-instructions.md
+.github/ISSUE_TEMPLATE/config.yml
+.github/ISSUE_TEMPLATE/bug-report.md
+.github/ISSUE_TEMPLATE/docs_update.md
+.github/ISSUE_TEMPLATE/feature-request.md
 .devcontainer/devcontainer.json
 .devcontainer/Dockerfile
 .devcontainer/post-create.sh
+.devcontainer/.dockerignore
 .vscode/extensions.json
 .vscode/settings.json
 .envrc
