@@ -1,6 +1,6 @@
 # CodeQL Workflow: Step-by-step execution
 
-This document details the complete workflow for running CodeQL analysis and orchestrating remediation.
+This document details the complete workflow for running CodeQL analysis and remediating findings safely.
 
 ## Step 1: Repository inspection
 
@@ -147,27 +147,49 @@ See [sarif-interpretation.md](sarif-interpretation.md) for detailed prioritizati
 
 ## Step 7: Create remediation plan
 
-Before assigning work, create a concise remediation plan:
+Before editing or assigning work, create a concise remediation plan:
 
 - Applicable languages found
 - CodeQL databases reused or created
 - Number of findings per language
 - Findings selected for remediation
 - Files likely affected
-- Suggested task split for parallel coder agents
+- Whether each finding should be fixed locally or split into a delegated task
 - Verification commands to run after changes
 
 Prefer small, isolated tasks. Avoid assigning multiple agents to edit the same file.
 
-## Step 8: Delegate to parallel coder agents
+If a finding is confined to one file or one local control path, prefer fixing it directly instead of opening a delegation loop.
 
-Assign tasks to coder agents only after the plan is clear. Use the template in [../assets/task-delegate-template.md](../assets/task-delegate-template.md).
+## Step 8: Fix locally or delegate selectively
 
-Do not immediately edit code yourself unless the change is very small and does not benefit from delegation.
+Choose the lightest-weight path that preserves reviewability:
 
-## Step 9: Review changes
+- **Fix locally** when one small edit and one focused validation can test the hypothesis
+- **Delegate** when findings split cleanly across files, languages, or subsystems
 
-After coder agents return their work:
+If delegating, use the template in [../assets/task-delegate-template.md](../assets/task-delegate-template.md).
+
+Do not force delegation for narrow or obviously local findings.
+
+## Step 9: Validate each fix immediately
+
+After the first substantive edit in a slice, run the cheapest focused validation before doing more work on that slice.
+
+Prefer this order:
+1. Narrow syntax or compile check for the touched file
+2. Focused test or command that exercises the behavior
+3. Narrow CodeQL rerun for the exact rule or language slice when a residual finding remains
+4. Broader verification only after the local hypothesis holds
+
+Examples:
+- Python: `python -m py_compile path/to/file.py`
+- JavaScript: `node --check path/to/file.js`
+- CodeQL single-query rerun for one remaining rule in one language
+
+## Step 10: Review changes
+
+After local edits or coder-agent work:
 
 1. Inspect all diffs
 2. Check whether each task actually addresses the finding
@@ -178,7 +200,7 @@ After coder agents return their work:
 
 If a coder agent introduces risky or unrelated changes, revert or narrow them.
 
-## Step 10: Reanalysis and verification
+## Step 11: Reanalysis and verification
 
 After code changes, rerun CodeQL for affected languages.
 
@@ -216,11 +238,19 @@ codeql database analyze .codeql/dbs/javascript-typescript \
   --output=.codeql/results/codeql-javascript-typescript-after.sarif
 ```
 
+Write refreshed results to distinct files such as `*-after.sarif` so the baseline remains available for comparison.
+
 **Compare before and after results** to confirm that targeted findings are resolved.
+
+When comparing SARIF:
+- Extract at least rule ID, file path, line number, and message
+- Separate truly removed findings from line-number churn caused by edits
+- Call out added findings explicitly instead of assuming they are regressions
+- If only one residual finding remains, a narrow rerun may be cheaper and more informative than immediately repeating the full suite
 
 Use language-specific verification commands from [verification-commands.md](verification-commands.md) to ensure the repository still works.
 
-## Step 11: Final report
+## Step 12: Final report
 
 Generate a concise report using [../assets/report-template.md](../assets/report-template.md).
 

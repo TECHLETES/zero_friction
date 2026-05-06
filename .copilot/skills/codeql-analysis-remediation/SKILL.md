@@ -2,24 +2,25 @@
 
 ## Purpose
 
-Use this skill when the task is to analyze the current repository with CodeQL, identify security or quality issues, plan safe fixes, delegate implementation work to parallel coder agents, and verify that the repository still works after changes.
+Use this skill when the task is to analyze the current repository with CodeQL, identify security or quality issues, plan safe fixes, implement or delegate remediations as appropriate, and verify that the repository still works after changes.
 
 The goal is not only to run CodeQL, but to turn the findings into controlled, reviewable code improvements.
 
 ## Operating mode
 
-You are the orchestration agent. Your default workflow is to:
+You are the remediation lead. Your default workflow is to:
 
 1. Inspect the repository and determine applicable languages
 2. Check CodeQL CLI availability
 3. Create or reuse CodeQL databases
 4. Run CodeQL analysis
-5. Interpret findings and create an implementation plan
-6. Delegate independent tasks to parallel coder agents
-7. Review changes and run verification checks
-8. Produce a final remediation report
+5. Interpret findings and choose the smallest safe remediation path
+6. Fix locally when the change is narrow, or delegate independent tasks when parallel work is actually useful
+7. Run the cheapest focused verification for each touched slice
+8. Reanalyze and compare before/after results
+9. Produce a final remediation report
 
-**Do not immediately edit code.** Delegate all but the smallest changes to coder agents.
+**Do not default to delegation.** Direct, local edits are preferred when a finding is confined to one file or one small slice of behavior. Delegate only when the findings split cleanly across files or subsystems, or when parallel work materially reduces turnaround time.
 
 ## Quick start
 
@@ -30,6 +31,8 @@ Key steps:
 - **Supported languages:** Python (`python`), JavaScript/TypeScript (`javascript-typescript`)
 - **Database directory:** `.codeql/dbs/` (reuse if possible)
 - **Results directory:** `.codeql/results/` (SARIF format)
+- **Compare results:** keep a baseline SARIF and write refreshed output to a distinct `*-after.sarif` file
+- **Residual validation:** prefer narrow reruns for the exact remaining rule or language slice before paying for another full scan
 - **Finding prioritization:** See [references/sarif-interpretation.md](references/sarif-interpretation.md)
 - **Safe remediation rules:** See [references/safe-remediation-rules.md](references/safe-remediation-rules.md)
 
@@ -40,6 +43,8 @@ Key steps:
 - Do not blindly fix every CodeQL finding; classify each finding first
 - Do not suppress findings without clear justification
 - Do not make broad refactors while fixing security findings
+- Prefer the cheapest discriminating validation after each substantive fix
+- Compare SARIF carefully; line shifts alone do not prove new findings
 - Always verify that the repository still works after changes
 
 ## Repository inspection checklist
@@ -49,6 +54,20 @@ Key steps:
 
 **JavaScript/TypeScript indicators:**
 - `*.js`, `*.jsx`, `*.ts`, `*.tsx` files, `package.json`, `tsconfig.json`, `vite.config.*`, `next.config.*`, `webpack.config.*`
+
+## Direct work vs delegation
+
+Default to direct remediation when:
+- The finding is isolated to one file or one local control path
+- A small reversible edit plus a narrow verification can confirm the fix
+- The overhead of splitting context across agents would exceed the size of the change
+
+Delegate when:
+- Findings split cleanly across multiple files or languages
+- The changes are independent and can be reviewed in parallel
+- One slice needs focused implementation while you continue scan comparison or review work
+
+When delegating, avoid assigning multiple agents to edit the same file.
 
 ## Delegation to coder agents
 
@@ -61,16 +80,17 @@ Each task must include:
 - Verification commands
 - Expected output
 
-Assign independent tasks to parallel coder agents. Avoid assigning multiple agents to edit the same file.
+Assign independent tasks to parallel coder agents only when the split is clean. Avoid assigning multiple agents to edit the same file.
 
 ## Review and verification
 
-After coder agents return changes:
-1. Inspect all diffs
-2. Check whether each task addresses the finding
-3. Check for regressions or unrelated changes
-4. Use language-specific verification commands (see [references/verification-commands.md](references/verification-commands.md))
+After each remediation, whether done locally or by a coder agent:
+1. Inspect the diff for scope control
+2. Check whether the change addresses the targeted finding
+3. Run the cheapest focused verification first
+4. Use language-specific verification commands when the touched slice justifies them (see [references/verification-commands.md](references/verification-commands.md))
 5. Rerun CodeQL for affected languages if changes are substantial
+6. Compare before/after SARIF and call out residual findings, removed findings, and line-shift-only churn
 
 ## Final report
 
@@ -80,6 +100,11 @@ A fix is complete only when:
 - The targeted finding is gone, **or**
 - The finding is proven to be a false positive and documented, **or**
 - The remaining risk requires explicit human product or security decision
+
+When reporting results:
+- Distinguish targeted fixes from unrelated findings that were left alone
+- Note when a narrow query rerun was used to confirm a residual fix
+- Call out any findings that appear "new" only because edited files shifted line numbers
 
 ---
 

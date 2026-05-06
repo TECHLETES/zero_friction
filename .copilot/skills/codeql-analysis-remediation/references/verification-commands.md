@@ -1,6 +1,13 @@
 # Language-specific verification commands
 
-After making code changes to fix CodeQL findings, run relevant verification commands to ensure the repository still works.
+After making code changes to fix CodeQL findings, run the cheapest relevant verification commands first, then widen only if the local fix holds.
+
+For CodeQL remediation, verification usually happens in two layers:
+
+1. **Local slice validation** for the touched file or behavior
+2. **Scan validation** by comparing before/after SARIF or rerunning a narrow query/full language suite as appropriate
+
+Do not jump straight to broad test suites when a cheap file-scoped check can falsify the change faster.
 
 ## Python verification
 
@@ -33,10 +40,12 @@ Before running commands, check what tools and scripts the project supports.
 | `pre-commit run --all-files` | Run all pre-commit hooks directly |
 
 **Recommended order:**
-1. `uv run pytest` (or `pytest`) — Unit tests first
-2. `uv run mypy .` (or `mypy .`) — Type checking
-3. `uv run ruff check . --fix` — Linting and auto-fixes
-4. `uv run black .` (or `black .`) — Code formatting
+1. `python -m py_compile path/to/file.py` — Cheap syntax validation for touched files
+2. Focused test command for the touched module or Django app
+3. `uv run pytest` (or `pytest`) — Broader unit tests when justified
+4. `uv run mypy .` (or `mypy .`) — Type checking when used by the project
+5. `uv run ruff check .` — Linting
+6. `uv run pre-commit run --all-files` — Broader repository validation when needed
 
 If any command fails:
 - Determine whether the failure is caused by your changes or was pre-existing
@@ -91,10 +100,11 @@ Before running commands, inspect `package.json` to see available scripts.
 | `npm run format:check` | Check code formatting |
 
 **Recommended order:**
-1. `npm run lint` (or `npm run lint:fix`) — Linting
-2. `npm run typecheck` — TypeScript type checking
-3. `npm test` — Unit tests
-4. `npm run build` — Build (if applicable)
+1. `node --check path/to/file.js` — Cheap syntax validation for touched files
+2. `npm run lint` (or `npm run lint:fix`) — Linting
+3. `npm run typecheck` — TypeScript type checking
+4. `npm test` — Unit tests
+5. `npm run build` — Build (if applicable)
 
 If any command fails:
 - Determine whether the failure is caused by your changes or was pre-existing
@@ -123,6 +133,27 @@ npm run build
 echo "✓ JavaScript/TypeScript verification complete"
 ```
 
+## Scan verification
+
+For CodeQL work, validation is incomplete until you verify the finding delta.
+
+Use one of these patterns:
+
+1. **Before/after SARIF compare**
+   - Keep the original SARIF as the baseline
+   - Write refreshed output to a distinct file such as `codeql-python-after.sarif`
+   - Compare rule ID, file, line, and message
+   - Treat line-only movement carefully; it may reflect the same finding after edits
+
+2. **Narrow rerun for a residual finding**
+   - Use when one rule or one remaining finding is under investigation
+   - Prefer this when a full reanalysis is expensive and the question is localized
+
+3. **Full language rerun**
+   - Use after substantial changes or when the baseline database is likely stale
+
+If a terminal repeatedly reports that a long CodeQL run "may be waiting for input," confirm from the output whether it is still making progress before treating it as blocked.
+
 ## Repository state verification
 
 For any language, check basic repository health:
@@ -136,7 +167,7 @@ For any language, check basic repository health:
 
 2. **No syntax errors in primary files:**
    - Python: `python -m py_compile <file>`
-   - JavaScript: `node -c <file>`
+   - JavaScript: `node --check <file>`
    - TypeScript: `tsc --noEmit`
 
 3. **No circular imports or module issues:**
@@ -176,7 +207,7 @@ Some checks are optional depending on the project:
 Only run commands that are actually configured in the project.
 
 If in doubt, run:
-- **Python:** `uv run pytest`
-- **JavaScript/TypeScript:** `npm test`
+- **Python:** `python -m py_compile <touched-file>` and then `uv run pytest`
+- **JavaScript/TypeScript:** `node --check <touched-file>` and then `npm test`
 
 These are the most common, lowest-risk verification points.
