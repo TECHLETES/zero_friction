@@ -3,7 +3,7 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 mode="copy"
-force="false"
+force="true"
 install_agents="true"
 install_skills="true"
 
@@ -12,12 +12,14 @@ usage() {
 Install Copilot agent definitions and skills from this repository.
 
 Usage:
-  ./scripts/install-copilot-agents.sh [--copy|--link] [--force] [--agents-only|--skills-only]
+  ./scripts/install-copilot-agents.sh [--copy|--link] [--no-force] [--agents-only|--skills-only]
 
 Options:
   --copy          Copy the files into the target directory (default).
   --link          Symlink the files into the target directory.
   --force         Replace existing files with the repository versions.
+                 This is the default behavior.
+  --no-force      Skip existing files instead of replacing them.
   --agents-only   Install only agent definitions (skip skills).
   --skills-only   Install only skills (skip agents).
   --help          Show this help message.
@@ -29,6 +31,7 @@ Environment:
 Examples:
   ./scripts/install-copilot-agents.sh
   ./scripts/install-copilot-agents.sh --link
+  ./scripts/install-copilot-agents.sh --no-force
   ./scripts/install-copilot-agents.sh --skills-only
   COPILOT_AGENTS_DIR="$HOME/.copilot/agents" ./scripts/install-copilot-agents.sh --force
 EOF
@@ -44,6 +47,9 @@ while [[ $# -gt 0 ]]; do
       ;;
     --force)
       force="true"
+      ;;
+    --no-force)
+      force="false"
       ;;
     --agents-only)
       install_skills="false"

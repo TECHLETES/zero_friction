@@ -191,17 +191,6 @@ If `uv lock` fails with version conflicts:
    package-b = ">=3.0,<4.0"
    ```
 
-### Step 1g: Commit Python Changes
-
-```bash
-git add pyproject.toml uv.lock
-git commit -m "security: update Python dependencies - fix CVEs in pypdf, langsmith, langchain-text-splitters"
-```
-
-Use commit message format: `security: <description of what was updated>`
-
----
-
 ## Phase 1 Validation: Python Tests
 
 Once dependencies are locked and synced:
@@ -336,39 +325,9 @@ Once bun.lock is updated and all packages installed:
   - Consider a more conservative version constraint
   - Review package changelogs for migration guides
 
-### Step 2g: Commit JavaScript Changes
-
-```bash
-git add package.json bun.lock
-git commit -m "security: update JavaScript dependencies - fix CVEs in frontend packages"
-```
-
-Use commit message format: `security: <description of what was updated>`
-
 ---
 
-## Phase 3: Pull  Request and Summary
 
-### Step 3a: Push Branch to Remote
-
-```bash
-git push origin security-updates-dependencies
-```
-
-### Step 3b: Create Pull Request with Detailed Summary
-
-Create a PR from `security-updates-dependencies` to the base branch (staging/main/master) with a comprehensive description.
-
-#### PR Title Format
-```
-security: fix vulnerability updates in Python and JavaScript dependencies
-```
-**Note**: If major version bumps or breaking changes were required, prefix the title with `[breaking]`:
-`security: [breaking] fix critical vulnerability updates with breaking changes`
-
-#### PR Description Template
-
-```markdown
 ## Security Update Summary
 
 ### Major / Breaking Changes
@@ -463,30 +422,6 @@ security: fix vulnerability updates in Python and JavaScript dependencies
 - [x] Tests pass (Python)
 - [x] Build pipeline verified (JavaScript)
 - [x] Lock files updated and committed
-- [x] Comprehensive PR description provided
-```
-
-### Step 3c: Create Pull Request
-
-Use available agent tools or the GitHub CLI to create the PR. Avoid using manual web interfaces.
-
-**Method 1: Using Agent Tools (Preferred)**
-If the `create-pull-request` skill or `github-pull-request_create_pull_request` tool is available, use it directly with the summary generated in Step 3b.
-
-**Method 2: Using GitHub CLI**
-If agent tools are unavailable but the `gh` CLI is installed:
-```bash
-# Save summary to a temp file
-echo "SUMMARY_FROM_STEP_3B" > /tmp/pr-body.md
-
-# Create PR
-gh pr create \
-  --title "security: fix vulnerability updates in Python and JavaScript dependencies" \
-  --body-file /tmp/pr-body.md \
-  --base $BASE_BRANCH \
-  --head security-updates-dependencies \
-  --label "security,dependencies"
-```
 
 ---
 
@@ -498,22 +433,11 @@ gh pr create \
 ✓ `uv lock` generates successfully with no version conflicts
 ✓ `uv sync` completes without errors
 ✓ `pytest` passes all tests
-✓ Ignored CVEs in `[tool.pip-audit]` are reviewed and documented in PR
+✓ Ignored CVEs in `[tool.pip-audit]` are reviewed and documented
 ✓ JavaScript/bun vulnerabilities are scanned and analyzed
 ✓ All CRITICAL/HIGH JavaScript vulnerabilities checked (resolved or documented)
 ✓ `bun run dev` starts without errors
 ✓ Frontend tests pass (if applicable)
-✓ Python changes committed to branch
-✓ JavaScript changes committed to branch (if applicable)
-✓ Branch pushed to remote (`git push origin security-updates-dependencies`)
-✓ Pull Request created with:
-  - ✓ Detailed vulnerability summary (Python & JavaScript)
-  - ✓ Explanation of what was fixed and why
-  - ✓ Documentation of vulnerabilities NOT fixed and reasoning
-  - ✓ Validation results included
-  - ✓ Files changed listed
-  - ✓ Appropriate labels (security, dependencies)
-✓ PR assigned to appropriate reviewers
 
 ---
 
@@ -522,36 +446,22 @@ gh pr create \
 **For Git Workflow**:
 - Base branch: Use staging if it exists, otherwise main, otherwise master
 - Branch creation: Always create `security-updates-dependencies` branch
-- PR creation: Always create PR after all work is done
-- Never force-push to base branches
 
 **For Python (pip audit):**
 - Stop when: All CRITICAL and HIGH CVEs are fixed, and all tests pass
-- Exception: Document and justify any LOW severity CVEs left unfixed in PR description
-- Never commit unresolved CRITICAL vulnerabilities
-- Document reasoning in PR for any vulnerabilities that cannot be fixed
-- **Breaking Changes**: If a fix requires a major version bump or breaking change, ensure the PR title starts with `[breaking]` and the `Major / Breaking Changes` section of the description clearly lists these updates.
+- Exception: Document and justify any LOW severity CVEs left unfixed
+- Document reasoning for any vulnerabilities that cannot be fixed
 
 **For JavaScript/Bun:**
 - Stop when: All CRITICAL and HIGH vulnerabilities are analyzed
-- If resolved: Great! Document in PR
+- If resolved: Great!
 - If not resolved: Document thoroughly WHY they remain (transitive deps, upstream waiting, etc.)
 - Never commit unresolved CRITICAL vulnerabilities without clear mitigation path
-- Document transitive/dev-only vulnerabilities in PR for transparency
+- Document transitive/dev-only vulnerabilities for transparency
 
 **Version Conflicts:**
 - Iterate max 3-5 times; if no solution, escalate to maintainers
 - Consider alternative packages if maintainer is unresponsive
-- Document all conflict resolution attempts in commit messages
-
-**PR Creation Requirements**:
-- Title: Use `security: <clear description>` format
-- Description: Use comprehensive template covering all findings
-- Method: Use available agent tools (`create-pull-request`, `github-pull-request_create_pull_request`) or GitHub CLI
-- Base branch: Use detected base branch (staging/main/master)
-- Head branch: Always `security-updates-dependencies`
-- Labels: Always add `security` and `dependencies` labels
-- Reviewers: Assign to security or ops team if applicable
 
 ---
 
@@ -566,16 +476,11 @@ gh pr create \
 | Lock Python deps | `uv lock` |
 | Install Python deps | `uv sync` |
 | Run Python tests | `uv run pytest` |
-| Commit Python changes | `git add pyproject.toml uv.lock && git commit -m "security: ..."` |
 | Scan JavaScript | `bun audit` |
 | Update JS deps | `bun update` → `bun install` |
 | Run frontend | `bun run dev` |
 | Run JS tests | `bun run test` |
-| Commit JS changes | `git add package.json bun.lock && git commit -m "security: ..."` |
-| Push branch | `git push origin security-updates-dependencies` |
-| Create PR (CLI) | `gh pr create --title "..." --body "..." --base <base-branch>` |
 | View branch status | `git status` |
-| View commits | `git log --oneline -5` |
 
 ---
 
@@ -584,10 +489,8 @@ gh pr create \
 ❌ **Don't** work directly on staging/main/master branches; always use feature branch
 ❌ **Don't** forget to pull latest before creating feature branch
 ❌ **Don't** force-push the feature branch without good reason
-❌ **Don't** skip the PR; commit and push directly to main is anti-pattern
-❌ **Don't** create PR with generic description; use comprehensive template
+❌ **Don't** create commits & PR; commits and PR are done by user, to keep human in the loop
 ❌ **Don't** forget to document why vulnerabilities were NOT fixed
-❌ **Don't** merge PRs without security review
 ❌ **Don't** update everything at once; update prioritized vulnerabilities
 ❌ **Don't** skip tests; always validate after dependency updates
 ❌ **Don't** ignore CRITICAL vulnerabilities; fix them or mitigate with security controls
@@ -602,33 +505,24 @@ gh pr create \
 ## Success Criteria
 
 A successful vulnerability remediation:
-1. **Git workflow completed**: Feature branch created, all changes committed, branch pushed to remote
+1. **Git workflow completed**: Feature branch created and up to date
 2. **All CRITICAL vulnerabilities are fixed**
 3. **All HIGH vulnerabilities are fixed or well-documented**
 4. **All code tests pass** (Python + JavaScript, if applicable)
 5. **All applications start without errors**
 6. **Dependency versions are locked in version control** (`uv.lock`, `bun.lock`)
-7. **Pull Request created** with:
-   - Clear title describing the security updates
-   - Comprehensive description covering:
-     - What vulnerabilities were fixed (with CVE IDs and versions)
-     - Why vulnerabilities were NOT fixed (if any)
-     - Validation results and test outcomes
-     - Files changed
-   - Appropriate labels (`security`, `dependencies`)
-   - Assigned to relevant reviewers
 8. **Documentation complete**: All decisions, conflicts, and resolutions explained
 
 ---
 
 ## Example Prompts to Use This Skill
 
-- "Fix all vulnerabilities in the Python dependencies and create a PR"
+- "Fix all vulnerabilities in the Python dependencies"
 - "Run security audits on all dependencies and update critical CVEs"
-- "Scan for CVEs, fix what we can, and open a PR with detailed findings"
-- "Update dependencies to fix security vulnerabilities with automated branch and PR"
-- "Clean up old ignored CVEs and update them if fixes exist, then create PR"
-- "Security audit: scan Python and JavaScript, fix vulnerabilities, create PR to staging"
-- "Create feature branch for security updates, fix dependencies, and open pull request"
-- "Resolve the version conflict between package-a and package-b and create security PR"
-- "Validate that the app still works after security updates and propose PR"
+- "Scan for CVEs, fix what we can"
+- "Update dependencies to fix security vulnerabilities with automated branch"
+- "Clean up old ignored CVEs and update them if fixes exist"
+- "Security audit: scan Python and JavaScript, fix vulnerabilities"
+- "Create feature branch for security updates, fix dependencies"
+- "Resolve the version conflict between package-a and package-b"
+- "Validate that the app still works after security updates"
