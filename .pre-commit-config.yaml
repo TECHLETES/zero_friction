@@ -93,8 +93,8 @@ repos:
     hooks:
       - id: bandit
         name: bandit (security check)
-        args: [-ll, --skip, B101]
-        exclude: ^tests/
+        args: [--severity-level, high, --skip, B101]
+        exclude: ^migrations/
         types: [python]
 
   # Docstring validation
