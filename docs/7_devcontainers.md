@@ -208,6 +208,9 @@ workflow:
 2. Regenerate the lock file.
 3. Run `uv sync` again.
 
+[Edited by: Michaël Linger 7-5-2026]: #
+Alternatively, you can use uv `add <package>` (e.g. `uv add sqlalchemy`) which automatically updates pyproject.toml, resolves dependencies, and installs them into the current environment in one step.
+
 The devcontainer does not replace the repository's dependency management model.
 It only provides the environment where that model runs.
 

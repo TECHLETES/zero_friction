@@ -29,7 +29,19 @@ echo "Bootstrapping the container workspace with uv..."
 uv --version
 python --version
 
-uv sync --frozen
+# uv venv .venv
+uv sync --frozen --all-groups
+
+# (Added by Michaël: 7-5-2026)
+# load environment variables from .envrc
+source .envrc
+
+# (Added by Michaël: 7-5-2026)
+# ensure .envrc is sourced automatically when opening new terminals inside the container
+if ! grep -q "source .envrc" ~/.bashrc 2>/dev/null; then
+  echo "# Auto-source .envrc for this workspace" >> ~/.bashrc
+  echo "if [[ -f \"${repo_root}/.envrc\" ]]; then source \"${repo_root}/.envrc\"; fi" >> ~/.bashrc
+fi
 
 if [[ -d .git ]]; then
   uv run pre-commit install --install-hooks

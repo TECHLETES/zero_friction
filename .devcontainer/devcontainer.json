@@ -7,6 +7,7 @@
     "PRE_COMMIT_HOME": "/home/vscode/.cache/pre-commit",
     "UV_CACHE_DIR": "/home/vscode/.cache/uv",
     "UV_LINK_MODE": "copy",
+    "UV_PROJECT_ENVIRONMENT": ".venv",
     "UV_PYTHON_DOWNLOADS": "never"
   },
   "customizations": {

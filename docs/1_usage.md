@@ -90,6 +90,9 @@ uv lock --upgrade
 uv sync
 ```
 
+[Edited by: Michaël Linger 7-5-2026]: #
+Alternatively, you can use uv `add <package>` (e.g. `uv add sqlalchemy`) which automatically updates pyproject.toml, resolves dependencies, and installs them into the current environment in one step.
+
 Always use version constraints like `>=X.Y.Z,<X+1.0.0` to allow patch/minor updates while preventing major version breaks.
 
 ### 🔐 Managing CVE Exclusions for pip-audit
