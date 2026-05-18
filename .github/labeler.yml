@@ -1,0 +1,21 @@
+# Automatic PR labeling based on file changes
+# Used by actions/labeler@v6 in labeler.yml workflow
+# Valid labels: breaking, security, feature, bug, refactor, question, docs
+
+# Documentation changes
+docs:
+  - changed-files:
+      - any-glob-to-any-file: 'docs/**'
+      - any-glob-to-any-file: '*.md'
+
+# Security-related changes
+security:
+  - changed-files:
+      - any-glob-to-any-file: 'utils/secrets.py'
+      - any-glob-to-any-file: '.github/dependabot.yml'
+      - any-glob-to-any-file: '.pre-commit-config.yaml'
+
+# Breaking changes (major dependency updates, API changes)
+breaking:
+  - changed-files:
+      - any-glob-to-any-file: 'pyproject.toml'
