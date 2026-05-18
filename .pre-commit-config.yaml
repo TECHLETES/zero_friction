@@ -1,6 +1,15 @@
 repos:
   - repo: local
     hooks:
+      # Validate branch name follows naming convention
+      - id: validate-branch-name
+        name: Validate branch name format
+        entry: bash scripts/hooks/validate-branch-name.sh
+        language: system
+        always_run: true
+        pass_filenames: false
+        stages: [pre-commit]
+
       # Strip notebook outputs
       - id: nbstripout-autoadd
         name: nbstripout (auto-add notebooks)

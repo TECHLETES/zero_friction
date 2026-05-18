@@ -16,16 +16,13 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/labeler@v6
-      if: ${{ github.event.action != 'labeled' && github.event.action != 'unlabeled' }}
-
-    # Add labels based on branch name pattern
+    # Add labels based on branch name pattern (case-insensitive)
     - name: Add label based on branch
       if: ${{ github.event.action != 'labeled' && github.event.action != 'unlabeled' }}
       uses: actions/github-script@v7
       with:
         script: |
-          const branchName = context.payload.pull_request.head.ref;
+          const branchName = context.payload.pull_request.head.ref.toLowerCase();
           const labels = [];
 
           if (branchName.startsWith('feature/')) {
@@ -38,6 +35,10 @@ jobs:
             labels.push('security');
           } else if (branchName.startsWith('breaking/')) {
             labels.push('breaking');
+          } else if (branchName.startsWith('question/')) {
+            labels.push('question');
+          } else if (branchName.startsWith('docs/')) {
+            labels.push('docs');
           }
 
           if (labels.length > 0) {
