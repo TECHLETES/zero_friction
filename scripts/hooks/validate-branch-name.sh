@@ -26,6 +26,11 @@ fi
 # Valid prefixes (case-insensitive)
 VALID_PREFIXES=("feature/" "bug/" "refactor/" "security/" "breaking/" "question/" "docs/")
 
+# Allow protected branches (main, staging, etc.) specifically for CI/CD or direct maintenance
+if [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == "staging" || "$BRANCH_NAME" == "master" ]]; then
+    exit 0
+fi
+
 # Convert branch name to lowercase for comparison
 BRANCH_LOWER=$(echo "$BRANCH_NAME" | tr '[:upper:]' '[:lower:]')
 
