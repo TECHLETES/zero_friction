@@ -16,7 +16,7 @@ from metering_client import Configuration as MeteringConfiguration
 from regionalregulations_client import ApiClient as RegionalRegulationsClient
 from regionalregulations_client import Configuration as RegionalRegulationsConfiguration
 
-from .sdk_utils import create_config, wrap_api_call, create_api_classes_for_client
+from .sdk_utils import create_config, wrap_api_call, create_api_classes_for_client, make_shared_rate_limiter
 from .config import ZeroFrictionConfig
 
 from zero_friction.patches.patched_customers_api import PatchedCustomersApi
@@ -121,6 +121,9 @@ class SDKClient:
         # Patch specific methods
         self.masterdata_client.customers_api = PatchedCustomersApi(self.masterdata_client.customers_api)
 
-        # Now wrap call_api of every client for retry/rate-limit handling
+        # Now wrap call_api of every client for retry/rate-limit handling.
+        # A single shared rate limiter is used so all 8 clients count against
+        # the same call-per-minute window (not 8 independent windows).
+        shared_limiter = make_shared_rate_limiter(self.config)
         for client in self._all_clients:
-            wrap_api_call(client, self.config)
+            wrap_api_call(client, self.config, shared_limiter)

@@ -91,21 +91,31 @@ def create_api_classes_for_client(sdk_module: str, api_client_instance) -> dict:
 
     return api_classes
 
-def wrap_api_call(api_client, config):
-    orig_call_api = api_client.call_api
-
-    # Compose decorators: rate limit, then refresh, then retry
+def make_shared_rate_limiter(config):
+    """
+    Build a single rate-limited dispatcher shared across all SDK clients.
+    Calling this once and reusing the result ensures all clients share
+    one call-count window instead of each having an independent limit.
+    """
     @sleep_and_retry
     @limits(calls=config.rate_limit_per_minute, period=60)
-    def wrapped_call_api(*args, **kwargs):
-        if config.debug_mode:
-            print(f"[{time.strftime('%X')}] API request sent.")
-        # Compose refresh/retry decorators in *call* context
+    def _rate_limited_dispatch(orig_call_api, *args, **kwargs):
         call = orig_call_api
         call = refresh_on_401(config, config.debug_mode)(call)
         call = retry_on_429(max_retries=config.max_retries, debug_mode=config.debug_mode)(call)
         return call(*args, **kwargs)
-    
+
+    return _rate_limited_dispatch
+
+
+def wrap_api_call(api_client, config, shared_rate_limiter):
+    orig_call_api = api_client.call_api
+
+    def wrapped_call_api(*args, **kwargs):
+        if config.debug_mode:
+            print(f"[{time.strftime('%X')}] API request sent.")
+        return shared_rate_limiter(orig_call_api, *args, **kwargs)
+
     api_client.call_api = wrapped_call_api
 
 
