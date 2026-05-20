@@ -6,9 +6,6 @@ from configuration_client.exceptions import ApiException as ConfigurationApiExce
 from forecasting_client.exceptions import ApiException as ForecastingApiException
 from metering_client.exceptions import ApiException as MeteringApiException
 from regionalregulations_client.exceptions import ApiException as RegionalRegulationsApiException
-import functools
-import time
-from ratelimit import limits, sleep_and_retry
 
 def get_all_sdk_exceptions():
     return (
@@ -23,59 +20,5 @@ def get_all_sdk_exceptions():
     )
 
 ALL_SDK_EXCEPTIONS = get_all_sdk_exceptions()
-
-def retry_on_429(max_retries: int = 6, debug_mode: bool = False, wait_time: int = 20):
-    def decorator(func):
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs):
-            last_exc = None
-            last_retry_after = None
-            for attempt in range(1, max_retries + 1):
-                try:
-                    return func(*args, **kwargs)
-                except ALL_SDK_EXCEPTIONS as e:
-                    code = getattr(e, "status", None) or getattr(e, "status_code", None)
-                    headers = getattr(e, "headers", {}) or {}
-                    if code == 429:
-                        if debug_mode:
-                            print(f"[{func.__name__}] 429 received—retrying (attempt {attempt}/{max_retries})")
-                        retry_after = int(headers.get("x-retry-after-seconds", "1")) + wait_time
-                        last_retry_after = retry_after
-                        if debug_mode:
-                            print(f"[{func.__name__}] 429 received—sleeping {retry_after}s (attempt {attempt})")
-                        time.sleep(retry_after)
-                        last_exc = e
-                        continue
-                    raise
-                except Exception:
-                    raise
-            raise RuntimeError(
-                f"[{func.__name__}] Rate limit (429) persisted after {max_retries} retries. "
-                f"Actual wait between attempts: {last_retry_after}s "
-                f"(server header + {wait_time}s buffer). "
-                f"Server message: {getattr(last_exc, 'body', last_exc)}"
-            ) from last_exc
-        return wrapper
-    return decorator
-
-def refresh_on_401(config, debug_mode=False):
-    def decorator(func):
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs):
-            tried_refresh = False
-            while True:
-                try:
-                    return func(*args, **kwargs)
-                except ALL_SDK_EXCEPTIONS as e:
-                    code = getattr(e, "status", None) or getattr(e, "status_code", None)
-                    if code == 401 and not tried_refresh:
-                        if debug_mode:
-                            print("401 Unauthorized—refreshing token and retrying once")
-                        config.refresh_token()
-                        tried_refresh = True
-                        continue
-                    raise
-        return wrapper
-    return decorator
 
 

@@ -26,7 +26,8 @@ from metering_client import Configuration as MeteringConfiguration
 from regionalregulations_client import ApiClient as RegionalRegulationsClient
 from regionalregulations_client import Configuration as RegionalRegulationsConfiguration
 
-from .sdk_exceptions import retry_on_429, refresh_on_401
+import threading
+from .sdk_exceptions import ALL_SDK_EXCEPTIONS
 
 # Load environment variables from .env file
 load_dotenv()
@@ -100,23 +101,93 @@ def make_shared_rate_limiter(config):
     @sleep_and_retry
     @limits(calls=config.rate_limit_per_minute, period=60)
     def _rate_limited_dispatch(orig_call_api, *args, **kwargs):
-        call = orig_call_api
-        call = refresh_on_401(config, config.debug_mode)(call)
-        call = retry_on_429(max_retries=config.max_retries, debug_mode=config.debug_mode)(call)
-        return call(*args, **kwargs)
+        return orig_call_api(*args, **kwargs)
 
     return _rate_limited_dispatch
 
 
 def wrap_api_call(api_client, config, shared_rate_limiter):
+    """
+    Patch both call_api and response_deserialize on an SDK ApiClient.
+
+    In the SDK version used here, call_api performs the HTTP request and
+    returns a response object without raising.  response_deserialize is
+    what checks the status code and raises ApiException.  All retry /
+    token-refresh logic therefore lives in wrapped_response_deserialize;
+    call_api is only wrapped to apply the shared client-side rate limiter
+    and to record the last call arguments so that retries can re-issue
+    the same request.
+    """
     orig_call_api = api_client.call_api
+    orig_response_deserialize = api_client.response_deserialize
+    _local = threading.local()
 
     def wrapped_call_api(*args, **kwargs):
         if config.debug_mode:
             print(f"[{time.strftime('%X')}] API request sent.")
+        _local.last_call_args = args
+        _local.last_call_kwargs = kwargs
         return shared_rate_limiter(orig_call_api, *args, **kwargs)
 
+    def wrapped_response_deserialize(response_data, *args, **kwargs):
+        last_exc = None
+        last_retry_after = None
+        current_response = response_data
+        tried_refresh = False
+
+        for attempt in range(1, config.max_retries + 1):
+            try:
+                return orig_response_deserialize(current_response, *args, **kwargs)
+            except ALL_SDK_EXCEPTIONS as e:
+                code = getattr(e, "status", None) or getattr(e, "status_code", None)
+                exc_headers = getattr(e, "headers", {}) or {}
+
+                if code == 429:
+                    retry_after = int(exc_headers.get("x-retry-after-seconds", "1")) + config.wait_time
+                    last_retry_after = retry_after
+                    if config.debug_mode:
+                        print(
+                            f"[{time.strftime('%X')}] 429—sleeping {retry_after}s "
+                            f"(attempt {attempt}/{config.max_retries})"
+                        )
+                    time.sleep(retry_after)
+                    last_exc = e
+                    current_response = shared_rate_limiter(
+                        orig_call_api,
+                        *getattr(_local, "last_call_args", ()),
+                        **getattr(_local, "last_call_kwargs", {}),
+                    )
+                    # The SDK requires .read() to be called after call_api before
+                    # response_deserialize can access the body (response.data).
+                    if callable(getattr(current_response, "read", None)):
+                        current_response.read()
+                    continue
+
+                if code == 401 and not tried_refresh:
+                    if config.debug_mode:
+                        print(f"[{time.strftime('%X')}] 401—refreshing token and retrying")
+                    config.refresh_token()
+                    tried_refresh = True
+                    current_response = shared_rate_limiter(
+                        orig_call_api,
+                        *getattr(_local, "last_call_args", ()),
+                        **getattr(_local, "last_call_kwargs", {}),
+                    )
+                    if callable(getattr(current_response, "read", None)):
+                        current_response.read()
+                    continue
+
+                raise
+
+        raise RuntimeError(
+            f"Rate limit (429) persisted after {config.max_retries} retries. "
+            f"Last wait: {last_retry_after}s "
+            f"(server header + {config.wait_time}s buffer). "
+            f"Server message: {getattr(last_exc, 'body', last_exc)}"
+        ) from last_exc
+
     api_client.call_api = wrapped_call_api
+    api_client.response_deserialize = wrapped_response_deserialize
 
 
 

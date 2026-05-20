@@ -15,7 +15,8 @@ class ZeroFrictionConfig:
             self, 
             rate_limit_per_minute: int = 600, 
             max_retries: int = 6,
-            debug_mode: bool = False
+            debug_mode: bool = False,
+            wait_time: int = 20,
     ):
         self.zf_tuuid = os.getenv("ZF_TENANT_ID")
         self.zf_ouuid = os.getenv("ZF_ORG_ID")
@@ -23,6 +24,7 @@ class ZeroFrictionConfig:
         self.rate_limit_per_minute = rate_limit_per_minute
         self.debug_mode = debug_mode
         self.max_retries = max_retries
+        self.wait_time = wait_time
 
         oauth_response, oauth_token = get_oauth_response()
         self.update_token(oauth_token, oauth_response.get("expires_in", 3599))
