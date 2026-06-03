@@ -106,7 +106,7 @@ def make_shared_rate_limiter(config):
     return _rate_limited_dispatch
 
 
-def wrap_api_call(api_client, config, shared_rate_limiter):
+def wrap_api_call(api_client, config, shared_rate_limiter, all_clients=None):
     """
     Patch both call_api and response_deserialize on an SDK ApiClient.
 
@@ -167,6 +167,8 @@ def wrap_api_call(api_client, config, shared_rate_limiter):
                     if config.debug_mode:
                         print(f"[{time.strftime('%X')}] 401—refreshing token and retrying")
                     config.refresh_token()
+                    for _client in (all_clients or [api_client]):
+                        _client.configuration.access_token = config.oauth_token
                     tried_refresh = True
                     current_response = shared_rate_limiter(
                         orig_call_api,
