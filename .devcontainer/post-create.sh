@@ -17,7 +17,9 @@ echo "Bootstrapping the container workspace with uv..."
 uv --version
 python --version
 
-uv sync --frozen --reinstall
+uv venv .venv --allow-existing
+source .venv/bin/activate
+uv sync --frozen --all-groups --active
 uv tool install graphifyy
 
 if [[ -d .git ]]; then
