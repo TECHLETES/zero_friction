@@ -4,6 +4,15 @@ set -euo pipefail
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "${repo_root}"
 
+if [[ ! -f .env && -f .env.template ]]; then
+  cp .env.template .env
+  echo "Created .env from .env.template for local devcontainer startup."
+elif [[ -f .env ]]; then
+  source .env
+else
+  echo "No .env file found and no .env.template to copy from. Please create a .env file based on the .env.template for local development."
+fi
+
 echo "Bootstrapping the container workspace with uv..."
 uv --version
 python --version
@@ -11,17 +20,6 @@ python --version
 # uv venv .venv
 uv sync --frozen --all-groups
 uv tool install graphifyy
-
-# (Added by Michaël: 7-5-2026)
-# load environment variables from .envrc
-source .envrc
-
-# (Added by Michaël: 7-5-2026)
-# ensure .envrc is sourced automatically when opening new terminals inside the container
-if ! grep -q "source .envrc" ~/.bashrc 2>/dev/null; then
-  echo "# Auto-source .envrc for this workspace" >> ~/.bashrc
-  echo "if [[ -f \"${repo_root}/.envrc\" ]]; then source \"${repo_root}/.envrc\"; fi" >> ~/.bashrc
-fi
 
 if [[ -d .git ]]; then
   uv run pre-commit install --install-hooks

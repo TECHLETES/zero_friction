@@ -80,6 +80,7 @@ pip-delete-this-directory.txt
 # dotenv files (if used for secrets)
 .env
 .env.*
+!.env.template
 
 # Poetry
 poetry.lock

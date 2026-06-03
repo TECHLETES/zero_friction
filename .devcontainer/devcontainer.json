@@ -5,9 +5,10 @@
   },
   "containerEnv": {
     "PRE_COMMIT_HOME": "/home/vscode/.cache/pre-commit",
+    "PYTHONPATH": "${workspaceFolder}",
     "UV_CACHE_DIR": "/home/vscode/.cache/uv",
     "UV_LINK_MODE": "copy",
-    "UV_PROJECT_ENVIRONMENT": ".venv",
+    "UV_PROJECT_ENVIRONMENT": "${workspaceFolder}/.venv",
     "UV_PYTHON_DOWNLOADS": "never"
   },
   "customizations": {
@@ -63,7 +64,7 @@
   ],
   "name": "python-basic-template",
   "overrideCommand": true,
-  "postCreateCommand": "bash ${containerWorkspaceFolder}/.devcontainer/post-create.sh",
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
   "remoteUser": "vscode",
   "updateRemoteUserUID": true,
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"

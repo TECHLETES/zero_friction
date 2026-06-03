@@ -8,14 +8,15 @@ ADD https://astral.sh/uv/${UV_VERSION}/install.sh /tmp/uv-installer.sh
 RUN env UV_UNMANAGED_INSTALL="/usr/local/bin" sh /tmp/uv-installer.sh \
     && rm /tmp/uv-installer.sh
 
-# Install direnv (Added by Michaël: 7-5-2026)
 RUN rm -f /etc/apt/sources.list.d/yarn.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-    bubblewrap \
-    socat \
-    curl \
-    direnv \
+        libpq-dev \
+        netcat-openbsd \
+        postgresql-client \
+        redis-tools \
+        bubblewrap \
+        socat \
     && rm -rf /var/lib/apt/lists/*
 
 # Install 1Password CLI (Added by Michaël: 7-5-2026)
