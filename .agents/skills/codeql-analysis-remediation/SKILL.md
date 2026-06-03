@@ -1,3 +1,9 @@
+---
+name: codeql-analysis-remediation
+description: >
+  Analyze repository with CodeQL, identify issues, plan and implement safe fixes, verify results. Lead remediation efforts with controlled, reviewable improvements. Use when task involves CodeQL security/quality analysis and remediation.
+---
+
 # Skill: CodeQL repository analysis and remediation orchestration
 
 ## Purpose
