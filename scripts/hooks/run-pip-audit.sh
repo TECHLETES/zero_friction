@@ -24,4 +24,4 @@ EOF
 )
 
 # Run pip-audit with the exclusions from pyproject.toml
-pip-audit $IGNORE_ARGS "$@"
+uv run pip-audit $IGNORE_ARGS "$@"
