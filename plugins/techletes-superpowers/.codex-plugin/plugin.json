@@ -1,0 +1,52 @@
+{
+  "author": {
+    "email": "thom@techletes.ai",
+    "name": "Techletes",
+    "url": "https://techletes.ai"
+  },
+  "description": "Techletes' agentic software development workflow framework: lean planning, pragmatic implementation, TDD where useful, debugging, review, and delivery workflows for coding agents.",
+  "homepage": "https://github.com/TECHLETES/python_template",
+  "hooks": {},
+  "interface": {
+    "brandColor": "#111827",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "category": "Developer Tools",
+    "composerIcon": "./assets/techletes-superpowers-small.svg",
+    "defaultPrompt": [
+      "Help me plan and implement this feature using the Techletes workflow.",
+      "Review this issue and propose the smallest useful implementation path.",
+      "Debug this failing test or bug systematically.",
+      "Finish this branch and prepare it for review."
+    ],
+    "developerName": "Techletes",
+    "displayName": "Techletes Superpowers",
+    "logo": "./assets/app-icon.png",
+    "longDescription": "Use Techletes Superpowers to guide coding agents through practical software delivery workflows: deciding what not to build, planning only when useful, implementing minimal working changes, using tests where they add value, debugging systematically, reviewing changes, and finishing branches cleanly.",
+    "privacyPolicyURL": "https://techletes.ai/privacy",
+    "screenshots": [],
+    "shortDescription": "Lean planning, implementation, debugging, review, and delivery workflows for coding agents",
+    "termsOfServiceURL": "https://techletes.ai/terms",
+    "websiteURL": "https://github.com/TECHLETES/python_template"
+  },
+  "keywords": [
+    "agent-workflows",
+    "skills",
+    "planning",
+    "lean-development",
+    "tdd",
+    "debugging",
+    "code-review",
+    "delivery",
+    "python",
+    "techletes"
+  ],
+  "license": "MIT",
+  "name": "techletes-superpowers",
+  "repository": "https://github.com/TECHLETES/python_template",
+  "skills": "./skills/",
+  "version": "0.1.0"
+}

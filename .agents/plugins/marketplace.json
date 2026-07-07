@@ -1,0 +1,20 @@
+{
+  "interface": {
+    "displayName": "Techletes Plugins"
+  },
+  "name": "techletes-plugins",
+  "plugins": [
+    {
+      "category": "Developer Tools",
+      "name": "techletes-superpowers",
+      "policy": {
+        "authentication": "ON_INSTALL",
+        "installation": "AVAILABLE"
+      },
+      "source": {
+        "path": "./plugins/techletes-superpowers",
+        "source": "local"
+      }
+    }
+  ]
+}
