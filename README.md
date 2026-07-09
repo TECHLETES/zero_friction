@@ -1,7 +1,7 @@
 
 ![Test Coverage](./coverage.svg)
 
-# Python Basic Template (TECHLETES)
+# Python Template (TECHLETES)
 
 A modern, production-ready Python project template for TECHLETES, a data & AI consultancy. Includes hybrid dependency management, secure secret management, and comprehensive development tooling for internal use by TECHLETES employees.
 
@@ -85,7 +85,7 @@ Detailed setup and customization guides are linked in the [📚 Documentation](#
 
 ### 📦 **Project Structure**
 ```
-python_basic_template/
+python_template/
 ├── .copilot/
 │   └── agents/                     # Shared Copilot agent definitions for optional install
 ├── .devcontainer/
