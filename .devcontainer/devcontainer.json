@@ -85,7 +85,6 @@
   "overrideCommand": true,
   "postCreateCommand": "bash .devcontainer/post-create.sh",
   "remoteEnv": {
-    "CAVEMAN_DEFAULT_MODE": "full",
     "CODEX_HOME": "/home/vscode/.codex"
   },
   "remoteUser": "vscode",
