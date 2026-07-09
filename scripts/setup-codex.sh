@@ -2,7 +2,6 @@
 set -euo pipefail
 
 MARKETPLACE_REF="${MARKETPLACE_REF:-main}"
-MARKETPLACE_SPARSE_PATH="${MARKETPLACE_SPARSE_PATH:-.agents/plugins}"
 PLUGIN_NAME="${PLUGIN_NAME:-techletes-superpowers}"
 NODE_VERSION="${NODE_VERSION:-lts/*}"
 NVM_VERSION="${NVM_VERSION:-v0.40.5}"
@@ -293,7 +292,9 @@ setup_marketplace() {
   log "Checking access to marketplace repo..."
   info_kv "repo" "$1"
   info_kv "ref" "$MARKETPLACE_REF"
-  info_kv "sparse path" "$MARKETPLACE_SPARSE_PATH"
+
+  log "Removing any existing Techletes marketplace entry..."
+  codex plugin marketplace remove techletes-plugins >/dev/null 2>&1 || true
 
   if ! git ls-remote "$1" >/dev/null 2>&1; then
     fail "Cannot access $1. Check GitHub access and SSH/HTTPS credentials."
@@ -303,7 +304,7 @@ setup_marketplace() {
 
   log "Adding Techletes Codex plugin marketplace..."
 
-  if codex plugin marketplace add "$1" --ref "$MARKETPLACE_REF" --sparse "$MARKETPLACE_SPARSE_PATH"; then
+  if codex plugin marketplace add "$1" --ref "$MARKETPLACE_REF"; then
     success "Marketplace added."
   else
     warn "Failed to add marketplace."
@@ -315,7 +316,7 @@ install_codex_plugin() {
 
   log "Installing Techletes plugins from marketplace..."
 
-  if codex plugin add $1; then
+  if codex plugin add "$1"; then
     success "Plugin $1 installed."
   else
     warn "Plugin $1 may already be installed. Continuing."
@@ -364,9 +365,8 @@ main() {
 
 Next steps:
   1. Restart Codex.
-  2. Open the Codex plugin directory.
-  3. Install/enable: ${PLUGIN_NAME}
-  4. Review and trust plugin hooks when prompted.
+  2. You're all set to go.
+  3. We recommend using the Codex CLI for the best developer experience.
 
 EOF
 }
