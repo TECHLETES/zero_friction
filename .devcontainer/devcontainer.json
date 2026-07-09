@@ -78,13 +78,13 @@
   "mounts": [
     "source=fst-uv-cache,target=/home/vscode/.cache/uv,type=volume",
     "source=fst-pre-commit-cache,target=/home/vscode/.cache/pre-commit,type=volume",
-    "source=${localEnv:HOME}/.codex,target=/home/vscode/.codex,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.codex,target=/home/vscode/.codex,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.config/gh,target=/home/vscode/.config/gh,type=bind,consistency=cached"
   ],
-  "name": "python-basic-template",
+  "name": "python-template",
   "overrideCommand": true,
   "postCreateCommand": "bash .devcontainer/post-create.sh",
   "remoteEnv": {
-    "CAVEMAN_DEFAULT_MODE": "full",
     "CODEX_HOME": "/home/vscode/.codex"
   },
   "remoteUser": "vscode",

@@ -1,4 +1,4 @@
-# Copilot Instructions for Python Basic Template (TECHLETES)
+# Copilot Instructions for Python Template (TECHLETES)
 
 ## Project Overview
 
@@ -57,8 +57,8 @@ A production-ready Python project template for TECHLETES employees. Features mod
 
 ### Initial Setup (First Time)
 ```bash
-git clone https://github.com/TECHLETES/python_basic_template.git
-cd python_basic_template
+git clone https://github.com/TECHLETES/python_template.git
+cd python_template
 ./scripts/setup.sh        # Linux host setup
 # On Windows or macOS, prefer the devcontainer workflow from docs/quickstart.md
 ```

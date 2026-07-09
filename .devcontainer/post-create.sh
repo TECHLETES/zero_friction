@@ -17,9 +17,24 @@ echo "Bootstrapping the container workspace with uv..."
 uv --version
 python --version
 
-uv venv .venv --allow-existing
-source .venv/bin/activate
-uv sync --frozen --all-groups --active
+if [[ -d .venv ]]; then
+  if [[ -f .venv/pyvenv.cfg ]]; then
+    venv_home="$(grep -E '^home = ' .venv/pyvenv.cfg | cut -d= -f2- | sed 's/^ *//;s/ *$//')"
+    if [[ -n "${venv_home}" ]]; then
+      if python3 -c 'import sys; print(sys.executable)' >/dev/null 2>&1; then
+        current_python="$(python3 -c 'import sys; print(sys.executable)')"
+      elif python -c 'import sys; print(sys.executable)' >/dev/null 2>&1; then
+        current_python="$(python -c 'import sys; print(sys.executable)')"
+      fi
+      if [[ -n "${current_python-}" && "${venv_home}" != "${current_python}" ]]; then
+        echo "Detected existing .venv built with ${venv_home}; removing so uv sync can recreate it for the devcontainer."
+        rm -rf .venv
+      fi
+    fi
+  fi
+fi
+
+uv sync
 uv tool install graphifyy
 
 if [[ -d .git ]]; then

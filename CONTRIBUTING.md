@@ -1,6 +1,6 @@
 
 
-# Contributing to python_basic_template (TECHLETES)
+# Contributing to python_template (TECHLETES)
 
 Thank you for your interest in contributing! This repository serves as the official Python project template for TECHLETES, a data & AI consultancy. All contributors are TECHLETES employees, and contributions should reflect our standards of professionalism, quality, and collaboration.
 

@@ -105,3 +105,5 @@ notebooks-local/
 
 # direnv
 .direnv/
+
+.devcontainer/devcontainer-lock.json

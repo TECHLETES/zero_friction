@@ -3,12 +3,12 @@ requires = ["setuptools>=61.0", "wheel", "pip>=26.0,<27.0.0", "uv>=0.9.25,<1.0.0
 build-backend = "setuptools.build_meta"
 
 [project.urls]
-Homepage = "https://github.com/TECHLETES/python_basic_template"
-Repository = "https://github.com/TECHLETES/python_basic_template"
-Issues = "https://github.com/TECHLETES/python_basic_template/issues"
+Homepage = "https://github.com/TECHLETES/python_template"
+Repository = "https://github.com/TECHLETES/python_template"
+Issues = "https://github.com/TECHLETES/python_template/issues"
 
 [project]
-name = "python-basic-template"
+name = "python-template"
 version = "0.1.0"
 description = "A basic Python project template with full DevOps tooling support."
 readme = "README.md"
