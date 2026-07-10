@@ -1,6 +1,6 @@
 #!/bin/bash
 # Validate that branch names follow the required naming convention
-# This ensures all branches start with: feature/, bug/, refactor/, security/, breaking/, question/, or docs/
+# This ensures all branches start with: feature/, bug/, chore/, refactor/, security/, breaking/, question/, or docs/
 # Works both locally and in CI/CD environments (GitHub Actions)
 
 set -e
@@ -19,12 +19,12 @@ fi
 # Skip validation if we're in a detached HEAD state and not in GitHub Actions
 # (shouldn't happen, but safety check)
 if [ "$BRANCH_NAME" = "HEAD" ] && [ -z "$GITHUB_HEAD_REF" ]; then
-    echo "⏭️  Skipping branch name validation (detached HEAD state)"
+    echo "Skipping branch name validation (detached HEAD state)"
     exit 0
 fi
 
 # Valid prefixes (case-insensitive)
-VALID_PREFIXES=("feature/" "bug/" "refactor/" "security/" "breaking/" "question/" "docs/")
+VALID_PREFIXES=("feature/" "bug/" "chore/" "refactor/" "security/" "breaking/" "question/" "docs/")
 
 # Allow protected branches (main, staging, etc.) specifically for CI/CD or direct maintenance
 if [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == "staging" || "$BRANCH_NAME" == "master" ]]; then
@@ -47,27 +47,29 @@ done
 if [ "$VALID" = false ]; then
     cat << EOF >&2
 
-❌ BRANCH NAME VALIDATION FAILED
+BRANCH NAME VALIDATION FAILED
 
 Current branch: "$BRANCH_NAME"
 
 Branch names must start with one of:
-  • feature/    (new features)
-  • bug/        (bug fixes)
-  • refactor/   (code refactoring)
-  • security/   (security updates)
-  • breaking/   (breaking changes)
-  • question/   (questions/discussions)
-  • docs/       (documentation updates)
+  - feature/    (new features)
+  - bug/        (bug fixes)
+  - chore/      (maintenance/tooling)
+  - refactor/   (code refactoring)
+  - security/   (security updates)
+  - breaking/   (breaking changes)
+  - question/   (questions/discussions)
+  - docs/       (documentation updates)
 
 Examples of valid branch names:
-  • feature/add-login-page
-  • bug/fix-memory-leak
-  • refactor/utils-module
-  • security/update-dependencies
-  • breaking/v2-api-redesign
-  • question/api-design-question
-  • docs/setup-guide
+  - feature/add-login-page
+  - bug/fix-memory-leak
+  - chore/update-devcontainer
+  - refactor/utils-module
+  - security/update-dependencies
+  - breaking/v2-api-redesign
+  - question/api-design-question
+  - docs/setup-guide
 
 To rename your branch, run:
   git branch -m <new-branch-name>
