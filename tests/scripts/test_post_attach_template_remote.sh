@@ -29,6 +29,9 @@ case "${command} ${subcommand}" in
     printf '%s\n' main
     ;;
   "fetch template")
+    if [[ "${FAIL_FETCH:-}" == "1" ]]; then
+      exit 128
+    fi
     ;;
   "show-ref --verify")
     ;;
@@ -55,3 +58,15 @@ output="$({
 [[ "$(<"${test_root}/remote-state")" == \
   "git@github.com:TECHLETES/python_template.git" ]]
 [[ "${output}" == *"Template is up to date."* ]]
+
+set +e
+failed_fetch_output="$({
+  cd "${test_root}/repo"
+  PATH="${test_root}/bin:${PATH}" TEST_ROOT="${test_root}" FAIL_FETCH=1 \
+    bash .devcontainer/post-attach.sh
+} 2>&1)"
+failed_fetch_status=$?
+set -e
+
+[[ "${failed_fetch_status}" -eq 0 ]]
+[[ "${failed_fetch_output}" == *"Template update check failed; continuing without updates."* ]]

@@ -21,7 +21,10 @@ if [[ -z "${current_branch}" ]]; then
 fi
 
 echo "Checking for updates from template/main..."
-git fetch template --prune
+if ! git fetch template --prune; then
+  echo "Template update check failed; continuing without updates."
+  exit 0
+fi
 
 if ! git show-ref --verify --quiet refs/remotes/template/main; then
   echo "Template remote exists but template/main is not available; skipping."
