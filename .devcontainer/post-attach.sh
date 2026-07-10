@@ -9,6 +9,12 @@ if ! git rev-parse --git-dir >/dev/null 2>&1; then
 fi
 
 template_remote_url="git@github.com:TECHLETES/python_template.git"
+origin_url="$(git remote get-url origin 2>/dev/null || true)"
+if [[ "${origin_url}" == "${template_remote_url}" ]]; then
+  echo "Current repository is the template; skipping template update check."
+  exit 0
+fi
+
 if ! git remote get-url template >/dev/null 2>&1; then
   echo "Template remote not configured; adding it."
   git remote add template "${template_remote_url}"

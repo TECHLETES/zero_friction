@@ -52,4 +52,20 @@ else
   echo "1Password CLI is optional and not installed in this container."
 fi
 
+git config pull.rebase false && git config branch.autosetuprebase never
+
+if [[ -f /tmp/host-gitconfig ]]; then
+  host_git_user_name="$(git config --file /tmp/host-gitconfig --get user.name || true)"
+  host_git_user_email="$(git config --file /tmp/host-gitconfig --get user.email || true)"
+
+  if [[ -n "${host_git_user_name}" ]]; then
+    git config --local user.name "${host_git_user_name}"
+  fi
+  if [[ -n "${host_git_user_email}" ]]; then
+    git config --local user.email "${host_git_user_email}"
+  fi
+fi
+
+gh auth setup-git || true
+
 echo "For Windows contributors, keep this repo inside the WSL filesystem before reopening it in the container for the best bind-mount performance."

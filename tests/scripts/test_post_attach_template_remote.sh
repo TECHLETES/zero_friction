@@ -20,6 +20,13 @@ case "${command} ${subcommand}" in
     exit 0
     ;;
   "remote get-url")
+    if [[ "${3:-}" == "origin" ]]; then
+      if [[ -n "${ORIGIN_URL:-}" ]]; then
+        printf '%s\n' "${ORIGIN_URL}"
+        exit 0
+      fi
+      exit 1
+    fi
     [[ -f "${state_file}" ]]
     ;;
   "remote add")
@@ -70,3 +77,14 @@ set -e
 
 [[ "${failed_fetch_status}" -eq 0 ]]
 [[ "${failed_fetch_output}" == *"Template update check failed; continuing without updates."* ]]
+
+template_output="$({
+  cd "${test_root}/repo"
+  PATH="${test_root}/bin:${PATH}" TEST_ROOT="${test_root}" \
+    ORIGIN_URL="git@github.com:TECHLETES/python_template.git" \
+    bash .devcontainer/post-attach.sh
+} 2>&1)"
+
+[[ "${template_output}" == *"Current repository is the template; skipping template update check."* ]]
+[[ "${template_output}" != *"Template remote not configured; adding it."* ]]
+[[ "${template_output}" != *"Checking for updates from template/main..."* ]]

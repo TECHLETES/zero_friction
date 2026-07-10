@@ -76,6 +76,7 @@
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "mounts": [
+    "source=${localEnv:HOME}/.gitconfig,target=/tmp/host-gitconfig,type=bind,consistency=cached",
     "source=fst-uv-cache,target=/home/vscode/.cache/uv,type=volume",
     "source=fst-pre-commit-cache,target=/home/vscode/.cache/pre-commit,type=volume",
     "source=${localEnv:HOME}/.codex,target=/home/vscode/.codex,type=bind,consistency=cached",
