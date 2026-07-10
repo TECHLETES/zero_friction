@@ -13,6 +13,7 @@ import json
 import re
 import subprocess
 from pathlib import Path
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -31,6 +32,30 @@ def _repo_name_from_git() -> str | None:
     if not match:
         return None
     return match.group(1).split("/", 1)[1]
+
+
+def _repo_url_from_git() -> str | None:
+    """Return the browsable repository URL configured for the origin remote."""
+    try:
+        remotes = _run(["git", "remote", "-v"])
+    except Exception:
+        return None
+
+    for line in remotes.splitlines():
+        parts = line.split()
+        if len(parts) < 3 or parts[0] != "origin" or parts[2] != "(fetch)":
+            continue
+
+        remote_url = parts[1].removesuffix(".git")
+        if remote_url.startswith(("http://", "https://")):
+            parsed = urlsplit(remote_url)
+            return f"{parsed.scheme}://{parsed.netloc}{parsed.path}"
+
+        match = re.match(r"(?:[^@]+@)?([^:/]+):(.+)$", remote_url)
+        if match:
+            return f"https://{match.group(1)}/{match.group(2)}"
+
+    return None
 
 
 def _slug(value: str) -> str:
@@ -103,7 +128,7 @@ def main() -> int:
     project_slug = _slug(args.name or detected_name)
     package = _package_name(args.package or project_slug)
     description = args.description or f"Python project for {project_slug}."
-    repo_url = f"https://github.com/{args.owner}/{project_slug}"
+    repo_url = _repo_url_from_git() or f"https://github.com/{args.owner}/{project_slug}"
 
     changed: list[str] = []
 
