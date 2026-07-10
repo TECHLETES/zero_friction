@@ -7,10 +7,14 @@ on:
     branches:
       - main
       - staging
+    paths-ignore:
+      - 'coverage.svg'
   push:
     branches:
       - main
       - staging
+    paths-ignore:
+      - 'coverage.svg'
 
 permissions:
   contents: write
