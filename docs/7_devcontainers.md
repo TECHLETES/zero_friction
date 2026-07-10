@@ -18,7 +18,7 @@ In practice, that means:
 2. Docker builds the image defined by `.devcontainer/Dockerfile`.
 3. VS Code starts a container from that image.
 4. Your repository is mounted into the container workspace.
-5. VS Code runs any lifecycle command such as `postCreateCommand`.
+5. VS Code runs any lifecycle command such as `postCreateCommand` or `postAttachCommand`.
 6. VS Code applies container-specific settings and extension installs.
 
 The result is that contributors work against the same OS base image, the same
@@ -81,6 +81,8 @@ template, that file currently does the following:
 - Mounts named Docker volumes for those caches so repeated container rebuilds do
   not have to start from an empty cache.
 - Runs `bash .devcontainer/post-create.sh` after the container is created.
+- Runs `bash .devcontainer/post-attach.sh` every time the container is attached
+  so template updates can be checked and merged when appropriate.
 - Installs container-specific VS Code extensions for Python, Pylance, mypy,
   Ruff, and Jupyter.
 - Sets container-specific VS Code settings such as the default interpreter and
@@ -110,7 +112,9 @@ script currently:
 
 This means the container assumes the repository already contains a valid
 `pyproject.toml` and `uv.lock`, and that `uv sync --frozen` is the correct way
-to materialize the working environment.
+to materialize the working environment. Attach-time checks can then compare the
+local repository against `template/main` and attempt to merge template updates
+without blocking normal development.
 
 ### VS Code Experience
 

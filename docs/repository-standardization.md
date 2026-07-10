@@ -2,6 +2,25 @@
 
 Use this guide when an existing Python repository needs to adopt the Techletes Python template standards: devcontainers, uv, pyproject-based tool configuration, pre-commit, CI/CD, secret scanning and shared agent instructions.
 
+<aside>
+💡
+
+**Tip**
+
+Use the setup script below for Codex in WSL:
+
+```bash
+curl -fsSL https://setup.techletes.ai/setup-codex.sh | bash
+```
+
+The Techletes Superpowers plugin includes the `python-template-adoption` skill, which applies this guide to the target repository automatically. When working locally in the repository that should be updated with the template, open Codex and use the prompt:
+
+```text
+Make this repository conform the python template, use the techletes-superpowers:adopt-python-template skill.
+```
+
+</aside>
+
 ## Goal
 
 Every active Python repository should have the same baseline developer experience:
