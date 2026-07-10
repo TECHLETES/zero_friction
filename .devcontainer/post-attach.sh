@@ -8,9 +8,10 @@ if ! git rev-parse --git-dir >/dev/null 2>&1; then
   exit 0
 fi
 
+template_remote_url="git@github.com:TECHLETES/python_template.git"
 if ! git remote get-url template >/dev/null 2>&1; then
-  echo "Template remote not configured; skipping template update check."
-  exit 0
+  echo "Template remote not configured; adding it."
+  git remote add template "${template_remote_url}"
 fi
 
 current_branch="$(git symbolic-ref --quiet --short HEAD || true)"
