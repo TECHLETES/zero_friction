@@ -83,6 +83,7 @@
   ],
   "name": "python-template",
   "overrideCommand": true,
+  "postAttachCommand": "bash .devcontainer/post-attach.sh",
   "postCreateCommand": "bash .devcontainer/post-create.sh",
   "remoteEnv": {
     "CODEX_HOME": "/home/vscode/.codex"
