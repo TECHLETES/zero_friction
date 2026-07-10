@@ -13,6 +13,40 @@ A production-ready Python project template for TECHLETES employees. Features mod
 - Full CI/CD pipeline with GitHub Actions
 - Internal use only (TECHLETES employees with 1Password access)
 
+## Template Bootstrap for New Repositories
+
+This repository is a reusable template. When a coding agent starts work in a
+repository created from this template, its first implementation action must be
+to update `AGENTS.md` and `README.md` for the current repository and project.
+Do this before changing application code, adding dependencies, or starting
+feature work.
+
+The bootstrap pass must:
+
+- Inspect the current `pyproject.toml`, source and test directories, docs,
+  workflows, and available development commands before writing project
+  context.
+- Replace generic template descriptions with the actual project name,
+  purpose, architecture, entry points, repository structure, setup path, and
+  verification commands.
+- Add concise project-specific instructions for important workflows,
+  boundaries, integrations, data handling, deployment, and known pitfalls.
+- Update the README's overview, features, structure, setup, usage, and links
+  so they describe the current project rather than the template examples.
+- Preserve the template's generally applicable coding standards, security
+  rules, dependency workflow, type-checking requirements, tool configuration,
+  and verification expectations unless the current repository has an explicit
+  and documented replacement.
+- Base every project-specific instruction on the repository's actual files and
+  commands. Do not invent architecture, scripts, services, or requirements.
+- Review the documentation diff and run the smallest relevant documentation or
+  repository checks before continuing with implementation.
+
+When working on this template repository itself, keep the general guidance
+maintained here and in `README.md`, and describe the template's intended
+bootstrap behavior instead of replacing it with a downstream project's
+context.
+
 ---
 
 ## Essential Rules

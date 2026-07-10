@@ -307,6 +307,22 @@ All development tools are configured in `pyproject.toml`:
 
 ## 🚀 Using This Template
 
+### Agent Bootstrap Requirement
+
+This repository is a reusable template, so a project created from it must
+replace the generic project context before feature work begins. The first
+coding-agent action in a derived repository is to inspect the actual source,
+tests, documentation, workflows, and `pyproject.toml`, then update both
+`AGENTS.md` and `README.md` to describe that project.
+
+That update should add the project's real architecture, entry points,
+structure, setup and verification commands, important workflows, integrations,
+boundaries, and known pitfalls. It must preserve this template's general
+security rules, dependency-management workflow, typing requirements, coding
+standards, tooling, and verification expectations unless the project
+documents a deliberate replacement. Agents must use repository evidence and
+must not invent project details.
+
 ### For New Projects
 
 1. **Use this template** on GitHub or clone it
