@@ -85,6 +85,7 @@ jobs:
         run: |
           mkdir -p "$HOME/.codex"
           mkdir -p "$HOME/.config/gh"
+          touch "$HOME/.gitconfig"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
