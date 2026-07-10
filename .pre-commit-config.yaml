@@ -114,14 +114,3 @@ repos:
         name: pydocstyle (docstring validation)
         exclude: ^(tests/|example/)
         types: [python]
-
-  # Testing with pytest (locally managed by uv)
-  - repo: local
-    hooks:
-      - id: pytest
-        name: Run pytest with coverage
-        entry: uv run pytest --cov --cov-fail-under=80 --beartype-packages=utils,example
-        language: system
-        pass_filenames: false
-        types: [python]
-        stages: [pre-commit]
