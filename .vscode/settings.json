@@ -33,7 +33,7 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.formatOnSave": true
   },
-  "chatgpt.openOnStartup": true,
+  "chatgpt.openOnStartup": false,
   "chatgpt.runCodexInWindowsSubsystemForLinux": true,
   "debug.internalConsoleOptions": "neverOpen",
   "debug.showProtocolLogs": false,
@@ -47,6 +47,9 @@
   "eslint.workingDirectories": [
     {
       "pattern": "web"
+    },
+    {
+      "pattern": "frontend"
     }
   ],
   "files.exclude": {
