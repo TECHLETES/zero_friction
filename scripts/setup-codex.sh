@@ -2,6 +2,7 @@
 set -euo pipefail
 
 MARKETPLACE_REF="${MARKETPLACE_REF:-main}"
+AGENTS_REMOTE_URL="${AGENTS_REMOTE_URL:-https://raw.githubusercontent.com/TECHLETES/python_template/${MARKETPLACE_REF}/plugins/techletes-superpowers/AGENTS.md}"
 PLUGIN_NAME="${PLUGIN_NAME:-techletes-superpowers}"
 NODE_VERSION="${NODE_VERSION:-lts/*}"
 NVM_VERSION="${NVM_VERSION:-v0.40.5}"
@@ -258,17 +259,21 @@ configure_agents_md() {
   local codex_dir="${CODEX_HOME:-$HOME/.codex}"
   local agents_file="$codex_dir/AGENTS.md"
   local backup_file="$agents_file.backup.$(date +%Y%m%d%H%M%S)"
+  local tmp_file
 
-  local script_dir
-  local repo_root
-  local source_agents_file
+  if ! has_command curl; then
+    fail "curl is required to download AGENTS.md. Install curl first, then rerun this script."
+  fi
 
-  script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  repo_root="$(cd "$script_dir/.." && pwd)"
-  source_agents_file="$repo_root/plugins/techletes-superpowers/AGENTS.md"
+  tmp_file="$(mktemp)"
+  if ! curl -fsSL "$AGENTS_REMOTE_URL" -o "$tmp_file"; then
+    rm -f "$tmp_file"
+    fail "Failed to download AGENTS.md from $AGENTS_REMOTE_URL"
+  fi
 
-  if [ ! -f "$source_agents_file" ]; then
-    fail "Source AGENTS.md not found: $source_agents_file"
+  if [ ! -s "$tmp_file" ]; then
+    rm -f "$tmp_file"
+    fail "Downloaded AGENTS.md was empty: $AGENTS_REMOTE_URL"
   fi
 
   mkdir -p "$codex_dir"
@@ -279,10 +284,11 @@ configure_agents_md() {
     info_kv "backup" "$backup_file"
   fi
 
-  cp "$source_agents_file" "$agents_file"
+  cp "$tmp_file" "$agents_file"
+  rm -f "$tmp_file"
 
-  success "Global Codex AGENTS.md copied from plugin."
-  info_kv "source" "$source_agents_file"
+  success "Global Codex AGENTS.md downloaded from repo."
+  info_kv "source" "$AGENTS_REMOTE_URL"
   info_kv "target" "$agents_file"
 }
 

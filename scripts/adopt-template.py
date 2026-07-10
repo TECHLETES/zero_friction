@@ -67,7 +67,10 @@ def _update_json(path: Path, project_slug: str) -> bool:
         return False
     data = json.loads(path.read_text(encoding="utf-8"))
     changed = False
-    if data.get("name") in {"python-template", "Python Template"} or data.get("name") != project_slug:
+    if (
+        data.get("name") in {"python-template", "Python Template"}
+        or data.get("name") != project_slug
+    ):
         data["name"] = project_slug
         changed = True
     if changed:
@@ -76,13 +79,24 @@ def _update_json(path: Path, project_slug: str) -> bool:
 
 
 def main() -> int:
+    """Run pipeline for converting repository to repo specific."""
     parser = argparse.ArgumentParser(
         description="Update python_template metadata for an existing repository."
     )
-    parser.add_argument("--name", help="Repository/project name. Defaults to origin repo or folder name.")
-    parser.add_argument("--package", help="Main Python package/module name. Defaults to normalized project name.")
-    parser.add_argument("--description", default="", help="Project description for pyproject.toml.")
-    parser.add_argument("--owner", default="TECHLETES", help="GitHub owner/org. Defaults to TECHLETES.")
+    parser.add_argument(
+        "--name",
+        help="Repository/project name. Defaults to origin repo or folder name.",
+    )
+    parser.add_argument(
+        "--package",
+        help="Main Python package/module name. Defaults to normalized project name.",
+    )
+    parser.add_argument(
+        "--description", default="", help="Project description for pyproject.toml."
+    )
+    parser.add_argument(
+        "--owner", default="TECHLETES", help="GitHub owner/org. Defaults to TECHLETES."
+    )
     args = parser.parse_args()
 
     detected_name = _repo_name_from_git() or ROOT.name
@@ -103,7 +117,10 @@ def main() -> int:
             (r'^Issues = ".*"$', f'Issues = "{repo_url}/issues"'),
             (r'include = \["utils\*", "example\*"\]', f'include = ["{package}*"]'),
             (r'"--cov=utils",\n\s+"--cov=example",', f'"--cov={package}",'),
-            (r'"--beartype-packages=utils,example"', f'"--beartype-packages={package}"'),
+            (
+                r'"--beartype-packages=utils,example"',
+                f'"--beartype-packages={package}"',
+            ),
             (r'source = \["utils", "example"\]', f'source = ["{package}"]'),
             (r'files = \["example"\]', f'files = ["{package}"]'),
         ],
@@ -116,7 +133,10 @@ def main() -> int:
     if _replace_regex(
         ROOT / ".pre-commit-config.yaml",
         [
-            (r'entry: uv run pytest --cov --cov-fail-under=80 --beartype-packages=utils,example', f'entry: uv run pytest --cov --cov-fail-under=80 --beartype-packages={package}'),
+            (
+                r"entry: uv run pytest --cov --cov-fail-under=80 --beartype-packages=utils,example",
+                f"entry: uv run pytest --cov --cov-fail-under=80 --beartype-packages={package}",
+            ),
         ],
     ):
         changed.append(".pre-commit-config.yaml")
@@ -131,7 +151,9 @@ def main() -> int:
         print("No template metadata changes were needed.")
 
     print("\nNext steps:")
-    print("1. Review pyproject.toml and adjust dependencies/tool settings for this repo.")
+    print(
+        "1. Review pyproject.toml and adjust dependencies/tool settings for this repo."
+    )
     print("2. Run: uv lock && uv sync")
     print("3. Run: uv run pre-commit run --all-files")
     print("4. Commit the adoption changes.")
