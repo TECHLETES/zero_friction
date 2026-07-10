@@ -5,6 +5,7 @@
 A production-ready Python project template for TECHLETES employees. Features modern dependency management (`uv`), secure secret management (1Password CLI integration), comprehensive development tooling, and mandatory pre-commit hooks for code quality.
 
 **Key Characteristics:**
+
 - Python 3.12+ required
 - Reproducible builds via `uv` lock file
 - Runtime + static type checking (beartype + mypy)
@@ -17,7 +18,9 @@ A production-ready Python project template for TECHLETES employees. Features mod
 ## Essential Rules
 
 ### Rule 1: Secrets Management
+
 **Never put secrets in code, environment files, or notebooks.**
+
 - Use `from utils.secrets import get_secret()` to load secrets from 1Password
 - Pattern: `get_secret("op://Vault Name/Item Name/field_name")`
 - Example: `api_key = get_secret("op://Engineering/GitHub/token")`
@@ -25,7 +28,9 @@ A production-ready Python project template for TECHLETES employees. Features mod
 - See `docs/2_secret_management.md` for setup details
 
 ### Rule 2: Dependency Management
+
 **Never run `pip install` directly.**
+
 - Always declare packages in `pyproject.toml` under `[dependencies]` or `[dependency-groups]`
 - Workflow: Edit `pyproject.toml` → `uv lock` → `uv sync`
 - Why: Ensures all developers use identical versions (reproducibility)
@@ -33,16 +38,19 @@ A production-ready Python project template for TECHLETES employees. Features mod
 - The `uv.lock` file is auto-generated—commit it, never edit manually
 
 ### Rule 3: Type Hints Required
+
 - All functions/methods must have type hints on parameters and return values
 - Enforced at static check (mypy) and runtime (beartype) levels
 - Disallowed untyped definitions: `def foo(x): ...` will fail type checking
 - Example:
+
   ```python
   def process_data(items: list[str], timeout: int = 30) -> dict[str, int]:
       return {item: len(item) for item in items}
   ```
 
 ### Rule 4: Commit and Virtual Environment
+
 - **Always activate the virtual environment before committing**
   - Linux/macOS: `source .venv/bin/activate`
   - Windows: `.venv\Scripts\Activate.ps1`
@@ -56,6 +64,7 @@ A production-ready Python project template for TECHLETES employees. Features mod
 ## Quick Start
 
 ### Initial Setup (First Time)
+
 ```bash
 git clone https://github.com/TECHLETES/python_template.git
 cd python_template
@@ -64,6 +73,7 @@ cd python_template
 ```
 
 ### Activate Virtual Environment (Every Session)
+
 ```bash
 source .venv/bin/activate           # Linux/macOS
 .venv\Scripts\Activate.ps1          # Windows
@@ -73,7 +83,7 @@ direnv allow                        # If using direnv
 ### Daily Commands
 
 | Task | Command |
-|------|---------|
+| ---- | ------- |
 | **Install/update deps** | `uv sync` |
 | **Add new package** | Edit `pyproject.toml`, then `uv lock && uv sync` |
 | **Run tests** | `uv run pytest` |
@@ -88,7 +98,7 @@ direnv allow                        # If using direnv
 
 ## Project Structure & Key Files
 
-```
+```text
 utils/                              # Production code (shared utilities)
 ├── __init__.py                    # Enables runtime type checking
 ├── secrets.py                     # 1Password CLI wrapper (get_secret)
@@ -134,34 +144,40 @@ uv.lock                             # Locked dependency versions (auto-generated
 ## Key Conventions
 
 ### Code Organization
+
 - **Production code:** Place in `utils/` or `example/` packages
 - **Tests:** Mirror production structure—test `utils/foo.py` in `tests/utils/test_foo.py`
 - **Test naming:** Functions `test_*()`, classes `Test*`
 - **Small functions:** Prefer composable, testable units over large monoliths
 
 ### Type Hints
+
 - Required on all functions/methods (enforced by mypy config: `disallow_untyped_defs = true`)
 - Use modern syntax: `list[str]`, `dict[str, int]` (Python 3.9+)
 - Return types always specified: `def foo(...) -> ReturnType:`
 - Example valid function:
+
   ```python
   def validate_secret_path(path: str) -> bool:
       return path.startswith("op://")
   ```
 
 ### Code Style
+
 - **Line length:** 88 characters (Black formatter)
 - **Imports:** Sorted by Ruff import-sorting rules, auto-fixed by pre-commit
 - **Modernization:** pyupgrade auto-converts old syntax (Python 3.12+)
 - **Docstrings:** Checked by pydocstyle (Google style recommended)
 
 ### Dependencies
+
 - **Declare in:** `pyproject.toml` only
 - **Syntax:** `package>=MAJOR.MINOR.Z,<NEXT_MAJOR` (allow patch/minor, block major bumps)
 - **Groups:** `dependencies` (production), `dev` (development), `extra` (optional production)
 - **Lock file:** Auto-generated; run `uv lock` after editing `pyproject.toml`
 
 ### Git Workflow
+
 - **Branch naming:** Use `./scripts/new-branch.sh` to create feature branches
 - **Commits:** Must pass all pre-commit checks (linting, tests, type checking, security)
 - **Pre-commit hooks:** Run automatically on `git commit` (venv must be active)
@@ -173,10 +189,11 @@ uv.lock                             # Locked dependency versions (auto-generated
 ## Development Tools & Quality Checks
 
 ### Pre-Commit Hooks (Mandatory on Every Commit)
+
 All 16+ hooks run automatically when you commit (if venv is active).
 
 | Hook | Purpose | Auto-fixes? |
-|------|---------|------------|
+| ---- | ------- | ----------- |
 | `detect-secrets` | Blocks secrets from being committed | ❌ Manual fix required |
 | `black` | Code formatting (88-char lines) | ✅ Auto-fixes |
 | `pyupgrade` | Modernizes Python syntax | ✅ Auto-fixes |
@@ -190,7 +207,9 @@ All 16+ hooks run automatically when you commit (if venv is active).
 | Custom scripts | Test runner, lock file verification | ❌ Manual fix required |
 
 ### CI/CD Pipeline (.github/workflows/ci.yml)
+
 Runs on every PR and merge to `main`/`staging`:
+
 1. Lint & format check (black, ruff)
 2. Type checking (mypy)
 3. Security scanning (bandit, pip-audit, detect-secrets)
@@ -203,6 +222,7 @@ Runs on every PR and merge to `main`/`staging`:
 ## Common Workflows
 
 ### Add a New Dependency
+
 ```bash
 # 1. Edit pyproject.toml [dependencies] or [dependency-groups.dev]
 [dependencies]
@@ -219,6 +239,7 @@ uv tree  # See dependency tree
 ```
 
 ### Fix Type Checking Errors
+
 ```bash
 # Run mypy to see errors
 uv run mypy . --config-file=pyproject.toml
@@ -231,6 +252,7 @@ uv run mypy . --config-file=pyproject.toml
 ```
 
 ### Manage CVE Exclusions for pip-audit
+
 ```bash
 # Edit pyproject.toml [tool.pip-audit] section to add/remove exclusions
 # Both pre-commit and CI will automatically use the updated list
@@ -248,6 +270,7 @@ uv run bash scripts/hooks/run-pip-audit.sh --progress-spinner off --desc
 ```
 
 ### Debug Pre-Commit Hook Failures
+
 ```bash
 # Run a specific hook manually
 uv run pre-commit run black --all-files
@@ -262,6 +285,7 @@ uv run pre-commit run --all-files
 ```
 
 ### Load a Secret in Code
+
 ```python
 from utils.secrets import get_secret
 
@@ -274,6 +298,7 @@ get_secret("op://Engineering/Database/password", "DB_PASSWORD")
 ```
 
 ### Create a Test
+
 ```python
 # File: tests/utils/test_my_module.py
 from utils.my_module import my_function
@@ -288,6 +313,7 @@ def test_my_function_handles_edge_case() -> None:
 ```
 
 ### View Test Coverage
+
 ```bash
 pytest --cov=utils --cov=example --cov-report=html
 # Opens: htmlcov/index.html
@@ -298,16 +324,20 @@ pytest --cov=utils --cov=example --cov-report=html
 ## Common Issues & Solutions
 
 ### ❌ Error: "pytest: command not found"
+
 **Cause:** Virtual environment not activated
 **Fix:**
+
 ```bash
 source .venv/bin/activate  # Linux/macOS
 .venv\Scripts\Activate.ps1 # Windows
 ```
 
 ### ❌ Error: "Pre-commit hook failed" on commit
+
 **Cause:** Code doesn't pass quality checks
 **Fix:**
+
 ```bash
 pre-commit run --all-files  # See exactly which checks failed
 # Fix the issues (most auto-fix, some require manual edits)
@@ -316,8 +346,10 @@ git commit  # Retry
 ```
 
 ### ❌ Error: "mypy: disallow_untyped_defs"
+
 **Cause:** Function missing type hints
 **Fix:** Add type hints to parameters and return value
+
 ```python
 # ❌ Before
 def process_items(items):
@@ -329,19 +361,25 @@ def process_items(items: list[str]) -> int:
 ```
 
 ### ❌ Error: "Secret detected in file"
+
 **Cause:** detect-secrets hook blocked a secret
 **Fix:**
+
 1. Remove the secret from the file
 2. Use `get_secret()` instead:
+
    ```python
    from utils.secrets import get_secret
    api_key = get_secret("op://Vault/Item/field")
    ```
+
 3. Commit again
 
 ### ❌ Error: "op: command not found"
+
 **Cause:** 1Password CLI not installed
 **Fix:** See `CONTRIBUTING.md` for 1Password CLI setup
+
 ```bash
 # Verify installation
 op --version
@@ -349,8 +387,10 @@ op account list  # Authenticate
 ```
 
 ### ⚠️ Issue: Notebook outputs committed to git
+
 **Cause:** nbstripout hook didn't run (venv likely inactive)
 **Fix:**
+
 ```bash
 # Activate venv
 source .venv/bin/activate
@@ -362,8 +402,10 @@ jupyter nbconvert --ClearingPreprocessor.enabled=True example/using_secrets.ipyn
 ```
 
 ### ⚠️ Issue: "Edited uv.lock" shows up in diffs
+
 **Cause:** Manually edited uv.lock (should never happen)
 **Fix:**
+
 ```bash
 # Regenerate correct lock file
 uv lock
@@ -378,6 +420,7 @@ uv lock
 See `docs/6_pre_commit_troubleshooting.md` for detailed troubleshooting of individual hooks.
 
 **Quick reference:**
+
 - **Most hooks auto-fix:** Run `pre-commit run --all-files` to auto-fix, then recommit
 - **Some hooks require manual fixes:** mypy, bandit, pydocstyle, detect-secrets
 - **Skip all hooks (last resort only):** `git commit --no-verify`
@@ -388,6 +431,7 @@ See `docs/6_pre_commit_troubleshooting.md` for detailed troubleshooting of indiv
 ## File Preferences for AI Coding
 
 ### When Writing Code
+
 1. **Type hints:** Always include them—required for mypy
 2. **Docstrings:** Use Google style format; checked by pydocstyle
 3. **Functions:** Keep them small and testable (test each function)
@@ -395,6 +439,7 @@ See `docs/6_pre_commit_troubleshooting.md` for detailed troubleshooting of indiv
 5. **Line length:** Aim for ≤88 characters (Black will format longer lines)
 
 ### Example: Well-Structured Function
+
 ```python
 """Module for processing user data."""
 
@@ -442,6 +487,7 @@ def validate_email(email: str) -> bool:
 When working on code in this repository:
 
 ✅ **DO:**
+
 - Enforce type hints on all functions (required, not optional)
 - Follow the 88-character line limit
 - Add comprehensive docstrings (Google style)
@@ -451,6 +497,7 @@ When working on code in this repository:
 - Check pre-commit hook configurations for lint/format requirements
 
 ❌ **DON'T:**
+
 - Write untyped functions (will fail mypy)
 - Put secrets or API keys in code
 - Use relative imports (`from ..module` instead of `from utils.module`)
