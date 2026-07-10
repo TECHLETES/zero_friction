@@ -26,7 +26,8 @@ if [[ -d .venv ]]; then
       elif python -c 'import sys; print(sys.executable)' >/dev/null 2>&1; then
         current_python="$(python -c 'import sys; print(sys.executable)')"
       fi
-      if [[ -n "${current_python-}" && "${venv_home}" != "${current_python}" ]]; then
+      current_python_home="$(dirname "${current_python-}")"
+      if [[ -n "${current_python-}" && "${venv_home}" != "${current_python_home}" ]]; then
         echo "Detected existing .venv built with ${venv_home}; removing so uv sync can recreate it for the devcontainer."
         rm -rf .venv
       fi

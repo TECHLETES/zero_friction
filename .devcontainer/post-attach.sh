@@ -42,7 +42,7 @@ if [[ -n "$(git status --porcelain=v1)" ]]; then
 fi
 
 echo "Attempting to merge template/main into ${current_branch}..."
-if git pull --no-rebase template main; then
+if git merge --no-edit -m "Merge template/main into ${current_branch}" template/main; then
   echo "Template updates merged successfully."
 else
   echo "Template merge needs manual resolution."
