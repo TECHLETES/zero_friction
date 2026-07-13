@@ -18,6 +18,7 @@ fi
 if ! git remote get-url template >/dev/null 2>&1; then
   echo "Template remote not configured; adding it."
   git remote add template "${template_remote_url}"
+  git remote set-url --push template DISABLED
 fi
 
 current_branch="$(git symbolic-ref --quiet --short HEAD || true)"
