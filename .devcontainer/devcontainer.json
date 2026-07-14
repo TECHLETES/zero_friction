@@ -5,17 +5,16 @@
   },
   "containerEnv": {
     "PRE_COMMIT_HOME": "/home/vscode/.cache/pre-commit",
-    "PYTHONPATH": "/workspaces/${localWorkspaceFolderBasename}",
+    "PYTHONPATH": "${containerWorkspaceFolder}",
     "TZ": "Europe/Amsterdam",
     "UV_CACHE_DIR": "/home/vscode/.cache/uv",
     "UV_LINK_MODE": "copy",
-    "UV_PROJECT_ENVIRONMENT": "/workspaces/${localWorkspaceFolderBasename}/.venv",
+    "UV_PROJECT_ENVIRONMENT": "${containerWorkspaceFolder}/.venv",
     "UV_PYTHON_DOWNLOADS": "never"
   },
   "customizations": {
     "vscode": {
       "extensions": [
-        "ms-vscode-remote.remote-containers",
         "ms-azuretools.vscode-docker",
         "ms-python.python",
         "ms-python.vscode-pylance",
@@ -28,7 +27,6 @@
         "ms-python.debugpy",
         "mgesbert.python-path",
         "docker.docker",
-        "dbaeumer.vscode-eslint",
         "tamasfe.even-better-toml",
         "cweijan.vscode-office",
         "openai.chatgpt",
@@ -40,24 +38,122 @@
         "mtxr.sqltools-driver-pg",
         "mtxr.sqltools-driver-sqlite",
         "ms-ossdata.vscode-pgsql",
-        "formulahendry.docker-explorer",
         "biomejs.biome",
         "bradlc.vscode-tailwindcss",
         "ms-playwright.playwright",
-        "me-dutour-mathieu.vscode-github-actions",
         "matthewpi.caddyfile-support",
-        "charliermarsh.ruff"
+        "redhat.vscode-yaml"
       ],
       "settings": {
-        "jupyter.jupyterServerType": "local",
-        "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
-        "python.terminal.activateEnvironment": false,
+        "[javascript]": {
+          "editor.codeActionsOnSave": {
+            "source.fixAll.biome": "explicit",
+            "source.organizeImports.biome": "explicit"
+          },
+          "editor.defaultFormatter": "biomejs.biome",
+          "editor.formatOnSave": true
+        },
+        "[javascriptreact]": {
+          "editor.codeActionsOnSave": {
+            "source.fixAll.biome": "explicit",
+            "source.organizeImports.biome": "explicit"
+          },
+          "editor.defaultFormatter": "biomejs.biome",
+          "editor.formatOnSave": true
+        },
+        "[json]": {
+          "editor.codeActionsOnSave": {
+            "source.fixAll.biome": "explicit"
+          },
+          "editor.defaultFormatter": "biomejs.biome",
+          "editor.formatOnSave": true
+        },
+        "[jsonc]": {
+          "editor.codeActionsOnSave": {
+            "source.fixAll.biome": "explicit"
+          },
+          "editor.defaultFormatter": "biomejs.biome",
+          "editor.formatOnSave": true
+        },
+        "[python]": {
+          "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "explicit",
+            "source.organizeImports.ruff": "explicit"
+          },
+          "editor.defaultFormatter": "ms-python.black-formatter",
+          "editor.formatOnSave": true
+        },
+        "[typescript]": {
+          "editor.codeActionsOnSave": {
+            "source.fixAll.biome": "explicit",
+            "source.organizeImports.biome": "explicit"
+          },
+          "editor.defaultFormatter": "biomejs.biome",
+          "editor.formatOnSave": true
+        },
+        "[typescriptreact]": {
+          "editor.codeActionsOnSave": {
+            "source.fixAll.biome": "explicit",
+            "source.organizeImports.biome": "explicit"
+          },
+          "editor.defaultFormatter": "biomejs.biome",
+          "editor.formatOnSave": true
+        },
+        "[yaml]": {
+          "editor.defaultFormatter": "redhat.vscode-yaml",
+          "editor.formatOnSave": true
+        },
+        "biome.requireConfiguration": true,
+        "chatgpt.openOnStartup": false,
+        "chatgpt.runCodexInWindowsSubsystemForLinux": true,
+        "debug.internalConsoleOptions": "neverOpen",
+        "debug.showProtocolLogs": false,
+        "editor.formatOnPaste": true,
+        "editor.rulers": [
+          88
+        ],
+        "editor.trimAutoWhitespace": true,
+        "files.exclude": {
+          "**/.pytest_cache": true,
+          "**/.ruff_cache": true,
+          "**/__pycache__": true,
+          "**/node_modules": true
+        },
+        "files.watcherExclude": {
+          "**/.git/objects/**": true,
+          "**/.pytest_cache": true,
+          "**/.ruff_cache": true,
+          "**/__pycache__": true,
+          "**/node_modules": true
+        },
+        "git.ignoreLimitWarning": true,
+        "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+        "mypy-type-checker.args": [
+          "--config-file=pyproject.toml"
+        ],
+        "mypy-type-checker.cwd": "${workspaceFolder}",
+        "mypy-type-checker.importStrategy": "fromEnvironment",
+        "mypy-type-checker.reportingScope": "workspace",
+        "python-envs.terminal.autoActivationType": "off",
+        "python.analysis.typeCheckingMode": "standard",
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv",
+        "python.terminal.activateEnvInCurrentTerminal": true,
+        "python.terminal.useEnvFile": true,
         "python.testing.pytestArgs": [
           "."
         ],
         "python.testing.pytestEnabled": true,
         "python.testing.unittestEnabled": false,
         "ruff.enable": true,
+        "search.exclude": {
+          "**/.git": true,
+          "**/.pytest_cache": true,
+          "**/.venv": true,
+          "**/__pycache__": true,
+          "**/build": true,
+          "**/dist": true,
+          "**/node_modules": true
+        },
         "terminal.integrated.defaultProfile.linux": "bash",
         "terminal.integrated.env.linux": {
           "PYTHONPATH": "${workspaceFolder}",
@@ -91,6 +187,5 @@
   },
   "remoteUser": "vscode",
   "updateRemoteUserUID": true,
-  "waitFor": "postCreateCommand",
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
+  "waitFor": "postCreateCommand"
 }

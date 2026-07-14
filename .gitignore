@@ -21,7 +21,7 @@ ENV/
 .ipynb_checkpoints/
 
 # VSCode settings
-# .vscode/
+.vscode/
 
 # PyCharm settings
 .idea/
