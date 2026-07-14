@@ -1,4 +1,4 @@
-# Copilot Instructions for Python Template (TECHLETES)
+# Agent Instructions for Python Template (TECHLETES)
 
 ## Project Overview
 
@@ -516,7 +516,7 @@ def validate_email(email: str) -> bool:
 
 ---
 
-## For AI Assistants (Copilot/Claude)
+## For AI Assistants (Copilot/Claude/Codex)
 
 When working on code in this repository:
 
