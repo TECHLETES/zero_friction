@@ -78,6 +78,7 @@
   "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
   "python.terminal.activateEnvInCurrentTerminal": false,
   "python.terminal.activateEnvironment": false,
+  "python.terminal.useEnvFile": true,
   "python.testing.pytestArgs": [
     "."
   ],
