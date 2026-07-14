@@ -62,17 +62,11 @@
           "editor.formatOnSave": true
         },
         "[json]": {
-          "editor.codeActionsOnSave": {
-            "source.fixAll.biome": "explicit"
-          },
-          "editor.defaultFormatter": "biomejs.biome",
+          "editor.defaultFormatter": "vscode.json-language-features",
           "editor.formatOnSave": true
         },
         "[jsonc]": {
-          "editor.codeActionsOnSave": {
-            "source.fixAll.biome": "explicit"
-          },
-          "editor.defaultFormatter": "biomejs.biome",
+          "editor.defaultFormatter": "vscode.json-language-features",
           "editor.formatOnSave": true
         },
         "[python]": {
@@ -187,5 +181,6 @@
   },
   "remoteUser": "vscode",
   "updateRemoteUserUID": true,
-  "waitFor": "postCreateCommand"
+  "waitFor": "postCreateCommand",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
 }
