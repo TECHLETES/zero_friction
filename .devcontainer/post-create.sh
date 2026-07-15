@@ -68,4 +68,7 @@ fi
 
 gh auth setup-git || true
 
+echo "Updating Codex CLI to the latest version..."
+sudo npm install -g @openai/codex
+
 echo "For Windows contributors, keep this repo inside the WSL filesystem before reopening it in the container for the best bind-mount performance."
