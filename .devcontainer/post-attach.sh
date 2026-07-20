@@ -53,7 +53,7 @@ if [[ -n "$(git status --porcelain=v1)" ]]; then
 fi
 
 echo "Applying template/main without committing; review and commit or abort the merge manually."
-if git merge --no-commit --no-ff -m "Merge template/main into ${current_branch}" template/main; then
+if git merge --no-commit --allow-unrelated-histories --no-ff -m "Merge template/main into ${current_branch}" template/main; then
   echo "Template updates applied without a commit. Review the staged merge, then commit or abort it manually."
 else
   echo "Template merge needs manual resolution."
