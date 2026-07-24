@@ -63,16 +63,15 @@ jobs:
         run: uv run pytest --cov --cov-report=term --cov-report=xml
 
       - name: Generate coverage badge
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'push'
         run: uv run genbadge coverage -i coverage.xml -o coverage.svg
 
       - name: Commit badge
+        if: github.event_name == 'push'
         uses: stefanzweifel/git-auto-commit-action@v7
-        if: github.event_name == 'pull_request'
         with:
           commit_message: "chore: update coverage badge"
           file_pattern: coverage.svg
-          branch: ${{ github.head_ref }}
 
   devcontainer-smoke:
     name: Devcontainer Smoke
