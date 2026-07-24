@@ -1,133 +1,30 @@
-# zero_friction – Unified SDK for Zero Friction APIs
+# Zero Friction Unified Python SDK
 
-This repository provides a **unified Python SDK** for interacting with the full suite of **Zero Friction** APIs.
+This repository provides one installable Python package for the Zero Friction
+API suite. It combines eight generated API clients under `sdk/` with the
+hand-maintained `zero_friction/` package, which provides shared configuration,
+authentication, and a unified client surface.
 
-The SDK is structured into:
-- **Modular API clients** inside the `sdk/` folder (auto-generated from OpenAPI specs)
-- A **unified meta-package** `zero_friction/` that depends on all clients and includes custom logic, wrappers, and shared configuration
+## Installation
 
-You can install the entire SDK with a **single command**, while still using each client independently.
-
-## 📁 Repository structure
-
-```
-zero_friction/
-├── sdk/                        # Contains 8 modular API client packages
-│   ├── attachments_client/     # Project folder
-│   │   ├── setup.py
-│   │   └── attachments_client/ # Python module
-│   │       └── __init__.py
-│   ├── billing_client/
-│   │   ├── setup.py
-│   │   └── billing_client/
-│   │       └── __init__.py
-│   ├── communication_client/
-│   │   ├── setup.py
-│   │   └── communication_client/
-│   │       └── __init__.py
-│   ├── configuration_client/
-│   │   ├── setup.py
-│   │   └── configuration_client/
-│   │       └── __init__.py
-│   ├── forecasting_client/
-│   │   ├── setup.py
-│   │   └── forecasting_client/
-│   │       └── __init__.py
-│   ├── masterdata_client/
-│   │   ├── setup.py
-│   │   └── masterdata_client/
-│   │       └── __init__.py
-│   ├── metering_client/
-│   │   ├── setup.py
-│   │   └── metering_client/
-│   │       └── __init__.py
-│   └── regionalregulations_client/
-│       ├── setup.py
-│       └── regionalregulations_client/
-│           └── __init__.py
-├── zero_friction/                  # Unified SDK package
-│   └── core/              
-│       ├── auth.py
-│       ├── config.py
-│       ├── sdk_client.py
-│       ├── sdk_exceptions.py
-│       └── sdk_utils.py
-```
-
----
-
-## 📦 Installation
-
-### ✅ Option 1: Install directly from GitHub (recommended)
-
-Install everything — all SDK clients + the unified `zero_friction` package — with a single line:
+Install the SDK directly from GitHub:
 
 ```bash
 pip install "git+https://github.com/TECHLETES/zero_friction.git@main"
 ```
 
-This automatically installs:
-
-- The `zero_friction` package  
-- All 8 client packages under `sdk/`  
-- Core dependencies (`requests`, `pandas`, `python-dotenv`, etc.)  
-
-If you manage dependencies with `pyproject.toml` and `setuptools`, you can add the package directly to your `project.dependencies` (or `dependencies` section) like this:
-
-```toml
-dependencies = [
-    ...
-    "zero-friction @ git+https://github.com/TECHLETES/zero_friction.git@main"
-    ...
-]
-```
-
----
-
-## 🧑‍💻 Option 2: Local editable install (for development)
-
-Clone the repo and install locally:
+For repository development, use the supported uv workflow:
 
 ```bash
-git clone https://github.com/TECHLETES/zero_friction.git
-cd zero_friction
+uv sync
+cp .env.template .env
+uv run pre-commit install --install-hooks
 ```
 
-This installs all clients and `zero_friction` in editable mode so changes are picked up immediately.
+Do not commit `.env` or real credentials. The SDK reads these environment
+variables for authentication:
 
-## 🧩 Using the SDK
-
-Here’s a minimal working example to test that everything is correctly installed:
-
-```python
-from zero_friction.core.sdk_client import SDKClient
-from zero_friction.core.config import ZeroFrictionConfig
-
-# Set up Zero Friction API client
-config = ZeroFrictionConfig()
-sdk = SDKClient(config=config)
-
-# Example: Get contract by UUID
-contract = sdk.masterdata_client.contracts_api.get_contracts_contractuuid(
-    contractuuid="fc77b9c6-42bc-4fe7-b0a2-0f0309449a98",
-    **config.as_kwargs()
-)
-print(contract)
-
-# Example: Get customer by account number
-customer = sdk.masterdata_client.customers_api.get_customer_by_account_number(
-    customer_account_number="20019188",
-    **config.as_kwargs()
-)
-print(customer.data.to_dict())
-```
-
-## 🔐 Authentication
-
-The SDK loads credentials automatically from a `.env` file in your project root.  
-Add at least the following variables:
-
-```
+```text
 ZF_API_KEY=
 ZF_TENANT_ID=
 ZF_ORG_ID=
@@ -135,34 +32,47 @@ ZF_CLIENT_ID=
 ZF_CLIENT_SECRET=
 ```
 
----
+## Usage
 
-## ⚙️ Development setup (for contributors)
+```python
+from zero_friction.core.config import ZeroFrictionConfig
+from zero_friction.core.sdk_client import SDKClient
 
-Clone the repository and create a feature branch:
+config = ZeroFrictionConfig()
+sdk = SDKClient(config=config)
 
-```bash
-git clone https://github.com/TECHLETES/zero_friction.git
-cd zero_friction
-git checkout -b feature/my-feature
+contract = sdk.masterdata_client.contracts_api.get_contracts_contractuuid(
+    contractuuid="fc77b9c6-42bc-4fe7-b0a2-0f0309449a98",
+    **config.as_kwargs(),
+)
+print(contract)
 ```
 
-Add or update your logic in:
+## Repository layout
 
-- `zero_friction/wrappers/`
-- `zero_friction/business_logic/`
+```text
+sdk/                 Generated, independently installable API clients
+zero_friction/       Unified client and shared SDK logic
+tests/               Repository tests
+scripts/             Adoption and pre-commit helper scripts
+.devcontainer/       Reproducible development container setup
+.github/workflows/   CI, labeling, and staging checks
+```
 
-Run tests or examples to validate your changes.
+## Development checks
 
----
+Dependencies are declared in `pyproject.toml` and locked in `uv.lock`:
 
-## 🛠 Requirements
+```bash
+uv lock
+uv sync
+uv run pre-commit run --all-files
+uv run pytest
+```
 
-The following dependencies are installed automatically:
+The template tooling also provides Black, Ruff, mypy, Bandit, detect-secrets,
+and pip-audit. Generated clients are preserved as product code and excluded
+from root-package lint/type-check coverage settings.
 
-- `requests`
-- `pandas`
-- `python-dotenv`
-
-Each SDK client may also include its own generated dependencies (`urllib3`, `pydantic`, etc.).
-
+See `docs/quickstart.md` and the documents under `docs/` for the development,
+secret-management, dependency, quality, and devcontainer workflows.

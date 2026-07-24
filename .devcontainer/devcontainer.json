@@ -1,0 +1,147 @@
+{
+  "build": {
+    "context": "..",
+    "dockerfile": "Dockerfile"
+  },
+  "containerEnv": {
+    "PRE_COMMIT_HOME": "/home/vscode/.cache/pre-commit",
+    "PYTHONPATH": "${containerWorkspaceFolder}",
+    "TZ": "Europe/Amsterdam",
+    "UV_CACHE_DIR": "/home/vscode/.cache/uv",
+    "UV_LINK_MODE": "copy",
+    "UV_PROJECT_ENVIRONMENT": "${containerWorkspaceFolder}/.venv",
+    "UV_PYTHON_DOWNLOADS": "never"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.mypy-type-checker",
+        "charliermarsh.ruff",
+        "ms-toolsai.jupyter",
+        "astral-sh.ty",
+        "ms-python.autopep8",
+        "ms-python.black-formatter",
+        "ms-python.debugpy",
+        "mgesbert.python-path",
+        "docker.docker",
+        "tamasfe.even-better-toml",
+        "cweijan.vscode-office",
+        "openai.chatgpt",
+        "github.vscode-github-actions",
+        "GitHub.vscode-pull-request-github",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-mysql",
+        "mtxr.sqltools-driver-pg",
+        "mtxr.sqltools-driver-sqlite",
+        "ms-ossdata.vscode-pgsql",
+        "redhat.vscode-yaml",
+        "foxundermoon.shell-format"
+      ],
+      "settings": {
+        "[json]": {
+          "editor.defaultFormatter": "vscode.json-language-features",
+          "editor.formatOnSave": true
+        },
+        "[jsonc]": {
+          "editor.defaultFormatter": "vscode.json-language-features",
+          "editor.formatOnSave": true
+        },
+        "[python]": {
+          "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "explicit",
+            "source.organizeImports.ruff": "explicit"
+          },
+          "editor.defaultFormatter": "ms-python.black-formatter",
+          "editor.formatOnSave": true
+        },
+        "[yaml]": {
+          "editor.defaultFormatter": "redhat.vscode-yaml",
+          "editor.formatOnSave": true
+        },
+        "chatgpt.openOnStartup": false,
+        "chatgpt.runCodexInWindowsSubsystemForLinux": true,
+        "debug.internalConsoleOptions": "neverOpen",
+        "debug.showProtocolLogs": false,
+        "editor.formatOnPaste": true,
+        "editor.rulers": [
+          88
+        ],
+        "editor.trimAutoWhitespace": true,
+        "files.exclude": {
+          "**/.pytest_cache": true,
+          "**/.ruff_cache": true,
+          "**/__pycache__": true
+        },
+        "files.watcherExclude": {
+          "**/.git/objects/**": true,
+          "**/.pytest_cache": true,
+          "**/.ruff_cache": true,
+          "**/__pycache__": true
+        },
+        "git.ignoreLimitWarning": true,
+        "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+        "mypy-type-checker.args": [
+          "--config-file=pyproject.toml"
+        ],
+        "mypy-type-checker.cwd": "${workspaceFolder}",
+        "mypy-type-checker.importStrategy": "fromEnvironment",
+        "mypy-type-checker.reportingScope": "workspace",
+        "python-envs.terminal.autoActivationType": "off",
+        "python.analysis.typeCheckingMode": "standard",
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv",
+        "python.terminal.activateEnvInCurrentTerminal": true,
+        "python.terminal.useEnvFile": true,
+        "python.testing.pytestArgs": [
+          "."
+        ],
+        "python.testing.pytestEnabled": true,
+        "python.testing.unittestEnabled": false,
+        "ruff.enable": true,
+        "search.exclude": {
+          "**/.git": true,
+          "**/.pytest_cache": true,
+          "**/.venv": true,
+          "**/__pycache__": true,
+          "**/build": true,
+          "**/dist": true,
+          "**/node_modules": true
+        },
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.env.linux": {
+          "PYTHONPATH": "${workspaceFolder}",
+          "UV_PROJECT_ENVIRONMENT": "${workspaceFolder}/.venv"
+        }
+      }
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "enableNonRootDocker": "true",
+      "moby": "false",
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.gitconfig,target=/tmp/host-gitconfig,type=bind,consistency=cached",
+    "source=fst-uv-cache,target=/home/vscode/.cache/uv,type=volume",
+    "source=fst-pre-commit-cache,target=/home/vscode/.cache/pre-commit,type=volume",
+    "source=${localEnv:HOME}/.codex,target=/home/vscode/.codex,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.config/gh,target=/home/vscode/.config/gh,type=bind,consistency=cached"
+  ],
+  "name": "zero-friction",
+  "overrideCommand": true,
+  "postAttachCommand": "bash .devcontainer/post-attach.sh",
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "remoteEnv": {
+    "CODEX_HOME": "/home/vscode/.codex"
+  },
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  "waitFor": "postCreateCommand",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
+}

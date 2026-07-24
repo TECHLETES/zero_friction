@@ -1,25 +1,31 @@
-# zero_friction/wrappers/masterdata_customers_adapter.py
-from typing import Any, Dict, Optional, Tuple, Union, List
+"""Compatibility wrapper for the generated customers API client."""
 
-from masterdata_client.api_client import ApiClient
+from typing import Any
+
 from masterdata_client.api.customers_api import CustomersApi
+
 # If your generated model class has a different name, adjust the string in _RESPONSE_TYPE below
 # and optionally import the class for type hints:
 # from masterdata_client.model.customer_dto_api_response_dto import CustomerDTOApiResponseDTO
 
+
 class PatchedCustomersApi:
     """
-    Drop in replacement for CustomersApi.get_customer_by_account_number.
+    Provide a drop-in replacement for the generated customer lookup method.
+
     Calls the correct endpoint and preserves the original signature so existing call sites keep working.
     All other attributes and methods fall through to the original CustomersApi.
     """
 
     _PATH = "/api/md/Customers/ByAccountNumber"
     _METHOD = "GET"
-    _AUTH = ["BearerAuth"]             # adjust if your generated client uses a different auth scheme name
+    _AUTH = [
+        "BearerAuth"
+    ]  # adjust if your generated client uses a different auth scheme name
     _RESPONSE_TYPE = "CustomerDTOApiResponseDTO"  # exact string used by the generator for the success model
 
     def __init__(self, customers_api: CustomersApi):
+        """Wrap a generated customers API instance."""
         self.api_client = customers_api.api_client
         self._orig = CustomersApi(self.api_client)  # for passthrough of other methods
 
@@ -29,32 +35,29 @@ class PatchedCustomersApi:
         customer_account_number: str,
         zf_tuuid: str,
         zf_ouuid: str,
-        _request_timeout: Optional[
-            Union[
-                float,
-                Tuple[float, float]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[str, Any]] = None,
-        _content_type: Optional[str] = None,
-        _headers: Optional[Dict[str, Any]] = None,
+        _request_timeout: float | tuple[float, float] | None = None,
+        _request_auth: dict[str, Any] | None = None,
+        _content_type: str | None = None,
+        _headers: dict[str, Any] | None = None,
         _host_index: int = 0,
         # ) -> CustomerDTOApiResponseDTO:
-    ):
+    ) -> Any:
         """
-        Replacement for the generated method.
+        Replace the generated method.
+
         Hits /api/md/Customers/ByAccountNumber?customerAccountNumber=... with required Zero Friction headers.
         """
+        _host: str | None = None
+        _collection_formats: dict[str, str] = {}
 
-        _host: Optional[str] = None
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = [("customerAccountNumber", customer_account_number)]
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Any] = {}
-        _body_params: Optional[bytes] = None
+        _path_params: dict[str, str] = {}
+        _query_params: list[tuple[str, str]] = [
+            ("customerAccountNumber", customer_account_number)
+        ]
+        _header_params: dict[str, str | None] = _headers or {}
+        _form_params: list[tuple[str, str]] = []
+        _files: dict[str, Any] = {}
+        _body_params: bytes | None = None
 
         # add required tenant headers
         _header_params["zf-tuuid"] = zf_tuuid
@@ -68,7 +71,7 @@ class PatchedCustomersApi:
             _header_params["Content-Type"] = _content_type
 
         # reuse the same auth settings labels your generator uses
-        _auth_settings: List[str] = ["apiKeyQuery", "apiKeyHeader"]
+        _auth_settings: list[str] = ["apiKeyQuery", "apiKeyHeader"]
 
         # build the serialized request with the corrected resource_path
         _param = self.api_client.param_serialize(
@@ -86,7 +89,7 @@ class PatchedCustomersApi:
             _request_auth=_request_auth,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             "200": self._RESPONSE_TYPE,
             "404": "ProblemDetails",
         }
@@ -102,8 +105,7 @@ class PatchedCustomersApi:
             response_types_map=_response_types_map,
         ).data
 
-    def __getattr__(self, name: str):
+    def __getattr__(self, name: str) -> Any:
+        """Delegate unknown attributes to the original generated client."""
         # passthrough for any other methods or attributes
         return getattr(self._orig, name)
-
-

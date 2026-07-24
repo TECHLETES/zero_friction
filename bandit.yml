@@ -1,0 +1,10 @@
+# Bandit config for ABS project
+# Only report HIGH severity issues
+# Skip B101 (unused imports)
+
+# severity
+severity: HIGH
+
+# skip
+skip:
+  - B101

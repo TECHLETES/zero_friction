@@ -1,28 +1,29 @@
 [build-system]
-requires = ["setuptools>=69", "wheel"]
+requires = ["setuptools>=69", "wheel", "pip>=26.0,<27.0.0", "uv>=0.9.25,<1.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "zero-friction"
 version = "0.1.0"
-description = "Zero Friction SDK for Python"
+description = "Unified Python SDK for the Zero Friction APIs."
 readme = "README.md"
+requires-python = ">=3.9,<4.0"
 keywords = ["python", "sdk", "zero friction", "api client"]
-requires-python = ">=3.9"
 authors = [
-    {name = "Dominic Istha", email = "dominic@techletes.ai"},
-    {name = "Thom Ezechiels", email = "thom@techletes.ai"},
+  { name = "Dominic Istha", email = "dominic@techletes.ai" },
+  { name = "Thom Ezechiels", email = "thom@techletes.ai" },
 ]
 maintainers = [
-  {name = "Dominic Istha", email = "dominic@techletes.ai"},
-  {name = "Techletes DevOps Team", email = "dev@techletes.ai"}
+  { name = "Dominic Istha", email = "dominic@techletes.ai" },
+  { name = "Techletes DevOps Team", email = "dev@techletes.ai" },
 ]
 classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.12",
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
   "attachments_client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/attachments_client",
@@ -33,15 +34,34 @@ dependencies = [
   "masterdata_client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/masterdata_client",
   "metering_client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/metering_client",
   "regionalregulations_client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/regionalregulations_client",
-  "requests>=2.32.4",
-  "python-dotenv",
-  "pandas",
-  "ratelimit",
-  "urllib3>=2.6.0"
+  "pandas>=2.2.0,<3.0.0",
+  "python-dotenv>=1.0.0,<2.0.0",
+  "ratelimit>=2.2.1,<3.0.0",
+  "requests>=2.32.4,<3.0.0",
+  "urllib3>=2.6.0,<3.0.0",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
+  "bandit>=1.7.0,<2.0.0",
+  "beartype>=0.22.0,<1.0.0",
+  "black>=24.0.0,<25.12.0; python_version < '3.10'",
+  "black>=25.12.0,<27.0.0; python_version >= '3.10'",
+  "codespell>=2.2.0,<3.0.0",
+  "detect-secrets>=1.5.0,<2.0.0",
+  "genbadge[coverage]>=1.1.0,<2.0.0",
+  "ipykernel>=6.29.0,<7.0.0",
+  "mypy>=1.19.0,<2.0.0",
+  "nbstripout>=0.8.0,<1.0.0",
+  "pip-audit>=2.10.0,<3.0.0; python_version >= '3.10'",
+  "pre-commit>=4.5.0,<5.0.0; python_version >= '3.10'",
+  "pydocstyle>=6.3.0,<7.0.0",
+  "pytest>=9.0.3,<10.0.0; python_version >= '3.10'",
+  "pytest-beartype>=0.2.0,<1.0.0",
+  "pytest-cov>=7.0.0,<8.0.0",
+  "pyupgrade>=3.15.0,<4.0.0",
+  "rich>=14.2.0,<15.0.0",
+  "ruff>=0.14.0,<1.0.0",
 ]
 
 [project.urls]
@@ -50,8 +70,94 @@ Repository = "https://github.com/TECHLETES/zero_friction"
 Issues = "https://github.com/TECHLETES/zero_friction/issues"
 
 [tool.setuptools]
-package-dir = {"" = "."}
+package-dir = { "" = "." }
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["zero_friction*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+
+[tool.pytest]
+minversion = "9.0.3"
+addopts = [
+  "--strict-markers",
+  "--strict-config",
+  "--cov=zero_friction",
+  "--cov-report=term-missing",
+  "--cov-report=html",
+  "--cov-report=xml",
+]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+pythonpath = ["."]
+
+[tool.coverage.run]
+source = ["zero_friction"]
+omit = ["*/__pycache__/*", "*/tests/*", "*/.venv/*", "*/venv/*", "*/__init__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "if self.debug:",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if __name__ == .__main__.:",
+  "class .*\\bProtocol\\):",
+  "@(abc\\.)?abstractmethod",
+  "except ImportError",
+  "pass",
+]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+follow_imports = "silent"
+warn_unused_ignores = true
+warn_return_any = true
+warn_unreachable = true
+no_implicit_optional = true
+allow_redefinition = true
+show_column_numbers = true
+pretty = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+files = ["zero_friction"]
+exclude = "(^|/)(migrations|notebooks|tests|sdk)/"
+plugins = []
+
+[tool.ruff]
+target-version = "py39"
+line-length = 88
+fix = true
+respect-gitignore = true
+extend-exclude = ["migrations", "sdk"]
+lint.dummy-variable-rgx = "^_|^__|^pytest$"
+lint.select = ["E", "F", "I", "B", "UP"]
+lint.ignore = ["B008", "E501"]
+
+[tool.bandit]
+exclude_dirs = ["tests", ".venv", "sdk"]
+skips = ["B101", "B601"]
+
+[tool.pip-audit]
+ignore = []
+
+[tool.detect-secrets]
+# Regular expressions matched against paths ignored by the shared helper and
+# the pre-commit detect-secrets check.
+exclude_files = [
+  "^coverage.svg$",
+  "^tests/",
+  "^sdk/",
+
+]
+
+[tool.uv]
+required-version = ">=0.9.25,<1.0.0"

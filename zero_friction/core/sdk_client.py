@@ -1,3 +1,5 @@
+"""Unified client coordinating the generated Zero Friction SDK clients."""
+
 # Load SDK packages
 from attachments_client import ApiClient as AttachmentsClient
 from attachments_client import Configuration as AttachmentsConfiguration
@@ -16,84 +18,82 @@ from metering_client import Configuration as MeteringConfiguration
 from regionalregulations_client import ApiClient as RegionalRegulationsClient
 from regionalregulations_client import Configuration as RegionalRegulationsConfiguration
 
-from .sdk_utils import create_config, wrap_api_call, create_api_classes_for_client, make_shared_rate_limiter
-from .config import ZeroFrictionConfig
-
-from zero_friction.patches.patched_customers_api import PatchedCustomersApi
 from zero_friction.patches.core import apply_patches
+from zero_friction.patches.patched_customers_api import PatchedCustomersApi
+
+from .config import ZeroFrictionConfig
+from .sdk_utils import (
+    create_api_classes_for_client,
+    create_config,
+    make_shared_rate_limiter,
+    wrap_api_call,
+)
+
 
 class SDKClient:
-    def __init__(
-            self, 
-            config: ZeroFrictionConfig
-            ):
+    """Expose all generated service clients with shared SDK behavior."""
+
+    def __init__(self, config: ZeroFrictionConfig):
+        """Initialize service clients from the supplied configuration."""
         if not isinstance(config, ZeroFrictionConfig):
             raise TypeError("config must be an instance of ZeroFrictionConfig.")
-        
+
         apply_patches()
 
         self.config = config
         self.oauth_token = self.config.oauth_token
 
         attachements_kwargs = create_config(
-            host="https://api.zerofriction.co/api/att",
-            oath_token=self.oauth_token
+            host="https://api.zerofriction.co/api/att", oath_token=self.oauth_token
         )
         self.attachments_client = AttachmentsClient(
             configuration=AttachmentsConfiguration(**attachements_kwargs)
         )
 
         billing_kwargs = create_config(
-            host="https://api.zerofriction.co/api/bill",
-            oath_token=self.oauth_token
+            host="https://api.zerofriction.co/api/bill", oath_token=self.oauth_token
         )
         self.billing_client = BillingClient(
             configuration=BillingConfiguration(**billing_kwargs)
         )
 
         communication_kwargs = create_config(
-            host="https://api.zerofriction.co/api/comm",
-            oath_token=self.oauth_token
+            host="https://api.zerofriction.co/api/comm", oath_token=self.oauth_token
         )
         self.communication_client = CommunicationClient(
             configuration=CommunicationConfiguration(**communication_kwargs)
         )
 
         configuration_kwargs = create_config(
-            host="https://api.zerofriction.co/api/cfg",
-            oath_token=self.oauth_token
+            host="https://api.zerofriction.co/api/cfg", oath_token=self.oauth_token
         )
         self.configuration_client = ConfigurationClient(
             configuration=ConfigurationConfiguration(**configuration_kwargs)
         )
 
         forecasting_kwargs = create_config(
-            host="https://api.zerofriction.co/api/fct",
-            oath_token=self.oauth_token
+            host="https://api.zerofriction.co/api/fct", oath_token=self.oauth_token
         )
         self.forecasting_client = ForecastingClient(
             configuration=ForecastingConfiguration(**forecasting_kwargs)
         )
 
         masterdata_kwargs = create_config(
-            host="https://api.zerofriction.co/api/md",
-            oath_token=self.oauth_token
+            host="https://api.zerofriction.co/api/md", oath_token=self.oauth_token
         )
         self.masterdata_client = MasterdataClient(
             configuration=MasterdataConfiguration(**masterdata_kwargs)
         )
 
         metering_kwargs = create_config(
-            host="https://api.zerofriction.co/api/me",
-            oath_token=self.oauth_token
+            host="https://api.zerofriction.co/api/me", oath_token=self.oauth_token
         )
         self.metering_client = MeteringClient(
             configuration=MeteringConfiguration(**metering_kwargs)
         )
 
         regionalregulations_kwargs = create_config(
-            host="https://api.zerofriction.co/api/reg",
-            oath_token=self.oauth_token
+            host="https://api.zerofriction.co/api/reg", oath_token=self.oauth_token
         )
         self.regionalregulations_client = RegionalRegulationsClient(
             configuration=RegionalRegulationsConfiguration(**regionalregulations_kwargs)
@@ -108,7 +108,7 @@ class SDKClient:
             "forecasting_client": "forecasting_client",
             "masterdata_client": "masterdata_client",
             "metering_client": "metering_client",
-            "regionalregulations_client": "regionalregulations_client"
+            "regionalregulations_client": "regionalregulations_client",
         }
 
         self._all_clients = [getattr(self, attr) for attr in sdk_modules]
@@ -119,11 +119,15 @@ class SDKClient:
             create_api_classes_for_client(module, client_instance)
 
         # Patch specific methods
-        self.masterdata_client.customers_api = PatchedCustomersApi(self.masterdata_client.customers_api)
+        self.masterdata_client.customers_api = PatchedCustomersApi(
+            self.masterdata_client.customers_api
+        )
 
         # Now wrap call_api of every client for retry/rate-limit handling.
         # A single shared rate limiter is used so all 8 clients count against
         # the same call-per-minute window (not 8 independent windows).
         shared_limiter = make_shared_rate_limiter(self.config)
         for client in self._all_clients:
-            wrap_api_call(client, self.config, shared_limiter, all_clients=self._all_clients)
+            wrap_api_call(
+                client, self.config, shared_limiter, all_clients=self._all_clients
+            )
