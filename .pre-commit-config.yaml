@@ -61,7 +61,7 @@ repos:
   - repo: local
     hooks:
       - id: detect-secrets
-        name: detect-secrets (shared helper)
+        name: detect-secrets
         entry: bash scripts/hooks/run-detect-secrets.sh --pre-commit
         language: system
         pass_filenames: true

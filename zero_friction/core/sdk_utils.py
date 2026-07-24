@@ -1,62 +1,47 @@
-from dotenv import load_dotenv
-import os
+"""Utilities for configuring and wrapping generated SDK clients."""
+
 import importlib
+import os
 import pkgutil
-from ratelimit import limits, sleep_and_retry
-import types
-from .config import ZeroFrictionConfig
+import threading
 import time
-import urllib3.exceptions
+from collections.abc import Callable
+from typing import Any, cast
 
 # Load SDK packages
-from attachments_client import ApiClient as AttachmentsClient
-from attachments_client import Configuration as AttachmentsConfiguration
-from billing_client import ApiClient as BillingClient
-from billing_client import Configuration as BillingConfiguration
-from communication_client import ApiClient as CommunicationClient
-from communication_client import Configuration as CommunicationConfiguration
-from configuration_client import ApiClient as ConfigurationClient
-from configuration_client import Configuration as ConfigurationConfiguration
-from forecasting_client import ApiClient as ForecastingClient
-from forecasting_client import Configuration as ForecastingConfiguration
-from masterdata_client import ApiClient as MasterdataClient
-from masterdata_client import Configuration as MasterdataConfiguration
-from metering_client import ApiClient as MeteringClient
-from metering_client import Configuration as MeteringConfiguration
-from regionalregulations_client import ApiClient as RegionalRegulationsClient
-from regionalregulations_client import Configuration as RegionalRegulationsConfiguration
+from dotenv import load_dotenv
+from ratelimit import limits, sleep_and_retry
 
-import threading
 from .sdk_exceptions import ALL_SDK_EXCEPTIONS
 
 # Load environment variables from .env file
 load_dotenv()
 
-ZF_API_KEY = os.getenv('ZF_API_KEY')
-ZF_USERNAME = os.getenv('ZF_USERNAME')
-ZF_PASSWORD = os.getenv('ZF_PASSWORD')
+ZF_API_KEY = os.getenv("ZF_API_KEY")
+ZF_USERNAME = os.getenv("ZF_USERNAME")
+ZF_PASSWORD = os.getenv("ZF_PASSWORD")
 
 
 def create_config(host: str, oath_token: str) -> dict:
     """
-    Creates a configuration dictionary for API requests to the Zero Friction API.
-        The OAuth access token to authenticate API requests.
+    Create a configuration dictionary for Zero Friction API requests.
+
+    The OAuth access token authenticates API requests.
     dict
         A dictionary containing configuration parameters required for API requests, including:
             - host: The API base URL.
             - api_key: The API key for authentication.
             - username: The username for authentication.
             - password: The password for authentication.
-            - access_token: The provided OAuth access token.
+    - access_token: The provided OAuth access token.
     """
-
-    config_dict = {
-    "host": host,
-    "access_token": oath_token
-    }
+    config_dict = {"host": host, "access_token": oath_token}
     return config_dict
 
-def create_api_classes_for_client(sdk_module: str, api_client_instance) -> dict:
+
+def create_api_classes_for_client(
+    sdk_module: str, api_client_instance: Any
+) -> dict[str, Any]:
     """
     Dynamically loads and initializes all API classes for a given SDK.
 
@@ -92,21 +77,31 @@ def create_api_classes_for_client(sdk_module: str, api_client_instance) -> dict:
 
     return api_classes
 
-def make_shared_rate_limiter(config):
+
+def make_shared_rate_limiter(config: Any) -> Callable[..., Any]:
     """
     Build a single rate-limited dispatcher shared across all SDK clients.
+
     Calling this once and reusing the result ensures all clients share
     one call-count window instead of each having an independent limit.
     """
+
     @sleep_and_retry
     @limits(calls=config.rate_limit_per_minute, period=60)
-    def _rate_limited_dispatch(orig_call_api, *args, **kwargs):
+    def _rate_limited_dispatch(
+        orig_call_api: Callable[..., Any], *args: Any, **kwargs: Any
+    ) -> Any:
         return orig_call_api(*args, **kwargs)
 
-    return _rate_limited_dispatch
+    return cast(Callable[..., Any], _rate_limited_dispatch)
 
 
-def wrap_api_call(api_client, config, shared_rate_limiter, all_clients=None):
+def wrap_api_call(
+    api_client: Any,
+    config: Any,
+    shared_rate_limiter: Callable[..., Any],
+    all_clients: list[Any] | None = None,
+) -> None:
     """
     Patch both call_api and response_deserialize on an SDK ApiClient.
 
@@ -122,14 +117,16 @@ def wrap_api_call(api_client, config, shared_rate_limiter, all_clients=None):
     orig_response_deserialize = api_client.response_deserialize
     _local = threading.local()
 
-    def wrapped_call_api(*args, **kwargs):
+    def wrapped_call_api(*args: Any, **kwargs: Any) -> Any:
         if config.debug_mode:
             print(f"[{time.strftime('%X')}] API request sent.")
         _local.last_call_args = args
         _local.last_call_kwargs = kwargs
         return shared_rate_limiter(orig_call_api, *args, **kwargs)
 
-    def wrapped_response_deserialize(response_data, *args, **kwargs):
+    def wrapped_response_deserialize(
+        response_data: Any, *args: Any, **kwargs: Any
+    ) -> Any:
         last_exc = None
         last_retry_after = None
         current_response = response_data
@@ -143,7 +140,10 @@ def wrap_api_call(api_client, config, shared_rate_limiter, all_clients=None):
                 exc_headers = getattr(e, "headers", {}) or {}
 
                 if code == 429:
-                    retry_after = int(exc_headers.get("x-retry-after-seconds", "1")) + config.wait_time
+                    retry_after = (
+                        int(exc_headers.get("x-retry-after-seconds", "1"))
+                        + config.wait_time
+                    )
                     last_retry_after = retry_after
                     if config.debug_mode:
                         print(
@@ -165,9 +165,11 @@ def wrap_api_call(api_client, config, shared_rate_limiter, all_clients=None):
 
                 if code == 401 and not tried_refresh:
                     if config.debug_mode:
-                        print(f"[{time.strftime('%X')}] 401—refreshing token and retrying")
+                        print(
+                            f"[{time.strftime('%X')}] 401—refreshing token and retrying"
+                        )
                     config.refresh_token()
-                    for _client in (all_clients or [api_client]):
+                    for _client in all_clients or [api_client]:
                         _client.configuration.access_token = config.oauth_token
                     tried_refresh = True
                     current_response = shared_rate_limiter(
@@ -190,14 +192,6 @@ def wrap_api_call(api_client, config, shared_rate_limiter, all_clients=None):
 
     api_client.call_api = wrapped_call_api
     api_client.response_deserialize = wrapped_response_deserialize
-
-
-
-
-
-
-
-
 
 
 # ------------------------ OLD CODE ------------------------

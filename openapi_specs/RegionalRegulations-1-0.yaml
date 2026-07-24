@@ -70,7 +70,7 @@ paths:
                 $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
@@ -205,7 +205,7 @@ paths:
                 $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
@@ -322,7 +322,7 @@ paths:
                 $ref: '#/components/schemas/SocialTariffExportDTOPagedResponseModelDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/SocialTariffExportDTOPagedResponseModelDTOApiResponseDTO'
@@ -473,7 +473,7 @@ paths:
                 $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/SocialTariffExportDTOApiResponseDTO'
@@ -587,7 +587,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -614,7 +614,7 @@ paths:
                 $ref: '#/components/schemas/BooleanApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/BooleanApiResponseDTO'
@@ -694,7 +694,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -722,7 +722,7 @@ paths:
                 format: binary
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 type: string
@@ -812,7 +812,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -932,7 +932,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -960,7 +960,7 @@ paths:
                 format: binary
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 type: string

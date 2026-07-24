@@ -1,13 +1,14 @@
-# zero_friction/patches/core.py
+"""Helpers for patching symbols in generated SDK modules."""
+
 import importlib
 import pkgutil
-from typing import Callable, Iterable, Set, Optional, Any
+from collections.abc import Callable, Iterable
+from typing import Any
+
+_APPLIED: set[str] = set()
 
 
-_APPLIED: Set[str] = set()
-
-
-def _eager_import_submodules(pkg) -> Iterable[Any]:
+def _eager_import_submodules(pkg: Any) -> Iterable[Any]:
     """Import all submodules under a package to make their module namespaces mutable."""
     prefix = pkg.__name__ + "."
     for _finder, name, _ispkg in pkgutil.walk_packages(pkg.__path__, prefix):
@@ -18,12 +19,8 @@ def _eager_import_submodules(pkg) -> Iterable[Any]:
             continue
 
 
-def rebind_symbol_everywhere(models_pkg, symbol_name: str, new_obj: Any) -> None:
-    """
-    Rebind `symbol_name` to `new_obj` in:
-      1) the defining module where it originally lives, and
-      2) every models submodule that may have imported it into its globals.
-    """
+def rebind_symbol_everywhere(models_pkg: Any, symbol_name: str, new_obj: Any) -> None:
+    """Rebind ``symbol_name`` to ``new_obj`` in imported model modules."""
     # Best effort import of the defining module based on a conventional filename
     # Callers should still rebind in the known defining module explicitly if they know it.
     for mod in _eager_import_submodules(models_pkg):
@@ -32,10 +29,10 @@ def rebind_symbol_everywhere(models_pkg, symbol_name: str, new_obj: Any) -> None
 
 
 def apply_patches() -> None:
-    """
-    Run all registered patch functions once. Safe to call multiple times.
-    """
-    from .apply_patched_billing_calculations_type_parameters_dto import apply_patched_billing_calculations_type_parameters_dto
+    """Run all registered patch functions once."""
+    from .apply_patched_billing_calculations_type_parameters_dto import (
+        apply_patched_billing_calculations_type_parameters_dto,
+    )
 
     for fn in [
         apply_patched_billing_calculations_type_parameters_dto,

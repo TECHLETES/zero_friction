@@ -49,7 +49,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -77,7 +77,7 @@ paths:
                 format: binary
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 type: string
@@ -150,7 +150,7 @@ paths:
                 format: binary
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 type: string
@@ -220,7 +220,7 @@ paths:
                 $ref: '#/components/schemas/AttachmentDTOPagedResponseModelDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/AttachmentDTOPagedResponseModelDTOApiResponseDTO'
@@ -395,7 +395,7 @@ paths:
                 $ref: '#/components/schemas/AttachmentDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/AttachmentDTOApiResponseDTO'
@@ -470,7 +470,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -560,7 +560,7 @@ paths:
                 $ref: '#/components/schemas/BooleanApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/BooleanApiResponseDTO'
@@ -605,7 +605,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -705,7 +705,7 @@ paths:
                 format: binary
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 type: string
@@ -724,7 +724,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -834,7 +834,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -862,7 +862,7 @@ paths:
                 format: binary
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 type: string
@@ -937,7 +937,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -965,7 +965,7 @@ paths:
                 format: binary
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 type: string
@@ -1030,7 +1030,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentGroupDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentGroupDTOApiResponseDTO'
@@ -1121,7 +1121,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1242,7 +1242,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentGroupDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentGroupDTOApiResponseDTO'
@@ -1333,7 +1333,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1421,7 +1421,7 @@ paths:
                 $ref: '#/components/schemas/BooleanApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/BooleanApiResponseDTO'
@@ -1466,7 +1466,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1544,7 +1544,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentGroupDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentGroupDTOApiResponseDTO'
@@ -1635,7 +1635,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1795,7 +1795,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentGroupDTOPagedResponseModelDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentGroupDTOPagedResponseModelDTOApiResponseDTO'
@@ -1989,7 +1989,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentGroupDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentGroupDTOApiResponseDTO'
@@ -2080,7 +2080,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -2220,7 +2220,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentGroupOverviewCountDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentGroupOverviewCountDTOApiResponseDTO'
@@ -2362,7 +2362,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -2389,7 +2389,7 @@ paths:
                 $ref: '#/components/schemas/BooleanApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/BooleanApiResponseDTO'
@@ -2493,7 +2493,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -2521,7 +2521,7 @@ paths:
                 format: binary
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 type: string
@@ -2575,7 +2575,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentDTOApiResponseDTO'
@@ -2652,7 +2652,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -2750,7 +2750,7 @@ paths:
                 $ref: '#/components/schemas/BooleanApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/BooleanApiResponseDTO'
@@ -2795,7 +2795,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -2936,7 +2936,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentDTOPagedResponseModelDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentDTOPagedResponseModelDTOApiResponseDTO'
@@ -3113,7 +3113,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentOverviewCountDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentOverviewCountDTOApiResponseDTO'
@@ -3221,7 +3221,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentDTOApiResponseDTO'
@@ -3298,7 +3298,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -3406,7 +3406,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentDTOApiResponseDTO'
@@ -3483,7 +3483,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -3585,7 +3585,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentDTOApiResponseDTO'
@@ -3662,7 +3662,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -3800,7 +3800,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -3827,7 +3827,7 @@ paths:
                 $ref: '#/components/schemas/BooleanApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/BooleanApiResponseDTO'
@@ -3951,7 +3951,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentDTOApiResponseDTO'
@@ -4028,7 +4028,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -4158,7 +4158,7 @@ paths:
                 $ref: '#/components/schemas/EntityAttachmentDTOApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityAttachmentDTOApiResponseDTO'
@@ -4235,7 +4235,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -4313,7 +4313,7 @@ paths:
                 $ref: '#/components/schemas/TemplateDataContainerApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/TemplateDataContainerApiResponseDTO'
@@ -4508,7 +4508,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -4607,7 +4607,7 @@ paths:
                 $ref: '#/components/schemas/TemplateDataContainerApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/TemplateDataContainerApiResponseDTO'
@@ -4802,7 +4802,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value: 
+                  value:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
