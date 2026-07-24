@@ -63,11 +63,11 @@ jobs:
         run: uv run pytest --cov --cov-report=term --cov-report=xml
 
       - name: Generate coverage badge
-        if: github.event_name == 'push'
+        if: github.event_name == 'pull_request'
         run: uv run genbadge coverage -i coverage.xml -o coverage.svg
 
       - name: Commit badge
-        if: github.event_name == 'push'
+        if: github.event_name == 'pull_request'
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: update coverage badge"
