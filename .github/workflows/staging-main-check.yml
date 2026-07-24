@@ -1,0 +1,62 @@
+name: Allow only staging → main
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited, ready_for_review]
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+# This workflow enforces the rule: only PRs where the head/source branch is 'staging'
+# are allowed to target 'main'. It prevents developers from opening PRs directly
+# from feature branches into main; they must go via 'staging'.
+
+jobs:
+  gate:
+    name: Gate source branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check whether staging exists
+        id: staging
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+
+            try {
+              await github.rest.repos.getBranch({
+                owner,
+                repo,
+                branch: 'staging',
+              });
+              core.setOutput('exists', 'true');
+            } catch (error) {
+              if (error.status === 404) {
+                core.setOutput('exists', 'false');
+                return;
+              }
+
+              throw error;
+            }
+
+      - name: Fail if source is not 'staging'
+        if: steps.staging.outputs.exists == 'true'
+        run: |
+          SRC="${{ github.head_ref }}"
+          BASE="${{ github.base_ref }}"
+          echo "Base: $BASE | Source: $SRC"
+          if [ "$BASE" != "main" ]; then
+            echo "Not targeting main; skipping."
+            exit 0
+          fi
+          if [ "$SRC" != "staging" ]; then
+            echo "::error::Only PRs from 'staging' into 'main' are allowed. Current source: '$SRC'."
+            exit 1
+          fi
+          echo "staging → main allowed ✅"
+
+      - name: Skip when staging branch is absent
+        if: steps.staging.outputs.exists != 'true'
+        run: echo "No staging branch exists in this repo; skipping staging → main enforcement."

@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 General Discussion
+    url: https://github.com/TECHLETES/python_template/discussions
+    about: For questions, ideas, and general discussion about the python_template project
+  - name: 🔒 Security Issue
+    url: https://github.com/TECHLETES/python_template/security/advisories/new
+    about: Report security vulnerabilities privately
+  - name: 📖 Documentation
+    url: https://github.com/TECHLETES/python_template/blob/main/README.md
+    about: Read the project documentation and setup guides
+  - name: 🚀 Support
+    url: https://github.com/TECHLETES/python_template/discussions/categories/q-a
+    about: Get help and support from the community

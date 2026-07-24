@@ -1,0 +1,67 @@
+name: Labels
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      # For label-checker
+      - labeled
+      - unlabeled
+
+jobs:
+  labeler:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+    # Add labels based on branch name pattern (case-insensitive)
+    - name: Add label based on branch
+      if: ${{ github.event.action != 'labeled' && github.event.action != 'unlabeled' }}
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const branchName = context.payload.pull_request.head.ref.toLowerCase();
+          const labels = [];
+
+          if (branchName.startsWith('feature/')) {
+            labels.push('feature');
+          } else if (branchName.startsWith('bug/')) {
+            labels.push('bug');
+          } else if (branchName.startsWith('refactor/')) {
+            labels.push('refactor');
+          } else if (branchName.startsWith('security/')) {
+            labels.push('security');
+          } else if (branchName.startsWith('breaking/')) {
+            labels.push('breaking');
+          } else if (branchName.startsWith('question/')) {
+            labels.push('question');
+          } else if (branchName.startsWith('docs/')) {
+            labels.push('docs');
+          }
+
+          if (labels.length > 0) {
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: labels
+            });
+            console.log(`Added labels based on branch '${branchName}': ${labels.join(', ')}`);
+          }
+
+    - run: echo "Done adding labels"
+  # Run this after labeler applied labels
+  check-labels:
+    needs:
+      - labeler
+    permissions:
+      pull-requests: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://agilepathway/pull-request-label-checker:latest
+        with:
+          any_of: breaking,security,feature,bug,refactor,question,docs
+          minimum: 1
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
