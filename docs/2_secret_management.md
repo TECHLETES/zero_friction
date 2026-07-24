@@ -2,20 +2,13 @@
 
 We use **1Password CLI** (`op`) and **GitHub Secrets** to fetch secrets securely—**no plaintext `.env` files** are ever stored in Git.
 
-## 1.1 Local Development
+## 1.1 Devcontainer Development
 
-1. **Authentication for 1Password is handled automatically**
+Authentication is handled by the development environment when a secret-backed
+workflow requires it. Do not put secrets in the repository or create a local
+plaintext `.env` file for credentials.
 
-    Once per session you will be asked to authenticate through the 1Password Interface. **Never** log in manually through the cli. This will overwrite the connection.
-
-2. **Enable Direnv when changing .envrc**
-Whenever you make any changes to `.envrc` always allow Direnv to load environment variables automatically:
-
-    ```bash
-    direnv allow
-    ```
-
-3. **Environment Variables**
+**Environment Variables**
 We load secrets on demand from 1Password—no `.env` file. This can be done dynamically using the provided utility function `get_secret` in `utils/secrets.py` . Use it as follows:
 
     ```python
@@ -32,33 +25,22 @@ We load secrets on demand from 1Password—no `.env` file. This can be done dyna
     API_KEY = os.getenv('API_KEY')
     ```
 
-    <aside>
-    ⚠️
-
-    **Important: When you edit the `.envrc`, make sure to run `direnv allow` to allow the changes to take effect**
-
-    </aside>
-
-4. **Pre-commit Hooks**
+**Pre-commit Hooks**
 On each commit, secrets are blocked and notebook outputs cleared:
     - `detect-secrets`
     - `nbstripout`
 
-    These hooks are configured in `.pre-commit-config.yaml` and installed via:
-
-    ```bash
-    pre-commit install
-    pre-commit autoupdate
-    ```
+    These hooks are configured in `.pre-commit-config.yaml` and installed by
+    the devcontainer post-create step. Run `uv run pre-commit run --all-files`
+    to check the repository manually.
 
 
 ---
 
-## 1.2 Devcontainer Development
-
 ### Secret-Specific Behavior
 
-The devcontainer itself **boots with or without** the 1Password CLI (`op`):
+The devcontainer image includes the 1Password CLI (`op`), but it does not
+authenticate automatically:
 
 - **If `op` is available** in the container, use `get_secret()` normally:
   ```python
@@ -67,7 +49,10 @@ The devcontainer itself **boots with or without** the 1Password CLI (`op`):
   api_key = get_secret("op://Vault/Item/field")
   ```
 
-- **If `op` is unavailable or not authenticated**, `get_secret()` will fail because it shells out to `op read ...`. For development, guard secret-backed code with an explicit environment-variable path instead of assuming the devcontainer provides a readiness flag:
+- **If `op` is not authenticated**, `get_secret()` will fail because it shells
+  out to `op read ...`. For development, guard secret-backed code with an
+  explicit environment-variable path instead of assuming the container is
+  authenticated:
   ```python
   import os
   import shutil
@@ -81,8 +66,8 @@ The devcontainer itself **boots with or without** the 1Password CLI (`op`):
       api_key = os.getenv("API_KEY_DEV")
   ```
 
-The post-create script only reports whether `op` is installed. It does not
-install 1Password CLI, authenticate it, or export an `OP_AVAILABLE` variable.
+The post-create script reports whether `op` is available. It does not
+authenticate it or export an `OP_AVAILABLE` variable.
 
 ### Setup, Customization & Troubleshooting
 

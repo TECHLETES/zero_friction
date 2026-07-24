@@ -1,412 +1,115 @@
-
 ![Test Coverage](./coverage.svg)
 
 # Python Template (TECHLETES)
 
-A modern, production-ready Python project template for TECHLETES, a data & AI consultancy. Includes hybrid dependency management, secure secret management, and comprehensive development tooling for internal use by TECHLETES employees.
+A production-ready Python project template for TECHLETES with reproducible
+`uv` dependencies, secure secret handling, type checking, testing, and
+pre-commit quality gates.
 
-## READ THIS FIRST!
+## Quick start
 
-*This section lists the essential rules for using this template. Read it before you start.*
-
-### Secrets and environment
-* **Never** put secrets in code, notebooks, or  `.env` files!
-* Load secrets using 1Password with the helper in code
-        from utils.secrets import get_secret
-        API_KEY = get_secret("op://<vault>/<item>/<field>")
-* See [docs/2_secret_management.md](docs/2_secret_management.md) for more info on managing secrets.
-
-### Dependencies
-* **Do not** run `pip install` manually in the terminal!
-  Why: it bypasses the lock file and creates inconsistencies across environments
-* Always declare packages in `pyproject.toml` only
-* Use `uv sync` to install dependencies from the lock file
-* Common commands:
-  - First time setup: `uv sync`
-  - Install deps: `uv sync`
-  - Add a package: Edit `pyproject.toml`, then run `uv lock && uv sync`
-* The lock file (`uv.lock`) ensures everyone uses the same versions
-
-### Coding
-* Prefer small functions and clear modules so code is easy to test and reuse
-* Use type hints to show expected inputs and outputs
-  Example
-  ```
-        def add(a: int, b: int) -> int:
-            return a + b
-  ```
-  Why: your editor can catch mistakes early and mypy can check types automatically
-* Put shared helpers in utils
-* Use jupyter notebooks only for small tests / development.
-
-### Git and commits
-* Pre commit is a tool that runs checks before every commit to keep code safe and consistent.
-* **Important:** The pre-commit checks require certain packages that are installed in the virtual environment when you setup this repo. Therefore, you should **always commit while the virtual environment is active**.
-* Your commit can be blocked if a check fails. This is normal and protects the repo.
-* **Always check if your changes have been committed and pushed successfully!**
-* You can also run the pre-commit checks manually on all files before committing, using:
-      `pre-commit run --all-files`
-* If a pre commit check fails and you are stuck, see the troubleshooting section in
-
-## 🚀 Quick Start
-
-**For the fastest supported setup path from clone to working environment, see [docs/quickstart.md](docs/quickstart.md).**
-
-The quickstart guide covers:
-- Choosing between devcontainer (recommended for Windows, macOS, and mixed-OS teams) and host setup (Linux)
-- Step-by-step bootstrap for each path
-- First-success verification checks
-- First-day commands to run
-
-Detailed setup and customization guides are linked in the [📚 Documentation](#-documentation) section.
-
-## 📋 Features
-
-### 🔧 **Modern Dependency Management**
-- **uv-powered**: Fast, reliable dependency resolution and installation
-- **Reproducible builds** with `uv.lock` lockfile
-- **Single source of truth** in `pyproject.toml`
-- **Simple, clear workflow** - no hash verification hassles
-
-### 🔐 **Secret Management**
-- **1Password CLI integration** for secure secret handling
-- **detect-secrets** for preventing secrets in git
-- **Environment variable management** with direnv
-
-
-### 🛠️ **Development Tools**
-- **Code formatting**: Black
-- **Linting & import sorting**: Ruff (replaces flake8 and pyupgrade)
-- **Type checking**: mypy & beartype
-- **Testing**: pytest with coverage
-- **Pre-commit hooks** for code quality
-- **Jupyter notebook support** with nbstripout and `ipykernel`
-- **Shared Copilot agents** versioned in the repo for optional install into VS Code/Copilot
-
-### 📦 **Project Structure**
-```
-python_template/
-├── .copilot/
-│   └── agents/                     # Shared Copilot agent definitions for optional install
-├── .devcontainer/
-│   ├── Dockerfile                  # Devcontainer image definition
-│   ├── devcontainer.json           # VS Code devcontainer configuration
-│   └── post-create.sh              # Container bootstrap commands
-├── .vscode/
-│   └── extensions.json             # Recommended VS Code extensions
-├── .dockerignore                   # Docker build context exclusions
-├── .github/
-│   └── workflows/                  # GitHub Actions workflows
-├── docs/                           # Documentation (setup, secrets, dependencies, quality, containers)
-│   ├── quickstart.md               # ⚡ Fast path from clone to working environment
-│   ├── 0_setup.md
-│   ├── 1_usage.md
-│   ├── 2_secret_management.md
-│   ├── 3_dependency_management.md
-│   ├── 4_code_quality.md
-│   ├── 5_pre_commit_hooks.md
-│   ├── 6_pre_commit_troubleshooting.md
-│   ├── 7_devcontainers.md
-│   └── progress.md
-├── example/                        # Example code and notebooks
-│   ├── __init__.py
-│   ├── using_secrets.py
-│   └── using_secrets.ipynb
-├── scripts/                        # Setup and utility scripts
-│   ├── setup.sh
-│   ├── install-copilot-agents.sh   # Installs repo-shared Copilot agents into ~/.copilot/agents
-│   ├── new-branch.sh
-│   └── hooks/
-│       ├── nbstripout-autoadd.sh
-│       └── run-pip-audit.sh        # pip-audit wrapper used in hooks and CI
-├── utils/                          # Utility modules
-│   ├── __init__.py
-│   └── secrets.py
-├── tests/                          # Test directory
-├── pyproject.toml                  # Project config & dependencies (single source of truth)
-├── uv.lock                         # Locked dependency versions (auto-generated)
-├── .pre-commit-config.yaml         # Pre-commit hooks config
-├── .envrc                          # direnv environment config
-├── .secret.baseline                # Secret detection baseline
-├── CODE_OF_CONDUCT.md              # Contributor code of conduct
-├── CONTRIBUTING.md                 # Contribution guidelines
-└── README.md                       # Project overview (this file)
-```
-
-## 🏗️ Dependency Management with uv
-
-This project uses **uv** for fast, reliable dependency management. uv provides a single-file lock format and unified workflow for all dependency tasks.
-
-After initial setup (see [quickstart.md](docs/quickstart.md)), use these workflows for day-to-day dependency management.
-
-### Dependency Layers
-
-Dependencies are organized into three logical groups:
-
-| Layer | Location | Purpose | Installed With |
-|-------|----------|---------|-----------------|
-| **Core** | `dependencies` | Essential runtime packages | `uv sync` |
-| **Extra** | `[dependency-groups].extra` | Optional production features | `uv sync --group extra` |
-| **Dev** | `[dependency-groups].dev` | Development and testing tools | `uv sync` (default) |
-
-**Example structure in `pyproject.toml`:**
-
-```toml
-# Core dependencies - Always installed
-dependencies = [
-    "flask>=2.2.0,<3.0.0",
-    "requests",
-    "sqlalchemy",
-]
-
-[dependency-groups]
-# Extra production features
-extra = [
-    "redis",
-    "celery",
-]
-
-# Development tools
-dev = [
-    "pytest>=7.0",
-    "black",
-    "mypy",
-    "pre-commit",
-]
-```
-
-### Common Workflows
-
-**Install all dependencies (development setup):**
-```bash
-uv sync
-```
-
-**Install production dependencies only:**
-```bash
-uv sync --no-dev
-```
-
-**Update dependencies (patch + minor versions only):**
-```bash
-uv lock
-uv sync
-```
-
-**Update dependencies (allow major version updates):**
-```bash
-uv lock --upgrade
-uv sync
-```
-
-**Update a specific package:**
-```bash
-# Edit pyproject.toml to the version constraint you want, then:
-uv lock
-uv sync
-```
-
-### Lock File
-
-The `uv.lock` file contains:
-- All direct and transitive dependencies
-- Pinned versions ensuring reproducibility
-- Python version compatibility info
-
-**Always commit `uv.lock` to version control** to ensure consistent environments across team members and CI/CD.
-
-### Benefits Over pip-tools
-
-- ⚡ **Much faster** dependency resolution (10-100x faster)
-- 📝 **Simpler lock format** - one file (`uv.lock`), human-readable
-- 🔄 **Unified workflow** - one tool (`uv`) for all dependency tasks
-- 🛡️ **Better error messages** - clearer dependency conflict reporting
-- 🚀 **Modern Python packaging** - supports PEP 508, PEP 517, PEP 660
-- 🔒 **Built-in security** - integrated vulnerability scanning with `uv pip audit`
-
-**📖 Detailed guide**: [docs/3_dependency_management.md](docs/3_dependency_management.md)
-
-## 🔐 Secret Management
-
-Secure secret handling with 1Password CLI integration:
-
-- **Environment variables** loaded via direnv
-- **1Password CLI** for secure secret retrieval
-- **detect-secrets** prevents accidental commits
-- **Example usage** in [example/using_secrets.py](example/using_secrets.py)
-
-**📖 Detailed guide**: [docs/2_secret_management.md](docs/2_secret_management.md)
-
-## 🛠️ Development Workflow
-
-### Setup Development Environment
+Development happens inside the repository’s devcontainer. You only need Docker,
+VS Code with the Dev Containers extension, and Git. Windows contributors also
+need WSL2 with Docker Desktop integration.
 
 ```bash
-# Linux host setup
-./scripts/setup.sh
+git clone <repository-url>
+cd <repository-folder>
+code .
 ```
 
-Use [docs/quickstart.md](docs/quickstart.md) to choose between the devcontainer path and the Linux host setup path.
+Run **Dev Containers: Reopen in Container** in VS Code and wait for the
+bootstrap to finish. It runs `uv sync`, creates `.venv`, and installs the
+pre-commit hooks. No host Python setup, manual activation, or setup script is
+required.
 
-**For detailed setup guidance see**: [docs/0_setup.md](docs/0_setup.md)
-
-### Code Quality
+Verify the container workspace:
 
 ```bash
-# Typing check
-uv run mypy . --config-file=pyproject.toml
-
-# Format code
-uv run black .
-
-# Lint and fix code
-uv run ruff check . --fix
-
-# Run tests
 uv run pytest
-
-# Run all pre-commit checks
 uv run pre-commit run --all-files
 ```
 
-## 🧪 Testing
+See [docs/quickstart.md](docs/quickstart.md) and [docs/0_setup.md](docs/0_setup.md)
+for the complete setup and recovery workflow.
 
-Run tests with pytest:
+## Essential rules
+
+- Never put secrets in code, notebooks, or `.env` files. Use
+  `from utils.secrets import get_secret` for 1Password-backed values.
+- Never use `pip install`. Declare dependencies in `pyproject.toml`, then run
+  `uv lock` and `uv sync` inside the devcontainer.
+- Add type hints to every function and method.
+- Run pre-commit before committing; hooks are installed automatically by the
+  container bootstrap.
+
+## Features
+
+- Python 3.12 and `uv` in a reproducible devcontainer
+- Locked runtime and development dependencies
+- Black, Ruff, mypy, beartype, pytest, coverage, Bandit, and pip-audit
+- 1Password CLI integration and detect-secrets scanning
+- Jupyter support with notebook output stripping
+- GitHub Actions checks, including a devcontainer smoke test
+
+## Repository structure
+
+```text
+.devcontainer/       Container image, configuration, and bootstrap scripts
+.github/             GitHub Actions and repository templates
+docs/                Setup, usage, quality, secrets, and container guides
+example/             Example code and notebooks
+scripts/             Repository helpers and hook scripts
+tests/               Test suite
+utils/               Shared utility modules
+pyproject.toml       Metadata, dependencies, and tool configuration
+uv.lock              Generated dependency lock file
+```
+
+## Common commands
+
+Run all commands from the VS Code terminal attached to the devcontainer:
 
 ```bash
-# Run all tests
 uv run pytest
-
-# Run with coverage
 uv run pytest --cov
-
-# Run specific test
-uv run pytest tests/test_specific.py
+uv run black .
+uv run ruff check . --fix
+uv run mypy . --config-file=pyproject.toml
+uv run pre-commit run --all-files
 ```
 
-## 📝 Configuration
-
-### Key Configuration Files
-
-| File | Purpose |
-|------|---------|
-| `pyproject.toml` | Project metadata, all dependencies, tool config |
-| `uv.lock` | Locked dependency versions (auto-generated by uv) |
-| `.pre-commit-config.yaml` | Pre-commit hooks configuration |
-| `.envrc` | Environment variables (direnv) |
-| `.secret.baseline` | Secret detection baseline |
-
-### Tool Configuration
-
-All development tools are configured in `pyproject.toml`:
-- **Black**: Code formatting (88 char line length)
-- **ruff**: Sorting, linting, formatting (replaces flake8 and pyupgrade)
-- **pytest**: Test configuration with coverage
-- **mypy**: Type checking
-- **beartype**: Type checking at runtime (more extensive then mypy)
-
-## 🚀 Using This Template
-
-### Agent Bootstrap Requirement
-
-This repository is a reusable template, so a project created from it must
-replace the generic project context before feature work begins. The first
-coding-agent action in a derived repository is to inspect the actual source,
-tests, documentation, workflows, and `pyproject.toml`, then update both
-`AGENTS.md` and `README.md` to describe that project.
-
-That update should add the project's real architecture, entry points,
-structure, setup and verification commands, important workflows, integrations,
-boundaries, and known pitfalls. It must preserve this template's general
-security rules, dependency-management workflow, typing requirements, coding
-standards, tooling, and verification expectations unless the project
-documents a deliberate replacement. Agents must use repository evidence and
-must not invent project details.
-
-### For New Projects
-
-1. **Use this template** on GitHub or clone it
-2. **Update project metadata** in `pyproject.toml`:
-   - Change `name`, `description`, `authors`
-   - Update repository URLs
-3. **Bootstrap your environment** with [docs/quickstart.md](docs/quickstart.md)
-4. **Optionally install the shared Copilot agents** with `./scripts/install-copilot-agents.sh`
-5. **Start coding**!
-
-### Customization
-
-- **Add your production dependencies** to `pyproject.toml`
-- **Modify tool configurations** in `pyproject.toml`
-- **Update documentation** in `docs/`
-- **Add your modules** alongside `utils/`
-
-## 📚 Documentation
-
-**Start here:**
-- **[Quickstart](docs/quickstart.md)** - Fastest path from clone to working environment
-
-**Detailed guides:**
-0. **[Setup](docs/0_setup.md)** - Full guide to setup the development environment
-1. **[Usage](docs/1_usage.md)** - Guide for daily usage of this repository
-2. **[Secret Management](docs/2_secret_management.md)** - Secure secret handling guide
-3. **[Dependency Management](docs/3_dependency_management.md)** - Detailed dependency workflow
-4. **[Code Quality](docs/4_code_quality.md)** - Rules and guidelines on code quality and how it is enforced
-5. **[Pre Commit Hooks](docs/5_pre_commit_hooks.md)** - Pre commit hooks to ensure safety and quality
-6. **[Devcontainers](docs/7_devcontainers.md)** - Devcontainer setup, customization, and troubleshooting
-
-### Shared Copilot Agents
-
-This template now ships four shared agent definitions in `.copilot/agents/`:
-
-- `Orchestrator`
-- `Planner`
-- `Coder`
-- `Designer`
-
-Install them into the current VS Code/Copilot environment with:
+After changing dependencies:
 
 ```bash
-./scripts/install-copilot-agents.sh
-```
-
-Use `--link` if you want your local agent files to track repo edits in place, or `--force` to replace existing files. If you work in Remote WSL or a devcontainer, run the script in that same remote environment so it installs into the correct `~/.copilot/agents` home.
-
-
-## 🤝 Contributing
-
-This template is for use by TECHLETES employees. See [CONTRIBUTING.md](CONTRIBUTING.md) for internal contribution guidelines, required 1Password CLI setup, and branch workflow.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🛟 Troubleshooting
-
-### Common Issues
-
-**Virtual environment issues:**
-```bash
-rm -rf .venv
+uv lock
 uv sync
 ```
 
-**Pre-commit hook failures:**
-```bash
-pre-commit run --all-files
-# Fix any issues and re-commit
-```
+After changing `.devcontainer/Dockerfile` or `devcontainer.json`, use **Dev
+Containers: Rebuild Container**. Use **Rebuild Container Without Cache** if the
+image or environment remains stale.
 
-**1Password CLI not working:**
-- Ensure 1Password CLI is installed on Windows
-- Enable CLI integration in 1Password settings
-- Link to WSL if using Windows Subsystem for Linux
+## Documentation
 
-**Dependency conflicts:**
-```bash
-pip check  # Identify conflicts
-# Review and resolve in pyproject.toml, then run uv lock && uv sync
-```
+- [Quickstart](docs/quickstart.md)
+- [Setup and recovery](docs/0_setup.md)
+- [Daily usage](docs/1_usage.md)
+- [Secret management](docs/2_secret_management.md)
+- [Dependency management](docs/3_dependency_management.md)
+- [Code quality](docs/4_code_quality.md)
+- [Pre-commit hooks](docs/5_pre_commit_hooks.md)
+- [Pre-commit troubleshooting](docs/6_pre_commit_troubleshooting.md)
+- [Devcontainer details](docs/7_devcontainers.md)
+- [Contributing](CONTRIBUTING.md)
 
----
+## Template bootstrap
 
-**🎯 Ready to start your Python project with modern tooling and best practices!**
+Repositories created from this template must first update `AGENTS.md` and
+`README.md` with their actual project context before application feature work.
+Keep the general security, dependency, typing, quality, and devcontainer rules
+unless the derived repository documents an intentional replacement.
+
+## License
+
+This project is licensed under the MIT License; see [LICENSE](LICENSE).

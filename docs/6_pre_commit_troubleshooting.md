@@ -2,6 +2,10 @@
 
 This guide covers common issues and solutions for all pre-commit hooks used in this Python template.
 
+Run the diagnostic commands from the VS Code terminal attached to the
+devcontainer. If the environment is missing, run `uv sync` or rebuild the
+container instead of installing tools on the host.
+
 ## General Pre-Commit Issues
 
 ### Pre-Commit Won't Run at All
@@ -192,8 +196,9 @@ cat pyproject.toml | grep -A 20 "\[tool.mypy\]"
 
 **Solutions:**
 ```bash
-# Try installing types package
-pip install types-<package-name>
+# Add the types package to pyproject.toml, then refresh the container environment
+uv lock
+uv sync
 
 # Or suppress warnings for that package
 # At top of file:

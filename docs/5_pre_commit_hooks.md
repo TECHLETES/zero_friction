@@ -4,6 +4,9 @@ This project uses `pre-commit` to automate code quality checks and housekeeping 
 
 All hooks run **locally** and must pass before a commit is allowed.
 
+Here, “locally” means inside the devcontainer attached to the repository. The
+container bootstrap installs the hooks; use `uv run pre-commit` for manual runs.
+
 ---
 
 ## 3.1 Overview of Hooks
@@ -110,7 +113,8 @@ To avoid accidentally committing secrets (API keys, tokens, etc.), the project u
 If you intentionally add or rotate secrets:
 
 ```bash
-detect-secrets scan > .secret.baseline
+uv run detect-secrets scan --baseline .secret.baseline
+uv run detect-secrets audit .secret.baseline
 git add .secret.baseline
 ```
 
@@ -147,7 +151,7 @@ This is useful to verify changes or fix all issues in one go.
 
 ## 3.5 Troubleshooting
 
-### 3.5.1 Locale warnings (WSL or CI environments)
+### 3.5.1 Locale warnings
 
 - If you see:
 
@@ -155,13 +159,9 @@ This is useful to verify changes or fix all issues in one go.
     setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
     ```
 
-- Fix it by running:
-
-    ```bash
-    sudo apt install locales
-    sudo locale-gen en_US.UTF-8
-    sudo update-locale LANG=en_US.UTF-8
-    ```
+- The devcontainer image supplies the expected locale. If the warning appears
+  after a container change, rebuild the container and rerun the check. Do not
+  install system packages manually from the project terminal.
 
 
 ### 3.5.2 `nbstripout: command not found`
@@ -179,7 +179,8 @@ If you encounter type checking errors:
 - Add type annotations to your functions and variables
 - Use `# type: ignore` comments for specific lines that can't be typed
 - Update your `pyproject.toml` mypy configuration if needed
-- Install type stubs for third-party packages: `pip install types-<package-name>`
+- Add required type-stub packages to `pyproject.toml`, then run `uv lock` and
+  `uv sync` in the devcontainer
 
 ### 3.5.4 Ruff Linting Issues
 
