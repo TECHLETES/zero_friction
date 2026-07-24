@@ -126,4 +126,4 @@ class SDKClient:
         # the same call-per-minute window (not 8 independent windows).
         shared_limiter = make_shared_rate_limiter(self.config)
         for client in self._all_clients:
-            wrap_api_call(client, self.config, shared_limiter)
+            wrap_api_call(client, self.config, shared_limiter, all_clients=self._all_clients)
