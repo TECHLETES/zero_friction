@@ -113,10 +113,17 @@ To avoid accidentally committing secrets (API keys, tokens, etc.), the project u
 If you intentionally add or rotate secrets:
 
 ```bash
-uv run detect-secrets scan --baseline .secret.baseline
-uv run detect-secrets audit .secret.baseline
+scripts/hooks/run-detect-secrets.sh
 git add .secret.baseline
 ```
+
+The helper reads the shared exclusions from `[tool.detect-secrets]` in
+`pyproject.toml`, runs the scan, and opens the interactive audit when run from
+the devcontainer terminal. In CI and pre-commit, the audit is skipped because
+there is no interactive terminal; those checks enforce the existing baseline.
+
+Run `scripts/hooks/run-detect-secrets.sh --non-interactive` when a scan is
+needed without opening the audit UI.
 
 Make sure `.secret.baseline` stays committed and up to date.
 

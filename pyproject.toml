@@ -196,5 +196,13 @@ skips = ["B101", "B601"]
 ignore = [
 ]
 
+[tool.detect-secrets]
+# Regular expressions matched against paths ignored by the shared helper and
+# the pre-commit detect-secrets check.
+exclude_files = [
+  "^coverage.svg$",
+  "^tests/"
+]
+
 [tool.uv]
 required-version = ">=0.9.25,<1.0.0"

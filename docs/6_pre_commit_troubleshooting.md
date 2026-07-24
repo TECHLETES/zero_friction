@@ -315,35 +315,37 @@ example = "exec(code)"  # noqa: S303
 
 **Solutions:**
 ```bash
-# Audit and update baseline
-detect-secrets scan > .secret.baseline
-detect-secrets audit .secret.baseline
-
-# If certain patterns are always false positives
-detect-secrets scan --all-files > .secret.baseline
+# Scan and audit using the shared exclusions
+scripts/hooks/run-detect-secrets.sh
 ```
 
 **Problem:** Baseline file corrupted or out of sync
 
 **Fixes:**
 ```bash
-# Regenerate baseline
-rm .secret.baseline
-detect-secrets scan > .secret.baseline
+# Rebuild/update the baseline using the shared helper
+scripts/hooks/run-detect-secrets.sh --non-interactive
 
 # Verify it's valid JSON
-python -m json.tool .secret.baseline > /dev/null
+uv run python -m json.tool .secret.baseline > /dev/null
 ```
 
 **Problem:** Valid test credentials flagged as secrets
 
-**Solution:** Add exemption in `.secret.baseline`:
+**Solution:** Run the shared helper from the devcontainer terminal, audit the
+finding, and record the decision in `.secret.baseline`:
+
 ```bash
-# Or in hook, exclude test files
-- id: detect-secrets
-  args: ["--baseline", ".secret.baseline"]
-  exclude: ^tests/|\.txt$
+scripts/hooks/run-detect-secrets.sh
 ```
+
+The helper reads exclusions from `[tool.detect-secrets]` in `pyproject.toml`.
+Do not add a second exclusion list to `.pre-commit-config.yaml`.
+
+For an intentional false positive, keep the audit decision in the baseline.
+For files that should always be excluded, add a path regex to
+`[tool.detect-secrets].exclude_files` in `pyproject.toml`; do not add a second
+exclude list to `.pre-commit-config.yaml`.
 
 ### pip-audit (Dependency Vulnerabilities)
 
