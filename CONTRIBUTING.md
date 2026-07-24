@@ -1,42 +1,80 @@
-# Contributing to the Zero Friction SDK
+# Contributing to python_template
 
-Thanks for contributing to the unified Python SDK for the Zero Friction APIs.
+This repository is the TECHLETES Python project template. All contributors
+work from the devcontainer so the Python version, tools, dependencies, and
+quality checks stay consistent.
 
-## Development setup
+## Getting started
 
-Use Python 3.12 for the repository development toolchain. The published SDK
-continues to support Python 3.9 and newer.
+Install Docker, VS Code with the Dev Containers extension, and Git. Windows
+contributors should also enable WSL2 and Docker Desktop WSL integration.
+Clone the repository, open it in VS Code, and run **Dev Containers: Reopen in
+Container**. Wait for the image build and post-create bootstrap to finish.
 
-```bash
-uv sync
-cp .env.template .env
-uv run pre-commit install --install-hooks
-```
+The bootstrap runs `uv sync`, creates the project `.venv`, and installs
+pre-commit hooks. Do not run `scripts/setup.sh`, install Python or `uv` on the
+host, or activate `.venv` manually.
 
-Never commit `.env` or real credentials. Declare dependency changes in
-`pyproject.toml`, then run `uv lock && uv sync`; do not install packages with
-`pip` directly.
+For details, see [docs/0_setup.md](docs/0_setup.md) and
+[docs/7_devcontainers.md](docs/7_devcontainers.md).
 
-## Branches and changes
+## Secrets
 
-Create a branch with a `feature/`, `fix/`, `docs/`, or `chore/` prefix. Keep
-changes focused, preserve generated SDK clients unless regeneration is part of
-the task, and update documentation when public usage changes.
+Do not commit secrets or plaintext credentials. The devcontainer includes the
+repository’s supported tooling for secret-backed development; 1Password is
+only needed when a workflow calls `get_secret()`.
 
-## Verification
+See [docs/2_secret_management.md](docs/2_secret_management.md) for the safe
+usage pattern and CI guidance.
 
-Before opening a pull request, run:
+## Code quality
+
+Run commands in the terminal attached to the devcontainer:
 
 ```bash
 uv run pre-commit run --all-files
 uv run pytest
 ```
 
-The SDK clients under `sdk/` are generated packages. The root `zero_friction/`
-package contains the unified client and shared configuration logic.
+Use type annotations, focused functions, and concise docstrings. Update the
+documentation when a change affects setup, usage, or public APIs.
 
-## Pull requests and security
+## Making changes
 
-Explain the motivation, implementation, and verification in the pull request.
-Check that no API keys, tokens, passwords, or private keys were added. Report
-accidental credential exposure immediately so it can be rotated.
+Create a branch with the repository helper:
+
+```bash
+./scripts/new-branch.sh feature "describe the change"
+./scripts/new-branch.sh fix "describe the bug"
+```
+
+Write tests for new behavior or bug fixes. Before opening a pull request, run:
+
+```bash
+uv run pre-commit run --all-files
+uv run pytest
+```
+
+Commit with a clear message. Pre-commit runs automatically and may modify files;
+stage those changes and commit again if needed.
+
+## Dependencies
+
+Edit `pyproject.toml` from the devcontainer, then update and commit the lock
+file:
+
+```bash
+uv lock
+uv sync
+```
+
+Never run `pip install` or edit `uv.lock` by hand.
+
+## Pull requests
+
+- Keep changes focused and explain the verification performed.
+- Ensure all CI checks pass, including the devcontainer smoke check.
+- Ask for review from at least one TECHLETES team member.
+
+See the [pull request template](.github/pull_request_template.md) for the full
+checklist.

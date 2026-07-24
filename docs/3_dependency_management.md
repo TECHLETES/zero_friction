@@ -2,6 +2,10 @@
 
 This project uses **uv** for fast, reliable dependency management with a single source of truth in **`pyproject.toml`**. uv generates a single, simple lockfile (`uv.lock`) for reproducible builds across all environments.
 
+Run every command in this guide from the VS Code terminal attached to the
+devcontainer. The container already provides `uv` and the project Python
+environment.
+
 ---
 
 ## 3.1 Dependency Layers Overview
@@ -176,17 +180,10 @@ dependencies = [
 
 ### First-Time Setup
 
-```bash
-# Install uv if you haven't already
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Run the setup script - creates environment and locks dependencies
-./scripts/setup.sh
-```
-
-This creates:
-- `.venv/` - Isolated Python environment
-- `uv.lock` - Locked versions of all dependencies
+The devcontainer image already provides `uv`. When the container is first
+opened, `.devcontainer/post-create.sh` runs `uv sync` and creates the project
+`.venv` from `uv.lock`. No host installation or manual environment activation
+is required.
 
 ### Day-to-Day Workflow
 
@@ -413,10 +410,7 @@ uv sync --group dev --group extra   # Combined with core automatically
 ### Cleaning Up
 
 ```bash
-# Remove virtual environment
-rm -rf .venv
-
-# Recreate from scratch
+# Refresh the project environment inside the devcontainer
 uv sync
 ```
 
@@ -495,20 +489,8 @@ uv run ruff check . --fix
 uv run <any-command>
 ```
 
-Or activate the environment manually:
-
-```bash
-# Linux / macOS
-source .venv/bin/activate
-
-# Windows
-.venv\Scripts\Activate.ps1
-
-# Then use tools normally
-pytest
-mypy .
-black .
-```
+The devcontainer and VS Code are configured to use `.venv` automatically. Keep
+using `uv run` so commands always use the locked project environment.
 
 ---
 
@@ -528,7 +510,8 @@ black .
 ### Don't ❌
 
 - Edit `uv.lock` manually (use `uv lock` command)
-- Run `pip install` manually in the terminal
+- Add packages to `pyproject.toml`, then run `uv lock` and `uv sync` in the
+  devcontainer
 - Use exact version pinning (`==3.1.2`) - use ranges instead
 - Forget to run `uv lock` after editing `pyproject.toml`
 - Exclude `uv.lock` from git (it should be committed)

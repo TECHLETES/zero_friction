@@ -2,6 +2,9 @@
 
 To ensure robust, maintainable, and secure Python code across all TECHLETES projects, this template integrates a layered code quality system focused on two key areas: **typing** and **quality enforcement**. The tools used are Ruff, Mypy, Beartype, and Black.
 
+Run the checks from the VS Code terminal attached to the devcontainer. The
+container bootstrap installs the configured tools and pre-commit hooks.
+
 ## 4.1 Typing
 
 Typing tools ensure correctness before and during runtime by statically analyzing annotated types and optionally enforcing them during execution.

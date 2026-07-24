@@ -44,9 +44,9 @@ The main reasons this template includes a devcontainer are:
   includes a devcontainer smoke job that builds the container and verifies that
   the workspace bootstraps successfully.
 
-Devcontainers are not mandatory for every contributor. Linux and macOS users can
-still use the host setup from `docs/0_setup.md` if they prefer. The devcontainer
-is the template's supported containerized path, not the only path.
+The devcontainer is the only supported development environment for this
+template. Host tools are limited to Docker, VS Code, the Dev Containers
+extension, and Git; project commands run in the container.
 
 ## How This Template's Devcontainer Works
 
@@ -59,6 +59,8 @@ The container image is built from `.devcontainer/Dockerfile`, which currently:
 
 - Starts from `mcr.microsoft.com/devcontainers/python:1-3.12-bookworm`.
 - Installs a pinned version of `uv` into `/usr/local/bin`.
+- Installs the 1Password CLI and the Docker, database, and Redis client tools
+  used by the template.
 - Pre-creates cache directories for `uv` and `pre-commit` under the `vscode`
   user's home directory.
 - Sets a couple of Python-related environment defaults such as disabling pip's
@@ -104,14 +106,14 @@ script currently:
 
 1. Changes to the repository root.
 2. Prints the `uv` and Python versions for visibility.
-3. Runs `uv sync --frozen`.
+3. Runs `uv sync`.
 4. Installs pre-commit hooks if the repository has a `.git` directory.
 5. Checks whether `ipykernel` is importable and prints a note if it is not.
 6. Prints a message about the `op` CLI being optional.
 7. Prints the Windows/WSL recommendation to keep the repo in the WSL filesystem.
 
 This means the container assumes the repository already contains a valid
-`pyproject.toml` and `uv.lock`, and that `uv sync --frozen` is the correct way
+`pyproject.toml` and `uv.lock`, and that `uv sync` is the correct way
 to materialize the working environment. Attach-time checks can then compare the
 local repository against `template/main` and attempt to merge template updates
 without blocking normal development.
@@ -124,11 +126,11 @@ recommendations:
 - `.devcontainer/devcontainer.json` installs extensions automatically when the
   repo is opened in the container.
 - `.vscode/extensions.json` recommends the same core Python and container tools
-  for people opening the repository outside the container.
+  before the repository is reopened in the container.
 
-That split is deliberate. The devcontainer file controls the container session.
-The workspace recommendations help contributors before they ever reopen the repo
-in the container, and they still help contributors who stay on the host.
+That split is deliberate. The devcontainer file controls the container session;
+the workspace recommendations help contributors open the repository before the
+container starts.
 
 ### CI Coverage
 
@@ -165,20 +167,16 @@ template's post-create script prints that recommendation as a reminder.
 
 ### Linux and macOS
 
-Linux and macOS contributors can choose either workflow:
-
-- Use the host setup described elsewhere in the docs.
-- Use the devcontainer for consistency with other contributors.
-
-If you use the devcontainer on Linux or macOS, the main thing to know is that
-your source code is still the local repository, bind-mounted into the
-containerized workspace. Rebuilding the container does not delete your Git
-working tree, but it can require the environment bootstrap to run again.
+Install Docker and VS Code with the Dev Containers extension, then open the
+repository and run **Dev Containers: Reopen in Container**. Source code remains
+in the local repository and is bind-mounted into the containerized workspace.
+Rebuilding the container does not delete the Git working tree, but it can run
+the environment bootstrap again.
 
 ## Day-to-Day Workflow Inside the Container
 
-Once the container is up, day-to-day work should feel close to working on the
-host, with a few important differences.
+Once the container is up, run all project commands from the integrated terminal
+attached to it.
 
 ### Opening the Project
 
@@ -189,9 +187,8 @@ On the first open or after a rebuild:
 3. Confirm that VS Code is using `${workspaceFolder}/.venv/bin/python`.
 4. Start working normally from the integrated terminal.
 
-Do not run `./scripts/setup.sh` inside the container. This template already uses
-the image build plus `.devcontainer/post-create.sh` as the supported bootstrap
-path for containerized development.
+Do not run `./scripts/setup.sh`. The image build plus
+`.devcontainer/post-create.sh` is the supported bootstrap path.
 
 ### Normal Development Commands
 
@@ -223,7 +220,7 @@ It only provides the environment where that model runs.
 The devcontainer installs the Jupyter extension in VS Code and expects notebook
 execution to use the local project environment in `.venv`. The post-create
 script checks for `ipykernel` and prints a warning if it is missing. If notebook
-support looks broken, the first thing to try is re-running `uv sync --frozen`.
+support looks broken, the first thing to try is re-running `uv sync`.
 
 ### Secrets and 1Password
 
@@ -338,7 +335,7 @@ Rebuild and Reopen in Container`.
 In this template, the most important workspace bootstrap step is:
 
 ```bash
-uv sync --frozen
+uv sync
 ```
 
 If that step fails, the container may open without a working `.venv` or without
@@ -354,7 +351,7 @@ Typical causes:
 First response:
 
 ```bash
-uv sync --frozen
+uv sync
 uv run pre-commit install --install-hooks
 ```
 
@@ -367,7 +364,7 @@ The intended interpreter is `${workspaceFolder}/.venv/bin/python`. If VS Code is
 not using it:
 
 1. Check whether `.venv` exists.
-2. Re-run `uv sync --frozen` if it does not.
+2. Re-run `uv sync` if it does not.
 3. Use the VS Code Python interpreter selector to point back to the repo-local
    virtual environment.
 4. Rebuild the container if the environment was created in a broken state.
@@ -378,7 +375,7 @@ The post-create script only installs hooks when a `.git` directory exists. That
 means hook installation can be skipped if someone opens a source snapshot
 without Git metadata.
 
-Manual fix:
+Fix it from the container terminal:
 
 ```bash
 uv run pre-commit install --install-hooks
@@ -390,7 +387,7 @@ The template expects notebook execution to use packages installed into the local
 project environment. Re-run:
 
 ```bash
-uv sync --frozen
+uv sync
 ```
 
 If the problem persists in a derived repository, verify that `ipykernel` is
@@ -399,9 +396,9 @@ still part of the environment expected for notebook work.
 ### `op` Is Missing In The Container
 
 That is expected in this template. The post-create script explicitly treats the
-1Password CLI as optional. If a derived repository requires it, that team must
-decide whether to install it in the image, document a manual setup step, or use
-another secret-access pattern.
+1Password CLI as optional. If a derived repository requires it, install it in
+the image or use another secret-access pattern; do not add host-only setup
+instructions.
 
 ### A Team Changed The Devcontainer And CI Started Failing
 

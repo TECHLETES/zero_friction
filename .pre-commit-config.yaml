@@ -56,13 +56,15 @@ repos:
         language: system
         stages: [pre-commit]
 
-  # Secrets scanning
-  - repo: https://github.com/Yelp/detect-secrets
-    rev: v1.5.0
+  # Secrets scanning. Keep exclusions in pyproject.toml so the manual helper
+  # and pre-commit use the same path rules.
+  - repo: local
     hooks:
       - id: detect-secrets
-        args: ["--baseline", ".secret.baseline"]
-        exclude: ^tests/
+        name: detect-secrets (shared helper)
+        entry: bash scripts/hooks/run-detect-secrets.sh --pre-commit
+        language: system
+        pass_filenames: true
 
   # Notebook/text sync with jupytext
   - repo: https://github.com/mwouts/jupytext

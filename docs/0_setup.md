@@ -1,133 +1,115 @@
-### 📄 `0_setup.md` - Project Setup Guide
+# Setup: Open the Devcontainer
 
-> **👉 First time?** See [docs/quickstart.md](quickstart.md) for the fastest supported path from clone to working environment. This guide is the detailed reference for setup paths, prerequisites, and troubleshooting.
+The devcontainer is the only supported development setup for this template.
+The container provides Python 3.12, `uv`, Docker tooling, the project
+dependencies, pre-commit, and the configured VS Code extensions.
 
-This guide helps you choose the right onboarding path and troubleshoot setup issues. This repository is a template intended to be copied into new projects, so pick whichever approach works best for your team.
+## Prerequisites
 
-Today, the documented host automation is Linux-first. Windows and macOS contributors should prefer the devcontainer workflow unless they are intentionally maintaining their own local setup outside this script.
+- Docker Desktop, or Docker Engine with a working Docker Compose installation
+- VS Code
+- The VS Code Dev Containers extension
+- Git
 
-## 🚀 Setup Path Selection
+On Windows, enable WSL2 and Docker Desktop WSL integration. Keep the
+repository inside the WSL filesystem, such as `~/src`, rather than under
+`/mnt/c/...` for better bind-mount performance.
 
-Choose the workflow that matches your platform and preferences.
+## First setup
 
----
-
-## Windows: Devcontainer (Recommended)
-
-Windows contributors should use the devcontainer workflow for the most consistent experience.
-
-**Prerequisites:**
-- Docker Desktop
-- WSL2 enabled
-- VS Code with the Dev Containers extension
-
-**Steps:**
-1. Clone the repository inside the WSL filesystem (e.g., `~/src`).
-2. Open the folder in VS Code from WSL.
-3. Run the `Dev Containers: Reopen in Container` command.
-4. Wait for the post-create bootstrap to finish.
-
-**Do not** run `./scripts/setup.sh` inside the devcontainer—the container bootstrap handles everything.
-
-For detailed information about how the devcontainer works, customization options, and platform-specific setup, see [docs/7_devcontainers.md](7_devcontainers.md).
-
----
-
-## Linux: Host Setup
-
-Use this path when you want to work directly on a Linux host. If you are on macOS, use the devcontainer path above instead of relying on `./scripts/setup.sh`.
-
-Open your terminal and run:
+Clone the repository, open it in VS Code, and reopen it in the container:
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/TECHLETES/{REPO_NAME}.git
-
-# 2. Navigate into the project directory
-cd {REPO_NAME}
-
-# 3. Run the setup script
-./scripts/setup.sh
+git clone <repository-url>
+cd <repository-folder>
+code .
 ```
 
-The setup script handles the current Linux host bootstrap, including Python
-environment setup, dependency installation with `uv`, pre-commit hook setup,
-and bash-based direnv integration.
+In VS Code, run **Dev Containers: Reopen in Container**. The first build can
+take a few minutes. Wait for the `post-create` step to finish before running
+commands in the integrated terminal.
 
----
+The container bootstrap automatically:
 
-## 🛟 Quick Troubleshooting
+1. Creates `.env` from `.env.template` when the project provides one.
+2. Runs `uv sync` to create or refresh the repository `.venv`.
+3. Installs the pre-commit hooks.
+4. Configures the container-local Git identity from the mounted host Git config.
+5. Checks for optional 1Password CLI and notebook support.
 
-<details>
-<summary><b>Windows: Docker or VS Code setup questions</b></summary>
+No host Python, `uv`, virtual environment, `direnv`, or manual setup script is
+required. Do not run `scripts/setup.sh` for onboarding.
 
-See [docs/7_devcontainers.md](7_devcontainers.md) for complete devcontainer
-setup guidance, including Docker Desktop configuration and WSL filesystem recommendations.
+## Verify the workspace
 
-</details>
-
-<details>
-<summary><b>Linux host setup fails or has warnings</b></summary>
-
-The setup script auto-detects your package manager (apt-get, dnf, yum) and
-installs missing dependencies. If it fails:
-
-1. Check that you have `sudo` access.
-2. Ensure Git and Python 3.12+ are installed.
-3. Re-run `./scripts/setup.sh`—it is safe to run multiple times.
-
-</details>
-
-<details>
-<summary><b>Linux host virtual environment corrupted</b></summary>
-
-Delete the environment and let the script recreate it:
+Run these commands in the terminal attached to the devcontainer:
 
 ```bash
-rm -rf .venv
-./scripts/setup.sh
+uv --version
+.venv/bin/python --version
+uv run python -c "import utils.secrets; print('environment ready')"
+uv run pytest
 ```
 
-Or manually refresh with `uv sync`.
+VS Code should select `.venv/bin/python` as the project interpreter. The
+container also installs the configured Python, Docker, YAML, and notebook
+extensions automatically.
 
-</details>
+## Rebuild or refresh
 
-<details>
-<summary><b>1Password CLI not available</b></summary>
+Rebuild after changing `.devcontainer/Dockerfile` or
+`.devcontainer/devcontainer.json`:
 
-The `op` command-line tool is optional for getting started. If you need secrets:
+1. Run **Dev Containers: Rebuild Container** in VS Code.
+2. Wait for `post-create` to finish.
 
-- See [docs/2_secret_management.md](2_secret_management.md) for setup steps.
-- Or contact your team lead for your 1Password integration approach.
-
-</details>
-
----
-
-## ℹ️ What the Setup Script Does
-
-The `./scripts/setup.sh` script automates:
-
-1. **System requirements check** – Verifies Python 3.12+, Git, `uv`, `direnv`, and other required tools, installing missing packages with `apt-get`, `dnf`, or `yum` when possible
-2. **Virtual environment and dependencies** – Materializes `.venv/`, runs `uv lock`, and runs `uv sync`
-3. **Pre-commit hooks** – Installs Git hooks, runs `pre-commit autoupdate`, and runs `pre-commit run --all-files`
-4. **Secrets baseline** – Creates `.secret.baseline` with `detect-secrets`
-5. **direnv configuration** – Appends the bash hook to `~/.bashrc` and runs `direnv allow` when `.envrc` exists
-6. **System configuration** – Configures locales and, on `apt-get`-based Linux, installs Docker and Docker Compose if they are missing
-
-After the script completes, your environment is ready to use. Activate the
-virtual environment in new terminal sessions:
+After changing only `pyproject.toml`, run this inside the container:
 
 ```bash
-source .venv/bin/activate
+uv lock
+uv sync
 ```
 
-Or use `direnv allow` to auto-activate when you enter the project directory. If you use a shell other than bash, add the appropriate `direnv` hook manually.
+If the repository environment is stale or corrupted, use **Dev Containers:
+Rebuild Container Without Cache**. The source tree and Git history are mounted
+from the repository and are not part of the container image.
 
----
+## Troubleshooting
 
-## Next Steps
+### The container will not build
 
-- See [docs/1_usage.md](1_usage.md) for daily development workflows
-- See [docs/2_secret_management.md](2_secret_management.md) for secret handling
-- See [docs/7_devcontainers.md](7_devcontainers.md) for devcontainer details and customization
+Confirm Docker is running and that VS Code can access the Docker daemon. On
+Windows, confirm WSL2 and Docker Desktop integration are enabled, and that the
+repository is stored inside WSL rather than `/mnt/c`.
+
+### Bootstrap fails during `uv sync`
+
+Read the first error in the post-create output. Check that `pyproject.toml` and
+`uv.lock` are present and consistent, then run:
+
+```bash
+uv lock
+uv sync
+```
+
+### Pre-commit is missing
+
+Run the following in the container terminal:
+
+```bash
+uv sync
+uv run pre-commit install --install-hooks
+```
+
+### Secrets or 1Password are unavailable
+
+Basic setup does not require 1Password. Follow
+[Secret Management](2_secret_management.md) only when working on a
+secret-backed flow.
+
+## Next steps
+
+- [Daily usage](1_usage.md)
+- [Dependency management](3_dependency_management.md)
+- [Code quality](4_code_quality.md)
+- [Devcontainer details](7_devcontainers.md)
