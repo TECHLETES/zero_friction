@@ -3,8 +3,8 @@ source:
   branch: main
 
 target:
-  # Default for Python-only repositories.
-  # Change this to main when the repository uses main as its integration branch.
+  # Default Techletes integration branch.
+  # Change this to main when the repository does not use staging.
   branch: staging
   sync_branch: chore/template-sync
 
