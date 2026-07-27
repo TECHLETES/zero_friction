@@ -1,0 +1,39 @@
+source:
+  repository: TECHLETES/python_template
+  branch: main
+
+target:
+  # Default for Python-only repositories.
+  # Change this to main when the repository uses main as its integration branch.
+  branch: staging
+  sync_branch: chore/template-sync
+
+# Explicit allowlist of generic tooling owned by the Python template.
+#
+# Keep application code, dependencies, deployment configuration,
+# documentation and lockfiles target-owned unless a repository deliberately
+# opts into synchronizing them.
+paths:
+  # Github configuration and workflows
+  - .github/workflows/template-sync.yml
+  - .github/workflows/staging-main-check.yml
+  - .github/workflows/labeler.yml
+  - .github/ISSUE_TEMPLATE/**
+  - .github/dependabot.yml
+  - .github/pull_request_template.md
+
+  # Development environment.
+  - .devcontainer/devcontainer.json
+  - .devcontainer/Dockerfile
+  - .devcontainer/post-create.sh
+  - .devcontainer/post-attach.sh
+  - .devcontainer/dev-services.sh
+
+  # Python and repository tooling.
+  - .pre-commit-config.yaml
+  - .python-version
+  - .editorconfig
+  - .gitattributes
+
+  # Shared quality and security helpers.
+  - scripts/hooks/**
