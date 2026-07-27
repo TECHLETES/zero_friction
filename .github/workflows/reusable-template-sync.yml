@@ -1,0 +1,543 @@
+name: Reusable template sync
+
+on:
+  workflow_call:
+    inputs:
+      template_repository:
+        description: Template repository in owner/name format
+        required: true
+        type: string
+
+      template_branch:
+        description: Branch in the template repository
+        required: false
+        default: main
+        type: string
+
+      target_branch:
+        description: Integration branch that receives the sync PR
+        required: true
+        type: string
+
+      sync_branch:
+        description: Permanent branch that retains template merge ancestry
+        required: false
+        default: chore/template-sync
+        type: string
+
+      config_path:
+        description: Path to the template-sync configuration
+        required: false
+        default: .template-sync.yml
+        type: string
+
+      pull_request_title:
+        description: Title of the template-sync pull request
+        required: false
+        default: "chore: sync template"
+        type: string
+
+    secrets:
+      app_client_id:
+        description: Client ID of the Techletes template-sync GitHub App
+        required: true
+
+      app_private_key:
+        description: Private key of the Techletes template-sync GitHub App
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: template-sync-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Synchronize template
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate repository owners
+        shell: bash
+        env:
+          TEMPLATE_REPOSITORY: ${{ inputs.template_repository }}
+          TARGET_OWNER: ${{ github.repository_owner }}
+        run: |
+          set -euo pipefail
+
+          template_owner="${TEMPLATE_REPOSITORY%%/*}"
+          template_name="${TEMPLATE_REPOSITORY#*/}"
+
+          if [[ -z "${template_owner}" ||
+                -z "${template_name}" ||
+                "${template_owner}" == "${template_name}" ]]; then
+            echo "template_repository must use owner/name format." >&2
+            exit 1
+          fi
+
+          if [[ "${template_owner}" != "${TARGET_OWNER}" ]]; then
+            echo "The template and target repositories must belong to the same owner." >&2
+            echo "Target owner: ${TARGET_OWNER}" >&2
+            echo "Template owner: ${template_owner}" >&2
+            exit 1
+          fi
+
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.app_client_id }}
+          private-key: ${{ secrets.app_private_key }}
+          owner: ${{ github.repository_owner }}
+          repositories: |
+            ${{ github.repository }}
+            ${{ inputs.template_repository }}
+
+      - name: Check out target repository
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.sync_branch }}
+          fetch-depth: 0
+          persist-credentials: false
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Configure Git identity
+        shell: bash
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
+        run: |
+          set -euo pipefail
+
+          app_user_id="$(
+            gh api "/users/${APP_SLUG}[bot]" --jq '.id'
+          )"
+
+          git config user.name "${APP_SLUG}[bot]"
+          git config user.email \
+            "${app_user_id}+${APP_SLUG}[bot]@users.noreply.github.com"
+
+      - name: Merge template updates
+        id: merge
+        shell: bash
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          TEMPLATE_SYNC_TOKEN: ${{ steps.app-token.outputs.token }}
+
+          TEMPLATE_REPOSITORY: ${{ inputs.template_repository }}
+          TEMPLATE_BRANCH: ${{ inputs.template_branch }}
+          TARGET_BRANCH: ${{ inputs.target_branch }}
+          SYNC_BRANCH: ${{ inputs.sync_branch }}
+          CONFIG_PATH: ${{ inputs.config_path }}
+        run: |
+          set -euo pipefail
+
+          if [[ -n "$(git status --porcelain=v1)" ]]; then
+            echo "The checkout is not clean." >&2
+            git status --short >&2
+            exit 1
+          fi
+
+          if [[ ! -f "${CONFIG_PATH}" ]]; then
+            echo "Template-sync config not found: ${CONFIG_PATH}" >&2
+            exit 1
+          fi
+
+          # Parse and validate .template-sync.yml with Ruby's standard YAML
+          # library, which is available on GitHub-hosted Ubuntu runners.
+          mapfile -t managed_paths < <(
+            ruby -ryaml -e '
+              config_path = ENV.fetch("CONFIG_PATH")
+              config = YAML.safe_load(
+                File.read(config_path),
+                permitted_classes: [],
+                permitted_symbols: [],
+                aliases: false
+              )
+
+              unless config.is_a?(Hash)
+                abort "#{config_path} must contain a YAML mapping"
+              end
+
+              source = config.fetch("source", {})
+              target = config.fetch("target", {})
+              paths = config.fetch("paths", [])
+
+              expected = {
+                "source.repository" => [
+                  source["repository"],
+                  ENV.fetch("TEMPLATE_REPOSITORY")
+                ],
+                "source.branch" => [
+                  source["branch"],
+                  ENV.fetch("TEMPLATE_BRANCH")
+                ],
+                "target.branch" => [
+                  target["branch"],
+                  ENV.fetch("TARGET_BRANCH")
+                ],
+                "target.sync_branch" => [
+                  target["sync_branch"],
+                  ENV.fetch("SYNC_BRANCH")
+                ]
+              }
+
+              expected.each do |name, (actual, wanted)|
+                unless actual == wanted
+                  abort "#{name} must be #{wanted.inspect}; got #{actual.inspect}"
+                end
+              end
+
+              unless paths.is_a?(Array) &&
+                     !paths.empty? &&
+                     paths.all? { |path| path.is_a?(String) && !path.empty? }
+                abort "paths must be a non-empty list of strings"
+              end
+
+              paths.each do |path|
+                normalized = path.sub(%r{\A\./}, "")
+
+                if normalized.start_with?("/") ||
+                   normalized.split("/").include?("..")
+                  abort "Unsafe managed path: #{path.inspect}"
+                end
+
+                if normalized == config_path.sub(%r{\A\./}, "")
+                  abort "#{config_path} must remain target-owned"
+                end
+
+                puts normalized
+              end
+            '
+          )
+
+          if ((${#managed_paths[@]} == 0)); then
+            echo "No managed template paths were configured." >&2
+            exit 1
+          fi
+
+          echo "Managed template paths:"
+          printf '  - %s\n' "${managed_paths[@]}"
+
+          target_repository="${GITHUB_REPOSITORY}"
+          template_url="https://x-access-token:${TEMPLATE_SYNC_TOKEN}@github.com/${TEMPLATE_REPOSITORY}.git"
+          origin_url="https://x-access-token:${TEMPLATE_SYNC_TOKEN}@github.com/${target_repository}.git"
+
+          git remote set-url origin "${origin_url}"
+
+          if git remote get-url template >/dev/null 2>&1; then
+            git remote set-url template "${template_url}"
+          else
+            git remote add template "${template_url}"
+          fi
+
+          git remote set-url --push template DISABLED
+
+          git fetch origin \
+            "${TARGET_BRANCH}" \
+            "${SYNC_BRANCH}" \
+            --prune
+
+          git fetch template \
+            "${TEMPLATE_BRANCH}" \
+            --prune
+
+          remote_sync_sha="$(
+            git rev-parse "origin/${SYNC_BRANCH}"
+          )"
+
+          if [[ "$(git rev-parse HEAD)" != "${remote_sync_sha}" ]]; then
+            echo "Local sync branch does not match origin/${SYNC_BRANCH}." >&2
+            exit 1
+          fi
+
+          echo "Merging origin/${TARGET_BRANCH} into ${SYNC_BRANCH}..."
+
+          set +e
+          git merge \
+            --no-edit \
+            --no-ff \
+            "origin/${TARGET_BRANCH}"
+          target_merge_status=$?
+          set -e
+
+          if ((target_merge_status != 0)); then
+            echo "The target branch conflicts with ${SYNC_BRANCH}." >&2
+            echo "Resolve this merge manually on ${SYNC_BRANCH} first." >&2
+
+            {
+              echo "## Template sync failed"
+              echo
+              echo "\`${TARGET_BRANCH}\` conflicts with permanent branch"
+              echo "\`${SYNC_BRANCH}\`."
+              echo
+              echo "Resolve this merge manually before rerunning the workflow."
+            } >> "${GITHUB_STEP_SUMMARY}"
+
+            git merge --abort 2>/dev/null || true
+            exit 1
+          fi
+
+          pre_template_head="$(git rev-parse HEAD)"
+          template_ref="template/${TEMPLATE_BRANCH}"
+          template_sha="$(git rev-parse "${template_ref}")"
+          template_short_sha="$(git rev-parse --short "${template_ref}")"
+          template_merged="false"
+
+          is_managed_path() {
+            local path="$1"
+            local pattern normalized
+
+            for pattern in "${managed_paths[@]}"; do
+              normalized="${pattern#./}"
+
+              # Within [[ ]], the unquoted right-hand side is treated as a
+              # Bash pattern. This supports entries such as:
+              #   .devcontainer/**
+              #   .github/workflows/**
+              #   pyproject.toml
+              if [[ "${path}" == ${normalized} ]]; then
+                return 0
+              fi
+
+              # Treat a trailing slash as the complete directory.
+              if [[ "${normalized}" == */ &&
+                    "${path}" == "${normalized}"* ]]; then
+                return 0
+              fi
+            done
+
+            return 1
+          }
+
+          if git merge-base --is-ancestor "${template_ref}" HEAD; then
+            echo "${TEMPLATE_REPOSITORY}@${template_short_sha} is already merged."
+          else
+            echo "Merging ${TEMPLATE_REPOSITORY}@${template_short_sha}..."
+
+            set +e
+            git merge \
+              --no-commit \
+              --no-ff \
+              "${template_ref}"
+            template_merge_status=$?
+            set -e
+
+            # Restore every unmanaged path to the state immediately before the
+            # template merge. This includes clean changes, additions, deletions,
+            # renames and unmanaged conflicts.
+            while IFS= read -r -d '' path; do
+              if is_managed_path "${path}"; then
+                continue
+              fi
+
+              echo "Restoring unmanaged path: ${path}"
+
+              if git cat-file -e "${pre_template_head}:${path}" 2>/dev/null; then
+                git restore \
+                  --source="${pre_template_head}" \
+                  --staged \
+                  --worktree \
+                  -- "${path}"
+              else
+                git rm \
+                  -rf \
+                  --cached \
+                  --ignore-unmatch \
+                  -- "${path}" >/dev/null 2>&1 || true
+
+                rm -rf -- "${path}"
+              fi
+            done < <(
+              {
+                git diff --name-only -z --cached
+                git diff --name-only -z
+                git diff --name-only -z --diff-filter=U
+              } | sort -zu
+            )
+
+            mapfile -d '' -t managed_conflicts < <(
+              git diff \
+                --name-only \
+                --diff-filter=U \
+                -z
+            )
+
+            if ((${#managed_conflicts[@]} > 0)); then
+              echo "Managed template conflicts require manual resolution:" >&2
+              printf '  - %s\n' "${managed_conflicts[@]}" >&2
+
+              {
+                echo "## Managed template conflicts"
+                echo
+                echo "The following allowlisted files require manual resolution:"
+                echo
+                for path in "${managed_conflicts[@]}"; do
+                  echo "- \`${path}\`"
+                done
+                echo
+                echo "Resolve these conflicts on \`${SYNC_BRANCH}\`, commit the"
+                echo "merge and push the branch before rerunning this workflow."
+              } >> "${GITHUB_STEP_SUMMARY}"
+
+              # The runner cannot push an unresolved merge. Abort only the
+              # template merge so no conflict markers remain in the workspace.
+              git merge --abort 2>/dev/null || true
+              exit 1
+            fi
+
+            if ((template_merge_status != 0)); then
+              # Any remaining non-zero status should have represented conflicts.
+              # If no conflicts remain after unmanaged paths were restored,
+              # continue and complete the merge.
+              echo "All unmanaged conflicts were resolved using the target version."
+            fi
+
+            git add -A
+
+            # Commit even when filtering produced no tree difference. The
+            # two-parent merge commit records this template SHA as processed.
+            git commit \
+              --allow-empty \
+              -m "chore: sync template ${template_short_sha}"
+
+            template_merged="true"
+          fi
+
+          current_head="$(git rev-parse HEAD)"
+
+          if [[ "${current_head}" != "${remote_sync_sha}" ]]; then
+            push_required="true"
+          else
+            push_required="false"
+          fi
+
+          if git diff \
+            --quiet \
+            "origin/${TARGET_BRANCH}" \
+            HEAD \
+            --; then
+            pr_required="false"
+          else
+            pr_required="true"
+          fi
+
+          {
+            echo "push_required=${push_required}"
+            echo "pr_required=${pr_required}"
+            echo "template_merged=${template_merged}"
+            echo "template_sha=${template_sha}"
+            echo "template_short_sha=${template_short_sha}"
+          } >> "${GITHUB_OUTPUT}"
+
+          {
+            echo "## Template synchronization"
+            echo
+            echo "- Target repository: \`${GITHUB_REPOSITORY}\`"
+            echo "- Target branch: \`${TARGET_BRANCH}\`"
+            echo "- Permanent sync branch: \`${SYNC_BRANCH}\`"
+            echo "- Template: \`${TEMPLATE_REPOSITORY}@${template_short_sha}\`"
+            echo "- Template merge created: \`${template_merged}\`"
+            echo "- Sync branch push required: \`${push_required}\`"
+            echo "- Pull request required: \`${pr_required}\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Push permanent sync branch
+        if: steps.merge.outputs.push_required == 'true'
+        shell: bash
+        env:
+          SYNC_BRANCH: ${{ inputs.sync_branch }}
+        run: |
+          set -euo pipefail
+
+          git push origin \
+            "HEAD:refs/heads/${SYNC_BRANCH}"
+
+      - name: Open or update template-sync pull request
+        if: steps.merge.outputs.pr_required == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+
+          TARGET_BRANCH: ${{ inputs.target_branch }}
+          SYNC_BRANCH: ${{ inputs.sync_branch }}
+          TEMPLATE_REPOSITORY: ${{ inputs.template_repository }}
+          TEMPLATE_BRANCH: ${{ inputs.template_branch }}
+          TEMPLATE_SHA: ${{ steps.merge.outputs.template_sha }}
+
+          PR_TITLE: ${{ inputs.pull_request_title }}
+        run: |
+          set -euo pipefail
+
+          existing_pr="$(
+            gh pr list \
+              --repo "${GITHUB_REPOSITORY}" \
+              --head "${SYNC_BRANCH}" \
+              --base "${TARGET_BRANCH}" \
+              --state open \
+              --json number \
+              --jq '.[0].number // empty'
+          )"
+
+          template_short_sha="${TEMPLATE_SHA:0:7}"
+
+          pr_body="$(
+            cat <<EOF
+          Synchronizes the approved files from
+          \`${TEMPLATE_REPOSITORY}/${TEMPLATE_BRANCH}\` into
+          \`${TARGET_BRANCH}\`.
+
+          Template commit: \`${TEMPLATE_SHA}\`
+
+          This pull request must be **squash-merged**.
+
+          Do not delete, rebase, reset or force-push the permanent
+          \`${SYNC_BRANCH}\` branch. It retains the template merge ancestry used
+          by future synchronization runs.
+          EOF
+          )"
+
+          if [[ -z "${existing_pr}" ]]; then
+            gh pr create \
+              --repo "${GITHUB_REPOSITORY}" \
+              --base "${TARGET_BRANCH}" \
+              --head "${SYNC_BRANCH}" \
+              --title "${PR_TITLE}" \
+              --body "${pr_body}"
+          else
+            echo "Updating template-sync PR #${existing_pr}."
+
+            gh pr edit "${existing_pr}" \
+              --repo "${GITHUB_REPOSITORY}" \
+              --title "${PR_TITLE}" \
+              --body "${pr_body}"
+          fi
+
+      - name: Close obsolete template-sync pull request
+        if: steps.merge.outputs.pr_required == 'false'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          TARGET_BRANCH: ${{ inputs.target_branch }}
+          SYNC_BRANCH: ${{ inputs.sync_branch }}
+        run: |
+          set -euo pipefail
+
+          existing_pr="$(
+            gh pr list \
+              --repo "${GITHUB_REPOSITORY}" \
+              --head "${SYNC_BRANCH}" \
+              --base "${TARGET_BRANCH}" \
+              --state open \
+              --json number \
+              --jq '.[0].number // empty'
+          )"
+
+          if [[ -n "${existing_pr}" ]]; then
+            gh pr close "${existing_pr}" \
+              --repo "${GITHUB_REPOSITORY}" \
+              --comment \
+              "Closing because the permanent sync branch no longer differs from the target branch."
+          fi
