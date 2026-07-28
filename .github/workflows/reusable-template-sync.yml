@@ -373,7 +373,7 @@ jobs:
               exit 1
             fi
 
-            # Restore all unmanaged paths to the state immediately before the
+            # Restore every unmanaged path to the state immediately before the
             # template merge. --no-renames ensures both sides of a rename are
             # evaluated independently.
             while IFS= read -r -d '' path; do
@@ -433,21 +433,23 @@ jobs:
               echo "Managed template conflicts require manual reconciliation:"
               printf '  - %s\n' "${managed_conflicts[@]}"
 
-              # An unresolved index cannot be pushed. Temporarily retain the
-              # target version, complete the real merge commit, then open a
-              # draft PR that clearly records what must be reconciled.
+              # An unresolved merge cannot be committed or pushed. Apply the
+              # template version temporarily so the actual upstream changes are
+              # visible in the draft PR. Developers can then restore any
+              # project-specific behavior directly on the PR branch.
               for path in "${managed_conflicts[@]}"; do
                 managed_conflict_text+="${path}"$'\n'
 
-                echo "Temporarily retaining target version for: ${path}"
+                echo "Temporarily accepting template version for: ${path}"
 
-                if git cat-file -e "${pre_template_head}:${path}" 2>/dev/null; then
+                if git cat-file -e "${template_sha}:${path}" 2>/dev/null; then
                   git restore \
-                    --source="${pre_template_head}" \
+                    --source="${template_sha}" \
                     --staged \
                     --worktree \
                     -- "${path}"
                 else
+                  # The managed path was deleted by the template.
                   git rm \
                     -rf \
                     --cached \
@@ -461,7 +463,7 @@ jobs:
               {
                 echo "## Manual template reconciliation required"
                 echo
-                echo "The target versions were retained temporarily for these"
+                echo "The template versions were applied temporarily for these"
                 echo "allowlisted conflicts:"
                 echo
 
@@ -470,11 +472,10 @@ jobs:
                 done
 
                 echo
-                echo "A draft PR will be opened."
+                echo "A draft PR will be opened containing the template versions."
                 echo
-                echo "Reconcile these files on \`${SYNC_BRANCH}\`, commit and push"
-                echo "the result, then remove the reconciliation marker from the"
-                echo "PR description and mark the PR ready for review."
+                echo "Review these files in the PR and restore any required"
+                echo "project-specific behavior on \`${SYNC_BRANCH}\`."
                 echo
                 echo "Template commit: \`${template_sha}\`"
               } >> "${GITHUB_STEP_SUMMARY}"
@@ -576,10 +577,9 @@ jobs:
             tree_diff_required="true"
           fi
 
-          # Preserve an existing draft reconciliation PR across reruns. This
-          # matters because the template SHA is already in the branch ancestry
-          # after the first run, so a later run would otherwise forget that
-          # manual reconciliation is still outstanding.
+          # Preserve an existing reconciliation PR across reruns. Once the
+          # template SHA is in the permanent branch ancestry, later runs cannot
+          # rediscover the original conflict list from Git.
           existing_manual_pr="false"
 
           existing_pr_body="$(
@@ -722,43 +722,39 @@ jobs:
           <!-- template-sync-manual-reconciliation -->
           ## Manual template reconciliation required
 
-          The workflow encountered allowlisted merge conflicts. It retained the
-          target versions temporarily so it could create and push a valid
-          two-parent template merge commit.
+          The workflow encountered allowlisted merge conflicts. It applied the
+          **template versions** temporarily so the upstream changes are visible
+          directly in this pull request.
 
-          Reconcile these files manually:
+          Review these files carefully:
 
           ${conflict_list}
-          Checkout and update the permanent branch:
+          The PR currently contains the template version of each listed file.
+
+          Restore any required project-specific behavior by committing changes
+          directly to \`${SYNC_BRANCH}\`:
 
           \`\`\`bash
           git fetch origin
           git switch ${SYNC_BRANCH}
           git pull --ff-only origin ${SYNC_BRANCH}
-          \`\`\`
 
-          Compare a target file with the incorporated template commit:
+          # Edit and test the listed files.
 
-          \`\`\`bash
-          git diff HEAD ${TEMPLATE_SHA} -- path/to/file
-          git show ${TEMPLATE_SHA}:path/to/file
-          \`\`\`
-
-          Commit and push the reconciled versions:
-
-          \`\`\`bash
-          git add <resolved-files>
+          git add <reconciled-files>
           git commit -m "chore: reconcile template conflicts"
           git push origin ${SYNC_BRANCH}
           \`\`\`
 
           After reconciliation:
 
-          1. Remove this manual-reconciliation section, including its hidden
+          1. Verify that the listed files preserve the necessary target-specific
+             behavior while incorporating the relevant template changes.
+          2. Remove this manual-reconciliation section, including its hidden
              marker.
-          2. Mark the pull request ready for review.
-          3. Validate the application and CI.
-          4. Squash-merge the pull request without deleting
+          3. Mark the pull request ready for review.
+          4. Validate the application and CI.
+          5. Squash-merge the pull request without deleting
              \`${SYNC_BRANCH}\`.
 
           ${standard_body}
@@ -766,9 +762,8 @@ jobs:
             )"
           elif [[ "${EXISTING_MANUAL_PR}" == "true" &&
                   -n "${existing_body}" ]]; then
-            # Do not erase an outstanding reconciliation report during a later
-            # rerun. The developer explicitly removes the marker after resolving
-            # the listed files.
+            # Preserve the reconciliation instructions until a developer
+            # explicitly removes the marker after reviewing the listed files.
             pr_body="${existing_body}"
           else
             pr_body="${standard_body}"
