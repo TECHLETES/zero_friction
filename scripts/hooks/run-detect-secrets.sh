@@ -93,6 +93,14 @@ if [[ -n "$EXCLUDE_REGEX" ]]; then
     EXCLUDE_ARGS=(--exclude-files "$EXCLUDE_REGEX")
 fi
 
+BASELINE_BACKUP=""
+cleanup() {
+    if [[ -n "$BASELINE_BACKUP" ]]; then
+        rm -f "$BASELINE_BACKUP"
+    fi
+}
+trap cleanup EXIT
+
 if [[ "$MODE" == "pre-commit" ]]; then
     exec uv run detect-secrets-hook \
         --baseline .secret.baseline \
@@ -106,7 +114,38 @@ if ((${#POSITIONAL[@]} > 0)); then
     exit 2
 fi
 
+if [[ -f .secret.baseline ]]; then
+    BASELINE_BACKUP="$(mktemp)"
+    cp .secret.baseline "$BASELINE_BACKUP"
+fi
+
 uv run detect-secrets scan --baseline .secret.baseline "${EXCLUDE_ARGS[@]}"
+
+# detect-secrets refreshes generated_at on every scan. Avoid a working-tree
+# change when the scan found no substantive baseline changes.
+if [[ -n "$BASELINE_BACKUP" ]] && uv run python - "$BASELINE_BACKUP" .secret.baseline <<'PY'
+import json
+import sys
+from pathlib import Path
+
+
+def comparable(path: str) -> dict[str, object]:
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    data.pop("generated_at", None)
+    return data
+
+
+raise SystemExit(comparable(sys.argv[1]) != comparable(sys.argv[2]))
+PY
+then
+    cp "$BASELINE_BACKUP" .secret.baseline
+fi
+
+# Keep the generated baseline with the scan that produced it. Leave an
+# already-staged baseline untouched so callers can review their staged version.
+if git diff --cached --quiet -- .secret.baseline; then
+    git add .secret.baseline
+fi
 
 if [[ "$MODE" == "non-interactive" || ! -t 0 || ! -t 1 ]]; then
     echo "Skipping detect-secrets audit because no interactive terminal is available."
