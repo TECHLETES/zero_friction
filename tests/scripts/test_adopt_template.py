@@ -5,7 +5,7 @@ from pathlib import Path
 
 from pytest import MonkeyPatch
 
-SCRIPT = Path(__file__).parents[2] / "scripts" / "adopt-template.py"
+SCRIPT = Path(__file__).parents[2] / "scripts" / "hooks" / "adopt-template.py"
 SPEC = spec_from_file_location("adopt_template", SCRIPT)
 assert SPEC is not None and SPEC.loader is not None
 adopt_template = module_from_spec(SPEC)
