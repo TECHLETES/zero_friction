@@ -16,6 +16,7 @@ target:
 paths:
   # Github configuration and workflows
   - .github/workflows/template-sync.yml
+  - .github/workflows/reusable-reconcile-template-sync-branch.yml
   - .github/workflows/staging-main-check.yml
   - .github/workflows/labeler.yml
   - .github/ISSUE_TEMPLATE/**

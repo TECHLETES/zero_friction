@@ -1,0 +1,158 @@
+name: Reconcile template sync branch
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - staging
+
+permissions:
+  contents: read
+
+concurrency:
+  group: template-sync-reconciliation-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    name: Merge staging into permanent template-sync branch
+
+    if: >
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.head.ref == 'chore/template-sync'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.TEMPLATE_SYNC_APP_CLIENT_ID }}
+          private-key: ${{ secrets.TEMPLATE_SYNC_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: |
+            ${{ github.repository }}
+
+      - name: Check out permanent sync branch
+        uses: actions/checkout@v6
+        with:
+          ref: chore/template-sync
+          fetch-depth: 0
+          persist-credentials: false
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Configure Git identity
+        shell: bash
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
+        run: |
+          set -euo pipefail
+
+          app_user_id="$(
+            gh api "/users/${APP_SLUG}[bot]" --jq '.id'
+          )"
+
+          git config user.name "${APP_SLUG}[bot]"
+          git config user.email \
+            "${app_user_id}+${APP_SLUG}[bot]@users.noreply.github.com"
+
+      - name: Reconcile staging into permanent sync branch
+        shell: bash
+        env:
+          TEMPLATE_SYNC_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          set -euo pipefail
+
+          origin_url="https://x-access-token:${TEMPLATE_SYNC_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git remote set-url origin "${origin_url}"
+
+          git fetch origin \
+            staging \
+            chore/template-sync \
+            --prune
+
+          remote_sync_sha="$(
+            git rev-parse origin/chore/template-sync
+          )"
+
+          if [[ "$(git rev-parse HEAD)" != "${remote_sync_sha}" ]]; then
+            echo "Local branch does not match origin/chore/template-sync." >&2
+            exit 1
+          fi
+
+          if git merge-base --is-ancestor origin/staging HEAD; then
+            echo "chore/template-sync already contains staging."
+            exit 0
+          fi
+
+          set +e
+          git merge \
+            --no-edit \
+            --no-ff \
+            origin/staging
+          merge_status=$?
+          set -e
+
+          if ((merge_status != 0)); then
+            merge_head="$(
+              git rev-parse --verify MERGE_HEAD 2>/dev/null || true
+            )"
+
+            if [[ -n "${merge_head}" ]]; then
+              mapfile -t conflict_paths < <(
+                git diff \
+                  --name-only \
+                  --diff-filter=U
+              )
+
+              echo "staging conflicts with chore/template-sync." >&2
+
+              if ((${#conflict_paths[@]} > 0)); then
+                printf '  - %s\n' "${conflict_paths[@]}" >&2
+              fi
+
+              {
+                echo "## Template-sync reconciliation failed"
+                echo
+                echo "\`staging\` could not be merged automatically into"
+                echo "\`chore/template-sync\`."
+                echo
+                echo "Resolve the merge locally:"
+                echo
+                echo '```bash'
+                echo "git fetch origin"
+                echo "git switch chore/template-sync"
+                echo "git pull --ff-only origin chore/template-sync"
+                echo "git merge --no-ff origin/staging"
+                echo "# Resolve conflicts"
+                echo "git add -A"
+                echo "git commit"
+                echo "git push origin chore/template-sync"
+                echo '```'
+
+                if ((${#conflict_paths[@]} > 0)); then
+                  echo
+                  echo "Conflicting files:"
+                  echo
+
+                  for path in "${conflict_paths[@]}"; do
+                    echo "- \`${path}\`"
+                  done
+                fi
+              } >> "${GITHUB_STEP_SUMMARY}"
+
+              git merge --abort 2>/dev/null || true
+            else
+              echo "Git failed before creating merge state." >&2
+              echo "git merge exit status: ${merge_status}" >&2
+              git status --short >&2 || true
+            fi
+
+            exit 1
+          fi
+
+          git push origin \
+            HEAD:refs/heads/chore/template-sync
