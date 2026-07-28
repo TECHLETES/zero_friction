@@ -264,19 +264,37 @@ jobs:
           set -e
 
           if ((target_merge_status != 0)); then
-            echo "The target branch conflicts with ${SYNC_BRANCH}." >&2
-            echo "Resolve this merge manually on ${SYNC_BRANCH} first." >&2
+            target_merge_head="$(
+              git rev-parse --verify MERGE_HEAD 2>/dev/null || true
+            )"
 
-            {
-              echo "## Template sync failed"
-              echo
-              echo "\`${TARGET_BRANCH}\` conflicts with permanent branch"
-              echo "\`${SYNC_BRANCH}\`."
-              echo
-              echo "Resolve this merge manually before rerunning the workflow."
-            } >> "${GITHUB_STEP_SUMMARY}"
+            if [[ -n "${target_merge_head}" ]]; then
+              echo "The target branch conflicts with ${SYNC_BRANCH}." >&2
+              echo "Resolve this merge manually on ${SYNC_BRANCH} first." >&2
 
-            git merge --abort 2>/dev/null || true
+              {
+                echo "## Target-branch merge conflict"
+                echo
+                echo "\`${TARGET_BRANCH}\` conflicts with permanent branch"
+                echo "\`${SYNC_BRANCH}\`."
+                echo
+                echo "Resolve this merge manually before rerunning the workflow."
+              } >> "${GITHUB_STEP_SUMMARY}"
+
+              git merge --abort 2>/dev/null || true
+            else
+              echo "Merging origin/${TARGET_BRANCH} failed before Git created merge state." >&2
+              echo "git merge exit status: ${target_merge_status}" >&2
+              git status --short >&2 || true
+
+              {
+                echo "## Target-branch merge failed"
+                echo
+                echo "Git failed before creating merge state for"
+                echo "\`origin/${TARGET_BRANCH}\` into \`${SYNC_BRANCH}\`."
+              } >> "${GITHUB_STEP_SUMMARY}"
+            fi
+
             exit 1
           fi
 
@@ -319,11 +337,45 @@ jobs:
 
             set +e
             git merge \
+              --allow-unrelated-histories \
               --no-commit \
               --no-ff \
               "${template_ref}"
             template_merge_status=$?
             set -e
+
+            # A successful or conflicted no-commit merge must create MERGE_HEAD.
+            # Without it, Git failed before establishing merge state. Continuing
+            # would create an ordinary one-parent empty commit and incorrectly
+            # mark the template SHA as processed.
+            merge_head="$(
+              git rev-parse --verify MERGE_HEAD 2>/dev/null || true
+            )"
+
+            if [[ -z "${merge_head}" ]]; then
+              echo "Template merge failed before Git created merge state." >&2
+              echo "git merge exit status: ${template_merge_status}" >&2
+              git status --short >&2 || true
+
+              {
+                echo "## Template merge failed"
+                echo
+                echo "Git did not create \`MERGE_HEAD\` while merging"
+                echo "\`${TEMPLATE_REPOSITORY}@${template_short_sha}\`."
+                echo
+                echo "The sync branch was not pushed and no template commit was recorded."
+              } >> "${GITHUB_STEP_SUMMARY}"
+
+              exit 1
+            fi
+
+            if [[ "${merge_head}" != "${template_sha}" ]]; then
+              echo "MERGE_HEAD does not match the expected template commit." >&2
+              echo "Expected: ${template_sha}" >&2
+              echo "Actual:   ${merge_head}" >&2
+              git merge --abort 2>/dev/null || true
+              exit 1
+            fi
 
             # Restore every unmanaged path to the state immediately before the
             # template merge. This includes clean changes, additions, deletions,
@@ -380,6 +432,8 @@ jobs:
                 echo
                 echo "Resolve these conflicts on \`${SYNC_BRANCH}\`, commit the"
                 echo "merge and push the branch before rerunning this workflow."
+                echo
+                echo "Template commit: \`${template_sha}\`"
               } >> "${GITHUB_STEP_SUMMARY}"
 
               # The runner cannot push an unresolved merge. Abort only the
@@ -389,19 +443,84 @@ jobs:
             fi
 
             if ((template_merge_status != 0)); then
-              # Any remaining non-zero status should have represented conflicts.
-              # If no conflicts remain after unmanaged paths were restored,
-              # continue and complete the merge.
+              # The merge returned non-zero because conflicts occurred. At this
+              # point all conflicts were unmanaged and have been restored to the
+              # target state, so the real merge can be completed.
               echo "All unmanaged conflicts were resolved using the target version."
             fi
 
+            remaining_merge_head="$(
+              git rev-parse --verify MERGE_HEAD 2>/dev/null || true
+            )"
+
+            if [[ "${remaining_merge_head}" != "${template_sha}" ]]; then
+              echo "Template merge state was lost before commit." >&2
+              echo "Expected MERGE_HEAD: ${template_sha}" >&2
+              echo "Actual MERGE_HEAD:   ${remaining_merge_head:-<missing>}" >&2
+              git merge --abort 2>/dev/null || true
+              exit 1
+            fi
+
             git add -A
+
+            # No unresolved entries may remain after unmanaged paths were
+            # restored and managed conflicts were checked.
+            if git ls-files -u | grep -q .; then
+              echo "Unresolved merge entries remain after conflict filtering." >&2
+              git ls-files -u >&2
+              git merge --abort 2>/dev/null || true
+              exit 1
+            fi
 
             # Commit even when filtering produced no tree difference. The
             # two-parent merge commit records this template SHA as processed.
             git commit \
               --allow-empty \
               -m "chore: sync template ${template_short_sha}"
+
+            merge_commit="$(git rev-parse HEAD)"
+            first_parent="$(git rev-parse "${merge_commit}^1")"
+            second_parent="$(
+              git rev-parse "${merge_commit}^2" 2>/dev/null || true
+            )"
+
+            if [[ "${first_parent}" != "${pre_template_head}" ||
+                  "${second_parent}" != "${template_sha}" ]]; then
+              echo "Template synchronization did not create the expected merge commit." >&2
+              echo "Expected first parent:  ${pre_template_head}" >&2
+              echo "Actual first parent:    ${first_parent}" >&2
+              echo "Expected second parent: ${template_sha}" >&2
+              echo "Actual second parent:   ${second_parent:-<missing>}" >&2
+              exit 1
+            fi
+
+            # Defensive check: filtering may only change allowlisted paths
+            # relative to the tree immediately before the template merge.
+            unmanaged_result_paths=()
+
+            while IFS= read -r -d '' path; do
+              if ! is_managed_path "${path}"; then
+                unmanaged_result_paths+=("${path}")
+              fi
+            done < <(
+              git diff \
+                --name-only \
+                -z \
+                "${pre_template_head}" \
+                "${merge_commit}" \
+                --
+            )
+
+            if ((${#unmanaged_result_paths[@]} > 0)); then
+              echo "Template merge changed paths outside the allowlist:" >&2
+              printf '  - %s\n' "${unmanaged_result_paths[@]}" >&2
+              exit 1
+            fi
+
+            if ! git merge-base --is-ancestor "${template_sha}" "${merge_commit}"; then
+              echo "Template commit is not retained in sync-branch ancestry." >&2
+              exit 1
+            fi
 
             template_merged="true"
           fi
