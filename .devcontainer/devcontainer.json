@@ -123,6 +123,7 @@
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
+  "initializeCommand": "bash ${localWorkspaceFolder}/.devcontainer/initialize.sh",
   "mounts": [
     "source=${localEnv:HOME}/.gitconfig,target=/tmp/host-gitconfig,type=bind,consistency=cached",
     "source=fst-uv-cache,target=/home/vscode/.cache/uv,type=volume",
@@ -130,7 +131,6 @@
     "source=${localEnv:HOME}/.codex,target=/home/vscode/.codex,type=bind,consistency=cached",
     "source=${localEnv:HOME}/.config/gh,target=/home/vscode/.config/gh,type=bind,consistency=cached"
   ],
-  "name": "python-template",
   "overrideCommand": true,
   "postAttachCommand": "bash .devcontainer/post-attach.sh",
   "postCreateCommand": "bash .devcontainer/post-create.sh",
@@ -140,5 +140,6 @@
   "remoteUser": "vscode",
   "updateRemoteUserUID": true,
   "waitFor": "postCreateCommand",
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
+  "workspaceFolder": "/workspaces/app",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/app,type=bind,consistency=cached"
 }
