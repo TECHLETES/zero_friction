@@ -1,4 +1,4 @@
-name: Labels
+name: Labeler
 on:
   pull_request_target:
     types:
@@ -8,6 +8,10 @@ on:
       # For label-checker
       - labeled
       - unlabeled
+
+concurrency:
+  group: labeler-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   labeler:
