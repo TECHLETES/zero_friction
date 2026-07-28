@@ -131,6 +131,7 @@
     "source=${localEnv:HOME}/.codex,target=/home/vscode/.codex,type=bind,consistency=cached",
     "source=${localEnv:HOME}/.config/gh,target=/home/vscode/.config/gh,type=bind,consistency=cached"
   ],
+  "name": "Python Template",
   "overrideCommand": true,
   "postAttachCommand": "bash .devcontainer/post-attach.sh",
   "postCreateCommand": "bash .devcontainer/post-create.sh",

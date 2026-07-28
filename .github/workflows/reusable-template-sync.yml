@@ -145,11 +145,10 @@ jobs:
             exit 1
           fi
 
-          # Parse and validate .template-sync.yml with Ruby's standard YAML
-          # library, which is available on GitHub-hosted Ubuntu runners.
           mapfile -t managed_paths < <(
             ruby -ryaml -e '
               config_path = ENV.fetch("CONFIG_PATH")
+
               config = YAML.safe_load(
                 File.read(config_path),
                 permitted_classes: [],
@@ -199,13 +198,10 @@ jobs:
               paths.each do |path|
                 normalized = path.sub(%r{\A\./}, "")
 
-                if normalized.start_with?("/") ||
+                if normalized.empty? ||
+                   normalized.start_with?("/") ||
                    normalized.split("/").include?("..")
                   abort "Unsafe managed path: #{path.inspect}"
-                end
-
-                if normalized == config_path.sub(%r{\A\./}, "")
-                  abort "#{config_path} must remain target-owned"
                 end
 
                 puts normalized
@@ -218,10 +214,44 @@ jobs:
             exit 1
           fi
 
+          is_managed_path() {
+            local path="$1"
+            local pattern
+            local normalized
+
+            path="${path#./}"
+
+            for pattern in "${managed_paths[@]}"; do
+              normalized="${pattern#./}"
+
+              # The right-hand operand is deliberately unquoted so Bash applies
+              # patterns such as .devcontainer/** and scripts/**.
+              if [[ "${path}" == ${normalized} ]]; then
+                return 0
+              fi
+
+              if [[ "${normalized}" == */ &&
+                    "${path}" == "${normalized}"* ]]; then
+                return 0
+              fi
+            done
+
+            return 1
+          }
+
+          normalized_config_path="${CONFIG_PATH#./}"
+
+          if is_managed_path "${normalized_config_path}"; then
+            echo "${CONFIG_PATH} must remain target-owned." >&2
+            echo "Remove any allowlist entry that matches it." >&2
+            exit 1
+          fi
+
           echo "Managed template paths:"
           printf '  - %s\n' "${managed_paths[@]}"
 
           target_repository="${GITHUB_REPOSITORY}"
+
           template_url="https://x-access-token:${TEMPLATE_SYNC_TOKEN}@github.com/${TEMPLATE_REPOSITORY}.git"
           origin_url="https://x-access-token:${TEMPLATE_SYNC_TOKEN}@github.com/${target_repository}.git"
 
@@ -286,13 +316,6 @@ jobs:
               echo "Merging origin/${TARGET_BRANCH} failed before Git created merge state." >&2
               echo "git merge exit status: ${target_merge_status}" >&2
               git status --short >&2 || true
-
-              {
-                echo "## Target-branch merge failed"
-                echo
-                echo "Git failed before creating merge state for"
-                echo "\`origin/${TARGET_BRANCH}\` into \`${SYNC_BRANCH}\`."
-              } >> "${GITHUB_STEP_SUMMARY}"
             fi
 
             exit 1
@@ -302,33 +325,10 @@ jobs:
           template_ref="template/${TEMPLATE_BRANCH}"
           template_sha="$(git rev-parse "${template_ref}")"
           template_short_sha="$(git rev-parse --short "${template_ref}")"
+
           template_merged="false"
-
-          is_managed_path() {
-            local path="$1"
-            local pattern normalized
-
-            for pattern in "${managed_paths[@]}"; do
-              normalized="${pattern#./}"
-
-              # Within [[ ]], the unquoted right-hand side is treated as a
-              # Bash pattern. This supports entries such as:
-              #   .devcontainer/**
-              #   .github/workflows/**
-              #   pyproject.toml
-              if [[ "${path}" == ${normalized} ]]; then
-                return 0
-              fi
-
-              # Treat a trailing slash as the complete directory.
-              if [[ "${normalized}" == */ &&
-                    "${path}" == "${normalized}"* ]]; then
-                return 0
-              fi
-            done
-
-            return 1
-          }
+          manual_resolution_required="false"
+          managed_conflict_text=""
 
           if git merge-base --is-ancestor "${template_ref}" HEAD; then
             echo "${TEMPLATE_REPOSITORY}@${template_short_sha} is already merged."
@@ -344,10 +344,6 @@ jobs:
             template_merge_status=$?
             set -e
 
-            # A successful or conflicted no-commit merge must create MERGE_HEAD.
-            # Without it, Git failed before establishing merge state. Continuing
-            # would create an ordinary one-parent empty commit and incorrectly
-            # mark the template SHA as processed.
             merge_head="$(
               git rev-parse --verify MERGE_HEAD 2>/dev/null || true
             )"
@@ -377,9 +373,9 @@ jobs:
               exit 1
             fi
 
-            # Restore every unmanaged path to the state immediately before the
-            # template merge. This includes clean changes, additions, deletions,
-            # renames and unmanaged conflicts.
+            # Restore all unmanaged paths to the state immediately before the
+            # template merge. --no-renames ensures both sides of a rename are
+            # evaluated independently.
             while IFS= read -r -d '' path; do
               if is_managed_path "${path}"; then
                 continue
@@ -404,49 +400,88 @@ jobs:
               fi
             done < <(
               {
-                git diff --name-only -z --cached
-                git diff --name-only -z
-                git diff --name-only -z --diff-filter=U
+                git diff \
+                  --name-only \
+                  --no-renames \
+                  -z \
+                  --cached
+
+                git diff \
+                  --name-only \
+                  --no-renames \
+                  -z
+
+                git diff \
+                  --name-only \
+                  --no-renames \
+                  --diff-filter=U \
+                  -z
               } | sort -zu
             )
 
             mapfile -d '' -t managed_conflicts < <(
               git diff \
                 --name-only \
+                --no-renames \
                 --diff-filter=U \
                 -z
             )
 
             if ((${#managed_conflicts[@]} > 0)); then
-              echo "Managed template conflicts require manual resolution:" >&2
-              printf '  - %s\n' "${managed_conflicts[@]}" >&2
+              manual_resolution_required="true"
+
+              echo "Managed template conflicts require manual reconciliation:"
+              printf '  - %s\n' "${managed_conflicts[@]}"
+
+              # An unresolved index cannot be pushed. Temporarily retain the
+              # target version, complete the real merge commit, then open a
+              # draft PR that clearly records what must be reconciled.
+              for path in "${managed_conflicts[@]}"; do
+                managed_conflict_text+="${path}"$'\n'
+
+                echo "Temporarily retaining target version for: ${path}"
+
+                if git cat-file -e "${pre_template_head}:${path}" 2>/dev/null; then
+                  git restore \
+                    --source="${pre_template_head}" \
+                    --staged \
+                    --worktree \
+                    -- "${path}"
+                else
+                  git rm \
+                    -rf \
+                    --cached \
+                    --ignore-unmatch \
+                    -- "${path}" >/dev/null 2>&1 || true
+
+                  rm -rf -- "${path}"
+                fi
+              done
 
               {
-                echo "## Managed template conflicts"
+                echo "## Manual template reconciliation required"
                 echo
-                echo "The following allowlisted files require manual resolution:"
+                echo "The target versions were retained temporarily for these"
+                echo "allowlisted conflicts:"
                 echo
+
                 for path in "${managed_conflicts[@]}"; do
                   echo "- \`${path}\`"
                 done
+
                 echo
-                echo "Resolve these conflicts on \`${SYNC_BRANCH}\`, commit the"
-                echo "merge and push the branch before rerunning this workflow."
+                echo "A draft PR will be opened."
+                echo
+                echo "Reconcile these files on \`${SYNC_BRANCH}\`, commit and push"
+                echo "the result, then remove the reconciliation marker from the"
+                echo "PR description and mark the PR ready for review."
                 echo
                 echo "Template commit: \`${template_sha}\`"
               } >> "${GITHUB_STEP_SUMMARY}"
-
-              # The runner cannot push an unresolved merge. Abort only the
-              # template merge so no conflict markers remain in the workspace.
-              git merge --abort 2>/dev/null || true
-              exit 1
             fi
 
             if ((template_merge_status != 0)); then
-              # The merge returned non-zero because conflicts occurred. At this
-              # point all conflicts were unmanaged and have been restored to the
-              # target state, so the real merge can be completed.
-              echo "All unmanaged conflicts were resolved using the target version."
+              echo "All conflicts were resolved to a committed temporary state."
             fi
 
             remaining_merge_head="$(
@@ -463,8 +498,6 @@ jobs:
 
             git add -A
 
-            # No unresolved entries may remain after unmanaged paths were
-            # restored and managed conflicts were checked.
             if git ls-files -u | grep -q .; then
               echo "Unresolved merge entries remain after conflict filtering." >&2
               git ls-files -u >&2
@@ -472,8 +505,6 @@ jobs:
               exit 1
             fi
 
-            # Commit even when filtering produced no tree difference. The
-            # two-parent merge commit records this template SHA as processed.
             git commit \
               --allow-empty \
               -m "chore: sync template ${template_short_sha}"
@@ -494,8 +525,6 @@ jobs:
               exit 1
             fi
 
-            # Defensive check: filtering may only change allowlisted paths
-            # relative to the tree immediately before the template merge.
             unmanaged_result_paths=()
 
             while IFS= read -r -d '' path; do
@@ -505,6 +534,7 @@ jobs:
             done < <(
               git diff \
                 --name-only \
+                --no-renames \
                 -z \
                 "${pre_template_head}" \
                 "${merge_commit}" \
@@ -517,7 +547,10 @@ jobs:
               exit 1
             fi
 
-            if ! git merge-base --is-ancestor "${template_sha}" "${merge_commit}"; then
+            if ! git merge-base \
+              --is-ancestor \
+              "${template_sha}" \
+              "${merge_commit}"; then
               echo "Template commit is not retained in sync-branch ancestry." >&2
               exit 1
             fi
@@ -533,14 +566,44 @@ jobs:
             push_required="false"
           fi
 
-          if git diff \
+          tree_diff_required="false"
+
+          if ! git diff \
             --quiet \
             "origin/${TARGET_BRANCH}" \
             HEAD \
             --; then
-            pr_required="false"
-          else
+            tree_diff_required="true"
+          fi
+
+          # Preserve an existing draft reconciliation PR across reruns. This
+          # matters because the template SHA is already in the branch ancestry
+          # after the first run, so a later run would otherwise forget that
+          # manual reconciliation is still outstanding.
+          existing_manual_pr="false"
+
+          existing_pr_body="$(
+            gh pr list \
+              --repo "${GITHUB_REPOSITORY}" \
+              --head "${SYNC_BRANCH}" \
+              --base "${TARGET_BRANCH}" \
+              --state open \
+              --json body \
+              --jq '.[0].body // empty'
+          )"
+
+          if grep -Fq \
+            '<!-- template-sync-manual-reconciliation -->' \
+            <<< "${existing_pr_body}"; then
+            existing_manual_pr="true"
+          fi
+
+          if [[ "${tree_diff_required}" == "true" ||
+                "${manual_resolution_required}" == "true" ||
+                "${existing_manual_pr}" == "true" ]]; then
             pr_required="true"
+          else
+            pr_required="false"
           fi
 
           {
@@ -549,6 +612,12 @@ jobs:
             echo "template_merged=${template_merged}"
             echo "template_sha=${template_sha}"
             echo "template_short_sha=${template_short_sha}"
+            echo "manual_resolution_required=${manual_resolution_required}"
+            echo "existing_manual_pr=${existing_manual_pr}"
+
+            echo "managed_conflicts<<MANAGED_CONFLICTS_EOF"
+            printf '%s' "${managed_conflict_text}"
+            echo "MANAGED_CONFLICTS_EOF"
           } >> "${GITHUB_OUTPUT}"
 
           {
@@ -559,6 +628,8 @@ jobs:
             echo "- Permanent sync branch: \`${SYNC_BRANCH}\`"
             echo "- Template: \`${TEMPLATE_REPOSITORY}@${template_short_sha}\`"
             echo "- Template merge created: \`${template_merged}\`"
+            echo "- Manual reconciliation required: \`${manual_resolution_required}\`"
+            echo "- Existing reconciliation marker: \`${existing_manual_pr}\`"
             echo "- Sync branch push required: \`${push_required}\`"
             echo "- Pull request required: \`${pr_required}\`"
           } >> "${GITHUB_STEP_SUMMARY}"
@@ -586,23 +657,43 @@ jobs:
           TEMPLATE_BRANCH: ${{ inputs.template_branch }}
           TEMPLATE_SHA: ${{ steps.merge.outputs.template_sha }}
 
+          MANUAL_RESOLUTION_REQUIRED: ${{ steps.merge.outputs.manual_resolution_required }}
+          EXISTING_MANUAL_PR: ${{ steps.merge.outputs.existing_manual_pr }}
+          MANAGED_CONFLICTS: ${{ steps.merge.outputs.managed_conflicts }}
+
           PR_TITLE: ${{ inputs.pull_request_title }}
         run: |
           set -euo pipefail
 
-          existing_pr="$(
+          existing_pr_json="$(
             gh pr list \
               --repo "${GITHUB_REPOSITORY}" \
               --head "${SYNC_BRANCH}" \
               --base "${TARGET_BRANCH}" \
               --state open \
-              --json number \
-              --jq '.[0].number // empty'
+              --json number,isDraft,body \
+              --jq '.[0] // empty'
           )"
 
-          template_short_sha="${TEMPLATE_SHA:0:7}"
+          existing_pr=""
+          existing_is_draft="false"
+          existing_body=""
 
-          pr_body="$(
+          if [[ -n "${existing_pr_json}" ]]; then
+            existing_pr="$(
+              jq -r '.number' <<< "${existing_pr_json}"
+            )"
+
+            existing_is_draft="$(
+              jq -r '.isDraft' <<< "${existing_pr_json}"
+            )"
+
+            existing_body="$(
+              jq -r '.body // ""' <<< "${existing_pr_json}"
+            )"
+          fi
+
+          standard_body="$(
             cat <<EOF
           Synchronizes the approved files from
           \`${TEMPLATE_REPOSITORY}/${TEMPLATE_BRANCH}\` into
@@ -618,13 +709,85 @@ jobs:
           EOF
           )"
 
+          if [[ "${MANUAL_RESOLUTION_REQUIRED}" == "true" ]]; then
+            conflict_list=""
+
+            while IFS= read -r path; do
+              [[ -z "${path}" ]] && continue
+              conflict_list+="- \`${path}\`"$'\n'
+            done <<< "${MANAGED_CONFLICTS}"
+
+            pr_body="$(
+              cat <<EOF
+          <!-- template-sync-manual-reconciliation -->
+          ## Manual template reconciliation required
+
+          The workflow encountered allowlisted merge conflicts. It retained the
+          target versions temporarily so it could create and push a valid
+          two-parent template merge commit.
+
+          Reconcile these files manually:
+
+          ${conflict_list}
+          Checkout and update the permanent branch:
+
+          \`\`\`bash
+          git fetch origin
+          git switch ${SYNC_BRANCH}
+          git pull --ff-only origin ${SYNC_BRANCH}
+          \`\`\`
+
+          Compare a target file with the incorporated template commit:
+
+          \`\`\`bash
+          git diff HEAD ${TEMPLATE_SHA} -- path/to/file
+          git show ${TEMPLATE_SHA}:path/to/file
+          \`\`\`
+
+          Commit and push the reconciled versions:
+
+          \`\`\`bash
+          git add <resolved-files>
+          git commit -m "chore: reconcile template conflicts"
+          git push origin ${SYNC_BRANCH}
+          \`\`\`
+
+          After reconciliation:
+
+          1. Remove this manual-reconciliation section, including its hidden
+             marker.
+          2. Mark the pull request ready for review.
+          3. Validate the application and CI.
+          4. Squash-merge the pull request without deleting
+             \`${SYNC_BRANCH}\`.
+
+          ${standard_body}
+          EOF
+            )"
+          elif [[ "${EXISTING_MANUAL_PR}" == "true" &&
+                  -n "${existing_body}" ]]; then
+            # Do not erase an outstanding reconciliation report during a later
+            # rerun. The developer explicitly removes the marker after resolving
+            # the listed files.
+            pr_body="${existing_body}"
+          else
+            pr_body="${standard_body}"
+          fi
+
           if [[ -z "${existing_pr}" ]]; then
-            gh pr create \
-              --repo "${GITHUB_REPOSITORY}" \
-              --base "${TARGET_BRANCH}" \
-              --head "${SYNC_BRANCH}" \
-              --title "${PR_TITLE}" \
+            create_args=(
+              --repo "${GITHUB_REPOSITORY}"
+              --base "${TARGET_BRANCH}"
+              --head "${SYNC_BRANCH}"
+              --title "${PR_TITLE}"
               --body "${pr_body}"
+            )
+
+            if [[ "${MANUAL_RESOLUTION_REQUIRED}" == "true" ]]; then
+              create_args+=(--draft)
+            fi
+
+            gh pr create "${create_args[@]}"
           else
             echo "Updating template-sync PR #${existing_pr}."
 
@@ -632,6 +795,13 @@ jobs:
               --repo "${GITHUB_REPOSITORY}" \
               --title "${PR_TITLE}" \
               --body "${pr_body}"
+
+            if [[ "${MANUAL_RESOLUTION_REQUIRED}" == "true" &&
+                  "${existing_is_draft}" != "true" ]]; then
+              gh pr ready "${existing_pr}" \
+                --repo "${GITHUB_REPOSITORY}" \
+                --undo
+            fi
           fi
 
       - name: Close obsolete template-sync pull request
@@ -650,8 +820,19 @@ jobs:
               --head "${SYNC_BRANCH}" \
               --base "${TARGET_BRANCH}" \
               --state open \
-              --json number \
-              --jq '.[0].number // empty'
+              --json number,body \
+              --jq '
+                .[]
+                | select(
+                    (.body // "")
+                    | contains(
+                        "<!-- template-sync-manual-reconciliation -->"
+                      )
+                    | not
+                  )
+                | .number
+              ' \
+              | head -n 1
           )"
 
           if [[ -n "${existing_pr}" ]]; then
