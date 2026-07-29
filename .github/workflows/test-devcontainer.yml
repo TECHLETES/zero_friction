@@ -39,6 +39,8 @@ jobs:
           userDataFolder: .devcontainer-user-data
           cacheFrom: type=gha,scope=devcontainer
           cacheTo: type=gha,mode=max,scope=devcontainer
+          env: |
+            DEVCONTAINER_CI=true
           push: never
           runCmd: |
             test -d .venv
