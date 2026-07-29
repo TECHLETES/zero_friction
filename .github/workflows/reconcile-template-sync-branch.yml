@@ -1,9 +1,7 @@
 name: Reconcile template sync branch
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
       - staging
 
@@ -17,10 +15,6 @@ concurrency:
 jobs:
   reconcile:
     name: Merge staging into permanent template-sync branch
-
-    if: >
-      github.event.pull_request.merged == true &&
-      github.event.pull_request.head.ref == 'chore/template-sync'
 
     runs-on: ubuntu-latest
 
