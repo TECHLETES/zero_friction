@@ -26,6 +26,9 @@ if [[ "${2:-}" == "detect-secrets" && "${3:-}" == "scan" && "${MUTATE_BASELINE:-
 fi
 
 if [[ "${2:-}" == "detect-secrets-hook" ]]; then
+    if [[ "${PRE_COMMIT_STATUS:-0}" -eq 3 ]]; then
+        sed -i 's/original/line-number-updated/' .secret.baseline
+    fi
     exit "${PRE_COMMIT_STATUS:-0}"
 fi
 
@@ -74,6 +77,8 @@ chmod +x "${test_root}/bin/uv" "${test_root}/bin/git"
         PRE_COMMIT_STATUS=3 bash scripts/hooks/run-detect-secrets.sh \
         --pre-commit example.txt
 )
+[[ "$(<"${test_root}/repo/.secret.baseline")" == \
+    '{"findings": {}, "generated_at": "original"}' ]]
 
 set +e
 (
