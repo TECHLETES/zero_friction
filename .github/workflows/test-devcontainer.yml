@@ -28,7 +28,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .devcontainer-user-data
-          key: devcontainer-${{ runner.os }}-${{ hashFiles('.devcontainer/devcontainer.json', '.devcontainer/Dockerfile', '.devcontainer/docker-compose.yml') }}
+          key: devcontainer-${{ runner.os }}-${{ hashFiles('.devcontainer/devcontainer.json', '.devcontainer/Dockerfile') }}
           restore-keys: |
             devcontainer-${{ runner.os }}-
 
