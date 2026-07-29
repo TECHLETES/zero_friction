@@ -18,23 +18,27 @@ paths:
   - .github/workflows/template-sync.yml
   - .github/workflows/reusable-reconcile-template-sync-branch.yml
   - .github/workflows/staging-main-check.yml
+  - .github/workflows/ci.yml
+  - .github/workflows/test-devcontainer.yml
+  - .github/workflows/test-pre-commit.yml
+  - .github/workflows/test-python.yml
   - .github/workflows/labeler.yml
   - .github/ISSUE_TEMPLATE/**
   - .github/dependabot.yml
   - .github/pull_request_template.md
 
   # Development environment.
-  - .devcontainer/devcontainer.json
-  - .devcontainer/Dockerfile
-  - .devcontainer/post-create.sh
-  - .devcontainer/post-attach.sh
-  - .devcontainer/dev-services.sh
+  - .devcontainer/**
 
   # Python and repository tooling.
   - .pre-commit-config.yaml
   - .python-version
   - .editorconfig
   - .gitattributes
+  - pyproject.toml
 
   # Shared quality and security helpers.
   - scripts/hooks/**
+  - scripts/adopt-template.py
+
+  - docs/*.md
