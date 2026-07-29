@@ -102,10 +102,21 @@ cleanup() {
 trap cleanup EXIT
 
 if [[ "$MODE" == "pre-commit" ]]; then
-    exec uv run detect-secrets-hook \
+    if uv run detect-secrets-hook \
         --baseline .secret.baseline \
         "${EXCLUDE_ARGS[@]}" \
-        "${POSITIONAL[@]}"
+        "${POSITIONAL[@]}"; then
+        exit 0
+    else
+        hook_status=$?
+    fi
+
+    # Exit code 3 only means the baseline was refreshed (usually line numbers).
+    # Potential secrets use exit code 1 and must still fail pre-commit.
+    if [[ "$hook_status" -eq 3 ]]; then
+        exit 0
+    fi
+    exit "$hook_status"
 fi
 
 if ((${#POSITIONAL[@]} > 0)); then
