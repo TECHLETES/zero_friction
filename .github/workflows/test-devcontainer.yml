@@ -1,0 +1,47 @@
+name: Test Devcontainer
+
+on:
+  workflow_dispatch: {}
+  workflow_call:
+
+jobs:
+  devcontainer-smoke:
+    name: Devcontainer Smoke
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Create CI environment file
+        run: cp .env.template .env
+
+      - name: Prepare Codex config mount
+        run: |
+          mkdir -p "$HOME/.codex"
+          mkdir -p "$HOME/.config/gh"
+          touch "$HOME/.gitconfig"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Cache Dev Container build metadata
+        uses: actions/cache@v4
+        with:
+          path: .devcontainer-user-data
+          key: devcontainer-${{ runner.os }}-${{ hashFiles('.devcontainer/devcontainer.json', '.devcontainer/Dockerfile', '.devcontainer/docker-compose.yml') }}
+          restore-keys: |
+            devcontainer-${{ runner.os }}-
+
+      - name: Build and bootstrap devcontainer
+        uses: devcontainers/ci@v0.3
+        with:
+          configFile: .devcontainer/devcontainer.json
+          userDataFolder: .devcontainer-user-data
+          cacheFrom: type=gha,scope=devcontainer
+          cacheTo: type=gha,mode=max,scope=devcontainer
+          push: never
+          runCmd: |
+            test -d .venv
+            test -x .git/hooks/pre-commit
+            uv --version
+            .venv/bin/python --version

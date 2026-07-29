@@ -20,84 +20,60 @@ concurrency:
 
 permissions:
   contents: write
+  pull-requests: read
 
 jobs:
-  lint-and-test:
-    name: Lint & Test
+  changed-files:
+    name: Detect changed files
     runs-on: ubuntu-latest
-    env:
-      PRE_COMMIT_HOME: ${{ github.workspace }}/.pre-commit-cache
-    strategy:
-      matrix:
-        python-version: ['3.12']
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      all: ${{ steps.filter.outputs.all }}
+      python: ${{ steps.filter.outputs.python }}
+      pre_commit: ${{ steps.filter.outputs.pre_commit }}
+      devcontainer: ${{ steps.filter.outputs.devcontainer }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+
+      - name: Filter changed files
+        uses: dorny/paths-filter@v4
+        id: filter
         with:
-          persist-credentials: true
+          filters: |
+            all:
+              - '.github/workflows/**'
+              - '.pre-commit-config.yaml'
+              - '.secret.baseline'
+              - 'pyproject.toml'
+              - 'scripts/**'
+              - 'uv.lock'
+            python:
+              - 'example/**'
+              - 'tests/**'
+              - 'utils/**'
+            pre_commit:
+              - '.pre-commit-config.yaml'
+              - '.secret.baseline'
+              - 'scripts/hooks/**'
+            devcontainer:
+              - '.devcontainer/**'
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v6
-        with:
-          python-version: ${{ matrix.python-version }}
+  pre-commit:
+    uses: ./.github/workflows/test-pre-commit.yml
+    if: ${{ needs.changed-files.outputs.all == 'true' || needs.changed-files.outputs.python == 'true' || needs.changed-files.outputs.pre_commit == 'true' }}
+    needs: changed-files
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v7
-        with:
-          enable-cache: true
-          cache-dependency-glob: "uv.lock"
-
-      - name: Install dependencies
-        run: uv sync
-
-      - name: Cache pre-commit hooks
-        uses: actions/cache@v4
-        with:
-          path: ${{ github.workspace }}/.pre-commit-cache
-          key: pre-commit-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('.pre-commit-config.yaml') }}
-          restore-keys: |
-            pre-commit-${{ runner.os }}-${{ matrix.python-version }}-
-
-      - name: Run pre-commit hooks
-        run: uv run pre-commit run --all-files
-
-      - name: Run tests with coverage
-        run: uv run pytest --cov --cov-report=term --cov-report=xml
-
-      - name: Generate coverage badge
-        if: github.event_name == 'pull_request'
-        run: uv run genbadge coverage -i coverage.xml -o coverage.svg
-
-      - name: Commit badge
-        if: github.event_name == 'pull_request'
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: "chore: update coverage badge"
-          file_pattern: coverage.svg
+  test-python:
+    uses: ./.github/workflows/test-python.yml
+    if: ${{ needs.changed-files.outputs.all == 'true' || needs.changed-files.outputs.python == 'true' }}
+    needs: changed-files
+    secrets: inherit
 
   devcontainer-smoke:
-    name: Devcontainer Smoke
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-
-      - name: Prepare Codex config mount
-        run: |
-          mkdir -p "$HOME/.codex"
-          mkdir -p "$HOME/.config/gh"
-          touch "$HOME/.gitconfig"
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build and bootstrap devcontainer
-        uses: devcontainers/ci@v0.3
-        with:
-          configFile: .devcontainer/devcontainer.json
-          push: never
-          runCmd: |
-            test -d .venv
-            test -x .git/hooks/pre-commit
-            uv --version
-            .venv/bin/python --version
+    if: ${{ needs.changed-files.outputs.all == 'true' || needs.changed-files.outputs.devcontainer == 'true' }}
+    needs: changed-files
+    uses: ./.github/workflows/test-devcontainer.yml
+    secrets: inherit
