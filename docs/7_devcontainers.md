@@ -76,7 +76,7 @@ The runtime behavior lives in `.devcontainer/devcontainer.json`. In this
 template, that file currently does the following:
 
 - Builds from the local `Dockerfile` in the `.devcontainer` directory.
-- Opens the repository at `/workspaces/${localWorkspaceFolderBasename}`.
+- Opens the repository at `/workspaces/app`.
 - Uses `vscode` as the remote user and updates the container UID to match the
   host user when possible.
 - Defines cache locations for `pre-commit` and `uv`.
