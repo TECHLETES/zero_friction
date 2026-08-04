@@ -33,10 +33,11 @@ def apply_patches() -> None:
     from .apply_patched_billing_calculations_type_parameters_dto import (
         apply_patched_billing_calculations_type_parameters_dto,
     )
+    from .apply_patched_country_code import apply_patched_country_code
 
     for fn in [
         apply_patched_billing_calculations_type_parameters_dto,
-        # add future patch functions here
+        apply_patched_country_code,
     ]:
         _apply_once(fn)
 
