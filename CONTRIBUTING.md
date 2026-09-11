@@ -58,6 +58,21 @@ uv run pytest
 Commit with a clear message. Pre-commit runs automatically and may modify files;
 stage those changes and commit again if needed.
 
+## SDK generation
+
+Changes to the Zero Friction OpenAPI specifications or generated clients follow a separate branch-first compatibility workflow. Do not regenerate SDK clients directly on `main`.
+
+When updating the SDK:
+
+- update the OpenAPI specification snapshots under `openapi_specs/`;
+- regenerate the affected clients under `sdk/` with the pinned OpenAPI Generator version;
+- inspect generated model, method-signature and response-type changes;
+- run the Zero Friction SDK test suite;
+- validate dependent repositories against the regeneration branch before merge;
+- merge through a pull request and create the planned release tag only after downstream validation succeeds.
+
+See [docs/8_sdk_generation.md](docs/8_sdk_generation.md) for the complete commands, branch workflow, compatibility-testing process and release/versioning convention.
+
 ## Dependencies
 
 Edit `pyproject.toml` from the devcontainer, then update and commit the lock
