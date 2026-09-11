@@ -35,23 +35,21 @@ class TestDataImportDTO(unittest.TestCase):
         model = DataImportDTO()
         if include_optional:
             return DataImportDTO(
+                name = '',
+                custom_file_format_id = '',
+                metering_format_type = 'elvaco_1104',
+                parameters = configuration_client.models.data_import_parameters_dto.DataImportParametersDTO(),
+                automatic_processing = True,
+                disabled = True,
+                deleted = True,
+                organisation_id = '',
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
-                name = '',
-                custom_file_format_id = '',
-                metering_format_type = 'elvaco_1104',
-                parameters = None,
-                automatic_processing = True,
-                disabled = True,
-                deleted = True
+                is_read_only = True
             )
         else:
             return DataImportDTO(

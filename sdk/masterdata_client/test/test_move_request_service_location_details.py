@@ -43,19 +43,22 @@ class TestMoveRequestServiceLocationDetails(unittest.TestCase):
                     building_name = '', 
                     locality = '', 
                     city = '', 
-                    country = null, 
+                    country = 'aut', 
                     localized_display = '', 
                     line_one = '', 
                     line_two = '', ),
                 services = [
                     masterdata_client.models.move_request_service_location_service_details_request.MoveRequestServiceLocationServiceDetailsRequest(
-                        external_identifier = '', 
-                        utility_type = null, )
+                        utility_type = 'none', )
                     ],
                 internal_id = ''
             )
         else:
             return MoveRequestServiceLocationDetails(
+                services = [
+                    masterdata_client.models.move_request_service_location_service_details_request.MoveRequestServiceLocationServiceDetailsRequest(
+                        utility_type = 'none', )
+                    ],
         )
         """
 

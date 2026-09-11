@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ServiceStatus(str, Enum):
     """
-    ServiceStatus
+    Possible values: 'supplied', 'unsupplied', 'removed'
     """
 
     """
@@ -28,7 +28,6 @@ class ServiceStatus(str, Enum):
     """
     SUPPLIED = 'supplied'
     UNSUPPLIED = 'unsupplied'
-    REQUESTED = 'requested'
     REMOVED = 'removed'
 
     @classmethod

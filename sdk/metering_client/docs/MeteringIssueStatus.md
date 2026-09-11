@@ -1,5 +1,6 @@
 # MeteringIssueStatus
 
+Possible values: 'unresolved', 'ignored', 'resolved', 'muted'
 
 ## Enum
 

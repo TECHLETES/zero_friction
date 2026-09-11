@@ -89,6 +89,11 @@ class MeteringIssueReference(BaseModel):
         if self.status is None and "status" in self.model_fields_set:
             _dict['status'] = None
 
+        # set to None if noticed_date_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.noticed_date_time is None and "noticed_date_time" in self.model_fields_set:
+            _dict['noticedDateTime'] = None
+
         return _dict
 
     @classmethod

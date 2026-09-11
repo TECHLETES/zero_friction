@@ -30,7 +30,7 @@ class InstallMeterRequest(BaseModel):
     """
     InstallMeterRequest
     """ # noqa: E501
-    mutation_date_time: Optional[datetime] = Field(default=None, alias="mutationDateTime")
+    mutation_date_time: datetime = Field(alias="mutationDateTime")
     service_location_id: Optional[StrictStr] = Field(default=None, alias="serviceLocationId")
     property_group_id: Optional[StrictStr] = Field(default=None, alias="propertyGroupId")
     address_installed: Optional[AddressDTO] = Field(default=None, alias="addressInstalled")
@@ -112,11 +112,6 @@ class InstallMeterRequest(BaseModel):
         # and model_fields_set contains the field
         if self.next_expected_reading_date is None and "next_expected_reading_date" in self.model_fields_set:
             _dict['nextExpectedReadingDate'] = None
-
-        # set to None if reading_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.reading_frequency is None and "reading_frequency" in self.model_fields_set:
-            _dict['readingFrequency'] = None
 
         return _dict
 

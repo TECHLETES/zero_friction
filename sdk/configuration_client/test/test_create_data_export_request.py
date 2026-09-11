@@ -37,13 +37,13 @@ class TestCreateDataExportRequest(unittest.TestCase):
             return CreateDataExportRequest(
                 name = '',
                 file_format_id = '',
-                parameters = configuration_client.models.base_data_export_parameters_dto.BaseDataExportParametersDTO(
-                    auto_move_after_generation = True, 
-                    zip_files = True, 
-                    auto_assign_entities_to_export = True, )
+                parameters = configuration_client.models.base_data_export_parameters_dto.BaseDataExportParametersDTO()
             )
         else:
             return CreateDataExportRequest(
+                name = '',
+                file_format_id = '',
+                parameters = configuration_client.models.base_data_export_parameters_dto.BaseDataExportParametersDTO(),
         )
         """
 

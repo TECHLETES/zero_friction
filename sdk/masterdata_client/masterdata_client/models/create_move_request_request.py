@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from masterdata_client.models.contract_details_billing_properties_base_dto import ContractDetailsBillingPropertiesBaseDTO
 from masterdata_client.models.move_request_attachment_signature_request import MoveRequestAttachmentSignatureRequest
 from masterdata_client.models.move_request_customer_details import MoveRequestCustomerDetails
 from masterdata_client.models.move_request_measurement_details import MoveRequestMeasurementDetails
@@ -32,17 +33,19 @@ class CreateMoveRequestRequest(BaseModel):
     """
     CreateMoveRequestRequest
     """ # noqa: E501
-    move_request_type: Optional[MoveRequestType] = Field(default=None, alias="moveRequestType")
-    mutation_date_time: Optional[datetime] = Field(default=None, alias="mutationDateTime")
-    customer_details: Optional[MoveRequestCustomerDetails] = Field(default=None, alias="customerDetails")
+    move_request_type: MoveRequestType = Field(alias="moveRequestType")
+    mutation_date_time: datetime = Field(alias="mutationDateTime")
+    customer_details: MoveRequestCustomerDetails = Field(alias="customerDetails")
     external_contract_id: Optional[StrictStr] = Field(default=None, alias="externalContractId")
     external_id: Optional[StrictStr] = Field(default=None, alias="externalId")
-    service_location_details: Optional[MoveRequestServiceLocationDetails] = Field(default=None, alias="serviceLocationDetails")
+    move_request_number: Optional[StrictStr] = Field(default=None, alias="moveRequestNumber")
+    service_location_details: MoveRequestServiceLocationDetails = Field(alias="serviceLocationDetails")
     measurement_details: Optional[List[MoveRequestMeasurementDetails]] = Field(default=None, alias="measurementDetails")
-    attachment_signatures: Optional[List[MoveRequestAttachmentSignatureRequest]] = Field(default=None, alias="attachmentSignatures")
+    attachment_signatures: Optional[List[MoveRequestAttachmentSignatureRequest]] = Field(alias="attachmentSignatures")
     custom_message: Optional[StrictStr] = Field(default=None, alias="customMessage")
     product_id: Optional[StrictStr] = Field(default=None, alias="productId")
-    __properties: ClassVar[List[str]] = ["moveRequestType", "mutationDateTime", "customerDetails", "externalContractId", "externalId", "serviceLocationDetails", "measurementDetails", "attachmentSignatures", "customMessage", "productId"]
+    billing_properties: Optional[ContractDetailsBillingPropertiesBaseDTO] = Field(default=None, alias="billingProperties")
+    __properties: ClassVar[List[str]] = ["moveRequestType", "mutationDateTime", "customerDetails", "externalContractId", "externalId", "moveRequestNumber", "serviceLocationDetails", "measurementDetails", "attachmentSignatures", "customMessage", "productId", "billingProperties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,16 +106,9 @@ class CreateMoveRequestRequest(BaseModel):
                 if _item_attachment_signatures:
                     _items.append(_item_attachment_signatures.to_dict())
             _dict['attachmentSignatures'] = _items
-        # set to None if move_request_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.move_request_type is None and "move_request_type" in self.model_fields_set:
-            _dict['moveRequestType'] = None
-
-        # set to None if customer_details (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_details is None and "customer_details" in self.model_fields_set:
-            _dict['customerDetails'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of billing_properties
+        if self.billing_properties:
+            _dict['billingProperties'] = self.billing_properties.to_dict()
         # set to None if external_contract_id (nullable) is None
         # and model_fields_set contains the field
         if self.external_contract_id is None and "external_contract_id" in self.model_fields_set:
@@ -123,10 +119,10 @@ class CreateMoveRequestRequest(BaseModel):
         if self.external_id is None and "external_id" in self.model_fields_set:
             _dict['externalId'] = None
 
-        # set to None if service_location_details (nullable) is None
+        # set to None if move_request_number (nullable) is None
         # and model_fields_set contains the field
-        if self.service_location_details is None and "service_location_details" in self.model_fields_set:
-            _dict['serviceLocationDetails'] = None
+        if self.move_request_number is None and "move_request_number" in self.model_fields_set:
+            _dict['moveRequestNumber'] = None
 
         # set to None if measurement_details (nullable) is None
         # and model_fields_set contains the field
@@ -148,6 +144,11 @@ class CreateMoveRequestRequest(BaseModel):
         if self.product_id is None and "product_id" in self.model_fields_set:
             _dict['productId'] = None
 
+        # set to None if billing_properties (nullable) is None
+        # and model_fields_set contains the field
+        if self.billing_properties is None and "billing_properties" in self.model_fields_set:
+            _dict['billingProperties'] = None
+
         return _dict
 
     @classmethod
@@ -165,11 +166,13 @@ class CreateMoveRequestRequest(BaseModel):
             "customerDetails": MoveRequestCustomerDetails.from_dict(obj["customerDetails"]) if obj.get("customerDetails") is not None else None,
             "externalContractId": obj.get("externalContractId"),
             "externalId": obj.get("externalId"),
+            "moveRequestNumber": obj.get("moveRequestNumber"),
             "serviceLocationDetails": MoveRequestServiceLocationDetails.from_dict(obj["serviceLocationDetails"]) if obj.get("serviceLocationDetails") is not None else None,
             "measurementDetails": [MoveRequestMeasurementDetails.from_dict(_item) for _item in obj["measurementDetails"]] if obj.get("measurementDetails") is not None else None,
             "attachmentSignatures": [MoveRequestAttachmentSignatureRequest.from_dict(_item) for _item in obj["attachmentSignatures"]] if obj.get("attachmentSignatures") is not None else None,
             "customMessage": obj.get("customMessage"),
-            "productId": obj.get("productId")
+            "productId": obj.get("productId"),
+            "billingProperties": ContractDetailsBillingPropertiesBaseDTO.from_dict(obj["billingProperties"]) if obj.get("billingProperties") is not None else None
         })
         return _obj
 

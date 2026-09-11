@@ -35,9 +35,10 @@ class TestBulkSetMoveRequestToPendingRequest(unittest.TestCase):
         model = BulkSetMoveRequestToPendingRequest()
         if include_optional:
             return BulkSetMoveRequestToPendingRequest(
-                new_status = 'new',
                 only_validate = True,
                 var_query_params = masterdata_client.models.get_move_requests_query_params.GetMoveRequestsQueryParams(
+                    location_id = '', 
+                    move_request_type_id = '', 
                     flex_search = '', 
                     include_only_ids = [
                         ''
@@ -45,9 +46,9 @@ class TestBulkSetMoveRequestToPendingRequest(unittest.TestCase):
                     exclude_ids = [
                         ''
                         ], 
-                    location_id = '', 
-                    move_request_type_id = '', ),
-                quick_filter = ''
+                    page_size = 56, ),
+                quick_filter = '',
+                new_status = 'new'
             )
         else:
             return BulkSetMoveRequestToPendingRequest(

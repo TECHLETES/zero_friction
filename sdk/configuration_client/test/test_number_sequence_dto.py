@@ -35,21 +35,11 @@ class TestNumberSequenceDTO(unittest.TestCase):
         model = NumberSequenceDTO()
         if include_optional:
             return NumberSequenceDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 reference_entity = 'customer',
                 last_value = 56,
                 segments = [
                     configuration_client.models.segment_dto.SegmentDTO(
-                        segment_type = null, 
+                        segment_type = 'constant', 
                         segment_lookup_values = {
                             'key' : ''
                             }, )
@@ -57,7 +47,15 @@ class TestNumberSequenceDTO(unittest.TestCase):
                 format_string = '',
                 gaps = [
                     56
-                    ]
+                    ],
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return NumberSequenceDTO(

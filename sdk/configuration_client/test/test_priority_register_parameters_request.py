@@ -40,6 +40,8 @@ class TestPriorityRegisterParametersRequest(unittest.TestCase):
             )
         else:
             return PriorityRegisterParametersRequest(
+                psr_codes_custom_entity_property_type_id = '',
+                vr_codes_custom_entity_property_type_id = '',
         )
         """
 

@@ -1,5 +1,6 @@
 # EnvelopePosition
 
+Possible values: 'left', 'right'
 
 ## Enum
 

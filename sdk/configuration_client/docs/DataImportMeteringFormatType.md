@@ -1,5 +1,6 @@
 # DataImportMeteringFormatType
 
+Possible values: 'elvaco_1104', 'elvaco_1112', 'customcsv', 'kamstrupready_v1', 'izarcenter', 'flamco', 'cadis', 'climaways', 'equinox_sinapsi', 'siemens_synco', 'cadislora', 'ycongouda', 'synergirbisgen3', 'synergirbisgen1_2', 'engelmann', 'inboundapi', 'synergirbisgen4', 'caleffi', 'customcsvcolumn'
 
 ## Enum
 
@@ -36,6 +37,10 @@
 * `INBOUNDAPI` (value: `'inboundapi'`)
 
 * `SYNERGIRBISGEN4` (value: `'synergirbisgen4'`)
+
+* `CALEFFI` (value: `'caleffi'`)
+
+* `CUSTOMCSVCOLUMN` (value: `'customcsvcolumn'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

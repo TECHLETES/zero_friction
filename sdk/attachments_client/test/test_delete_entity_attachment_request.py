@@ -39,6 +39,7 @@ class TestDeleteEntityAttachmentRequest(unittest.TestCase):
             )
         else:
             return DeleteEntityAttachmentRequest(
+                customer_id = '',
         )
         """
 

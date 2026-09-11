@@ -40,6 +40,8 @@ class TestPropertyGroupReference(unittest.TestCase):
             )
         else:
             return PropertyGroupReference(
+                id = '',
+                name = '',
         )
         """
 

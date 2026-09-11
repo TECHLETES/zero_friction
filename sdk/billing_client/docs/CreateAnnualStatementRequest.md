@@ -1,12 +1,11 @@
 # CreateAnnualStatementRequest
 
-Represents a request to create an annual statement.  This DTO is used to generate an annual statement for a specific year.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**year** | **int** | The year for which the annual statement should be generated. | [optional] 
+**year** | **int** |  | 
 
 ## Example
 

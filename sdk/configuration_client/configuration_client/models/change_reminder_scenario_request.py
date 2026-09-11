@@ -28,8 +28,8 @@ class ChangeReminderScenarioRequest(BaseModel):
     """
     ChangeReminderScenarioRequest
     """ # noqa: E501
-    pdf_template: Optional[ReminderPdfTemplateRequest] = Field(default=None, alias="pdfTemplate")
-    email_template: Optional[ReminderEmailTemplateRequest] = Field(default=None, alias="emailTemplate")
+    pdf_template: Optional[ReminderPdfTemplateRequest] = Field(alias="pdfTemplate")
+    email_template: Optional[ReminderEmailTemplateRequest] = Field(alias="emailTemplate")
     __properties: ClassVar[List[str]] = ["pdfTemplate", "emailTemplate"]
 
     model_config = ConfigDict(

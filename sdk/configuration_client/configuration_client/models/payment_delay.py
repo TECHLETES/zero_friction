@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PaymentDelay(str, Enum):
     """
-    PaymentDelay
+    Possible values: 'delayuntilfixeddayofmonth', 'delaynumberofdays', 'delaydaysbeforeduedate', 'collectassoonaspossible'
     """
 
     """
@@ -28,6 +28,8 @@ class PaymentDelay(str, Enum):
     """
     DELAYUNTILFIXEDDAYOFMONTH = 'delayuntilfixeddayofmonth'
     DELAYNUMBEROFDAYS = 'delaynumberofdays'
+    DELAYDAYSBEFOREDUEDATE = 'delaydaysbeforeduedate'
+    COLLECTASSOONASPOSSIBLE = 'collectassoonaspossible'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

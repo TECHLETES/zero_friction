@@ -29,11 +29,11 @@ class UpdateAdvanceCalculationParametersRequest(BaseModel):
     """
     UpdateAdvanceCalculationParametersRequest
     """ # noqa: E501
-    recalculation_type: Optional[AdvanceRecalculationType] = Field(default=None, description="Defines how and if we will recalculate advances", alias="recalculationType")
-    advance_limit_type: Optional[AdvanceAmountLimitType] = Field(default=None, description="Defines how we will limit the deviation of the new advance amount", alias="advanceLimitType")
-    advance_limit_lower_threshold: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="A threshold for decrease of advance amount that will update the advance amount if the threshold is exceeded.", alias="advanceLimitLowerThreshold")
-    advance_limit_upper_threshold: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="A threshold for increase of advance amount that will update the advance amount if the threshold is exceeded.", alias="advanceLimitUpperThreshold")
-    minimum_accuracy: Optional[Level] = Field(default=None, description="The minimum accuracy of the estimated invoice would we   want to use it to calculate an advance amount.", alias="minimumAccuracy")
+    recalculation_type: Optional[AdvanceRecalculationType] = Field(default=None, alias="recalculationType")
+    advance_limit_type: Optional[AdvanceAmountLimitType] = Field(default=None, alias="advanceLimitType")
+    advance_limit_lower_threshold: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="advanceLimitLowerThreshold")
+    advance_limit_upper_threshold: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="advanceLimitUpperThreshold")
+    minimum_accuracy: Level = Field(alias="minimumAccuracy")
     __properties: ClassVar[List[str]] = ["recalculationType", "advanceLimitType", "advanceLimitLowerThreshold", "advanceLimitUpperThreshold", "minimumAccuracy"]
 
     model_config = ConfigDict(
@@ -75,21 +75,6 @@ class UpdateAdvanceCalculationParametersRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if recalculation_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.recalculation_type is None and "recalculation_type" in self.model_fields_set:
-            _dict['recalculationType'] = None
-
-        # set to None if advance_limit_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.advance_limit_type is None and "advance_limit_type" in self.model_fields_set:
-            _dict['advanceLimitType'] = None
-
-        # set to None if minimum_accuracy (nullable) is None
-        # and model_fields_set contains the field
-        if self.minimum_accuracy is None and "minimum_accuracy" in self.model_fields_set:
-            _dict['minimumAccuracy'] = None
-
         return _dict
 
     @classmethod

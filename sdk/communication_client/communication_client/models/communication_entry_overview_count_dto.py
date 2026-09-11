@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,10 @@ class CommunicationEntryOverviewCountDTO(BaseModel):
     """ # noqa: E501
     all: Optional[StrictInt] = None
     failed: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["all", "failed"]
+    sent: Optional[StrictInt] = None
+    not_sent: Optional[StrictInt] = Field(default=None, alias="notSent")
+    in_transit: Optional[StrictInt] = Field(default=None, alias="inTransit")
+    __properties: ClassVar[List[str]] = ["all", "failed", "sent", "notSent", "inTransit"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,7 +85,10 @@ class CommunicationEntryOverviewCountDTO(BaseModel):
 
         _obj = cls.model_validate({
             "all": obj.get("all"),
-            "failed": obj.get("failed")
+            "failed": obj.get("failed"),
+            "sent": obj.get("sent"),
+            "notSent": obj.get("notSent"),
+            "inTransit": obj.get("inTransit")
         })
         return _obj
 

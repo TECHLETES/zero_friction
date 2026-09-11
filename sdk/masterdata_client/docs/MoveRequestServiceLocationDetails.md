@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
-**services** | [**List[MoveRequestServiceLocationServiceDetailsRequest]**](MoveRequestServiceLocationServiceDetailsRequest.md) |  | [optional] 
+**services** | [**List[MoveRequestServiceLocationServiceDetailsRequest]**](MoveRequestServiceLocationServiceDetailsRequest.md) |  | 
 **internal_id** | **str** |  | [optional] 
 
 ## Example

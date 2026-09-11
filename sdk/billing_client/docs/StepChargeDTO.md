@@ -1,14 +1,13 @@
 # StepChargeDTO
 
-Represents charges associated with a collection step.  This DTO contains information about the amount charged and the associated transaction.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**step_charge_amount_incl_vat** | **float** | The charge amount including VAT. | [optional] 
-**step_vat_amount** | **float** | The VAT amount for this charge. | [optional] 
-**transaction_id** | **str** | The unique identifier of the transaction associated with this charge. | [optional] 
+**step_charge_amount_incl_vat** | **float** |  | [optional] 
+**step_vat_amount** | **float** |  | [optional] 
+**transaction_id** | **str** |  | [optional] 
 
 ## Example
 

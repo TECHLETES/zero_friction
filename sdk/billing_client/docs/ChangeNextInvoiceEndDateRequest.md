@@ -1,13 +1,12 @@
 # ChangeNextInvoiceEndDateRequest
 
-Represents a request to change the end date of the next invoice
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**from_first_open_period** | **bool** | Indicates whether to use the start date of the last known non-closed billing completeness (true)  or the end date of the last known non-closed billing completeness (false) as the start date | [optional] 
-**end_date_time** | **datetime** | The new end date and time for the next invoice. Must not be after or on the contract end date | [optional] 
+**from_first_open_period** | **bool** |  | [optional] 
+**end_date_time** | **datetime** |  | 
 
 ## Example
 

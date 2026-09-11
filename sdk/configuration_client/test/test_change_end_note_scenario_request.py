@@ -35,14 +35,18 @@ class TestChangeEndNoteScenarioRequest(unittest.TestCase):
         model = ChangeEndNoteScenarioRequest()
         if include_optional:
             return ChangeEndNoteScenarioRequest(
-                default_communication_type = 'postal',
                 pdf_template = configuration_client.models.end_note_pdf_template_request.EndNotePdfTemplateRequest(
-                    envelope_settings = null, 
                     cost_allocation = True, 
                     show_country = True, 
+                    show_price_formulae = True, 
                     show_balance = True, 
                     show_vat_specs = True, 
-                    show_custom_information = True, ),
+                    show_custom_information = True, 
+                    unit_price_excl_vat_for_persons = True, 
+                    envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                        margin_position = 'left', 
+                        margin = 56, 
+                        margin_top = 56, ), ),
                 email_template = configuration_client.models.end_note_email_template_request.EndNoteEmailTemplateRequest(
                     subject = '', 
                     attachments = [
@@ -50,10 +54,33 @@ class TestChangeEndNoteScenarioRequest(unittest.TestCase):
                             id = '', 
                             internal_file_path = '', 
                             file_name = '', )
-                        ], )
+                        ], ),
+                default_communication_type = 'none',
+                auto_fallback_to_postal = True
             )
         else:
             return ChangeEndNoteScenarioRequest(
+                pdf_template = configuration_client.models.end_note_pdf_template_request.EndNotePdfTemplateRequest(
+                    cost_allocation = True, 
+                    show_country = True, 
+                    show_price_formulae = True, 
+                    show_balance = True, 
+                    show_vat_specs = True, 
+                    show_custom_information = True, 
+                    unit_price_excl_vat_for_persons = True, 
+                    envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                        margin_position = 'left', 
+                        margin = 56, 
+                        margin_top = 56, ), ),
+                email_template = configuration_client.models.end_note_email_template_request.EndNoteEmailTemplateRequest(
+                    subject = '', 
+                    attachments = [
+                        configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
+                            id = '', 
+                            internal_file_path = '', 
+                            file_name = '', )
+                        ], ),
+                default_communication_type = 'none',
         )
         """
 

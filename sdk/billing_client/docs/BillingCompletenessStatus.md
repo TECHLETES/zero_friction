@@ -1,5 +1,6 @@
 # BillingCompletenessStatus
 
+Possible values: 'waiting', 'gatheringinput', 'inputmissing', 'pendingcalculation', 'calculating', 'closed', 'previousnotclosed', 'manuallycorrected', 'waitingforapproval', 'manuallyclosed', 'waitingfornextestimation'
 
 ## Enum
 

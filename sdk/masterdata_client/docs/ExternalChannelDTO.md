@@ -20,10 +20,14 @@ Name | Type | Description | Notes
 **measurements_until** | **datetime** |  | [optional] 
 **relation_external_reference** | **str** |  | [optional] 
 **issues_count** | **int** |  | [optional] 
-**has_issue** | **bool** |  | [optional] [readonly] 
+**has_issue** | **bool** |  | [optional] 
 **issues** | [**List[MeteringIssueReference]**](MeteringIssueReference.md) |  | [optional] 
 **built_in** | **bool** |  | [optional] 
 **hidden** | **bool** |  | [optional] 
+**reset_day** | **int** |  | [optional] 
+**reset_month** | **int** |  | [optional] 
+**reset_hour** | **int** |  | [optional] 
+**reset_date** | **datetime** |  | [optional] 
 
 ## Example
 

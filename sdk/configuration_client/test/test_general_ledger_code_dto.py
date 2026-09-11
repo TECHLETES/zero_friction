@@ -35,27 +35,37 @@ class TestGeneralLedgerCodeDTO(unittest.TestCase):
         model = GeneralLedgerCodeDTO()
         if include_optional:
             return GeneralLedgerCodeDTO(
+                description = '',
+                code = '',
+                external_accounting_metadata = configuration_client.models.external_accounting_metadata_dto.ExternalAccountingMetadataDTO(
+                    source = '', 
+                    source_entity_id = '', 
+                    source_accounting_company_id = '', 
+                    source_references = [
+                        configuration_client.models.external_accounting_reference_dto.ExternalAccountingReferenceDTO(
+                            source_entity_id = '', 
+                            source_accounting_company_id = '', )
+                        ], ),
+                organisation_id = '',
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
-                description = '',
-                code = '',
-                external_accounting_metadata = configuration_client.models.external_accounting_metadata_dto.ExternalAccountingMetadataDTO(
-                    source = '0', 
-                    source_entity_id = '', )
+                is_read_only = True
             )
         else:
             return GeneralLedgerCodeDTO(
                 external_accounting_metadata = configuration_client.models.external_accounting_metadata_dto.ExternalAccountingMetadataDTO(
-                    source = '0', 
-                    source_entity_id = '', ),
+                    source = '', 
+                    source_entity_id = '', 
+                    source_accounting_company_id = '', 
+                    source_references = [
+                        configuration_client.models.external_accounting_reference_dto.ExternalAccountingReferenceDTO(
+                            source_entity_id = '', 
+                            source_accounting_company_id = '', )
+                        ], ),
         )
         """
 

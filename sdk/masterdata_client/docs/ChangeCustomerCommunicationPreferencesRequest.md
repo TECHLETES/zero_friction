@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**communication_preferences** | [**CustomerCommunicationPreferencesRequest**](CustomerCommunicationPreferencesRequest.md) |  | [optional] 
+**communication_preferences** | [**CustomerCommunicationPreferencesRequest**](CustomerCommunicationPreferencesRequest.md) |  | 
 
 ## Example
 

@@ -1,12 +1,11 @@
 # MeteringImportInterpretationResultDTO
 
-Used to give an overview of the issues that were discovered during the metering import interpretation phase.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**issues** | [**List[MeteringImportInterpretationIssueDTO]**](MeteringImportInterpretationIssueDTO.md) | List of all the found interpretation issues. | [optional] 
+**issues** | [**List[MeteringImportInterpretationIssueDTO]**](MeteringImportInterpretationIssueDTO.md) |  | [optional] 
 
 ## Example
 

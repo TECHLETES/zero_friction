@@ -1,15 +1,15 @@
 # CustomerPortalPropertiesDTO
 
-Represents portal-specific properties for a customer
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**application_user_id** | **str** | Unique identifier for the application user | [optional] 
-**confirm_account_token** | **str** | Token for account confirmation | [optional] 
-**reset_password_token** | **str** | Token for password reset | [optional] 
-**email** | **str** | Email address for the customer | [optional] 
+**application_user_id** | **str** |  | [optional] 
+**confirm_account_token** | **str** |  | [optional] 
+**reset_password_token** | **str** |  | [optional] 
+**email** | **str** |  | [optional] 
+**email_confirmed** | **bool** |  | [optional] 
 
 ## Example
 

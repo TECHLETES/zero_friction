@@ -56,7 +56,7 @@ class TestCustomerDetailsDTO(unittest.TestCase):
                     building_name = '', 
                     locality = '', 
                     city = '', 
-                    country = null, 
+                    country = 'aut', 
                     localized_display = '', 
                     line_one = '', 
                     line_two = '', ),
@@ -65,17 +65,17 @@ class TestCustomerDetailsDTO(unittest.TestCase):
                 telephone_number = '',
                 mobile_telephone_number = '',
                 website = '',
-                culture = ,
+                culture = '',
                 internal_id = '',
                 created_or_linked = True,
                 errors = [
                     masterdata_client.models.localised_error_dto.LocalisedErrorDTO(
-                        key = null, 
+                        key = 56, 
                         correlation_id = '', 
                         message = '', 
                         message_values = [
                             masterdata_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                data_type = null, 
+                                data_type = 'text', 
                                 value = '', 
                                 capitalize = True, )
                             ], )

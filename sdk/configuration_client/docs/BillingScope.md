@@ -1,5 +1,6 @@
 # BillingScope
 
+Possible values: 'contract', 'location'
 
 ## Enum
 

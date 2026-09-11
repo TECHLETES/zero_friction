@@ -1,12 +1,11 @@
 # CustomerBillingSettingsDTO
 
-Represents the billing settings for a customer.  This DTO contains configuration options that affect how billing is handled for the customer.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**automatic_settlement_setting** | [**CustomerBillingSettingsAutomaticSettlementDTO**](CustomerBillingSettingsAutomaticSettlementDTO.md) | Settings related to automatic settlement of transactions. | [optional] 
+**automatic_settlement_setting** | [**CustomerBillingSettingsAutomaticSettlementDTO**](CustomerBillingSettingsAutomaticSettlementDTO.md) |  | [optional] 
 
 ## Example
 

@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from attachments_client.models.attachment_visibility import AttachmentVisibility
+from attachments_client.models.base_entity_reference_parameters_dto import BaseEntityReferenceParametersDTO
 from attachments_client.models.entity_attachment_origin import EntityAttachmentOrigin
 from attachments_client.models.entity_subject_type import EntitySubjectType
 from typing import Optional, Set
@@ -30,23 +31,21 @@ class EntityAttachmentDTO(BaseModel):
     """
     EntityAttachmentDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
     customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
     origin: Optional[EntityAttachmentOrigin] = None
-    parameters: Optional[Dict[str, Any]] = None
+    parameters: Optional[BaseEntityReferenceParametersDTO] = None
     visibility: Optional[AttachmentVisibility] = None
     include_in_welcome_email: Optional[StrictBool] = Field(default=None, alias="includeInWelcomeEmail")
     approval_required: Optional[StrictBool] = Field(default=None, alias="approvalRequired")
     viewed_date_time: Optional[datetime] = Field(default=None, alias="viewedDateTime")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "customerId", "origin", "parameters", "visibility", "includeInWelcomeEmail", "approvalRequired", "viewedDateTime"]
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["customerId", "origin", "parameters", "visibility", "includeInWelcomeEmail", "approvalRequired", "viewedDateTime", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,10 +77,8 @@ class EntityAttachmentDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -89,45 +86,18 @@ class EntityAttachmentDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of parameters
+        if self.parameters:
+            _dict['parameters'] = self.parameters.to_dict()
         # set to None if customer_id (nullable) is None
         # and model_fields_set contains the field
         if self.customer_id is None and "customer_id" in self.model_fields_set:
             _dict['customerId'] = None
 
-        # set to None if origin (nullable) is None
-        # and model_fields_set contains the field
-        if self.origin is None and "origin" in self.model_fields_set:
-            _dict['origin'] = None
-
         # set to None if parameters (nullable) is None
         # and model_fields_set contains the field
         if self.parameters is None and "parameters" in self.model_fields_set:
             _dict['parameters'] = None
-
-        # set to None if visibility (nullable) is None
-        # and model_fields_set contains the field
-        if self.visibility is None and "visibility" in self.model_fields_set:
-            _dict['visibility'] = None
 
         # set to None if viewed_date_time (nullable) is None
         # and model_fields_set contains the field
@@ -146,22 +116,20 @@ class EntityAttachmentDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "customerId": obj.get("customerId"),
+            "origin": obj.get("origin"),
+            "parameters": BaseEntityReferenceParametersDTO.from_dict(obj["parameters"]) if obj.get("parameters") is not None else None,
+            "visibility": obj.get("visibility"),
+            "includeInWelcomeEmail": obj.get("includeInWelcomeEmail"),
+            "approvalRequired": obj.get("approvalRequired"),
+            "viewedDateTime": obj.get("viewedDateTime"),
             "id": obj.get("id"),
             "entityType": obj.get("entityType"),
             "createdDateTime": obj.get("createdDateTime"),
             "discriminator": obj.get("discriminator"),
             "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
             "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "customerId": obj.get("customerId"),
-            "origin": obj.get("origin"),
-            "parameters": obj.get("parameters"),
-            "visibility": obj.get("visibility"),
-            "includeInWelcomeEmail": obj.get("includeInWelcomeEmail"),
-            "approvalRequired": obj.get("approvalRequired"),
-            "viewedDateTime": obj.get("viewedDateTime")
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

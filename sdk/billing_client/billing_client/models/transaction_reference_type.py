@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class TransactionReferenceType(str, Enum):
     """
-    TransactionReferenceType
+    Possible values: 'payment', 'invoice', 'collectionstep', 'ignoredincomingmutation', 'prepaymentcost', 'prepaymenttopup', 'prepaymentcorrection', 'prepaymentgift', 'prepaymentbalancetransfer'
     """
 
     """
@@ -29,6 +29,12 @@ class TransactionReferenceType(str, Enum):
     PAYMENT = 'payment'
     INVOICE = 'invoice'
     COLLECTIONSTEP = 'collectionstep'
+    IGNOREDINCOMINGMUTATION = 'ignoredincomingmutation'
+    PREPAYMENTCOST = 'prepaymentcost'
+    PREPAYMENTTOPUP = 'prepaymenttopup'
+    PREPAYMENTCORRECTION = 'prepaymentcorrection'
+    PREPAYMENTGIFT = 'prepaymentgift'
+    PREPAYMENTBALANCETRANSFER = 'prepaymentbalancetransfer'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

@@ -21,7 +21,10 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from masterdata_client.models.address_dto import AddressDTO
+from masterdata_client.models.advance_calculation_type import AdvanceCalculationType
 from masterdata_client.models.advance_frequency import AdvanceFrequency
+from masterdata_client.models.advance_period_percentage import AdvancePeriodPercentage
+from masterdata_client.models.billing_method_period_reference_dto import BillingMethodPeriodReferenceDTO
 from masterdata_client.models.contract_billing_method import ContractBillingMethod
 from masterdata_client.models.invoice_frequency import InvoiceFrequency
 from masterdata_client.models.product_period_reference_dto import ProductPeriodReferenceDTO
@@ -32,6 +35,8 @@ class BillingDetailsDTO(BaseModel):
     """
     BillingDetailsDTO
     """ # noqa: E501
+    billing_methods: Optional[List[BillingMethodPeriodReferenceDTO]] = Field(default=None, alias="billingMethods")
+    current_billing_method: Optional[ContractBillingMethod] = Field(default=None, alias="currentBillingMethod")
     billing_method: Optional[ContractBillingMethod] = Field(default=None, alias="billingMethod")
     invoice_frequency: Optional[InvoiceFrequency] = Field(default=None, alias="invoiceFrequency")
     advance_frequency: Optional[AdvanceFrequency] = Field(default=None, alias="advanceFrequency")
@@ -41,7 +46,9 @@ class BillingDetailsDTO(BaseModel):
     first_invoice_start_date_time: Optional[datetime] = Field(default=None, alias="firstInvoiceStartDateTime")
     first_invoice_end_date_time: Optional[datetime] = Field(default=None, alias="firstInvoiceEndDateTime")
     blocked: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["billingMethod", "invoiceFrequency", "advanceFrequency", "contractualAdvanceAmount", "products", "invoiceAddress", "firstInvoiceStartDateTime", "firstInvoiceEndDateTime", "blocked"]
+    advance_calculation_type: Optional[AdvanceCalculationType] = Field(default=None, alias="advanceCalculationType")
+    advance_period_percentages: Optional[List[AdvancePeriodPercentage]] = Field(default=None, alias="advancePeriodPercentages")
+    __properties: ClassVar[List[str]] = ["billingMethods", "currentBillingMethod", "billingMethod", "invoiceFrequency", "advanceFrequency", "contractualAdvanceAmount", "products", "invoiceAddress", "firstInvoiceStartDateTime", "firstInvoiceEndDateTime", "blocked", "advanceCalculationType", "advancePeriodPercentages"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,6 +89,13 @@ class BillingDetailsDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in billing_methods (list)
+        _items = []
+        if self.billing_methods:
+            for _item_billing_methods in self.billing_methods:
+                if _item_billing_methods:
+                    _items.append(_item_billing_methods.to_dict())
+            _dict['billingMethods'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in products (list)
         _items = []
         if self.products:
@@ -92,20 +106,17 @@ class BillingDetailsDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of invoice_address
         if self.invoice_address:
             _dict['invoiceAddress'] = self.invoice_address.to_dict()
-        # set to None if billing_method (nullable) is None
+        # override the default output from pydantic by calling `to_dict()` of each item in advance_period_percentages (list)
+        _items = []
+        if self.advance_period_percentages:
+            for _item_advance_period_percentages in self.advance_period_percentages:
+                if _item_advance_period_percentages:
+                    _items.append(_item_advance_period_percentages.to_dict())
+            _dict['advancePeriodPercentages'] = _items
+        # set to None if billing_methods (nullable) is None
         # and model_fields_set contains the field
-        if self.billing_method is None and "billing_method" in self.model_fields_set:
-            _dict['billingMethod'] = None
-
-        # set to None if invoice_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_frequency is None and "invoice_frequency" in self.model_fields_set:
-            _dict['invoiceFrequency'] = None
-
-        # set to None if advance_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.advance_frequency is None and "advance_frequency" in self.model_fields_set:
-            _dict['advanceFrequency'] = None
+        if self.billing_methods is None and "billing_methods" in self.model_fields_set:
+            _dict['billingMethods'] = None
 
         # set to None if products (nullable) is None
         # and model_fields_set contains the field
@@ -129,6 +140,8 @@ class BillingDetailsDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "billingMethods": [BillingMethodPeriodReferenceDTO.from_dict(_item) for _item in obj["billingMethods"]] if obj.get("billingMethods") is not None else None,
+            "currentBillingMethod": obj.get("currentBillingMethod"),
             "billingMethod": obj.get("billingMethod"),
             "invoiceFrequency": obj.get("invoiceFrequency"),
             "advanceFrequency": obj.get("advanceFrequency"),
@@ -137,7 +150,9 @@ class BillingDetailsDTO(BaseModel):
             "invoiceAddress": AddressDTO.from_dict(obj["invoiceAddress"]) if obj.get("invoiceAddress") is not None else None,
             "firstInvoiceStartDateTime": obj.get("firstInvoiceStartDateTime"),
             "firstInvoiceEndDateTime": obj.get("firstInvoiceEndDateTime"),
-            "blocked": obj.get("blocked")
+            "blocked": obj.get("blocked"),
+            "advanceCalculationType": obj.get("advanceCalculationType"),
+            "advancePeriodPercentages": [AdvancePeriodPercentage.from_dict(_item) for _item in obj["advancePeriodPercentages"]] if obj.get("advancePeriodPercentages") is not None else None
         })
         return _obj
 

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class EstimatedAnnualVolumeOrigin(str, Enum):
     """
-    EstimatedAnnualVolumeOrigin
+    Possible values: 'manual', 'frompreviousyear', 'fromconsumergroup', 'forecast'
     """
 
     """

@@ -22,23 +22,26 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, Stri
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from billing_client.models.country_code import CountryCode
 from billing_client.models.payment_entity_reference_request import PaymentEntityReferenceRequest
+from billing_client.models.transaction_type import TransactionType
 from typing import Optional, Set
 from typing_extensions import Self
 
 class ManuallyAddPaymentRequest(BaseModel):
     """
-    Represents a request to manually add a payment to the system.  This DTO is used to record payments that are not automatically processed through the banking system.
+    ManuallyAddPaymentRequest
     """ # noqa: E501
-    customer_id: Optional[StrictStr] = Field(default=None, description="The ID of the customer who made the payment.", alias="customerId")
-    iban: Optional[StrictStr] = Field(default=None, description="The International Bank Account Number (IBAN) from which the payment was made.")
-    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount of the payment.")
-    payment_date_time: Optional[datetime] = Field(default=None, description="The date and time when the payment was made.", alias="paymentDateTime")
-    company_bank_account_id: Optional[StrictStr] = Field(default=None, description="The ID of the company bank account that received the payment.", alias="companyBankAccountId")
-    payment_reference: Optional[StrictStr] = Field(default=None, description="The payment reference text associated with the payment.", alias="paymentReference")
-    references: Optional[List[PaymentEntityReferenceRequest]] = Field(default=None, description="A list of references linking this payment to other entities in the system.")
-    is_payment_reference_structured: Optional[StrictBool] = Field(default=None, description="Indicates whether the payment reference follows a structured format.", alias="isPaymentReferenceStructured")
-    organization_country: Optional[CountryCode] = Field(default=None, description="The country code of the organization processing the payment.  Used for validating structured payment references.", alias="organizationCountry")
-    __properties: ClassVar[List[str]] = ["customerId", "iban", "amount", "paymentDateTime", "companyBankAccountId", "paymentReference", "references", "isPaymentReferenceStructured", "organizationCountry"]
+    customer_id: Optional[StrictStr] = Field(alias="customerId")
+    prepayment_account_id: Optional[StrictStr] = Field(default=None, alias="prepaymentAccountId")
+    iban: Optional[StrictStr] = None
+    amount: Union[StrictFloat, StrictInt]
+    payment_date_time: datetime = Field(alias="paymentDateTime")
+    company_bank_account_id: Optional[StrictStr] = Field(alias="companyBankAccountId")
+    payment_reference: Optional[StrictStr] = Field(default=None, alias="paymentReference")
+    references: Optional[List[PaymentEntityReferenceRequest]] = None
+    is_payment_reference_structured: Optional[StrictBool] = Field(default=None, alias="isPaymentReferenceStructured")
+    organization_country: Optional[CountryCode] = Field(default=None, alias="organizationCountry")
+    transaction_type: Optional[TransactionType] = Field(default=None, alias="transactionType")
+    __properties: ClassVar[List[str]] = ["customerId", "prepaymentAccountId", "iban", "amount", "paymentDateTime", "companyBankAccountId", "paymentReference", "references", "isPaymentReferenceStructured", "organizationCountry", "transactionType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,6 +94,11 @@ class ManuallyAddPaymentRequest(BaseModel):
         if self.customer_id is None and "customer_id" in self.model_fields_set:
             _dict['customerId'] = None
 
+        # set to None if prepayment_account_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.prepayment_account_id is None and "prepayment_account_id" in self.model_fields_set:
+            _dict['prepaymentAccountId'] = None
+
         # set to None if iban (nullable) is None
         # and model_fields_set contains the field
         if self.iban is None and "iban" in self.model_fields_set:
@@ -111,11 +119,6 @@ class ManuallyAddPaymentRequest(BaseModel):
         if self.references is None and "references" in self.model_fields_set:
             _dict['references'] = None
 
-        # set to None if organization_country (nullable) is None
-        # and model_fields_set contains the field
-        if self.organization_country is None and "organization_country" in self.model_fields_set:
-            _dict['organizationCountry'] = None
-
         return _dict
 
     @classmethod
@@ -129,6 +132,7 @@ class ManuallyAddPaymentRequest(BaseModel):
 
         _obj = cls.model_validate({
             "customerId": obj.get("customerId"),
+            "prepaymentAccountId": obj.get("prepaymentAccountId"),
             "iban": obj.get("iban"),
             "amount": obj.get("amount"),
             "paymentDateTime": obj.get("paymentDateTime"),
@@ -136,7 +140,8 @@ class ManuallyAddPaymentRequest(BaseModel):
             "paymentReference": obj.get("paymentReference"),
             "references": [PaymentEntityReferenceRequest.from_dict(_item) for _item in obj["references"]] if obj.get("references") is not None else None,
             "isPaymentReferenceStructured": obj.get("isPaymentReferenceStructured"),
-            "organizationCountry": obj.get("organizationCountry")
+            "organizationCountry": obj.get("organizationCountry"),
+            "transactionType": obj.get("transactionType")
         })
         return _obj
 

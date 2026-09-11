@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **calculation_parameters** | [**BaseTariffCalculationTypeParametersDTO**](BaseTariffCalculationTypeParametersDTO.md) |  | [optional] 
-**condition** | **object** |  | [optional] 
+**condition** | [**BaseTariffConditionTypeParametersDTO**](BaseTariffConditionTypeParametersDTO.md) |  | [optional] 
 
 ## Example
 

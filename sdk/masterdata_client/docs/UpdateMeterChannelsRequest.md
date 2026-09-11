@@ -5,8 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mutation_date_time** | **datetime** |  | [optional] 
+**mutation_date_time** | **datetime** |  | 
+**model_id** | **str** |  | [optional] 
 **channel_templates** | [**List[ExternalChannelRequest]**](ExternalChannelRequest.md) |  | [optional] 
+**use_beginning_of_meter** | **bool** |  | [optional] 
 
 ## Example
 

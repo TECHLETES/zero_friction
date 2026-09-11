@@ -89,16 +89,6 @@ class ProductAttachmentDTO(BaseModel):
         if self.product_attachment_id is None and "product_attachment_id" in self.model_fields_set:
             _dict['productAttachmentId'] = None
 
-        # set to None if visibility (nullable) is None
-        # and model_fields_set contains the field
-        if self.visibility is None and "visibility" in self.model_fields_set:
-            _dict['visibility'] = None
-
-        # set to None if attachment_files (nullable) is None
-        # and model_fields_set contains the field
-        if self.attachment_files is None and "attachment_files" in self.model_fields_set:
-            _dict['attachmentFiles'] = None
-
         return _dict
 
     @classmethod

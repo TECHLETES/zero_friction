@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from masterdata_client.models.external_channel_request import ExternalChannelRequest
 from typing import Optional, Set
@@ -28,9 +28,11 @@ class UpdateMeterChannelsRequest(BaseModel):
     """
     UpdateMeterChannelsRequest
     """ # noqa: E501
-    mutation_date_time: Optional[datetime] = Field(default=None, alias="mutationDateTime")
+    mutation_date_time: datetime = Field(alias="mutationDateTime")
+    model_id: Optional[StrictStr] = Field(default=None, alias="modelId")
     channel_templates: Optional[List[ExternalChannelRequest]] = Field(default=None, alias="channelTemplates")
-    __properties: ClassVar[List[str]] = ["mutationDateTime", "channelTemplates"]
+    use_beginning_of_meter: Optional[StrictBool] = Field(default=None, alias="useBeginningOfMeter")
+    __properties: ClassVar[List[str]] = ["mutationDateTime", "modelId", "channelTemplates", "useBeginningOfMeter"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +80,11 @@ class UpdateMeterChannelsRequest(BaseModel):
                 if _item_channel_templates:
                     _items.append(_item_channel_templates.to_dict())
             _dict['channelTemplates'] = _items
+        # set to None if model_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.model_id is None and "model_id" in self.model_fields_set:
+            _dict['modelId'] = None
+
         # set to None if channel_templates (nullable) is None
         # and model_fields_set contains the field
         if self.channel_templates is None and "channel_templates" in self.model_fields_set:
@@ -96,7 +103,9 @@ class UpdateMeterChannelsRequest(BaseModel):
 
         _obj = cls.model_validate({
             "mutationDateTime": obj.get("mutationDateTime"),
-            "channelTemplates": [ExternalChannelRequest.from_dict(_item) for _item in obj["channelTemplates"]] if obj.get("channelTemplates") is not None else None
+            "modelId": obj.get("modelId"),
+            "channelTemplates": [ExternalChannelRequest.from_dict(_item) for _item in obj["channelTemplates"]] if obj.get("channelTemplates") is not None else None,
+            "useBeginningOfMeter": obj.get("useBeginningOfMeter")
         })
         return _obj
 

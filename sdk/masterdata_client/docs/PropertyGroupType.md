@@ -1,5 +1,6 @@
 # PropertyGroupType
 
+Possible values: 'building', 'project'
 
 ## Enum
 

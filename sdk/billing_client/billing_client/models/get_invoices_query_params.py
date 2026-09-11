@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,13 +27,11 @@ class GetInvoicesQueryParams(BaseModel):
     """
     GetInvoicesQueryParams
     """ # noqa: E501
-    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
-    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
-    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
     invoice_type: Optional[List[StrictStr]] = Field(default=None, alias="invoiceType")
     property_group_ids: Optional[List[StrictStr]] = Field(default=None, alias="propertyGroupIds")
-    product_id: Optional[StrictStr] = Field(default=None, description="Filter invoices by product.", alias="productId")
+    product_id: Optional[StrictStr] = Field(default=None, alias="productId")
     customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
+    customer_type: Optional[StrictStr] = Field(default=None, alias="customerType")
     contract_id: Optional[StrictStr] = Field(default=None, alias="contractId")
     invoice_status: Optional[List[StrictStr]] = Field(default=None, alias="invoiceStatus")
     payment_process_status: Optional[List[StrictStr]] = Field(default=None, alias="paymentProcessStatus")
@@ -52,7 +50,19 @@ class GetInvoicesQueryParams(BaseModel):
     collection_case_id: Optional[StrictStr] = Field(default=None, alias="collectionCaseId")
     customer_group_id: Optional[StrictStr] = Field(default=None, alias="customerGroupId")
     company_bank_account_id: Optional[StrictStr] = Field(default=None, alias="companyBankAccountId")
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "invoiceType", "propertyGroupIds", "productId", "customerId", "contractId", "invoiceStatus", "paymentProcessStatus", "billingCompletenessId", "paymentMethod", "startDateTime", "endDateTime", "periodStartDateTime", "periodEndDateTime", "periodStartDateTimeBegin", "periodStartDateTimeEnd", "periodEndDateTimeBegin", "periodEndDateTimeEnd", "paidDateTimeBegin", "exportStatus", "collectionCaseId", "customerGroupId", "companyBankAccountId"]
+    has_attachment: Optional[StrictBool] = Field(default=None, alias="hasAttachment")
+    payment_plan_id: Optional[StrictStr] = Field(default=None, alias="paymentPlanId")
+    apply_filters_over_included_ids: Optional[StrictBool] = Field(default=None, alias="applyFiltersOverIncludedIds")
+    only_with_estimated_origin_measurements: Optional[StrictBool] = Field(default=None, alias="onlyWithEstimatedOriginMeasurements")
+    only_credited_invoices: Optional[StrictBool] = Field(default=None, alias="onlyCreditedInvoices")
+    auto_approved_filter: Optional[StrictBool] = Field(default=None, alias="autoApprovedFilter")
+    validation_score_min: Optional[StrictInt] = Field(default=None, alias="validationScoreMin")
+    validation_score_max: Optional[StrictInt] = Field(default=None, alias="validationScoreMax")
+    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
+    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
+    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["invoiceType", "propertyGroupIds", "productId", "customerId", "customerType", "contractId", "invoiceStatus", "paymentProcessStatus", "billingCompletenessId", "paymentMethod", "startDateTime", "endDateTime", "periodStartDateTime", "periodEndDateTime", "periodStartDateTimeBegin", "periodStartDateTimeEnd", "periodEndDateTimeBegin", "periodEndDateTimeEnd", "paidDateTimeBegin", "exportStatus", "collectionCaseId", "customerGroupId", "companyBankAccountId", "hasAttachment", "paymentPlanId", "applyFiltersOverIncludedIds", "onlyWithEstimatedOriginMeasurements", "onlyCreditedInvoices", "autoApprovedFilter", "validationScoreMin", "validationScoreMax", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,66 +103,6 @@ class GetInvoicesQueryParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if flex_search (nullable) is None
-        # and model_fields_set contains the field
-        if self.flex_search is None and "flex_search" in self.model_fields_set:
-            _dict['flexSearch'] = None
-
-        # set to None if include_only_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
-        # set to None if invoice_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_type is None and "invoice_type" in self.model_fields_set:
-            _dict['invoiceType'] = None
-
-        # set to None if property_group_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.property_group_ids is None and "property_group_ids" in self.model_fields_set:
-            _dict['propertyGroupIds'] = None
-
-        # set to None if product_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.product_id is None and "product_id" in self.model_fields_set:
-            _dict['productId'] = None
-
-        # set to None if customer_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_id is None and "customer_id" in self.model_fields_set:
-            _dict['customerId'] = None
-
-        # set to None if contract_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.contract_id is None and "contract_id" in self.model_fields_set:
-            _dict['contractId'] = None
-
-        # set to None if invoice_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_status is None and "invoice_status" in self.model_fields_set:
-            _dict['invoiceStatus'] = None
-
-        # set to None if payment_process_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.payment_process_status is None and "payment_process_status" in self.model_fields_set:
-            _dict['paymentProcessStatus'] = None
-
-        # set to None if billing_completeness_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.billing_completeness_id is None and "billing_completeness_id" in self.model_fields_set:
-            _dict['billingCompletenessId'] = None
-
-        # set to None if payment_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.payment_method is None and "payment_method" in self.model_fields_set:
-            _dict['paymentMethod'] = None
-
         # set to None if start_date_time (nullable) is None
         # and model_fields_set contains the field
         if self.start_date_time is None and "start_date_time" in self.model_fields_set:
@@ -198,25 +148,35 @@ class GetInvoicesQueryParams(BaseModel):
         if self.paid_date_time_begin is None and "paid_date_time_begin" in self.model_fields_set:
             _dict['paidDateTimeBegin'] = None
 
-        # set to None if export_status (nullable) is None
+        # set to None if has_attachment (nullable) is None
         # and model_fields_set contains the field
-        if self.export_status is None and "export_status" in self.model_fields_set:
-            _dict['exportStatus'] = None
+        if self.has_attachment is None and "has_attachment" in self.model_fields_set:
+            _dict['hasAttachment'] = None
 
-        # set to None if collection_case_id (nullable) is None
+        # set to None if auto_approved_filter (nullable) is None
         # and model_fields_set contains the field
-        if self.collection_case_id is None and "collection_case_id" in self.model_fields_set:
-            _dict['collectionCaseId'] = None
+        if self.auto_approved_filter is None and "auto_approved_filter" in self.model_fields_set:
+            _dict['autoApprovedFilter'] = None
 
-        # set to None if customer_group_id (nullable) is None
+        # set to None if validation_score_min (nullable) is None
         # and model_fields_set contains the field
-        if self.customer_group_id is None and "customer_group_id" in self.model_fields_set:
-            _dict['customerGroupId'] = None
+        if self.validation_score_min is None and "validation_score_min" in self.model_fields_set:
+            _dict['validationScoreMin'] = None
 
-        # set to None if company_bank_account_id (nullable) is None
+        # set to None if validation_score_max (nullable) is None
         # and model_fields_set contains the field
-        if self.company_bank_account_id is None and "company_bank_account_id" in self.model_fields_set:
-            _dict['companyBankAccountId'] = None
+        if self.validation_score_max is None and "validation_score_max" in self.model_fields_set:
+            _dict['validationScoreMax'] = None
+
+        # set to None if flex_search (nullable) is None
+        # and model_fields_set contains the field
+        if self.flex_search is None and "flex_search" in self.model_fields_set:
+            _dict['flexSearch'] = None
+
+        # set to None if page_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
 
         return _dict
 
@@ -230,13 +190,11 @@ class GetInvoicesQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
             "invoiceType": obj.get("invoiceType"),
             "propertyGroupIds": obj.get("propertyGroupIds"),
             "productId": obj.get("productId"),
             "customerId": obj.get("customerId"),
+            "customerType": obj.get("customerType"),
             "contractId": obj.get("contractId"),
             "invoiceStatus": obj.get("invoiceStatus"),
             "paymentProcessStatus": obj.get("paymentProcessStatus"),
@@ -254,7 +212,19 @@ class GetInvoicesQueryParams(BaseModel):
             "exportStatus": obj.get("exportStatus"),
             "collectionCaseId": obj.get("collectionCaseId"),
             "customerGroupId": obj.get("customerGroupId"),
-            "companyBankAccountId": obj.get("companyBankAccountId")
+            "companyBankAccountId": obj.get("companyBankAccountId"),
+            "hasAttachment": obj.get("hasAttachment"),
+            "paymentPlanId": obj.get("paymentPlanId"),
+            "applyFiltersOverIncludedIds": obj.get("applyFiltersOverIncludedIds"),
+            "onlyWithEstimatedOriginMeasurements": obj.get("onlyWithEstimatedOriginMeasurements"),
+            "onlyCreditedInvoices": obj.get("onlyCreditedInvoices"),
+            "autoApprovedFilter": obj.get("autoApprovedFilter"),
+            "validationScoreMin": obj.get("validationScoreMin"),
+            "validationScoreMax": obj.get("validationScoreMax"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
 

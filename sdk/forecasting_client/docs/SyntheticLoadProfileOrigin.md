@@ -1,5 +1,6 @@
 # SyntheticLoadProfileOrigin
 
+Possible values: 'manual', 'systemgenerated'
 
 ## Enum
 

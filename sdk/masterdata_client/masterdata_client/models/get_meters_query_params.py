@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from masterdata_client.models.meter_reading_frequency import MeterReadingFrequency
 from masterdata_client.models.meter_type import MeterType
@@ -29,9 +29,6 @@ class GetMetersQueryParams(BaseModel):
     """
     GetMetersQueryParams
     """ # noqa: E501
-    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
-    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
-    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
     servicelocation_ids: Optional[List[StrictStr]] = Field(default=None, alias="servicelocationIds")
     property_group_ids: Optional[List[StrictStr]] = Field(default=None, alias="propertyGroupIds")
     meter_type: Optional[MeterType] = Field(default=None, alias="meterType")
@@ -44,8 +41,15 @@ class GetMetersQueryParams(BaseModel):
     reading_frequency: Optional[MeterReadingFrequency] = Field(default=None, alias="readingFrequency")
     customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
     meter_type_group: Optional[StrictStr] = Field(default=None, alias="meterTypeGroup")
-    meter_serial_number: Optional[StrictStr] = Field(default=None, alias="meterSerialNumber")
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "servicelocationIds", "propertyGroupIds", "meterType", "receivedMeteringDataStart", "receivedMeteringDataEnd", "nextExpectedReadingDateStart", "nextExpectedReadingDateEnd", "parentSerialNumber", "filterByReadingFrequency", "readingFrequency", "customerId", "meterTypeGroup", "meterSerialNumber"]
+    meter_serial_numbers: Optional[List[StrictStr]] = Field(default=None, alias="meterSerialNumbers")
+    model_ids: Optional[List[StrictStr]] = Field(default=None, alias="modelIds")
+    meter_name: Optional[StrictStr] = Field(default=None, alias="meterName")
+    show_deleted: Optional[StrictBool] = Field(default=None, alias="showDeleted")
+    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
+    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
+    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["servicelocationIds", "propertyGroupIds", "meterType", "receivedMeteringDataStart", "receivedMeteringDataEnd", "nextExpectedReadingDateStart", "nextExpectedReadingDateEnd", "parentSerialNumber", "filterByReadingFrequency", "readingFrequency", "customerId", "meterTypeGroup", "meterSerialNumbers", "modelIds", "meterName", "showDeleted", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,36 +90,6 @@ class GetMetersQueryParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if flex_search (nullable) is None
-        # and model_fields_set contains the field
-        if self.flex_search is None and "flex_search" in self.model_fields_set:
-            _dict['flexSearch'] = None
-
-        # set to None if include_only_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
-        # set to None if servicelocation_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.servicelocation_ids is None and "servicelocation_ids" in self.model_fields_set:
-            _dict['servicelocationIds'] = None
-
-        # set to None if property_group_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.property_group_ids is None and "property_group_ids" in self.model_fields_set:
-            _dict['propertyGroupIds'] = None
-
-        # set to None if meter_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.meter_type is None and "meter_type" in self.model_fields_set:
-            _dict['meterType'] = None
-
         # set to None if received_metering_data_start (nullable) is None
         # and model_fields_set contains the field
         if self.received_metering_data_start is None and "received_metering_data_start" in self.model_fields_set:
@@ -136,30 +110,20 @@ class GetMetersQueryParams(BaseModel):
         if self.next_expected_reading_date_end is None and "next_expected_reading_date_end" in self.model_fields_set:
             _dict['nextExpectedReadingDateEnd'] = None
 
-        # set to None if parent_serial_number (nullable) is None
+        # set to None if meter_name (nullable) is None
         # and model_fields_set contains the field
-        if self.parent_serial_number is None and "parent_serial_number" in self.model_fields_set:
-            _dict['parentSerialNumber'] = None
+        if self.meter_name is None and "meter_name" in self.model_fields_set:
+            _dict['meterName'] = None
 
-        # set to None if reading_frequency (nullable) is None
+        # set to None if flex_search (nullable) is None
         # and model_fields_set contains the field
-        if self.reading_frequency is None and "reading_frequency" in self.model_fields_set:
-            _dict['readingFrequency'] = None
+        if self.flex_search is None and "flex_search" in self.model_fields_set:
+            _dict['flexSearch'] = None
 
-        # set to None if customer_id (nullable) is None
+        # set to None if page_size (nullable) is None
         # and model_fields_set contains the field
-        if self.customer_id is None and "customer_id" in self.model_fields_set:
-            _dict['customerId'] = None
-
-        # set to None if meter_type_group (nullable) is None
-        # and model_fields_set contains the field
-        if self.meter_type_group is None and "meter_type_group" in self.model_fields_set:
-            _dict['meterTypeGroup'] = None
-
-        # set to None if meter_serial_number (nullable) is None
-        # and model_fields_set contains the field
-        if self.meter_serial_number is None and "meter_serial_number" in self.model_fields_set:
-            _dict['meterSerialNumber'] = None
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
 
         return _dict
 
@@ -173,9 +137,6 @@ class GetMetersQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
             "servicelocationIds": obj.get("servicelocationIds"),
             "propertyGroupIds": obj.get("propertyGroupIds"),
             "meterType": obj.get("meterType"),
@@ -188,7 +149,14 @@ class GetMetersQueryParams(BaseModel):
             "readingFrequency": obj.get("readingFrequency"),
             "customerId": obj.get("customerId"),
             "meterTypeGroup": obj.get("meterTypeGroup"),
-            "meterSerialNumber": obj.get("meterSerialNumber")
+            "meterSerialNumbers": obj.get("meterSerialNumbers"),
+            "modelIds": obj.get("modelIds"),
+            "meterName": obj.get("meterName"),
+            "showDeleted": obj.get("showDeleted"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
 

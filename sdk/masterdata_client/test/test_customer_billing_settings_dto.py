@@ -37,8 +37,9 @@ class TestCustomerBillingSettingsDTO(unittest.TestCase):
             return CustomerBillingSettingsDTO(
                 automatic_settlement_setting = masterdata_client.models.customer_billing_settings_automatic_settlement_dto.CustomerBillingSettingsAutomaticSettlementDTO(
                     automatic_settlement = True, 
-                    originator_type = null, 
-                    originator_id = '', )
+                    originator_type = 'none', 
+                    originator_id = '', ),
+                collection_day_of_month = 56
             )
         else:
             return CustomerBillingSettingsDTO(

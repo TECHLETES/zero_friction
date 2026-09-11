@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error_type** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional] 
-**message** | **str** |  | [optional] 
-**time_period** | [**MutingRuleTimePeriod**](MutingRuleTimePeriod.md) |  | [optional] 
 **only_validate** | **bool** |  | [optional] 
 **var_query_params** | [**GetMetersQueryParams**](GetMetersQueryParams.md) |  | [optional] 
 **quick_filter** | **str** |  | [optional] 
+**error_type** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional] 
+**message** | **str** |  | [optional] 
+**time_period** | [**MutingRuleTimePeriod**](MutingRuleTimePeriod.md) |  | [optional] 
 
 ## Example
 

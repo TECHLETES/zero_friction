@@ -1,5 +1,6 @@
 # OutgoingMutationStatus
 
+Possible values: 'created', 'readytosend', 'resolveissues', 'toconfirmbybank', 'closed', 'reversed', 'failedtoclose', 'failedtoreverse', 'cancelled'
 
 ## Enum
 

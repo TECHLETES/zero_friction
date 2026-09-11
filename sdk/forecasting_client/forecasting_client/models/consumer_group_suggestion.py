@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ConsumerGroupSuggestion(str, Enum):
     """
-    ConsumerGroupSuggestion
+    Possible values: 'frompropertygroup', 'originmanual', 'originsystemgenerated'
     """
 
     """

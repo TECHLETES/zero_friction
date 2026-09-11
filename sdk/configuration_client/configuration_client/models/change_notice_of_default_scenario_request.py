@@ -28,8 +28,8 @@ class ChangeNoticeOfDefaultScenarioRequest(BaseModel):
     """
     ChangeNoticeOfDefaultScenarioRequest
     """ # noqa: E501
-    pdf_template: Optional[NoticeOfDefaultPdfTemplateRequest] = Field(default=None, alias="pdfTemplate")
-    email_template: Optional[NoticeOfDefaultEmailTemplateRequest] = Field(default=None, alias="emailTemplate")
+    pdf_template: Optional[NoticeOfDefaultPdfTemplateRequest] = Field(alias="pdfTemplate")
+    email_template: Optional[NoticeOfDefaultEmailTemplateRequest] = Field(alias="emailTemplate")
     __properties: ClassVar[List[str]] = ["pdfTemplate", "emailTemplate"]
 
     model_config = ConfigDict(

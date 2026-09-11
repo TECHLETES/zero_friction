@@ -5,6 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**metering_validation_enabled** | **bool** |  | [optional] 
+**measurement_origin_enabled** | **bool** |  | [optional] 
 **validation_rules** | [**List[BaseMeteringValidationRuleDTO]**](BaseMeteringValidationRuleDTO.md) |  | [optional] 
 
 ## Example

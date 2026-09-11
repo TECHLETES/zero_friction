@@ -1,16 +1,16 @@
 # CollectionCaseOverviewCountResponseDTO
 
-Represents a summary of collection case counts for different statuses.  This DTO provides an overview of collection cases based on their current state.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** | The total number of collection cases. | [optional] 
-**active** | **int** | The number of currently active collection cases. | [optional] 
-**closed** | **int** | The number of closed collection cases. | [optional] 
-**requires_manual_intervention** | **int** | The number of collection cases that require manual intervention. | [optional] 
-**require_attention** | **int** | The number of collection cases that require immediate attention. | [optional] 
+**all** | **int** |  | [optional] 
+**active** | **int** |  | [optional] 
+**paused** | **int** |  | [optional] 
+**closed** | **int** |  | [optional] 
+**requires_manual_intervention** | **int** |  | [optional] 
+**require_attention** | **int** |  | [optional] 
 
 ## Example
 

@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** | Unique name of this data import | [optional] 
+**name** | **str** |  | 
 **disabled** | **bool** |  | [optional] 
-**automatic_processing** | **bool** | Indicates if incoming import jobs are automatically processed or if a user has to manually trigger them | [optional] 
-**custom_file_format_id** | **str** | When using a file format that deviates from the built-in format, you should fill in this property with the  ID of the custom file format. | [optional] 
-**metering_format_type** | [**DataImportMeteringFormatType**](DataImportMeteringFormatType.md) | When using a built-in format, you just need to specify the type of the format here. | [optional] 
-**parameters** | **object** |  | [optional] 
+**automatic_processing** | **bool** |  | [optional] 
+**custom_file_format_id** | **str** |  | 
+**metering_format_type** | [**DataImportMeteringFormatType**](DataImportMeteringFormatType.md) |  | 
+**parameters** | [**DataImportParametersDTO**](DataImportParametersDTO.md) |  | 
 
 ## Example
 

@@ -1,12 +1,11 @@
 # ApproveInvoiceRequest
 
-Represents a request to approve an invoice.  This DTO is used to approve a single invoice with a specified invoice date.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_date** | **datetime** | The date when the invoice should be approved. | [optional] 
+**invoice_date** | **datetime** |  | 
 
 ## Example
 

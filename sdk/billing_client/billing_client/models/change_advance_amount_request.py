@@ -25,11 +25,11 @@ from typing_extensions import Self
 
 class ChangeAdvanceAmountRequest(BaseModel):
     """
-    Represents a request to change the advance amount for a billing relation.  This DTO is used to update the monthly advance payment amount for a customer.
+    ChangeAdvanceAmountRequest
     """ # noqa: E501
-    new_advance_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The new advance amount to be set for the billing relation.", alias="newAdvanceAmount")
-    changed_by: Optional[AdvanceAmountChangedBy] = Field(default=None, description="Indicates who or what initiated the advance amount change.", alias="changedBy")
-    send_confirmation_email: Optional[StrictBool] = Field(default=None, description="Indicates whether a confirmation email should be sent to the customer about the advance amount change.", alias="sendConfirmationEmail")
+    new_advance_amount: Union[StrictFloat, StrictInt] = Field(alias="newAdvanceAmount")
+    changed_by: AdvanceAmountChangedBy = Field(alias="changedBy")
+    send_confirmation_email: Optional[StrictBool] = Field(default=None, alias="sendConfirmationEmail")
     __properties: ClassVar[List[str]] = ["newAdvanceAmount", "changedBy", "sendConfirmationEmail"]
 
     model_config = ConfigDict(
@@ -71,11 +71,6 @@ class ChangeAdvanceAmountRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if changed_by (nullable) is None
-        # and model_fields_set contains the field
-        if self.changed_by is None and "changed_by" in self.model_fields_set:
-            _dict['changedBy'] = None
-
         return _dict
 
     @classmethod

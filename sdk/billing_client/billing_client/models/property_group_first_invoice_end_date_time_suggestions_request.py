@@ -26,11 +26,11 @@ from typing_extensions import Self
 
 class PropertyGroupFirstInvoiceEndDateTimeSuggestionsRequest(BaseModel):
     """
-    Represents a request to get suggested end dates for the first invoice of a property group.  This DTO is used to determine appropriate billing period end dates based on service locations and invoice frequency.
+    PropertyGroupFirstInvoiceEndDateTimeSuggestionsRequest
     """ # noqa: E501
-    service_location_ids: Optional[List[StrictStr]] = Field(default=None, description="List of service location IDs for which to generate invoice end date suggestions.", alias="serviceLocationIds")
-    invoice_frequency: Optional[InvoiceFrequency] = Field(default=None, description="The frequency at which invoices will be generated.", alias="invoiceFrequency")
-    invoice_start_date_time_utc: Optional[datetime] = Field(default=None, description="The start date and time (in UTC) from which the first invoice period will begin.", alias="invoiceStartDateTimeUTC")
+    service_location_ids: Optional[List[StrictStr]] = Field(alias="serviceLocationIds")
+    invoice_frequency: Optional[InvoiceFrequency] = Field(default=None, alias="invoiceFrequency")
+    invoice_start_date_time_utc: Optional[datetime] = Field(default=None, alias="invoiceStartDateTimeUTC")
     __properties: ClassVar[List[str]] = ["serviceLocationIds", "invoiceFrequency", "invoiceStartDateTimeUTC"]
 
     model_config = ConfigDict(
@@ -76,11 +76,6 @@ class PropertyGroupFirstInvoiceEndDateTimeSuggestionsRequest(BaseModel):
         # and model_fields_set contains the field
         if self.service_location_ids is None and "service_location_ids" in self.model_fields_set:
             _dict['serviceLocationIds'] = None
-
-        # set to None if invoice_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_frequency is None and "invoice_frequency" in self.model_fields_set:
-            _dict['invoiceFrequency'] = None
 
         return _dict
 

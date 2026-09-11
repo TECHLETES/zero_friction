@@ -1,16 +1,15 @@
 # DebtorDTO
 
-Represents a debtor in the billing system.  Contains essential information about a customer who owes payment.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** | The unique identifier of the customer. | [optional] 
-**display_name** | **str** | The display name of the customer. | [optional] 
-**customer_account_number** | **str** | The account number assigned to the customer. | [optional] 
-**customer_type** | [**CustomerType**](CustomerType.md) | The type of customer (e.g., individual, business). | [optional] 
-**customer_group** | [**CustomerGroupReferenceDTO**](CustomerGroupReferenceDTO.md) | Reference to the customer group this debtor belongs to. | [optional] 
+**customer_id** | **str** |  | [optional] 
+**display_name** | **str** |  | [optional] 
+**customer_account_number** | **str** |  | [optional] 
+**customer_type** | [**CustomerType**](CustomerType.md) |  | [optional] 
+**customer_group** | [**CustomerGroupReferenceDTO**](CustomerGroupReferenceDTO.md) |  | [optional] 
 
 ## Example
 

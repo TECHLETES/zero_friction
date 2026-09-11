@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**external_contract_reference** | **str** |  | [optional] 
+**external_contract_reference** | **str** |  | 
 
 ## Example
 

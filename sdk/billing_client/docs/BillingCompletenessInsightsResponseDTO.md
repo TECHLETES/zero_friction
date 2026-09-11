@@ -1,27 +1,26 @@
 # BillingCompletenessInsightsResponseDTO
 
-Represents insights and status information about billing completeness.  This DTO provides detailed information about advance payments, invoice periods, and billing status.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**next_advance_start_date_time** | **datetime** | The date and time when the next advance payment period will start. | [optional] 
-**advance_frequency** | [**AdvanceFrequency**](AdvanceFrequency.md) | The frequency at which advance payments are collected. | [optional] 
-**advance_amount** | **float** | The amount of each advance payment. | [optional] 
-**advances_created** | **int** | The number of advance payments that have been created. | [optional] 
-**advances_needed** | **int** | The number of advance payments that are still needed. | [optional] 
-**invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) | The frequency at which invoices are generated. | [optional] 
-**active_invoice_start_date_time** | **datetime** | The start date and time of the currently active invoice period. | [optional] 
-**active_invoice_end_date_time** | **datetime** | The end date and time of the currently active invoice period. | [optional] 
-**active_status** | [**BillingCompletenessStatus**](BillingCompletenessStatus.md) | The current status of the active billing completeness. | [optional] 
-**active_billing_completeness_id** | **str** | The unique identifier of the active billing completeness entry. | [optional] 
-**estimated_invoice_id** | **str** | The unique identifier of the estimated invoice. | [optional] 
-**estimated_invoice_amount** | **float** | The estimated amount of the invoice. | [optional] 
-**has_open_advance_periods_with_different_tax_rate** | **bool** | Indicates whether there are open advance periods with different tax rates. | [optional] 
-**accuracy_state** | [**Level**](Level.md) | The current level of accuracy of the billing data. | [optional] 
-**draft_invoice_id** | **str** | The unique identifier of the draft invoice. | [optional] 
-**draft_invoice_amount** | **float** | The amount of the draft invoice. | [optional] 
+**next_advance_start_date_time** | **datetime** |  | [optional] 
+**advance_frequency** | [**AdvanceFrequency**](AdvanceFrequency.md) |  | [optional] 
+**advance_amount** | **float** |  | [optional] 
+**advances_created** | **int** |  | [optional] 
+**advances_needed** | **int** |  | [optional] 
+**invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) |  | [optional] 
+**active_invoice_start_date_time** | **datetime** |  | [optional] 
+**active_invoice_end_date_time** | **datetime** |  | [optional] 
+**active_status** | [**BillingCompletenessStatus**](BillingCompletenessStatus.md) |  | [optional] 
+**active_billing_completeness_id** | **str** |  | [optional] 
+**estimated_invoice_id** | **str** |  | [optional] 
+**estimated_invoice_amount** | **float** |  | [optional] 
+**has_open_advance_periods_with_different_tax_rate** | **bool** |  | [optional] 
+**accuracy_state** | [**Level**](Level.md) |  | [optional] 
+**draft_invoice_id** | **str** |  | [optional] 
+**draft_invoice_amount** | **float** |  | [optional] 
 
 ## Example
 

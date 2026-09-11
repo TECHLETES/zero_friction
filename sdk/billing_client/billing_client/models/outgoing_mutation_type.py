@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class OutgoingMutationType(str, Enum):
     """
-    OutgoingMutationType
+    Possible values: 'invoice', 'customer', 'paymentplan'
     """
 
     """
@@ -28,6 +28,7 @@ class OutgoingMutationType(str, Enum):
     """
     INVOICE = 'invoice'
     CUSTOMER = 'customer'
+    PAYMENTPLAN = 'paymentplan'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

@@ -5,9 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | **str** |  | 
+**host** | **str** |  | 
+**port** | **int** |  | [default to 22]
+**user_name** | **str** |  | 
+**password** | **str** |  | 
+**directory** | **str** |  | 
 **auto_move_after_generation** | **bool** |  | 
 **zip_files** | **bool** |  | 
 **auto_assign_entities_to_export** | **bool** |  | 
+**protocol** | [**FtpProtocol**](FtpProtocol.md) |  | 
 
 ## Example
 

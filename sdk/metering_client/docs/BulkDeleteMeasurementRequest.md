@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetMeasurementsQueryParams**](GetMeasurementsQueryParams.md) |  | [optional] 
+**var_query_params** | [**GetMeasurementsQueryParams**](GetMeasurementsQueryParams.md) |  | 
 **quick_filter** | **str** |  | [optional] 
 
 ## Example

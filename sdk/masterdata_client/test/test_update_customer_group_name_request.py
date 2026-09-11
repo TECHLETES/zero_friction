@@ -39,6 +39,7 @@ class TestUpdateCustomerGroupNameRequest(unittest.TestCase):
             )
         else:
             return UpdateCustomerGroupNameRequest(
+                name = '',
         )
         """
 

@@ -35,7 +35,43 @@ class TestAdvanceScenarioDTO(unittest.TestCase):
         model = AdvanceScenarioDTO()
         if include_optional:
             return AdvanceScenarioDTO(
-                default_communication_type = 'postal',
+                pdf_template = configuration_client.models.advance_pdf_template_dto.AdvancePdfTemplateDTO(
+                    show_country = True, 
+                    show_balance = True, 
+                    show_vat_specs = True, 
+                    show_custom_information = True, 
+                    provider_managed_template_file_name = '', 
+                    envelope_settings = configuration_client.models.envelope_settings_dto.EnvelopeSettingsDTO(
+                        margin_position = 'left', 
+                        margin = 56, 
+                        margin_top = 56, ), 
+                    render_header_footer = True, 
+                    header_text = '', 
+                    footer_text = '', 
+                    override_external_printing_checks = True, 
+                    supports_external_printing = True, 
+                    file_name = '', 
+                    use_case = 'pdf', 
+                    use_build_in = True, 
+                    custom_template_internal_file_path = '', 
+                    custom_template_file_name = '', 
+                    translation_status = 'defaulttranslation', ),
+                email_template = configuration_client.models.advance_email_template_dto.AdvanceEmailTemplateDTO(
+                    subject = '', 
+                    attachments = [
+                        configuration_client.models.template_attachment_dto.TemplateAttachmentDTO(
+                            id = '', 
+                            internal_file_path = '', 
+                            file_name = '', )
+                        ], 
+                    file_name = '', 
+                    use_case = 'pdf', 
+                    use_build_in = True, 
+                    custom_template_internal_file_path = '', 
+                    custom_template_file_name = '', 
+                    translation_status = 'defaulttranslation', ),
+                default_communication_type = 'none',
+                auto_fallback_to_postal = True,
                 translation_list_id = '',
                 translation_list_history_id = '',
                 data_type = 'invoice',
@@ -43,42 +79,11 @@ class TestAdvanceScenarioDTO(unittest.TestCase):
                 entity_subject_sub_type = '',
                 grouping_type = 'invoice',
                 entity_type = configuration_client.models.entity_type_dto.EntityTypeDTO(
-                    entity_subject_type = null, 
+                    entity_subject_type = 'none', 
                     entity_subject_sub_type = '', ),
                 available_communication_types = [
-                    'postal'
-                    ],
-                pdf_template = configuration_client.models.advance_pdf_template_dto.AdvancePdfTemplateDTO(
-                    file_name = '', 
-                    use_case = null, 
-                    use_build_in = True, 
-                    custom_template_internal_file_path = '', 
-                    custom_template_file_name = '', 
-                    translation_status = null, 
-                    envelope_settings = null, 
-                    render_header_footer = True, 
-                    header_text = '', 
-                    footer_text = '', 
-                    override_external_printing_checks = True, 
-                    supports_external_printing = True, 
-                    show_country = True, 
-                    show_balance = True, 
-                    show_vat_specs = True, 
-                    show_custom_information = True, ),
-                email_template = configuration_client.models.advance_email_template_dto.AdvanceEmailTemplateDTO(
-                    file_name = '', 
-                    use_case = null, 
-                    use_build_in = True, 
-                    custom_template_internal_file_path = '', 
-                    custom_template_file_name = '', 
-                    translation_status = null, 
-                    subject = '', 
-                    attachments = [
-                        configuration_client.models.template_attachment_dto.TemplateAttachmentDTO(
-                            id = '', 
-                            internal_file_path = '', 
-                            file_name = '', )
-                        ], )
+                    'none'
+                    ]
             )
         else:
             return AdvanceScenarioDTO(

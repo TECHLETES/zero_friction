@@ -1,12 +1,11 @@
 # ExportOutgoingBankingTransactionPaymentRequestRequest
 
-Represents a request to export outgoing banking transaction payment requests.  This DTO is used to export payment request transactions in a specified format.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**format_type** | [**ExportOutgoingBankingTransactionPaymentRequestFormatType**](ExportOutgoingBankingTransactionPaymentRequestFormatType.md) | The format type to be used for exporting the payment request transactions. | [optional] 
+**format_type** | [**ExportOutgoingBankingTransactionPaymentRequestFormatType**](ExportOutgoingBankingTransactionPaymentRequestFormatType.md) |  | [optional] 
 
 ## Example
 

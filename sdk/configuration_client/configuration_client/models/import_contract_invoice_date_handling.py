@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ImportContractInvoiceDateHandling(str, Enum):
     """
-    ImportContractInvoiceDateHandling
+    Possible values: 'donothing', 'recalculateinvoicedates', 'nextinvoicedateminusfrequency'
     """
 
     """

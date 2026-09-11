@@ -42,6 +42,9 @@ class TestPropertyGroupServiceLocationsRequest(unittest.TestCase):
             )
         else:
             return PropertyGroupServiceLocationsRequest(
+                service_locations = [
+                    ''
+                    ],
         )
         """
 

@@ -40,12 +40,12 @@ class TestInvoiceUBLValidationSpecificErrorDTO(unittest.TestCase):
                 error_subject = 'none',
                 error_subject_id = '',
                 error_message = billing_client.models.localised_error_dto.LocalisedErrorDTO(
-                    key = null, 
+                    key = 56, 
                     correlation_id = '', 
                     message = '', 
                     message_values = [
                         billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                            data_type = null, 
+                            data_type = 'text', 
                             value = '', 
                             capitalize = True, )
                         ], )

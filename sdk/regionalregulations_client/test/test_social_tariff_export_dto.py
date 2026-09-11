@@ -35,23 +35,21 @@ class TestSocialTariffExportDTO(unittest.TestCase):
         model = SocialTariffExportDTO()
         if include_optional:
             return SocialTariffExportDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 generated = True,
                 internal_file_path = '',
                 filename = '',
                 type = 'customerportfolio',
-                only_mutations = True
+                only_mutations = True,
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return SocialTariffExportDTO(

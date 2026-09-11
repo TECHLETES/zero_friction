@@ -26,12 +26,13 @@ from typing_extensions import Self
 
 class UpdateCustomerBankAccountActiveMandateRequest(BaseModel):
     """
-    Represents the updated mandate information for a customer's bank account.  This DTO contains details about the mandate that authorizes direct debit transactions.
+    UpdateCustomerBankAccountActiveMandateRequest
     """ # noqa: E501
-    number: Optional[StrictStr] = Field(default=None, description="The unique mandate number assigned to this mandate.")
-    type: Optional[MandateType] = Field(default=None, description="The type of mandate (e.g., CORE, B2B).  Currently only CORE mandates are supported.")
-    signed_date_time: Optional[datetime] = Field(default=None, description="The date and time when the mandate was signed by the customer.", alias="signedDateTime")
-    __properties: ClassVar[List[str]] = ["number", "type", "signedDateTime"]
+    number: Optional[StrictStr] = None
+    type: MandateType
+    signed_date_time: Optional[datetime] = Field(default=None, alias="signedDateTime")
+    company_bank_account_id: Optional[StrictStr] = Field(default=None, alias="companyBankAccountId")
+    __properties: ClassVar[List[str]] = ["number", "type", "signedDateTime", "companyBankAccountId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,10 +78,10 @@ class UpdateCustomerBankAccountActiveMandateRequest(BaseModel):
         if self.number is None and "number" in self.model_fields_set:
             _dict['number'] = None
 
-        # set to None if type (nullable) is None
+        # set to None if company_bank_account_id (nullable) is None
         # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
+        if self.company_bank_account_id is None and "company_bank_account_id" in self.model_fields_set:
+            _dict['companyBankAccountId'] = None
 
         return _dict
 
@@ -96,7 +97,8 @@ class UpdateCustomerBankAccountActiveMandateRequest(BaseModel):
         _obj = cls.model_validate({
             "number": obj.get("number"),
             "type": obj.get("type"),
-            "signedDateTime": obj.get("signedDateTime")
+            "signedDateTime": obj.get("signedDateTime"),
+            "companyBankAccountId": obj.get("companyBankAccountId")
         })
         return _obj
 

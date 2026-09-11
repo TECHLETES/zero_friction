@@ -39,15 +39,15 @@ class TestDateTimeFormatInfo(unittest.TestCase):
                 calendar = configuration_client.models.calendar.Calendar(
                     min_supported_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     max_supported_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    algorithm_type = null, 
+                    algorithm_type = 56, 
                     is_read_only = True, 
                     eras = [
                         56
                         ], 
                     two_digit_year_max = 56, ),
                 date_separator = '',
-                first_day_of_week = 'Sunday',
-                calendar_week_rule = 'FirstDay',
+                first_day_of_week = 56,
+                calendar_week_rule = 56,
                 full_date_time_pattern = '',
                 long_date_pattern = '',
                 long_time_pattern = '',

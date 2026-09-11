@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PaymentProcessStatus(str, Enum):
     """
-    PaymentProcessStatus
+    Possible values: 'readyforpaymentcollection', 'pendingpaymentexport', 'pendingpaymentcollectionconfirmation', 'paid', 'paymentrejected', 'waitingforpayment'
     """
 
     """

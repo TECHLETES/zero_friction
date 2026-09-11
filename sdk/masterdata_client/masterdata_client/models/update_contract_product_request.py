@@ -28,9 +28,9 @@ class UpdateContractProductRequest(BaseModel):
     """
     UpdateContractProductRequest
     """ # noqa: E501
-    start_date: Optional[datetime] = Field(default=None, alias="startDate")
+    start_date: datetime = Field(alias="startDate")
     product_id: Optional[StrictStr] = Field(default=None, alias="productId")
-    parameter: Optional[UpdateContractProductParameter] = None
+    parameter: UpdateContractProductParameter
     __properties: ClassVar[List[str]] = ["startDate", "productId", "parameter"]
 
     model_config = ConfigDict(
@@ -76,11 +76,6 @@ class UpdateContractProductRequest(BaseModel):
         # and model_fields_set contains the field
         if self.product_id is None and "product_id" in self.model_fields_set:
             _dict['productId'] = None
-
-        # set to None if parameter (nullable) is None
-        # and model_fields_set contains the field
-        if self.parameter is None and "parameter" in self.model_fields_set:
-            _dict['parameter'] = None
 
         return _dict
 

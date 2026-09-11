@@ -5,15 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**serial_number** | **str** |  | [optional] 
-**meter_type** | [**MeterType**](MeterType.md) |  | [optional] 
+**serial_number** | **str** |  | 
+**meter_type** | [**MeterType**](MeterType.md) |  | 
 **meter_tag** | **str** |  | [optional] 
 **model_id** | **str** |  | [optional] 
-**mutation_date_time** | **datetime** |  | [optional] 
-**channels** | [**List[ExternalChannelRequest]**](ExternalChannelRequest.md) |  | [optional] 
+**mutation_date_time** | **datetime** |  | 
+**channels** | [**List[ExternalChannelRequest]**](ExternalChannelRequest.md) |  | 
 **reading_frequency** | [**MeterReadingFrequency**](MeterReadingFrequency.md) |  | [optional] 
 **next_expected_reading_date** | **datetime** |  | [optional] 
-**properties** | **object** |  | [optional] 
 **parent_relation** | [**CreateMeterParentRelationRequest**](CreateMeterParentRelationRequest.md) |  | [optional] 
 
 ## Example

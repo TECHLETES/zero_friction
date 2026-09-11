@@ -37,7 +37,9 @@ class TestValidateMeasurementDTO(unittest.TestCase):
             return ValidateMeasurementDTO(
                 error = 'consumptionnegative',
                 is_valid = True,
-                is_error_muted = True
+                is_error_muted = True,
+                is_pending_async_validation = True,
+                auto_solve_warning = 'consumptionnegative'
             )
         else:
             return ValidateMeasurementDTO(

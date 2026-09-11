@@ -36,17 +36,28 @@ class TestChangeCustomerCommunicationPreferencesRequest(unittest.TestCase):
         if include_optional:
             return ChangeCustomerCommunicationPreferencesRequest(
                 communication_preferences = masterdata_client.models.customer_communication_preferences_request.CustomerCommunicationPreferencesRequest(
-                    culture = null, 
+                    culture = '', 
                     invoice_communication_preferences = [
                         masterdata_client.models.customer_invoice_communication_preferences_request.CustomerInvoiceCommunicationPreferencesRequest(
-                            invoice_type = null, 
-                            communication_type = null, )
+                            invoice_type = 'advance', 
+                            communication_type = 'none', )
                         ], 
-                    annual_statement_communication_preference = null, 
+                    annual_statement_communication_preference = 'none', 
+                    prepayment_statement_communication_preference = 'none', 
                     collection_flow_id = '', )
             )
         else:
             return ChangeCustomerCommunicationPreferencesRequest(
+                communication_preferences = masterdata_client.models.customer_communication_preferences_request.CustomerCommunicationPreferencesRequest(
+                    culture = '', 
+                    invoice_communication_preferences = [
+                        masterdata_client.models.customer_invoice_communication_preferences_request.CustomerInvoiceCommunicationPreferencesRequest(
+                            invoice_type = 'advance', 
+                            communication_type = 'none', )
+                        ], 
+                    annual_statement_communication_preference = 'none', 
+                    prepayment_statement_communication_preference = 'none', 
+                    collection_flow_id = '', ),
         )
         """
 

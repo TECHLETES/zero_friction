@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ImportStatus(str, Enum):
     """
-    ImportStatus
+    Possible values: 'created', 'validating', 'processing', 'finished', 'failed', 'undone'
     """
 
     """

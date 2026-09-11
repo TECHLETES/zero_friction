@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class WriteOffHandlingType(str, Enum):
     """
-    WriteOffHandlingType
+    Possible values: 'nowriteoff', 'openamount', 'chargeamount'
     """
 
     """

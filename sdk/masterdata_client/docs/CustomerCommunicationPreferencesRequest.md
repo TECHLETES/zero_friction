@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**culture** | **str** |  | [optional] 
-**invoice_communication_preferences** | [**List[CustomerInvoiceCommunicationPreferencesRequest]**](CustomerInvoiceCommunicationPreferencesRequest.md) |  | [optional] 
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | [optional] 
+**invoice_communication_preferences** | [**List[CustomerInvoiceCommunicationPreferencesRequest]**](CustomerInvoiceCommunicationPreferencesRequest.md) |  | 
 **annual_statement_communication_preference** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
+**prepayment_statement_communication_preference** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
 **collection_flow_id** | **str** |  | [optional] 
 
 ## Example

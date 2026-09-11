@@ -35,6 +35,7 @@ class TestGetPropertyGroupsQueryParams(unittest.TestCase):
         model = GetPropertyGroupsQueryParams()
         if include_optional:
             return GetPropertyGroupsQueryParams(
+                name_contains = '',
                 flex_search = '',
                 include_only_ids = [
                     ''
@@ -42,7 +43,7 @@ class TestGetPropertyGroupsQueryParams(unittest.TestCase):
                 exclude_ids = [
                     ''
                     ],
-                name_contains = ''
+                page_size = 56
             )
         else:
             return GetPropertyGroupsQueryParams(

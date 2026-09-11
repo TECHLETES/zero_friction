@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PaymentType(str, Enum):
     """
-    PaymentType
+    Possible values: 'incomingtransfer', 'outgoingtransfer', 'directdebit', 'onlinepayment'
     """
 
     """
@@ -29,6 +29,7 @@ class PaymentType(str, Enum):
     INCOMINGTRANSFER = 'incomingtransfer'
     OUTGOINGTRANSFER = 'outgoingtransfer'
     DIRECTDEBIT = 'directdebit'
+    ONLINEPAYMENT = 'onlinepayment'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

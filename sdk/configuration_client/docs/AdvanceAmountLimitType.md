@@ -1,5 +1,6 @@
 # AdvanceAmountLimitType
 
+Possible values: 'fixed', 'percentage'
 
 ## Enum
 

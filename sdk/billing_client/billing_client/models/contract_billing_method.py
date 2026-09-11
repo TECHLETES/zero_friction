@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ContractBillingMethod(str, Enum):
     """
-    ContractBillingMethod
+    Possible values: 'credit', 'prepayment'
     """
 
     """

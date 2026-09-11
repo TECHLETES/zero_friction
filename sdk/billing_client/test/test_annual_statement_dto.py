@@ -35,16 +35,6 @@ class TestAnnualStatementDTO(unittest.TestCase):
         model = AnnualStatementDTO()
         if include_optional:
             return AnnualStatementDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 annual_statement_number = '',
                 year = 56,
                 version = 56,
@@ -54,12 +44,12 @@ class TestAnnualStatementDTO(unittest.TestCase):
                 generation_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 sent = 'notsent',
                 failure_reason_code = billing_client.models.localised_error_dto.LocalisedErrorDTO(
-                    key = null, 
+                    key = 56, 
                     correlation_id = '', 
                     message = '', 
                     message_values = [
                         billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                            data_type = null, 
+                            data_type = 'text', 
                             value = '', 
                             capitalize = True, )
                         ], ),
@@ -70,13 +60,18 @@ class TestAnnualStatementDTO(unittest.TestCase):
                     customer_id = '', 
                     display_name = '', 
                     customer_account_number = '', 
-                    customer_type = null, 
-                    customer_group = null, ),
-                property_groups = [
-                    billing_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
+                    customer_type = 'person', 
+                    customer_group = billing_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
                         id = '', 
-                        name = '', )
-                    ]
+                        name = '', ), ),
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return AnnualStatementDTO(

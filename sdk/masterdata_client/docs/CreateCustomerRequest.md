@@ -6,24 +6,25 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_num** | **str** |  | [optional] 
-**salutation** | **str** |  | [optional] 
-**initials** | **str** |  | [optional] 
-**first_name** | **str** |  | [optional] 
-**last_name** | **str** |  | [optional] 
+**salutation** | **str** |  | 
+**initials** | **str** |  | 
+**first_name** | **str** |  | 
+**last_name** | **str** |  | 
 **birth_date** | **datetime** |  | [optional] 
-**ssin** | **str** | Social security identification number | [optional] 
-**ssin_country** | [**CountryCode**](CountryCode.md) | Social security identification number country, used for validation | [optional] 
-**customer_type** | [**CustomerType**](CustomerType.md) |  | [optional] 
-**company_name** | **str** |  | [optional] 
+**ssin** | **str** |  | 
+**ssin_country** | [**CountryCode**](CountryCode.md) |  | 
+**customer_type** | [**CustomerType**](CustomerType.md) |  | 
+**company_name** | **str** |  | 
 **vat_number** | **str** |  | [optional] 
-**organization_number** | **str** |  | [optional] 
+**organization_number** | **str** |  | 
 **payment_terms_id** | **str** |  | [optional] 
-**default_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | [optional] 
+**default_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | 
 **customer_group_id** | **str** |  | [optional] 
-**invoice_address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
-**bank_accounts** | [**List[BankAccountRequest]**](BankAccountRequest.md) |  | [optional] 
+**invoice_address** | [**AddressDTO**](AddressDTO.md) |  | 
+**bank_accounts** | [**List[BankAccountRequest]**](BankAccountRequest.md) |  | 
 **contact_details** | [**List[ContactEntryRequest]**](ContactEntryRequest.md) |  | [optional] 
-**communication_preferences** | [**CustomerCommunicationPreferencesRequest**](CustomerCommunicationPreferencesRequest.md) |  | [optional] 
+**communication_preferences** | [**CustomerCommunicationPreferencesRequest**](CustomerCommunicationPreferencesRequest.md) |  | 
+**service_number** | **str** |  | [optional] 
 
 ## Example
 

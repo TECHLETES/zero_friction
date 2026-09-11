@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** |  | [optional] 
-**signed_date_time** | **datetime** |  | [optional] 
-**signed_culture** | [**CultureInfo**](CultureInfo.md) |  | [optional] 
-**signed_localised_file_name** | **str** |  | [optional] 
+**customer_id** | **str** |  | 
+**signed_date_time** | **datetime** |  | 
+**signed_culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | 
+**signed_localised_file_name** | **str** |  | 
 
 ## Example
 

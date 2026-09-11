@@ -1,13 +1,12 @@
 # MeteringImportDataImportDto
 
-If the metering import was created via a data provider (mail, FTP, ...), it will contain the data  of that data provider.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The ID of the data provider. | [optional] 
-**name** | **str** | The name of the data provider. | [optional] 
+**id** | **str** |  | [optional] 
+**name** | **str** |  | [optional] 
 
 ## Example
 

@@ -1,5 +1,6 @@
 # AdvanceAmountChangedBy
 
+Possible values: 'systeminvoicecalculation', 'customer', 'customerservicerepresentative'
 
 ## Enum
 

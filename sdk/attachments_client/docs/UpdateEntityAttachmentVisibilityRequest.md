@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** |  | [optional] 
-**visibility** | [**AttachmentVisibility**](AttachmentVisibility.md) |  | [optional] 
+**customer_id** | **str** |  | 
+**visibility** | [**AttachmentVisibility**](AttachmentVisibility.md) |  | 
 
 ## Example
 

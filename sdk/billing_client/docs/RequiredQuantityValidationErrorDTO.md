@@ -1,16 +1,15 @@
 # RequiredQuantityValidationErrorDTO
 
-Represents validation errors for required quantities in billing completeness
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reason** | [**InputMissingReason**](InputMissingReason.md) | Reason for missing input (mutually exclusive with Error) | [optional] 
-**error** | [**ErrorCode**](ErrorCode.md) | Error code for validation failure (mutually exclusive with Reason) | [optional] 
-**problem_entity** | [**ReasonEntityDTO**](ReasonEntityDTO.md) | Entity that caused the validation error | [optional] 
-**impacted_entity** | [**ImpactedEntityDTO**](ImpactedEntityDTO.md) | Entity that is impacted by the validation error | [optional] 
-**related_entities** | [**List[RelatedEntityDTO]**](RelatedEntityDTO.md) | List of entities related to the validation error | [optional] 
+**reason** | [**InputMissingReason**](InputMissingReason.md) |  | [optional] 
+**error** | **int** |  | [optional] 
+**problem_entity** | [**ReasonEntityDTO**](ReasonEntityDTO.md) |  | [optional] 
+**impacted_entity** | [**ImpactedEntityDTO**](ImpactedEntityDTO.md) |  | [optional] 
+**related_entities** | [**List[RelatedEntityDTO]**](RelatedEntityDTO.md) |  | [optional] 
 
 ## Example
 

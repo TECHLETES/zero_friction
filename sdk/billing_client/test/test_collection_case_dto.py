@@ -35,16 +35,6 @@ class TestCollectionCaseDTO(unittest.TestCase):
         model = CollectionCaseDTO()
         if include_optional:
             return CollectionCaseDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 collection_num = '',
                 sequence_num = 56,
                 workflow_id = '',
@@ -53,8 +43,10 @@ class TestCollectionCaseDTO(unittest.TestCase):
                     customer_id = '', 
                     display_name = '', 
                     customer_account_number = '', 
-                    customer_type = null, 
-                    customer_group = null, ),
+                    customer_type = 'person', 
+                    customer_group = billing_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
+                        id = '', 
+                        name = '', ), ),
                 manual_intervention_required = True,
                 status = 'active',
                 steps = [
@@ -65,18 +57,29 @@ class TestCollectionCaseDTO(unittest.TestCase):
                         name = '', 
                         trigger_days = 56, 
                         execute_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        step_type = null, 
-                        communication_type = null, 
-                        communication_level = null, 
-                        charge_type = null, 
-                        charges = null, 
+                        step_type = 'communication', 
+                        communication_type = 'none', 
+                        communication_level = 'collection', 
+                        charge_type = 'none', 
+                        charges = billing_client.models.step_charge_dto.StepChargeDTO(
+                            step_charge_amount_incl_vat = 1.337, 
+                            step_vat_amount = 1.337, 
+                            transaction_id = '', ), 
                         executed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         documents_sent_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         document_id = '', 
                         email_id = '', 
-                        status = null, 
-                        failure_reason_code = null, 
-                        failure_details = '', 
+                        status = 'pending', 
+                        failure_reason_code = billing_client.models.localised_error_dto.LocalisedErrorDTO(
+                            key = 56, 
+                            correlation_id = '', 
+                            message = '', 
+                            message_values = [
+                                billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
+                                    data_type = 'text', 
+                                    value = '', 
+                                    capitalize = True, )
+                                ], ), 
                         supports_external_printing = True, 
                         retry_count = 56, )
                     ],
@@ -87,18 +90,29 @@ class TestCollectionCaseDTO(unittest.TestCase):
                     name = '', 
                     trigger_days = 56, 
                     execute_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    step_type = null, 
-                    communication_type = null, 
-                    communication_level = null, 
-                    charge_type = null, 
-                    charges = null, 
+                    step_type = 'communication', 
+                    communication_type = 'none', 
+                    communication_level = 'collection', 
+                    charge_type = 'none', 
+                    charges = billing_client.models.step_charge_dto.StepChargeDTO(
+                        step_charge_amount_incl_vat = 1.337, 
+                        step_vat_amount = 1.337, 
+                        transaction_id = '', ), 
                     executed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     documents_sent_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     document_id = '', 
                     email_id = '', 
-                    status = null, 
-                    failure_reason_code = null, 
-                    failure_details = '', 
+                    status = 'pending', 
+                    failure_reason_code = billing_client.models.localised_error_dto.LocalisedErrorDTO(
+                        key = 56, 
+                        correlation_id = '', 
+                        message = '', 
+                        message_values = [
+                            billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
+                                data_type = 'text', 
+                                value = '', 
+                                capitalize = True, )
+                            ], ), 
                     supports_external_printing = True, 
                     retry_count = 56, ),
                 next_step = billing_client.models.collection_case_step_dto.CollectionCaseStepDTO(
@@ -108,18 +122,29 @@ class TestCollectionCaseDTO(unittest.TestCase):
                     name = '', 
                     trigger_days = 56, 
                     execute_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    step_type = null, 
-                    communication_type = null, 
-                    communication_level = null, 
-                    charge_type = null, 
-                    charges = null, 
+                    step_type = 'communication', 
+                    communication_type = 'none', 
+                    communication_level = 'collection', 
+                    charge_type = 'none', 
+                    charges = billing_client.models.step_charge_dto.StepChargeDTO(
+                        step_charge_amount_incl_vat = 1.337, 
+                        step_vat_amount = 1.337, 
+                        transaction_id = '', ), 
                     executed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     documents_sent_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     document_id = '', 
                     email_id = '', 
-                    status = null, 
-                    failure_reason_code = null, 
-                    failure_details = '', 
+                    status = 'pending', 
+                    failure_reason_code = billing_client.models.localised_error_dto.LocalisedErrorDTO(
+                        key = 56, 
+                        correlation_id = '', 
+                        message = '', 
+                        message_values = [
+                            billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
+                                data_type = 'text', 
+                                value = '', 
+                                capitalize = True, )
+                            ], ), 
                     supports_external_printing = True, 
                     retry_count = 56, ),
                 next_action_due = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
@@ -133,6 +158,26 @@ class TestCollectionCaseDTO(unittest.TestCase):
                         name = '', )
                     ],
                 total_open_amount_incl_vat = 1.337,
+                payment_plan_details = billing_client.models.payment_plan_details_dto.PaymentPlanDetailsDTO(
+                    payment_plan_id = '', 
+                    payment_plan_number = '', 
+                    closed = True, 
+                    status = 'draft', 
+                    total_amount = 1.337, 
+                    remaining_amount = 1.337, 
+                    number_of_installments = 56, 
+                    paid_installments_count = 56, 
+                    pending_installments_count = 56, 
+                    overdue_installments_count = 56, 
+                    next_installment_due = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    payment_frequency = 'weekly', 
+                    amount_per_installment = 1.337, 
+                    final_installment_amount = 1.337, 
+                    payment_method = 'sct', 
+                    payment_reference = '', ),
+                has_active_payment_plan = True,
                 custom_properties = [
                     billing_client.models.custom_entity_property_dto.CustomEntityPropertyDTO(
                         custom_entity_property_type_id = '', 
@@ -149,7 +194,25 @@ class TestCollectionCaseDTO(unittest.TestCase):
                                 start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                             ], )
-                    ]
+                    ],
+                failure_reason_code = billing_client.models.localised_error_dto.LocalisedErrorDTO(
+                    key = 56, 
+                    correlation_id = '', 
+                    message = '', 
+                    message_values = [
+                        billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
+                            data_type = 'text', 
+                            value = '', 
+                            capitalize = True, )
+                        ], ),
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return CollectionCaseDTO(

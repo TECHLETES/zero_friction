@@ -35,21 +35,19 @@ class TestCollectionFlowDTO(unittest.TestCase):
         model = CollectionFlowDTO()
         if include_optional:
             return CollectionFlowDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
                 name = '',
                 days_after_invoice_due = 56,
                 step_ids = [
                     ''
                     ],
-                deleted = True
+                deleted = True,
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return CollectionFlowDTO(

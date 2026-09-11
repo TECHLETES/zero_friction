@@ -5,17 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**kbo_number** | **str** |  | [optional] 
-**gln_id** | **str** |  | [optional] 
-**supplier_address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
-**contact_email_address** | **str** |  | [optional] 
-**contact_telephone_number** | **str** |  | [optional] 
+**kbo_number** | **str** |  | 
+**gln_id** | **str** |  | 
+**supplier_address** | [**AddressDTO**](AddressDTO.md) |  | 
+**contact_email_address** | **str** |  | 
+**contact_telephone_number** | **str** |  | 
 **contact_fax_number** | **str** |  | [optional] 
-**contact_last_name** | **str** |  | [optional] 
-**contact_first_name** | **str** |  | [optional] 
-**social_tariff_custom_entity_property_id** | **str** |  | [optional] 
-**share_props_with_government_custom_entity_property_id** | **str** |  | [optional] 
-**bim_custom_entity_property_id** | **str** |  | [optional] 
+**contact_last_name** | **str** |  | 
+**contact_first_name** | **str** |  | 
+**social_tariff_custom_entity_property_id** | **str** |  | 
+**share_props_with_government_custom_entity_property_id** | **str** |  | 
+**bim_custom_entity_property_id** | **str** |  | 
 
 ## Example
 

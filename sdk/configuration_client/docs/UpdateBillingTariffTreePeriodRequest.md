@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **product_id** | **str** |  | [optional] 
-**activity_period** | [**DateRange**](DateRange.md) |  | [optional] 
+**activity_period** | [**DateRange**](DateRange.md) |  | 
 **billing_tariff_ids** | **List[str]** |  | [optional] 
 
 ## Example

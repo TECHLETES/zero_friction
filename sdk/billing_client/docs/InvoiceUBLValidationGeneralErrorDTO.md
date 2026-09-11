@@ -1,12 +1,11 @@
 # InvoiceUBLValidationGeneralErrorDTO
 
-Represents a general UBL validation error that applies to multiple invoices
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error_message** | [**LocalisedErrorDTO**](LocalisedErrorDTO.md) | Localized error message | [optional] 
+**error_message** | [**LocalisedErrorDTO**](LocalisedErrorDTO.md) |  | [optional] 
 
 ## Example
 

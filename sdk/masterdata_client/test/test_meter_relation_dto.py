@@ -41,6 +41,8 @@ class TestMeterRelationDTO(unittest.TestCase):
             )
         else:
             return MeterRelationDTO(
+                meter_id = '',
+                serial_number = '',
         )
         """
 

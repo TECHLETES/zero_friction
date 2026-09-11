@@ -5,9 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | **str** |  | 
+**reference** | **str** |  | [optional] 
+**service_location_external_id** | **str** |  | [optional] 
 **service_location_id** | **str** |  | [optional] 
 **utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**external_identifier** | **str** |  | [optional] 
 **estimated_consumptions** | [**List[CreateContractServiceEstimatedConsumptionRequest]**](CreateContractServiceEstimatedConsumptionRequest.md) |  | [optional] 
 
 ## Example

@@ -1,13 +1,12 @@
 # MarkCollectionCaseManuallyClosedRequest
 
-Represents a request to manually close a collection case.  This DTO is used to close a collection case and optionally handle any associated fees.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**write_off_fees** | **bool** | Indicates whether any collection fees should be written off when closing the case. | [optional] 
-**write_off_handling_type** | [**WriteOffHandlingType**](WriteOffHandlingType.md) | Specifies how any collection fees should be handled when closing the case.  This is required when WriteOffFees is true. | [optional] 
+**write_off_fees** | **bool** |  | [optional] 
+**write_off_handling_type** | [**WriteOffHandlingType**](WriteOffHandlingType.md) |  | 
 
 ## Example
 

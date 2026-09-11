@@ -38,11 +38,18 @@ class TestCreateCostCenterRequest(unittest.TestCase):
                 code = '',
                 description = '',
                 metadata = configuration_client.models.external_accounting_metadata_request.ExternalAccountingMetadataRequest(
-                    source = '0', 
-                    source_entity_id = '0', )
+                    source = '', 
+                    source_entity_id = '', 
+                    source_accounting_company_id = '', )
             )
         else:
             return CreateCostCenterRequest(
+                code = '',
+                description = '',
+                metadata = configuration_client.models.external_accounting_metadata_request.ExternalAccountingMetadataRequest(
+                    source = '', 
+                    source_entity_id = '', 
+                    source_accounting_company_id = '', ),
         )
         """
 

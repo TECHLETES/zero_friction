@@ -36,7 +36,7 @@ class TestInvoiceCommunicationPreferenceDTO(unittest.TestCase):
         if include_optional:
             return InvoiceCommunicationPreferenceDTO(
                 invoice_type = 'advance',
-                communication_type = 'postal'
+                communication_type = 'none'
             )
         else:
             return InvoiceCommunicationPreferenceDTO(

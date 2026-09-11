@@ -1,15 +1,15 @@
 # CustomerCommunicationPreferencesDTO
 
-Represents communication preferences for a customer
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **culture** | **str** |  | [optional] 
-**invoice_communication_preferences** | [**List[InvoiceCommunicationPreferenceDTO]**](InvoiceCommunicationPreferenceDTO.md) | List of invoice communication preferences | [optional] 
-**annual_statement_communication_preference** | [**CommunicationType**](CommunicationType.md) | The communication type preference for annual statements | [optional] 
-**collection_flow_id** | **str** | Identifier for the collection flow | [optional] 
+**invoice_communication_preferences** | [**List[InvoiceCommunicationPreferenceDTO]**](InvoiceCommunicationPreferenceDTO.md) |  | [optional] 
+**annual_statement_communication_preference** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
+**prepayment_statement_communication_preference** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
+**collection_flow_id** | **str** |  | [optional] 
 
 ## Example
 

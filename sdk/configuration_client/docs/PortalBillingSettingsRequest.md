@@ -6,7 +6,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **allow_customer_to_change_advance_amount** | **bool** |  | [optional] 
+**allow_customer_to_change_invoice_address** | **bool** |  | [optional] 
 **hide_invoice_section** | **bool** |  | [optional] 
+**hide_payment_reference** | **bool** |  | [optional] 
+**require_birth_date_for_persons** | **bool** |  | [optional] 
 
 ## Example
 

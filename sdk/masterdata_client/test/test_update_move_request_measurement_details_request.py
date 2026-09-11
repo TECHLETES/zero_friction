@@ -40,8 +40,8 @@ class TestUpdateMoveRequestMeasurementDetailsRequest(unittest.TestCase):
                         internal_meter_id = '', 
                         external_channel_identifier = '', 
                         meter_serial_number = '', 
-                        utility_type = null, 
-                        unit_of_measure = null, 
+                        utility_type = 'none', 
+                        unit_of_measure = 'none', 
                         time_of_use = '', 
                         value = 1.337, )
                     ]

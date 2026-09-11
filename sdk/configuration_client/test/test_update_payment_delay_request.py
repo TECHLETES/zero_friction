@@ -40,6 +40,7 @@ class TestUpdatePaymentDelayRequest(unittest.TestCase):
             )
         else:
             return UpdatePaymentDelayRequest(
+                payment_delay = 'delayuntilfixeddayofmonth',
         )
         """
 

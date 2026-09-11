@@ -1,5 +1,6 @@
 # DataFrequency
 
+Possible values: 'pt1m', 'pt5m', 'pt15m', 'pt30m', 'pt1h', 'p1d', 'na'
 
 ## Enum
 

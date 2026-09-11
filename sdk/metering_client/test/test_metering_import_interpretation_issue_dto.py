@@ -36,22 +36,22 @@ class TestMeteringImportInterpretationIssueDTO(unittest.TestCase):
         if include_optional:
             return MeteringImportInterpretationIssueDTO(
                 error_code = metering_client.models.localised_error_dto.LocalisedErrorDTO(
-                    key = null, 
+                    key = 56, 
                     correlation_id = '', 
                     message = '', 
                     message_values = [
                         metering_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                            data_type = null, 
+                            data_type = 'text', 
                             value = '', 
                             capitalize = True, )
                         ], ),
                 error_code_info = metering_client.models.localised_error_dto.LocalisedErrorDTO(
-                    key = null, 
+                    key = 56, 
                     correlation_id = '', 
                     message = '', 
                     message_values = [
                         metering_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                            data_type = null, 
+                            data_type = 'text', 
                             value = '', 
                             capitalize = True, )
                         ], ),

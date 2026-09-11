@@ -43,7 +43,8 @@ class TestBulkDownloadSocialTariffsRequest(unittest.TestCase):
                         ], 
                     exclude_ids = [
                         ''
-                        ], ),
+                        ], 
+                    page_size = 56, ),
                 quick_filter = '',
                 social_tariff_ids = [
                     ''

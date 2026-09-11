@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ProductItemPeriodicityType(str, Enum):
     """
-    ProductItemPeriodicityType
+    Possible values: 'regular', 'onmovein', 'onmoveout', 'fixedamount', 'fixedduration'
     """
 
     """

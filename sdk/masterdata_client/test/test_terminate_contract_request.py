@@ -36,10 +36,12 @@ class TestTerminateContractRequest(unittest.TestCase):
         if include_optional:
             return TerminateContractRequest(
                 mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                keep_existing_invoice_on_end_date = True
+                keep_existing_invoice_on_end_date = True,
+                create_prepayment_correction_for_charged_costs = True
             )
         else:
             return TerminateContractRequest(
+                mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class DataImportMeteringFormatType(str, Enum):
     """
-    DataImportMeteringFormatType
+    Possible values: 'elvaco_1104', 'elvaco_1112', 'customcsv', 'kamstrupready_v1', 'izarcenter', 'flamco', 'cadis', 'climaways', 'equinox_sinapsi', 'siemens_synco', 'cadislora', 'ycongouda', 'synergirbisgen3', 'synergirbisgen1_2', 'engelmann', 'inboundapi', 'synergirbisgen4', 'caleffi', 'customcsvcolumn'
     """
 
     """
@@ -43,6 +43,8 @@ class DataImportMeteringFormatType(str, Enum):
     ENGELMANN = 'engelmann'
     INBOUNDAPI = 'inboundapi'
     SYNERGIRBISGEN4 = 'synergirbisgen4'
+    CALEFFI = 'caleffi'
+    CUSTOMCSVCOLUMN = 'customcsvcolumn'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.billing_calculation_type_parameters_dto import BillingCalculationTypeParametersDTO
 from configuration_client.models.tier_calculation_method import TierCalculationMethod
@@ -28,13 +28,16 @@ class UpdateBillingItemRequest(BaseModel):
     """
     UpdateBillingItemRequest
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    description: Optional[StrictStr] = None
+    name: Optional[StrictStr]
+    description: Optional[StrictStr]
     person_tax_code_id: Optional[StrictStr] = Field(default=None, alias="personTaxCodeId")
     organisation_tax_code_id: Optional[StrictStr] = Field(default=None, alias="organisationTaxCodeId")
+    accounting_code_id: Optional[StrictStr] = Field(default=None, alias="accountingCodeId")
+    hide_when_zero: Optional[StrictBool] = Field(default=None, alias="hideWhenZero")
+    is_prepayment_eligible: Optional[StrictBool] = Field(default=None, alias="isPrepaymentEligible")
     tier_calculation_method: Optional[TierCalculationMethod] = Field(default=None, alias="tierCalculationMethod")
-    calculation_parameters: Optional[BillingCalculationTypeParametersDTO] = Field(default=None, alias="calculationParameters")
-    __properties: ClassVar[List[str]] = ["name", "description", "personTaxCodeId", "organisationTaxCodeId", "tierCalculationMethod", "calculationParameters"]
+    calculation_parameters: Optional[BillingCalculationTypeParametersDTO] = Field(alias="calculationParameters")
+    __properties: ClassVar[List[str]] = ["name", "description", "personTaxCodeId", "organisationTaxCodeId", "accountingCodeId", "hideWhenZero", "isPrepaymentEligible", "tierCalculationMethod", "calculationParameters"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,10 +101,10 @@ class UpdateBillingItemRequest(BaseModel):
         if self.organisation_tax_code_id is None and "organisation_tax_code_id" in self.model_fields_set:
             _dict['organisationTaxCodeId'] = None
 
-        # set to None if tier_calculation_method (nullable) is None
+        # set to None if accounting_code_id (nullable) is None
         # and model_fields_set contains the field
-        if self.tier_calculation_method is None and "tier_calculation_method" in self.model_fields_set:
-            _dict['tierCalculationMethod'] = None
+        if self.accounting_code_id is None and "accounting_code_id" in self.model_fields_set:
+            _dict['accountingCodeId'] = None
 
         # set to None if calculation_parameters (nullable) is None
         # and model_fields_set contains the field
@@ -124,6 +127,9 @@ class UpdateBillingItemRequest(BaseModel):
             "description": obj.get("description"),
             "personTaxCodeId": obj.get("personTaxCodeId"),
             "organisationTaxCodeId": obj.get("organisationTaxCodeId"),
+            "accountingCodeId": obj.get("accountingCodeId"),
+            "hideWhenZero": obj.get("hideWhenZero"),
+            "isPrepaymentEligible": obj.get("isPrepaymentEligible"),
             "tierCalculationMethod": obj.get("tierCalculationMethod"),
             "calculationParameters": BillingCalculationTypeParametersDTO.from_dict(obj["calculationParameters"]) if obj.get("calculationParameters") is not None else None
         })

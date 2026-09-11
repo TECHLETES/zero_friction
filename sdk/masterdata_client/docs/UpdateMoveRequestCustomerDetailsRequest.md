@@ -9,22 +9,23 @@ Name | Type | Description | Notes
 **salutation** | **str** |  | [optional] 
 **initials** | **str** |  | [optional] 
 **first_name** | **str** |  | [optional] 
-**last_name** | **str** |  | [optional] 
+**last_name** | **str** |  | 
 **birth_date** | **datetime** |  | [optional] 
-**ssin** | **str** |  | [optional] 
-**ssin_country** | [**CountryCode**](CountryCode.md) |  | [optional] 
-**customer_type** | [**CustomerType**](CustomerType.md) |  | [optional] 
-**company_name** | **str** |  | [optional] 
+**ssin** | **str** |  | 
+**ssin_country** | [**CountryCode**](CountryCode.md) |  | 
+**customer_type** | [**CustomerType**](CustomerType.md) |  | 
+**company_name** | **str** |  | 
 **organization_number** | **str** |  | [optional] 
 **vat_number** | **str** |  | [optional] 
-**default_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | [optional] 
+**default_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | 
 **invoice_address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
-**bank_account** | **str** |  | [optional] 
+**country_code** | [**CountryCode**](CountryCode.md) |  | [optional] 
+**bank_account** | **str** |  | 
 **email_address** | **str** |  | [optional] 
 **telephone_number** | **str** |  | [optional] 
 **mobile_telephone_number** | **str** |  | [optional] 
 **website** | **str** |  | [optional] 
-**culture** | **str** |  | [optional] 
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | [optional] 
 **internal_id** | **str** |  | [optional] 
 **customer_group_id** | **str** |  | [optional] 
 

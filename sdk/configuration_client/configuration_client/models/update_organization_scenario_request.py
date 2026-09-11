@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.base_email_template_request import BaseEmailTemplateRequest
 from configuration_client.models.base_pdf_template_request import BasePdfTemplateRequest
@@ -29,10 +29,11 @@ class UpdateOrganizationScenarioRequest(BaseModel):
     """
     UpdateOrganizationScenarioRequest
     """ # noqa: E501
-    default_communication_type: Optional[CommunicationType] = Field(default=None, alias="defaultCommunicationType")
     email_template: Optional[BaseEmailTemplateRequest] = Field(default=None, alias="emailTemplate")
     pdf_template: Optional[BasePdfTemplateRequest] = Field(default=None, alias="pdfTemplate")
-    __properties: ClassVar[List[str]] = ["defaultCommunicationType", "emailTemplate", "pdfTemplate"]
+    default_communication_type: Optional[CommunicationType] = Field(default=None, alias="defaultCommunicationType")
+    auto_fallback_to_postal: Optional[StrictBool] = Field(default=None, alias="autoFallbackToPostal")
+    __properties: ClassVar[List[str]] = ["emailTemplate", "pdfTemplate", "defaultCommunicationType", "autoFallbackToPostal"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,11 +80,6 @@ class UpdateOrganizationScenarioRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of pdf_template
         if self.pdf_template:
             _dict['pdfTemplate'] = self.pdf_template.to_dict()
-        # set to None if default_communication_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.default_communication_type is None and "default_communication_type" in self.model_fields_set:
-            _dict['defaultCommunicationType'] = None
-
         # set to None if email_template (nullable) is None
         # and model_fields_set contains the field
         if self.email_template is None and "email_template" in self.model_fields_set:
@@ -106,9 +102,10 @@ class UpdateOrganizationScenarioRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "defaultCommunicationType": obj.get("defaultCommunicationType"),
             "emailTemplate": BaseEmailTemplateRequest.from_dict(obj["emailTemplate"]) if obj.get("emailTemplate") is not None else None,
-            "pdfTemplate": BasePdfTemplateRequest.from_dict(obj["pdfTemplate"]) if obj.get("pdfTemplate") is not None else None
+            "pdfTemplate": BasePdfTemplateRequest.from_dict(obj["pdfTemplate"]) if obj.get("pdfTemplate") is not None else None,
+            "defaultCommunicationType": obj.get("defaultCommunicationType"),
+            "autoFallbackToPostal": obj.get("autoFallbackToPostal")
         })
         return _obj
 

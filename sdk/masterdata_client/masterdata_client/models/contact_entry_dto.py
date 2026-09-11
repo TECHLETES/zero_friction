@@ -25,12 +25,12 @@ from typing_extensions import Self
 
 class ContactEntryDTO(BaseModel):
     """
-    Represents a contact entry for a customer
+    ContactEntryDTO
     """ # noqa: E501
-    contact_type: Optional[ContactType] = Field(default=None, description="Type of contact information", alias="contactType")
-    value: Optional[StrictStr] = Field(default=None, description="The actual contact value")
-    description: Optional[StrictStr] = Field(default=None, description="Description of the contact entry")
-    primary_for_type: Optional[StrictBool] = Field(default=None, description="Indicates whether this is the primary contact method for its type", alias="primaryForType")
+    contact_type: Optional[ContactType] = Field(default=None, alias="contactType")
+    value: Optional[StrictStr] = None
+    description: Optional[StrictStr] = None
+    primary_for_type: Optional[StrictBool] = Field(default=None, alias="primaryForType")
     __properties: ClassVar[List[str]] = ["contactType", "value", "description", "primaryForType"]
 
     model_config = ConfigDict(
@@ -72,11 +72,6 @@ class ContactEntryDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if contact_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.contact_type is None and "contact_type" in self.model_fields_set:
-            _dict['contactType'] = None
-
         # set to None if value (nullable) is None
         # and model_fields_set contains the field
         if self.value is None and "value" in self.model_fields_set:

@@ -5,10 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**billing_items** | [**List[UpsertProductBillingItemsRequest]**](UpsertProductBillingItemsRequest.md) |  | [optional] 
-**attachments** | [**List[UpsertProductAttachmentRequest]**](UpsertProductAttachmentRequest.md) |  | [optional] 
+**name** | **str** |  | 
+**billing_items** | [**List[UpsertProductBillingItemsRequest]**](UpsertProductBillingItemsRequest.md) |  | 
+**attachments** | [**List[UpsertProductAttachmentRequest]**](UpsertProductAttachmentRequest.md) |  | 
 **invoice_upfront** | **bool** |  | [optional] 
+**is_prepayment_eligible** | **bool** |  | [optional] 
+**accounting_code_id** | **str** |  | [optional] 
 
 ## Example
 

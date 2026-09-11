@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **retry_attempt** | **int** |  | [optional] 
-**retry_action** | [**PaymentRetryAction**](PaymentRetryAction.md) |  | [optional] 
+**retry_action** | [**PaymentRetryAction**](PaymentRetryAction.md) |  | 
 **value** | **int** |  | [optional] 
 
 ## Example

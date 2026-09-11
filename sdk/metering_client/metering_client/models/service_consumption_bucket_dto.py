@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from metering_client.models.date_range import DateRange
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,7 +31,8 @@ class ServiceConsumptionBucketDTO(BaseModel):
     value: Optional[Union[StrictFloat, StrictInt]] = None
     start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
     end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
-    __properties: ClassVar[List[str]] = ["value", "startDateTime", "endDateTime"]
+    gaps: Optional[List[DateRange]] = None
+    __properties: ClassVar[List[str]] = ["value", "startDateTime", "endDateTime", "gaps"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +73,18 @@ class ServiceConsumptionBucketDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in gaps (list)
+        _items = []
+        if self.gaps:
+            for _item_gaps in self.gaps:
+                if _item_gaps:
+                    _items.append(_item_gaps.to_dict())
+            _dict['gaps'] = _items
+        # set to None if gaps (nullable) is None
+        # and model_fields_set contains the field
+        if self.gaps is None and "gaps" in self.model_fields_set:
+            _dict['gaps'] = None
+
         return _dict
 
     @classmethod
@@ -85,7 +99,8 @@ class ServiceConsumptionBucketDTO(BaseModel):
         _obj = cls.model_validate({
             "value": obj.get("value"),
             "startDateTime": obj.get("startDateTime"),
-            "endDateTime": obj.get("endDateTime")
+            "endDateTime": obj.get("endDateTime"),
+            "gaps": [DateRange.from_dict(_item) for _item in obj["gaps"]] if obj.get("gaps") is not None else None
         })
         return _obj
 

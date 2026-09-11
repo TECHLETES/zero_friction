@@ -1,14 +1,13 @@
 # BulkDeleteIncomingBankingTransactionRequest
 
-Represents a bulk request to delete multiple incoming banking transactions.  This DTO allows for batch deletion of transactions based on query parameters and filters.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**only_validate** | **bool** | Indicates whether this is a validation-only request without actual deletion. | [optional] 
-**var_query_params** | [**GetIncomingBankingTransactionsQueryParams**](GetIncomingBankingTransactionsQueryParams.md) | Query parameters to filter the transactions to be deleted. | [optional] 
-**quick_filter** | **str** | A quick filter string to further refine the selection of transactions to be deleted. | [optional] 
+**only_validate** | **bool** |  | [optional] 
+**var_query_params** | [**GetIncomingBankingTransactionsQueryParams**](GetIncomingBankingTransactionsQueryParams.md) |  | [optional] 
+**quick_filter** | **str** |  | [optional] 
 
 ## Example
 

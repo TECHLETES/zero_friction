@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from metering_client.models.base_metering_issue_resolution_value_dto import BaseMeteringIssueResolutionValueDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class ResolveMeteringIssueRequest(BaseModel):
     ResolveMeteringIssueRequest
     """ # noqa: E501
     message: Optional[StrictStr] = None
-    resolution_value: Optional[Dict[str, Any]] = Field(default=None, alias="resolutionValue")
+    resolution_value: Optional[BaseMeteringIssueResolutionValueDTO] = Field(default=None, alias="resolutionValue")
     __properties: ClassVar[List[str]] = ["message", "resolutionValue"]
 
     model_config = ConfigDict(
@@ -69,6 +70,9 @@ class ResolveMeteringIssueRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of resolution_value
+        if self.resolution_value:
+            _dict['resolutionValue'] = self.resolution_value.to_dict()
         # set to None if message (nullable) is None
         # and model_fields_set contains the field
         if self.message is None and "message" in self.model_fields_set:
@@ -92,7 +96,7 @@ class ResolveMeteringIssueRequest(BaseModel):
 
         _obj = cls.model_validate({
             "message": obj.get("message"),
-            "resolutionValue": obj.get("resolutionValue")
+            "resolutionValue": BaseMeteringIssueResolutionValueDTO.from_dict(obj["resolutionValue"]) if obj.get("resolutionValue") is not None else None
         })
         return _obj
 

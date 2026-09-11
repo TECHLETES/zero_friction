@@ -35,23 +35,26 @@ class TestImportedMeasurementsOverviewDTO(unittest.TestCase):
         model = ImportedMeasurementsOverviewDTO()
         if include_optional:
             return ImportedMeasurementsOverviewDTO(
-                measurements = metering_client.models.imported_measurement_processing_result_dto_paged_response_model_dto.ImportedMeasurementProcessingResultDTOPagedResponseModelDTO(
+                measurements = metering_client.models.paged_response_model_dtoof_imported_measurement_processing_result_dto.PagedResponseModelDTOOfImportedMeasurementProcessingResultDTO(
                     results = [
                         metering_client.models.imported_measurement_processing_result_dto.ImportedMeasurementProcessingResultDTO(
                             meter_serial_number = '', 
                             external_channel_identifier = '', 
                             external_reference = '', 
-                            metering_type = null, 
-                            utility_type = null, 
-                            direction = null, 
-                            unit_of_measure = null, 
+                            metering_type = 'none', 
+                            utility_type = 'none', 
+                            direction = 'offtake', 
+                            unit_of_measure = 'none', 
                             reading_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            measurement_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             time_of_use = '', 
                             reading_value = 1.337, 
                             error_code = '', 
                             line_number = 56, 
                             processed_on = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            was_ignored = True, )
+                            was_ignored = True, 
+                            reading_origin = 'device', 
+                            reading_method = 'automatic', )
                         ], 
                     has_next_page = True, 
                     next_page_token = '', 

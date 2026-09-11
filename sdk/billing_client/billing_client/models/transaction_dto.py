@@ -20,9 +20,13 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from billing_client.models.account_export_details_dto import AccountExportDetailsDTO
+from billing_client.models.account_export_status import AccountExportStatus
+from billing_client.models.collection_case_details_dto import CollectionCaseDetailsDTO
 from billing_client.models.debtor_dto import DebtorDTO
 from billing_client.models.entity_subject_type import EntitySubjectType
 from billing_client.models.outgoing_banking_transaction_type import OutgoingBankingTransactionType
+from billing_client.models.payment_plan_details_dto import PaymentPlanDetailsDTO
 from billing_client.models.payment_reversal_reason import PaymentReversalReason
 from billing_client.models.property_group_reference_dto import PropertyGroupReferenceDTO
 from billing_client.models.settlement_details_dto import SettlementDetailsDTO
@@ -34,45 +38,46 @@ from typing_extensions import Self
 
 class TransactionDTO(BaseModel):
     """
-    Represents a transaction in the billing system
+    TransactionDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
-    transaction_type: Optional[TransactionType] = Field(default=None, description="Type of the transaction", alias="transactionType")
-    transaction_sub_type: Optional[TransactionSubType] = Field(default=None, description="Subtype of the transaction", alias="transactionSubType")
-    transaction_date_time: Optional[datetime] = Field(default=None, description="Date and time when the transaction occurred", alias="transactionDateTime")
-    transaction_due_date_time: Optional[datetime] = Field(default=None, description="Date and time when the transaction is due", alias="transactionDueDateTime")
-    transaction_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of the transaction", alias="transactionAmount")
-    transaction_open_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Remaining open amount of the transaction", alias="transactionOpenAmount")
-    customer_id: Optional[StrictStr] = Field(default=None, description="Identifier of the customer", alias="customerId")
-    debtor: Optional[DebtorDTO] = Field(default=None, description="Debtor information")
-    organisation_bank_account_id: Optional[StrictStr] = Field(default=None, description="Identifier of the organization's bank account (obsolete, for backwards compatibility)", alias="organisationBankAccountId")
-    company_bank_account_id: Optional[StrictStr] = Field(default=None, description="Identifier of the company's bank account", alias="companyBankAccountId")
-    payment_reference: Optional[StrictStr] = Field(default=None, description="Payment reference number", alias="paymentReference")
-    reference_details: Optional[TransactionReferenceDetailsDTO] = Field(default=None, description="Reference details for the transaction", alias="referenceDetails")
-    settlement_details: Optional[SettlementDetailsDTO] = Field(default=None, description="Settlement details for the transaction", alias="settlementDetails")
-    reversed: Optional[StrictBool] = Field(default=None, description="Indicates if the transaction has been reversed")
-    reversal_reason: Optional[PaymentReversalReason] = Field(default=None, description="Reason for payment reversal", alias="reversalReason")
-    reversal_additional_information: Optional[StrictStr] = Field(default=None, description="Additional information about the reversal", alias="reversalAdditionalInformation")
-    automatically_closed: Optional[StrictBool] = Field(default=None, description="Indicates if the transaction was automatically closed", alias="automaticallyClosed")
-    awaiting_bank_confirmation: Optional[StrictBool] = Field(default=None, description="Indicates if the transaction is awaiting bank confirmation", alias="awaitingBankConfirmation")
-    awaiting_bank_confirmation_transaction_id: Optional[StrictStr] = Field(default=None, description="Identifier of the transaction awaiting bank confirmation", alias="awaitingBankConfirmationTransactionId")
-    awaiting_bank_confirmation_transaction_identification: Optional[StrictStr] = Field(default=None, description="Identification of the transaction awaiting bank confirmation", alias="awaitingBankConfirmationTransactionIdentification")
-    awaiting_bank_confirmation_transaction_type: Optional[OutgoingBankingTransactionType] = Field(default=None, description="Type of outgoing banking transaction awaiting confirmation", alias="awaitingBankConfirmationTransactionType")
-    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, description="List of associated property groups", alias="propertyGroups")
-    incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, description="Identifier of the incoming banking transaction", alias="incomingBankingTransactionId")
-    incoming_mutation_id: Optional[StrictStr] = Field(default=None, description="Identifier of the incoming mutation", alias="incomingMutationId")
-    outgoing_banking_transaction_id: Optional[StrictStr] = Field(default=None, description="Identifier of the outgoing banking transaction", alias="outgoingBankingTransactionId")
-    outgoing_mutation_id: Optional[StrictStr] = Field(default=None, description="Identifier of the outgoing mutation", alias="outgoingMutationId")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "transactionType", "transactionSubType", "transactionDateTime", "transactionDueDateTime", "transactionAmount", "transactionOpenAmount", "customerId", "debtor", "organisationBankAccountId", "companyBankAccountId", "paymentReference", "referenceDetails", "settlementDetails", "reversed", "reversalReason", "reversalAdditionalInformation", "automaticallyClosed", "awaitingBankConfirmation", "awaitingBankConfirmationTransactionId", "awaitingBankConfirmationTransactionIdentification", "awaitingBankConfirmationTransactionType", "propertyGroups", "incomingBankingTransactionId", "incomingMutationId", "outgoingBankingTransactionId", "outgoingMutationId"]
+    transaction_type: Optional[TransactionType] = Field(default=None, alias="transactionType")
+    transaction_sub_type: Optional[TransactionSubType] = Field(default=None, alias="transactionSubType")
+    transaction_date_time: Optional[datetime] = Field(default=None, alias="transactionDateTime")
+    transaction_due_date_time: Optional[datetime] = Field(default=None, alias="transactionDueDateTime")
+    transaction_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="transactionAmount")
+    transaction_open_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="transactionOpenAmount")
+    debtor: Optional[DebtorDTO] = None
+    organisation_bank_account_id: Optional[StrictStr] = Field(default=None, alias="organisationBankAccountId")
+    company_bank_account_id: Optional[StrictStr] = Field(default=None, alias="companyBankAccountId")
+    payment_reference: Optional[StrictStr] = Field(default=None, alias="paymentReference")
+    reference_details: Optional[TransactionReferenceDetailsDTO] = Field(default=None, alias="referenceDetails")
+    settlement_details: Optional[SettlementDetailsDTO] = Field(default=None, alias="settlementDetails")
+    reversed: Optional[StrictBool] = None
+    reversal_reason: Optional[PaymentReversalReason] = Field(default=None, alias="reversalReason")
+    reversal_additional_information: Optional[StrictStr] = Field(default=None, alias="reversalAdditionalInformation")
+    automatically_closed: Optional[StrictBool] = Field(default=None, alias="automaticallyClosed")
+    awaiting_bank_confirmation: Optional[StrictBool] = Field(default=None, alias="awaitingBankConfirmation")
+    awaiting_bank_confirmation_transaction_id: Optional[StrictStr] = Field(default=None, alias="awaitingBankConfirmationTransactionId")
+    awaiting_bank_confirmation_transaction_identification: Optional[StrictStr] = Field(default=None, alias="awaitingBankConfirmationTransactionIdentification")
+    awaiting_bank_confirmation_transaction_type: Optional[OutgoingBankingTransactionType] = Field(default=None, alias="awaitingBankConfirmationTransactionType")
+    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, alias="propertyGroups")
+    payment_plan_details: Optional[PaymentPlanDetailsDTO] = Field(default=None, alias="paymentPlanDetails")
+    collection_details: Optional[CollectionCaseDetailsDTO] = Field(default=None, alias="collectionDetails")
+    incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="incomingBankingTransactionId")
+    incoming_mutation_id: Optional[StrictStr] = Field(default=None, alias="incomingMutationId")
+    outgoing_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="outgoingBankingTransactionId")
+    outgoing_mutation_id: Optional[StrictStr] = Field(default=None, alias="outgoingMutationId")
+    account_export_status: Optional[AccountExportStatus] = Field(default=None, alias="accountExportStatus")
+    account_export_details: Optional[AccountExportDetailsDTO] = Field(default=None, alias="accountExportDetails")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["transactionType", "transactionSubType", "transactionDateTime", "transactionDueDateTime", "transactionAmount", "transactionOpenAmount", "debtor", "organisationBankAccountId", "companyBankAccountId", "paymentReference", "referenceDetails", "settlementDetails", "reversed", "reversalReason", "reversalAdditionalInformation", "automaticallyClosed", "awaitingBankConfirmation", "awaitingBankConfirmationTransactionId", "awaitingBankConfirmationTransactionIdentification", "awaitingBankConfirmationTransactionType", "propertyGroups", "paymentPlanDetails", "collectionDetails", "incomingBankingTransactionId", "incomingMutationId", "outgoingBankingTransactionId", "outgoingMutationId", "accountExportStatus", "accountExportDetails", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,10 +109,8 @@ class TransactionDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -131,31 +134,15 @@ class TransactionDTO(BaseModel):
                 if _item_property_groups:
                     _items.append(_item_property_groups.to_dict())
             _dict['propertyGroups'] = _items
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of payment_plan_details
+        if self.payment_plan_details:
+            _dict['paymentPlanDetails'] = self.payment_plan_details.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of collection_details
+        if self.collection_details:
+            _dict['collectionDetails'] = self.collection_details.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of account_export_details
+        if self.account_export_details:
+            _dict['accountExportDetails'] = self.account_export_details.to_dict()
         # set to None if transaction_type (nullable) is None
         # and model_fields_set contains the field
         if self.transaction_type is None and "transaction_type" in self.model_fields_set:
@@ -165,11 +152,6 @@ class TransactionDTO(BaseModel):
         # and model_fields_set contains the field
         if self.transaction_sub_type is None and "transaction_sub_type" in self.model_fields_set:
             _dict['transactionSubType'] = None
-
-        # set to None if customer_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_id is None and "customer_id" in self.model_fields_set:
-            _dict['customerId'] = None
 
         # set to None if debtor (nullable) is None
         # and model_fields_set contains the field
@@ -231,6 +213,16 @@ class TransactionDTO(BaseModel):
         if self.property_groups is None and "property_groups" in self.model_fields_set:
             _dict['propertyGroups'] = None
 
+        # set to None if payment_plan_details (nullable) is None
+        # and model_fields_set contains the field
+        if self.payment_plan_details is None and "payment_plan_details" in self.model_fields_set:
+            _dict['paymentPlanDetails'] = None
+
+        # set to None if collection_details (nullable) is None
+        # and model_fields_set contains the field
+        if self.collection_details is None and "collection_details" in self.model_fields_set:
+            _dict['collectionDetails'] = None
+
         # set to None if incoming_banking_transaction_id (nullable) is None
         # and model_fields_set contains the field
         if self.incoming_banking_transaction_id is None and "incoming_banking_transaction_id" in self.model_fields_set:
@@ -251,6 +243,16 @@ class TransactionDTO(BaseModel):
         if self.outgoing_mutation_id is None and "outgoing_mutation_id" in self.model_fields_set:
             _dict['outgoingMutationId'] = None
 
+        # set to None if account_export_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.account_export_status is None and "account_export_status" in self.model_fields_set:
+            _dict['accountExportStatus'] = None
+
+        # set to None if account_export_details (nullable) is None
+        # and model_fields_set contains the field
+        if self.account_export_details is None and "account_export_details" in self.model_fields_set:
+            _dict['accountExportDetails'] = None
+
         return _dict
 
     @classmethod
@@ -263,23 +265,12 @@ class TransactionDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "transactionType": obj.get("transactionType"),
             "transactionSubType": obj.get("transactionSubType"),
             "transactionDateTime": obj.get("transactionDateTime"),
             "transactionDueDateTime": obj.get("transactionDueDateTime"),
             "transactionAmount": obj.get("transactionAmount"),
             "transactionOpenAmount": obj.get("transactionOpenAmount"),
-            "customerId": obj.get("customerId"),
             "debtor": DebtorDTO.from_dict(obj["debtor"]) if obj.get("debtor") is not None else None,
             "organisationBankAccountId": obj.get("organisationBankAccountId"),
             "companyBankAccountId": obj.get("companyBankAccountId"),
@@ -295,10 +286,22 @@ class TransactionDTO(BaseModel):
             "awaitingBankConfirmationTransactionIdentification": obj.get("awaitingBankConfirmationTransactionIdentification"),
             "awaitingBankConfirmationTransactionType": obj.get("awaitingBankConfirmationTransactionType"),
             "propertyGroups": [PropertyGroupReferenceDTO.from_dict(_item) for _item in obj["propertyGroups"]] if obj.get("propertyGroups") is not None else None,
+            "paymentPlanDetails": PaymentPlanDetailsDTO.from_dict(obj["paymentPlanDetails"]) if obj.get("paymentPlanDetails") is not None else None,
+            "collectionDetails": CollectionCaseDetailsDTO.from_dict(obj["collectionDetails"]) if obj.get("collectionDetails") is not None else None,
             "incomingBankingTransactionId": obj.get("incomingBankingTransactionId"),
             "incomingMutationId": obj.get("incomingMutationId"),
             "outgoingBankingTransactionId": obj.get("outgoingBankingTransactionId"),
-            "outgoingMutationId": obj.get("outgoingMutationId")
+            "outgoingMutationId": obj.get("outgoingMutationId"),
+            "accountExportStatus": obj.get("accountExportStatus"),
+            "accountExportDetails": AccountExportDetailsDTO.from_dict(obj["accountExportDetails"]) if obj.get("accountExportDetails") is not None else None,
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

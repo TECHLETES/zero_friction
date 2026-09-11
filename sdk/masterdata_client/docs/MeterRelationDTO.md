@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**meter_id** | **str** |  | [optional] 
-**serial_number** | **str** |  | [optional] 
+**meter_id** | **str** |  | 
+**serial_number** | **str** |  | 
 **external_reference** | **str** |  | [optional] 
 
 ## Example

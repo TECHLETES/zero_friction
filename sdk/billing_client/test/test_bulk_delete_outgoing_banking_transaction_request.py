@@ -37,6 +37,12 @@ class TestBulkDeleteOutgoingBankingTransactionRequest(unittest.TestCase):
             return BulkDeleteOutgoingBankingTransactionRequest(
                 only_validate = True,
                 var_query_params = billing_client.models.get_outgoing_banking_transactions_query_params.GetOutgoingBankingTransactionsQueryParams(
+                    company_bank_account_ids = [
+                        ''
+                        ], 
+                    outgoing_banking_transaction_type = '', 
+                    mutation_date_time_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    mutation_date_time_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     flex_search = '', 
                     include_only_ids = [
                         ''
@@ -44,10 +50,7 @@ class TestBulkDeleteOutgoingBankingTransactionRequest(unittest.TestCase):
                     exclude_ids = [
                         ''
                         ], 
-                    company_bank_account_id = '', 
-                    outgoing_banking_transaction_type = '', 
-                    mutation_date_time_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    mutation_date_time_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
+                    page_size = 56, ),
                 quick_filter = ''
             )
         else:

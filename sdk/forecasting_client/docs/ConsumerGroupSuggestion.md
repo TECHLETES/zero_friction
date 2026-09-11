@@ -1,5 +1,6 @@
 # ConsumerGroupSuggestion
 
+Possible values: 'frompropertygroup', 'originmanual', 'originsystemgenerated'
 
 ## Enum
 

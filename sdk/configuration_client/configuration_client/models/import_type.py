@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ImportType(str, Enum):
     """
-    ImportType
+    Possible values: 'billingtariff'
     """
 
     """

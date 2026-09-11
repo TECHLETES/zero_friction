@@ -1,5 +1,6 @@
 # StatusCode
 
+Possible values: 'active', 'inactive', 'failed'
 
 ## Enum
 

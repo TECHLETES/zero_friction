@@ -35,23 +35,23 @@ class TestCostComponentValueDTO(unittest.TestCase):
         model = CostComponentValueDTO()
         if include_optional:
             return CostComponentValueDTO(
+                cost_component_id = '',
+                value = 1.337,
+                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                deleted = True,
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                cost_component_id = '',
-                value = 1.337,
-                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                deleted = True
+                is_read_only = True
             )
         else:
             return CostComponentValueDTO(
+                value = 1.337,
+                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

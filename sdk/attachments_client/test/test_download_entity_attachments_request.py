@@ -39,10 +39,13 @@ class TestDownloadEntityAttachmentsRequest(unittest.TestCase):
                     ''
                     ],
                 customer_id = '',
-                culture = 
+                culture = ''
             )
         else:
             return DownloadEntityAttachmentsRequest(
+                entity_attachment_ids = [
+                    ''
+                    ],
         )
         """
 

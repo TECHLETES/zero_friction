@@ -35,16 +35,6 @@ class TestEntityAttachmentGroupDTO(unittest.TestCase):
         model = EntityAttachmentGroupDTO()
         if include_optional:
             return EntityAttachmentGroupDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 entity_subject_type = 'none',
                 entity_subject_id = '',
                 entity_subject_display_name = '',
@@ -52,14 +42,22 @@ class TestEntityAttachmentGroupDTO(unittest.TestCase):
                     attachments_client.models.entity_attachment_file_dto.EntityAttachmentFileDTO(
                         file_name = '', 
                         localised_file_name = '', 
-                        culture = null, )
+                        culture = '', )
                     ],
                 include_in_welcome_email = True,
                 visibility = 'internal',
                 approval_required = True,
                 validity = attachments_client.models.date_range.DateRange(
                     start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                    end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return EntityAttachmentGroupDTO(

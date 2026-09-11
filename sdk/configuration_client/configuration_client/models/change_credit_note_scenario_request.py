@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.communication_type import CommunicationType
 from configuration_client.models.credit_note_email_template_request import CreditNoteEmailTemplateRequest
@@ -29,10 +29,11 @@ class ChangeCreditNoteScenarioRequest(BaseModel):
     """
     ChangeCreditNoteScenarioRequest
     """ # noqa: E501
-    default_communication_type: Optional[CommunicationType] = Field(default=None, alias="defaultCommunicationType")
-    pdf_template: Optional[CreditNotePdfTemplateRequest] = Field(default=None, alias="pdfTemplate")
-    email_template: Optional[CreditNoteEmailTemplateRequest] = Field(default=None, alias="emailTemplate")
-    __properties: ClassVar[List[str]] = ["defaultCommunicationType", "pdfTemplate", "emailTemplate"]
+    pdf_template: Optional[CreditNotePdfTemplateRequest] = Field(alias="pdfTemplate")
+    email_template: Optional[CreditNoteEmailTemplateRequest] = Field(alias="emailTemplate")
+    default_communication_type: CommunicationType = Field(alias="defaultCommunicationType")
+    auto_fallback_to_postal: Optional[StrictBool] = Field(default=None, alias="autoFallbackToPostal")
+    __properties: ClassVar[List[str]] = ["pdfTemplate", "emailTemplate", "defaultCommunicationType", "autoFallbackToPostal"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,11 +80,6 @@ class ChangeCreditNoteScenarioRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of email_template
         if self.email_template:
             _dict['emailTemplate'] = self.email_template.to_dict()
-        # set to None if default_communication_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.default_communication_type is None and "default_communication_type" in self.model_fields_set:
-            _dict['defaultCommunicationType'] = None
-
         # set to None if pdf_template (nullable) is None
         # and model_fields_set contains the field
         if self.pdf_template is None and "pdf_template" in self.model_fields_set:
@@ -106,9 +102,10 @@ class ChangeCreditNoteScenarioRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "defaultCommunicationType": obj.get("defaultCommunicationType"),
             "pdfTemplate": CreditNotePdfTemplateRequest.from_dict(obj["pdfTemplate"]) if obj.get("pdfTemplate") is not None else None,
-            "emailTemplate": CreditNoteEmailTemplateRequest.from_dict(obj["emailTemplate"]) if obj.get("emailTemplate") is not None else None
+            "emailTemplate": CreditNoteEmailTemplateRequest.from_dict(obj["emailTemplate"]) if obj.get("emailTemplate") is not None else None,
+            "defaultCommunicationType": obj.get("defaultCommunicationType"),
+            "autoFallbackToPostal": obj.get("autoFallbackToPostal")
         })
         return _obj
 

@@ -39,7 +39,10 @@ class TestCreateCostUnitsRequest(unittest.TestCase):
                     configuration_client.models.create_cost_unit_request.CreateCostUnitRequest(
                         code = '', 
                         description = '', 
-                        metadata = null, )
+                        metadata = configuration_client.models.external_accounting_metadata_request.ExternalAccountingMetadataRequest(
+                            source = '', 
+                            source_entity_id = '', 
+                            source_accounting_company_id = '', ), )
                     ]
             )
         else:

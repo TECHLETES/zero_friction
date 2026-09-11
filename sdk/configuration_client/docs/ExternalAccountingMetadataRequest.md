@@ -1,13 +1,13 @@
 # ExternalAccountingMetadataRequest
 
-Metadata to track back the origin of the data.  This is required so that we can push the data back to the source accounting system.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**source** | **str** | Name of the source accounting system. | 
-**source_entity_id** | **str** | The ID of the entity in the source accounting system. | 
+**source** | **str** |  | 
+**source_entity_id** | **str** |  | 
+**source_accounting_company_id** | **str** |  | [optional] 
 
 ## Example
 

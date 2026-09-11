@@ -35,19 +35,6 @@ class TestOrganizationDTO(unittest.TestCase):
         model = OrganizationDTO()
         if include_optional:
             return OrganizationDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                automatic_processing_enabled = True,
-                migration_mode = True,
-                code = '',
-                description = '',
                 vat_account_number = '',
                 company_account_number = '',
                 logo = '',
@@ -64,7 +51,7 @@ class TestOrganizationDTO(unittest.TestCase):
                     building_name = '', 
                     locality = '', 
                     city = '', 
-                    country = null, 
+                    country = 'aut', 
                     localized_display = '', 
                     line_one = '', 
                     line_two = '', ),
@@ -74,18 +61,15 @@ class TestOrganizationDTO(unittest.TestCase):
                     website = '', 
                     telephone_interruptions = '', 
                     support = '', ),
-                time_zone = '',
-                culture = ,
                 manually_set_customer_number = True,
                 manually_set_contract_number = True,
-                marked_for_deletion = True,
-                originally_enabled = True,
-                features = configuration_client.models.feature_settings_dto.FeatureSettingsDTO(
-                    contract_invoice_estimation_enabled = True, 
-                    metering_validation_enabled = True, 
-                    prepayment_enabled = True, 
-                    prepayment_manual_transactions_enabled = True, 
-                    annual_statements = True, )
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return OrganizationDTO(

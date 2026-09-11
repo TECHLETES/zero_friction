@@ -1,5 +1,6 @@
 # EstimatedAnnualVolumeOrigin
 
+Possible values: 'manual', 'frompreviousyear', 'fromconsumergroup', 'forecast'
 
 ## Enum
 

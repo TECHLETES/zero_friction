@@ -35,22 +35,20 @@ class TestEntityAttachmentDTO(unittest.TestCase):
         model = EntityAttachmentDTO()
         if include_optional:
             return EntityAttachmentDTO(
+                customer_id = '',
+                origin = 'customer',
+                parameters = attachments_client.models.base_entity_reference_parameters_dto.BaseEntityReferenceParametersDTO(),
+                visibility = 'internal',
+                include_in_welcome_email = True,
+                approval_required = True,
+                viewed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                customer_id = '',
-                origin = 'customer',
-                parameters = None,
-                visibility = 'internal',
-                include_in_welcome_email = True,
-                approval_required = True,
-                viewed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                is_read_only = True
             )
         else:
             return EntityAttachmentDTO(

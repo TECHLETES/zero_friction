@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**new_advance_amount** | **float** |  | [optional] 
+**new_advance_amount** | **float** |  | 
 
 ## Example
 

@@ -29,24 +29,24 @@ from typing_extensions import Self
 
 class BillingCompletenessInsightsResponseDTO(BaseModel):
     """
-    Represents insights and status information about billing completeness.  This DTO provides detailed information about advance payments, invoice periods, and billing status.
+    BillingCompletenessInsightsResponseDTO
     """ # noqa: E501
-    next_advance_start_date_time: Optional[datetime] = Field(default=None, description="The date and time when the next advance payment period will start.", alias="nextAdvanceStartDateTime")
-    advance_frequency: Optional[AdvanceFrequency] = Field(default=None, description="The frequency at which advance payments are collected.", alias="advanceFrequency")
-    advance_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount of each advance payment.", alias="advanceAmount")
-    advances_created: Optional[StrictInt] = Field(default=None, description="The number of advance payments that have been created.", alias="advancesCreated")
-    advances_needed: Optional[StrictInt] = Field(default=None, description="The number of advance payments that are still needed.", alias="advancesNeeded")
-    invoice_frequency: Optional[InvoiceFrequency] = Field(default=None, description="The frequency at which invoices are generated.", alias="invoiceFrequency")
-    active_invoice_start_date_time: Optional[datetime] = Field(default=None, description="The start date and time of the currently active invoice period.", alias="activeInvoiceStartDateTime")
-    active_invoice_end_date_time: Optional[datetime] = Field(default=None, description="The end date and time of the currently active invoice period.", alias="activeInvoiceEndDateTime")
-    active_status: Optional[BillingCompletenessStatus] = Field(default=None, description="The current status of the active billing completeness.", alias="activeStatus")
-    active_billing_completeness_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the active billing completeness entry.", alias="activeBillingCompletenessId")
-    estimated_invoice_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the estimated invoice.", alias="estimatedInvoiceId")
-    estimated_invoice_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The estimated amount of the invoice.", alias="estimatedInvoiceAmount")
-    has_open_advance_periods_with_different_tax_rate: Optional[StrictBool] = Field(default=None, description="Indicates whether there are open advance periods with different tax rates.", alias="hasOpenAdvancePeriodsWithDifferentTaxRate")
-    accuracy_state: Optional[Level] = Field(default=None, description="The current level of accuracy of the billing data.", alias="accuracyState")
-    draft_invoice_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the draft invoice.", alias="draftInvoiceId")
-    draft_invoice_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount of the draft invoice.", alias="draftInvoiceAmount")
+    next_advance_start_date_time: Optional[datetime] = Field(default=None, alias="nextAdvanceStartDateTime")
+    advance_frequency: Optional[AdvanceFrequency] = Field(default=None, alias="advanceFrequency")
+    advance_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="advanceAmount")
+    advances_created: Optional[StrictInt] = Field(default=None, alias="advancesCreated")
+    advances_needed: Optional[StrictInt] = Field(default=None, alias="advancesNeeded")
+    invoice_frequency: Optional[InvoiceFrequency] = Field(default=None, alias="invoiceFrequency")
+    active_invoice_start_date_time: Optional[datetime] = Field(default=None, alias="activeInvoiceStartDateTime")
+    active_invoice_end_date_time: Optional[datetime] = Field(default=None, alias="activeInvoiceEndDateTime")
+    active_status: Optional[BillingCompletenessStatus] = Field(default=None, alias="activeStatus")
+    active_billing_completeness_id: Optional[StrictStr] = Field(default=None, alias="activeBillingCompletenessId")
+    estimated_invoice_id: Optional[StrictStr] = Field(default=None, alias="estimatedInvoiceId")
+    estimated_invoice_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="estimatedInvoiceAmount")
+    has_open_advance_periods_with_different_tax_rate: Optional[StrictBool] = Field(default=None, alias="hasOpenAdvancePeriodsWithDifferentTaxRate")
+    accuracy_state: Optional[Level] = Field(default=None, alias="accuracyState")
+    draft_invoice_id: Optional[StrictStr] = Field(default=None, alias="draftInvoiceId")
+    draft_invoice_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="draftInvoiceAmount")
     __properties: ClassVar[List[str]] = ["nextAdvanceStartDateTime", "advanceFrequency", "advanceAmount", "advancesCreated", "advancesNeeded", "invoiceFrequency", "activeInvoiceStartDateTime", "activeInvoiceEndDateTime", "activeStatus", "activeBillingCompletenessId", "estimatedInvoiceId", "estimatedInvoiceAmount", "hasOpenAdvancePeriodsWithDifferentTaxRate", "accuracyState", "draftInvoiceId", "draftInvoiceAmount"]
 
     model_config = ConfigDict(
@@ -88,21 +88,6 @@ class BillingCompletenessInsightsResponseDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if advance_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.advance_frequency is None and "advance_frequency" in self.model_fields_set:
-            _dict['advanceFrequency'] = None
-
-        # set to None if invoice_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_frequency is None and "invoice_frequency" in self.model_fields_set:
-            _dict['invoiceFrequency'] = None
-
-        # set to None if active_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.active_status is None and "active_status" in self.model_fields_set:
-            _dict['activeStatus'] = None
-
         # set to None if active_billing_completeness_id (nullable) is None
         # and model_fields_set contains the field
         if self.active_billing_completeness_id is None and "active_billing_completeness_id" in self.model_fields_set:
@@ -117,11 +102,6 @@ class BillingCompletenessInsightsResponseDTO(BaseModel):
         # and model_fields_set contains the field
         if self.estimated_invoice_amount is None and "estimated_invoice_amount" in self.model_fields_set:
             _dict['estimatedInvoiceAmount'] = None
-
-        # set to None if accuracy_state (nullable) is None
-        # and model_fields_set contains the field
-        if self.accuracy_state is None and "accuracy_state" in self.model_fields_set:
-            _dict['accuracyState'] = None
 
         # set to None if draft_invoice_id (nullable) is None
         # and model_fields_set contains the field

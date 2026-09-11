@@ -35,6 +35,17 @@ class TestGetCommunicationEntriesQueryParams(unittest.TestCase):
         model = GetCommunicationEntriesQueryParams()
         if include_optional:
             return GetCommunicationEntriesQueryParams(
+                communication_type = 'none',
+                exclude_communication_type = 'none',
+                exclude_communication_entry_status = 'generating',
+                communication_entry_status = 'generating',
+                entity_subject_type = 'none',
+                subject_sub_type = '',
+                entity_subject_id = '',
+                failure_reason_code = 56,
+                sent_start_date_time_offset = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                sent_end_date_time_offset = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                customer_id = '',
                 flex_search = '',
                 include_only_ids = [
                     ''
@@ -42,12 +53,7 @@ class TestGetCommunicationEntriesQueryParams(unittest.TestCase):
                 exclude_ids = [
                     ''
                     ],
-                communication_type = 'postal',
-                entity_subject_type = 'none',
-                entity_subject_id = '',
-                failure_reason_code = 'ASSET_ALREADY_EXISTS',
-                sent_start_date_time_offset = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                sent_end_date_time_offset = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                page_size = 56
             )
         else:
             return GetCommunicationEntriesQueryParams(

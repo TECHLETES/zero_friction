@@ -47,7 +47,7 @@ from zero_friction.core.sdk_client import SDKClient
 config = ZeroFrictionConfig()
 sdk = SDKClient(config=config)
 
-contract = sdk.masterdata_client.contracts_api.get_contracts_contractuuid(
+contract = sdk.masterdata_client.default_api.get_contracts_contractuuid(
     contractuuid="fc77b9c6-42bc-4fe7-b0a2-0f0309449a98",
     **config.as_kwargs(),
 )

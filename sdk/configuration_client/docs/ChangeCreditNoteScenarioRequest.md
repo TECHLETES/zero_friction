@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
-**pdf_template** | [**CreditNotePdfTemplateRequest**](CreditNotePdfTemplateRequest.md) |  | [optional] 
-**email_template** | [**CreditNoteEmailTemplateRequest**](CreditNoteEmailTemplateRequest.md) |  | [optional] 
+**pdf_template** | [**CreditNotePdfTemplateRequest**](CreditNotePdfTemplateRequest.md) |  | 
+**email_template** | [**CreditNoteEmailTemplateRequest**](CreditNoteEmailTemplateRequest.md) |  | 
+**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | 
+**auto_fallback_to_postal** | **bool** |  | [optional] 
 
 ## Example
 

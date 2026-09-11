@@ -32,8 +32,8 @@ class UpdateCommunicationParametersRequest(BaseModel):
     reply_to_email_address: Optional[StrictStr] = Field(default=None, alias="replyToEmailAddress")
     reply_to_name: Optional[StrictStr] = Field(default=None, alias="replyToName")
     is_sandboxed: Optional[StrictBool] = Field(default=None, alias="isSandboxed")
-    sandbox_recipient_email: Optional[StrictStr] = Field(default=None, alias="sandboxRecipientEmail")
-    sandbox_recipient_phone_number: Optional[StrictStr] = Field(default=None, alias="sandboxRecipientPhoneNumber")
+    sandbox_recipient_email: Optional[StrictStr] = Field(alias="sandboxRecipientEmail")
+    sandbox_recipient_phone_number: Optional[StrictStr] = Field(alias="sandboxRecipientPhoneNumber")
     __properties: ClassVar[List[str]] = ["enabled", "senderEmailAddress", "senderName", "replyToEmailAddress", "replyToName", "isSandboxed", "sandboxRecipientEmail", "sandboxRecipientPhoneNumber"]
 
     model_config = ConfigDict(

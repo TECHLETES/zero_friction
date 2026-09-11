@@ -5,14 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
 **company_bank_account_id** | **str** |  | [optional] 
 **mutation_date_time_start** | **datetime** |  | [optional] 
 **mutation_date_time_end** | **datetime** |  | [optional] 
 **opening_balance_date_start** | **datetime** |  | [optional] 
 **opening_balance_date_end** | **datetime** |  | [optional] 
+**flex_search** | **str** |  | [optional] 
+**include_only_ids** | **List[str]** |  | [optional] 
+**exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

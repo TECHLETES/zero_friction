@@ -24,11 +24,11 @@ from typing_extensions import Self
 
 class StepChargeDTO(BaseModel):
     """
-    Represents charges associated with a collection step.  This DTO contains information about the amount charged and the associated transaction.
+    StepChargeDTO
     """ # noqa: E501
-    step_charge_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The charge amount including VAT.", alias="stepChargeAmountInclVAT")
-    step_vat_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The VAT amount for this charge.", alias="stepVATAmount")
-    transaction_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the transaction associated with this charge.", alias="transactionId")
+    step_charge_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="stepChargeAmountInclVAT")
+    step_vat_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="stepVATAmount")
+    transaction_id: Optional[StrictStr] = Field(default=None, alias="transactionId")
     __properties: ClassVar[List[str]] = ["stepChargeAmountInclVAT", "stepVATAmount", "transactionId"]
 
     model_config = ConfigDict(

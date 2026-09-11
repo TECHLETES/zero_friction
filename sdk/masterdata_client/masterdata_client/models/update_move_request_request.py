@@ -31,8 +31,8 @@ class UpdateMoveRequestRequest(BaseModel):
     product_id: Optional[StrictStr] = Field(default=None, alias="productId")
     use_property_group_product: Optional[StrictBool] = Field(default=None, alias="usePropertyGroupProduct")
     contract_number: Optional[StrictStr] = Field(default=None, alias="contractNumber")
-    estimations: Optional[List[MoveRequestContractEstimationRequest]] = None
-    billing_properties: Optional[ContractDetailsBillingPropertiesBaseDTO] = Field(default=None, alias="billingProperties")
+    estimations: Optional[List[MoveRequestContractEstimationRequest]]
+    billing_properties: Optional[ContractDetailsBillingPropertiesBaseDTO] = Field(alias="billingProperties")
     __properties: ClassVar[List[str]] = ["productId", "usePropertyGroupProduct", "contractNumber", "estimations", "billingProperties"]
 
     model_config = ConfigDict(

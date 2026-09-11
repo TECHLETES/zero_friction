@@ -36,10 +36,12 @@ class TestUpdateCustomerBillingDetailsRequest(unittest.TestCase):
         if include_optional:
             return UpdateCustomerBillingDetailsRequest(
                 payment_terms_id = '',
-                default_payment_method = 'sct'
+                default_payment_method = 'sct',
+                collection_day_of_month = 56
             )
         else:
             return UpdateCustomerBillingDetailsRequest(
+                default_payment_method = 'sct',
         )
         """
 

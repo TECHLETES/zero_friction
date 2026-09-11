@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error_code** | [**ErrorCode**](ErrorCode.md) |  | [optional] 
+**error_code** | **int** |  | [optional] 
 **values** | [**List[ErrorCodeMessageValue]**](ErrorCodeMessageValue.md) |  | [optional] 
 
 ## Example

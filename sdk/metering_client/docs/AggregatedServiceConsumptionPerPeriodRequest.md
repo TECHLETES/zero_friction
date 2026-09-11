@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_location_ids** | **List[str]** |  | [optional] 
-**group_by_period** | [**AggregationFrequency**](AggregationFrequency.md) |  | [optional] 
+**service_location_ids** | **List[str]** |  | 
+**group_by_period** | [**AggregationFrequency**](AggregationFrequency.md) |  | 
 
 ## Example
 

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
+**name** | **str** |  | 
 **days_after_invoice_due** | **int** |  | [optional] 
 **step_ids** | **List[str]** |  | [optional] 
 

@@ -37,6 +37,13 @@ class TestBulkDeleteMeteringImportsRequest(unittest.TestCase):
             return BulkDeleteMeteringImportsRequest(
                 only_validate = True,
                 var_query_params = metering_client.models.get_metering_imports_query_params.GetMeteringImportsQueryParams(
+                    status = [
+                        ''
+                        ], 
+                    communication_type = '', 
+                    metering_format = '', 
+                    created_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    created_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     flex_search = '', 
                     include_only_ids = [
                         ''
@@ -44,13 +51,7 @@ class TestBulkDeleteMeteringImportsRequest(unittest.TestCase):
                     exclude_ids = [
                         ''
                         ], 
-                    status = [
-                        ''
-                        ], 
-                    communication_type = '', 
-                    metering_format = '', 
-                    created_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    created_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
+                    page_size = 56, ),
                 quick_filter = ''
             )
         else:

@@ -1,5 +1,6 @@
 # ExportStatus
 
+Possible values: 'notexported', 'exported'
 
 ## Enum
 

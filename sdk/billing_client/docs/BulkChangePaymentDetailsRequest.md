@@ -1,16 +1,16 @@
 # BulkChangePaymentDetailsRequest
 
-Represents a bulk request to change payment details for multiple invoices.  This DTO allows updating payment details for multiple invoices in a single operation.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**new_payment_method** | [**PaymentMethod**](PaymentMethod.md) | The new payment method to be used for the invoice. | [optional] 
-**collection_date** | **datetime** | The new date when the payment should be collected. | [optional] 
-**only_validate** | **bool** | Indicates if only validation should be performed without actually changing the payment details.  When true, the system will only validate if the changes can be made without making any updates. | [optional] 
-**var_query_params** | [**GetInvoicesQueryParams**](GetInvoicesQueryParams.md) | Query parameters to filter the invoices to be updated. | [optional] 
-**quick_filter** | **str** | Quick filter string to filter invoices without using complex query parameters. | [optional] 
+**only_validate** | **bool** |  | [optional] 
+**var_query_params** | [**GetInvoicesQueryParams**](GetInvoicesQueryParams.md) |  | [optional] 
+**quick_filter** | **str** |  | [optional] 
+**new_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | [optional] 
+**collection_date** | **datetime** |  | [optional] 
+**psp_instrument** | [**PspInstrumentSnapshotRequest**](PspInstrumentSnapshotRequest.md) |  | [optional] 
 
 ## Example
 

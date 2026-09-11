@@ -35,10 +35,15 @@ class TestProductItemPeriodicityParametersDTO(unittest.TestCase):
         model = ProductItemPeriodicityParametersDTO()
         if include_optional:
             return ProductItemPeriodicityParametersDTO(
-                periodicity_type = 'regular'
+                type = 'fixedamount',
+                amount = 56,
+                periodicity_type = 'regular',
+                frequency = 'none'
             )
         else:
             return ProductItemPeriodicityParametersDTO(
+                type = 'fixedamount',
+                amount = 56,
         )
         """
 

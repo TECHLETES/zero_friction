@@ -1,34 +1,34 @@
 # CustAgingHeaderDTO
 
-Represents the header information for customer aging analysis.  This DTO contains aggregated financial information about a customer's outstanding transactions and aging buckets.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**debtor** | [**DebtorDTO**](DebtorDTO.md) | Information about the debtor associated with this aging analysis. | [optional] 
-**last_payment_date** | **datetime** | The date of the most recent payment received from the customer. | [optional] 
-**oldest_open_debit_transaction_reference** | **str** | Reference to the oldest open debit transaction (e.g., invoice number). | [optional] 
-**open_credits** | **float** | Sum of all open transactions in favor of the customer (credits). | [optional] 
-**total_credit_tx_open** | **int** | Total number of open credit transactions. | [optional] 
-**open_debits** | **float** | Sum of all open transactions to be paid by the customer (debits). | [optional] 
-**total_debit_tx_open** | **int** | Total number of open debit transactions. | [optional] 
-**total_open_not_overdue** | **float** | Total amount of open transactions that are not yet overdue. | [optional] 
-**total_open_not_overdue_tx** | **float** | Total number of open transactions that are not yet overdue. | [optional] 
-**total_overdue30_d** | **float** | Total amount of transactions overdue between 0 and 30 days (excluding end date). | [optional] 
-**total_overdue30_dtx** | **int** | Total number of transactions overdue between 0 and 30 days. | [optional] 
-**total_overdue60_d** | **float** | Total amount of transactions overdue between 30 and 60 days (excluding end date). | [optional] 
-**total_overdue60_dtx** | **int** | Total number of transactions overdue between 30 and 60 days. | [optional] 
-**total_overdue90_d** | **float** | Total amount of transactions overdue between 60 and 90 days (excluding end date). | [optional] 
-**total_overdue90_dtx** | **int** | Total number of transactions overdue between 60 and 90 days. | [optional] 
-**total_overdue_over90_d** | **float** | Total amount of transactions overdue for more than 90 days. | [optional] 
-**total_overdue_over90_dtx** | **int** | Total number of transactions overdue for more than 90 days. | [optional] 
-**total_collection_costs_open** | **float** | Total amount of open collection costs, including both open and potentially overdue costs. | [optional] 
-**total_collection_cost_tx** | **int** | Total number of collection cost transactions. | [optional] 
-**total_open** | **float** | Total amount of all open transactions. | [optional] 
-**total_open_tx** | **int** | Total number of all open transactions. | [optional] 
-**flow_active** | **bool** | Indicates whether there is any active collection flow on any of the underlying transactions. | [optional] 
-**property_groups** | [**List[PropertyGroupReferenceDTO]**](PropertyGroupReferenceDTO.md) | List of property groups associated with this aging analysis. | [optional] 
+**debtor** | [**DebtorDTO**](DebtorDTO.md) |  | [optional] 
+**last_payment_date** | **datetime** |  | [optional] 
+**oldest_open_debit_transaction_reference** | **str** |  | [optional] 
+**open_credits** | **float** |  | [optional] 
+**total_credit_tx_open** | **int** |  | [optional] 
+**open_debits** | **float** |  | [optional] 
+**total_debit_tx_open** | **int** |  | [optional] 
+**total_open_not_overdue** | **float** |  | [optional] 
+**total_open_not_overdue_tx** | **float** |  | [optional] 
+**total_overdue30_d** | **float** |  | [optional] 
+**total_overdue30_dtx** | **int** |  | [optional] 
+**total_overdue60_d** | **float** |  | [optional] 
+**total_overdue60_dtx** | **int** |  | [optional] 
+**total_overdue90_d** | **float** |  | [optional] 
+**total_overdue90_dtx** | **int** |  | [optional] 
+**total_overdue_over90_d** | **float** |  | [optional] 
+**total_overdue_over90_dtx** | **int** |  | [optional] 
+**total_collection_costs_open** | **float** |  | [optional] 
+**total_collection_cost_tx** | **int** |  | [optional] 
+**total_open** | **float** |  | [optional] 
+**total_open_tx** | **int** |  | [optional] 
+**flow_active** | **bool** |  | [optional] 
+**property_groups** | [**List[PropertyGroupReferenceDTO]**](PropertyGroupReferenceDTO.md) |  | [optional] 
+**has_active_payment_plan** | **bool** |  | [optional] 
 
 ## Example
 

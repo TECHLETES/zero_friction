@@ -29,7 +29,7 @@ class UpdateBillingTariffTreeRequest(BaseModel):
     UpdateBillingTariffTreeRequest
     """ # noqa: E501
     product_id: Optional[StrictStr] = Field(default=None, alias="productId")
-    activity_period: Optional[DateRange] = Field(default=None, alias="activityPeriod")
+    activity_period: DateRange = Field(alias="activityPeriod")
     deleted_billing_tariff_ids: Optional[List[StrictStr]] = Field(default=None, alias="deletedBillingTariffIds")
     nodes: Optional[List[BillingTariffNodeDTO]] = None
     __properties: ClassVar[List[str]] = ["productId", "activityPeriod", "deletedBillingTariffIds", "nodes"]
@@ -87,11 +87,6 @@ class UpdateBillingTariffTreeRequest(BaseModel):
         # and model_fields_set contains the field
         if self.product_id is None and "product_id" in self.model_fields_set:
             _dict['productId'] = None
-
-        # set to None if activity_period (nullable) is None
-        # and model_fields_set contains the field
-        if self.activity_period is None and "activity_period" in self.model_fields_set:
-            _dict['activityPeriod'] = None
 
         # set to None if deleted_billing_tariff_ids (nullable) is None
         # and model_fields_set contains the field

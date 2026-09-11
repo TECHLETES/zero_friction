@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **str** |  | [optional] 
-**resolution_value** | **object** |  | [optional] 
 **only_validate** | **bool** |  | [optional] 
 **var_query_params** | [**GetMeteringIssuesQueryParams**](GetMeteringIssuesQueryParams.md) |  | [optional] 
 **quick_filter** | **str** |  | [optional] 
+**message** | **str** |  | [optional] 
+**resolution_value** | [**BaseMeteringIssueResolutionValueDTO**](BaseMeteringIssueResolutionValueDTO.md) |  | [optional] 
 
 ## Example
 

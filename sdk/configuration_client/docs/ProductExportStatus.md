@@ -1,5 +1,6 @@
 # ProductExportStatus
 
+Possible values: 'new', 'current'
 
 ## Enum
 

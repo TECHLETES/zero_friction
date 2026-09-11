@@ -39,20 +39,20 @@ class TestContractDetailsDTO(unittest.TestCase):
                 use_property_group_product = True,
                 estimations = [
                     masterdata_client.models.contract_estimation_dto.ContractEstimationDTO(
-                        utility_type = null, 
-                        unit_of_measure = null, 
-                        metering_type = null, 
+                        utility_type = 'none', 
+                        unit_of_measure = 'none', 
+                        metering_type = 'none', 
                         value = 1.337, 
                         consumer_group_id = '', )
                     ],
                 errors = [
                     masterdata_client.models.localised_error_dto.LocalisedErrorDTO(
-                        key = null, 
+                        key = 56, 
                         correlation_id = '', 
                         message = '', 
                         message_values = [
                             masterdata_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                data_type = null, 
+                                data_type = 'text', 
                                 value = '', 
                                 capitalize = True, )
                             ], )
@@ -62,8 +62,7 @@ class TestContractDetailsDTO(unittest.TestCase):
                 contract_number = '',
                 created_or_linked = True,
                 service_locations_count = 56,
-                billing_properties = masterdata_client.models.contract_details_billing_properties_base_dto.ContractDetailsBillingPropertiesBaseDTO(
-                    billing_method = null, )
+                billing_properties = masterdata_client.models.contract_details_billing_properties_base_dto.ContractDetailsBillingPropertiesBaseDTO()
             )
         else:
             return ContractDetailsDTO(

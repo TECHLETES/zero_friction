@@ -1,13 +1,12 @@
 # RequiredQuantityLocationGroupedDTO
 
-Represents required quantities grouped by location
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_location_id** | **str** | Unique identifier of the service location | [optional] 
-**required_quantities** | [**List[RequiredQuantityDTO]**](RequiredQuantityDTO.md) | List of required quantities for this location | [optional] 
+**service_location_id** | **str** |  | [optional] 
+**required_quantities** | [**List[RequiredQuantityDTO]**](RequiredQuantityDTO.md) |  | [optional] 
 
 ## Example
 

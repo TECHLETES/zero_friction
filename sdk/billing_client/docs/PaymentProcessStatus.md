@@ -1,5 +1,6 @@
 # PaymentProcessStatus
 
+Possible values: 'readyforpaymentcollection', 'pendingpaymentexport', 'pendingpaymentcollectionconfirmation', 'paid', 'paymentrejected', 'waitingforpayment'
 
 ## Enum
 

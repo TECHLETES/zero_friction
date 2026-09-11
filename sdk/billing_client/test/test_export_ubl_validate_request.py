@@ -41,6 +41,9 @@ class TestExportUblValidateRequest(unittest.TestCase):
             )
         else:
             return ExportUblValidateRequest(
+                invoice_ids = [
+                    ''
+                    ],
         )
         """
 

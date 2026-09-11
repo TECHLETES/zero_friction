@@ -5,7 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**periodicity_type** | [**ProductItemPeriodicityType**](ProductItemPeriodicityType.md) |  | [optional] [readonly] 
+**type** | **str** |  | 
+**amount** | **int** |  | 
+**periodicity_type** | [**ProductItemPeriodicityType**](ProductItemPeriodicityType.md) |  | [optional] 
+**frequency** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
 
 ## Example
 

@@ -1,5 +1,6 @@
 # PaymentReversalReason
 
+Possible values: 'manualreverse', 'unpaiddirectdebit', 'reversalsepadirectdebit', 'rejectdomesticdirectdebit', 'unknownbankaccount', 'terminatedbankaccount', 'blockedbankaccount', 'unsupportedbankaccount', 'invalidsequencetype', 'insufficientfunds', 'invalidmandate', 'debtordeceased', 'refusalbydebtor', 'refusalotherreason', 'maximumamountperiodreached'
 
 ## Enum
 

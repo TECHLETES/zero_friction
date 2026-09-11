@@ -42,6 +42,7 @@ class TestSegmentRequest(unittest.TestCase):
             )
         else:
             return SegmentRequest(
+                segment_type = 'constant',
         )
         """
 

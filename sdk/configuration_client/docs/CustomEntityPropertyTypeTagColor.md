@@ -1,5 +1,6 @@
 # CustomEntityPropertyTypeTagColor
 
+Possible values: 'blue', 'slate', 'green', 'yellow', 'orange', 'red'
 
 ## Enum
 

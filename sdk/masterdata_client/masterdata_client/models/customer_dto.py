@@ -27,6 +27,7 @@ from masterdata_client.models.contact_entry_dto import ContactEntryDTO
 from masterdata_client.models.country_code import CountryCode
 from masterdata_client.models.custom_entity_property_dto import CustomEntityPropertyDTO
 from masterdata_client.models.customer_billing_settings_dto import CustomerBillingSettingsDTO
+from masterdata_client.models.customer_blocked_for_deletion_reason import CustomerBlockedForDeletionReason
 from masterdata_client.models.customer_communication_preferences_dto import CustomerCommunicationPreferencesDTO
 from masterdata_client.models.customer_contract_dto import CustomerContractDTO
 from masterdata_client.models.customer_group_reference_dto import CustomerGroupReferenceDTO
@@ -34,52 +35,57 @@ from masterdata_client.models.customer_portal_properties_dto import CustomerPort
 from masterdata_client.models.customer_type import CustomerType
 from masterdata_client.models.entity_subject_type import EntitySubjectType
 from masterdata_client.models.payment_method import PaymentMethod
+from masterdata_client.models.peppol_scheme import PeppolScheme
 from masterdata_client.models.property_group_reference_dto import PropertyGroupReferenceDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
 class CustomerDTO(BaseModel):
     """
-    Represents a customer entity with all associated information
+    CustomerDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
-    account_number: Optional[StrictStr] = Field(default=None, description="Unique account number assigned to the customer", alias="accountNumber")
-    salutation: Optional[StrictStr] = Field(default=None, description="Customer's salutation (e.g., Mr., Mrs., Dr.)")
-    initials: Optional[StrictStr] = Field(default=None, description="Customer's initials")
-    first_name: Optional[StrictStr] = Field(default=None, description="Customer's first name", alias="firstName")
-    last_name: Optional[StrictStr] = Field(default=None, description="Customer's last name", alias="lastName")
-    birth_date: Optional[datetime] = Field(default=None, description="Customer's date of birth", alias="birthDate")
-    ssin: Optional[StrictStr] = Field(default=None, description="Social Security Identification Number")
-    ssin_country: Optional[CountryCode] = Field(default=None, description="Country code associated with the SSIN", alias="ssinCountry")
-    short_display_name: Optional[StrictStr] = Field(default=None, description="Short display name for the customer", alias="shortDisplayName")
-    customer_type: Optional[CustomerType] = Field(default=None, description="Type of customer (e.g., Individual, Business)", alias="customerType")
-    company_name: Optional[StrictStr] = Field(default=None, description="Company name for business customers", alias="companyName")
-    organization_number: Optional[StrictStr] = Field(default=None, description="Organization registration number", alias="organizationNumber")
-    vat_number: Optional[StrictStr] = Field(default=None, description="Value Added Tax registration number", alias="vatNumber")
-    payment_terms_id: Optional[StrictStr] = Field(default=None, description="Identifier for payment terms", alias="paymentTermsId")
-    default_payment_method: Optional[PaymentMethod] = Field(default=None, description="Default payment method for the customer", alias="defaultPaymentMethod")
-    invoice_address: Optional[AddressDTO] = Field(default=None, description="Address for invoice delivery", alias="invoiceAddress")
-    bank_account_ibans: Optional[List[BankAccountDTO]] = Field(default=None, description="List of bank account IBANs associated with the customer", alias="bankAccountIbans")
-    contact_details: Optional[List[ContactEntryDTO]] = Field(default=None, description="Collection of contact details for the customer", alias="contactDetails")
-    contracts: Optional[List[CustomerContractDTO]] = Field(default=None, description="Collection of contracts associated with the customer")
-    communication_preferences: Optional[CustomerCommunicationPreferencesDTO] = Field(default=None, description="Customer's communication preferences", alias="communicationPreferences")
-    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, description="List of property groups associated with the customer", alias="propertyGroups")
-    customer_group: Optional[CustomerGroupReferenceDTO] = Field(default=None, description="Customer group reference", alias="customerGroup")
-    billing_settings: Optional[CustomerBillingSettingsDTO] = Field(default=None, description="Customer's billing settings", alias="billingSettings")
-    custom_properties: Optional[List[CustomEntityPropertyDTO]] = Field(default=None, description="List of custom properties associated with the customer", alias="customProperties")
-    activation_code: Optional[StrictStr] = Field(default=None, description="Activation code for customer portal access", alias="activationCode")
-    portal_properties: Optional[CustomerPortalPropertiesDTO] = Field(default=None, description="Portal-specific properties for the customer", alias="portalProperties")
-    generated_annual_statements: Optional[List[AnnualStatementReference]] = Field(default=None, description="List of generated annual statements for the customer", alias="generatedAnnualStatements")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "accountNumber", "salutation", "initials", "firstName", "lastName", "birthDate", "ssin", "ssinCountry", "shortDisplayName", "customerType", "companyName", "organizationNumber", "vatNumber", "paymentTermsId", "defaultPaymentMethod", "invoiceAddress", "bankAccountIbans", "contactDetails", "contracts", "communicationPreferences", "propertyGroups", "customerGroup", "billingSettings", "customProperties", "activationCode", "portalProperties", "generatedAnnualStatements"]
+    account_number: Optional[StrictStr] = Field(default=None, alias="accountNumber")
+    salutation: Optional[StrictStr] = None
+    initials: Optional[StrictStr] = None
+    first_name: Optional[StrictStr] = Field(default=None, alias="firstName")
+    last_name: Optional[StrictStr] = Field(default=None, alias="lastName")
+    full_name: Optional[StrictStr] = Field(default=None, alias="fullName")
+    birth_date: Optional[datetime] = Field(default=None, alias="birthDate")
+    ssin: Optional[StrictStr] = None
+    ssin_country: Optional[CountryCode] = Field(default=None, alias="ssinCountry")
+    short_display_name: Optional[StrictStr] = Field(default=None, alias="shortDisplayName")
+    customer_type: Optional[CustomerType] = Field(default=None, alias="customerType")
+    company_name: Optional[StrictStr] = Field(default=None, alias="companyName")
+    organization_number: Optional[StrictStr] = Field(default=None, alias="organizationNumber")
+    vat_number: Optional[StrictStr] = Field(default=None, alias="vatNumber")
+    payment_terms_id: Optional[StrictStr] = Field(default=None, alias="paymentTermsId")
+    default_payment_method: Optional[PaymentMethod] = Field(default=None, alias="defaultPaymentMethod")
+    invoice_address: Optional[AddressDTO] = Field(default=None, alias="invoiceAddress")
+    bank_account_ibans: Optional[List[BankAccountDTO]] = Field(default=None, alias="bankAccountIbans")
+    contact_details: Optional[List[ContactEntryDTO]] = Field(default=None, alias="contactDetails")
+    contracts: Optional[List[CustomerContractDTO]] = None
+    communication_preferences: Optional[CustomerCommunicationPreferencesDTO] = Field(default=None, alias="communicationPreferences")
+    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, alias="propertyGroups")
+    customer_group: Optional[CustomerGroupReferenceDTO] = Field(default=None, alias="customerGroup")
+    billing_settings: Optional[CustomerBillingSettingsDTO] = Field(default=None, alias="billingSettings")
+    custom_properties: Optional[List[CustomEntityPropertyDTO]] = Field(default=None, alias="customProperties")
+    activation_code: Optional[StrictStr] = Field(default=None, alias="activationCode")
+    portal_properties: Optional[CustomerPortalPropertiesDTO] = Field(default=None, alias="portalProperties")
+    generated_annual_statements: Optional[List[AnnualStatementReference]] = Field(default=None, alias="generatedAnnualStatements")
+    blocked_for_deletion_reason: Optional[CustomerBlockedForDeletionReason] = Field(default=None, alias="blockedForDeletionReason")
+    deleted: Optional[StrictBool] = None
+    service_number: Optional[StrictStr] = Field(default=None, alias="serviceNumber")
+    preferred_peppol_scheme: Optional[PeppolScheme] = Field(default=None, alias="preferredPeppolScheme")
+    custom_peppol_identifier: Optional[StrictStr] = Field(default=None, alias="customPeppolIdentifier")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["accountNumber", "salutation", "initials", "firstName", "lastName", "fullName", "birthDate", "ssin", "ssinCountry", "shortDisplayName", "customerType", "companyName", "organizationNumber", "vatNumber", "paymentTermsId", "defaultPaymentMethod", "invoiceAddress", "bankAccountIbans", "contactDetails", "contracts", "communicationPreferences", "propertyGroups", "customerGroup", "billingSettings", "customProperties", "activationCode", "portalProperties", "generatedAnnualStatements", "blockedForDeletionReason", "deleted", "serviceNumber", "preferredPeppolScheme", "customPeppolIdentifier", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,10 +117,8 @@ class CustomerDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -179,31 +183,6 @@ class CustomerDTO(BaseModel):
                 if _item_generated_annual_statements:
                     _items.append(_item_generated_annual_statements.to_dict())
             _dict['generatedAnnualStatements'] = _items
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
         # set to None if account_number (nullable) is None
         # and model_fields_set contains the field
         if self.account_number is None and "account_number" in self.model_fields_set:
@@ -228,6 +207,11 @@ class CustomerDTO(BaseModel):
         # and model_fields_set contains the field
         if self.last_name is None and "last_name" in self.model_fields_set:
             _dict['lastName'] = None
+
+        # set to None if full_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.full_name is None and "full_name" in self.model_fields_set:
+            _dict['fullName'] = None
 
         # set to None if ssin (nullable) is None
         # and model_fields_set contains the field
@@ -284,25 +268,10 @@ class CustomerDTO(BaseModel):
         if self.bank_account_ibans is None and "bank_account_ibans" in self.model_fields_set:
             _dict['bankAccountIbans'] = None
 
-        # set to None if contact_details (nullable) is None
-        # and model_fields_set contains the field
-        if self.contact_details is None and "contact_details" in self.model_fields_set:
-            _dict['contactDetails'] = None
-
-        # set to None if contracts (nullable) is None
-        # and model_fields_set contains the field
-        if self.contracts is None and "contracts" in self.model_fields_set:
-            _dict['contracts'] = None
-
         # set to None if communication_preferences (nullable) is None
         # and model_fields_set contains the field
         if self.communication_preferences is None and "communication_preferences" in self.model_fields_set:
             _dict['communicationPreferences'] = None
-
-        # set to None if property_groups (nullable) is None
-        # and model_fields_set contains the field
-        if self.property_groups is None and "property_groups" in self.model_fields_set:
-            _dict['propertyGroups'] = None
 
         # set to None if customer_group (nullable) is None
         # and model_fields_set contains the field
@@ -334,6 +303,21 @@ class CustomerDTO(BaseModel):
         if self.generated_annual_statements is None and "generated_annual_statements" in self.model_fields_set:
             _dict['generatedAnnualStatements'] = None
 
+        # set to None if blocked_for_deletion_reason (nullable) is None
+        # and model_fields_set contains the field
+        if self.blocked_for_deletion_reason is None and "blocked_for_deletion_reason" in self.model_fields_set:
+            _dict['blockedForDeletionReason'] = None
+
+        # set to None if service_number (nullable) is None
+        # and model_fields_set contains the field
+        if self.service_number is None and "service_number" in self.model_fields_set:
+            _dict['serviceNumber'] = None
+
+        # set to None if custom_peppol_identifier (nullable) is None
+        # and model_fields_set contains the field
+        if self.custom_peppol_identifier is None and "custom_peppol_identifier" in self.model_fields_set:
+            _dict['customPeppolIdentifier'] = None
+
         return _dict
 
     @classmethod
@@ -346,21 +330,12 @@ class CustomerDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "accountNumber": obj.get("accountNumber"),
             "salutation": obj.get("salutation"),
             "initials": obj.get("initials"),
             "firstName": obj.get("firstName"),
             "lastName": obj.get("lastName"),
+            "fullName": obj.get("fullName"),
             "birthDate": obj.get("birthDate"),
             "ssin": obj.get("ssin"),
             "ssinCountry": obj.get("ssinCountry"),
@@ -382,7 +357,20 @@ class CustomerDTO(BaseModel):
             "customProperties": [CustomEntityPropertyDTO.from_dict(_item) for _item in obj["customProperties"]] if obj.get("customProperties") is not None else None,
             "activationCode": obj.get("activationCode"),
             "portalProperties": CustomerPortalPropertiesDTO.from_dict(obj["portalProperties"]) if obj.get("portalProperties") is not None else None,
-            "generatedAnnualStatements": [AnnualStatementReference.from_dict(_item) for _item in obj["generatedAnnualStatements"]] if obj.get("generatedAnnualStatements") is not None else None
+            "generatedAnnualStatements": [AnnualStatementReference.from_dict(_item) for _item in obj["generatedAnnualStatements"]] if obj.get("generatedAnnualStatements") is not None else None,
+            "blockedForDeletionReason": obj.get("blockedForDeletionReason"),
+            "deleted": obj.get("deleted"),
+            "serviceNumber": obj.get("serviceNumber"),
+            "preferredPeppolScheme": obj.get("preferredPeppolScheme"),
+            "customPeppolIdentifier": obj.get("customPeppolIdentifier"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

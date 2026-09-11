@@ -35,15 +35,29 @@ class TestBaseDataExportParametersDTO(unittest.TestCase):
         model = BaseDataExportParametersDTO()
         if include_optional:
             return BaseDataExportParametersDTO(
-                auto_move_after_generation = True,
-                zip_files = True,
-                auto_assign_entities_to_export = True
-            )
-        else:
-            return BaseDataExportParametersDTO(
+                type = 'ftp',
+                host = '',
+                port = 56,
+                user_name = '',
+                password = '',
+                directory = '',
                 auto_move_after_generation = True,
                 zip_files = True,
                 auto_assign_entities_to_export = True,
+                protocol = 'none'
+            )
+        else:
+            return BaseDataExportParametersDTO(
+                type = 'ftp',
+                host = '',
+                port = 56,
+                user_name = '',
+                password = '',
+                directory = '',
+                auto_move_after_generation = True,
+                zip_files = True,
+                auto_assign_entities_to_export = True,
+                protocol = 'none',
         )
         """
 

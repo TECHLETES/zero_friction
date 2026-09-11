@@ -37,6 +37,7 @@ class TestInvoiceLineDTO(unittest.TestCase):
             return InvoiceLineDTO(
                 billing_item_id = '',
                 billing_tariff_id = '',
+                time_of_use = '',
                 description = '',
                 amount_excl_vat = 1.337,
                 amount_incl_vat = 1.337,

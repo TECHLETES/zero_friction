@@ -36,7 +36,7 @@ class TestMoveRequestAttachmentSignatureRequest(unittest.TestCase):
         if include_optional:
             return MoveRequestAttachmentSignatureRequest(
                 origin = 'customer',
-                culture = ,
+                culture = '',
                 product_attachment_id = '',
                 entity_attachment_group_id = '',
                 sign_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
@@ -44,6 +44,10 @@ class TestMoveRequestAttachmentSignatureRequest(unittest.TestCase):
             )
         else:
             return MoveRequestAttachmentSignatureRequest(
+                origin = 'customer',
+                culture = '',
+                product_attachment_id = '',
+                entity_attachment_group_id = '',
         )
         """
 

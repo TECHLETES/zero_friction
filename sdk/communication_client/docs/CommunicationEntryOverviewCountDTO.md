@@ -7,6 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **all** | **int** |  | [optional] 
 **failed** | **int** |  | [optional] 
+**sent** | **int** |  | [optional] 
+**not_sent** | **int** |  | [optional] 
+**in_transit** | **int** |  | [optional] 
 
 ## Example
 

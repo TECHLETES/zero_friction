@@ -31,7 +31,7 @@ class ScenarioTranslationDTO(BaseModel):
     name: Optional[StrictStr] = None
     status: Optional[TranslationStatus] = None
     has_default_translation: Optional[StrictBool] = Field(default=None, alias="hasDefaultTranslation")
-    translations: Optional[Dict[str, Optional[StrictStr]]] = None
+    translations: Optional[Dict[str, StrictStr]] = None
     use_cases: Optional[List[TemplateUsecase]] = Field(default=None, alias="useCases")
     __properties: ClassVar[List[str]] = ["name", "status", "hasDefaultTranslation", "translations", "useCases"]
 
@@ -78,11 +78,6 @@ class ScenarioTranslationDTO(BaseModel):
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
-
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
 
         # set to None if translations (nullable) is None
         # and model_fields_set contains the field

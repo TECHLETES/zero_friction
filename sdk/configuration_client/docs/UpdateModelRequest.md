@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
+**name** | **str** |  | 
 **description** | **str** |  | [optional] 
-**brand_name** | **str** |  | [optional] 
-**channel_templates** | [**List[ChannelTemplateRequest]**](ChannelTemplateRequest.md) |  | [optional] 
+**brand_name** | **str** |  | 
+**channel_templates** | [**List[ChannelTemplateRequest]**](ChannelTemplateRequest.md) |  | 
 
 ## Example
 

@@ -35,23 +35,14 @@ class TestBillingItemDTO(unittest.TestCase):
         model = BillingItemDTO()
         if include_optional:
             return BillingItemDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
                 name = '',
                 description = '',
                 person_tax_code_id = '',
                 organisation_tax_code_id = '',
+                hide_when_zero = True,
+                is_prepayment_eligible = True,
                 tier_calculation_method = 'invoiceperiod',
-                calculation_parameters = configuration_client.models.billing_calculation_type_parameters_dto.BillingCalculationTypeParametersDTO(
-                    unit_of_measure = null, 
-                    billing_calculation_type = null, ),
+                calculation_parameters = configuration_client.models.billing_calculation_type_parameters_dto.BillingCalculationTypeParametersDTO(),
                 localisation_level = 'none',
                 localised_fields = [
                     ''
@@ -60,7 +51,15 @@ class TestBillingItemDTO(unittest.TestCase):
                     'key' : {
                         'key' : ''
                         }
-                    }
+                    },
+                accounting_code_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return BillingItemDTO(

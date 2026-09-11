@@ -28,11 +28,13 @@ class UpsertProductRequest(BaseModel):
     """
     UpsertProductRequest
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    billing_items: Optional[List[UpsertProductBillingItemsRequest]] = Field(default=None, alias="billingItems")
-    attachments: Optional[List[UpsertProductAttachmentRequest]] = None
+    name: Optional[StrictStr]
+    billing_items: Optional[List[UpsertProductBillingItemsRequest]] = Field(alias="billingItems")
+    attachments: Optional[List[UpsertProductAttachmentRequest]]
     invoice_upfront: Optional[StrictBool] = Field(default=None, alias="invoiceUpfront")
-    __properties: ClassVar[List[str]] = ["name", "billingItems", "attachments", "invoiceUpfront"]
+    is_prepayment_eligible: Optional[StrictBool] = Field(default=None, alias="isPrepaymentEligible")
+    accounting_code_id: Optional[StrictStr] = Field(default=None, alias="accountingCodeId")
+    __properties: ClassVar[List[str]] = ["name", "billingItems", "attachments", "invoiceUpfront", "isPrepaymentEligible", "accountingCodeId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,6 +104,11 @@ class UpsertProductRequest(BaseModel):
         if self.attachments is None and "attachments" in self.model_fields_set:
             _dict['attachments'] = None
 
+        # set to None if accounting_code_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.accounting_code_id is None and "accounting_code_id" in self.model_fields_set:
+            _dict['accountingCodeId'] = None
+
         return _dict
 
     @classmethod
@@ -117,7 +124,9 @@ class UpsertProductRequest(BaseModel):
             "name": obj.get("name"),
             "billingItems": [UpsertProductBillingItemsRequest.from_dict(_item) for _item in obj["billingItems"]] if obj.get("billingItems") is not None else None,
             "attachments": [UpsertProductAttachmentRequest.from_dict(_item) for _item in obj["attachments"]] if obj.get("attachments") is not None else None,
-            "invoiceUpfront": obj.get("invoiceUpfront")
+            "invoiceUpfront": obj.get("invoiceUpfront"),
+            "isPrepaymentEligible": obj.get("isPrepaymentEligible"),
+            "accountingCodeId": obj.get("accountingCodeId")
         })
         return _obj
 

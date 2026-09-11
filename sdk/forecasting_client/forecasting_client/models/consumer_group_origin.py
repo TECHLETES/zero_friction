@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ConsumerGroupOrigin(str, Enum):
     """
-    ConsumerGroupOrigin
+    Possible values: 'manual', 'systemgenerated'
     """
 
     """

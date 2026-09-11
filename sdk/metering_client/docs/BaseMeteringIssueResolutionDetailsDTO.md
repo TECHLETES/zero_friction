@@ -5,8 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | **str** |  | 
+**resolved_reason** | [**MeteringIssueResolutionReason**](MeteringIssueResolutionReason.md) |  | [optional] 
 **resolved_by_user_id** | **str** |  | [optional] 
 **new_value** | **float** |  | [optional] 
+**message** | **str** |  | [optional] 
 
 ## Example
 

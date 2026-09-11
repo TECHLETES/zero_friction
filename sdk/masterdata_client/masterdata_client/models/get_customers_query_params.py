@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,10 +26,7 @@ class GetCustomersQueryParams(BaseModel):
     """
     GetCustomersQueryParams
     """ # noqa: E501
-    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
-    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
-    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
-    customer_type: Optional[StrictStr] = Field(default=None, alias="customerType")
+    customer_types: Optional[List[StrictStr]] = Field(default=None, alias="customerTypes")
     default_payment_method: Optional[StrictStr] = Field(default=None, alias="defaultPaymentMethod")
     property_group_ids: Optional[List[StrictStr]] = Field(default=None, alias="propertyGroupIds")
     exclude_property_group_id: Optional[StrictStr] = Field(default=None, alias="excludePropertyGroupId")
@@ -42,7 +39,11 @@ class GetCustomersQueryParams(BaseModel):
     vulnerability_register_property_type_id: Optional[StrictStr] = Field(default=None, alias="vulnerabilityRegisterPropertyTypeId")
     priority_service_register_ids: Optional[List[StrictStr]] = Field(default=None, alias="priorityServiceRegisterIds")
     vulnerability_register_ids: Optional[List[StrictStr]] = Field(default=None, alias="vulnerabilityRegisterIds")
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "customerType", "defaultPaymentMethod", "propertyGroupIds", "excludePropertyGroupId", "customerGroupId", "excludeCustomerGroupId", "customerGroupName", "nameContains", "activationCode", "priorityServiceRegisterPropertyTypeId", "vulnerabilityRegisterPropertyTypeId", "priorityServiceRegisterIds", "vulnerabilityRegisterIds"]
+    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
+    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
+    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["customerTypes", "defaultPaymentMethod", "propertyGroupIds", "excludePropertyGroupId", "customerGroupId", "excludeCustomerGroupId", "customerGroupName", "nameContains", "activationCode", "priorityServiceRegisterPropertyTypeId", "vulnerabilityRegisterPropertyTypeId", "priorityServiceRegisterIds", "vulnerabilityRegisterIds", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,80 +89,10 @@ class GetCustomersQueryParams(BaseModel):
         if self.flex_search is None and "flex_search" in self.model_fields_set:
             _dict['flexSearch'] = None
 
-        # set to None if include_only_ids (nullable) is None
+        # set to None if page_size (nullable) is None
         # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
-        # set to None if customer_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_type is None and "customer_type" in self.model_fields_set:
-            _dict['customerType'] = None
-
-        # set to None if default_payment_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.default_payment_method is None and "default_payment_method" in self.model_fields_set:
-            _dict['defaultPaymentMethod'] = None
-
-        # set to None if property_group_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.property_group_ids is None and "property_group_ids" in self.model_fields_set:
-            _dict['propertyGroupIds'] = None
-
-        # set to None if exclude_property_group_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_property_group_id is None and "exclude_property_group_id" in self.model_fields_set:
-            _dict['excludePropertyGroupId'] = None
-
-        # set to None if customer_group_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_group_id is None and "customer_group_id" in self.model_fields_set:
-            _dict['customerGroupId'] = None
-
-        # set to None if exclude_customer_group_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_customer_group_id is None and "exclude_customer_group_id" in self.model_fields_set:
-            _dict['excludeCustomerGroupId'] = None
-
-        # set to None if customer_group_name (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_group_name is None and "customer_group_name" in self.model_fields_set:
-            _dict['customerGroupName'] = None
-
-        # set to None if name_contains (nullable) is None
-        # and model_fields_set contains the field
-        if self.name_contains is None and "name_contains" in self.model_fields_set:
-            _dict['nameContains'] = None
-
-        # set to None if activation_code (nullable) is None
-        # and model_fields_set contains the field
-        if self.activation_code is None and "activation_code" in self.model_fields_set:
-            _dict['activationCode'] = None
-
-        # set to None if priority_service_register_property_type_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.priority_service_register_property_type_id is None and "priority_service_register_property_type_id" in self.model_fields_set:
-            _dict['priorityServiceRegisterPropertyTypeId'] = None
-
-        # set to None if vulnerability_register_property_type_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.vulnerability_register_property_type_id is None and "vulnerability_register_property_type_id" in self.model_fields_set:
-            _dict['vulnerabilityRegisterPropertyTypeId'] = None
-
-        # set to None if priority_service_register_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.priority_service_register_ids is None and "priority_service_register_ids" in self.model_fields_set:
-            _dict['priorityServiceRegisterIds'] = None
-
-        # set to None if vulnerability_register_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.vulnerability_register_ids is None and "vulnerability_register_ids" in self.model_fields_set:
-            _dict['vulnerabilityRegisterIds'] = None
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
 
         return _dict
 
@@ -175,10 +106,7 @@ class GetCustomersQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
-            "customerType": obj.get("customerType"),
+            "customerTypes": obj.get("customerTypes"),
             "defaultPaymentMethod": obj.get("defaultPaymentMethod"),
             "propertyGroupIds": obj.get("propertyGroupIds"),
             "excludePropertyGroupId": obj.get("excludePropertyGroupId"),
@@ -190,7 +118,11 @@ class GetCustomersQueryParams(BaseModel):
             "priorityServiceRegisterPropertyTypeId": obj.get("priorityServiceRegisterPropertyTypeId"),
             "vulnerabilityRegisterPropertyTypeId": obj.get("vulnerabilityRegisterPropertyTypeId"),
             "priorityServiceRegisterIds": obj.get("priorityServiceRegisterIds"),
-            "vulnerabilityRegisterIds": obj.get("vulnerabilityRegisterIds")
+            "vulnerabilityRegisterIds": obj.get("vulnerabilityRegisterIds"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
 

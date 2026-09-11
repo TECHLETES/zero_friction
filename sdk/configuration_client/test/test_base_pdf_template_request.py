@@ -35,13 +35,20 @@ class TestBasePdfTemplateRequest(unittest.TestCase):
         model = BasePdfTemplateRequest()
         if include_optional:
             return BasePdfTemplateRequest(
+                type = 'UpdateAnnualStatementPdfTemplateRequest',
+                show_country = True,
+                show_balance = True,
+                show_vat_specs = True,
+                show_custom_information = True,
                 envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
-                    margin_position = null, 
+                    margin_position = 'left', 
                     margin = 56, 
-                    margin_top = 56, )
+                    margin_top = 56, ),
+                is_closing_statement = True
             )
         else:
             return BasePdfTemplateRequest(
+                type = 'UpdateAnnualStatementPdfTemplateRequest',
         )
         """
 

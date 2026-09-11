@@ -35,17 +35,8 @@ class TestMoveRequestDTO(unittest.TestCase):
         model = MoveRequestDTO()
         if include_optional:
             return MoveRequestDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 external_id = '',
+                move_request_number = '',
                 customer_details = masterdata_client.models.customer_details_dto.CustomerDetailsDTO(
                     account_number = '', 
                     salutation = '', 
@@ -54,54 +45,94 @@ class TestMoveRequestDTO(unittest.TestCase):
                     last_name = '', 
                     birth_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     ssin = '', 
-                    ssin_country = null, 
-                    customer_type = null, 
+                    ssin_country = 'aut', 
+                    customer_type = 'person', 
                     company_name = '', 
                     organization_number = '', 
                     vat_number = '', 
-                    default_payment_method = null, 
-                    invoice_address = null, 
+                    default_payment_method = 'sct', 
+                    invoice_address = masterdata_client.models.address_dto.AddressDTO(
+                        street_name = '', 
+                        street_number = '', 
+                        street_number_addition = '', 
+                        postal_code = '', 
+                        building_name = '', 
+                        locality = '', 
+                        city = '', 
+                        country = 'aut', 
+                        localized_display = '', 
+                        line_one = '', 
+                        line_two = '', ), 
                     bank_account = '', 
                     email_address = '', 
                     telephone_number = '', 
                     mobile_telephone_number = '', 
                     website = '', 
-                    culture = null, 
+                    culture = '', 
                     internal_id = '', 
                     created_or_linked = True, 
                     errors = [
                         masterdata_client.models.localised_error_dto.LocalisedErrorDTO(
-                            key = null, 
+                            key = 56, 
                             correlation_id = '', 
                             message = '', 
                             message_values = [
                                 masterdata_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                    data_type = null, 
+                                    data_type = 'text', 
                                     value = '', 
                                     capitalize = True, )
                                 ], )
                         ], 
                     customer_group_id = '', ),
                 service_location_details = masterdata_client.models.service_location_details_dto.ServiceLocationDetailsDTO(
-                    previous_contract_details = null, 
-                    current_contract_details = null, 
-                    owner = null, 
-                    address = null, 
+                    previous_contract_details = masterdata_client.models.move_request_contract_details_dto.MoveRequestContractDetailsDTO(
+                        contract_id = '', 
+                        contract_number = '', 
+                        contract_supply_start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        contract_supply_end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        customer_id = '', 
+                        customer_display_name = '', 
+                        customer_account_number = '', ), 
+                    current_contract_details = masterdata_client.models.move_request_contract_details_dto.MoveRequestContractDetailsDTO(
+                        contract_id = '', 
+                        contract_number = '', 
+                        contract_supply_start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        contract_supply_end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        customer_id = '', 
+                        customer_display_name = '', 
+                        customer_account_number = '', ), 
+                    owner = masterdata_client.models.management_relation_dto.ManagementRelationDTO(
+                        customer_id = '', 
+                        short_display_name = '', 
+                        account_number = '', 
+                        management_relation_type = 'owner', ), 
+                    address = masterdata_client.models.address_dto.AddressDTO(
+                        street_name = '', 
+                        street_number = '', 
+                        street_number_addition = '', 
+                        postal_code = '', 
+                        building_name = '', 
+                        locality = '', 
+                        city = '', 
+                        country = 'aut', 
+                        localized_display = '', 
+                        line_one = '', 
+                        line_two = '', ), 
                     services = [
                         masterdata_client.models.service_location_service_details_dto.ServiceLocationServiceDetailsDTO(
                             external_identifier = '', 
-                            utility_type = null, )
+                            utility_type = 'none', )
                         ], 
                     linked = True, 
                     internal_id = '', 
                     errors = [
                         masterdata_client.models.localised_error_dto.LocalisedErrorDTO(
-                            key = null, 
+                            key = 56, 
                             correlation_id = '', 
                             message = '', 
                             message_values = [
                                 masterdata_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                    data_type = null, 
+                                    data_type = 'text', 
                                     value = '', 
                                     capitalize = True, )
                                 ], )
@@ -111,19 +142,19 @@ class TestMoveRequestDTO(unittest.TestCase):
                         internal_meter_id = '', 
                         external_channel_identifier = '', 
                         meter_serial_number = '', 
-                        utility_type = null, 
-                        unit_of_measure = null, 
+                        utility_type = 'none', 
+                        unit_of_measure = 'none', 
                         time_of_use = '', 
                         value = 1.337, 
                         time_zone = '', 
                         errors = [
                             masterdata_client.models.localised_error_dto.LocalisedErrorDTO(
-                                key = null, 
+                                key = 56, 
                                 correlation_id = '', 
                                 message = '', 
                                 message_values = [
                                     masterdata_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                        data_type = null, 
+                                        data_type = 'text', 
                                         value = '', 
                                         capitalize = True, )
                                     ], )
@@ -134,20 +165,20 @@ class TestMoveRequestDTO(unittest.TestCase):
                     use_property_group_product = True, 
                     estimations = [
                         masterdata_client.models.contract_estimation_dto.ContractEstimationDTO(
-                            utility_type = null, 
-                            unit_of_measure = null, 
-                            metering_type = null, 
+                            utility_type = 'none', 
+                            unit_of_measure = 'none', 
+                            metering_type = 'none', 
                             value = 1.337, 
                             consumer_group_id = '', )
                         ], 
                     errors = [
                         masterdata_client.models.localised_error_dto.LocalisedErrorDTO(
-                            key = null, 
+                            key = 56, 
                             correlation_id = '', 
                             message = '', 
                             message_values = [
                                 masterdata_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                    data_type = null, 
+                                    data_type = 'text', 
                                     value = '', 
                                     capitalize = True, )
                                 ], )
@@ -157,24 +188,32 @@ class TestMoveRequestDTO(unittest.TestCase):
                     contract_number = '', 
                     created_or_linked = True, 
                     service_locations_count = 56, 
-                    billing_properties = null, ),
+                    billing_properties = masterdata_client.models.contract_details_billing_properties_base_dto.ContractDetailsBillingPropertiesBaseDTO(), ),
                 move_request_type = 'movein',
                 status = 'new',
                 mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 custom_message = '',
                 attachment_signatures = [
                     masterdata_client.models.attachment_signature.AttachmentSignature(
-                        culture = null, 
+                        culture = '', 
                         attachment_file_name = '', 
-                        error_code = null, 
-                        origin = null, 
+                        error_code = 56, 
+                        origin = 'customer', 
                         product_attachment_id = '', 
                         attachment_file_id = '', 
                         entity_attachment_group_id = '', 
                         sign_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         viewed_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ],
-                has_any_errors = True
+                has_any_errors = True,
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return MoveRequestDTO(

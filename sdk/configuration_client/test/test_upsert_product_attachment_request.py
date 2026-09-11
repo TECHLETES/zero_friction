@@ -43,7 +43,7 @@ class TestUpsertProductAttachmentRequest(unittest.TestCase):
                 valid_until = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 attachment_files = [
                     configuration_client.models.upsert_product_attachment_file_request.UpsertProductAttachmentFileRequest(
-                        culture = null, 
+                        culture = '', 
                         file_name = '', 
                         internal_file_name = '', 
                         attachment_id = '', )
@@ -51,6 +51,15 @@ class TestUpsertProductAttachmentRequest(unittest.TestCase):
             )
         else:
             return UpsertProductAttachmentRequest(
+                visibility = 'internal',
+                valid_until = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                attachment_files = [
+                    configuration_client.models.upsert_product_attachment_file_request.UpsertProductAttachmentFileRequest(
+                        culture = '', 
+                        file_name = '', 
+                        internal_file_name = '', 
+                        attachment_id = '', )
+                    ],
         )
         """
 

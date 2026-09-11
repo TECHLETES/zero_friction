@@ -5,10 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**end_date_time** | **datetime** |  | [optional] 
+**start_date_time** | **datetime** |  | [optional] 
+**end_date_time** | **datetime** |  | 
 **value** | **float** |  | [optional] 
-**meter_id** | **str** |  | [optional] 
-**external_channel_id** | **str** |  | [optional] 
+**reading_origin** | [**MeasurementReadingOrigin**](MeasurementReadingOrigin.md) |  | [optional] 
+**meter_id** | **str** |  | 
+**external_channel_id** | **str** |  | 
 
 ## Example
 

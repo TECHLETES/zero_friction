@@ -42,6 +42,7 @@ class TestContactEntryRequest(unittest.TestCase):
             )
         else:
             return ContactEntryRequest(
+                contact_type = 'email',
         )
         """
 

@@ -35,13 +35,16 @@ class TestUpsertProductAttachmentFileRequest(unittest.TestCase):
         model = UpsertProductAttachmentFileRequest()
         if include_optional:
             return UpsertProductAttachmentFileRequest(
-                culture = ,
+                culture = '',
                 file_name = '',
                 internal_file_name = '',
                 attachment_id = ''
             )
         else:
             return UpsertProductAttachmentFileRequest(
+                culture = '',
+                file_name = '',
+                attachment_id = '',
         )
         """
 

@@ -35,17 +35,10 @@ class TestUpdateOrganizationScenarioRequest(unittest.TestCase):
         model = UpdateOrganizationScenarioRequest()
         if include_optional:
             return UpdateOrganizationScenarioRequest(
-                default_communication_type = 'postal',
-                email_template = configuration_client.models.base_email_template_request.BaseEmailTemplateRequest(
-                    subject = '', 
-                    attachments = [
-                        configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
-                            id = '', 
-                            internal_file_path = '', 
-                            file_name = '', )
-                        ], ),
-                pdf_template = configuration_client.models.base_pdf_template_request.BasePdfTemplateRequest(
-                    envelope_settings = null, )
+                email_template = configuration_client.models.base_email_template_request.BaseEmailTemplateRequest(),
+                pdf_template = configuration_client.models.base_pdf_template_request.BasePdfTemplateRequest(),
+                default_communication_type = 'none',
+                auto_fallback_to_postal = True
             )
         else:
             return UpdateOrganizationScenarioRequest(

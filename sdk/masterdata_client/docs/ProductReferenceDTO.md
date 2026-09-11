@@ -6,9 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [optional] 
-**name** | **str** |  | [optional] [readonly] 
-**product_id** | **str** |  | [optional] [readonly] 
-**product_name** | **str** |  | [optional] 
+**name** | **str** |  | [optional] 
+**product_id** | **str** |  | [optional] 
+**product_name** | **str** |  | 
 
 ## Example
 

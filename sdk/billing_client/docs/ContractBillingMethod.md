@@ -1,5 +1,6 @@
 # ContractBillingMethod
 
+Possible values: 'credit', 'prepayment'
 
 ## Enum
 

@@ -42,12 +42,15 @@ class TestCreateBillingTariffTreeRequest(unittest.TestCase):
                     end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
                 nodes = [
                     configuration_client.models.create_billing_tariff_node_request.CreateBillingTariffNodeRequest(
-                        calculation_parameters = null, 
-                        condition = null, )
+                        calculation_parameters = configuration_client.models.base_tariff_calculation_type_parameters_dto.BaseTariffCalculationTypeParametersDTO(), 
+                        condition = configuration_client.models.base_tariff_condition_type_parameters_dto.BaseTariffConditionTypeParametersDTO(), )
                     ]
             )
         else:
             return CreateBillingTariffTreeRequest(
+                activity_period = configuration_client.models.date_range.DateRange(
+                    start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
         )
         """
 

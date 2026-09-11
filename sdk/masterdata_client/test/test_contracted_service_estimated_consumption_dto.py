@@ -36,10 +36,10 @@ class TestContractedServiceEstimatedConsumptionDTO(unittest.TestCase):
         if include_optional:
             return ContractedServiceEstimatedConsumptionDTO(
                 consumer_group_id = '',
-                value = 1.337,
+                consumption_quantity = 1.337,
                 unit_of_measure = 'none',
                 metering_type = 'none',
-                is_manual_entry = True
+                direction = 'offtake'
             )
         else:
             return ContractedServiceEstimatedConsumptionDTO(

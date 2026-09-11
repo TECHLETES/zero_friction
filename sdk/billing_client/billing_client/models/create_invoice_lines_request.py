@@ -27,20 +27,20 @@ from typing_extensions import Self
 
 class CreateInvoiceLinesRequest(BaseModel):
     """
-    Represents a line item in an invoice.  This DTO contains the details of individual items or services being billed.
+    CreateInvoiceLinesRequest
     """ # noqa: E501
-    quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The quantity of the item or service.")
-    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, description="The unit of measure for the quantity (e.g., pieces, hours, etc.).", alias="unitOfMeasure")
-    billing_item_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the billing item.", alias="billingItemId")
-    unit_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The price per unit of the item or service.", alias="unitPrice")
-    amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount including VAT for this line item.", alias="amountInclVAT")
-    amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount excluding VAT for this line item.", alias="amountExclVAT")
-    line_type: Optional[InvoiceLineType] = Field(default=None, description="The type of line item (e.g., product, service, etc.).", alias="lineType")
-    service_location_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the service location.", alias="serviceLocationId")
-    start_date_time: Optional[datetime] = Field(default=None, description="The start date and time of the service period.", alias="startDateTime")
-    end_date_time: Optional[datetime] = Field(default=None, description="The end date and time of the service period.", alias="endDateTime")
-    tax_code_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the tax code applied to this line item.", alias="taxCodeId")
-    description: Optional[StrictStr] = Field(default=None, description="A description of the line item.")
+    quantity: Union[StrictFloat, StrictInt]
+    unit_of_measure: UnitOfMeasure = Field(alias="unitOfMeasure")
+    billing_item_id: Optional[StrictStr] = Field(default=None, alias="billingItemId")
+    unit_price: Union[StrictFloat, StrictInt] = Field(alias="unitPrice")
+    amount_incl_vat: Union[StrictFloat, StrictInt] = Field(alias="amountInclVAT")
+    amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="amountExclVAT")
+    line_type: InvoiceLineType = Field(alias="lineType")
+    service_location_id: Optional[StrictStr] = Field(default=None, alias="serviceLocationId")
+    start_date_time: datetime = Field(alias="startDateTime")
+    end_date_time: datetime = Field(alias="endDateTime")
+    tax_code_id: Optional[StrictStr] = Field(default=None, alias="taxCodeId")
+    description: Optional[StrictStr]
     __properties: ClassVar[List[str]] = ["quantity", "unitOfMeasure", "billingItemId", "unitPrice", "amountInclVAT", "amountExclVAT", "lineType", "serviceLocationId", "startDateTime", "endDateTime", "taxCodeId", "description"]
 
     model_config = ConfigDict(
@@ -82,20 +82,10 @@ class CreateInvoiceLinesRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
-
         # set to None if billing_item_id (nullable) is None
         # and model_fields_set contains the field
         if self.billing_item_id is None and "billing_item_id" in self.model_fields_set:
             _dict['billingItemId'] = None
-
-        # set to None if line_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.line_type is None and "line_type" in self.model_fields_set:
-            _dict['lineType'] = None
 
         # set to None if service_location_id (nullable) is None
         # and model_fields_set contains the field

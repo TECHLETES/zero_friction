@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**attachment_ids** | **List[str]** |  | [optional] 
-**resulting_file_name** | **str** |  | [optional] 
+**attachment_ids** | **List[str]** |  | 
+**resulting_file_name** | **str** |  | 
 
 ## Example
 

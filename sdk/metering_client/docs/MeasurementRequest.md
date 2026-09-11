@@ -1,13 +1,13 @@
 # MeasurementRequest
 
-Contains the value of the actual measurement and when that measurement was read.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reading_date_time** | **datetime** | Date and time when the value of the measurement was read.  If it differs from UTC, the value should include the offset how much it differs from UTC. | [optional] 
-**value** | **float** | The measurement value.    When the Enumerations.UnitOfMeasure isn&#39;t specified, the unit of measure of the channel is used which  is set by the ExternalChannelIdentifier on the channel measurement. | [optional] 
+**start_date_time** | **datetime** |  | [optional] 
+**reading_date_time** | **datetime** |  | [optional] 
+**value** | **float** |  | [optional] 
 
 ## Example
 

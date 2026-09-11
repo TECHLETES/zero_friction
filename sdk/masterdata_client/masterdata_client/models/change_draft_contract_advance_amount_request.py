@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +26,7 @@ class ChangeDraftContractAdvanceAmountRequest(BaseModel):
     """
     ChangeDraftContractAdvanceAmountRequest
     """ # noqa: E501
-    new_advance_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="newAdvanceAmount")
+    new_advance_amount: Union[StrictFloat, StrictInt] = Field(alias="newAdvanceAmount")
     __properties: ClassVar[List[str]] = ["newAdvanceAmount"]
 
     model_config = ConfigDict(

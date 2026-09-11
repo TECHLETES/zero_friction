@@ -1,12 +1,11 @@
 # ExportOutgoingBankingTransactionBulkRequest
 
-Represents a bulk request to export outgoing banking transactions.  This DTO is used to export multiple outgoing banking transactions in a single operation.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**outgoing_banking_transaction_ids** | **List[str]** | List of outgoing banking transaction IDs to be exported. | [optional] 
+**outgoing_banking_transaction_ids** | **List[str]** |  | 
 
 ## Example
 

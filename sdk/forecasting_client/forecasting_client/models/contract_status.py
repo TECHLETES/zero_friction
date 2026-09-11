@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ContractStatus(str, Enum):
     """
-    ContractStatus
+    Possible values: 'draft', 'sent', 'signed', 'cancelled', 'terminated'
     """
 
     """

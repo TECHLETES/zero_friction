@@ -1,5 +1,6 @@
 # DnsRecordMeaning
 
+Possible values: 'mailcname', 'mx', 'spf', 'dkim1', 'dkim2'
 
 ## Enum
 

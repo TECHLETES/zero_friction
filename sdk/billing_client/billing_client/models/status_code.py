@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class StatusCode(str, Enum):
     """
-    StatusCode
+    Possible values: 'active', 'inactive', 'failed'
     """
 
     """

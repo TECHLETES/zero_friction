@@ -1,21 +1,20 @@
 # EstimatedAdvancePeriodDTO
 
-Represents an advance period in an estimated invoice.  This DTO contains information about advance payments, including amounts, periods, and payment status.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**period_start_date_time** | **datetime** | The start date and time of the advance period. | [optional] 
-**period_end_date_time** | **datetime** | The end date and time of the advance period. | [optional] 
-**amount_excl_vat** | **float** | The advance amount excluding VAT. | [optional] 
-**vat** | **float** | The VAT amount for this advance. | [optional] 
-**amount_incl_vat** | **float** | The advance amount including VAT. | [optional] 
-**quantity** | **float** | The quantity associated with this advance. | [optional] 
-**unit_price** | **float** | The unit price for this advance. | [optional] 
-**vat_rate** | **float** | The VAT rate applied to this advance. | [optional] 
-**paid** | **bool** | Indicates whether this advance has been paid. | [optional] 
-**invoice_id** | **str** | The unique identifier of the invoice associated with this advance. | [optional] 
+**period_start_date_time** | **datetime** |  | [optional] 
+**period_end_date_time** | **datetime** |  | [optional] 
+**amount_excl_vat** | **float** |  | [optional] 
+**vat** | **float** |  | [optional] 
+**amount_incl_vat** | **float** |  | [optional] 
+**quantity** | **float** |  | [optional] 
+**unit_price** | **float** |  | [optional] 
+**vat_rate** | **float** |  | [optional] 
+**paid** | **bool** |  | [optional] 
+**invoice_id** | **str** |  | [optional] 
 
 ## Example
 

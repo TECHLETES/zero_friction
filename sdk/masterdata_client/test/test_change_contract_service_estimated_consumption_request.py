@@ -36,13 +36,15 @@ class TestChangeContractServiceEstimatedConsumptionRequest(unittest.TestCase):
         if include_optional:
             return ChangeContractServiceEstimatedConsumptionRequest(
                 consumer_group_id = '',
-                value = 1.337,
                 unit_of_measure = 'none',
                 metering_type = 'none',
-                is_manual_entry = True
+                direction = 'offtake'
             )
         else:
             return ChangeContractServiceEstimatedConsumptionRequest(
+                consumer_group_id = '',
+                unit_of_measure = 'none',
+                metering_type = 'none',
         )
         """
 

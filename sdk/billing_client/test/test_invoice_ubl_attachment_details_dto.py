@@ -37,9 +37,17 @@ class TestInvoiceUBLAttachmentDetailsDTO(unittest.TestCase):
             return InvoiceUBLAttachmentDetailsDTO(
                 errors = [
                     billing_client.models.invoice_ubl_validation_error_dto.InvoiceUBLValidationErrorDTO(
-                        originator_type = null, 
+                        originator_type = 'none', 
                         originator_id = '', 
-                        message = null, )
+                        message = billing_client.models.localised_error_dto.LocalisedErrorDTO(
+                            key = 56, 
+                            correlation_id = '', 
+                            message_values = [
+                                billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
+                                    data_type = 'text', 
+                                    value = '', 
+                                    capitalize = True, )
+                                ], ), )
                     ],
                 attachment_id = '',
                 attachment_file_name = ''

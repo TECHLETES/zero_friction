@@ -35,9 +35,9 @@ class TestBulkDeletePropertyGroupRequest(unittest.TestCase):
         model = BulkDeletePropertyGroupRequest()
         if include_optional:
             return BulkDeletePropertyGroupRequest(
-                mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 only_validate = True,
                 var_query_params = masterdata_client.models.get_property_groups_query_params.GetPropertyGroupsQueryParams(
+                    name_contains = '', 
                     flex_search = '', 
                     include_only_ids = [
                         ''
@@ -45,8 +45,9 @@ class TestBulkDeletePropertyGroupRequest(unittest.TestCase):
                     exclude_ids = [
                         ''
                         ], 
-                    name_contains = '', ),
-                quick_filter = ''
+                    page_size = 56, ),
+                quick_filter = '',
+                mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
         else:
             return BulkDeletePropertyGroupRequest(

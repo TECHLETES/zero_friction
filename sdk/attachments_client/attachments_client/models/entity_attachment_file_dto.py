@@ -19,7 +19,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from attachments_client.models.culture_info import CultureInfo
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +28,7 @@ class EntityAttachmentFileDTO(BaseModel):
     """ # noqa: E501
     file_name: Optional[StrictStr] = Field(default=None, alias="fileName")
     localised_file_name: Optional[StrictStr] = Field(default=None, alias="localisedFileName")
-    culture: Optional[CultureInfo] = None
+    culture: Optional[StrictStr] = Field(default=None, description="Culture identifier (e.g., 'en-US', 'nl-NL')")
     __properties: ClassVar[List[str]] = ["fileName", "localisedFileName", "culture"]
 
     model_config = ConfigDict(
@@ -80,11 +79,6 @@ class EntityAttachmentFileDTO(BaseModel):
         # and model_fields_set contains the field
         if self.localised_file_name is None and "localised_file_name" in self.model_fields_set:
             _dict['localisedFileName'] = None
-
-        # set to None if culture (nullable) is None
-        # and model_fields_set contains the field
-        if self.culture is None and "culture" in self.model_fields_set:
-            _dict['culture'] = None
 
         return _dict
 

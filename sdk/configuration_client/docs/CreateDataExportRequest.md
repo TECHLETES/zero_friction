@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**file_format_id** | **str** |  | [optional] 
-**parameters** | [**BaseDataExportParametersDTO**](BaseDataExportParametersDTO.md) |  | [optional] 
+**name** | **str** |  | 
+**file_format_id** | **str** |  | 
+**parameters** | [**BaseDataExportParametersDTO**](BaseDataExportParametersDTO.md) |  | 
 
 ## Example
 

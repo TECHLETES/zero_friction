@@ -26,7 +26,7 @@ class DeleteEntityAttachmentRequest(BaseModel):
     """
     DeleteEntityAttachmentRequest
     """ # noqa: E501
-    customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
+    customer_id: Optional[StrictStr] = Field(alias="customerId")
     __properties: ClassVar[List[str]] = ["customerId"]
 
     model_config = ConfigDict(

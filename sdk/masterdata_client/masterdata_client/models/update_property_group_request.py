@@ -28,8 +28,8 @@ class UpdatePropertyGroupRequest(BaseModel):
     """
     UpdatePropertyGroupRequest
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    type: Optional[PropertyGroupType] = None
+    name: Optional[StrictStr]
+    type: PropertyGroupType
     address: Optional[AddressDTO] = None
     __properties: ClassVar[List[str]] = ["name", "type", "address"]
 
@@ -79,11 +79,6 @@ class UpdatePropertyGroupRequest(BaseModel):
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
-
-        # set to None if type (nullable) is None
-        # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
 
         # set to None if address (nullable) is None
         # and model_fields_set contains the field

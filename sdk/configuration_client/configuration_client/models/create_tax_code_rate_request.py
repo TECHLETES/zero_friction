@@ -27,10 +27,11 @@ class CreateTaxCodeRateRequest(BaseModel):
     """
     CreateTaxCodeRateRequest
     """ # noqa: E501
-    rate: Optional[Union[StrictFloat, StrictInt]] = None
-    start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
-    end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
-    __properties: ClassVar[List[str]] = ["rate", "startDateTime", "endDateTime"]
+    rate: Union[StrictFloat, StrictInt]
+    start_date_time: datetime = Field(alias="startDateTime")
+    end_date_time: datetime = Field(alias="endDateTime")
+    date_range: Optional[Dict[str, Any]] = Field(default=None, alias="dateRange")
+    __properties: ClassVar[List[str]] = ["rate", "startDateTime", "endDateTime", "dateRange"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +86,8 @@ class CreateTaxCodeRateRequest(BaseModel):
         _obj = cls.model_validate({
             "rate": obj.get("rate"),
             "startDateTime": obj.get("startDateTime"),
-            "endDateTime": obj.get("endDateTime")
+            "endDateTime": obj.get("endDateTime"),
+            "dateRange": obj.get("dateRange")
         })
         return _obj
 

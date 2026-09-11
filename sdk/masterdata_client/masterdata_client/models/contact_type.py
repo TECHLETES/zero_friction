@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ContactType(str, Enum):
     """
-    ContactType
+    Possible values: 'email', 'telephone', 'mobiletelephone', 'website'
     """
 
     """

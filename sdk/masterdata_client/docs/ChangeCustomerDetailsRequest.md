@@ -5,18 +5,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**account_number** | **str** |  | [optional] 
-**salutation** | **str** |  | [optional] 
-**initials** | **str** |  | [optional] 
-**first_name** | **str** |  | [optional] 
-**last_name** | **str** |  | [optional] 
+**account_number** | **str** |  | 
+**salutation** | **str** |  | 
+**initials** | **str** |  | 
+**first_name** | **str** |  | 
+**last_name** | **str** |  | 
 **birth_date** | **datetime** |  | [optional] 
-**ssin** | **str** | Social security identification number | [optional] 
-**ssin_country** | [**CountryCode**](CountryCode.md) | Social security identification number country, used for validation | [optional] 
-**company_name** | **str** |  | [optional] 
+**ssin** | **str** |  | 
+**ssin_country** | [**CountryCode**](CountryCode.md) |  | 
+**company_name** | **str** |  | 
 **organization_number** | **str** |  | [optional] 
 **vat_number** | **str** |  | [optional] 
+**country_code** | [**CountryCode**](CountryCode.md) |  | [optional] 
 **customer_type** | [**CustomerType**](CustomerType.md) |  | [optional] 
+**changed_by_portal** | **bool** |  | [optional] 
 
 ## Example
 

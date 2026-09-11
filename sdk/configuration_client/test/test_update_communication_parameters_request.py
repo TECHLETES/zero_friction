@@ -46,6 +46,8 @@ class TestUpdateCommunicationParametersRequest(unittest.TestCase):
             )
         else:
             return UpdateCommunicationParametersRequest(
+                sandbox_recipient_email = '',
+                sandbox_recipient_phone_number = '',
         )
         """
 

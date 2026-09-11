@@ -28,7 +28,7 @@ class ProductPeriodReferenceDTO(BaseModel):
     ProductPeriodReferenceDTO
     """ # noqa: E501
     product_id: Optional[StrictStr] = Field(default=None, alias="productId")
-    product_name: Optional[StrictStr] = Field(default=None, alias="productName")
+    product_name: Optional[StrictStr] = Field(alias="productName")
     start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
     end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
     __properties: ClassVar[List[str]] = ["productId", "productName", "startDateTime", "endDateTime"]

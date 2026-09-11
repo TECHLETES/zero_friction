@@ -66,10 +66,8 @@ class BillingTariffTreeDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "id",
         ])
 
         _dict = self.model_dump(
@@ -101,16 +99,6 @@ class BillingTariffTreeDTO(BaseModel):
         # and model_fields_set contains the field
         if self.product_id is None and "product_id" in self.model_fields_set:
             _dict['productId'] = None
-
-        # set to None if activity_period (nullable) is None
-        # and model_fields_set contains the field
-        if self.activity_period is None and "activity_period" in self.model_fields_set:
-            _dict['activityPeriod'] = None
-
-        # set to None if nodes (nullable) is None
-        # and model_fields_set contains the field
-        if self.nodes is None and "nodes" in self.model_fields_set:
-            _dict['nodes'] = None
 
         return _dict
 

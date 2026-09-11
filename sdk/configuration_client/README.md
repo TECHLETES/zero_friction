@@ -82,22 +82,18 @@ configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
 # Enter a context with an instance of the API client
 with configuration_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = configuration_client.AccountingApi(api_client)
-    zf_tuuid = '{{zf-tuuid}}' # str | Format - uuid. Tenant ID
-    zf_ouuid = '{{zf-ouuid}}' # str | Format - uuid. Organisation ID
-    flex_search = 'flex_search_example' # str |  (optional)
-    include_only_ids = ['include_only_ids_example'] # List[str] |  (optional)
-    exclude_ids = ['exclude_ids_example'] # List[str] |  (optional)
-    order_by = 'order_by_example' # str | Sorting expression for the results. (optional)
-    continuation_token = 'continuation_token_example' # str | Token which allows you to fetch the next records. The continuation token is returned in the response and can be reused in the next request to fetch additional data. (optional)
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    add_portal_host_name_request = {"hostName":"string"} # AddPortalHostNameRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
-        # Retrieves a paged list of general ledger codes, with optional filtering and sorting.
-        api_response = api_instance.get_accounting_generalledgers(zf_tuuid, zf_ouuid, flex_search=flex_search, include_only_ids=include_only_ids, exclude_ids=exclude_ids, order_by=order_by, continuation_token=continuation_token)
-        print("The response of AccountingApi->get_accounting_generalledgers:\n")
+        # adds a hostName for a specific portal.
+        api_response = api_instance.add_host_name(zf_tuuid, zf_ouuid, add_portal_host_name_request=add_portal_host_name_request)
+        print("The response of DefaultApi->add_host_name:\n")
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AccountingApi->get_accounting_generalledgers: %s\n" % e)
+        print("Exception when calling DefaultApi->add_host_name: %s\n" % e)
 
 ```
 
@@ -107,299 +103,591 @@ All URIs are relative to *https://api.zerofriction.co/api/cfg*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AccountingApi* | [**get_accounting_generalledgers**](docs/AccountingApi.md#get_accounting_generalledgers) | **GET** /Accounting/generalledgers | Retrieves a paged list of general ledger codes, with optional filtering and sorting.
-*AccountingApi* | [**get_accounting_generalledgers_mapping**](docs/AccountingApi.md#get_accounting_generalledgers_mapping) | **GET** /Accounting/generalledgers/mapping | Retrieves a paged list of items that are mapped or need to be mapped to a general ledger code. A category needs to be provided.
-*AccountingApi* | [**get_accounting_generalledgers_unmapped_overviewcount**](docs/AccountingApi.md#get_accounting_generalledgers_unmapped_overviewcount) | **GET** /Accounting/generalledgers/unmapped/overviewcount | Retrieves an overview count of all general ledger categories and the amount of items that still need mapping
-*AccountingApi* | [**post_accounting_costcenters**](docs/AccountingApi.md#post_accounting_costcenters) | **POST** /Accounting/costcenters | Creates or updates cost centers.  If a cost center already exists in the system, it will be updated instead of creating a new one.                The system identifies existing codes by matching the SourceEntityId in the Metadata property.
-*AccountingApi* | [**post_accounting_costunits**](docs/AccountingApi.md#post_accounting_costunits) | **POST** /Accounting/costunits | Creates or updates cost units.  If a cost unit already exists in the system, it will be updated instead of creating a new one.                The system identifies existing codes by matching the SourceEntityId in the Metadata property.
-*AccountingApi* | [**post_accounting_financialperiods**](docs/AccountingApi.md#post_accounting_financialperiods) | **POST** /Accounting/financialperiods | Creates or updates financial periods.  If a financial period already exists in the system, it will be updated instead of creating a new one.                The system identifies existing codes by matching the SourceEntityId in the Metadata property.
-*AccountingApi* | [**post_accounting_generalledgers**](docs/AccountingApi.md#post_accounting_generalledgers) | **POST** /Accounting/generalledgers | Creates or updates general ledger codes.  If a general ledger code already exists in the system, it will be updated instead of creating a new one.                The system identifies existing codes by matching the SourceEntityId in the Metadata property.
-*BankAccountsApi* | [**delete_bankaccounts_bankaccuuid**](docs/BankAccountsApi.md#delete_bankaccounts_bankaccuuid) | **DELETE** /BankAccounts/{bankaccuuid} | Deletes a bank account by its identifier.
-*BankAccountsApi* | [**get_all_bank_accounts**](docs/BankAccountsApi.md#get_all_bank_accounts) | **GET** /BankAccounts | Retrieves a paged list of bank accounts with optional filtering and sorting.
-*BankAccountsApi* | [**get_bankaccounts_bankaccuuid**](docs/BankAccountsApi.md#get_bankaccounts_bankaccuuid) | **GET** /BankAccounts/{bankaccuuid} | Retrieves a specific bank account by its identifier.
-*BankAccountsApi* | [**get_bankaccounts_count**](docs/BankAccountsApi.md#get_bankaccounts_count) | **GET** /BankAccounts/count | Gets the total count of bank accounts within the organization.
-*BankAccountsApi* | [**post_bankaccounts**](docs/BankAccountsApi.md#post_bankaccounts) | **POST** /BankAccounts | Creates a new bank account.
-*BankAccountsApi* | [**post_bankaccounts_bankaccuuid**](docs/BankAccountsApi.md#post_bankaccounts_bankaccuuid) | **POST** /BankAccounts/{bankaccuuid} | Updates an existing bank account.
-*BillingItemsApi* | [**delete_billingitems_billingitemuuid**](docs/BillingItemsApi.md#delete_billingitems_billingitemuuid) | **DELETE** /BillingItems/{billingitemuuid} | Deletes a billing item by its identifier.
-*BillingItemsApi* | [**get_billingitems**](docs/BillingItemsApi.md#get_billingitems) | **GET** /BillingItems | Retrieves a paged list of billing items with optional filtering and sorting.
-*BillingItemsApi* | [**get_billingitems_billingitemuuid**](docs/BillingItemsApi.md#get_billingitems_billingitemuuid) | **GET** /BillingItems/{billingitemuuid} | Retrieves a specific billing item by its identifier.
-*BillingItemsApi* | [**get_billingitems_calculationtypes**](docs/BillingItemsApi.md#get_billingitems_calculationtypes) | **GET** /BillingItems/calculationtypes | Retrieves a list of supported calculation types for billing items.
-*BillingItemsApi* | [**get_billingitems_calculationtypes_calculationtype_supportedunitofmeasures**](docs/BillingItemsApi.md#get_billingitems_calculationtypes_calculationtype_supportedunitofmeasures) | **GET** /BillingItems/calculationtypes/{calculationType}/supportedunitofmeasures | Retrieves supported units of measure for a specific calculation type and metering type.
-*BillingItemsApi* | [**post_billingitems**](docs/BillingItemsApi.md#post_billingitems) | **POST** /BillingItems | Creates a new billing item.
-*BillingItemsApi* | [**post_billingitems_billingitemuuid**](docs/BillingItemsApi.md#post_billingitems_billingitemuuid) | **POST** /BillingItems/{billingitemuuid} | Updates an existing billing item.
-*BillingItemsApi* | [**post_billingitems_entityid_translations**](docs/BillingItemsApi.md#post_billingitems_entityid_translations) | **POST** /BillingItems/{entityId}/translations | /BillingItems/{entityId}/translations - POST
-*BillingTariffsApi* | [**delete_billingtariffs_b_billingitemid**](docs/BillingTariffsApi.md#delete_billingtariffs_b_billingitemid) | **DELETE** /BillingTariffs/b/{billingItemId} | Deletes a billing tariff tree for a specific billing item.
-*BillingTariffsApi* | [**get_billingtariffs**](docs/BillingTariffsApi.md#get_billingtariffs) | **GET** /BillingTariffs | Retrieves a paged list of billing tariffs with optional filtering and sorting.
-*BillingTariffsApi* | [**get_billingtariffs_b_billingitemid**](docs/BillingTariffsApi.md#get_billingtariffs_b_billingitemid) | **GET** /BillingTariffs/b/{billingItemId} | Retrieves billing tariff trees for a specific billing item.
-*BillingTariffsApi* | [**get_billingtariffs_billingtariffuuid**](docs/BillingTariffsApi.md#get_billingtariffs_billingtariffuuid) | **GET** /BillingTariffs/{billingtariffuuid} | Retrieves a specific billing tariff by its identifier.
-*BillingTariffsApi* | [**post_billingtariffs_b_billingitemid**](docs/BillingTariffsApi.md#post_billingtariffs_b_billingitemid) | **POST** /BillingTariffs/b/{billingItemId} | Creates a billing tariff tree for a specific billing item.
-*BillingTariffsApi* | [**put_billingtariffs_b_billingitemid**](docs/BillingTariffsApi.md#put_billingtariffs_b_billingitemid) | **PUT** /BillingTariffs/b/{billingItemId} | Updates an existing billing tariff tree for a specific billing item.
-*BillingTariffsApi* | [**put_billingtariffs_b_billingitemid_period**](docs/BillingTariffsApi.md#put_billingtariffs_b_billingitemid_period) | **PUT** /BillingTariffs/b/{billingItemId}/period | Updates the period of a billing tariff tree for a specific billing item.
-*CollectionFlowsApi* | [**delete_collectionflows_id**](docs/CollectionFlowsApi.md#delete_collectionflows_id) | **DELETE** /CollectionFlows/{id} | Deletes a collection flow by its identifier.
-*CollectionFlowsApi* | [**get_collectionflows**](docs/CollectionFlowsApi.md#get_collectionflows) | **GET** /CollectionFlows | Retrieves a paged list of collection flows with optional filtering and sorting.
-*CollectionFlowsApi* | [**get_collectionflows_id**](docs/CollectionFlowsApi.md#get_collectionflows_id) | **GET** /CollectionFlows/{id} | Retrieves a specific collection flow by its identifier.
-*CollectionFlowsApi* | [**post_collectionflows**](docs/CollectionFlowsApi.md#post_collectionflows) | **POST** /CollectionFlows | Creates a new collection flow.
-*CollectionFlowsApi* | [**post_collectionflows_id**](docs/CollectionFlowsApi.md#post_collectionflows_id) | **POST** /CollectionFlows/{id} | Updates an existing collection flow.
-*CollectionStepsApi* | [**delete_collectionsteps_id**](docs/CollectionStepsApi.md#delete_collectionsteps_id) | **DELETE** /CollectionSteps/{id} | Deletes a collection flow step by its identifier.
-*CollectionStepsApi* | [**get_collectionsteps**](docs/CollectionStepsApi.md#get_collectionsteps) | **GET** /CollectionSteps | Retrieves a paged list of collection flow steps.
-*CollectionStepsApi* | [**post_collectionsteps**](docs/CollectionStepsApi.md#post_collectionsteps) | **POST** /CollectionSteps | Creates a new collection flow step.
-*CollectionStepsApi* | [**post_collectionsteps_entityid_translations**](docs/CollectionStepsApi.md#post_collectionsteps_entityid_translations) | **POST** /CollectionSteps/{entityId}/translations | /CollectionSteps/{entityId}/translations - POST
-*CollectionStepsApi* | [**post_collectionsteps_id**](docs/CollectionStepsApi.md#post_collectionsteps_id) | **POST** /CollectionSteps/{id} | Updates an existing collection flow step.
-*ConsumptionUnitTypesApi* | [**delete_consumptionunittypes_consumptionunittypeuuid**](docs/ConsumptionUnitTypesApi.md#delete_consumptionunittypes_consumptionunittypeuuid) | **DELETE** /ConsumptionUnitTypes/{consumptionunittypeuuid} | Deletes a consumption unit type by its identifier.
-*ConsumptionUnitTypesApi* | [**get_consumptionunittypes**](docs/ConsumptionUnitTypesApi.md#get_consumptionunittypes) | **GET** /ConsumptionUnitTypes | Retrieves a paged list of consumption unit types with optional filtering and sorting.
-*ConsumptionUnitTypesApi* | [**get_consumptionunittypes_consumptionunittypeuuid**](docs/ConsumptionUnitTypesApi.md#get_consumptionunittypes_consumptionunittypeuuid) | **GET** /ConsumptionUnitTypes/{consumptionunittypeuuid} | Retrieves a specific consumption unit type by its identifier.
-*ConsumptionUnitTypesApi* | [**post_consumptionunittypes**](docs/ConsumptionUnitTypesApi.md#post_consumptionunittypes) | **POST** /ConsumptionUnitTypes | Creates a new consumption unit type.
-*ConsumptionUnitTypesApi* | [**post_consumptionunittypes_consumptionunittypeuuid**](docs/ConsumptionUnitTypesApi.md#post_consumptionunittypes_consumptionunittypeuuid) | **POST** /ConsumptionUnitTypes/{consumptionunittypeuuid} | Updates an existing consumption unit type.
-*ConsumptionUnitTypesApi* | [**post_consumptionunittypes_entityid_translations**](docs/ConsumptionUnitTypesApi.md#post_consumptionunittypes_entityid_translations) | **POST** /ConsumptionUnitTypes/{entityId}/translations | /ConsumptionUnitTypes/{entityId}/translations - POST
-*CostComponentValuesApi* | [**delete_costcomponentvalues_costcomponentvalueuuid**](docs/CostComponentValuesApi.md#delete_costcomponentvalues_costcomponentvalueuuid) | **DELETE** /CostComponentValues/{costcomponentvalueuuid} | Deletes a cost component value by its identifier.
-*CostComponentValuesApi* | [**get_costcomponentvalues_c_costcomponentuuid**](docs/CostComponentValuesApi.md#get_costcomponentvalues_c_costcomponentuuid) | **GET** /CostComponentValues/c/{costcomponentuuid} | Retrieves a paged list of cost component values for a specific cost component with optional filtering and sorting.
-*CostComponentValuesApi* | [**get_costcomponentvalues_costcomponentvalueuuid**](docs/CostComponentValuesApi.md#get_costcomponentvalues_costcomponentvalueuuid) | **GET** /CostComponentValues/{costcomponentvalueuuid} | Retrieves a specific cost component value by its identifier.
-*CostComponentValuesApi* | [**post_costcomponentvalues**](docs/CostComponentValuesApi.md#post_costcomponentvalues) | **POST** /CostComponentValues | Creates a new cost component value.
-*CostComponentValuesApi* | [**post_costcomponentvalues_costcomponentvalueuuid**](docs/CostComponentValuesApi.md#post_costcomponentvalues_costcomponentvalueuuid) | **POST** /CostComponentValues/{costcomponentvalueuuid} | Updates an existing cost component value.
-*CostComponentsApi* | [**delete_costcomponents_costcomponentuuid**](docs/CostComponentsApi.md#delete_costcomponents_costcomponentuuid) | **DELETE** /CostComponents/{costcomponentuuid} | Deletes a cost component by its identifier.
-*CostComponentsApi* | [**get_costcomponents**](docs/CostComponentsApi.md#get_costcomponents) | **GET** /CostComponents | Retrieves a paged list of cost components with optional filtering and sorting.
-*CostComponentsApi* | [**get_costcomponents_costcomponentuuid**](docs/CostComponentsApi.md#get_costcomponents_costcomponentuuid) | **GET** /CostComponents/{costcomponentuuid} | Retrieves a specific cost component by its identifier.
-*CostComponentsApi* | [**post_costcomponents**](docs/CostComponentsApi.md#post_costcomponents) | **POST** /CostComponents | Creates a new cost component.
-*CostComponentsApi* | [**post_costcomponents_costcomponentuuid**](docs/CostComponentsApi.md#post_costcomponents_costcomponentuuid) | **POST** /CostComponents/{costcomponentuuid} | Updates an existing cost component.
-*CostComponentsApi* | [**post_costcomponents_entityid_translations**](docs/CostComponentsApi.md#post_costcomponents_entityid_translations) | **POST** /CostComponents/{entityId}/translations | /CostComponents/{entityId}/translations - POST
-*CultureTableApi* | [**get_culturetable**](docs/CultureTableApi.md#get_culturetable) | **GET** /CultureTable | Retrieves the culture table.
-*CultureTableApi* | [**get_culturetable_allowedcultures**](docs/CultureTableApi.md#get_culturetable_allowedcultures) | **GET** /CultureTable/allowedcultures | Retrieves a list of all allowed cultures.
-*CultureTableApi* | [**post_culturetable**](docs/CultureTableApi.md#post_culturetable) | **POST** /CultureTable | Updates the culture table.
-*CustomEntityPropertyTypesApi* | [**delete_customentitypropertytypes_customentitypropertytypeuuid**](docs/CustomEntityPropertyTypesApi.md#delete_customentitypropertytypes_customentitypropertytypeuuid) | **DELETE** /CustomEntityPropertyTypes/{customentitypropertytypeuuid} | Deletes a custom entity property type by its identifier.
-*CustomEntityPropertyTypesApi* | [**get_customentitypropertytypes**](docs/CustomEntityPropertyTypesApi.md#get_customentitypropertytypes) | **GET** /CustomEntityPropertyTypes | Retrieves a paged list of custom entity property types with optional filtering and sorting.
-*CustomEntityPropertyTypesApi* | [**get_customentitypropertytypes_customentitypropertytypeuuid**](docs/CustomEntityPropertyTypesApi.md#get_customentitypropertytypes_customentitypropertytypeuuid) | **GET** /CustomEntityPropertyTypes/{customentitypropertytypeuuid} | Retrieves a specific custom entity property type by its identifier.
-*CustomEntityPropertyTypesApi* | [**post_customentitypropertytypes**](docs/CustomEntityPropertyTypesApi.md#post_customentitypropertytypes) | **POST** /CustomEntityPropertyTypes | Creates a new custom entity property type.
-*CustomEntityPropertyTypesApi* | [**post_customentitypropertytypes_customentitypropertytypeuuid**](docs/CustomEntityPropertyTypesApi.md#post_customentitypropertytypes_customentitypropertytypeuuid) | **POST** /CustomEntityPropertyTypes/{customentitypropertytypeuuid} | Updates an existing custom entity property type.
-*CustomEntityPropertyTypesApi* | [**post_customentitypropertytypes_customentitypropertytypeuuid_options**](docs/CustomEntityPropertyTypesApi.md#post_customentitypropertytypes_customentitypropertytypeuuid_options) | **POST** /CustomEntityPropertyTypes/{customentitypropertytypeuuid}/options | Updates the dropdown options for a custom entity property type.
-*CustomEntityPropertyTypesApi* | [**post_customentitypropertytypes_entityid_translations**](docs/CustomEntityPropertyTypesApi.md#post_customentitypropertytypes_entityid_translations) | **POST** /CustomEntityPropertyTypes/{entityId}/translations | /CustomEntityPropertyTypes/{entityId}/translations - POST
-*DataExportFileFormatsApi* | [**delete_dataexportfileformats_fileformatuuid**](docs/DataExportFileFormatsApi.md#delete_dataexportfileformats_fileformatuuid) | **DELETE** /DataExportFileFormats/{fileformatuuid} | Deletes a data export file format by its identifier.
-*DataExportFileFormatsApi* | [**get_dataexportfileformats**](docs/DataExportFileFormatsApi.md#get_dataexportfileformats) | **GET** /DataExportFileFormats | Retrieves a paged list of data export file formats with optional filtering and sorting.
-*DataExportFileFormatsApi* | [**get_dataexportfileformats_fileformatuuid**](docs/DataExportFileFormatsApi.md#get_dataexportfileformats_fileformatuuid) | **GET** /DataExportFileFormats/{fileformatuuid} | Retrieves a specific data export file format by its identifier.
-*DataExportFileFormatsApi* | [**get_dataexportfileformats_settings**](docs/DataExportFileFormatsApi.md#get_dataexportfileformats_settings) | **GET** /DataExportFileFormats/settings | Retrieves a list of available settings for data export file formats.
-*DataExportFileFormatsApi* | [**get_dataexportfileformats_settings_settings_formats**](docs/DataExportFileFormatsApi.md#get_dataexportfileformats_settings_settings_formats) | **GET** /DataExportFileFormats/settings/{settings}/formats | Retrieves a list of available formats for a specific settings type.
-*DataExportFileFormatsApi* | [**post_dataexportfileformats**](docs/DataExportFileFormatsApi.md#post_dataexportfileformats) | **POST** /DataExportFileFormats | Creates a new data export file format.
-*DataExportFileFormatsApi* | [**post_dataexportfileformats_fileformatuuid**](docs/DataExportFileFormatsApi.md#post_dataexportfileformats_fileformatuuid) | **POST** /DataExportFileFormats/{fileformatuuid} | Updates an existing data export file format.
-*DataExportsApi* | [**delete_dataexports_dataexportuuid**](docs/DataExportsApi.md#delete_dataexports_dataexportuuid) | **DELETE** /DataExports/{dataexportuuid} | Deletes a data export by its identifier.
-*DataExportsApi* | [**get_dataexports**](docs/DataExportsApi.md#get_dataexports) | **GET** /DataExports | Retrieves a paged list of data exports with optional filtering and sorting.
-*DataExportsApi* | [**get_dataexports_dataexportuuid**](docs/DataExportsApi.md#get_dataexports_dataexportuuid) | **GET** /DataExports/{dataexportuuid} | Retrieves a specific data export by its identifier.
-*DataExportsApi* | [**get_dataexports_types**](docs/DataExportsApi.md#get_dataexports_types) | **GET** /DataExports/types | Retrieves a list of available data export types.
-*DataExportsApi* | [**post_dataexports**](docs/DataExportsApi.md#post_dataexports) | **POST** /DataExports | Creates a new data export.
-*DataExportsApi* | [**post_dataexports_dataexportuuid**](docs/DataExportsApi.md#post_dataexports_dataexportuuid) | **POST** /DataExports/{dataexportuuid} | Updates an existing data export.
-*DataImportFileFormatsApi* | [**delete_dataimportfileformats_fileformatuuid**](docs/DataImportFileFormatsApi.md#delete_dataimportfileformats_fileformatuuid) | **DELETE** /DataImportFileFormats/{fileformatuuid} | Deletes a data import file format by its identifier.
-*DataImportFileFormatsApi* | [**get_dataimportfileformats**](docs/DataImportFileFormatsApi.md#get_dataimportfileformats) | **GET** /DataImportFileFormats | Returns all the custom data import file formats created.  These file formats can be of the type metering or migration.
-*DataImportFileFormatsApi* | [**get_dataimportfileformats_fileformatuuid**](docs/DataImportFileFormatsApi.md#get_dataimportfileformats_fileformatuuid) | **GET** /DataImportFileFormats/{fileformatuuid} | Retrieves a specific data import file format by its identifier.
-*DataImportFileFormatsApi* | [**post_dataimportfileformats**](docs/DataImportFileFormatsApi.md#post_dataimportfileformats) | **POST** /DataImportFileFormats | Creates a new data import file format.
-*DataImportFileFormatsApi* | [**post_dataimportfileformats_fileformatuuid**](docs/DataImportFileFormatsApi.md#post_dataimportfileformats_fileformatuuid) | **POST** /DataImportFileFormats/{fileformatuuid} | Updates an existing data import file format.
-*DataImportsApi* | [**delete_dataimports_dataimportuuid**](docs/DataImportsApi.md#delete_dataimports_dataimportuuid) | **DELETE** /DataImports/{dataimportuuid} | Deletes a data import by its identifier.
-*DataImportsApi* | [**get_dataimports**](docs/DataImportsApi.md#get_dataimports) | **GET** /DataImports | Returns all the data providers (FTP, FTPS, SFTP or mail) that have been created.
-*DataImportsApi* | [**get_dataimports_dataimportuuid**](docs/DataImportsApi.md#get_dataimports_dataimportuuid) | **GET** /DataImports/{dataimportuuid} | Retrieves a specific data import by its identifier.
-*DataImportsApi* | [**get_dataimports_types**](docs/DataImportsApi.md#get_dataimports_types) | **GET** /DataImports/types | Retrieves a list of available data import types.
-*DataImportsApi* | [**post_dataimports**](docs/DataImportsApi.md#post_dataimports) | **POST** /DataImports | Creates a new data provider of the type FTP, FTPS, SFTP or mail.
-*DataImportsApi* | [**post_dataimports_dataimportuuid**](docs/DataImportsApi.md#post_dataimports_dataimportuuid) | **POST** /DataImports/{dataimportuuid} | Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
-*EnumTranslationsApi* | [**get_enumtranslations**](docs/EnumTranslationsApi.md#get_enumtranslations) | **GET** /EnumTranslations | Retrieves a paged list of enumeration symbol translations with optional filtering.
-*EnumTranslationsApi* | [**post_enumtranslations_enumtype_symbols_symbol_reset**](docs/EnumTranslationsApi.md#post_enumtranslations_enumtype_symbols_symbol_reset) | **POST** /EnumTranslations/{enumType}/symbols/{symbol}/reset | Resets the translation for a specific enumeration symbol to its default value.
-*EnumTranslationsApi* | [**put_enumtranslations_enumtype_symbols_symbol**](docs/EnumTranslationsApi.md#put_enumtranslations_enumtype_symbols_symbol) | **PUT** /EnumTranslations/{enumType}/symbols/{symbol} | Updates the translation for a specific enumeration symbol.
-*IncomingInvoiceComponentsApi* | [**delete_incominginvoicecomponents_incominginvoicecomponentuuid**](docs/IncomingInvoiceComponentsApi.md#delete_incominginvoicecomponents_incominginvoicecomponentuuid) | **DELETE** /IncomingInvoiceComponents/{incomingInvoiceComponentUuid} | Deletes an incoming invoice component by its identifier.
-*IncomingInvoiceComponentsApi* | [**get_incominginvoicecomponents**](docs/IncomingInvoiceComponentsApi.md#get_incominginvoicecomponents) | **GET** /IncomingInvoiceComponents | Retrieves a paged list of incoming invoice components with optional filtering and sorting.
-*IncomingInvoiceComponentsApi* | [**get_incominginvoicecomponents_incominginvoicecomponentuuid**](docs/IncomingInvoiceComponentsApi.md#get_incominginvoicecomponents_incominginvoicecomponentuuid) | **GET** /IncomingInvoiceComponents/{incomingInvoiceComponentUuid} | Retrieves a specific incoming invoice component by its identifier.
-*IncomingInvoiceComponentsApi* | [**post_incominginvoicecomponents**](docs/IncomingInvoiceComponentsApi.md#post_incominginvoicecomponents) | **POST** /IncomingInvoiceComponents | Creates a new incoming invoice component.
-*IncomingInvoiceComponentsApi* | [**post_incominginvoicecomponents_entityid_translations**](docs/IncomingInvoiceComponentsApi.md#post_incominginvoicecomponents_entityid_translations) | **POST** /IncomingInvoiceComponents/{entityId}/translations | /IncomingInvoiceComponents/{entityId}/translations - POST
-*IncomingInvoiceComponentsApi* | [**post_incominginvoicecomponents_incominginvoicecomponentuuid**](docs/IncomingInvoiceComponentsApi.md#post_incominginvoicecomponents_incominginvoicecomponentuuid) | **POST** /IncomingInvoiceComponents/{incomingInvoiceComponentUuid} | Updates an existing incoming invoice component.
-*IntegrationsApi* | [**get_integrations_billingtariff_import**](docs/IntegrationsApi.md#get_integrations_billingtariff_import) | **GET** /Integrations/billingTariff/import | Retrieves a paged list of billing tariff import operations with optional filtering and sorting.
-*IntegrationsApi* | [**get_integrations_billingtariff_import_locked**](docs/IntegrationsApi.md#get_integrations_billingtariff_import_locked) | **GET** /Integrations/billingTariff/import/locked | Checks if there are any locked billing tariff import operations.
-*IntegrationsApi* | [**post_integrations_billingtariff_import**](docs/IntegrationsApi.md#post_integrations_billingtariff_import) | **POST** /Integrations/billingTariff/import | Imports billing tariffs from a CSV file.
-*IntegrationsApi* | [**post_integrations_billingtariff_import_importid_undo**](docs/IntegrationsApi.md#post_integrations_billingtariff_import_importid_undo) | **POST** /Integrations/billingTariff/import/{importId}/undo | Undoes a previous billing tariff import operation.
-*IntegrationsApi* | [**post_integrations_billingtariff_import_importid_unlock**](docs/IntegrationsApi.md#post_integrations_billingtariff_import_importid_unlock) | **POST** /Integrations/billingTariff/import/{importId}/unlock | Unlocks a billing tariff import operation that was previously locked.
-*ModelsApi* | [**delete_models_modeluuid**](docs/ModelsApi.md#delete_models_modeluuid) | **DELETE** /Models/{modeluuid} | Deletes a device model by its identifier.
-*ModelsApi* | [**get_models**](docs/ModelsApi.md#get_models) | **GET** /Models | Retrieves a paged list of device models with optional filtering and sorting.
-*ModelsApi* | [**get_models_modeluuid**](docs/ModelsApi.md#get_models_modeluuid) | **GET** /Models/{modeluuid} | Retrieves a specific device model by its identifier.
-*ModelsApi* | [**post_models**](docs/ModelsApi.md#post_models) | **POST** /Models | Creates a new device model.
-*ModelsApi* | [**post_models_modeluuid**](docs/ModelsApi.md#post_models_modeluuid) | **POST** /Models/{modeluuid} | Updates an existing device model.
-*NumberSequencesApi* | [**get_numbersequences**](docs/NumberSequencesApi.md#get_numbersequences) | **GET** /NumberSequences | Retrieves a paged list of number sequences with optional filtering and sorting.
-*NumberSequencesApi* | [**get_numbersequences_numbersequenceuuid**](docs/NumberSequencesApi.md#get_numbersequences_numbersequenceuuid) | **GET** /NumberSequences/{numbersequenceuuid} | Retrieves a specific number sequence by its identifier.
-*NumberSequencesApi* | [**post_numbersequences_numbersequenceuuid**](docs/NumberSequencesApi.md#post_numbersequences_numbersequenceuuid) | **POST** /NumberSequences/{numbersequenceuuid} | Updates an existing number sequence configuration.
-*NumberSequencesApi* | [**post_numbersequences_numbersequenceuuid_preview**](docs/NumberSequencesApi.md#post_numbersequences_numbersequenceuuid_preview) | **POST** /NumberSequences/{numbersequenceuuid}/preview | Generates a preview of how a number sequence would appear after updating with the provided configuration.
-*OrganizationsApi* | [**get_organizations**](docs/OrganizationsApi.md#get_organizations) | **GET** /Organizations | Retrieves a paged list of organizations with optional filtering and sorting.
-*OrganizationsApi* | [**get_organizations_organizationuuid**](docs/OrganizationsApi.md#get_organizations_organizationuuid) | **GET** /Organizations/{organizationuuid} | Retrieves a specific organization by its identifier.
-*OrganizationsApi* | [**post_organizations_organizationuuid**](docs/OrganizationsApi.md#post_organizations_organizationuuid) | **POST** /Organizations/{organizationuuid} | Updates an existing organization.
-*OrganizationsApi* | [**post_organizations_organizationuuid_initialize**](docs/OrganizationsApi.md#post_organizations_organizationuuid_initialize) | **POST** /Organizations/{organizationuuid}/initialize | Initializes an organization with default settings and configurations.
-*ParametersApi* | [**get_parameters_billing**](docs/ParametersApi.md#get_parameters_billing) | **GET** /Parameters/billing | Retrieves the current billing parameters configuration.
-*ParametersApi* | [**get_parameters_communication**](docs/ParametersApi.md#get_parameters_communication) | **GET** /Parameters/communication | Retrieves the current communication parameters configuration.
-*ParametersApi* | [**get_parameters_communication_domainauthentication**](docs/ParametersApi.md#get_parameters_communication_domainauthentication) | **GET** /Parameters/communication/domainauthentication | Retrieves the current domain authentication parameters for communication.
-*ParametersApi* | [**get_parameters_metering**](docs/ParametersApi.md#get_parameters_metering) | **GET** /Parameters/metering | Retrieves the current metering parameters configuration.
-*ParametersApi* | [**get_parameters_payment**](docs/ParametersApi.md#get_parameters_payment) | **GET** /Parameters/payment | Retrieves the current payment parameters configuration.
-*ParametersApi* | [**post_parameters_billing**](docs/ParametersApi.md#post_parameters_billing) | **POST** /Parameters/billing | Updates the billing parameters configuration.
-*ParametersApi* | [**post_parameters_communication**](docs/ParametersApi.md#post_parameters_communication) | **POST** /Parameters/communication | Updates the communication parameters configuration.
-*ParametersApi* | [**post_parameters_communication_domainauthentication**](docs/ParametersApi.md#post_parameters_communication_domainauthentication) | **POST** /Parameters/communication/domainauthentication | Updates the domain authentication parameters for communication.
-*ParametersApi* | [**post_parameters_communication_domainauthentication_verify**](docs/ParametersApi.md#post_parameters_communication_domainauthentication_verify) | **POST** /Parameters/communication/domainauthentication/verify | Verifies the current domain authentication parameters.
-*ParametersApi* | [**post_parameters_communication_test**](docs/ParametersApi.md#post_parameters_communication_test) | **POST** /Parameters/communication/test | Tests the communication parameters by sending a test email.
-*ParametersApi* | [**post_parameters_metering**](docs/ParametersApi.md#post_parameters_metering) | **POST** /Parameters/metering | Updates the metering parameters configuration.
-*ParametersApi* | [**post_parameters_payment**](docs/ParametersApi.md#post_parameters_payment) | **POST** /Parameters/payment | Updates the payment parameters configuration.
-*PaymentDelaysApi* | [**delete_paymentdelays_paymentdelayuuid**](docs/PaymentDelaysApi.md#delete_paymentdelays_paymentdelayuuid) | **DELETE** /PaymentDelays/{paymentdelayuuid} | Deletes a payment delay setting by its identifier.
-*PaymentDelaysApi* | [**get_paymentdelays**](docs/PaymentDelaysApi.md#get_paymentdelays) | **GET** /PaymentDelays | Retrieves a paged list of payment delay settings.
-*PaymentDelaysApi* | [**get_paymentdelays_paymentdelayuuid**](docs/PaymentDelaysApi.md#get_paymentdelays_paymentdelayuuid) | **GET** /PaymentDelays/{paymentdelayuuid} | Retrieves a specific payment delay setting by its identifier.
-*PaymentDelaysApi* | [**post_paymentdelays**](docs/PaymentDelaysApi.md#post_paymentdelays) | **POST** /PaymentDelays | Creates a new payment delay setting.
-*PaymentDelaysApi* | [**post_paymentdelays_paymentdelayuuid**](docs/PaymentDelaysApi.md#post_paymentdelays_paymentdelayuuid) | **POST** /PaymentDelays/{paymentdelayuuid} | Updates an existing payment delay setting.
-*PaymentTermsApi* | [**create_payment_terms**](docs/PaymentTermsApi.md#create_payment_terms) | **POST** /PaymentTerms | Creates a new payment term.
-*PaymentTermsApi* | [**delete_payment_terms**](docs/PaymentTermsApi.md#delete_payment_terms) | **DELETE** /PaymentTerms/{paymenttermuuid} | Deletes a payment term by its identifier.
-*PaymentTermsApi* | [**get_all_payment_terms**](docs/PaymentTermsApi.md#get_all_payment_terms) | **GET** /PaymentTerms | Retrieves a paged list of payment terms with optional filtering and sorting.
-*PaymentTermsApi* | [**get_payment_terms**](docs/PaymentTermsApi.md#get_payment_terms) | **GET** /PaymentTerms/{paymenttermuuid} | Retrieves a specific payment term by its identifier.
-*PaymentTermsApi* | [**update_payment_terms**](docs/PaymentTermsApi.md#update_payment_terms) | **POST** /PaymentTerms/{paymenttermuuid} | Updates an existing payment term.
-*PortalSettingsApi* | [**delete_page_notification**](docs/PortalSettingsApi.md#delete_page_notification) | **POST** /PortalSettings/notification/{pageIdentifier}/delete | Removes a page notification from the portal settings.
-*PortalSettingsApi* | [**get_portal_settings**](docs/PortalSettingsApi.md#get_portal_settings) | **GET** /PortalSettings | Retrieves portal settings for a specific portal URL.
-*PortalSettingsApi* | [**update_portal_settings**](docs/PortalSettingsApi.md#update_portal_settings) | **POST** /PortalSettings | Updates portal settings configuration.
-*PortalSettingsApi* | [**upsert_page_notification**](docs/PortalSettingsApi.md#upsert_page_notification) | **POST** /PortalSettings/notification | Upserts a page notification to the portal settings.
-*ProductsApi* | [**delete_products_productuuid**](docs/ProductsApi.md#delete_products_productuuid) | **DELETE** /Products/{productuuid} | Deletes a product by its identifier.
-*ProductsApi* | [**get_products**](docs/ProductsApi.md#get_products) | **GET** /Products | Retrieves a paged list of products with optional filtering and sorting.
-*ProductsApi* | [**get_products_attachments_flat**](docs/ProductsApi.md#get_products_attachments_flat) | **GET** /Products/attachments/flat | Retrieves a paged list of flat product attachments with optional filtering.
-*ProductsApi* | [**get_products_export**](docs/ProductsApi.md#get_products_export) | **GET** /Products/export | Retrieves all products for export purposes.
-*ProductsApi* | [**get_products_productuuid**](docs/ProductsApi.md#get_products_productuuid) | **GET** /Products/{productuuid} | Retrieves a specific product by its identifier.
-*ProductsApi* | [**post_products**](docs/ProductsApi.md#post_products) | **POST** /Products | Creates a new product.
-*ProductsApi* | [**post_products_entityid_translations**](docs/ProductsApi.md#post_products_entityid_translations) | **POST** /Products/{entityId}/translations | /Products/{entityId}/translations - POST
-*ProductsApi* | [**post_products_productuuid**](docs/ProductsApi.md#post_products_productuuid) | **POST** /Products/{productuuid} | Updates an existing product.
-*RegionalRegulationsApi* | [**get_regional_regulation_parameters_for_bel**](docs/RegionalRegulationsApi.md#get_regional_regulation_parameters_for_bel) | **GET** /RegionalRegulations/bel | Retrieves the current regional regulations parameters specific to Belgium.
-*RegionalRegulationsApi* | [**get_regional_regulation_parameters_for_gbr**](docs/RegionalRegulationsApi.md#get_regional_regulation_parameters_for_gbr) | **GET** /RegionalRegulations/gbr | Retrieves the current regional regulations parameters specific to Great Britain.
-*RegionalRegulationsApi* | [**update_regional_regulation_parameters_for_bel**](docs/RegionalRegulationsApi.md#update_regional_regulation_parameters_for_bel) | **POST** /RegionalRegulations/bel | Updates regional regulations parameters specific to Belgium.
-*RegionalRegulationsApi* | [**update_regional_regulation_parameters_for_gbr**](docs/RegionalRegulationsApi.md#update_regional_regulation_parameters_for_gbr) | **POST** /RegionalRegulations/gbr | Updates regional regulations parameters specific to Geat Britain.
-*RequiredEstimationsApi* | [**get_requiredestimations_productid**](docs/RequiredEstimationsApi.md#get_requiredestimations_productid) | **GET** /RequiredEstimations/{productId} | Retrieves all required estimations for a specific product.
-*ScenarioTranslationsApi* | [**get_scenariotranslations_entitysubjecttype_entitysubjectsubtype_templateusec**](docs/ScenarioTranslationsApi.md#get_scenariotranslations_entitysubjecttype_entitysubjectsubtype_templateusec) | **GET** /ScenarioTranslations/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase} | Retrieves a list of scenario translations for a specific entity subject type, subtype, and template use case.
-*ScenarioTranslationsApi* | [**get_scenariotranslations_translationname_getscenarios**](docs/ScenarioTranslationsApi.md#get_scenariotranslations_translationname_getscenarios) | **GET** /ScenarioTranslations/{translationName}/getscenarios | Retrieves scenarios associated with a specific translation.
-*ScenarioTranslationsApi* | [**post_scenariotranslations_translationname_reset**](docs/ScenarioTranslationsApi.md#post_scenariotranslations_translationname_reset) | **POST** /ScenarioTranslations/{translationName}/reset | Resets a specific scenario translation to its default value.
-*ScenarioTranslationsApi* | [**post_scenariotranslations_translationname_update**](docs/ScenarioTranslationsApi.md#post_scenariotranslations_translationname_update) | **POST** /ScenarioTranslations/{translationName}/update | Updates a specific scenario translation.
-*ScenariosApi* | [**get_scenarios_billingrelation_advanceamountchanged**](docs/ScenariosApi.md#get_scenarios_billingrelation_advanceamountchanged) | **GET** /Scenarios/billingrelation/advanceamountchanged | Retrieves the advance amount changed scenario configuration.
-*ScenariosApi* | [**get_scenarios_collectioncase_collection**](docs/ScenariosApi.md#get_scenarios_collectioncase_collection) | **GET** /Scenarios/collectioncase/collection | Retrieves the collection scenario configuration.
-*ScenariosApi* | [**get_scenarios_collectioncase_noticeofdefault**](docs/ScenariosApi.md#get_scenarios_collectioncase_noticeofdefault) | **GET** /Scenarios/collectioncase/noticeofdefault | Retrieves the notice of default scenario configuration.
-*ScenariosApi* | [**get_scenarios_collectioncase_reminder**](docs/ScenariosApi.md#get_scenarios_collectioncase_reminder) | **GET** /Scenarios/collectioncase/reminder | Retrieves the reminder scenario configuration.
-*ScenariosApi* | [**get_scenarios_contract_locationsadded**](docs/ScenariosApi.md#get_scenarios_contract_locationsadded) | **GET** /Scenarios/contract/locationsadded | Retrieves the contract locations added scenario configuration.
-*ScenariosApi* | [**get_scenarios_contract_locationsremoved**](docs/ScenariosApi.md#get_scenarios_contract_locationsremoved) | **GET** /Scenarios/contract/locationsremoved | Retrieves the contract locations removed scenario configuration.
-*ScenariosApi* | [**get_scenarios_contract_termination**](docs/ScenariosApi.md#get_scenarios_contract_termination) | **GET** /Scenarios/contract/termination | Retrieves the contract termination scenario configuration.
-*ScenariosApi* | [**get_scenarios_contract_welcome**](docs/ScenariosApi.md#get_scenarios_contract_welcome) | **GET** /Scenarios/contract/welcome | Retrieves the contract welcome scenario configuration.
-*ScenariosApi* | [**get_scenarios_entitysubjecttype_entitysubjectsubtype**](docs/ScenariosApi.md#get_scenarios_entitysubjecttype_entitysubjectsubtype) | **GET** /Scenarios/{entitySubjectType}/{entitySubjectSubType} | Get a scenario that is not available in OrganizationScenarios
-*ScenariosApi* | [**get_scenarios_getall**](docs/ScenariosApi.md#get_scenarios_getall) | **GET** /Scenarios/getAll | Get all scenarios that are not available in OrganizationScenarios
-*ScenariosApi* | [**get_scenarios_invoice_advance**](docs/ScenariosApi.md#get_scenarios_invoice_advance) | **GET** /Scenarios/invoice/advance | Retrieves the advance scenario configuration.
-*ScenariosApi* | [**get_scenarios_invoice_correctionnote**](docs/ScenariosApi.md#get_scenarios_invoice_correctionnote) | **GET** /Scenarios/invoice/correctionnote | Retrieves the correction note scenario configuration.
-*ScenariosApi* | [**get_scenarios_invoice_creditnote**](docs/ScenariosApi.md#get_scenarios_invoice_creditnote) | **GET** /Scenarios/invoice/creditnote | Retrieves the credit note scenario configuration.
-*ScenariosApi* | [**get_scenarios_invoice_endnote**](docs/ScenariosApi.md#get_scenarios_invoice_endnote) | **GET** /Scenarios/invoice/endnote | Retrieves the end note scenario configuration.
-*ScenariosApi* | [**get_scenarios_invoice_incidentalnote**](docs/ScenariosApi.md#get_scenarios_invoice_incidentalnote) | **GET** /Scenarios/invoice/incidentalnote | Retrieves the incidental note scenario configuration.
-*ScenariosApi* | [**get_scenarios_invoice_invoice**](docs/ScenariosApi.md#get_scenarios_invoice_invoice) | **GET** /Scenarios/invoice/invoice | Retrieves the invoice scenario configuration.
-*ScenariosApi* | [**get_scenarios_moverequest_acknowledgemovein**](docs/ScenariosApi.md#get_scenarios_moverequest_acknowledgemovein) | **GET** /Scenarios/moverequest/acknowledgemovein | Retrieves the acknowledge move in scenario configuration.
-*ScenariosApi* | [**get_scenarios_moverequest_acknowledgemoveout**](docs/ScenariosApi.md#get_scenarios_moverequest_acknowledgemoveout) | **GET** /Scenarios/moverequest/acknowledgemoveout | Retrieves the acknowledge move out scenario configuration.
-*ScenariosApi* | [**get_scenarios_moverequest_rejectmovein**](docs/ScenariosApi.md#get_scenarios_moverequest_rejectmovein) | **GET** /Scenarios/moverequest/rejectmovein | Retrieves the reject move in scenario configuration.
-*ScenariosApi* | [**get_scenarios_moverequest_rejectmoveout**](docs/ScenariosApi.md#get_scenarios_moverequest_rejectmoveout) | **GET** /Scenarios/moverequest/rejectmoveout | Retrieves the reject move out scenario configuration.
-*ScenariosApi* | [**put_scenarios_billingrelation_advanceamountchanged**](docs/ScenariosApi.md#put_scenarios_billingrelation_advanceamountchanged) | **PUT** /Scenarios/billingrelation/advanceamountchanged | Updates the advance amount changed scenario configuration.
-*ScenariosApi* | [**put_scenarios_collectioncase_collection**](docs/ScenariosApi.md#put_scenarios_collectioncase_collection) | **PUT** /Scenarios/collectioncase/collection | Updates the collection scenario configuration.
-*ScenariosApi* | [**put_scenarios_collectioncase_noticeofdefault**](docs/ScenariosApi.md#put_scenarios_collectioncase_noticeofdefault) | **PUT** /Scenarios/collectioncase/noticeofdefault | Updates the notice of default scenario configuration.
-*ScenariosApi* | [**put_scenarios_collectioncase_reminder**](docs/ScenariosApi.md#put_scenarios_collectioncase_reminder) | **PUT** /Scenarios/collectioncase/reminder | Updates the reminder scenario configuration.
-*ScenariosApi* | [**put_scenarios_contract_locationsadded**](docs/ScenariosApi.md#put_scenarios_contract_locationsadded) | **PUT** /Scenarios/contract/locationsadded | Updates the contract locations added scenario configuration.
-*ScenariosApi* | [**put_scenarios_contract_locationsremoved**](docs/ScenariosApi.md#put_scenarios_contract_locationsremoved) | **PUT** /Scenarios/contract/locationsremoved | Updates the contract locations removed scenario configuration.
-*ScenariosApi* | [**put_scenarios_contract_termination**](docs/ScenariosApi.md#put_scenarios_contract_termination) | **PUT** /Scenarios/contract/termination | Updates the contract termination scenario configuration.
-*ScenariosApi* | [**put_scenarios_contract_welcome**](docs/ScenariosApi.md#put_scenarios_contract_welcome) | **PUT** /Scenarios/contract/welcome | Updates the contract welcome scenario configuration.
-*ScenariosApi* | [**put_scenarios_entitysubjecttype_entitysubjectsubtype**](docs/ScenariosApi.md#put_scenarios_entitysubjecttype_entitysubjectsubtype) | **PUT** /Scenarios/{entitySubjectType}/{entitySubjectSubType} | Update a scenario that is not available in OrganizationScenarios
-*ScenariosApi* | [**put_scenarios_invoice_advance**](docs/ScenariosApi.md#put_scenarios_invoice_advance) | **PUT** /Scenarios/invoice/advance | Updates the advance scenario configuration.
-*ScenariosApi* | [**put_scenarios_invoice_correctionnote**](docs/ScenariosApi.md#put_scenarios_invoice_correctionnote) | **PUT** /Scenarios/invoice/correctionnote | Updates the correction note scenario configuration.
-*ScenariosApi* | [**put_scenarios_invoice_creditnote**](docs/ScenariosApi.md#put_scenarios_invoice_creditnote) | **PUT** /Scenarios/invoice/creditnote | Updates the credit note scenario configuration.
-*ScenariosApi* | [**put_scenarios_invoice_endnote**](docs/ScenariosApi.md#put_scenarios_invoice_endnote) | **PUT** /Scenarios/invoice/endnote | Updates the end note scenario configuration.
-*ScenariosApi* | [**put_scenarios_invoice_incidentalnote**](docs/ScenariosApi.md#put_scenarios_invoice_incidentalnote) | **PUT** /Scenarios/invoice/incidentalnote | Updates the incidental note scenario configuration.
-*ScenariosApi* | [**put_scenarios_invoice_invoice**](docs/ScenariosApi.md#put_scenarios_invoice_invoice) | **PUT** /Scenarios/invoice/invoice | Updates the invoice scenario configuration.
-*ScenariosApi* | [**put_scenarios_moverequest_acknowledgemovein**](docs/ScenariosApi.md#put_scenarios_moverequest_acknowledgemovein) | **PUT** /Scenarios/moverequest/acknowledgemovein | Updates the acknowledge move in scenario configuration.
-*ScenariosApi* | [**put_scenarios_moverequest_acknowledgemoveout**](docs/ScenariosApi.md#put_scenarios_moverequest_acknowledgemoveout) | **PUT** /Scenarios/moverequest/acknowledgemoveout | Updates the acknowledge move out scenario configuration.
-*ScenariosApi* | [**put_scenarios_moverequest_rejectmovein**](docs/ScenariosApi.md#put_scenarios_moverequest_rejectmovein) | **PUT** /Scenarios/moverequest/rejectmovein | Updates the reject move in scenario configuration.
-*ScenariosApi* | [**put_scenarios_moverequest_rejectmoveout**](docs/ScenariosApi.md#put_scenarios_moverequest_rejectmoveout) | **PUT** /Scenarios/moverequest/rejectmoveout | Updates the reject move out scenario configuration.
-*TaxCodesApi* | [**delete_taxcodes_taxcodeuuid**](docs/TaxCodesApi.md#delete_taxcodes_taxcodeuuid) | **DELETE** /TaxCodes/{taxcodeuuid} | Deletes a tax code by its identifier.
-*TaxCodesApi* | [**get_taxcodes**](docs/TaxCodesApi.md#get_taxcodes) | **GET** /TaxCodes | Retrieves a paged list of tax codes with optional filtering and sorting.
-*TaxCodesApi* | [**get_taxcodes_taxcodeuuid**](docs/TaxCodesApi.md#get_taxcodes_taxcodeuuid) | **GET** /TaxCodes/{taxcodeuuid} | Retrieves a specific tax code by its identifier.
-*TaxCodesApi* | [**post_taxcodes**](docs/TaxCodesApi.md#post_taxcodes) | **POST** /TaxCodes | Creates a new tax code.
-*TaxCodesApi* | [**post_taxcodes_taxcodeuuid**](docs/TaxCodesApi.md#post_taxcodes_taxcodeuuid) | **POST** /TaxCodes/{taxcodeuuid} | Updates an existing tax code.
-*TemplatesApi* | [**delete_templates_entitysubjecttype_entitysubjectsubtype_templateusecase**](docs/TemplatesApi.md#delete_templates_entitysubjecttype_entitysubjectsubtype_templateusecase) | **DELETE** /Templates/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase} | Removes a custom template for a specific scenario.
-*TemplatesApi* | [**post_templates_entitysubjecttype_entitysubjectsubtype_email_culture_send**](docs/TemplatesApi.md#post_templates_entitysubjecttype_entitysubjectsubtype_email_culture_send) | **POST** /Templates/{entitySubjectType}/{entitySubjectSubType}/email/{culture}/send | Send a test mail using a template.
-*TemplatesApi* | [**post_templates_entitysubjecttype_entitysubjectsubtype_pdf_culture_preview**](docs/TemplatesApi.md#post_templates_entitysubjecttype_entitysubjectsubtype_pdf_culture_preview) | **POST** /Templates/{entitySubjectType}/{entitySubjectSubType}/pdf/{culture}/preview | Generates a PDF preview of a template.
-*TemplatesApi* | [**post_templates_entitysubjecttype_entitysubjectsubtype_templateusecase_cultur**](docs/TemplatesApi.md#post_templates_entitysubjecttype_entitysubjectsubtype_templateusecase_cultur) | **POST** /Templates/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase}/{culture}/html | Tests and previews a template in HTML format.
-*TemplatesApi* | [**post_templates_entitysubjecttype_entitysubjectsubtype_templateusecase_downlo**](docs/TemplatesApi.md#post_templates_entitysubjecttype_entitysubjectsubtype_templateusecase_downlo) | **POST** /Templates/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase}/download | Downloads a template for a specific scenario.
-*TemplatesApi* | [**put_templates_entitysubjecttype_entitysubjectsubtype_templateusecase**](docs/TemplatesApi.md#put_templates_entitysubjecttype_entitysubjectsubtype_templateusecase) | **PUT** /Templates/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase} | Uploads a custom template for a specific scenario.
+*DefaultApi* | [**add_host_name**](docs/DefaultApi.md#add_host_name) | **POST** /PortalSettings/hostname/add | adds a hostName for a specific portal.
+*DefaultApi* | [**create_payment_terms**](docs/DefaultApi.md#create_payment_terms) | **POST** /PaymentTerms | Creates a new payment term.
+*DefaultApi* | [**delete_accounting_accountingcompanies**](docs/DefaultApi.md#delete_accounting_accountingcompanies) | **DELETE** /Accounting/accountingcompanies | Deletes accounting companies and all their related entities.
+*DefaultApi* | [**delete_bankaccounts_bankaccuuid**](docs/DefaultApi.md#delete_bankaccounts_bankaccuuid) | **DELETE** /BankAccounts/{bankaccuuid} | Deletes a bank account by its identifier.
+*DefaultApi* | [**delete_bankingdataproviders_id**](docs/DefaultApi.md#delete_bankingdataproviders_id) | **DELETE** /BankingDataProviders/{id} | Delete a banking data provider.
+*DefaultApi* | [**delete_billingitems_billingitemuuid**](docs/DefaultApi.md#delete_billingitems_billingitemuuid) | **DELETE** /BillingItems/{billingitemuuid} | Deletes a billing item by its identifier.
+*DefaultApi* | [**delete_billingtariffs_b_billingitemid**](docs/DefaultApi.md#delete_billingtariffs_b_billingitemid) | **DELETE** /BillingTariffs/b/{billingItemId} | Deletes a billing tariff tree for a specific billing item.
+*DefaultApi* | [**delete_collectionflows_id**](docs/DefaultApi.md#delete_collectionflows_id) | **DELETE** /CollectionFlows/{id} | Deletes a collection flow by its identifier.
+*DefaultApi* | [**delete_collectionsteps_id**](docs/DefaultApi.md#delete_collectionsteps_id) | **DELETE** /CollectionSteps/{id} | Deletes a collection flow step by its identifier.
+*DefaultApi* | [**delete_costcomponents_costcomponentuuid**](docs/DefaultApi.md#delete_costcomponents_costcomponentuuid) | **DELETE** /CostComponents/{costcomponentuuid} | Deletes a cost component by its identifier.
+*DefaultApi* | [**delete_customentitypropertytypes_customentitypropertytypeuuid**](docs/DefaultApi.md#delete_customentitypropertytypes_customentitypropertytypeuuid) | **DELETE** /CustomEntityPropertyTypes/{customentitypropertytypeuuid} | Deletes a custom entity property type by its identifier.
+*DefaultApi* | [**delete_dataexportfileformats_fileformatuuid**](docs/DefaultApi.md#delete_dataexportfileformats_fileformatuuid) | **DELETE** /DataExportFileFormats/{fileformatuuid} | Deletes a data export file format by its identifier.
+*DefaultApi* | [**delete_dataexports_dataexportuuid**](docs/DefaultApi.md#delete_dataexports_dataexportuuid) | **DELETE** /DataExports/{dataexportuuid} | Deletes a data export by its identifier.
+*DefaultApi* | [**delete_dataimportfileformats_fileformatuuid**](docs/DefaultApi.md#delete_dataimportfileformats_fileformatuuid) | **DELETE** /DataImportFileFormats/{fileformatuuid} | Deletes a data import file format by its identifier.
+*DefaultApi* | [**delete_dataimports_dataimportuuid**](docs/DefaultApi.md#delete_dataimports_dataimportuuid) | **DELETE** /DataImports/{dataimportuuid} | Deletes a data import by its identifier.
+*DefaultApi* | [**delete_models_modeluuid**](docs/DefaultApi.md#delete_models_modeluuid) | **DELETE** /Models/{modeluuid} | Deletes a device model by its identifier.
+*DefaultApi* | [**delete_page_notification**](docs/DefaultApi.md#delete_page_notification) | **POST** /PortalSettings/notification/{pageIdentifier}/delete | Removes a page notification from the portal settings.
+*DefaultApi* | [**delete_payment_terms**](docs/DefaultApi.md#delete_payment_terms) | **DELETE** /PaymentTerms/{paymenttermuuid} | Deletes a payment term by its identifier.
+*DefaultApi* | [**delete_paymentdelays_paymentdelayuuid**](docs/DefaultApi.md#delete_paymentdelays_paymentdelayuuid) | **DELETE** /PaymentDelays/{paymentdelayuuid} | Deletes a payment delay setting by its identifier.
+*DefaultApi* | [**delete_products_productuuid**](docs/DefaultApi.md#delete_products_productuuid) | **DELETE** /Products/{productuuid} | Deletes a product by its identifier.
+*DefaultApi* | [**delete_taxcodes_taxcodeuuid**](docs/DefaultApi.md#delete_taxcodes_taxcodeuuid) | **DELETE** /TaxCodes/{taxcodeuuid} | Deletes a tax code by its identifier.
+*DefaultApi* | [**delete_templates_entitysubjecttype_entitysubjectsubtype_templateusecase**](docs/DefaultApi.md#delete_templates_entitysubjecttype_entitysubjectsubtype_templateusecase) | **DELETE** /Templates/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase} | Removes a custom template for a specific scenario.
+*DefaultApi* | [**delete_timeofusecalendars_id**](docs/DefaultApi.md#delete_timeofusecalendars_id) | **DELETE** /TimeOfUseCalendars/{id} | Soft-deletes a calendar.
+*DefaultApi* | [**delete_timeofusetypes_id**](docs/DefaultApi.md#delete_timeofusetypes_id) | **DELETE** /TimeOfUseTypes/{id} | Soft-deletes a time-of-use type.
+*DefaultApi* | [**get_accounting_accountingcompanies**](docs/DefaultApi.md#get_accounting_accountingcompanies) | **GET** /Accounting/accountingcompanies | Retrieves a paged list of accounting companies (divisions).
+*DefaultApi* | [**get_accounting_accountingsystemdetails**](docs/DefaultApi.md#get_accounting_accountingsystemdetails) | **GET** /Accounting/accountingsystemdetails | Retrieves the configured accounting system details for the organization
+*DefaultApi* | [**get_accounting_companies_mapping**](docs/DefaultApi.md#get_accounting_companies_mapping) | **GET** /Accounting/companies/mapping | Retrieves a paged list of items that are mapped or need to be mapped to bank accounts for accounting companies.
+*DefaultApi* | [**get_accounting_companies_unmapped_overviewcount**](docs/DefaultApi.md#get_accounting_companies_unmapped_overviewcount) | **GET** /Accounting/companies/unmapped/overviewcount | Retrieves an overview count of all accounting company categories and the amount of items that still need mapping
+*DefaultApi* | [**get_accounting_costcenters**](docs/DefaultApi.md#get_accounting_costcenters) | **GET** /Accounting/costcenters | Retrieves a paged list of cost centers
+*DefaultApi* | [**get_accounting_costunits**](docs/DefaultApi.md#get_accounting_costunits) | **GET** /Accounting/costunits | Retrieves a paged list of cost units
+*DefaultApi* | [**get_accounting_generalledgers**](docs/DefaultApi.md#get_accounting_generalledgers) | **GET** /Accounting/generalledgers | Retrieves a paged list of general ledger codes, with optional filtering and sorting.
+*DefaultApi* | [**get_accounting_generalledgers_mapping**](docs/DefaultApi.md#get_accounting_generalledgers_mapping) | **GET** /Accounting/generalledgers/mapping | Retrieves a paged list of items that are mapped or need to be mapped to a general ledger code. A category needs to be provided.
+*DefaultApi* | [**get_accounting_generalledgers_unmapped_overviewcount**](docs/DefaultApi.md#get_accounting_generalledgers_unmapped_overviewcount) | **GET** /Accounting/generalledgers/unmapped/overviewcount | Retrieves an overview count of all general ledger categories and the amount of items that still need mapping
+*DefaultApi* | [**get_accounting_itemcodes**](docs/DefaultApi.md#get_accounting_itemcodes) | **GET** /Accounting/itemcodes | Retrieves a paged list of item codes.
+*DefaultApi* | [**get_accounting_journals**](docs/DefaultApi.md#get_accounting_journals) | **GET** /Accounting/journals | Retrieves a paged list of journals.
+*DefaultApi* | [**get_accounting_projectcodes**](docs/DefaultApi.md#get_accounting_projectcodes) | **GET** /Accounting/projectcodes | Retrieves a paged list of project codes.
+*DefaultApi* | [**get_accounting_vatcodes**](docs/DefaultApi.md#get_accounting_vatcodes) | **GET** /Accounting/vatcodes | Retrieves a paged list of vat codes
+*DefaultApi* | [**get_accounting_vatcodes_mapping**](docs/DefaultApi.md#get_accounting_vatcodes_mapping) | **GET** /Accounting/vatcodes/mapping | Retrieves a paged list of items that are mapped or need to be mapped to a VAT code.
+*DefaultApi* | [**get_accounting_vatcodes_unmapped_overviewcount**](docs/DefaultApi.md#get_accounting_vatcodes_unmapped_overviewcount) | **GET** /Accounting/vatcodes/unmapped/overviewcount | Retrieves an overview count of all vat code categories and the amount of items that still need mapping
+*DefaultApi* | [**get_all_bank_accounts**](docs/DefaultApi.md#get_all_bank_accounts) | **GET** /BankAccounts | Retrieves a paged list of bank accounts with optional filtering and sorting.
+*DefaultApi* | [**get_all_payment_terms**](docs/DefaultApi.md#get_all_payment_terms) | **GET** /PaymentTerms | Retrieves a paged list of payment terms with optional filtering and sorting.
+*DefaultApi* | [**get_bankaccounts_bankaccuuid**](docs/DefaultApi.md#get_bankaccounts_bankaccuuid) | **GET** /BankAccounts/{bankaccuuid} | Retrieves a specific bank account by its identifier.
+*DefaultApi* | [**get_bankaccounts_count**](docs/DefaultApi.md#get_bankaccounts_count) | **GET** /BankAccounts/count | Gets the total count of bank accounts within the organization.
+*DefaultApi* | [**get_bankholidays**](docs/DefaultApi.md#get_bankholidays) | **GET** /BankHolidays | Gets the organisation&#39;s bank holiday calendar (if synced). Returns 404 when not yet synced.
+*DefaultApi* | [**get_bankingdataproviders**](docs/DefaultApi.md#get_bankingdataproviders) | **GET** /BankingDataProviders | Get a paged list of banking data providers.
+*DefaultApi* | [**get_bankingdataproviders_id_encryption_certificate**](docs/DefaultApi.md#get_bankingdataproviders_id_encryption_certificate) | **GET** /BankingDataProviders/{id}/encryption/certificate | Downloads the encryption private certificate for a banking data provider as a PEM file.
+*DefaultApi* | [**get_bankingdataproviders_id_encryption_privatekey**](docs/DefaultApi.md#get_bankingdataproviders_id_encryption_privatekey) | **GET** /BankingDataProviders/{id}/encryption/privatekey | Downloads the encryption private key for a banking data provider as a PEM file.
+*DefaultApi* | [**get_bankingdataproviders_id_encryption_public_certificate**](docs/DefaultApi.md#get_bankingdataproviders_id_encryption_public_certificate) | **GET** /BankingDataProviders/{id}/encryption/public-certificate | Downloads the encryption public certificate for a banking data provider as a PEM file.
+*DefaultApi* | [**get_billingitems**](docs/DefaultApi.md#get_billingitems) | **GET** /BillingItems | Retrieves a paged list of billing items with optional filtering and sorting.
+*DefaultApi* | [**get_billingitems_billingitemuuid**](docs/DefaultApi.md#get_billingitems_billingitemuuid) | **GET** /BillingItems/{billingitemuuid} | Retrieves a specific billing item by its identifier.
+*DefaultApi* | [**get_billingitems_calculationtypes**](docs/DefaultApi.md#get_billingitems_calculationtypes) | **GET** /BillingItems/calculationtypes | Retrieves a list of supported calculation types for billing items.
+*DefaultApi* | [**get_billingitems_calculationtypes_calculationtype_supportedunitofmeasures**](docs/DefaultApi.md#get_billingitems_calculationtypes_calculationtype_supportedunitofmeasures) | **GET** /BillingItems/calculationtypes/{calculationType}/supportedunitofmeasures | Retrieves supported units of measure for a specific calculation type and metering type.
+*DefaultApi* | [**get_billingtariffs**](docs/DefaultApi.md#get_billingtariffs) | **GET** /BillingTariffs | Retrieves a paged list of billing tariffs with optional filtering and sorting.
+*DefaultApi* | [**get_billingtariffs_b_billingitemid**](docs/DefaultApi.md#get_billingtariffs_b_billingitemid) | **GET** /BillingTariffs/b/{billingItemId} | Retrieves billing tariff trees for a specific billing item.
+*DefaultApi* | [**get_billingtariffs_billingtariffuuid**](docs/DefaultApi.md#get_billingtariffs_billingtariffuuid) | **GET** /BillingTariffs/{billingtariffuuid} | Retrieves a specific billing tariff by its identifier.
+*DefaultApi* | [**get_collectionflows**](docs/DefaultApi.md#get_collectionflows) | **GET** /CollectionFlows | Retrieves a paged list of collection flows with optional filtering and sorting.
+*DefaultApi* | [**get_collectionflows_id**](docs/DefaultApi.md#get_collectionflows_id) | **GET** /CollectionFlows/{id} | Retrieves a specific collection flow by its identifier.
+*DefaultApi* | [**get_collectionsteps**](docs/DefaultApi.md#get_collectionsteps) | **GET** /CollectionSteps | Retrieves a paged list of collection flow steps.
+*DefaultApi* | [**get_costcomponents**](docs/DefaultApi.md#get_costcomponents) | **GET** /CostComponents | Retrieves a paged list of cost components with optional filtering and sorting.
+*DefaultApi* | [**get_costcomponents_costcomponentuuid**](docs/DefaultApi.md#get_costcomponents_costcomponentuuid) | **GET** /CostComponents/{costcomponentuuid} | Retrieves a specific cost component by its identifier.
+*DefaultApi* | [**get_costcomponentvalues_c_costcomponentuuid**](docs/DefaultApi.md#get_costcomponentvalues_c_costcomponentuuid) | **GET** /CostComponentValues/c/{costcomponentuuid} | Retrieves a paged list of cost component values for a specific cost component with optional filtering and sorting.
+*DefaultApi* | [**get_costcomponentvalues_costcomponentvalueuuid**](docs/DefaultApi.md#get_costcomponentvalues_costcomponentvalueuuid) | **GET** /CostComponentValues/{costcomponentvalueuuid} | Retrieves a specific cost component value by its identifier.
+*DefaultApi* | [**get_culturetable**](docs/DefaultApi.md#get_culturetable) | **GET** /CultureTable | Retrieves the culture table.
+*DefaultApi* | [**get_culturetable_allowedcultures**](docs/DefaultApi.md#get_culturetable_allowedcultures) | **GET** /CultureTable/allowedcultures | Retrieves a list of all allowed cultures.
+*DefaultApi* | [**get_customentitypropertytypes**](docs/DefaultApi.md#get_customentitypropertytypes) | **GET** /CustomEntityPropertyTypes | Retrieves a paged list of custom entity property types with optional filtering and sorting.
+*DefaultApi* | [**get_customentitypropertytypes_customentitypropertytypeuuid**](docs/DefaultApi.md#get_customentitypropertytypes_customentitypropertytypeuuid) | **GET** /CustomEntityPropertyTypes/{customentitypropertytypeuuid} | Retrieves a specific custom entity property type by its identifier.
+*DefaultApi* | [**get_dataexportfileformats**](docs/DefaultApi.md#get_dataexportfileformats) | **GET** /DataExportFileFormats | Retrieves a paged list of data export file formats with optional filtering and sorting.
+*DefaultApi* | [**get_dataexportfileformats_fileformatuuid**](docs/DefaultApi.md#get_dataexportfileformats_fileformatuuid) | **GET** /DataExportFileFormats/{fileformatuuid} | Retrieves a specific data export file format by its identifier.
+*DefaultApi* | [**get_dataexportfileformats_settings**](docs/DefaultApi.md#get_dataexportfileformats_settings) | **GET** /DataExportFileFormats/settings | Retrieves a list of available settings for data export file formats.
+*DefaultApi* | [**get_dataexportfileformats_settings_settings_formats**](docs/DefaultApi.md#get_dataexportfileformats_settings_settings_formats) | **GET** /DataExportFileFormats/settings/{settings}/formats | Retrieves a list of available formats for a specific settings type.
+*DefaultApi* | [**get_dataexports**](docs/DefaultApi.md#get_dataexports) | **GET** /DataExports | Retrieves a paged list of data exports with optional filtering and sorting.
+*DefaultApi* | [**get_dataexports_dataexportuuid**](docs/DefaultApi.md#get_dataexports_dataexportuuid) | **GET** /DataExports/{dataexportuuid} | Retrieves a specific data export by its identifier.
+*DefaultApi* | [**get_dataexports_types**](docs/DefaultApi.md#get_dataexports_types) | **GET** /DataExports/types | Retrieves a list of available data export types.
+*DefaultApi* | [**get_dataimportfileformats**](docs/DefaultApi.md#get_dataimportfileformats) | **GET** /DataImportFileFormats | Returns all the custom data import file formats created. These file formats can be of the type metering or migration.
+*DefaultApi* | [**get_dataimportfileformats_fileformatuuid**](docs/DefaultApi.md#get_dataimportfileformats_fileformatuuid) | **GET** /DataImportFileFormats/{fileformatuuid} | Retrieves a specific data import file format by its identifier.
+*DefaultApi* | [**get_dataimports**](docs/DefaultApi.md#get_dataimports) | **GET** /DataImports | Returns all the data providers (FTP, FTPS, SFTP or mail) that have been created.
+*DefaultApi* | [**get_dataimports_dataimportuuid**](docs/DefaultApi.md#get_dataimports_dataimportuuid) | **GET** /DataImports/{dataimportuuid} | Retrieves a specific data import by its identifier.
+*DefaultApi* | [**get_dataimports_types**](docs/DefaultApi.md#get_dataimports_types) | **GET** /DataImports/types | Retrieves a list of available data import types.
+*DefaultApi* | [**get_enumtranslations**](docs/DefaultApi.md#get_enumtranslations) | **GET** /EnumTranslations | Retrieves a paged list of enumeration symbol translations with optional filtering.
+*DefaultApi* | [**get_integrations_billingtariff_import**](docs/DefaultApi.md#get_integrations_billingtariff_import) | **GET** /Integrations/billingTariff/import | Retrieves a paged list of billing tariff import operations with optional filtering and sorting.
+*DefaultApi* | [**get_integrations_billingtariff_import_locked**](docs/DefaultApi.md#get_integrations_billingtariff_import_locked) | **GET** /Integrations/billingTariff/import/locked | Checks if there are any locked billing tariff import operations.
+*DefaultApi* | [**get_migrationadmin_latest_version**](docs/DefaultApi.md#get_migrationadmin_latest_version) | **GET** /MigrationAdmin/latest-version | /MigrationAdmin/latest-version - GET
+*DefaultApi* | [**get_models**](docs/DefaultApi.md#get_models) | **GET** /Models | Retrieves a paged list of device models with optional filtering and sorting.
+*DefaultApi* | [**get_models_modeluuid**](docs/DefaultApi.md#get_models_modeluuid) | **GET** /Models/{modeluuid} | Retrieves a specific device model by its identifier.
+*DefaultApi* | [**get_numbersequences**](docs/DefaultApi.md#get_numbersequences) | **GET** /NumberSequences | Retrieves a paged list of number sequences with optional filtering and sorting.
+*DefaultApi* | [**get_numbersequences_numbersequenceuuid**](docs/DefaultApi.md#get_numbersequences_numbersequenceuuid) | **GET** /NumberSequences/{numbersequenceuuid} | Retrieves a specific number sequence by its identifier.
+*DefaultApi* | [**get_organizations_organizationuuid**](docs/DefaultApi.md#get_organizations_organizationuuid) | **GET** /Organizations/{organizationuuid} | Retrieves a specific organization by its identifier.
+*DefaultApi* | [**get_parameters_billing**](docs/DefaultApi.md#get_parameters_billing) | **GET** /Parameters/billing | Retrieves the current billing parameters configuration.
+*DefaultApi* | [**get_parameters_communication**](docs/DefaultApi.md#get_parameters_communication) | **GET** /Parameters/communication | Retrieves the current communication parameters configuration.
+*DefaultApi* | [**get_parameters_communication_domainauthentication**](docs/DefaultApi.md#get_parameters_communication_domainauthentication) | **GET** /Parameters/communication/domainauthentication | Retrieves the current domain authentication parameters for communication.
+*DefaultApi* | [**get_parameters_masterdata**](docs/DefaultApi.md#get_parameters_masterdata) | **GET** /Parameters/masterdata | Retrieves the current master data parameters configuration.
+*DefaultApi* | [**get_parameters_masterdata_allowedutilitytypes**](docs/DefaultApi.md#get_parameters_masterdata_allowedutilitytypes) | **GET** /Parameters/masterdata/allowedutilitytypes | Retrieves the utility types allowed for selection for the current organisation (all types minus excluded minus None). Prefer this over client-side filtering when building dropdowns and selection surfaces.
+*DefaultApi* | [**get_parameters_masterdata_excludedutilitytypes**](docs/DefaultApi.md#get_parameters_masterdata_excludedutilitytypes) | **GET** /Parameters/masterdata/excludedutilitytypes | Retrieves the excluded utility types for the current organisation (from master data parameters).
+*DefaultApi* | [**get_parameters_metering**](docs/DefaultApi.md#get_parameters_metering) | **GET** /Parameters/metering | Retrieves the current metering parameters configuration.
+*DefaultApi* | [**get_parameters_payment**](docs/DefaultApi.md#get_parameters_payment) | **GET** /Parameters/payment | Retrieves the current payment parameters configuration.
+*DefaultApi* | [**get_parameters_paymentplan**](docs/DefaultApi.md#get_parameters_paymentplan) | **GET** /Parameters/paymentplan | Retrieves the current payment plan parameters configuration.
+*DefaultApi* | [**get_parameters_prepayment**](docs/DefaultApi.md#get_parameters_prepayment) | **GET** /Parameters/prepayment | Retrieves the current prepayment parameters configuration (PrepaymentParameters).
+*DefaultApi* | [**get_payment_terms**](docs/DefaultApi.md#get_payment_terms) | **GET** /PaymentTerms/{paymenttermuuid} | Retrieves a specific payment term by its identifier.
+*DefaultApi* | [**get_paymentdelays**](docs/DefaultApi.md#get_paymentdelays) | **GET** /PaymentDelays | Retrieves a paged list of payment delay settings.
+*DefaultApi* | [**get_paymentdelays_paymentdelayuuid**](docs/DefaultApi.md#get_paymentdelays_paymentdelayuuid) | **GET** /PaymentDelays/{paymentdelayuuid} | Retrieves a specific payment delay setting by its identifier.
+*DefaultApi* | [**get_portal_settings**](docs/DefaultApi.md#get_portal_settings) | **GET** /PortalSettings | Retrieves portal settings for a specific portal URL.
+*DefaultApi* | [**get_products**](docs/DefaultApi.md#get_products) | **GET** /Products | Retrieves a paged list of products with optional filtering and sorting.
+*DefaultApi* | [**get_products_attachments_flat**](docs/DefaultApi.md#get_products_attachments_flat) | **GET** /Products/attachments/flat | Retrieves a paged list of flat product attachments with optional filtering.
+*DefaultApi* | [**get_products_export**](docs/DefaultApi.md#get_products_export) | **GET** /Products/export | Retrieves all products for export purposes.
+*DefaultApi* | [**get_products_productuuid**](docs/DefaultApi.md#get_products_productuuid) | **GET** /Products/{productuuid} | Retrieves a specific product by its identifier.
+*DefaultApi* | [**get_productusage**](docs/DefaultApi.md#get_productusage) | **GET** /ProductUsage | Gets the configuration product usage snapshot with integrations per organization.
+*DefaultApi* | [**get_regional_regulation_parameters_for_bel**](docs/DefaultApi.md#get_regional_regulation_parameters_for_bel) | **GET** /RegionalRegulations/bel | Retrieves the current regional regulations parameters specific to Belgium.
+*DefaultApi* | [**get_regional_regulation_parameters_for_gbr**](docs/DefaultApi.md#get_regional_regulation_parameters_for_gbr) | **GET** /RegionalRegulations/gbr | Retrieves the current regional regulations parameters specific to Great Britain.
+*DefaultApi* | [**get_reportingconfigurationproviders**](docs/DefaultApi.md#get_reportingconfigurationproviders) | **GET** /ReportingConfigurationProviders | Gets the reporting configuration provider status for the current organization. It returns if the reporting configuration provider is enabled for the organization and to which destination the data will be exported.
+*DefaultApi* | [**get_requiredestimations_productid**](docs/DefaultApi.md#get_requiredestimations_productid) | **GET** /RequiredEstimations/{productId} | Retrieves all required estimations for a specific product.
+*DefaultApi* | [**get_scenarios_billingrelation_advanceamountchanged**](docs/DefaultApi.md#get_scenarios_billingrelation_advanceamountchanged) | **GET** /Scenarios/billingrelation/advanceamountchanged | Retrieves the advance amount changed scenario configuration.
+*DefaultApi* | [**get_scenarios_collectioncase_collection**](docs/DefaultApi.md#get_scenarios_collectioncase_collection) | **GET** /Scenarios/collectioncase/collection | Retrieves the collection scenario configuration.
+*DefaultApi* | [**get_scenarios_collectioncase_noticeofdefault**](docs/DefaultApi.md#get_scenarios_collectioncase_noticeofdefault) | **GET** /Scenarios/collectioncase/noticeofdefault | Retrieves the notice of default scenario configuration.
+*DefaultApi* | [**get_scenarios_collectioncase_reminder**](docs/DefaultApi.md#get_scenarios_collectioncase_reminder) | **GET** /Scenarios/collectioncase/reminder | Retrieves the reminder scenario configuration.
+*DefaultApi* | [**get_scenarios_contract_locationsadded**](docs/DefaultApi.md#get_scenarios_contract_locationsadded) | **GET** /Scenarios/contract/locationsadded | Retrieves the contract locations added scenario configuration.
+*DefaultApi* | [**get_scenarios_contract_locationsremoved**](docs/DefaultApi.md#get_scenarios_contract_locationsremoved) | **GET** /Scenarios/contract/locationsremoved | Retrieves the contract locations removed scenario configuration.
+*DefaultApi* | [**get_scenarios_contract_termination**](docs/DefaultApi.md#get_scenarios_contract_termination) | **GET** /Scenarios/contract/termination | Retrieves the contract termination scenario configuration.
+*DefaultApi* | [**get_scenarios_contract_welcome**](docs/DefaultApi.md#get_scenarios_contract_welcome) | **GET** /Scenarios/contract/welcome | Retrieves the contract welcome scenario configuration.
+*DefaultApi* | [**get_scenarios_entitysubjecttype_entitysubjectsubtype**](docs/DefaultApi.md#get_scenarios_entitysubjecttype_entitysubjectsubtype) | **GET** /Scenarios/{entitySubjectType}/{entitySubjectSubType} | Get a scenario that is not available in OrganizationScenarios
+*DefaultApi* | [**get_scenarios_envelopesettings**](docs/DefaultApi.md#get_scenarios_envelopesettings) | **GET** /Scenarios/envelopesettings | Check whether all organization scenarios have default envelope settings and no custom html template
+*DefaultApi* | [**get_scenarios_getall**](docs/DefaultApi.md#get_scenarios_getall) | **GET** /Scenarios/getAll | Get all scenarios that are not available in OrganizationScenarios
+*DefaultApi* | [**get_scenarios_invoice_advance**](docs/DefaultApi.md#get_scenarios_invoice_advance) | **GET** /Scenarios/invoice/advance | Retrieves the advance scenario configuration.
+*DefaultApi* | [**get_scenarios_invoice_correctionnote**](docs/DefaultApi.md#get_scenarios_invoice_correctionnote) | **GET** /Scenarios/invoice/correctionnote | Retrieves the correction note scenario configuration.
+*DefaultApi* | [**get_scenarios_invoice_creditnote**](docs/DefaultApi.md#get_scenarios_invoice_creditnote) | **GET** /Scenarios/invoice/creditnote | Retrieves the credit note scenario configuration.
+*DefaultApi* | [**get_scenarios_invoice_endnote**](docs/DefaultApi.md#get_scenarios_invoice_endnote) | **GET** /Scenarios/invoice/endnote | Retrieves the end note scenario configuration.
+*DefaultApi* | [**get_scenarios_invoice_incidentalnote**](docs/DefaultApi.md#get_scenarios_invoice_incidentalnote) | **GET** /Scenarios/invoice/incidentalnote | Retrieves the incidental note scenario configuration.
+*DefaultApi* | [**get_scenarios_invoice_invoice**](docs/DefaultApi.md#get_scenarios_invoice_invoice) | **GET** /Scenarios/invoice/invoice | Retrieves the invoice scenario configuration.
+*DefaultApi* | [**get_scenarios_moverequest_acknowledgemovein**](docs/DefaultApi.md#get_scenarios_moverequest_acknowledgemovein) | **GET** /Scenarios/moverequest/acknowledgemovein | Retrieves the acknowledge move in scenario configuration.
+*DefaultApi* | [**get_scenarios_moverequest_acknowledgemoveout**](docs/DefaultApi.md#get_scenarios_moverequest_acknowledgemoveout) | **GET** /Scenarios/moverequest/acknowledgemoveout | Retrieves the acknowledge move out scenario configuration.
+*DefaultApi* | [**get_scenarios_moverequest_rejectmovein**](docs/DefaultApi.md#get_scenarios_moverequest_rejectmovein) | **GET** /Scenarios/moverequest/rejectmovein | Retrieves the reject move in scenario configuration.
+*DefaultApi* | [**get_scenarios_moverequest_rejectmoveout**](docs/DefaultApi.md#get_scenarios_moverequest_rejectmoveout) | **GET** /Scenarios/moverequest/rejectmoveout | Retrieves the reject move out scenario configuration.
+*DefaultApi* | [**get_scenarios_paymentplan_activated**](docs/DefaultApi.md#get_scenarios_paymentplan_activated) | **GET** /Scenarios/paymentplan/activated | Retrieves the payment plan activated scenario configuration.
+*DefaultApi* | [**get_scenarios_paymentplan_cancelled**](docs/DefaultApi.md#get_scenarios_paymentplan_cancelled) | **GET** /Scenarios/paymentplan/cancelled | Retrieves the payment plan cancelled scenario configuration.
+*DefaultApi* | [**get_scenarios_paymentplan_completed**](docs/DefaultApi.md#get_scenarios_paymentplan_completed) | **GET** /Scenarios/paymentplan/completed | Retrieves the payment plan completed scenario configuration.
+*DefaultApi* | [**get_scenarios_paymentplan_recalculated**](docs/DefaultApi.md#get_scenarios_paymentplan_recalculated) | **GET** /Scenarios/paymentplan/recalculated | Retrieves the payment plan recalculated scenario configuration.
+*DefaultApi* | [**get_scenarios_paymentplan_reminder**](docs/DefaultApi.md#get_scenarios_paymentplan_reminder) | **GET** /Scenarios/paymentplan/reminder | Retrieves the payment plan reminder scenario configuration.
+*DefaultApi* | [**get_scenarios_paymentplan_requested**](docs/DefaultApi.md#get_scenarios_paymentplan_requested) | **GET** /Scenarios/paymentplan/requested | Retrieves the payment plan requested scenario configuration.
+*DefaultApi* | [**get_scenariotranslations_entitysubjecttype_entitysubjectsubtype_templateusec**](docs/DefaultApi.md#get_scenariotranslations_entitysubjecttype_entitysubjectsubtype_templateusec) | **GET** /ScenarioTranslations/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase} | Retrieves a list of scenario translations for a specific entity subject type, subtype, and template use case.
+*DefaultApi* | [**get_scenariotranslations_translationname_getscenarios**](docs/DefaultApi.md#get_scenariotranslations_translationname_getscenarios) | **GET** /ScenarioTranslations/{translationName}/getscenarios | Retrieves scenarios associated with a specific translation.
+*DefaultApi* | [**get_taxcodes**](docs/DefaultApi.md#get_taxcodes) | **GET** /TaxCodes | Retrieves a paged list of tax codes with optional filtering and sorting.
+*DefaultApi* | [**get_taxcodes_taxcodeuuid**](docs/DefaultApi.md#get_taxcodes_taxcodeuuid) | **GET** /TaxCodes/{taxcodeuuid} | Retrieves a specific tax code by its identifier.
+*DefaultApi* | [**get_timeofusecalendars**](docs/DefaultApi.md#get_timeofusecalendars) | **GET** /TimeOfUseCalendars | Paged list of calendars for the organisation.
+*DefaultApi* | [**get_timeofusecalendars_id**](docs/DefaultApi.md#get_timeofusecalendars_id) | **GET** /TimeOfUseCalendars/{id} | Gets a single calendar by id.
+*DefaultApi* | [**get_timeofusetypes**](docs/DefaultApi.md#get_timeofusetypes) | **GET** /TimeOfUseTypes | Paged list of time-of-use types for the organisation.
+*DefaultApi* | [**get_timeofusetypes_id**](docs/DefaultApi.md#get_timeofusetypes_id) | **GET** /TimeOfUseTypes/{id} | Gets a single time-of-use type by id.
+*DefaultApi* | [**patch_accounting_activate**](docs/DefaultApi.md#patch_accounting_activate) | **PATCH** /Accounting/activate | Activates accounting, when all general ledger items are mapped
+*DefaultApi* | [**patch_accounting_companies_mapping**](docs/DefaultApi.md#patch_accounting_companies_mapping) | **PATCH** /Accounting/companies/mapping | Links accounting companies (divisions) to bank accounts in bulk.
+*DefaultApi* | [**patch_accounting_companies_mapping_mappingitemid**](docs/DefaultApi.md#patch_accounting_companies_mapping_mappingitemid) | **PATCH** /Accounting/companies/mapping/{mappingItemId} | Links a single accounting company (division) to a bank account.
+*DefaultApi* | [**patch_accounting_generalledgers_mapping**](docs/DefaultApi.md#patch_accounting_generalledgers_mapping) | **PATCH** /Accounting/generalledgers/mapping | Links multiple mapping items to a general ledger code in bulk.
+*DefaultApi* | [**patch_accounting_generalledgers_mapping_mappingitemid**](docs/DefaultApi.md#patch_accounting_generalledgers_mapping_mappingitemid) | **PATCH** /Accounting/generalledgers/mapping/{mappingItemId} | Links a mapping item to a general ledger code.
+*DefaultApi* | [**patch_accounting_vatcodes_mapping**](docs/DefaultApi.md#patch_accounting_vatcodes_mapping) | **PATCH** /Accounting/vatcodes/mapping | Links multiple mapping items to a vat code in bulk.
+*DefaultApi* | [**patch_accounting_vatcodes_mapping_mappingitemid**](docs/DefaultApi.md#patch_accounting_vatcodes_mapping_mappingitemid) | **PATCH** /Accounting/vatcodes/mapping/{mappingItemId} | Links a mapping item to a vat code.
+*DefaultApi* | [**post_accounting_accountingcompanies**](docs/DefaultApi.md#post_accounting_accountingcompanies) | **POST** /Accounting/accountingcompanies | Creates a new accounting company based on the provided request data.
+*DefaultApi* | [**post_accounting_accountingcompanies_filter**](docs/DefaultApi.md#post_accounting_accountingcompanies_filter) | **POST** /Accounting/accountingcompanies/filter | Retrieves a paged list of accounting companies (divisions). This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_companies_mapping_filter**](docs/DefaultApi.md#post_accounting_companies_mapping_filter) | **POST** /Accounting/companies/mapping/filter | Retrieves a paged list of items that are mapped or need to be mapped to bank accounts for accounting companies. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_costcenters**](docs/DefaultApi.md#post_accounting_costcenters) | **POST** /Accounting/costcenters | Creates or updates cost centers. If a cost center already exists in the system, it will be updated instead of creating a new one.  The system identifies existing codes by matching the SourceEntityId in the Metadata property.
+*DefaultApi* | [**post_accounting_costcenters_filter**](docs/DefaultApi.md#post_accounting_costcenters_filter) | **POST** /Accounting/costcenters/filter | Retrieves a paged list of cost centers This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_costunits**](docs/DefaultApi.md#post_accounting_costunits) | **POST** /Accounting/costunits | Creates or updates cost units. If a cost unit already exists in the system, it will be updated instead of creating a new one.  The system identifies existing codes by matching the SourceEntityId in the Metadata property.
+*DefaultApi* | [**post_accounting_costunits_filter**](docs/DefaultApi.md#post_accounting_costunits_filter) | **POST** /Accounting/costunits/filter | Retrieves a paged list of cost units This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_disconnect**](docs/DefaultApi.md#post_accounting_disconnect) | **POST** /Accounting/disconnect | Disconnect the configured accounting system for the organization.
+*DefaultApi* | [**post_accounting_generalledgers**](docs/DefaultApi.md#post_accounting_generalledgers) | **POST** /Accounting/generalledgers | Creates or updates general ledger codes. If a general ledger code already exists in the system, it will be updated instead of creating a new one.  The system identifies existing codes by matching the SourceEntityId in the Metadata property.
+*DefaultApi* | [**post_accounting_generalledgers_filter**](docs/DefaultApi.md#post_accounting_generalledgers_filter) | **POST** /Accounting/generalledgers/filter | Retrieves a paged list of general ledger codes, with optional filtering and sorting. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_generalledgers_mapping_filter**](docs/DefaultApi.md#post_accounting_generalledgers_mapping_filter) | **POST** /Accounting/generalledgers/mapping/filter | Retrieves a paged list of items that are mapped or need to be mapped to a general ledger code. A category needs to be provided. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_itemcodes**](docs/DefaultApi.md#post_accounting_itemcodes) | **POST** /Accounting/itemcodes | Creates new item codes based on the provided request data.
+*DefaultApi* | [**post_accounting_itemcodes_filter**](docs/DefaultApi.md#post_accounting_itemcodes_filter) | **POST** /Accounting/itemcodes/filter | Retrieves a paged list of item codes. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_journals**](docs/DefaultApi.md#post_accounting_journals) | **POST** /Accounting/journals | Creates a journal based on the provided request data.
+*DefaultApi* | [**post_accounting_journals_filter**](docs/DefaultApi.md#post_accounting_journals_filter) | **POST** /Accounting/journals/filter | Retrieves a paged list of journals. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_projectcodes**](docs/DefaultApi.md#post_accounting_projectcodes) | **POST** /Accounting/projectcodes | Creates new project codes based on the provided request data.
+*DefaultApi* | [**post_accounting_projectcodes_filter**](docs/DefaultApi.md#post_accounting_projectcodes_filter) | **POST** /Accounting/projectcodes/filter | Retrieves a paged list of project codes. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_sync**](docs/DefaultApi.md#post_accounting_sync) | **POST** /Accounting/sync | Syncs accounting codes from the external accounting system
+*DefaultApi* | [**post_accounting_vatcodes**](docs/DefaultApi.md#post_accounting_vatcodes) | **POST** /Accounting/vatcodes | Creates or updates VAT codes. If a VAT code already exists in the system, it will be updated instead of creating a new one.  The system identifies existing codes by matching the SourceEntityId in the Metadata property.
+*DefaultApi* | [**post_accounting_vatcodes_filter**](docs/DefaultApi.md#post_accounting_vatcodes_filter) | **POST** /Accounting/vatcodes/filter | Retrieves a paged list of vat codes This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_vatcodes_mapping_filter**](docs/DefaultApi.md#post_accounting_vatcodes_mapping_filter) | **POST** /Accounting/vatcodes/mapping/filter | Retrieves a paged list of items that are mapped or need to be mapped to a VAT code. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_bankaccounts**](docs/DefaultApi.md#post_bankaccounts) | **POST** /BankAccounts | Creates a new bank account.
+*DefaultApi* | [**post_bankaccounts_bankaccuuid**](docs/DefaultApi.md#post_bankaccounts_bankaccuuid) | **POST** /BankAccounts/{bankaccuuid} | Updates an existing bank account.
+*DefaultApi* | [**post_bankholidays_id_update**](docs/DefaultApi.md#post_bankholidays_id_update) | **POST** /BankHolidays/{id}/update | Updates the organisation&#39;s bank holiday calendar in its entirety with the given list of (Date, IsActive). Returns the updated calendar.
+*DefaultApi* | [**post_bankholidays_id_update_single**](docs/DefaultApi.md#post_bankholidays_id_update_single) | **POST** /BankHolidays/{id}/update-single | Updates the active state of a single bank holiday (by date). Returns the updated calendar.
+*DefaultApi* | [**post_bankingdataproviders**](docs/DefaultApi.md#post_bankingdataproviders) | **POST** /BankingDataProviders | Create a new banking data provider.
+*DefaultApi* | [**post_bankingdataproviders_filter**](docs/DefaultApi.md#post_bankingdataproviders_filter) | **POST** /BankingDataProviders/filter | Get a paged list of banking data providers. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_bankingdataproviders_id_disable**](docs/DefaultApi.md#post_bankingdataproviders_id_disable) | **POST** /BankingDataProviders/{id}/disable | Disable a banking data provider.
+*DefaultApi* | [**post_bankingdataproviders_id_enable**](docs/DefaultApi.md#post_bankingdataproviders_id_enable) | **POST** /BankingDataProviders/{id}/enable | Enables a banking data provider.
+*DefaultApi* | [**post_bankingdataproviders_id_testconnection**](docs/DefaultApi.md#post_bankingdataproviders_id_testconnection) | **POST** /BankingDataProviders/{id}/testConnection | Test the SFTP connection for a banking data provider.
+*DefaultApi* | [**post_bankingdataproviders_id_update**](docs/DefaultApi.md#post_bankingdataproviders_id_update) | **POST** /BankingDataProviders/{id}/update | Update an existing banking data provider.
+*DefaultApi* | [**post_billingitems**](docs/DefaultApi.md#post_billingitems) | **POST** /BillingItems | Creates a new billing item.
+*DefaultApi* | [**post_billingitems_billingitemuuid**](docs/DefaultApi.md#post_billingitems_billingitemuuid) | **POST** /BillingItems/{billingitemuuid} | Updates an existing billing item.
+*DefaultApi* | [**post_billingitems_entityid_translations**](docs/DefaultApi.md#post_billingitems_entityid_translations) | **POST** /BillingItems/{entityId}/translations | /BillingItems/{entityId}/translations - POST
+*DefaultApi* | [**post_billingitems_filter**](docs/DefaultApi.md#post_billingitems_filter) | **POST** /BillingItems/filter | Retrieves a paged list of billing items with optional filtering and sorting. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_billingtariffs_b_billingitemid**](docs/DefaultApi.md#post_billingtariffs_b_billingitemid) | **POST** /BillingTariffs/b/{billingItemId} | Creates a billing tariff tree for a specific billing item.
+*DefaultApi* | [**post_collectionflows**](docs/DefaultApi.md#post_collectionflows) | **POST** /CollectionFlows | Creates a new collection flow.
+*DefaultApi* | [**post_collectionflows_id**](docs/DefaultApi.md#post_collectionflows_id) | **POST** /CollectionFlows/{id} | Updates an existing collection flow.
+*DefaultApi* | [**post_collectionsteps**](docs/DefaultApi.md#post_collectionsteps) | **POST** /CollectionSteps | Creates a new collection flow step.
+*DefaultApi* | [**post_collectionsteps_entityid_translations**](docs/DefaultApi.md#post_collectionsteps_entityid_translations) | **POST** /CollectionSteps/{entityId}/translations | /CollectionSteps/{entityId}/translations - POST
+*DefaultApi* | [**post_collectionsteps_id**](docs/DefaultApi.md#post_collectionsteps_id) | **POST** /CollectionSteps/{id} | Updates an existing collection flow step.
+*DefaultApi* | [**post_costcomponents**](docs/DefaultApi.md#post_costcomponents) | **POST** /CostComponents | Creates a new cost component.
+*DefaultApi* | [**post_costcomponents_costcomponentuuid**](docs/DefaultApi.md#post_costcomponents_costcomponentuuid) | **POST** /CostComponents/{costcomponentuuid} | Updates an existing cost component.
+*DefaultApi* | [**post_costcomponents_entityid_translations**](docs/DefaultApi.md#post_costcomponents_entityid_translations) | **POST** /CostComponents/{entityId}/translations | /CostComponents/{entityId}/translations - POST
+*DefaultApi* | [**post_culturetable**](docs/DefaultApi.md#post_culturetable) | **POST** /CultureTable | Updates the culture table.
+*DefaultApi* | [**post_customentitypropertytypes**](docs/DefaultApi.md#post_customentitypropertytypes) | **POST** /CustomEntityPropertyTypes | Creates a new custom entity property type.
+*DefaultApi* | [**post_customentitypropertytypes_customentitypropertytypeuuid**](docs/DefaultApi.md#post_customentitypropertytypes_customentitypropertytypeuuid) | **POST** /CustomEntityPropertyTypes/{customentitypropertytypeuuid} | Updates an existing custom entity property type.
+*DefaultApi* | [**post_customentitypropertytypes_customentitypropertytypeuuid_options**](docs/DefaultApi.md#post_customentitypropertytypes_customentitypropertytypeuuid_options) | **POST** /CustomEntityPropertyTypes/{customentitypropertytypeuuid}/options | Updates the dropdown options for a custom entity property type.
+*DefaultApi* | [**post_customentitypropertytypes_entityid_translations**](docs/DefaultApi.md#post_customentitypropertytypes_entityid_translations) | **POST** /CustomEntityPropertyTypes/{entityId}/translations | /CustomEntityPropertyTypes/{entityId}/translations - POST
+*DefaultApi* | [**post_dataexportfileformats**](docs/DefaultApi.md#post_dataexportfileformats) | **POST** /DataExportFileFormats | Creates a new data export file format.
+*DefaultApi* | [**post_dataexportfileformats_fileformatuuid**](docs/DefaultApi.md#post_dataexportfileformats_fileformatuuid) | **POST** /DataExportFileFormats/{fileformatuuid} | Updates an existing data export file format.
+*DefaultApi* | [**post_dataexports**](docs/DefaultApi.md#post_dataexports) | **POST** /DataExports | Creates a new data export.
+*DefaultApi* | [**post_dataexports_dataexportuuid**](docs/DefaultApi.md#post_dataexports_dataexportuuid) | **POST** /DataExports/{dataexportuuid} | Updates an existing data export.
+*DefaultApi* | [**post_dataexports_filter**](docs/DefaultApi.md#post_dataexports_filter) | **POST** /DataExports/filter | Retrieves a paged list of data exports with optional filtering and sorting. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_dataimportfileformats**](docs/DefaultApi.md#post_dataimportfileformats) | **POST** /DataImportFileFormats | Creates a new data import file format.
+*DefaultApi* | [**post_dataimportfileformats_fileformatuuid**](docs/DefaultApi.md#post_dataimportfileformats_fileformatuuid) | **POST** /DataImportFileFormats/{fileformatuuid} | Updates an existing data import file format.
+*DefaultApi* | [**post_dataimports**](docs/DefaultApi.md#post_dataimports) | **POST** /DataImports | Creates a new data provider of the type FTP, FTPS, SFTP or mail.
+*DefaultApi* | [**post_dataimports_dataimportuuid**](docs/DefaultApi.md#post_dataimports_dataimportuuid) | **POST** /DataImports/{dataimportuuid} | Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
+*DefaultApi* | [**post_dataimports_filter**](docs/DefaultApi.md#post_dataimports_filter) | **POST** /DataImports/filter | Returns all the data providers (FTP, FTPS, SFTP or mail) that have been created. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_enumtranslations_enumtype_symbols_symbol_reset**](docs/DefaultApi.md#post_enumtranslations_enumtype_symbols_symbol_reset) | **POST** /EnumTranslations/{enumType}/symbols/{symbol}/reset | Resets the translation for a specific enumeration symbol to its default value.
+*DefaultApi* | [**post_enumtranslations_filter**](docs/DefaultApi.md#post_enumtranslations_filter) | **POST** /EnumTranslations/filter | Retrieves a paged list of enumeration symbol translations with optional filtering. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_integrations_billingtariff_import**](docs/DefaultApi.md#post_integrations_billingtariff_import) | **POST** /Integrations/billingTariff/import | Imports billing tariffs from a CSV file.
+*DefaultApi* | [**post_integrations_billingtariff_import_filter**](docs/DefaultApi.md#post_integrations_billingtariff_import_filter) | **POST** /Integrations/billingTariff/import/filter | Retrieves a paged list of billing tariff import operations with optional filtering and sorting. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_integrations_billingtariff_import_importid_undo**](docs/DefaultApi.md#post_integrations_billingtariff_import_importid_undo) | **POST** /Integrations/billingTariff/import/{importId}/undo | Undoes a previous billing tariff import operation.
+*DefaultApi* | [**post_integrations_billingtariff_import_importid_unlock**](docs/DefaultApi.md#post_integrations_billingtariff_import_importid_unlock) | **POST** /Integrations/billingTariff/import/{importId}/unlock | Unlocks a billing tariff import operation that was previously locked.
+*DefaultApi* | [**post_models**](docs/DefaultApi.md#post_models) | **POST** /Models | Creates a new device model.
+*DefaultApi* | [**post_models_modeluuid**](docs/DefaultApi.md#post_models_modeluuid) | **POST** /Models/{modeluuid} | Updates an existing device model.
+*DefaultApi* | [**post_numbersequences_numbersequenceuuid**](docs/DefaultApi.md#post_numbersequences_numbersequenceuuid) | **POST** /NumberSequences/{numbersequenceuuid} | Updates an existing number sequence configuration.
+*DefaultApi* | [**post_numbersequences_numbersequenceuuid_preview**](docs/DefaultApi.md#post_numbersequences_numbersequenceuuid_preview) | **POST** /NumberSequences/{numbersequenceuuid}/preview | Generates a preview of how a number sequence would appear after updating with the provided configuration.
+*DefaultApi* | [**post_organizations_organizationuuid**](docs/DefaultApi.md#post_organizations_organizationuuid) | **POST** /Organizations/{organizationuuid} | Updates an existing organization.
+*DefaultApi* | [**post_organizations_organizationuuid_initialize**](docs/DefaultApi.md#post_organizations_organizationuuid_initialize) | **POST** /Organizations/{organizationuuid}/initialize | Initializes an organization with default settings and configurations.
+*DefaultApi* | [**post_parameters_billing**](docs/DefaultApi.md#post_parameters_billing) | **POST** /Parameters/billing | Updates the billing parameters configuration.
+*DefaultApi* | [**post_parameters_communication**](docs/DefaultApi.md#post_parameters_communication) | **POST** /Parameters/communication | Updates the communication parameters configuration.
+*DefaultApi* | [**post_parameters_communication_domainauthentication**](docs/DefaultApi.md#post_parameters_communication_domainauthentication) | **POST** /Parameters/communication/domainauthentication | Updates the domain authentication parameters for communication.
+*DefaultApi* | [**post_parameters_communication_domainauthentication_eu_accept**](docs/DefaultApi.md#post_parameters_communication_domainauthentication_eu_accept) | **POST** /Parameters/communication/domainauthentication/eu/accept | Accepts EU cutover when AcceptAllowed: promotes EuRecords to Records and enqueues residency Eu.
+*DefaultApi* | [**post_parameters_communication_domainauthentication_eu_migrate**](docs/DefaultApi.md#post_parameters_communication_domainauthentication_eu_migrate) | **POST** /Parameters/communication/domainauthentication/eu/migrate | Starts EU SendGrid domain migrate prep (writes EuRecords only; does not flip residency).
+*DefaultApi* | [**post_parameters_communication_domainauthentication_eu_verify**](docs/DefaultApi.md#post_parameters_communication_domainauthentication_eu_verify) | **POST** /Parameters/communication/domainauthentication/eu/verify | Verifies EU migrate prep DNS (updates EuRecords only; does not flip residency).
+*DefaultApi* | [**post_parameters_communication_domainauthentication_verify**](docs/DefaultApi.md#post_parameters_communication_domainauthentication_verify) | **POST** /Parameters/communication/domainauthentication/verify | Verifies the current domain authentication parameters.
+*DefaultApi* | [**post_parameters_communication_test**](docs/DefaultApi.md#post_parameters_communication_test) | **POST** /Parameters/communication/test | Tests the communication parameters by sending a test email.
+*DefaultApi* | [**post_parameters_masterdata**](docs/DefaultApi.md#post_parameters_masterdata) | **POST** /Parameters/masterdata | Updates the master data parameters configuration.
+*DefaultApi* | [**post_parameters_metering**](docs/DefaultApi.md#post_parameters_metering) | **POST** /Parameters/metering | Updates the metering parameters configuration.
+*DefaultApi* | [**post_parameters_payment**](docs/DefaultApi.md#post_parameters_payment) | **POST** /Parameters/payment | Updates the payment parameters configuration.
+*DefaultApi* | [**post_parameters_paymentplan**](docs/DefaultApi.md#post_parameters_paymentplan) | **POST** /Parameters/paymentplan | Updates the payment plan parameters configuration.
+*DefaultApi* | [**post_parameters_prepayment**](docs/DefaultApi.md#post_parameters_prepayment) | **POST** /Parameters/prepayment | Updates the prepayment parameters configuration (PrepaymentParameters).
+*DefaultApi* | [**post_paymentdelays**](docs/DefaultApi.md#post_paymentdelays) | **POST** /PaymentDelays | Creates a new payment delay setting.
+*DefaultApi* | [**post_paymentdelays_paymentdelayuuid**](docs/DefaultApi.md#post_paymentdelays_paymentdelayuuid) | **POST** /PaymentDelays/{paymentdelayuuid} | Updates an existing payment delay setting.
+*DefaultApi* | [**post_products**](docs/DefaultApi.md#post_products) | **POST** /Products | Creates a new product.
+*DefaultApi* | [**post_products_entityid_translations**](docs/DefaultApi.md#post_products_entityid_translations) | **POST** /Products/{entityId}/translations | /Products/{entityId}/translations - POST
+*DefaultApi* | [**post_products_productuuid**](docs/DefaultApi.md#post_products_productuuid) | **POST** /Products/{productuuid} | Updates an existing product.
+*DefaultApi* | [**post_reportingconfigurationproviders_activate**](docs/DefaultApi.md#post_reportingconfigurationproviders_activate) | **POST** /ReportingConfigurationProviders/activate | Activates reporting integration for the current organization. Creates a Microsoft Fabric cloud connection to the customer Azure Data Lake Storage Gen2 account using the supplied service principal credentials. The client secret is sent to Fabric only and is not stored in the database. Requires the Mi
+*DefaultApi* | [**post_reportingconfigurationproviders_connection_test**](docs/DefaultApi.md#post_reportingconfigurationproviders_connection_test) | **POST** /ReportingConfigurationProviders/connection/test | Verifies connectivity and write access to the configured Azure Data Lake Storage Gen2 export location using the supplied service principal credentials (secret is not stored). This endpoint will return a 200 OK response with the result of the test.
+*DefaultApi* | [**post_reportingconfigurationproviders_deactivate**](docs/DefaultApi.md#post_reportingconfigurationproviders_deactivate) | **POST** /ReportingConfigurationProviders/deactivate | Deactivates reporting integration for the current organization.
+*DefaultApi* | [**post_reportingconfigurationproviders_settings**](docs/DefaultApi.md#post_reportingconfigurationproviders_settings) | **POST** /ReportingConfigurationProviders/settings | Updates reporting configuration (export location, Microsoft Entra ID tenant id, service principal application id). While the integration is active, changing any of those values or rotating the client secret requires supplying the client secret again so the Microsoft Fabric connection can be recreate
+*DefaultApi* | [**post_scenariotranslations_translationname_reset**](docs/DefaultApi.md#post_scenariotranslations_translationname_reset) | **POST** /ScenarioTranslations/{translationName}/reset | Resets a specific scenario translation to its default value.
+*DefaultApi* | [**post_scenariotranslations_translationname_update**](docs/DefaultApi.md#post_scenariotranslations_translationname_update) | **POST** /ScenarioTranslations/{translationName}/update | Updates a specific scenario translation.
+*DefaultApi* | [**post_taxcodes**](docs/DefaultApi.md#post_taxcodes) | **POST** /TaxCodes | Creates a new tax code.
+*DefaultApi* | [**post_taxcodes_taxcodeuuid**](docs/DefaultApi.md#post_taxcodes_taxcodeuuid) | **POST** /TaxCodes/{taxcodeuuid} | Updates an existing tax code.
+*DefaultApi* | [**post_templates_entitysubjecttype_entitysubjectsubtype_email_culture_send**](docs/DefaultApi.md#post_templates_entitysubjecttype_entitysubjectsubtype_email_culture_send) | **POST** /Templates/{entitySubjectType}/{entitySubjectSubType}/email/{culture}/send | Send a test mail using a template.
+*DefaultApi* | [**post_templates_entitysubjecttype_entitysubjectsubtype_pdf_culture_preview**](docs/DefaultApi.md#post_templates_entitysubjecttype_entitysubjectsubtype_pdf_culture_preview) | **POST** /Templates/{entitySubjectType}/{entitySubjectSubType}/pdf/{culture}/preview | Generates a PDF preview of a template.
+*DefaultApi* | [**post_templates_entitysubjecttype_entitysubjectsubtype_templateusecase_cultur**](docs/DefaultApi.md#post_templates_entitysubjecttype_entitysubjectsubtype_templateusecase_cultur) | **POST** /Templates/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase}/{culture}/html | Tests and previews a template in HTML format.
+*DefaultApi* | [**post_templates_entitysubjecttype_entitysubjectsubtype_templateusecase_downlo**](docs/DefaultApi.md#post_templates_entitysubjecttype_entitysubjectsubtype_templateusecase_downlo) | **POST** /Templates/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase}/download | Downloads a template for a specific scenario.
+*DefaultApi* | [**post_timeofusecalendars**](docs/DefaultApi.md#post_timeofusecalendars) | **POST** /TimeOfUseCalendars | Creates a calendar. Body &#x60;weekdays&#x60;: seven entries, &#x60;weekdayIndex&#x60; 0 (Monday) through 6 (Sunday).
+*DefaultApi* | [**post_timeofusecalendars_id**](docs/DefaultApi.md#post_timeofusecalendars_id) | **POST** /TimeOfUseCalendars/{id} | Updates calendar weekdays (and display-only code). Same &#x60;weekdays&#x60; shape as create.
+*DefaultApi* | [**post_timeofusetypes**](docs/DefaultApi.md#post_timeofusetypes) | **POST** /TimeOfUseTypes | Creates a time-of-use type.
+*DefaultApi* | [**post_timeofusetypes_entityid_translations**](docs/DefaultApi.md#post_timeofusetypes_entityid_translations) | **POST** /TimeOfUseTypes/{entityId}/translations | /TimeOfUseTypes/{entityId}/translations - POST
+*DefaultApi* | [**post_timeofusetypes_id**](docs/DefaultApi.md#post_timeofusetypes_id) | **POST** /TimeOfUseTypes/{id} | Updates a time-of-use type.
+*DefaultApi* | [**put_billingtariffs_b_billingitemid**](docs/DefaultApi.md#put_billingtariffs_b_billingitemid) | **PUT** /BillingTariffs/b/{billingItemId} | Updates an existing billing tariff tree for a specific billing item.
+*DefaultApi* | [**put_billingtariffs_b_billingitemid_period**](docs/DefaultApi.md#put_billingtariffs_b_billingitemid_period) | **PUT** /BillingTariffs/b/{billingItemId}/period | Updates the period of a billing tariff tree for a specific billing item.
+*DefaultApi* | [**put_enumtranslations_enumtype_symbols_symbol**](docs/DefaultApi.md#put_enumtranslations_enumtype_symbols_symbol) | **PUT** /EnumTranslations/{enumType}/symbols/{symbol} | Updates the translation for a specific enumeration symbol.
+*DefaultApi* | [**put_scenarios_billingrelation_advanceamountchanged**](docs/DefaultApi.md#put_scenarios_billingrelation_advanceamountchanged) | **PUT** /Scenarios/billingrelation/advanceamountchanged | Updates the advance amount changed scenario configuration.
+*DefaultApi* | [**put_scenarios_collectioncase_collection**](docs/DefaultApi.md#put_scenarios_collectioncase_collection) | **PUT** /Scenarios/collectioncase/collection | Updates the collection scenario configuration.
+*DefaultApi* | [**put_scenarios_collectioncase_noticeofdefault**](docs/DefaultApi.md#put_scenarios_collectioncase_noticeofdefault) | **PUT** /Scenarios/collectioncase/noticeofdefault | Updates the notice of default scenario configuration.
+*DefaultApi* | [**put_scenarios_collectioncase_reminder**](docs/DefaultApi.md#put_scenarios_collectioncase_reminder) | **PUT** /Scenarios/collectioncase/reminder | Updates the reminder scenario configuration.
+*DefaultApi* | [**put_scenarios_contract_locationsadded**](docs/DefaultApi.md#put_scenarios_contract_locationsadded) | **PUT** /Scenarios/contract/locationsadded | Updates the contract locations added scenario configuration.
+*DefaultApi* | [**put_scenarios_contract_locationsremoved**](docs/DefaultApi.md#put_scenarios_contract_locationsremoved) | **PUT** /Scenarios/contract/locationsremoved | Updates the contract locations removed scenario configuration.
+*DefaultApi* | [**put_scenarios_contract_termination**](docs/DefaultApi.md#put_scenarios_contract_termination) | **PUT** /Scenarios/contract/termination | Updates the contract termination scenario configuration.
+*DefaultApi* | [**put_scenarios_contract_welcome**](docs/DefaultApi.md#put_scenarios_contract_welcome) | **PUT** /Scenarios/contract/welcome | Updates the contract welcome scenario configuration.
+*DefaultApi* | [**put_scenarios_entitysubjecttype_entitysubjectsubtype**](docs/DefaultApi.md#put_scenarios_entitysubjecttype_entitysubjectsubtype) | **PUT** /Scenarios/{entitySubjectType}/{entitySubjectSubType} | Update a scenario that is not available in OrganizationScenarios
+*DefaultApi* | [**put_scenarios_invoice_advance**](docs/DefaultApi.md#put_scenarios_invoice_advance) | **PUT** /Scenarios/invoice/advance | Updates the advance scenario configuration.
+*DefaultApi* | [**put_scenarios_invoice_correctionnote**](docs/DefaultApi.md#put_scenarios_invoice_correctionnote) | **PUT** /Scenarios/invoice/correctionnote | Updates the correction note scenario configuration.
+*DefaultApi* | [**put_scenarios_invoice_creditnote**](docs/DefaultApi.md#put_scenarios_invoice_creditnote) | **PUT** /Scenarios/invoice/creditnote | Updates the credit note scenario configuration.
+*DefaultApi* | [**put_scenarios_invoice_endnote**](docs/DefaultApi.md#put_scenarios_invoice_endnote) | **PUT** /Scenarios/invoice/endnote | Updates the end note scenario configuration.
+*DefaultApi* | [**put_scenarios_invoice_incidentalnote**](docs/DefaultApi.md#put_scenarios_invoice_incidentalnote) | **PUT** /Scenarios/invoice/incidentalnote | Updates the incidental note scenario configuration.
+*DefaultApi* | [**put_scenarios_invoice_invoice**](docs/DefaultApi.md#put_scenarios_invoice_invoice) | **PUT** /Scenarios/invoice/invoice | Updates the invoice scenario configuration.
+*DefaultApi* | [**put_scenarios_moverequest_acknowledgemovein**](docs/DefaultApi.md#put_scenarios_moverequest_acknowledgemovein) | **PUT** /Scenarios/moverequest/acknowledgemovein | Updates the acknowledge move in scenario configuration.
+*DefaultApi* | [**put_scenarios_moverequest_acknowledgemoveout**](docs/DefaultApi.md#put_scenarios_moverequest_acknowledgemoveout) | **PUT** /Scenarios/moverequest/acknowledgemoveout | Updates the acknowledge move out scenario configuration.
+*DefaultApi* | [**put_scenarios_moverequest_rejectmovein**](docs/DefaultApi.md#put_scenarios_moverequest_rejectmovein) | **PUT** /Scenarios/moverequest/rejectmovein | Updates the reject move in scenario configuration.
+*DefaultApi* | [**put_scenarios_moverequest_rejectmoveout**](docs/DefaultApi.md#put_scenarios_moverequest_rejectmoveout) | **PUT** /Scenarios/moverequest/rejectmoveout | Updates the reject move out scenario configuration.
+*DefaultApi* | [**put_scenarios_paymentplan_activated**](docs/DefaultApi.md#put_scenarios_paymentplan_activated) | **PUT** /Scenarios/paymentplan/activated | Updates the payment plan activated scenario configuration.
+*DefaultApi* | [**put_scenarios_paymentplan_cancelled**](docs/DefaultApi.md#put_scenarios_paymentplan_cancelled) | **PUT** /Scenarios/paymentplan/cancelled | Updates the payment plan cancelled scenario configuration.
+*DefaultApi* | [**put_scenarios_paymentplan_completed**](docs/DefaultApi.md#put_scenarios_paymentplan_completed) | **PUT** /Scenarios/paymentplan/completed | Updates the payment plan completed scenario configuration.
+*DefaultApi* | [**put_scenarios_paymentplan_recalculated**](docs/DefaultApi.md#put_scenarios_paymentplan_recalculated) | **PUT** /Scenarios/paymentplan/recalculated | Updates the payment plan recalculated scenario configuration.
+*DefaultApi* | [**put_scenarios_paymentplan_reminder**](docs/DefaultApi.md#put_scenarios_paymentplan_reminder) | **PUT** /Scenarios/paymentplan/reminder | Updates the payment plan reminder scenario configuration.
+*DefaultApi* | [**put_scenarios_paymentplan_requested**](docs/DefaultApi.md#put_scenarios_paymentplan_requested) | **PUT** /Scenarios/paymentplan/requested | Updates the payment plan requested scenario configuration.
+*DefaultApi* | [**put_templates_entitysubjecttype_entitysubjectsubtype_templateusecase**](docs/DefaultApi.md#put_templates_entitysubjecttype_entitysubjectsubtype_templateusecase) | **PUT** /Templates/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase} | Uploads a custom template for a specific scenario.
+*DefaultApi* | [**update_payment_terms**](docs/DefaultApi.md#update_payment_terms) | **POST** /PaymentTerms/{paymenttermuuid} | Updates an existing payment term.
+*DefaultApi* | [**update_portal_settings**](docs/DefaultApi.md#update_portal_settings) | **POST** /PortalSettings | Updates portal settings configuration.
+*DefaultApi* | [**update_regional_regulation_parameters_for_bel**](docs/DefaultApi.md#update_regional_regulation_parameters_for_bel) | **POST** /RegionalRegulations/bel | Updates regional regulations parameters specific to Belgium.
+*DefaultApi* | [**update_regional_regulation_parameters_for_gbr**](docs/DefaultApi.md#update_regional_regulation_parameters_for_gbr) | **POST** /RegionalRegulations/gbr | Updates regional regulations parameters specific to Geat Britain.
+*DefaultApi* | [**upsert_page_notification**](docs/DefaultApi.md#upsert_page_notification) | **POST** /PortalSettings/notification | Upserts a page notification to the portal settings.
+*DefaultApi* | [**validate_host_name**](docs/DefaultApi.md#validate_host_name) | **POST** /PortalSettings/hostname/validate | Validates DNS records for a pending portal hostname.
 
 
 ## Documentation For Models
 
+ - [AccountingCodeLinkDTO](docs/AccountingCodeLinkDTO.md)
+ - [AccountingCompanyDto](docs/AccountingCompanyDto.md)
+ - [AccountingCompanyLinkAdditionalDto](docs/AccountingCompanyLinkAdditionalDto.md)
+ - [AccountingCompanyLinkDTO](docs/AccountingCompanyLinkDTO.md)
+ - [AccountingCompanyMappingItemDTO](docs/AccountingCompanyMappingItemDTO.md)
+ - [AccountingCompanyMappingOverviewCountDTO](docs/AccountingCompanyMappingOverviewCountDTO.md)
+ - [AccountingMappingStatus](docs/AccountingMappingStatus.md)
+ - [AccountingSyncStatus](docs/AccountingSyncStatus.md)
+ - [AccountingSystemDetailsDTO](docs/AccountingSystemDetailsDTO.md)
+ - [AccountingSystemType](docs/AccountingSystemType.md)
  - [AcknowledgeMoveInEmailTemplateDTO](docs/AcknowledgeMoveInEmailTemplateDTO.md)
  - [AcknowledgeMoveInEmailTemplateRequest](docs/AcknowledgeMoveInEmailTemplateRequest.md)
  - [AcknowledgeMoveInScenarioDTO](docs/AcknowledgeMoveInScenarioDTO.md)
- - [AcknowledgeMoveInScenarioDTOApiResponseDTO](docs/AcknowledgeMoveInScenarioDTOApiResponseDTO.md)
  - [AcknowledgeMoveOutEmailTemplateDTO](docs/AcknowledgeMoveOutEmailTemplateDTO.md)
  - [AcknowledgeMoveOutEmailTemplateRequest](docs/AcknowledgeMoveOutEmailTemplateRequest.md)
  - [AcknowledgeMoveOutScenarioDTO](docs/AcknowledgeMoveOutScenarioDTO.md)
- - [AcknowledgeMoveOutScenarioDTOApiResponseDTO](docs/AcknowledgeMoveOutScenarioDTOApiResponseDTO.md)
+ - [ActivateAccountingRequest](docs/ActivateAccountingRequest.md)
+ - [ActivateReportingConfigurationProviderRequest](docs/ActivateReportingConfigurationProviderRequest.md)
+ - [AddPortalHostNameRequest](docs/AddPortalHostNameRequest.md)
  - [AddressDTO](docs/AddressDTO.md)
- - [AdvanceAmountChangedBy](docs/AdvanceAmountChangedBy.md)
  - [AdvanceAmountChangedEmailTemplateDTO](docs/AdvanceAmountChangedEmailTemplateDTO.md)
  - [AdvanceAmountChangedEmailTemplateRequest](docs/AdvanceAmountChangedEmailTemplateRequest.md)
  - [AdvanceAmountChangedScenarioDTO](docs/AdvanceAmountChangedScenarioDTO.md)
- - [AdvanceAmountChangedScenarioDTOApiResponseDTO](docs/AdvanceAmountChangedScenarioDTOApiResponseDTO.md)
  - [AdvanceAmountLimitType](docs/AdvanceAmountLimitType.md)
- - [AdvanceCalculationFallbackReason](docs/AdvanceCalculationFallbackReason.md)
  - [AdvanceCalculationParametersDTO](docs/AdvanceCalculationParametersDTO.md)
  - [AdvanceEmailTemplateDTO](docs/AdvanceEmailTemplateDTO.md)
  - [AdvanceEmailTemplateRequest](docs/AdvanceEmailTemplateRequest.md)
- - [AdvanceFrequency](docs/AdvanceFrequency.md)
+ - [AdvanceFrequencyPercentagesDTO](docs/AdvanceFrequencyPercentagesDTO.md)
  - [AdvancePdfTemplateDTO](docs/AdvancePdfTemplateDTO.md)
  - [AdvancePdfTemplateRequest](docs/AdvancePdfTemplateRequest.md)
+ - [AdvancePercentageParametersDTO](docs/AdvancePercentageParametersDTO.md)
  - [AdvanceRecalculationType](docs/AdvanceRecalculationType.md)
  - [AdvanceScenarioDTO](docs/AdvanceScenarioDTO.md)
- - [AdvanceScenarioDTOApiResponseDTO](docs/AdvanceScenarioDTOApiResponseDTO.md)
- - [AggregateDetails](docs/AggregateDetails.md)
+ - [AfasEnvironment](docs/AfasEnvironment.md)
+ - [AfasSettingsDetailsDto](docs/AfasSettingsDetailsDto.md)
  - [AggregateDetailsDTO](docs/AggregateDetailsDTO.md)
- - [AggregationFrequency](docs/AggregationFrequency.md)
- - [AggregationType](docs/AggregationType.md)
- - [AnnualStatementOrigin](docs/AnnualStatementOrigin.md)
- - [AnnualStatementStatus](docs/AnnualStatementStatus.md)
  - [ApiResponseDTO](docs/ApiResponseDTO.md)
- - [AppEnvironment](docs/AppEnvironment.md)
+ - [ApiResponseDTOOfAcknowledgeMoveInScenarioDTO](docs/ApiResponseDTOOfAcknowledgeMoveInScenarioDTO.md)
+ - [ApiResponseDTOOfAcknowledgeMoveOutScenarioDTO](docs/ApiResponseDTOOfAcknowledgeMoveOutScenarioDTO.md)
+ - [ApiResponseDTOOfAdvanceAmountChangedScenarioDTO](docs/ApiResponseDTOOfAdvanceAmountChangedScenarioDTO.md)
+ - [ApiResponseDTOOfAdvanceScenarioDTO](docs/ApiResponseDTOOfAdvanceScenarioDTO.md)
+ - [ApiResponseDTOOfBELRegionalRegulationsConfigurationDTO](docs/ApiResponseDTOOfBELRegionalRegulationsConfigurationDTO.md)
+ - [ApiResponseDTOOfBankAccountDTO](docs/ApiResponseDTOOfBankAccountDTO.md)
+ - [ApiResponseDTOOfBankHolidayCalendarDTO](docs/ApiResponseDTOOfBankHolidayCalendarDTO.md)
+ - [ApiResponseDTOOfBankingDataProviderDTO](docs/ApiResponseDTOOfBankingDataProviderDTO.md)
+ - [ApiResponseDTOOfBillingItemDTO](docs/ApiResponseDTOOfBillingItemDTO.md)
+ - [ApiResponseDTOOfBillingParametersDTO](docs/ApiResponseDTOOfBillingParametersDTO.md)
+ - [ApiResponseDTOOfBillingTariffDTO](docs/ApiResponseDTOOfBillingTariffDTO.md)
+ - [ApiResponseDTOOfCollectionFlowDTO](docs/ApiResponseDTOOfCollectionFlowDTO.md)
+ - [ApiResponseDTOOfCollectionFlowStepDTO](docs/ApiResponseDTOOfCollectionFlowStepDTO.md)
+ - [ApiResponseDTOOfCollectionScenarioDTO](docs/ApiResponseDTOOfCollectionScenarioDTO.md)
+ - [ApiResponseDTOOfCommunicationParametersDTO](docs/ApiResponseDTOOfCommunicationParametersDTO.md)
+ - [ApiResponseDTOOfConfigurationProductUsageResponseDTO](docs/ApiResponseDTOOfConfigurationProductUsageResponseDTO.md)
+ - [ApiResponseDTOOfContractLocationsAddedScenarioDTO](docs/ApiResponseDTOOfContractLocationsAddedScenarioDTO.md)
+ - [ApiResponseDTOOfContractLocationsRemovedScenarioDTO](docs/ApiResponseDTOOfContractLocationsRemovedScenarioDTO.md)
+ - [ApiResponseDTOOfContractTerminationScenarioDTO](docs/ApiResponseDTOOfContractTerminationScenarioDTO.md)
+ - [ApiResponseDTOOfContractWelcomeScenarioDTO](docs/ApiResponseDTOOfContractWelcomeScenarioDTO.md)
+ - [ApiResponseDTOOfCorrectionNoteScenarioDTO](docs/ApiResponseDTOOfCorrectionNoteScenarioDTO.md)
+ - [ApiResponseDTOOfCostCenterDTO](docs/ApiResponseDTOOfCostCenterDTO.md)
+ - [ApiResponseDTOOfCostComponentDTO](docs/ApiResponseDTOOfCostComponentDTO.md)
+ - [ApiResponseDTOOfCostComponentValueDTO](docs/ApiResponseDTOOfCostComponentValueDTO.md)
+ - [ApiResponseDTOOfCreditNoteScenarioDTO](docs/ApiResponseDTOOfCreditNoteScenarioDTO.md)
+ - [ApiResponseDTOOfCultureTableDTO](docs/ApiResponseDTOOfCultureTableDTO.md)
+ - [ApiResponseDTOOfCustomEntityPropertyTypeDTO](docs/ApiResponseDTOOfCustomEntityPropertyTypeDTO.md)
+ - [ApiResponseDTOOfDataExportDTO](docs/ApiResponseDTOOfDataExportDTO.md)
+ - [ApiResponseDTOOfDataExportFileFormatDTO](docs/ApiResponseDTOOfDataExportFileFormatDTO.md)
+ - [ApiResponseDTOOfDataImportDTO](docs/ApiResponseDTOOfDataImportDTO.md)
+ - [ApiResponseDTOOfDataImportFileFormatDTO](docs/ApiResponseDTOOfDataImportFileFormatDTO.md)
+ - [ApiResponseDTOOfDomainAuthenticationParametersDTO](docs/ApiResponseDTOOfDomainAuthenticationParametersDTO.md)
+ - [ApiResponseDTOOfEndNoteScenarioDTO](docs/ApiResponseDTOOfEndNoteScenarioDTO.md)
+ - [ApiResponseDTOOfEnumSymbolTranslationsDTO](docs/ApiResponseDTOOfEnumSymbolTranslationsDTO.md)
+ - [ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO](docs/ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO.md)
+ - [ApiResponseDTOOfIScenarioDTO](docs/ApiResponseDTOOfIScenarioDTO.md)
+ - [ApiResponseDTOOfIncidentalNoteScenarioDTO](docs/ApiResponseDTOOfIncidentalNoteScenarioDTO.md)
+ - [ApiResponseDTOOfInvoiceScenarioDTO](docs/ApiResponseDTOOfInvoiceScenarioDTO.md)
+ - [ApiResponseDTOOfListOfAccountingCompanyDto](docs/ApiResponseDTOOfListOfAccountingCompanyDto.md)
+ - [ApiResponseDTOOfListOfBillingTariffTreeDTO](docs/ApiResponseDTOOfListOfBillingTariffTreeDTO.md)
+ - [ApiResponseDTOOfListOfClassDescription](docs/ApiResponseDTOOfListOfClassDescription.md)
+ - [ApiResponseDTOOfListOfCostUnitDTO](docs/ApiResponseDTOOfListOfCostUnitDTO.md)
+ - [ApiResponseDTOOfListOfCultureInfo](docs/ApiResponseDTOOfListOfCultureInfo.md)
+ - [ApiResponseDTOOfListOfGeneralLedgerCodeDTO](docs/ApiResponseDTOOfListOfGeneralLedgerCodeDTO.md)
+ - [ApiResponseDTOOfListOfItemCodeDTO](docs/ApiResponseDTOOfListOfItemCodeDTO.md)
+ - [ApiResponseDTOOfListOfJournalDto](docs/ApiResponseDTOOfListOfJournalDto.md)
+ - [ApiResponseDTOOfListOfProductExportItemDTO](docs/ApiResponseDTOOfListOfProductExportItemDTO.md)
+ - [ApiResponseDTOOfListOfProjectCodeDTO](docs/ApiResponseDTOOfListOfProjectCodeDTO.md)
+ - [ApiResponseDTOOfListOfRequiredEstimationDTO](docs/ApiResponseDTOOfListOfRequiredEstimationDTO.md)
+ - [ApiResponseDTOOfListOfUnitOfMeasure](docs/ApiResponseDTOOfListOfUnitOfMeasure.md)
+ - [ApiResponseDTOOfListOfUtilityType](docs/ApiResponseDTOOfListOfUtilityType.md)
+ - [ApiResponseDTOOfListOfVatCodeDTO](docs/ApiResponseDTOOfListOfVatCodeDTO.md)
+ - [ApiResponseDTOOfMasterDataParametersDTO](docs/ApiResponseDTOOfMasterDataParametersDTO.md)
+ - [ApiResponseDTOOfMeteringParametersDTO](docs/ApiResponseDTOOfMeteringParametersDTO.md)
+ - [ApiResponseDTOOfMigrationLatestVersionDTO](docs/ApiResponseDTOOfMigrationLatestVersionDTO.md)
+ - [ApiResponseDTOOfModelDTO](docs/ApiResponseDTOOfModelDTO.md)
+ - [ApiResponseDTOOfNoticeOfDefaultScenarioDTO](docs/ApiResponseDTOOfNoticeOfDefaultScenarioDTO.md)
+ - [ApiResponseDTOOfNumberSequenceDTO](docs/ApiResponseDTOOfNumberSequenceDTO.md)
+ - [ApiResponseDTOOfOrganizationDTO](docs/ApiResponseDTOOfOrganizationDTO.md)
+ - [ApiResponseDTOOfOrganizationScenarioDTO](docs/ApiResponseDTOOfOrganizationScenarioDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfAccountingCompanyDto](docs/ApiResponseDTOOfPagedResponseModelDTOOfAccountingCompanyDto.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfAccountingCompanyMappingItemDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfAccountingCompanyMappingItemDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfAccountingCompanyMappingOverviewCountDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfAccountingCompanyMappingOverviewCountDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfAccountingSystemDetailsDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfAccountingSystemDetailsDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfBankAccountDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfBankAccountDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfBankingDataProviderDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfBankingDataProviderDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfBillingItemDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfBillingItemDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfBillingTariffDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfBillingTariffDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfCollectionFlowDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCollectionFlowDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfCollectionFlowStepDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCollectionFlowStepDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfCostCenterDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCostCenterDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfCostComponentDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCostComponentDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfCostComponentValueDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCostComponentValueDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfCostUnitDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCostUnitDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfCustomEntityPropertyTypeDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCustomEntityPropertyTypeDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfDataExportDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfDataExportDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfDataExportFileFormatDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfDataExportFileFormatDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfDataImportDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfDataImportDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfDataImportFileFormatDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfDataImportFileFormatDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfEnumSymbolTranslationsDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfEnumSymbolTranslationsDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfGeneralLedgerCodeDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfGeneralLedgerCodeDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfGeneralLedgerMappingItemDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfGeneralLedgerMappingItemDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfGeneralLedgerMappingOverviewCountDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfGeneralLedgerMappingOverviewCountDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfImportDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfImportDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfItemCodeDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfItemCodeDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfJournalDto](docs/ApiResponseDTOOfPagedResponseModelDTOOfJournalDto.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfModelDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfModelDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfNumberSequenceDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfNumberSequenceDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfOrganizationScenarioDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfOrganizationScenarioDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfPaymentDelaySettingDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfPaymentDelaySettingDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfPaymentTermsDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfPaymentTermsDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfProductAttachmentFlatDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfProductAttachmentFlatDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfProductDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfProductDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfProjectCodeDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfProjectCodeDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfTaxCodeDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfTaxCodeDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfTimeOfUseCalendarDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfTimeOfUseCalendarDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfTimeOfUseTypeDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfTimeOfUseTypeDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfVatCodeDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfVatCodeDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfVatCodeMappingItemDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfVatCodeMappingItemDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfVatCodeMappingOverviewCountDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfVatCodeMappingOverviewCountDTO.md)
+ - [ApiResponseDTOOfPaymentDelaySettingDTO](docs/ApiResponseDTOOfPaymentDelaySettingDTO.md)
+ - [ApiResponseDTOOfPaymentParametersDTO](docs/ApiResponseDTOOfPaymentParametersDTO.md)
+ - [ApiResponseDTOOfPaymentPlanActivatedScenarioDTO](docs/ApiResponseDTOOfPaymentPlanActivatedScenarioDTO.md)
+ - [ApiResponseDTOOfPaymentPlanCancelledScenarioDTO](docs/ApiResponseDTOOfPaymentPlanCancelledScenarioDTO.md)
+ - [ApiResponseDTOOfPaymentPlanCompletedScenarioDTO](docs/ApiResponseDTOOfPaymentPlanCompletedScenarioDTO.md)
+ - [ApiResponseDTOOfPaymentPlanParametersDTO](docs/ApiResponseDTOOfPaymentPlanParametersDTO.md)
+ - [ApiResponseDTOOfPaymentPlanRecalculatedScenarioDTO](docs/ApiResponseDTOOfPaymentPlanRecalculatedScenarioDTO.md)
+ - [ApiResponseDTOOfPaymentPlanReminderScenarioDTO](docs/ApiResponseDTOOfPaymentPlanReminderScenarioDTO.md)
+ - [ApiResponseDTOOfPaymentPlanRequestedScenarioDTO](docs/ApiResponseDTOOfPaymentPlanRequestedScenarioDTO.md)
+ - [ApiResponseDTOOfPaymentTermsDTO](docs/ApiResponseDTOOfPaymentTermsDTO.md)
+ - [ApiResponseDTOOfPortalSettingsDTO](docs/ApiResponseDTOOfPortalSettingsDTO.md)
+ - [ApiResponseDTOOfPrepaymentParametersDTO](docs/ApiResponseDTOOfPrepaymentParametersDTO.md)
+ - [ApiResponseDTOOfProductDTO](docs/ApiResponseDTOOfProductDTO.md)
+ - [ApiResponseDTOOfRejectMoveInScenarioDTO](docs/ApiResponseDTOOfRejectMoveInScenarioDTO.md)
+ - [ApiResponseDTOOfRejectMoveOutScenarioDTO](docs/ApiResponseDTOOfRejectMoveOutScenarioDTO.md)
+ - [ApiResponseDTOOfReminderScenarioDTO](docs/ApiResponseDTOOfReminderScenarioDTO.md)
+ - [ApiResponseDTOOfReportingConfigurationProviderConnectionTestResultDTO](docs/ApiResponseDTOOfReportingConfigurationProviderConnectionTestResultDTO.md)
+ - [ApiResponseDTOOfReportingConfigurationProviderDTO](docs/ApiResponseDTOOfReportingConfigurationProviderDTO.md)
+ - [ApiResponseDTOOfScenarioTranslationDTO](docs/ApiResponseDTOOfScenarioTranslationDTO.md)
+ - [ApiResponseDTOOfScenarioTranslationListDTO](docs/ApiResponseDTOOfScenarioTranslationListDTO.md)
+ - [ApiResponseDTOOfTaxCodeDTO](docs/ApiResponseDTOOfTaxCodeDTO.md)
+ - [ApiResponseDTOOfTimeOfUseCalendarDTO](docs/ApiResponseDTOOfTimeOfUseCalendarDTO.md)
+ - [ApiResponseDTOOfTimeOfUseTypeDTO](docs/ApiResponseDTOOfTimeOfUseTypeDTO.md)
+ - [ApiResponseDTOOfValidatePortalHostNameResponse](docs/ApiResponseDTOOfValidatePortalHostNameResponse.md)
+ - [ApiResponseDTOOfboolean](docs/ApiResponseDTOOfboolean.md)
+ - [ApiResponseDTOOfint](docs/ApiResponseDTOOfint.md)
+ - [ApiResponseDTOOfstring](docs/ApiResponseDTOOfstring.md)
  - [AttachmentVisibility](docs/AttachmentVisibility.md)
  - [AttributeType](docs/AttributeType.md)
  - [BELRegionalRegulationsConfigurationDTO](docs/BELRegionalRegulationsConfigurationDTO.md)
- - [BELRegionalRegulationsConfigurationDTOApiResponseDTO](docs/BELRegionalRegulationsConfigurationDTOApiResponseDTO.md)
  - [BankAccountDTO](docs/BankAccountDTO.md)
- - [BankAccountDTOApiResponseDTO](docs/BankAccountDTOApiResponseDTO.md)
- - [BankAccountDTOPagedResponseModelDTO](docs/BankAccountDTOPagedResponseModelDTO.md)
- - [BankAccountDTOPagedResponseModelDTOApiResponseDTO](docs/BankAccountDTOPagedResponseModelDTOApiResponseDTO.md)
- - [BankStatementCreditDebit](docs/BankStatementCreditDebit.md)
- - [BankTransactionType](docs/BankTransactionType.md)
+ - [BankHolidayCalendarDTO](docs/BankHolidayCalendarDTO.md)
+ - [BankHolidayDTO](docs/BankHolidayDTO.md)
+ - [BankHolidayType](docs/BankHolidayType.md)
+ - [BankingDataProviderDTO](docs/BankingDataProviderDTO.md)
+ - [BankingDataProviderDirection](docs/BankingDataProviderDirection.md)
+ - [BankingDataProviderEncryptionType](docs/BankingDataProviderEncryptionType.md)
+ - [BankingDataProviderProcessingResultDTO](docs/BankingDataProviderProcessingResultDTO.md)
+ - [BankingDataProviderStatus](docs/BankingDataProviderStatus.md)
+ - [BaseBankStatementMatchingRuleDTO](docs/BaseBankStatementMatchingRuleDTO.md)
+ - [BaseBankStatementMatchingRuleDTOAutoConfirmIbanOnHighConfidenceMatchRuleDTO](docs/BaseBankStatementMatchingRuleDTOAutoConfirmIbanOnHighConfidenceMatchRuleDTO.md)
+ - [BaseBankStatementMatchingRuleDTOBookOnCustomerWhenNothingOwedRuleDTO](docs/BaseBankStatementMatchingRuleDTOBookOnCustomerWhenNothingOwedRuleDTO.md)
+ - [BaseBankStatementMatchingRuleDTOSettleSingleInvoiceMatchingAmountRuleDTO](docs/BaseBankStatementMatchingRuleDTOSettleSingleInvoiceMatchingAmountRuleDTO.md)
+ - [BaseBankingDataProviderEncryptionSettingsDTOBankingDataProviderEncryptionSettingsIngCmsDTO](docs/BaseBankingDataProviderEncryptionSettingsDTOBankingDataProviderEncryptionSettingsIngCmsDTO.md)
+ - [BaseBankingDataProviderParametersDTOSFTPBankingDataProviderParametersDTO](docs/BaseBankingDataProviderParametersDTOSFTPBankingDataProviderParametersDTO.md)
  - [BaseDataExportParametersDTO](docs/BaseDataExportParametersDTO.md)
+ - [BaseDataExportParametersDTOFTPExportParametersDTO](docs/BaseDataExportParametersDTOFTPExportParametersDTO.md)
+ - [BaseDataExportParametersDTOFTPSExportParametersDTO](docs/BaseDataExportParametersDTOFTPSExportParametersDTO.md)
+ - [BaseDataExportParametersDTOManualExportParametersDTO](docs/BaseDataExportParametersDTOManualExportParametersDTO.md)
+ - [BaseDataExportParametersDTOSFTPExportParametersDTO](docs/BaseDataExportParametersDTOSFTPExportParametersDTO.md)
+ - [BaseDataExportSettingsDTOInvoiceExportSettingsDTO](docs/BaseDataExportSettingsDTOInvoiceExportSettingsDTO.md)
+ - [BaseDataImportSettingsDTO](docs/BaseDataImportSettingsDTO.md)
+ - [BaseDataImportSettingsDTOMeteringImportSettingsDTO](docs/BaseDataImportSettingsDTOMeteringImportSettingsDTO.md)
+ - [BaseDataImportSettingsDTOMigrationSettingsDTO](docs/BaseDataImportSettingsDTOMigrationSettingsDTO.md)
  - [BaseEmailTemplateDTO](docs/BaseEmailTemplateDTO.md)
+ - [BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO](docs/BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO.md)
+ - [BaseEmailTemplateDTOBase](docs/BaseEmailTemplateDTOBase.md)
+ - [BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO](docs/BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO.md)
+ - [BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO](docs/BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO.md)
+ - [BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO](docs/BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO.md)
+ - [BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO](docs/BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO.md)
+ - [BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO](docs/BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO.md)
+ - [BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO](docs/BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO.md)
+ - [BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO](docs/BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO.md)
  - [BaseEmailTemplateRequest](docs/BaseEmailTemplateRequest.md)
+ - [BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest.md)
+ - [BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest.md)
+ - [BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest.md)
+ - [BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest.md)
+ - [BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest.md)
+ - [BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest.md)
+ - [BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest.md)
+ - [BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest.md)
+ - [BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest.md)
+ - [BaseInvoiceExportFormatDTO](docs/BaseInvoiceExportFormatDTO.md)
+ - [BaseInvoiceExportFormatDTOBDOInvoiceDTO](docs/BaseInvoiceExportFormatDTOBDOInvoiceDTO.md)
+ - [BaseInvoiceExportFormatDTOLordInvoiceDTO](docs/BaseInvoiceExportFormatDTOLordInvoiceDTO.md)
+ - [BaseInvoiceExportFormatDTOSapIsuInvoiceDTO](docs/BaseInvoiceExportFormatDTOSapIsuInvoiceDTO.md)
+ - [BaseMeteringImportFormatDTO](docs/BaseMeteringImportFormatDTO.md)
+ - [BaseMeteringImportFormatDTOCadisDTO](docs/BaseMeteringImportFormatDTOCadisDTO.md)
+ - [BaseMeteringImportFormatDTOCadisLoraDTO](docs/BaseMeteringImportFormatDTOCadisLoraDTO.md)
+ - [BaseMeteringImportFormatDTOCaleffiDTO](docs/BaseMeteringImportFormatDTOCaleffiDTO.md)
+ - [BaseMeteringImportFormatDTOClimaWaysDTO](docs/BaseMeteringImportFormatDTOClimaWaysDTO.md)
+ - [BaseMeteringImportFormatDTOCustomCsvColumnMeteringImportFormatDTO](docs/BaseMeteringImportFormatDTOCustomCsvColumnMeteringImportFormatDTO.md)
+ - [BaseMeteringImportFormatDTOCustomCsvMeteringImportFormatDTO](docs/BaseMeteringImportFormatDTOCustomCsvMeteringImportFormatDTO.md)
+ - [BaseMeteringImportFormatDTOElvaco1104DTO](docs/BaseMeteringImportFormatDTOElvaco1104DTO.md)
+ - [BaseMeteringImportFormatDTOElvaco1112DTO](docs/BaseMeteringImportFormatDTOElvaco1112DTO.md)
+ - [BaseMeteringImportFormatDTOEngelmannMeteringImportFormatDTO](docs/BaseMeteringImportFormatDTOEngelmannMeteringImportFormatDTO.md)
+ - [BaseMeteringImportFormatDTOEquinoxSinapsiDTO](docs/BaseMeteringImportFormatDTOEquinoxSinapsiDTO.md)
+ - [BaseMeteringImportFormatDTOFlamcoDTO](docs/BaseMeteringImportFormatDTOFlamcoDTO.md)
+ - [BaseMeteringImportFormatDTOIzarCenterDTO](docs/BaseMeteringImportFormatDTOIzarCenterDTO.md)
+ - [BaseMeteringImportFormatDTOKamstrupReadyV1DTO](docs/BaseMeteringImportFormatDTOKamstrupReadyV1DTO.md)
+ - [BaseMeteringImportFormatDTOSiemensSyncoDTO](docs/BaseMeteringImportFormatDTOSiemensSyncoDTO.md)
+ - [BaseMeteringImportFormatDTOSynergirBISGen12DTO](docs/BaseMeteringImportFormatDTOSynergirBISGen12DTO.md)
+ - [BaseMeteringImportFormatDTOSynergirBISGen3DTO](docs/BaseMeteringImportFormatDTOSynergirBISGen3DTO.md)
+ - [BaseMeteringImportFormatDTOSynergirBISGen4DTO](docs/BaseMeteringImportFormatDTOSynergirBISGen4DTO.md)
+ - [BaseMeteringImportFormatDTOYconGoudaDTO](docs/BaseMeteringImportFormatDTOYconGoudaDTO.md)
  - [BaseMeteringValidationRuleDTO](docs/BaseMeteringValidationRuleDTO.md)
+ - [BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO](docs/BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO.md)
+ - [BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO](docs/BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO.md)
+ - [BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO](docs/BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO.md)
+ - [BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO](docs/BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO.md)
+ - [BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO](docs/BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO.md)
+ - [BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO](docs/BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO.md)
+ - [BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO](docs/BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO.md)
+ - [BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO](docs/BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO.md)
+ - [BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO](docs/BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO.md)
+ - [BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO](docs/BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO.md)
+ - [BaseMigrationFormatDTOZFBulkImportFormatDTO](docs/BaseMigrationFormatDTOZFBulkImportFormatDTO.md)
  - [BasePdfTemplateDTO](docs/BasePdfTemplateDTO.md)
+ - [BasePdfTemplateDTOAnnualStatementPdfTemplateDTO](docs/BasePdfTemplateDTOAnnualStatementPdfTemplateDTO.md)
+ - [BasePdfTemplateDTOBase](docs/BasePdfTemplateDTOBase.md)
+ - [BasePdfTemplateDTOPrepaymentStatementPdfTemplateDTO](docs/BasePdfTemplateDTOPrepaymentStatementPdfTemplateDTO.md)
  - [BasePdfTemplateRequest](docs/BasePdfTemplateRequest.md)
+ - [BasePdfTemplateRequestUpdateAnnualStatementPdfTemplateRequest](docs/BasePdfTemplateRequestUpdateAnnualStatementPdfTemplateRequest.md)
+ - [BasePdfTemplateRequestUpdatePrepaymentStatementPdfTemplateRequest](docs/BasePdfTemplateRequestUpdatePrepaymentStatementPdfTemplateRequest.md)
+ - [BasePropertyValueTypeDTO](docs/BasePropertyValueTypeDTO.md)
+ - [BasePropertyValueTypeDTOBooleanPropertyValueTypeDTO](docs/BasePropertyValueTypeDTOBooleanPropertyValueTypeDTO.md)
+ - [BasePropertyValueTypeDTODateTimePropertyValueTypeDTO](docs/BasePropertyValueTypeDTODateTimePropertyValueTypeDTO.md)
+ - [BasePropertyValueTypeDTODecimalPropertyValueTypeDTO](docs/BasePropertyValueTypeDTODecimalPropertyValueTypeDTO.md)
+ - [BasePropertyValueTypeDTODropdownPropertyValueTypeDTO](docs/BasePropertyValueTypeDTODropdownPropertyValueTypeDTO.md)
+ - [BasePropertyValueTypeDTONumberPropertyValueTypeDTO](docs/BasePropertyValueTypeDTONumberPropertyValueTypeDTO.md)
+ - [BasePropertyValueTypeDTOStringPropertyValueTypeDTO](docs/BasePropertyValueTypeDTOStringPropertyValueTypeDTO.md)
  - [BaseTariffCalculationTypeParametersDTO](docs/BaseTariffCalculationTypeParametersDTO.md)
- - [BillingCalculationStreamStatus](docs/BillingCalculationStreamStatus.md)
+ - [BaseTariffCalculationTypeParametersDTOStairStepTariffCalculationTypeParametersDTO](docs/BaseTariffCalculationTypeParametersDTOStairStepTariffCalculationTypeParametersDTO.md)
+ - [BaseTariffCalculationTypeParametersDTOTieredTariffCalculationTypeParametersDTO](docs/BaseTariffCalculationTypeParametersDTOTieredTariffCalculationTypeParametersDTO.md)
+ - [BaseTariffCalculationTypeParametersDTOUnitPriceTariffCalculationTypeParametersDTO](docs/BaseTariffCalculationTypeParametersDTOUnitPriceTariffCalculationTypeParametersDTO.md)
+ - [BaseTariffCalculationTypeParametersDTOVolumeTariffCalculationTypeParametersDTO](docs/BaseTariffCalculationTypeParametersDTOVolumeTariffCalculationTypeParametersDTO.md)
+ - [BaseTariffConditionTypeParametersDTO](docs/BaseTariffConditionTypeParametersDTO.md)
+ - [BaseTariffConditionTypeParametersDTOCustomEntityPropertyTypeTariffConditionTypeParametersDTO](docs/BaseTariffConditionTypeParametersDTOCustomEntityPropertyTypeTariffConditionTypeParametersDTO.md)
+ - [BaseTariffConditionTypeParametersDTOPaymentMethodTariffConditionTypeParametersDTO](docs/BaseTariffConditionTypeParametersDTOPaymentMethodTariffConditionTypeParametersDTO.md)
+ - [BaseTariffConditionTypeParametersDTOTimeOfUseTypeTariffConditionTypeParametersDTO](docs/BaseTariffConditionTypeParametersDTOTimeOfUseTypeTariffConditionTypeParametersDTO.md)
  - [BillingCalculationType](docs/BillingCalculationType.md)
  - [BillingCalculationTypeParametersDTO](docs/BillingCalculationTypeParametersDTO.md)
- - [BillingCompletenessQuickFilter](docs/BillingCompletenessQuickFilter.md)
- - [BillingCompletenessStatus](docs/BillingCompletenessStatus.md)
- - [BillingCompletenessTariffInputType](docs/BillingCompletenessTariffInputType.md)
+ - [BillingCalculationTypeParametersDTOAttributeCalculationTypeParametersDTO](docs/BillingCalculationTypeParametersDTOAttributeCalculationTypeParametersDTO.md)
+ - [BillingCalculationTypeParametersDTOConsumptionCalculationTypeParametersDTO](docs/BillingCalculationTypeParametersDTOConsumptionCalculationTypeParametersDTO.md)
+ - [BillingCalculationTypeParametersDTOCustomEntityPropertyCalculationTypeParametersDTO](docs/BillingCalculationTypeParametersDTOCustomEntityPropertyCalculationTypeParametersDTO.md)
+ - [BillingCalculationTypeParametersDTOSubscriptionCalculationTypeParametersDTO](docs/BillingCalculationTypeParametersDTOSubscriptionCalculationTypeParametersDTO.md)
  - [BillingItemDTO](docs/BillingItemDTO.md)
- - [BillingItemDTOApiResponseDTO](docs/BillingItemDTOApiResponseDTO.md)
- - [BillingItemDTOPagedResponseModelDTO](docs/BillingItemDTOPagedResponseModelDTO.md)
- - [BillingItemDTOPagedResponseModelDTOApiResponseDTO](docs/BillingItemDTOPagedResponseModelDTOApiResponseDTO.md)
- - [BillingItemLevel](docs/BillingItemLevel.md)
  - [BillingItemTariffCalculationType](docs/BillingItemTariffCalculationType.md)
- - [BillingItemTariffConditionType](docs/BillingItemTariffConditionType.md)
  - [BillingParametersDTO](docs/BillingParametersDTO.md)
- - [BillingParametersDTOApiResponseDTO](docs/BillingParametersDTOApiResponseDTO.md)
- - [BillingRelationScenarioType](docs/BillingRelationScenarioType.md)
  - [BillingScope](docs/BillingScope.md)
  - [BillingTariffDTO](docs/BillingTariffDTO.md)
- - [BillingTariffDTOApiResponseDTO](docs/BillingTariffDTOApiResponseDTO.md)
- - [BillingTariffDTOPagedResponseModelDTO](docs/BillingTariffDTOPagedResponseModelDTO.md)
- - [BillingTariffDTOPagedResponseModelDTOApiResponseDTO](docs/BillingTariffDTOPagedResponseModelDTOApiResponseDTO.md)
+ - [BillingTariffInputDTO](docs/BillingTariffInputDTO.md)
  - [BillingTariffInputType](docs/BillingTariffInputType.md)
  - [BillingTariffNodeDTO](docs/BillingTariffNodeDTO.md)
  - [BillingTariffTreeDTO](docs/BillingTariffTreeDTO.md)
- - [BillingTariffTreeDTOListApiResponseDTO](docs/BillingTariffTreeDTOListApiResponseDTO.md)
- - [BooleanApiResponseDTO](docs/BooleanApiResponseDTO.md)
- - [CalculatedLineStatus](docs/CalculatedLineStatus.md)
+ - [BulkLinkAccountingCompaniesRequest](docs/BulkLinkAccountingCompaniesRequest.md)
+ - [BulkLinkGeneralLedgerCodesRequest](docs/BulkLinkGeneralLedgerCodesRequest.md)
+ - [BulkLinkVatCodesRequest](docs/BulkLinkVatCodesRequest.md)
  - [Calendar](docs/Calendar.md)
- - [CalendarAlgorithmType](docs/CalendarAlgorithmType.md)
- - [CalendarWeekRule](docs/CalendarWeekRule.md)
  - [ChangeAcknowledgeMoveInScenarioRequest](docs/ChangeAcknowledgeMoveInScenarioRequest.md)
  - [ChangeAcknowledgeMoveOutScenarioRequest](docs/ChangeAcknowledgeMoveOutScenarioRequest.md)
  - [ChangeAdvanceAmountChangedScenarioRequest](docs/ChangeAdvanceAmountChangedScenarioRequest.md)
@@ -415,101 +703,75 @@ Class | Method | HTTP request | Description
  - [ChangeIncidentalNoteScenarioRequest](docs/ChangeIncidentalNoteScenarioRequest.md)
  - [ChangeInvoiceScenarioRequest](docs/ChangeInvoiceScenarioRequest.md)
  - [ChangeNoticeOfDefaultScenarioRequest](docs/ChangeNoticeOfDefaultScenarioRequest.md)
+ - [ChangePaymentPlanActivatedScenarioRequest](docs/ChangePaymentPlanActivatedScenarioRequest.md)
+ - [ChangePaymentPlanCancelledScenarioRequest](docs/ChangePaymentPlanCancelledScenarioRequest.md)
+ - [ChangePaymentPlanCompletedScenarioRequest](docs/ChangePaymentPlanCompletedScenarioRequest.md)
+ - [ChangePaymentPlanRecalculatedScenarioRequest](docs/ChangePaymentPlanRecalculatedScenarioRequest.md)
+ - [ChangePaymentPlanReminderScenarioRequest](docs/ChangePaymentPlanReminderScenarioRequest.md)
+ - [ChangePaymentPlanRequestedScenarioRequest](docs/ChangePaymentPlanRequestedScenarioRequest.md)
  - [ChangeRejectMoveInScenarioRequest](docs/ChangeRejectMoveInScenarioRequest.md)
  - [ChangeRejectMoveOutScenarioRequest](docs/ChangeRejectMoveOutScenarioRequest.md)
  - [ChangeReminderScenarioRequest](docs/ChangeReminderScenarioRequest.md)
  - [ChannelTemplateDTO](docs/ChannelTemplateDTO.md)
  - [ChannelTemplateRequest](docs/ChannelTemplateRequest.md)
  - [ClassDescription](docs/ClassDescription.md)
- - [ClassDescriptionListApiResponseDTO](docs/ClassDescriptionListApiResponseDTO.md)
  - [ClassProperty](docs/ClassProperty.md)
- - [CollectionCaseQuickFilter](docs/CollectionCaseQuickFilter.md)
  - [CollectionChargeParametersDTO](docs/CollectionChargeParametersDTO.md)
+ - [CollectionChargeParametersDTOFixedCollectionChargeParametersRequestDTO](docs/CollectionChargeParametersDTOFixedCollectionChargeParametersRequestDTO.md)
+ - [CollectionChargeParametersDTOPercentageCollectionChargeParametersRequestDTO](docs/CollectionChargeParametersDTOPercentageCollectionChargeParametersRequestDTO.md)
+ - [CollectionChargeParametersDTOTieredPercentageCollectionChargeParametersRequestDTO](docs/CollectionChargeParametersDTOTieredPercentageCollectionChargeParametersRequestDTO.md)
  - [CollectionChargeType](docs/CollectionChargeType.md)
  - [CollectionEmailTemplateDTO](docs/CollectionEmailTemplateDTO.md)
  - [CollectionEmailTemplateRequest](docs/CollectionEmailTemplateRequest.md)
  - [CollectionFlowDTO](docs/CollectionFlowDTO.md)
- - [CollectionFlowDTOApiResponseDTO](docs/CollectionFlowDTOApiResponseDTO.md)
- - [CollectionFlowDTOPagedResponseModelDTO](docs/CollectionFlowDTOPagedResponseModelDTO.md)
- - [CollectionFlowDTOPagedResponseModelDTOApiResponseDTO](docs/CollectionFlowDTOPagedResponseModelDTOApiResponseDTO.md)
- - [CollectionFlowStatus](docs/CollectionFlowStatus.md)
  - [CollectionFlowStepDTO](docs/CollectionFlowStepDTO.md)
- - [CollectionFlowStepDTOApiResponseDTO](docs/CollectionFlowStepDTOApiResponseDTO.md)
- - [CollectionFlowStepDTOPagedResponseModelDTO](docs/CollectionFlowStepDTOPagedResponseModelDTO.md)
- - [CollectionFlowStepDTOPagedResponseModelDTOApiResponseDTO](docs/CollectionFlowStepDTOPagedResponseModelDTOApiResponseDTO.md)
  - [CollectionFlowStepRequest](docs/CollectionFlowStepRequest.md)
  - [CollectionPdfTemplateDTO](docs/CollectionPdfTemplateDTO.md)
  - [CollectionPdfTemplateRequest](docs/CollectionPdfTemplateRequest.md)
  - [CollectionScenarioDTO](docs/CollectionScenarioDTO.md)
- - [CollectionScenarioDTOApiResponseDTO](docs/CollectionScenarioDTOApiResponseDTO.md)
  - [CollectionStepLevel](docs/CollectionStepLevel.md)
- - [CollectionStepStatus](docs/CollectionStepStatus.md)
  - [CollectionStepType](docs/CollectionStepType.md)
- - [CommunicationDocumentType](docs/CommunicationDocumentType.md)
- - [CommunicationEntryQuickFilter](docs/CommunicationEntryQuickFilter.md)
- - [CommunicationEntryStatus](docs/CommunicationEntryStatus.md)
  - [CommunicationParametersDTO](docs/CommunicationParametersDTO.md)
- - [CommunicationParametersDTOApiResponseDTO](docs/CommunicationParametersDTOApiResponseDTO.md)
  - [CommunicationType](docs/CommunicationType.md)
+ - [CompanyBankAccountReferenceDTO](docs/CompanyBankAccountReferenceDTO.md)
  - [CompareInfo](docs/CompareInfo.md)
- - [ConsumerGroupOrigin](docs/ConsumerGroupOrigin.md)
- - [ConsumerGroupSuggestion](docs/ConsumerGroupSuggestion.md)
- - [ConsumptionOrigin](docs/ConsumptionOrigin.md)
- - [ConsumptionUnitTypeDTO](docs/ConsumptionUnitTypeDTO.md)
- - [ConsumptionUnitTypeDTOApiResponseDTO](docs/ConsumptionUnitTypeDTOApiResponseDTO.md)
- - [ConsumptionUnitTypeDTOPagedResponseModel](docs/ConsumptionUnitTypeDTOPagedResponseModel.md)
- - [ConsumptionUnitTypeDTOPagedResponseModelApiResponseDTO](docs/ConsumptionUnitTypeDTOPagedResponseModelApiResponseDTO.md)
- - [ContactType](docs/ContactType.md)
+ - [ConfigurationProductUsageIntegrationDTO](docs/ConfigurationProductUsageIntegrationDTO.md)
+ - [ConfigurationProductUsageOrgIntegrationDTO](docs/ConfigurationProductUsageOrgIntegrationDTO.md)
+ - [ConfigurationProductUsageResponseDTO](docs/ConfigurationProductUsageResponseDTO.md)
  - [ContentResult](docs/ContentResult.md)
- - [ContractBillingMethod](docs/ContractBillingMethod.md)
+ - [ContextualAccountingCodeLinkDTO](docs/ContextualAccountingCodeLinkDTO.md)
+ - [ContextualGeneralLedgerCodeRequest](docs/ContextualGeneralLedgerCodeRequest.md)
  - [ContractLocationsAddedEmailTemplateDTO](docs/ContractLocationsAddedEmailTemplateDTO.md)
  - [ContractLocationsAddedEmailTemplateRequest](docs/ContractLocationsAddedEmailTemplateRequest.md)
  - [ContractLocationsAddedScenarioDTO](docs/ContractLocationsAddedScenarioDTO.md)
- - [ContractLocationsAddedScenarioDTOApiResponseDTO](docs/ContractLocationsAddedScenarioDTOApiResponseDTO.md)
  - [ContractLocationsRemovedEmailTemplateDTO](docs/ContractLocationsRemovedEmailTemplateDTO.md)
  - [ContractLocationsRemovedEmailTemplateRequest](docs/ContractLocationsRemovedEmailTemplateRequest.md)
  - [ContractLocationsRemovedScenarioDTO](docs/ContractLocationsRemovedScenarioDTO.md)
- - [ContractLocationsRemovedScenarioDTOApiResponseDTO](docs/ContractLocationsRemovedScenarioDTOApiResponseDTO.md)
- - [ContractQuickFilter](docs/ContractQuickFilter.md)
- - [ContractScenarioType](docs/ContractScenarioType.md)
- - [ContractServicesUpdatedAction](docs/ContractServicesUpdatedAction.md)
- - [ContractStatus](docs/ContractStatus.md)
  - [ContractTerminationEmailTemplateDTO](docs/ContractTerminationEmailTemplateDTO.md)
  - [ContractTerminationEmailTemplateRequest](docs/ContractTerminationEmailTemplateRequest.md)
  - [ContractTerminationScenarioDTO](docs/ContractTerminationScenarioDTO.md)
- - [ContractTerminationScenarioDTOApiResponseDTO](docs/ContractTerminationScenarioDTOApiResponseDTO.md)
  - [ContractWelcomeEmailTemplateDTO](docs/ContractWelcomeEmailTemplateDTO.md)
  - [ContractWelcomeEmailTemplateRequest](docs/ContractWelcomeEmailTemplateRequest.md)
  - [ContractWelcomeScenarioDTO](docs/ContractWelcomeScenarioDTO.md)
- - [ContractWelcomeScenarioDTOApiResponseDTO](docs/ContractWelcomeScenarioDTOApiResponseDTO.md)
  - [CorrectionNoteEmailTemplateDTO](docs/CorrectionNoteEmailTemplateDTO.md)
  - [CorrectionNoteEmailTemplateRequest](docs/CorrectionNoteEmailTemplateRequest.md)
  - [CorrectionNotePdfTemplateDTO](docs/CorrectionNotePdfTemplateDTO.md)
  - [CorrectionNotePdfTemplateRequest](docs/CorrectionNotePdfTemplateRequest.md)
  - [CorrectionNoteScenarioDTO](docs/CorrectionNoteScenarioDTO.md)
- - [CorrectionNoteScenarioDTOApiResponseDTO](docs/CorrectionNoteScenarioDTOApiResponseDTO.md)
  - [CostCenterDTO](docs/CostCenterDTO.md)
- - [CostCenterDTOApiResponseDTO](docs/CostCenterDTOApiResponseDTO.md)
  - [CostComponentDTO](docs/CostComponentDTO.md)
- - [CostComponentDTOApiResponseDTO](docs/CostComponentDTOApiResponseDTO.md)
- - [CostComponentDTOPagedResponseModelDTO](docs/CostComponentDTOPagedResponseModelDTO.md)
- - [CostComponentDTOPagedResponseModelDTOApiResponseDTO](docs/CostComponentDTOPagedResponseModelDTOApiResponseDTO.md)
  - [CostComponentValueDTO](docs/CostComponentValueDTO.md)
- - [CostComponentValueDTOApiResponseDTO](docs/CostComponentValueDTOApiResponseDTO.md)
- - [CostComponentValueDTOPagedResponseModelDTO](docs/CostComponentValueDTOPagedResponseModelDTO.md)
- - [CostComponentValueDTOPagedResponseModelDTOApiResponseDTO](docs/CostComponentValueDTOPagedResponseModelDTOApiResponseDTO.md)
+ - [CostComponentValueRequest](docs/CostComponentValueRequest.md)
  - [CostUnitDTO](docs/CostUnitDTO.md)
- - [CostUnitDTOListApiResponseDTO](docs/CostUnitDTOListApiResponseDTO.md)
  - [CountryCode](docs/CountryCode.md)
+ - [CreateAccountingCompaniesRequest](docs/CreateAccountingCompaniesRequest.md)
+ - [CreateAccountingCompanyRequest](docs/CreateAccountingCompanyRequest.md)
  - [CreateBankAccountRequest](docs/CreateBankAccountRequest.md)
  - [CreateBillingItemRequest](docs/CreateBillingItemRequest.md)
  - [CreateBillingTariffNodeRequest](docs/CreateBillingTariffNodeRequest.md)
  - [CreateBillingTariffTreeRequest](docs/CreateBillingTariffTreeRequest.md)
- - [CreateConsumptionUnitTypeRequest](docs/CreateConsumptionUnitTypeRequest.md)
  - [CreateCostCenterRequest](docs/CreateCostCenterRequest.md)
  - [CreateCostCentersRequest](docs/CreateCostCentersRequest.md)
- - [CreateCostComponentRequest](docs/CreateCostComponentRequest.md)
- - [CreateCostComponentValueRequest](docs/CreateCostComponentValueRequest.md)
  - [CreateCostUnitRequest](docs/CreateCostUnitRequest.md)
  - [CreateCostUnitsRequest](docs/CreateCostUnitsRequest.md)
  - [CreateCustomEntityPropertyTypeRequest](docs/CreateCustomEntityPropertyTypeRequest.md)
@@ -517,144 +779,116 @@ Class | Method | HTTP request | Description
  - [CreateDataExportRequest](docs/CreateDataExportRequest.md)
  - [CreateDataImportFileFormatRequest](docs/CreateDataImportFileFormatRequest.md)
  - [CreateDataImportRequest](docs/CreateDataImportRequest.md)
- - [CreateFinancialPeriodRequest](docs/CreateFinancialPeriodRequest.md)
- - [CreateFinancialPeriodsRequest](docs/CreateFinancialPeriodsRequest.md)
  - [CreateGeneralLedgerCodeRequest](docs/CreateGeneralLedgerCodeRequest.md)
  - [CreateGeneralLedgerCodesRequest](docs/CreateGeneralLedgerCodesRequest.md)
- - [CreateIncomingInvoiceComponentRequest](docs/CreateIncomingInvoiceComponentRequest.md)
+ - [CreateItemCodeRequest](docs/CreateItemCodeRequest.md)
+ - [CreateItemCodesRequest](docs/CreateItemCodesRequest.md)
+ - [CreateJournalRequest](docs/CreateJournalRequest.md)
+ - [CreateJournalsRequest](docs/CreateJournalsRequest.md)
  - [CreateModelRequest](docs/CreateModelRequest.md)
+ - [CreateOrUpdateCostComponentRequest](docs/CreateOrUpdateCostComponentRequest.md)
  - [CreatePaymentDelayRequest](docs/CreatePaymentDelayRequest.md)
+ - [CreateProjectCodeRequest](docs/CreateProjectCodeRequest.md)
+ - [CreateProjectCodesRequest](docs/CreateProjectCodesRequest.md)
  - [CreateTaxCodeRateRequest](docs/CreateTaxCodeRateRequest.md)
  - [CreateTaxCodeRequest](docs/CreateTaxCodeRequest.md)
+ - [CreateTimeOfUseCalendarRequest](docs/CreateTimeOfUseCalendarRequest.md)
+ - [CreateTimeOfUseTypeRequest](docs/CreateTimeOfUseTypeRequest.md)
  - [CreateUpdateCollectionFlowRequest](docs/CreateUpdateCollectionFlowRequest.md)
+ - [CreateVatCodeRequest](docs/CreateVatCodeRequest.md)
+ - [CreateVatCodesRequest](docs/CreateVatCodesRequest.md)
  - [CreditNoteEmailTemplateDTO](docs/CreditNoteEmailTemplateDTO.md)
  - [CreditNoteEmailTemplateRequest](docs/CreditNoteEmailTemplateRequest.md)
  - [CreditNotePdfTemplateDTO](docs/CreditNotePdfTemplateDTO.md)
  - [CreditNotePdfTemplateRequest](docs/CreditNotePdfTemplateRequest.md)
  - [CreditNoteScenarioDTO](docs/CreditNoteScenarioDTO.md)
- - [CreditNoteScenarioDTOApiResponseDTO](docs/CreditNoteScenarioDTOApiResponseDTO.md)
- - [CultureInfo](docs/CultureInfo.md)
- - [CultureInfoListApiResponseDTO](docs/CultureInfoListApiResponseDTO.md)
  - [CultureTableDTO](docs/CultureTableDTO.md)
- - [CultureTableDTOApiResponseDTO](docs/CultureTableDTOApiResponseDTO.md)
- - [CultureTypes](docs/CultureTypes.md)
- - [CustAgingBucketType](docs/CustAgingBucketType.md)
+ - [CustomCsvColumnTitleAttributeDTO](docs/CustomCsvColumnTitleAttributeDTO.md)
+ - [CustomCsvMeteringValueAttributeDTO](docs/CustomCsvMeteringValueAttributeDTO.md)
+ - [CustomCsvMeteringValueDTO](docs/CustomCsvMeteringValueDTO.md)
  - [CustomEntityPropertyTypeDTO](docs/CustomEntityPropertyTypeDTO.md)
- - [CustomEntityPropertyTypeDTOApiResponseDTO](docs/CustomEntityPropertyTypeDTOApiResponseDTO.md)
- - [CustomEntityPropertyTypeDTOPagedResponseModelDTO](docs/CustomEntityPropertyTypeDTOPagedResponseModelDTO.md)
- - [CustomEntityPropertyTypeDTOPagedResponseModelDTOApiResponseDTO](docs/CustomEntityPropertyTypeDTOPagedResponseModelDTOApiResponseDTO.md)
  - [CustomEntityPropertyTypeDropdownOptionDTO](docs/CustomEntityPropertyTypeDropdownOptionDTO.md)
  - [CustomEntityPropertyTypeTagColor](docs/CustomEntityPropertyTypeTagColor.md)
- - [CustomEntityPropertyValueType](docs/CustomEntityPropertyValueType.md)
- - [CustomerBalance](docs/CustomerBalance.md)
- - [CustomerGroupQuickFilter](docs/CustomerGroupQuickFilter.md)
- - [CustomerQuickFilter](docs/CustomerQuickFilter.md)
- - [CustomerScenarioType](docs/CustomerScenarioType.md)
- - [CustomerType](docs/CustomerType.md)
- - [DataExportCommunicationType](docs/DataExportCommunicationType.md)
  - [DataExportDTO](docs/DataExportDTO.md)
- - [DataExportDTOApiResponseDTO](docs/DataExportDTOApiResponseDTO.md)
- - [DataExportDTOPagedResponseModelDTO](docs/DataExportDTOPagedResponseModelDTO.md)
- - [DataExportDTOPagedResponseModelDTOApiResponseDTO](docs/DataExportDTOPagedResponseModelDTOApiResponseDTO.md)
  - [DataExportFileFormatDTO](docs/DataExportFileFormatDTO.md)
- - [DataExportFileFormatDTOApiResponseDTO](docs/DataExportFileFormatDTOApiResponseDTO.md)
- - [DataExportFileFormatDTOPagedResponseModelDTO](docs/DataExportFileFormatDTOPagedResponseModelDTO.md)
- - [DataExportFileFormatDTOPagedResponseModelDTOApiResponseDTO](docs/DataExportFileFormatDTOPagedResponseModelDTOApiResponseDTO.md)
- - [DataExportInvoiceFormatType](docs/DataExportInvoiceFormatType.md)
  - [DataFrequency](docs/DataFrequency.md)
- - [DataImportCommunicationType](docs/DataImportCommunicationType.md)
  - [DataImportDTO](docs/DataImportDTO.md)
- - [DataImportDTOApiResponseDTO](docs/DataImportDTOApiResponseDTO.md)
- - [DataImportDTOPagedResponseModelDTO](docs/DataImportDTOPagedResponseModelDTO.md)
- - [DataImportDTOPagedResponseModelDTOApiResponseDTO](docs/DataImportDTOPagedResponseModelDTOApiResponseDTO.md)
  - [DataImportFileFormatDTO](docs/DataImportFileFormatDTO.md)
- - [DataImportFileFormatDTOApiResponseDTO](docs/DataImportFileFormatDTOApiResponseDTO.md)
- - [DataImportFileFormatDTOPagedResponseModelDTO](docs/DataImportFileFormatDTOPagedResponseModelDTO.md)
- - [DataImportFileFormatDTOPagedResponseModelDTOApiResponseDTO](docs/DataImportFileFormatDTOPagedResponseModelDTOApiResponseDTO.md)
  - [DataImportMeteringFormatType](docs/DataImportMeteringFormatType.md)
- - [DataImportMigrationFormatType](docs/DataImportMigrationFormatType.md)
+ - [DataImportParametersDTO](docs/DataImportParametersDTO.md)
+ - [DataImportParametersDTOEmailDataImportParametersDTO](docs/DataImportParametersDTOEmailDataImportParametersDTO.md)
+ - [DataImportParametersDTOFTPDataImportParametersDTO](docs/DataImportParametersDTOFTPDataImportParametersDTO.md)
+ - [DataImportParametersDTOFTPSDataImportParametersDTO](docs/DataImportParametersDTOFTPSDataImportParametersDTO.md)
+ - [DataImportParametersDTOSFTPDataImportParametersDTO](docs/DataImportParametersDTOSFTPDataImportParametersDTO.md)
  - [DataType](docs/DataType.md)
  - [DateRange](docs/DateRange.md)
  - [DateTimeFormatInfo](docs/DateTimeFormatInfo.md)
- - [DayOfWeek](docs/DayOfWeek.md)
+ - [DeleteAccountingCompaniesRequest](docs/DeleteAccountingCompaniesRequest.md)
  - [DeleteBillingTariffTreeRequest](docs/DeleteBillingTariffTreeRequest.md)
- - [DigitShapes](docs/DigitShapes.md)
  - [Direction](docs/Direction.md)
  - [DnsRecordDTO](docs/DnsRecordDTO.md)
  - [DnsRecordMeaning](docs/DnsRecordMeaning.md)
  - [DnsRecordStatus](docs/DnsRecordStatus.md)
- - [DocumentOutputFormat](docs/DocumentOutputFormat.md)
  - [DomainAuthenticationParametersDTO](docs/DomainAuthenticationParametersDTO.md)
- - [DomainAuthenticationParametersDTOApiResponseDTO](docs/DomainAuthenticationParametersDTOApiResponseDTO.md)
- - [DomainProblemDataType](docs/DomainProblemDataType.md)
- - [EavEstimationRunStatus](docs/EavEstimationRunStatus.md)
  - [EmailAddress](docs/EmailAddress.md)
- - [EmailConfirmationType](docs/EmailConfirmationType.md)
  - [EndNoteEmailTemplateDTO](docs/EndNoteEmailTemplateDTO.md)
  - [EndNoteEmailTemplateRequest](docs/EndNoteEmailTemplateRequest.md)
  - [EndNotePdfTemplateDTO](docs/EndNotePdfTemplateDTO.md)
  - [EndNotePdfTemplateRequest](docs/EndNotePdfTemplateRequest.md)
  - [EndNoteScenarioDTO](docs/EndNoteScenarioDTO.md)
- - [EndNoteScenarioDTOApiResponseDTO](docs/EndNoteScenarioDTOApiResponseDTO.md)
- - [EntityAttachmentGroupQuickFilter](docs/EntityAttachmentGroupQuickFilter.md)
- - [EntityAttachmentOrigin](docs/EntityAttachmentOrigin.md)
- - [EntityAttachmentQuickFilter](docs/EntityAttachmentQuickFilter.md)
- - [EntityAttributeType](docs/EntityAttributeType.md)
  - [EntitySubjectType](docs/EntitySubjectType.md)
+ - [EntityTagHeaderValue](docs/EntityTagHeaderValue.md)
  - [EntityType](docs/EntityType.md)
  - [EntityTypeDTO](docs/EntityTypeDTO.md)
- - [EntityTypePagedResponseModelDTO](docs/EntityTypePagedResponseModelDTO.md)
  - [EnumSymbolTranslationsDTO](docs/EnumSymbolTranslationsDTO.md)
- - [EnumSymbolTranslationsDTOApiResponseDTO](docs/EnumSymbolTranslationsDTOApiResponseDTO.md)
- - [EnumSymbolTranslationsDTOPagedResponseModelDTO](docs/EnumSymbolTranslationsDTOPagedResponseModelDTO.md)
- - [EnumSymbolTranslationsDTOPagedResponseModelDTOApiResponseDTO](docs/EnumSymbolTranslationsDTOPagedResponseModelDTOApiResponseDTO.md)
  - [EnvelopePosition](docs/EnvelopePosition.md)
  - [EnvelopeSettingsDTO](docs/EnvelopeSettingsDTO.md)
  - [EnvelopeSettingsRequest](docs/EnvelopeSettingsRequest.md)
- - [ErrorCode](docs/ErrorCode.md)
- - [EstimatedAnnualVolumeOrigin](docs/EstimatedAnnualVolumeOrigin.md)
- - [ExecutionStatus](docs/ExecutionStatus.md)
- - [ExportJobLineStatus](docs/ExportJobLineStatus.md)
- - [ExportJobStatus](docs/ExportJobStatus.md)
- - [ExportJobsQuickFilter](docs/ExportJobsQuickFilter.md)
- - [ExportOutgoingBankingTransactionPaymentRefundFormatType](docs/ExportOutgoingBankingTransactionPaymentRefundFormatType.md)
- - [ExportOutgoingBankingTransactionPaymentRequestFormatType](docs/ExportOutgoingBankingTransactionPaymentRequestFormatType.md)
- - [ExportSettingsCategoryType](docs/ExportSettingsCategoryType.md)
- - [ExportStatus](docs/ExportStatus.md)
  - [ExternalAccountingMetadataDTO](docs/ExternalAccountingMetadataDTO.md)
  - [ExternalAccountingMetadataRequest](docs/ExternalAccountingMetadataRequest.md)
- - [ExternalMeasurementsQuickFilter](docs/ExternalMeasurementsQuickFilter.md)
- - [FeatureSettingsDTO](docs/FeatureSettingsDTO.md)
- - [FileSizeType](docs/FileSizeType.md)
- - [FinancialPeriodDTO](docs/FinancialPeriodDTO.md)
- - [FinancialPeriodDTOListApiResponseDTO](docs/FinancialPeriodDTOListApiResponseDTO.md)
- - [FlatConsumptionAggregates](docs/FlatConsumptionAggregates.md)
- - [FormulaFunctionCategory](docs/FormulaFunctionCategory.md)
- - [FormulaFunctionInputParameterReferenceType](docs/FormulaFunctionInputParameterReferenceType.md)
- - [FormulaFunctionType](docs/FormulaFunctionType.md)
- - [FormulaType](docs/FormulaType.md)
- - [FractionFrequency](docs/FractionFrequency.md)
+ - [ExternalAccountingReferenceDTO](docs/ExternalAccountingReferenceDTO.md)
+ - [ExternalIntegrationStatus](docs/ExternalIntegrationStatus.md)
+ - [FileContentResult](docs/FileContentResult.md)
+ - [FileStreamResult](docs/FileStreamResult.md)
  - [FtpProtocol](docs/FtpProtocol.md)
  - [GBRRegionalRegulationsConfigurationDTO](docs/GBRRegionalRegulationsConfigurationDTO.md)
- - [GBRRegionalRegulationsConfigurationDTOApiResponseDTO](docs/GBRRegionalRegulationsConfigurationDTOApiResponseDTO.md)
  - [GeneralLedgerCategory](docs/GeneralLedgerCategory.md)
  - [GeneralLedgerCodeDTO](docs/GeneralLedgerCodeDTO.md)
- - [GeneralLedgerCodeDTOListApiResponseDTO](docs/GeneralLedgerCodeDTOListApiResponseDTO.md)
- - [GeneralLedgerCodeDTOPagedResponseModelDTO](docs/GeneralLedgerCodeDTOPagedResponseModelDTO.md)
- - [GeneralLedgerCodeDTOPagedResponseModelDTOApiResponseDTO](docs/GeneralLedgerCodeDTOPagedResponseModelDTOApiResponseDTO.md)
- - [GeneralLedgerMappingStatus](docs/GeneralLedgerMappingStatus.md)
+ - [GeneralLedgerMappingItemDTO](docs/GeneralLedgerMappingItemDTO.md)
+ - [GeneralLedgerMappingOverviewCountDTO](docs/GeneralLedgerMappingOverviewCountDTO.md)
+ - [GetBillingItemsQueryParams](docs/GetBillingItemsQueryParams.md)
+ - [GetDataExportsQueryParameters](docs/GetDataExportsQueryParameters.md)
+ - [GetDataImportsQueryParameters](docs/GetDataImportsQueryParameters.md)
+ - [GetEnumTranslationsQueryParams](docs/GetEnumTranslationsQueryParams.md)
  - [IScenarioDTO](docs/IScenarioDTO.md)
- - [IScenarioDTOApiResponseDTO](docs/IScenarioDTOApiResponseDTO.md)
- - [IbanConfirmationStatus](docs/IbanConfirmationStatus.md)
- - [ImportCategoryType](docs/ImportCategoryType.md)
+ - [IScenarioDTOAcknowledgeMoveInScenarioDTO](docs/IScenarioDTOAcknowledgeMoveInScenarioDTO.md)
+ - [IScenarioDTOAcknowledgeMoveOutScenarioDTO](docs/IScenarioDTOAcknowledgeMoveOutScenarioDTO.md)
+ - [IScenarioDTOAdvanceAmountChangedScenarioDTO](docs/IScenarioDTOAdvanceAmountChangedScenarioDTO.md)
+ - [IScenarioDTOAdvanceScenarioDTO](docs/IScenarioDTOAdvanceScenarioDTO.md)
+ - [IScenarioDTOCollectionScenarioDTO](docs/IScenarioDTOCollectionScenarioDTO.md)
+ - [IScenarioDTOContractLocationsAddedScenarioDTO](docs/IScenarioDTOContractLocationsAddedScenarioDTO.md)
+ - [IScenarioDTOContractLocationsRemovedScenarioDTO](docs/IScenarioDTOContractLocationsRemovedScenarioDTO.md)
+ - [IScenarioDTOContractTerminationScenarioDTO](docs/IScenarioDTOContractTerminationScenarioDTO.md)
+ - [IScenarioDTOContractWelcomeScenarioDTO](docs/IScenarioDTOContractWelcomeScenarioDTO.md)
+ - [IScenarioDTOCorrectionNoteScenarioDTO](docs/IScenarioDTOCorrectionNoteScenarioDTO.md)
+ - [IScenarioDTOCreditNoteScenarioDTO](docs/IScenarioDTOCreditNoteScenarioDTO.md)
+ - [IScenarioDTOEndNoteScenarioDTO](docs/IScenarioDTOEndNoteScenarioDTO.md)
+ - [IScenarioDTOIncidentalNoteScenarioDTO](docs/IScenarioDTOIncidentalNoteScenarioDTO.md)
+ - [IScenarioDTOInvoiceScenarioDTO](docs/IScenarioDTOInvoiceScenarioDTO.md)
+ - [IScenarioDTONoticeOfDefaultScenarioDTO](docs/IScenarioDTONoticeOfDefaultScenarioDTO.md)
+ - [IScenarioDTOOrganizationScenarioDTO](docs/IScenarioDTOOrganizationScenarioDTO.md)
+ - [IScenarioDTOPaymentPlanActivatedScenarioDTO](docs/IScenarioDTOPaymentPlanActivatedScenarioDTO.md)
+ - [IScenarioDTOPaymentPlanCancelledScenarioDTO](docs/IScenarioDTOPaymentPlanCancelledScenarioDTO.md)
+ - [IScenarioDTOPaymentPlanCompletedScenarioDTO](docs/IScenarioDTOPaymentPlanCompletedScenarioDTO.md)
+ - [IScenarioDTOPaymentPlanCreatedScenarioDTO](docs/IScenarioDTOPaymentPlanCreatedScenarioDTO.md)
+ - [IScenarioDTOPaymentPlanRecalculatedScenarioDTO](docs/IScenarioDTOPaymentPlanRecalculatedScenarioDTO.md)
+ - [IScenarioDTOPaymentPlanReminderScenarioDTO](docs/IScenarioDTOPaymentPlanReminderScenarioDTO.md)
+ - [IScenarioDTOPaymentPlanRequestedScenarioDTO](docs/IScenarioDTOPaymentPlanRequestedScenarioDTO.md)
+ - [IScenarioDTORejectMoveInScenarioDTO](docs/IScenarioDTORejectMoveInScenarioDTO.md)
+ - [IScenarioDTORejectMoveOutScenarioDTO](docs/IScenarioDTORejectMoveOutScenarioDTO.md)
+ - [IScenarioDTOReminderScenarioDTO](docs/IScenarioDTOReminderScenarioDTO.md)
  - [ImportContractInvoiceDateHandling](docs/ImportContractInvoiceDateHandling.md)
  - [ImportDTO](docs/ImportDTO.md)
- - [ImportDTOPagedResponseModelDTO](docs/ImportDTOPagedResponseModelDTO.md)
- - [ImportDTOPagedResponseModelDTOApiResponseDTO](docs/ImportDTOPagedResponseModelDTOApiResponseDTO.md)
- - [ImportJobEntityIssueStage](docs/ImportJobEntityIssueStage.md)
- - [ImportJobEntityType](docs/ImportJobEntityType.md)
- - [ImportJobStatus](docs/ImportJobStatus.md)
- - [ImportJobsQuickFilter](docs/ImportJobsQuickFilter.md)
  - [ImportLineErrorDTO](docs/ImportLineErrorDTO.md)
  - [ImportStatus](docs/ImportStatus.md)
  - [ImportType](docs/ImportType.md)
@@ -663,245 +897,229 @@ Class | Method | HTTP request | Description
  - [IncidentalNotePdfTemplateDTO](docs/IncidentalNotePdfTemplateDTO.md)
  - [IncidentalNotePdfTemplateRequest](docs/IncidentalNotePdfTemplateRequest.md)
  - [IncidentalNoteScenarioDTO](docs/IncidentalNoteScenarioDTO.md)
- - [IncidentalNoteScenarioDTOApiResponseDTO](docs/IncidentalNoteScenarioDTOApiResponseDTO.md)
  - [IncomingBankingTransactionFormatType](docs/IncomingBankingTransactionFormatType.md)
- - [IncomingBankingTransactionQuickFilter](docs/IncomingBankingTransactionQuickFilter.md)
- - [IncomingBankingTransactionStatus](docs/IncomingBankingTransactionStatus.md)
- - [IncomingInvoiceComponentDTO](docs/IncomingInvoiceComponentDTO.md)
- - [IncomingInvoiceComponentDTOApiResponseDTO](docs/IncomingInvoiceComponentDTOApiResponseDTO.md)
- - [IncomingInvoiceComponentDTOPagedResponseModelDTO](docs/IncomingInvoiceComponentDTOPagedResponseModelDTO.md)
- - [IncomingInvoiceComponentDTOPagedResponseModelDTOApiResponseDTO](docs/IncomingInvoiceComponentDTOPagedResponseModelDTOApiResponseDTO.md)
- - [IncomingMutationPaymentMethod](docs/IncomingMutationPaymentMethod.md)
- - [IncomingMutationQuickFilter](docs/IncomingMutationQuickFilter.md)
- - [IncomingMutationStatus](docs/IncomingMutationStatus.md)
- - [IncomingMutationType](docs/IncomingMutationType.md)
  - [IncrementationType](docs/IncrementationType.md)
- - [InputMissingReason](docs/InputMissingReason.md)
- - [Int32ApiResponseDTO](docs/Int32ApiResponseDTO.md)
- - [InvoiceAmount](docs/InvoiceAmount.md)
  - [InvoiceEmailTemplateDTO](docs/InvoiceEmailTemplateDTO.md)
  - [InvoiceEmailTemplateRequest](docs/InvoiceEmailTemplateRequest.md)
- - [InvoiceExportType](docs/InvoiceExportType.md)
- - [InvoiceFrequency](docs/InvoiceFrequency.md)
- - [InvoiceLineType](docs/InvoiceLineType.md)
  - [InvoicePdfTemplateDTO](docs/InvoicePdfTemplateDTO.md)
  - [InvoicePdfTemplateRequest](docs/InvoicePdfTemplateRequest.md)
- - [InvoiceQuickFilter](docs/InvoiceQuickFilter.md)
  - [InvoiceScenarioDTO](docs/InvoiceScenarioDTO.md)
- - [InvoiceScenarioDTOApiResponseDTO](docs/InvoiceScenarioDTOApiResponseDTO.md)
- - [InvoiceScenarioType](docs/InvoiceScenarioType.md)
- - [InvoiceStatus](docs/InvoiceStatus.md)
  - [InvoiceType](docs/InvoiceType.md)
+ - [ItemCodeDTO](docs/ItemCodeDTO.md)
+ - [JournalDto](docs/JournalDto.md)
  - [KeyBasedPriceExportItemDTO](docs/KeyBasedPriceExportItemDTO.md)
  - [Level](docs/Level.md)
+ - [LinkAccountingCompanyRequest](docs/LinkAccountingCompanyRequest.md)
+ - [LinkGeneralLedgerCodeRequest](docs/LinkGeneralLedgerCodeRequest.md)
+ - [LinkVatCodeRequest](docs/LinkVatCodeRequest.md)
  - [LocalisationLevel](docs/LocalisationLevel.md)
  - [LocalisedErrorDTO](docs/LocalisedErrorDTO.md)
  - [LocalisedErrorDTOMessageValue](docs/LocalisedErrorDTOMessageValue.md)
- - [ManagementRelationType](docs/ManagementRelationType.md)
- - [MandateStatus](docs/MandateStatus.md)
- - [MandateType](docs/MandateType.md)
- - [MeasurementSource](docs/MeasurementSource.md)
- - [MessageType](docs/MessageType.md)
- - [MeterQuickFilter](docs/MeterQuickFilter.md)
- - [MeterReadingFrequency](docs/MeterReadingFrequency.md)
- - [MeterStatus](docs/MeterStatus.md)
- - [MeterType](docs/MeterType.md)
- - [MeteringImportMeasurementsQuickFilter](docs/MeteringImportMeasurementsQuickFilter.md)
- - [MeteringImportQuickFilter](docs/MeteringImportQuickFilter.md)
- - [MeteringImportStatus](docs/MeteringImportStatus.md)
- - [MeteringImportType](docs/MeteringImportType.md)
+ - [MasterDataParametersDTO](docs/MasterDataParametersDTO.md)
  - [MeteringIssueError](docs/MeteringIssueError.md)
- - [MeteringIssueErrorGroup](docs/MeteringIssueErrorGroup.md)
- - [MeteringIssueQuickFilter](docs/MeteringIssueQuickFilter.md)
- - [MeteringIssueResolutionReason](docs/MeteringIssueResolutionReason.md)
- - [MeteringIssueResolutionType](docs/MeteringIssueResolutionType.md)
- - [MeteringIssueStatus](docs/MeteringIssueStatus.md)
- - [MeteringIssuesGroupBy](docs/MeteringIssuesGroupBy.md)
  - [MeteringParametersDTO](docs/MeteringParametersDTO.md)
- - [MeteringParametersDTOApiResponseDTO](docs/MeteringParametersDTOApiResponseDTO.md)
  - [MeteringType](docs/MeteringType.md)
+ - [MigrationLatestVersionDTO](docs/MigrationLatestVersionDTO.md)
  - [ModelDTO](docs/ModelDTO.md)
- - [ModelDTOApiResponseDTO](docs/ModelDTOApiResponseDTO.md)
- - [ModelDTOPagedResponseModelDTO](docs/ModelDTOPagedResponseModelDTO.md)
- - [ModelDTOPagedResponseModelDTOApiResponseDTO](docs/ModelDTOPagedResponseModelDTOApiResponseDTO.md)
- - [Month](docs/Month.md)
- - [MoveRequestQuickFilter](docs/MoveRequestQuickFilter.md)
- - [MoveRequestScenarioType](docs/MoveRequestScenarioType.md)
- - [MoveRequestStatus](docs/MoveRequestStatus.md)
- - [MoveRequestType](docs/MoveRequestType.md)
- - [MutingRuleQuickFilter](docs/MutingRuleQuickFilter.md)
- - [MutingRuleTimePeriod](docs/MutingRuleTimePeriod.md)
  - [NoticeOfDefaultEmailTemplateDTO](docs/NoticeOfDefaultEmailTemplateDTO.md)
  - [NoticeOfDefaultEmailTemplateRequest](docs/NoticeOfDefaultEmailTemplateRequest.md)
  - [NoticeOfDefaultPdfTemplateDTO](docs/NoticeOfDefaultPdfTemplateDTO.md)
  - [NoticeOfDefaultPdfTemplateRequest](docs/NoticeOfDefaultPdfTemplateRequest.md)
  - [NoticeOfDefaultScenarioDTO](docs/NoticeOfDefaultScenarioDTO.md)
- - [NoticeOfDefaultScenarioDTOApiResponseDTO](docs/NoticeOfDefaultScenarioDTOApiResponseDTO.md)
- - [NullQuickFilter](docs/NullQuickFilter.md)
  - [NumberFormatInfo](docs/NumberFormatInfo.md)
- - [NumberOfAddresses](docs/NumberOfAddresses.md)
  - [NumberSequenceDTO](docs/NumberSequenceDTO.md)
- - [NumberSequenceDTOApiResponseDTO](docs/NumberSequenceDTOApiResponseDTO.md)
- - [NumberSequenceDTOPagedResponseModelDTO](docs/NumberSequenceDTOPagedResponseModelDTO.md)
- - [NumberSequenceDTOPagedResponseModelDTOApiResponseDTO](docs/NumberSequenceDTOPagedResponseModelDTOApiResponseDTO.md)
  - [NumberSequenceReferenceEntity](docs/NumberSequenceReferenceEntity.md)
  - [NumberSequenceSegmentType](docs/NumberSequenceSegmentType.md)
- - [NumberSign](docs/NumberSign.md)
  - [OrganizationContactDetailsDTO](docs/OrganizationContactDetailsDTO.md)
  - [OrganizationDTO](docs/OrganizationDTO.md)
- - [OrganizationDTOApiResponseDTO](docs/OrganizationDTOApiResponseDTO.md)
- - [OrganizationDTOPagedResponseModelDTO](docs/OrganizationDTOPagedResponseModelDTO.md)
- - [OrganizationDTOPagedResponseModelDTOApiResponseDTO](docs/OrganizationDTOPagedResponseModelDTOApiResponseDTO.md)
  - [OrganizationScenarioDTO](docs/OrganizationScenarioDTO.md)
- - [OrganizationScenarioDTOApiResponseDTO](docs/OrganizationScenarioDTOApiResponseDTO.md)
- - [OrganizationScenarioDTOPagedResponseModelDTO](docs/OrganizationScenarioDTOPagedResponseModelDTO.md)
- - [OrganizationScenarioDTOPagedResponseModelDTOApiResponseDTO](docs/OrganizationScenarioDTOPagedResponseModelDTOApiResponseDTO.md)
- - [OutgoingBankingTransactionQuickFilter](docs/OutgoingBankingTransactionQuickFilter.md)
- - [OutgoingBankingTransactionStatus](docs/OutgoingBankingTransactionStatus.md)
- - [OutgoingBankingTransactionType](docs/OutgoingBankingTransactionType.md)
- - [OutgoingMutationQuickFilter](docs/OutgoingMutationQuickFilter.md)
- - [OutgoingMutationStatus](docs/OutgoingMutationStatus.md)
- - [OutgoingMutationType](docs/OutgoingMutationType.md)
+ - [PagedAccountingCompaniesQueryParams](docs/PagedAccountingCompaniesQueryParams.md)
+ - [PagedAccountingCompanyMappingQueryParams](docs/PagedAccountingCompanyMappingQueryParams.md)
+ - [PagedBankingDataProvidersQueryParams](docs/PagedBankingDataProvidersQueryParams.md)
+ - [PagedCostCentersQueryParams](docs/PagedCostCentersQueryParams.md)
+ - [PagedCostUnitsQueryParams](docs/PagedCostUnitsQueryParams.md)
+ - [PagedGeneralLedgerCodesQueryParams](docs/PagedGeneralLedgerCodesQueryParams.md)
+ - [PagedGeneralLedgerMappingQueryParams](docs/PagedGeneralLedgerMappingQueryParams.md)
+ - [PagedItemCodesQueryParams](docs/PagedItemCodesQueryParams.md)
+ - [PagedJournalsQueryParams](docs/PagedJournalsQueryParams.md)
+ - [PagedProjectCodesQueryParams](docs/PagedProjectCodesQueryParams.md)
+ - [PagedResponseModelDTOOfAccountingCompanyDto](docs/PagedResponseModelDTOOfAccountingCompanyDto.md)
+ - [PagedResponseModelDTOOfAccountingCompanyMappingItemDTO](docs/PagedResponseModelDTOOfAccountingCompanyMappingItemDTO.md)
+ - [PagedResponseModelDTOOfAccountingCompanyMappingOverviewCountDTO](docs/PagedResponseModelDTOOfAccountingCompanyMappingOverviewCountDTO.md)
+ - [PagedResponseModelDTOOfAccountingSystemDetailsDTO](docs/PagedResponseModelDTOOfAccountingSystemDetailsDTO.md)
+ - [PagedResponseModelDTOOfBankAccountDTO](docs/PagedResponseModelDTOOfBankAccountDTO.md)
+ - [PagedResponseModelDTOOfBankingDataProviderDTO](docs/PagedResponseModelDTOOfBankingDataProviderDTO.md)
+ - [PagedResponseModelDTOOfBillingItemDTO](docs/PagedResponseModelDTOOfBillingItemDTO.md)
+ - [PagedResponseModelDTOOfBillingTariffDTO](docs/PagedResponseModelDTOOfBillingTariffDTO.md)
+ - [PagedResponseModelDTOOfCollectionFlowDTO](docs/PagedResponseModelDTOOfCollectionFlowDTO.md)
+ - [PagedResponseModelDTOOfCollectionFlowStepDTO](docs/PagedResponseModelDTOOfCollectionFlowStepDTO.md)
+ - [PagedResponseModelDTOOfCostCenterDTO](docs/PagedResponseModelDTOOfCostCenterDTO.md)
+ - [PagedResponseModelDTOOfCostComponentDTO](docs/PagedResponseModelDTOOfCostComponentDTO.md)
+ - [PagedResponseModelDTOOfCostComponentValueDTO](docs/PagedResponseModelDTOOfCostComponentValueDTO.md)
+ - [PagedResponseModelDTOOfCostUnitDTO](docs/PagedResponseModelDTOOfCostUnitDTO.md)
+ - [PagedResponseModelDTOOfCustomEntityPropertyTypeDTO](docs/PagedResponseModelDTOOfCustomEntityPropertyTypeDTO.md)
+ - [PagedResponseModelDTOOfDataExportDTO](docs/PagedResponseModelDTOOfDataExportDTO.md)
+ - [PagedResponseModelDTOOfDataExportFileFormatDTO](docs/PagedResponseModelDTOOfDataExportFileFormatDTO.md)
+ - [PagedResponseModelDTOOfDataImportDTO](docs/PagedResponseModelDTOOfDataImportDTO.md)
+ - [PagedResponseModelDTOOfDataImportFileFormatDTO](docs/PagedResponseModelDTOOfDataImportFileFormatDTO.md)
+ - [PagedResponseModelDTOOfEntityType](docs/PagedResponseModelDTOOfEntityType.md)
+ - [PagedResponseModelDTOOfEnumSymbolTranslationsDTO](docs/PagedResponseModelDTOOfEnumSymbolTranslationsDTO.md)
+ - [PagedResponseModelDTOOfGeneralLedgerCodeDTO](docs/PagedResponseModelDTOOfGeneralLedgerCodeDTO.md)
+ - [PagedResponseModelDTOOfGeneralLedgerMappingItemDTO](docs/PagedResponseModelDTOOfGeneralLedgerMappingItemDTO.md)
+ - [PagedResponseModelDTOOfGeneralLedgerMappingOverviewCountDTO](docs/PagedResponseModelDTOOfGeneralLedgerMappingOverviewCountDTO.md)
+ - [PagedResponseModelDTOOfImportDTO](docs/PagedResponseModelDTOOfImportDTO.md)
+ - [PagedResponseModelDTOOfItemCodeDTO](docs/PagedResponseModelDTOOfItemCodeDTO.md)
+ - [PagedResponseModelDTOOfJournalDto](docs/PagedResponseModelDTOOfJournalDto.md)
+ - [PagedResponseModelDTOOfModelDTO](docs/PagedResponseModelDTOOfModelDTO.md)
+ - [PagedResponseModelDTOOfNumberSequenceDTO](docs/PagedResponseModelDTOOfNumberSequenceDTO.md)
+ - [PagedResponseModelDTOOfOrganizationScenarioDTO](docs/PagedResponseModelDTOOfOrganizationScenarioDTO.md)
+ - [PagedResponseModelDTOOfPaymentDelaySettingDTO](docs/PagedResponseModelDTOOfPaymentDelaySettingDTO.md)
+ - [PagedResponseModelDTOOfPaymentTermsDTO](docs/PagedResponseModelDTOOfPaymentTermsDTO.md)
+ - [PagedResponseModelDTOOfProductAttachmentFlatDTO](docs/PagedResponseModelDTOOfProductAttachmentFlatDTO.md)
+ - [PagedResponseModelDTOOfProductDTO](docs/PagedResponseModelDTOOfProductDTO.md)
+ - [PagedResponseModelDTOOfProjectCodeDTO](docs/PagedResponseModelDTOOfProjectCodeDTO.md)
+ - [PagedResponseModelDTOOfTaxCodeDTO](docs/PagedResponseModelDTOOfTaxCodeDTO.md)
+ - [PagedResponseModelDTOOfTimeOfUseCalendarDTO](docs/PagedResponseModelDTOOfTimeOfUseCalendarDTO.md)
+ - [PagedResponseModelDTOOfTimeOfUseTypeDTO](docs/PagedResponseModelDTOOfTimeOfUseTypeDTO.md)
+ - [PagedResponseModelDTOOfVatCodeDTO](docs/PagedResponseModelDTOOfVatCodeDTO.md)
+ - [PagedResponseModelDTOOfVatCodeMappingItemDTO](docs/PagedResponseModelDTOOfVatCodeMappingItemDTO.md)
+ - [PagedResponseModelDTOOfVatCodeMappingOverviewCountDTO](docs/PagedResponseModelDTOOfVatCodeMappingOverviewCountDTO.md)
+ - [PagedVatCodesMappingQueryParams](docs/PagedVatCodesMappingQueryParams.md)
+ - [PagedVatCodesQueryParams](docs/PagedVatCodesQueryParams.md)
  - [PaymentDelay](docs/PaymentDelay.md)
  - [PaymentDelaySettingDTO](docs/PaymentDelaySettingDTO.md)
- - [PaymentDelaySettingDTOApiResponseDTO](docs/PaymentDelaySettingDTOApiResponseDTO.md)
- - [PaymentDelaySettingDTOPagedResponseModelDTO](docs/PaymentDelaySettingDTOPagedResponseModelDTO.md)
- - [PaymentDelaySettingDTOPagedResponseModelDTOApiResponseDTO](docs/PaymentDelaySettingDTOPagedResponseModelDTOApiResponseDTO.md)
  - [PaymentMethod](docs/PaymentMethod.md)
  - [PaymentParametersDTO](docs/PaymentParametersDTO.md)
- - [PaymentParametersDTOApiResponseDTO](docs/PaymentParametersDTOApiResponseDTO.md)
- - [PaymentProcessStatus](docs/PaymentProcessStatus.md)
- - [PaymentQuickFilter](docs/PaymentQuickFilter.md)
+ - [PaymentPlanActivatedEmailTemplateDTO](docs/PaymentPlanActivatedEmailTemplateDTO.md)
+ - [PaymentPlanActivatedEmailTemplateRequest](docs/PaymentPlanActivatedEmailTemplateRequest.md)
+ - [PaymentPlanActivatedPdfTemplateDTO](docs/PaymentPlanActivatedPdfTemplateDTO.md)
+ - [PaymentPlanActivatedPdfTemplateRequest](docs/PaymentPlanActivatedPdfTemplateRequest.md)
+ - [PaymentPlanActivatedScenarioDTO](docs/PaymentPlanActivatedScenarioDTO.md)
+ - [PaymentPlanCancelledEmailTemplateDTO](docs/PaymentPlanCancelledEmailTemplateDTO.md)
+ - [PaymentPlanCancelledEmailTemplateRequest](docs/PaymentPlanCancelledEmailTemplateRequest.md)
+ - [PaymentPlanCancelledPdfTemplateDTO](docs/PaymentPlanCancelledPdfTemplateDTO.md)
+ - [PaymentPlanCancelledPdfTemplateRequest](docs/PaymentPlanCancelledPdfTemplateRequest.md)
+ - [PaymentPlanCancelledScenarioDTO](docs/PaymentPlanCancelledScenarioDTO.md)
+ - [PaymentPlanCompletedEmailTemplateDTO](docs/PaymentPlanCompletedEmailTemplateDTO.md)
+ - [PaymentPlanCompletedEmailTemplateRequest](docs/PaymentPlanCompletedEmailTemplateRequest.md)
+ - [PaymentPlanCompletedPdfTemplateDTO](docs/PaymentPlanCompletedPdfTemplateDTO.md)
+ - [PaymentPlanCompletedPdfTemplateRequest](docs/PaymentPlanCompletedPdfTemplateRequest.md)
+ - [PaymentPlanCompletedScenarioDTO](docs/PaymentPlanCompletedScenarioDTO.md)
+ - [PaymentPlanCreatedEmailTemplateDTO](docs/PaymentPlanCreatedEmailTemplateDTO.md)
+ - [PaymentPlanCreatedPdfTemplateDTO](docs/PaymentPlanCreatedPdfTemplateDTO.md)
+ - [PaymentPlanParametersDTO](docs/PaymentPlanParametersDTO.md)
+ - [PaymentPlanRecalculatedEmailTemplateDTO](docs/PaymentPlanRecalculatedEmailTemplateDTO.md)
+ - [PaymentPlanRecalculatedEmailTemplateRequest](docs/PaymentPlanRecalculatedEmailTemplateRequest.md)
+ - [PaymentPlanRecalculatedPdfTemplateDTO](docs/PaymentPlanRecalculatedPdfTemplateDTO.md)
+ - [PaymentPlanRecalculatedPdfTemplateRequest](docs/PaymentPlanRecalculatedPdfTemplateRequest.md)
+ - [PaymentPlanRecalculatedScenarioDTO](docs/PaymentPlanRecalculatedScenarioDTO.md)
+ - [PaymentPlanReminderEmailTemplateDTO](docs/PaymentPlanReminderEmailTemplateDTO.md)
+ - [PaymentPlanReminderEmailTemplateRequest](docs/PaymentPlanReminderEmailTemplateRequest.md)
+ - [PaymentPlanReminderPdfTemplateDTO](docs/PaymentPlanReminderPdfTemplateDTO.md)
+ - [PaymentPlanReminderPdfTemplateRequest](docs/PaymentPlanReminderPdfTemplateRequest.md)
+ - [PaymentPlanReminderScenarioDTO](docs/PaymentPlanReminderScenarioDTO.md)
+ - [PaymentPlanRequestedEmailTemplateDTO](docs/PaymentPlanRequestedEmailTemplateDTO.md)
+ - [PaymentPlanRequestedEmailTemplateRequest](docs/PaymentPlanRequestedEmailTemplateRequest.md)
+ - [PaymentPlanRequestedPdfTemplateDTO](docs/PaymentPlanRequestedPdfTemplateDTO.md)
+ - [PaymentPlanRequestedPdfTemplateRequest](docs/PaymentPlanRequestedPdfTemplateRequest.md)
+ - [PaymentPlanRequestedScenarioDTO](docs/PaymentPlanRequestedScenarioDTO.md)
  - [PaymentRetryAction](docs/PaymentRetryAction.md)
  - [PaymentRetryParameterDTO](docs/PaymentRetryParameterDTO.md)
  - [PaymentRetryParameterRequest](docs/PaymentRetryParameterRequest.md)
- - [PaymentReversalReason](docs/PaymentReversalReason.md)
- - [PaymentReversalReasonCode](docs/PaymentReversalReasonCode.md)
  - [PaymentTermsDTO](docs/PaymentTermsDTO.md)
- - [PaymentTermsDTOApiResponseDTO](docs/PaymentTermsDTOApiResponseDTO.md)
- - [PaymentTermsDTOPagedResponseModelDTO](docs/PaymentTermsDTOPagedResponseModelDTO.md)
- - [PaymentTermsDTOPagedResponseModelDTOApiResponseDTO](docs/PaymentTermsDTOPagedResponseModelDTOApiResponseDTO.md)
  - [PaymentTermsFrequency](docs/PaymentTermsFrequency.md)
  - [PaymentTermsRequest](docs/PaymentTermsRequest.md)
- - [PaymentType](docs/PaymentType.md)
- - [PingenCulture](docs/PingenCulture.md)
- - [PluginFeedActivityType](docs/PluginFeedActivityType.md)
- - [PluginFeedStatus](docs/PluginFeedStatus.md)
- - [PluginFeedTopic](docs/PluginFeedTopic.md)
- - [PluginTriggerDataType](docs/PluginTriggerDataType.md)
- - [PluginTriggerPriority](docs/PluginTriggerPriority.md)
- - [PluginType](docs/PluginType.md)
  - [PortalAdvanceChangeLimitDTO](docs/PortalAdvanceChangeLimitDTO.md)
  - [PortalAdvanceChangeLimitRequest](docs/PortalAdvanceChangeLimitRequest.md)
  - [PortalBillingSettingsDTO](docs/PortalBillingSettingsDTO.md)
  - [PortalBillingSettingsRequest](docs/PortalBillingSettingsRequest.md)
- - [PortalEmailType](docs/PortalEmailType.md)
+ - [PortalHostNameSettingsDTO](docs/PortalHostNameSettingsDTO.md)
+ - [PortalHostNameValidationStatus](docs/PortalHostNameValidationStatus.md)
+ - [PortalMoveInMoveOutSettingsDTO](docs/PortalMoveInMoveOutSettingsDTO.md)
+ - [PortalMoveInMoveOutSettingsRequest](docs/PortalMoveInMoveOutSettingsRequest.md)
  - [PortalNotificationType](docs/PortalNotificationType.md)
  - [PortalOrganisationContactSettingsDTO](docs/PortalOrganisationContactSettingsDTO.md)
  - [PortalPageIdentifier](docs/PortalPageIdentifier.md)
  - [PortalPageNotificationDTO](docs/PortalPageNotificationDTO.md)
+ - [PortalSelfServiceOptionsDTO](docs/PortalSelfServiceOptionsDTO.md)
+ - [PortalSelfServiceOptionsRequest](docs/PortalSelfServiceOptionsRequest.md)
  - [PortalSettingsDTO](docs/PortalSettingsDTO.md)
- - [PortalSettingsDTOApiResponseDTO](docs/PortalSettingsDTOApiResponseDTO.md)
- - [PrepaymentAccountStatus](docs/PrepaymentAccountStatus.md)
  - [PrepaymentParametersDTO](docs/PrepaymentParametersDTO.md)
- - [PrepaymentTransactionOrigin](docs/PrepaymentTransactionOrigin.md)
- - [PrepaymentTransactionStatus](docs/PrepaymentTransactionStatus.md)
- - [PrepaymentTransactionType](docs/PrepaymentTransactionType.md)
  - [PriorityRegisterParametersDTO](docs/PriorityRegisterParametersDTO.md)
  - [PriorityRegisterParametersRequest](docs/PriorityRegisterParametersRequest.md)
  - [ProblemDetails](docs/ProblemDetails.md)
- - [ProblemLevel](docs/ProblemLevel.md)
- - [ProblemResolutionStatus](docs/ProblemResolutionStatus.md)
  - [ProductAttachmentDTO](docs/ProductAttachmentDTO.md)
  - [ProductAttachmentFileDTO](docs/ProductAttachmentFileDTO.md)
  - [ProductAttachmentFlatDTO](docs/ProductAttachmentFlatDTO.md)
- - [ProductAttachmentFlatDTOPagedResponseModelDTO](docs/ProductAttachmentFlatDTOPagedResponseModelDTO.md)
- - [ProductAttachmentFlatDTOPagedResponseModelDTOApiResponseDTO](docs/ProductAttachmentFlatDTOPagedResponseModelDTOApiResponseDTO.md)
  - [ProductBillingItemDTO](docs/ProductBillingItemDTO.md)
  - [ProductDTO](docs/ProductDTO.md)
- - [ProductDTOApiResponseDTO](docs/ProductDTOApiResponseDTO.md)
- - [ProductDTOPagedResponseModelDTO](docs/ProductDTOPagedResponseModelDTO.md)
- - [ProductDTOPagedResponseModelDTOApiResponseDTO](docs/ProductDTOPagedResponseModelDTOApiResponseDTO.md)
  - [ProductExportItemDTO](docs/ProductExportItemDTO.md)
- - [ProductExportItemDTOListApiResponseDTO](docs/ProductExportItemDTOListApiResponseDTO.md)
  - [ProductExportStatus](docs/ProductExportStatus.md)
  - [ProductItemPeriodicityParametersDTO](docs/ProductItemPeriodicityParametersDTO.md)
+ - [ProductItemPeriodicityParametersDTOFixedAmountPeriodicityParametersDTO](docs/ProductItemPeriodicityParametersDTOFixedAmountPeriodicityParametersDTO.md)
+ - [ProductItemPeriodicityParametersDTOFixedDurationPeriodicityParametersDTO](docs/ProductItemPeriodicityParametersDTOFixedDurationPeriodicityParametersDTO.md)
+ - [ProductItemPeriodicityParametersDTOOnMoveInPeriodicityParametersDTO](docs/ProductItemPeriodicityParametersDTOOnMoveInPeriodicityParametersDTO.md)
+ - [ProductItemPeriodicityParametersDTOOnMoveOutPeriodicityParametersDTO](docs/ProductItemPeriodicityParametersDTOOnMoveOutPeriodicityParametersDTO.md)
+ - [ProductItemPeriodicityParametersDTOPeriodicPeriodicityParametersDTO](docs/ProductItemPeriodicityParametersDTOPeriodicPeriodicityParametersDTO.md)
  - [ProductItemPeriodicityType](docs/ProductItemPeriodicityType.md)
- - [PropertyGroupBillingPeriodTariffStatus](docs/PropertyGroupBillingPeriodTariffStatus.md)
- - [PropertyGroupQuickFilter](docs/PropertyGroupQuickFilter.md)
- - [PropertyGroupType](docs/PropertyGroupType.md)
- - [PropertyType](docs/PropertyType.md)
+ - [ProjectCodeDTO](docs/ProjectCodeDTO.md)
  - [RejectMoveInEmailTemplateDTO](docs/RejectMoveInEmailTemplateDTO.md)
  - [RejectMoveInEmailTemplateRequest](docs/RejectMoveInEmailTemplateRequest.md)
  - [RejectMoveInScenarioDTO](docs/RejectMoveInScenarioDTO.md)
- - [RejectMoveInScenarioDTOApiResponseDTO](docs/RejectMoveInScenarioDTOApiResponseDTO.md)
  - [RejectMoveOutEmailTemplateDTO](docs/RejectMoveOutEmailTemplateDTO.md)
  - [RejectMoveOutEmailTemplateRequest](docs/RejectMoveOutEmailTemplateRequest.md)
  - [RejectMoveOutScenarioDTO](docs/RejectMoveOutScenarioDTO.md)
- - [RejectMoveOutScenarioDTOApiResponseDTO](docs/RejectMoveOutScenarioDTOApiResponseDTO.md)
  - [ReminderEmailTemplateDTO](docs/ReminderEmailTemplateDTO.md)
  - [ReminderEmailTemplateRequest](docs/ReminderEmailTemplateRequest.md)
  - [ReminderPdfTemplateDTO](docs/ReminderPdfTemplateDTO.md)
  - [ReminderPdfTemplateRequest](docs/ReminderPdfTemplateRequest.md)
  - [ReminderScenarioDTO](docs/ReminderScenarioDTO.md)
- - [ReminderScenarioDTOApiResponseDTO](docs/ReminderScenarioDTOApiResponseDTO.md)
+ - [ReportingConfigurationProviderConnectionTestResultDTO](docs/ReportingConfigurationProviderConnectionTestResultDTO.md)
+ - [ReportingConfigurationProviderDTO](docs/ReportingConfigurationProviderDTO.md)
+ - [ReportingProviderStatus](docs/ReportingProviderStatus.md)
  - [RequiredEstimationDTO](docs/RequiredEstimationDTO.md)
- - [RequiredEstimationDTOListApiResponseDTO](docs/RequiredEstimationDTOListApiResponseDTO.md)
  - [ResetTranslationRequest](docs/ResetTranslationRequest.md)
  - [ScenarioGroupingType](docs/ScenarioGroupingType.md)
  - [ScenarioTranslationDTO](docs/ScenarioTranslationDTO.md)
- - [ScenarioTranslationDTOApiResponseDTO](docs/ScenarioTranslationDTOApiResponseDTO.md)
  - [ScenarioTranslationListDTO](docs/ScenarioTranslationListDTO.md)
- - [ScenarioTranslationListDTOApiResponseDTO](docs/ScenarioTranslationListDTOApiResponseDTO.md)
  - [ScheduledJobRecurrence](docs/ScheduledJobRecurrence.md)
- - [ScheduledJobType](docs/ScheduledJobType.md)
  - [SegmentDTO](docs/SegmentDTO.md)
  - [SegmentRequest](docs/SegmentRequest.md)
- - [SentStatus](docs/SentStatus.md)
- - [ServiceLocationQuickFilter](docs/ServiceLocationQuickFilter.md)
- - [ServiceStatus](docs/ServiceStatus.md)
- - [SocialTariffExportType](docs/SocialTariffExportType.md)
  - [SocialTariffParametersDTO](docs/SocialTariffParametersDTO.md)
  - [SocialTariffParametersRequest](docs/SocialTariffParametersRequest.md)
  - [SortVersion](docs/SortVersion.md)
  - [SshAuthenticationMethod](docs/SshAuthenticationMethod.md)
- - [StatusCode](docs/StatusCode.md)
- - [StringApiResponseDTO](docs/StringApiResponseDTO.md)
- - [SyntheticLoadProfileOrigin](docs/SyntheticLoadProfileOrigin.md)
- - [SystemUsageRecordType](docs/SystemUsageRecordType.md)
+ - [StringSegment](docs/StringSegment.md)
+ - [TariffImportQueryParams](docs/TariffImportQueryParams.md)
  - [TariffOrigin](docs/TariffOrigin.md)
  - [TaxCodeDTO](docs/TaxCodeDTO.md)
- - [TaxCodeDTOApiResponseDTO](docs/TaxCodeDTOApiResponseDTO.md)
- - [TaxCodeDTOPagedResponseModelDTO](docs/TaxCodeDTOPagedResponseModelDTO.md)
- - [TaxCodeDTOPagedResponseModelDTOApiResponseDTO](docs/TaxCodeDTOPagedResponseModelDTOApiResponseDTO.md)
  - [TaxRateDTO](docs/TaxRateDTO.md)
- - [TemplateAssetType](docs/TemplateAssetType.md)
  - [TemplateAttachmentDTO](docs/TemplateAttachmentDTO.md)
  - [TemplateAttachmentRequest](docs/TemplateAttachmentRequest.md)
  - [TemplateObjectType](docs/TemplateObjectType.md)
  - [TemplateUsecase](docs/TemplateUsecase.md)
+ - [TestReportingConfigurationProviderConnectionRequest](docs/TestReportingConfigurationProviderConnectionRequest.md)
  - [TextInfo](docs/TextInfo.md)
  - [TierCalculationMethod](docs/TierCalculationMethod.md)
- - [TransactionQuickFilter](docs/TransactionQuickFilter.md)
- - [TransactionReferenceType](docs/TransactionReferenceType.md)
- - [TransactionStatus](docs/TransactionStatus.md)
- - [TransactionSubType](docs/TransactionSubType.md)
- - [TransactionType](docs/TransactionType.md)
+ - [TierRequest](docs/TierRequest.md)
+ - [TieredSliceDTO](docs/TieredSliceDTO.md)
+ - [TimeOfUseCalendarDTO](docs/TimeOfUseCalendarDTO.md)
+ - [TimeOfUseDayDTO](docs/TimeOfUseDayDTO.md)
+ - [TimeOfUseIntervalDTO](docs/TimeOfUseIntervalDTO.md)
+ - [TimeOfUseTypeDTO](docs/TimeOfUseTypeDTO.md)
  - [TranslationStatus](docs/TranslationStatus.md)
- - [UblTranslations](docs/UblTranslations.md)
  - [UnitOfMeasure](docs/UnitOfMeasure.md)
- - [UnitOfMeasureListApiResponseDTO](docs/UnitOfMeasureListApiResponseDTO.md)
  - [UpdateAdvanceCalculationParametersRequest](docs/UpdateAdvanceCalculationParametersRequest.md)
+ - [UpdateAdvanceFrequencyPercentagesRequest](docs/UpdateAdvanceFrequencyPercentagesRequest.md)
+ - [UpdateAdvancePercentageParametersRequest](docs/UpdateAdvancePercentageParametersRequest.md)
  - [UpdateBankAccountRequest](docs/UpdateBankAccountRequest.md)
+ - [UpdateBankHolidayRequest](docs/UpdateBankHolidayRequest.md)
+ - [UpdateBankHolidaysRequest](docs/UpdateBankHolidaysRequest.md)
  - [UpdateBillingItemRequest](docs/UpdateBillingItemRequest.md)
  - [UpdateBillingParametersRequest](docs/UpdateBillingParametersRequest.md)
  - [UpdateBillingTariffTreePeriodRequest](docs/UpdateBillingTariffTreePeriodRequest.md)
  - [UpdateBillingTariffTreeRequest](docs/UpdateBillingTariffTreeRequest.md)
  - [UpdateCommunicationParametersRequest](docs/UpdateCommunicationParametersRequest.md)
- - [UpdateConsumptionUnitTypeRequest](docs/UpdateConsumptionUnitTypeRequest.md)
- - [UpdateContractProductParameter](docs/UpdateContractProductParameter.md)
- - [UpdateCostComponentRequest](docs/UpdateCostComponentRequest.md)
- - [UpdateCostComponentValueRequest](docs/UpdateCostComponentValueRequest.md)
  - [UpdateCultureTableRequest](docs/UpdateCultureTableRequest.md)
  - [UpdateCustomEntityPropertyDropdownOptionsRequest](docs/UpdateCustomEntityPropertyDropdownOptionsRequest.md)
  - [UpdateCustomEntityPropertyTypeRequest](docs/UpdateCustomEntityPropertyTypeRequest.md)
@@ -912,7 +1130,7 @@ Class | Method | HTTP request | Description
  - [UpdateDomainAuthenticationParametersRequest](docs/UpdateDomainAuthenticationParametersRequest.md)
  - [UpdateEntityTranslationRequest](docs/UpdateEntityTranslationRequest.md)
  - [UpdateEnumSymbolTranslationRequest](docs/UpdateEnumSymbolTranslationRequest.md)
- - [UpdateIncomingInvoiceComponentRequest](docs/UpdateIncomingInvoiceComponentRequest.md)
+ - [UpdateMasterDataParametersRequest](docs/UpdateMasterDataParametersRequest.md)
  - [UpdateMeteringParametersRequest](docs/UpdateMeteringParametersRequest.md)
  - [UpdateModelRequest](docs/UpdateModelRequest.md)
  - [UpdateNumberSequenceRequest](docs/UpdateNumberSequenceRequest.md)
@@ -921,19 +1139,25 @@ Class | Method | HTTP request | Description
  - [UpdateOrganizationScenarioRequest](docs/UpdateOrganizationScenarioRequest.md)
  - [UpdatePaymentDelayRequest](docs/UpdatePaymentDelayRequest.md)
  - [UpdatePaymentParametersRequest](docs/UpdatePaymentParametersRequest.md)
+ - [UpdatePaymentPlanParametersRequest](docs/UpdatePaymentPlanParametersRequest.md)
  - [UpdatePortalSettingsRequest](docs/UpdatePortalSettingsRequest.md)
- - [UpdatePrepaymentParametersRequest](docs/UpdatePrepaymentParametersRequest.md)
  - [UpdateRegionalRegulationsParametersForBELRequest](docs/UpdateRegionalRegulationsParametersForBELRequest.md)
  - [UpdateRegionalRegulationsParametersForGBRRequest](docs/UpdateRegionalRegulationsParametersForGBRRequest.md)
+ - [UpdateReportingConfigurationProviderRequest](docs/UpdateReportingConfigurationProviderRequest.md)
+ - [UpdateTimeOfUseCalendarRequest](docs/UpdateTimeOfUseCalendarRequest.md)
+ - [UpdateTimeOfUseTypeRequest](docs/UpdateTimeOfUseTypeRequest.md)
  - [UpdateTranslationRequest](docs/UpdateTranslationRequest.md)
+ - [UpsertBankingDataProviderRequest](docs/UpsertBankingDataProviderRequest.md)
  - [UpsertPortalPageNotificationRequest](docs/UpsertPortalPageNotificationRequest.md)
  - [UpsertProductAttachmentFileRequest](docs/UpsertProductAttachmentFileRequest.md)
  - [UpsertProductAttachmentRequest](docs/UpsertProductAttachmentRequest.md)
  - [UpsertProductBillingItemsRequest](docs/UpsertProductBillingItemsRequest.md)
  - [UpsertProductRequest](docs/UpsertProductRequest.md)
- - [UserQuickFilter](docs/UserQuickFilter.md)
  - [UtilityType](docs/UtilityType.md)
- - [ValueProviderType](docs/ValueProviderType.md)
+ - [ValidatePortalHostNameResponse](docs/ValidatePortalHostNameResponse.md)
+ - [VatCodeDTO](docs/VatCodeDTO.md)
+ - [VatCodeMappingItemDTO](docs/VatCodeMappingItemDTO.md)
+ - [VatCodeMappingOverviewCountDTO](docs/VatCodeMappingOverviewCountDTO.md)
  - [WriteOffHandlingType](docs/WriteOffHandlingType.md)
 
 

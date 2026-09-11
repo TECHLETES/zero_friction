@@ -58,7 +58,7 @@ class TestCreateCustomerRequest(unittest.TestCase):
                     building_name = '', 
                     locality = '', 
                     city = '', 
-                    country = null, 
+                    country = 'aut', 
                     localized_display = '', 
                     line_one = '', 
                     line_two = '', ),
@@ -72,20 +72,59 @@ class TestCreateCustomerRequest(unittest.TestCase):
                         value = '', 
                         description = '', 
                         primary_for_type = True, 
-                        contact_type = null, )
+                        contact_type = 'email', )
                     ],
                 communication_preferences = masterdata_client.models.customer_communication_preferences_request.CustomerCommunicationPreferencesRequest(
-                    culture = null, 
+                    culture = '', 
                     invoice_communication_preferences = [
                         masterdata_client.models.customer_invoice_communication_preferences_request.CustomerInvoiceCommunicationPreferencesRequest(
-                            invoice_type = null, 
-                            communication_type = null, )
+                            invoice_type = 'advance', 
+                            communication_type = 'none', )
                         ], 
-                    annual_statement_communication_preference = null, 
-                    collection_flow_id = '', )
+                    annual_statement_communication_preference = 'none', 
+                    prepayment_statement_communication_preference = 'none', 
+                    collection_flow_id = '', ),
+                service_number = ''
             )
         else:
             return CreateCustomerRequest(
+                salutation = '',
+                initials = '',
+                first_name = '',
+                last_name = '',
+                ssin = '',
+                ssin_country = 'aut',
+                customer_type = 'person',
+                company_name = '',
+                organization_number = '',
+                default_payment_method = 'sct',
+                invoice_address = masterdata_client.models.address_dto.AddressDTO(
+                    street_name = '', 
+                    street_number = '', 
+                    street_number_addition = '', 
+                    postal_code = '', 
+                    building_name = '', 
+                    locality = '', 
+                    city = '', 
+                    country = 'aut', 
+                    localized_display = '', 
+                    line_one = '', 
+                    line_two = '', ),
+                bank_accounts = [
+                    masterdata_client.models.bank_account_request.BankAccountRequest(
+                        iban = '', 
+                        sign_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                    ],
+                communication_preferences = masterdata_client.models.customer_communication_preferences_request.CustomerCommunicationPreferencesRequest(
+                    culture = '', 
+                    invoice_communication_preferences = [
+                        masterdata_client.models.customer_invoice_communication_preferences_request.CustomerInvoiceCommunicationPreferencesRequest(
+                            invoice_type = 'advance', 
+                            communication_type = 'none', )
+                        ], 
+                    annual_statement_communication_preference = 'none', 
+                    prepayment_statement_communication_preference = 'none', 
+                    collection_flow_id = '', ),
         )
         """
 

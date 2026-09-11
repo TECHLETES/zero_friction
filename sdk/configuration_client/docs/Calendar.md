@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**min_supported_date_time** | **datetime** |  | [optional] [readonly] 
-**max_supported_date_time** | **datetime** |  | [optional] [readonly] 
-**algorithm_type** | [**CalendarAlgorithmType**](CalendarAlgorithmType.md) |  | [optional] [readonly] 
-**is_read_only** | **bool** |  | [optional] [readonly] 
+**min_supported_date_time** | **datetime** |  | [optional] 
+**max_supported_date_time** | **datetime** |  | [optional] 
+**algorithm_type** | **int** |  | [optional] 
+**is_read_only** | **bool** |  | [optional] 
 **eras** | **List[int]** |  | [optional] [readonly] 
 **two_digit_year_max** | **int** |  | [optional] 
 

@@ -37,6 +37,8 @@ class TestBulkRejectMoveRequest(unittest.TestCase):
             return BulkRejectMoveRequest(
                 only_validate = True,
                 var_query_params = masterdata_client.models.get_move_requests_query_params.GetMoveRequestsQueryParams(
+                    location_id = '', 
+                    move_request_type_id = '', 
                     flex_search = '', 
                     include_only_ids = [
                         ''
@@ -44,8 +46,7 @@ class TestBulkRejectMoveRequest(unittest.TestCase):
                     exclude_ids = [
                         ''
                         ], 
-                    location_id = '', 
-                    move_request_type_id = '', ),
+                    page_size = 56, ),
                 quick_filter = ''
             )
         else:

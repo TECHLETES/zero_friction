@@ -1,5 +1,6 @@
 # MeteringImportStatus
 
+Possible values: 'uploading', 'uploadfailed', 'invalidformat', 'validating', 'toprocess', 'processing', 'processed', 'processedwithissues'
 
 ## Enum
 
@@ -10,10 +11,6 @@
 * `INVALIDFORMAT` (value: `'invalidformat'`)
 
 * `VALIDATING` (value: `'validating'`)
-
-* `VALID` (value: `'valid'`)
-
-* `VALIDATIONFAILED` (value: `'validationfailed'`)
 
 * `TOPROCESS` (value: `'toprocess'`)
 
