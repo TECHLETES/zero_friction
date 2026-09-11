@@ -13,6 +13,12 @@ Install the SDK directly from GitHub:
 pip install "git+https://github.com/TECHLETES/zero_friction.git@main"
 ```
 
+For stable consumers, prefer an explicit release tag once available, for example:
+
+```bash
+pip install "git+https://github.com/TECHLETES/zero_friction.git@v1"
+```
+
 For repository development, use the supported uv workflow:
 
 ```bash
@@ -52,12 +58,21 @@ print(contract)
 
 ```text
 sdk/                 Generated, independently installable API clients
+openapi_specs/       Zero Friction OpenAPI specification snapshots
 zero_friction/       Unified client and shared SDK logic
 tests/               Repository tests
 scripts/             Adoption and pre-commit helper scripts
 .devcontainer/       Reproducible development container setup
 .github/workflows/   CI, labeling, and staging checks
 ```
+
+## SDK regeneration and releases
+
+Do not regenerate the clients directly on `main`. OpenAPI specification updates are made on a dedicated branch, all affected clients are regenerated with the pinned OpenAPI Generator version, and dependent repositories are validated against that branch before the changes are merged.
+
+The current SDK is the `v1` baseline. A validated full regeneration from the newer Zero Friction OpenAPI specifications is intended to become `v1.1` after merge to `main`.
+
+See [docs/8_sdk_generation.md](docs/8_sdk_generation.md) for the complete generation, compatibility-testing, branch and release workflow.
 
 ## Development checks
 
@@ -75,4 +90,4 @@ and pip-audit. Generated clients are preserved as product code and excluded
 from root-package lint/type-check coverage settings.
 
 See `docs/quickstart.md` and the documents under `docs/` for the development,
-secret-management, dependency, quality, and devcontainer workflows.
+secret-management, dependency, quality, devcontainer, and SDK generation workflows.
