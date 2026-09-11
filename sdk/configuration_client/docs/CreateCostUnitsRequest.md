@@ -1,12 +1,11 @@
 # CreateCostUnitsRequest
 
-Request model for creating new cost units.  Cost units should correspond to entries in an external accounting system  to enable proper data synchronization during billing operations.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cost_units** | [**List[CreateCostUnitRequest]**](CreateCostUnitRequest.md) | List of cost units to create. | [optional] 
+**cost_units** | [**List[CreateCostUnitRequest]**](CreateCostUnitRequest.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +25,3 @@ create_cost_units_request_dict = create_cost_units_request_instance.to_dict()
 create_cost_units_request_from_dict = CreateCostUnitsRequest.from_dict(create_cost_units_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

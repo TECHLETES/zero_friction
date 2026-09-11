@@ -88,5 +88,3 @@ class UpdateCustomerGroupSettingsAutomaticSettlementRequest(BaseModel):
             "automaticSettlement": obj.get("automaticSettlement")
         })
         return _obj
-
-

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AttributeType(str, Enum):
     """
-    AttributeType
+    Possible values: 'meterserialnumber', 'externalidentifier', 'meteringtype', 'direction', 'parentmeterserialnumber', 'unitofmeasure', 'timeofuse', 'utilitytype', 'externalreference', 'readingorigin', 'readingmethod'
     """
 
     """
@@ -35,10 +35,10 @@ class AttributeType(str, Enum):
     TIMEOFUSE = 'timeofuse'
     UTILITYTYPE = 'utilitytype'
     EXTERNALREFERENCE = 'externalreference'
+    READINGORIGIN = 'readingorigin'
+    READINGMETHOD = 'readingmethod'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of AttributeType from a JSON string"""
         return cls(json.loads(json_str))
-
-

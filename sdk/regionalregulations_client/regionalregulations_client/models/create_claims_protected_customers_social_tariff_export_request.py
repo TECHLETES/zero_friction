@@ -83,5 +83,3 @@ class CreateClaimsProtectedCustomersSocialTariffExportRequest(BaseModel):
             "year": obj.get("year")
         })
         return _obj
-
-

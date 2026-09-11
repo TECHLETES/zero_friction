@@ -94,5 +94,3 @@ class ServiceStatusHistoryDTO(BaseModel):
             "serviceStatus": obj.get("serviceStatus")
         })
         return _obj
-
-

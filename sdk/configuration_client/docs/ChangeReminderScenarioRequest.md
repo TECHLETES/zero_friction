@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pdf_template** | [**ReminderPdfTemplateRequest**](ReminderPdfTemplateRequest.md) |  | [optional] 
-**email_template** | [**ReminderEmailTemplateRequest**](ReminderEmailTemplateRequest.md) |  | [optional] 
+**pdf_template** | [**ReminderPdfTemplateRequest**](ReminderPdfTemplateRequest.md) |  |
+**email_template** | [**ReminderEmailTemplateRequest**](ReminderEmailTemplateRequest.md) |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ change_reminder_scenario_request_dict = change_reminder_scenario_request_instanc
 change_reminder_scenario_request_from_dict = ChangeReminderScenarioRequest.from_dict(change_reminder_scenario_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

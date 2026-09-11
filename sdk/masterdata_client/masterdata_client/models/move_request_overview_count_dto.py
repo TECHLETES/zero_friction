@@ -93,5 +93,3 @@ class MoveRequestOverviewCountDTO(BaseModel):
             "toBeProcessed": obj.get("toBeProcessed")
         })
         return _obj
-
-

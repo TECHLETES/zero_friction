@@ -24,10 +24,10 @@ from typing_extensions import Self
 
 class ExportUblFormatSingleRequest(BaseModel):
     """
-    Represents a request to export a single invoice in UBL format.  This DTO is used to export one invoice in UBL (Universal Business Language) format.
+    ExportUblFormatSingleRequest
     """ # noqa: E501
-    invoice_id: Optional[StrictStr] = Field(default=None, description="The ID of the invoice to be exported in UBL format.", alias="invoiceId")
-    mark_as_exported: Optional[StrictBool] = Field(default=None, description="Indicates whether the exported invoice should be marked as exported in the system.", alias="markAsExported")
+    invoice_id: Optional[StrictStr] = Field(alias="invoiceId")
+    mark_as_exported: Optional[StrictBool] = Field(default=None, alias="markAsExported")
     __properties: ClassVar[List[str]] = ["invoiceId", "markAsExported"]
 
     model_config = ConfigDict(
@@ -90,5 +90,3 @@ class ExportUblFormatSingleRequest(BaseModel):
             "markAsExported": obj.get("markAsExported")
         })
         return _obj
-
-

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MandateStatus(str, Enum):
     """
-    MandateStatus
+    Possible values: 'requested', 'cancelled', 'signed'
     """
 
     """
@@ -34,5 +34,3 @@ class MandateStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of MandateStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

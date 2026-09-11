@@ -35,24 +35,48 @@ class TestChangeCorrectionNoteScenarioRequest(unittest.TestCase):
         model = ChangeCorrectionNoteScenarioRequest()
         if include_optional:
             return ChangeCorrectionNoteScenarioRequest(
-                default_communication_type = 'postal',
                 pdf_template = configuration_client.models.correction_note_pdf_template_request.CorrectionNotePdfTemplateRequest(
-                    envelope_settings = null, 
-                    show_country = True, 
-                    show_balance = True, 
-                    show_vat_specs = True, 
-                    show_custom_information = True, ),
+                    show_country = True,
+                    show_balance = True,
+                    show_vat_specs = True,
+                    show_custom_information = True,
+                    unit_price_excl_vat_for_persons = True,
+                    envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                        margin_position = 'left',
+                        margin = 56,
+                        margin_top = 56, ), ),
                 email_template = configuration_client.models.correction_note_email_template_request.CorrectionNoteEmailTemplateRequest(
-                    subject = '', 
+                    subject = '',
                     attachments = [
                         configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
-                            id = '', 
-                            internal_file_path = '', 
+                            id = '',
+                            internal_file_path = '',
                             file_name = '', )
-                        ], )
+                        ], ),
+                default_communication_type = 'none',
+                auto_fallback_to_postal = True
             )
         else:
             return ChangeCorrectionNoteScenarioRequest(
+                pdf_template = configuration_client.models.correction_note_pdf_template_request.CorrectionNotePdfTemplateRequest(
+                    show_country = True,
+                    show_balance = True,
+                    show_vat_specs = True,
+                    show_custom_information = True,
+                    unit_price_excl_vat_for_persons = True,
+                    envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                        margin_position = 'left',
+                        margin = 56,
+                        margin_top = 56, ), ),
+                email_template = configuration_client.models.correction_note_email_template_request.CorrectionNoteEmailTemplateRequest(
+                    subject = '',
+                    attachments = [
+                        configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
+                            id = '',
+                            internal_file_path = '',
+                            file_name = '', )
+                        ], ),
+                default_communication_type = 'none',
         )
         """
 

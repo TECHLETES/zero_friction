@@ -95,5 +95,3 @@ class ConsumerGroupReference(BaseModel):
             "code": obj.get("code")
         })
         return _obj
-
-

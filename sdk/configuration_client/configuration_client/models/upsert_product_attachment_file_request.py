@@ -19,7 +19,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from configuration_client.models.culture_info import CultureInfo
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,10 +26,10 @@ class UpsertProductAttachmentFileRequest(BaseModel):
     """
     UpsertProductAttachmentFileRequest
     """ # noqa: E501
-    culture: Optional[CultureInfo] = None
-    file_name: Optional[StrictStr] = Field(default=None, alias="fileName")
+    culture: StrictStr = Field(description="Culture identifier (e.g., 'en-US', 'nl-NL')")
+    file_name: Optional[StrictStr] = Field(alias="fileName")
     internal_file_name: Optional[StrictStr] = Field(default=None, alias="internalFileName")
-    attachment_id: Optional[StrictStr] = Field(default=None, alias="attachmentId")
+    attachment_id: Optional[StrictStr] = Field(alias="attachmentId")
     __properties: ClassVar[List[str]] = ["culture", "fileName", "internalFileName", "attachmentId"]
 
     model_config = ConfigDict(
@@ -72,11 +71,6 @@ class UpsertProductAttachmentFileRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if culture (nullable) is None
-        # and model_fields_set contains the field
-        if self.culture is None and "culture" in self.model_fields_set:
-            _dict['culture'] = None
-
         # set to None if file_name (nullable) is None
         # and model_fields_set contains the field
         if self.file_name is None and "file_name" in self.model_fields_set:
@@ -110,5 +104,3 @@ class UpsertProductAttachmentFileRequest(BaseModel):
             "attachmentId": obj.get("attachmentId")
         })
         return _obj
-
-

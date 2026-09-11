@@ -71,11 +71,6 @@ class PortalAdvanceChangeLimitRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if type (nullable) is None
-        # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
-
         return _dict
 
     @classmethod
@@ -93,5 +88,3 @@ class PortalAdvanceChangeLimitRequest(BaseModel):
             "type": obj.get("type")
         })
         return _obj
-
-

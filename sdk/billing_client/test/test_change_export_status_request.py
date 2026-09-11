@@ -39,6 +39,7 @@ class TestChangeExportStatusRequest(unittest.TestCase):
             )
         else:
             return ChangeExportStatusRequest(
+                export_status = 'notexported',
         )
         """
 

@@ -92,5 +92,3 @@ class UpdateRegionalRegulationsParametersForBELRequest(BaseModel):
             "socialTariffParameters": SocialTariffParametersRequest.from_dict(obj["socialTariffParameters"]) if obj.get("socialTariffParameters") is not None else None
         })
         return _obj
-
-

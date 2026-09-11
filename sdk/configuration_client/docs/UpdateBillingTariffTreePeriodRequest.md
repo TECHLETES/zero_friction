@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**product_id** | **str** |  | [optional] 
-**activity_period** | [**DateRange**](DateRange.md) |  | [optional] 
-**billing_tariff_ids** | **List[str]** |  | [optional] 
+**product_id** | **str** |  | [optional]
+**activity_period** | [**DateRange**](DateRange.md) |  |
+**billing_tariff_ids** | **List[str]** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ update_billing_tariff_tree_period_request_dict = update_billing_tariff_tree_peri
 update_billing_tariff_tree_period_request_from_dict = UpdateBillingTariffTreePeriodRequest.from_dict(update_billing_tariff_tree_period_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

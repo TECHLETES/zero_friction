@@ -29,10 +29,9 @@ class ChangeContractServiceLocationRequest(BaseModel):
     ChangeContractServiceLocationRequest
     """ # noqa: E501
     service_location_id: Optional[StrictStr] = Field(default=None, alias="serviceLocationId")
-    utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
-    external_identifier: Optional[StrictStr] = Field(default=None, alias="externalIdentifier")
-    estimated_consumptions: Optional[List[ChangeContractServiceEstimatedConsumptionRequest]] = Field(default=None, alias="estimatedConsumptions")
-    __properties: ClassVar[List[str]] = ["serviceLocationId", "utilityType", "externalIdentifier", "estimatedConsumptions"]
+    utility_type: UtilityType = Field(alias="utilityType")
+    estimated_consumptions: Optional[List[ChangeContractServiceEstimatedConsumptionRequest]] = Field(alias="estimatedConsumptions")
+    __properties: ClassVar[List[str]] = ["serviceLocationId", "utilityType", "estimatedConsumptions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,16 +84,6 @@ class ChangeContractServiceLocationRequest(BaseModel):
         if self.service_location_id is None and "service_location_id" in self.model_fields_set:
             _dict['serviceLocationId'] = None
 
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if external_identifier (nullable) is None
-        # and model_fields_set contains the field
-        if self.external_identifier is None and "external_identifier" in self.model_fields_set:
-            _dict['externalIdentifier'] = None
-
         # set to None if estimated_consumptions (nullable) is None
         # and model_fields_set contains the field
         if self.estimated_consumptions is None and "estimated_consumptions" in self.model_fields_set:
@@ -114,9 +103,6 @@ class ChangeContractServiceLocationRequest(BaseModel):
         _obj = cls.model_validate({
             "serviceLocationId": obj.get("serviceLocationId"),
             "utilityType": obj.get("utilityType"),
-            "externalIdentifier": obj.get("externalIdentifier"),
             "estimatedConsumptions": [ChangeContractServiceEstimatedConsumptionRequest.from_dict(_item) for _item in obj["estimatedConsumptions"]] if obj.get("estimatedConsumptions") is not None else None
         })
         return _obj
-
-

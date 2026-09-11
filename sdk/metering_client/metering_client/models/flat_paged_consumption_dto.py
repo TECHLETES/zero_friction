@@ -36,7 +36,8 @@ class FlatPagedConsumptionDTO(BaseModel):
     start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
     end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
     value: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties: ClassVar[List[str]] = ["externalChannelIdentifier", "complete", "userId", "productionDay", "productionDayStartUtc", "productionDayEndUtc", "startDateTime", "endDateTime", "value"]
+    time_of_use: Optional[StrictStr] = Field(default=None, alias="timeOfUse")
+    __properties: ClassVar[List[str]] = ["externalChannelIdentifier", "complete", "userId", "productionDay", "productionDayStartUtc", "productionDayEndUtc", "startDateTime", "endDateTime", "value", "timeOfUse"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,6 +88,11 @@ class FlatPagedConsumptionDTO(BaseModel):
         if self.user_id is None and "user_id" in self.model_fields_set:
             _dict['userId'] = None
 
+        # set to None if time_of_use (nullable) is None
+        # and model_fields_set contains the field
+        if self.time_of_use is None and "time_of_use" in self.model_fields_set:
+            _dict['timeOfUse'] = None
+
         return _dict
 
     @classmethod
@@ -107,8 +113,7 @@ class FlatPagedConsumptionDTO(BaseModel):
             "productionDayEndUtc": obj.get("productionDayEndUtc"),
             "startDateTime": obj.get("startDateTime"),
             "endDateTime": obj.get("endDateTime"),
-            "value": obj.get("value")
+            "value": obj.get("value"),
+            "timeOfUse": obj.get("timeOfUse")
         })
         return _obj
-
-

@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**product_id** | **str** |  | [optional] 
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetServiceLocationsQueryParams**](GetServiceLocationsQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetServiceLocationsQueryParams**](GetServiceLocationsQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
+**product_id** | **str** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ bulk_update_service_location_product_request_dict = bulk_update_service_location
 bulk_update_service_location_product_request_from_dict = BulkUpdateServiceLocationProductRequest.from_dict(bulk_update_service_location_product_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -1,15 +1,15 @@
 # CustomerCommunicationPreferencesDTO
 
-Represents communication preferences for a customer
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**culture** | **str** |  | [optional] 
-**invoice_communication_preferences** | [**List[InvoiceCommunicationPreferenceDTO]**](InvoiceCommunicationPreferenceDTO.md) | List of invoice communication preferences | [optional] 
-**annual_statement_communication_preference** | [**CommunicationType**](CommunicationType.md) | The communication type preference for annual statements | [optional] 
-**collection_flow_id** | **str** | Identifier for the collection flow | [optional] 
+**culture** | **str** |  | [optional]
+**invoice_communication_preferences** | [**List[InvoiceCommunicationPreferenceDTO]**](InvoiceCommunicationPreferenceDTO.md) |  | [optional]
+**annual_statement_communication_preference** | [**CommunicationType**](CommunicationType.md) |  | [optional]
+**prepayment_statement_communication_preference** | [**CommunicationType**](CommunicationType.md) |  | [optional]
+**collection_flow_id** | **str** |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ customer_communication_preferences_dto_dict = customer_communication_preferences
 customer_communication_preferences_dto_from_dict = CustomerCommunicationPreferencesDTO.from_dict(customer_communication_preferences_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

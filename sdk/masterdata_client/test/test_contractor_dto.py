@@ -41,7 +41,7 @@ class TestContractorDTO(unittest.TestCase):
                 payment_method = 'sct',
                 customer_type = 'person',
                 customer_group = masterdata_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
-                    id = '', 
+                    id = '',
                     name = '', )
             )
         else:

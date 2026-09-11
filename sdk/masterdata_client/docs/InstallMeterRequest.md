@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mutation_date_time** | **datetime** |  | [optional] 
-**service_location_id** | **str** |  | [optional] 
-**property_group_id** | **str** |  | [optional] 
-**address_installed** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
-**channel_templates** | [**List[ExternalChannelRequest]**](ExternalChannelRequest.md) |  | [optional] 
-**next_expected_reading_date** | **datetime** |  | [optional] 
-**reading_frequency** | [**MeterReadingFrequency**](MeterReadingFrequency.md) |  | [optional] 
+**mutation_date_time** | **datetime** |  |
+**service_location_id** | **str** |  | [optional]
+**property_group_id** | **str** |  | [optional]
+**address_installed** | [**AddressDTO**](AddressDTO.md) |  | [optional]
+**channel_templates** | [**List[ExternalChannelRequest]**](ExternalChannelRequest.md) |  | [optional]
+**next_expected_reading_date** | **datetime** |  | [optional]
+**reading_frequency** | [**MeterReadingFrequency**](MeterReadingFrequency.md) |  | [optional]
 
 ## Example
 
@@ -31,5 +31,3 @@ install_meter_request_dict = install_meter_request_instance.to_dict()
 install_meter_request_from_dict = InstallMeterRequest.from_dict(install_meter_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -129,5 +129,3 @@ class ServiceContractDTO(BaseModel):
             "currentContractStatus": obj.get("currentContractStatus")
         })
         return _obj
-
-

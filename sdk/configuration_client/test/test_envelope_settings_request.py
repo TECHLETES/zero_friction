@@ -41,6 +41,7 @@ class TestEnvelopeSettingsRequest(unittest.TestCase):
             )
         else:
             return EnvelopeSettingsRequest(
+                margin_position = 'left',
         )
         """
 

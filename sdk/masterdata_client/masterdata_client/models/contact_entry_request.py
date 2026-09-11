@@ -30,7 +30,7 @@ class ContactEntryRequest(BaseModel):
     value: Optional[StrictStr] = None
     description: Optional[StrictStr] = None
     primary_for_type: Optional[StrictBool] = Field(default=None, alias="primaryForType")
-    contact_type: Optional[ContactType] = Field(default=None, alias="contactType")
+    contact_type: ContactType = Field(alias="contactType")
     __properties: ClassVar[List[str]] = ["value", "description", "primaryForType", "contactType"]
 
     model_config = ConfigDict(
@@ -82,11 +82,6 @@ class ContactEntryRequest(BaseModel):
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
 
-        # set to None if contact_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.contact_type is None and "contact_type" in self.model_fields_set:
-            _dict['contactType'] = None
-
         return _dict
 
     @classmethod
@@ -105,5 +100,3 @@ class ContactEntryRequest(BaseModel):
             "contactType": obj.get("contactType")
         })
         return _obj
-
-

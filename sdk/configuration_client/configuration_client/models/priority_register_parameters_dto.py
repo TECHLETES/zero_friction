@@ -95,5 +95,3 @@ class PriorityRegisterParametersDTO(BaseModel):
             "vrCodesCustomEntityPropertyTypeId": obj.get("vrCodesCustomEntityPropertyTypeId")
         })
         return _obj
-
-

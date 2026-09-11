@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**rate** | **float** |  | [optional] 
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
+**rate** | **float** |  |
+**start_date_time** | **datetime** |  |
+**end_date_time** | **datetime** |  |
+**date_range** | **object** |  | [optional]
 
 ## Example
 
@@ -27,5 +28,3 @@ create_tax_code_rate_request_dict = create_tax_code_rate_request_instance.to_dic
 create_tax_code_rate_request_from_dict = CreateTaxCodeRateRequest.from_dict(create_tax_code_rate_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

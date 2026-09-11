@@ -24,9 +24,9 @@ from typing_extensions import Self
 
 class ExportOutgoingBankingTransactionBulkRequest(BaseModel):
     """
-    Represents a bulk request to export outgoing banking transactions.  This DTO is used to export multiple outgoing banking transactions in a single operation.
+    ExportOutgoingBankingTransactionBulkRequest
     """ # noqa: E501
-    outgoing_banking_transaction_ids: Optional[List[StrictStr]] = Field(default=None, description="List of outgoing banking transaction IDs to be exported.", alias="outgoingBankingTransactionIds")
+    outgoing_banking_transaction_ids: Optional[List[StrictStr]] = Field(alias="outgoingBankingTransactionIds")
     __properties: ClassVar[List[str]] = ["outgoingBankingTransactionIds"]
 
     model_config = ConfigDict(
@@ -88,5 +88,3 @@ class ExportOutgoingBankingTransactionBulkRequest(BaseModel):
             "outgoingBankingTransactionIds": obj.get("outgoingBankingTransactionIds")
         })
         return _obj
-
-

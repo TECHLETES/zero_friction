@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class InvoiceFrequency(str, Enum):
     """
-    InvoiceFrequency
+    Possible values: 'monthly', 'quarterly', 'halfyearly', 'yearly'
     """
 
     """
@@ -35,5 +35,3 @@ class InvoiceFrequency(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of InvoiceFrequency from a JSON string"""
         return cls(json.loads(json_str))
-
-

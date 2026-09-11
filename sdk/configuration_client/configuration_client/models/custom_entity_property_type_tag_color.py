@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class CustomEntityPropertyTypeTagColor(str, Enum):
     """
-    CustomEntityPropertyTypeTagColor
+    Possible values: 'blue', 'slate', 'green', 'yellow', 'orange', 'red'
     """
 
     """
@@ -37,5 +37,3 @@ class CustomEntityPropertyTypeTagColor(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of CustomEntityPropertyTypeTagColor from a JSON string"""
         return cls(json.loads(json_str))
-
-

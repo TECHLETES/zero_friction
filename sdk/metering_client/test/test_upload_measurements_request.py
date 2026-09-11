@@ -40,21 +40,37 @@ class TestUploadMeasurementsRequest(unittest.TestCase):
                 upload_identifier = '',
                 channel_measurements = [
                     metering_client.models.channel_measurement_request.ChannelMeasurementRequest(
-                        utility_type = null, 
-                        unit_of_measure = null, 
-                        metering_type = null, 
-                        direction = null, 
-                        meter_serial_number = '', 
-                        external_channel_identifier = '', 
+                        utility_type = 'none',
+                        unit_of_measure = 'none',
+                        metering_type = 'none',
+                        direction = 'offtake',
+                        meter_serial_number = '',
+                        external_channel_identifier = '',
                         measurements = [
                             metering_client.models.measurement_request.MeasurementRequest(
-                                reading_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                                reading_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                                 value = 1.337, )
                             ], )
                     ]
             )
         else:
             return UploadMeasurementsRequest(
+                channel_measurements = [
+                    metering_client.models.channel_measurement_request.ChannelMeasurementRequest(
+                        utility_type = 'none',
+                        unit_of_measure = 'none',
+                        metering_type = 'none',
+                        direction = 'offtake',
+                        meter_serial_number = '',
+                        external_channel_identifier = '',
+                        measurements = [
+                            metering_client.models.measurement_request.MeasurementRequest(
+                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                                reading_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                                value = 1.337, )
+                            ], )
+                    ],
         )
         """
 

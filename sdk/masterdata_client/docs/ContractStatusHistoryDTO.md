@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**contract_status** | [**ContractStatus**](ContractStatus.md) |  | [optional] 
-**mutation_date_time** | **datetime** |  | [optional] 
+**contract_status** | [**ContractStatus**](ContractStatus.md) |  | [optional]
+**mutation_date_time** | **datetime** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ contract_status_history_dto_dict = contract_status_history_dto_instance.to_dict(
 contract_status_history_dto_from_dict = ContractStatusHistoryDTO.from_dict(contract_status_history_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

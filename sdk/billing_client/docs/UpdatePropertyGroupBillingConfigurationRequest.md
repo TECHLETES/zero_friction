@@ -1,19 +1,19 @@
 # UpdatePropertyGroupBillingConfigurationRequest
 
-Represents a request to update a property group billing configuration.  This DTO is used to modify various billing settings for a property group, including frequencies, payment terms, and bank account details.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**property_group** | [**PropertyGroupReferenceDTO**](PropertyGroupReferenceDTO.md) | Reference to the property group being configured. | [optional] 
-**company_bank_account_id** | **str** | The ID of the company bank account to be used for billing. | [optional] 
-**advance_frequency** | [**AdvanceFrequency**](AdvanceFrequency.md) | The frequency at which advance payments will be collected. | [optional] 
-**invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) | The frequency at which invoices will be generated. | [optional] 
-**invoice_day** | **int** | The day of the month when invoices should be generated. | [optional] 
-**invoice_month** | **int** | The month when invoices should be generated (used for yearly frequency). | [optional] 
-**product_id** | **str** | The ID of the product associated with this billing configuration. | [optional] 
-**payment_terms_id** | **str** | The ID of the payment terms to be applied. | [optional] 
+**property_group** | [**PropertyGroupReferenceDTO**](PropertyGroupReferenceDTO.md) |  |
+**company_bank_account_id** | **str** |  | [optional]
+**advance_frequency** | [**AdvanceFrequency**](AdvanceFrequency.md) |  | [optional]
+**invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) |  | [optional]
+**invoice_day** | **int** |  | [optional]
+**invoice_month** | **int** |  | [optional]
+**product_id** | **str** |  | [optional]
+**payment_terms_id** | **str** |  | [optional]
+**default_billing_method** | [**ContractBillingMethod**](ContractBillingMethod.md) |  | [optional]
 
 ## Example
 
@@ -33,5 +33,3 @@ update_property_group_billing_configuration_request_dict = update_property_group
 update_property_group_billing_configuration_request_from_dict = UpdatePropertyGroupBillingConfigurationRequest.from_dict(update_property_group_billing_configuration_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

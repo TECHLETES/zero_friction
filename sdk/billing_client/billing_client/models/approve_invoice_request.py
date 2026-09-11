@@ -19,15 +19,15 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
 class ApproveInvoiceRequest(BaseModel):
     """
-    Represents a request to approve an invoice.  This DTO is used to approve a single invoice with a specified invoice date.
+    ApproveInvoiceRequest
     """ # noqa: E501
-    invoice_date: Optional[datetime] = Field(default=None, description="The date when the invoice should be approved.", alias="invoiceDate")
+    invoice_date: datetime = Field(alias="invoiceDate")
     __properties: ClassVar[List[str]] = ["invoiceDate"]
 
     model_config = ConfigDict(
@@ -84,5 +84,3 @@ class ApproveInvoiceRequest(BaseModel):
             "invoiceDate": obj.get("invoiceDate")
         })
         return _obj
-
-

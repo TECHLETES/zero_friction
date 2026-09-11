@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
-**rate** | **float** |  | [optional] 
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**rate** | **float** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ tax_rate_dto_dict = tax_rate_dto_instance.to_dict()
 tax_rate_dto_from_dict = TaxRateDTO.from_dict(tax_rate_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

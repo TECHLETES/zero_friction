@@ -36,7 +36,7 @@ class TestResolveMeteringIssueRequest(unittest.TestCase):
         if include_optional:
             return ResolveMeteringIssueRequest(
                 message = '',
-                resolution_value = None
+                resolution_value = metering_client.models.base_metering_issue_resolution_value_dto.BaseMeteringIssueResolutionValueDTO()
             )
         else:
             return ResolveMeteringIssueRequest(

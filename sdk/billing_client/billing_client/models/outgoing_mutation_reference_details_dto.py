@@ -19,17 +19,18 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from billing_client.models.outgoing_mutation_reference_parameters_dto import OutgoingMutationReferenceParametersDTO
 from billing_client.models.outgoing_mutation_type import OutgoingMutationType
 from typing import Optional, Set
 from typing_extensions import Self
 
 class OutgoingMutationReferenceDetailsDTO(BaseModel):
     """
-    Contains reference details for an outgoing mutation.  This DTO includes information about the type of reference and its associated parameters.
+    OutgoingMutationReferenceDetailsDTO
     """ # noqa: E501
-    reference_type: Optional[OutgoingMutationType] = Field(default=None, description="The type of reference for this mutation.", alias="referenceType")
-    reference_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the reference.", alias="referenceId")
-    parameters: Optional[Dict[str, Any]] = Field(default=None, description="The parameters associated with this reference.")
+    reference_type: Optional[OutgoingMutationType] = Field(default=None, alias="referenceType")
+    reference_id: Optional[StrictStr] = Field(default=None, alias="referenceId")
+    parameters: Optional[OutgoingMutationReferenceParametersDTO] = None
     __properties: ClassVar[List[str]] = ["referenceType", "referenceId", "parameters"]
 
     model_config = ConfigDict(
@@ -71,11 +72,9 @@ class OutgoingMutationReferenceDetailsDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if reference_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.reference_type is None and "reference_type" in self.model_fields_set:
-            _dict['referenceType'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of parameters
+        if self.parameters:
+            _dict['parameters'] = self.parameters.to_dict()
         # set to None if reference_id (nullable) is None
         # and model_fields_set contains the field
         if self.reference_id is None and "reference_id" in self.model_fields_set:
@@ -100,8 +99,6 @@ class OutgoingMutationReferenceDetailsDTO(BaseModel):
         _obj = cls.model_validate({
             "referenceType": obj.get("referenceType"),
             "referenceId": obj.get("referenceId"),
-            "parameters": obj.get("parameters")
+            "parameters": OutgoingMutationReferenceParametersDTO.from_dict(obj["parameters"]) if obj.get("parameters") is not None else None
         })
         return _obj
-
-

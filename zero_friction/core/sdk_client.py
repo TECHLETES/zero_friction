@@ -19,7 +19,6 @@ from regionalregulations_client import ApiClient as RegionalRegulationsClient
 from regionalregulations_client import Configuration as RegionalRegulationsConfiguration
 
 from zero_friction.patches.core import apply_patches
-from zero_friction.patches.patched_customers_api import PatchedCustomersApi
 
 from .config import ZeroFrictionConfig
 from .sdk_utils import (
@@ -117,11 +116,6 @@ class SDKClient:
         for attr, module in sdk_modules.items():
             client_instance = getattr(self, attr)
             create_api_classes_for_client(module, client_instance)
-
-        # Patch specific methods
-        self.masterdata_client.customers_api = PatchedCustomersApi(
-            self.masterdata_client.customers_api
-        )
 
         # Now wrap call_api of every client for retry/rate-limit handling.
         # A single shared rate limiter is used so all 8 clients count against

@@ -28,8 +28,8 @@ class CreatePaymentDelayRequest(BaseModel):
     """
     CreatePaymentDelayRequest
     """ # noqa: E501
-    invoice_type: Optional[InvoiceType] = Field(default=None, alias="invoiceType")
-    payment_delay: Optional[PaymentDelay] = Field(default=None, alias="paymentDelay")
+    invoice_type: InvoiceType = Field(alias="invoiceType")
+    payment_delay: PaymentDelay = Field(alias="paymentDelay")
     value: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["invoiceType", "paymentDelay", "value"]
 
@@ -72,16 +72,6 @@ class CreatePaymentDelayRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if invoice_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_type is None and "invoice_type" in self.model_fields_set:
-            _dict['invoiceType'] = None
-
-        # set to None if payment_delay (nullable) is None
-        # and model_fields_set contains the field
-        if self.payment_delay is None and "payment_delay" in self.model_fields_set:
-            _dict['paymentDelay'] = None
-
         return _dict
 
     @classmethod
@@ -99,5 +89,3 @@ class CreatePaymentDelayRequest(BaseModel):
             "value": obj.get("value")
         })
         return _obj
-
-

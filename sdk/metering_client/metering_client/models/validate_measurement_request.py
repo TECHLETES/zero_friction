@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from metering_client.models.measurement_reading_origin import MeasurementReadingOrigin
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,11 +28,13 @@ class ValidateMeasurementRequest(BaseModel):
     """
     ValidateMeasurementRequest
     """ # noqa: E501
-    end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
+    start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
+    end_date_time: datetime = Field(alias="endDateTime")
     value: Optional[Union[StrictFloat, StrictInt]] = None
-    meter_id: Optional[StrictStr] = Field(default=None, alias="meterId")
-    external_channel_id: Optional[StrictStr] = Field(default=None, alias="externalChannelId")
-    __properties: ClassVar[List[str]] = ["endDateTime", "value", "meterId", "externalChannelId"]
+    reading_origin: Optional[MeasurementReadingOrigin] = Field(default=None, alias="readingOrigin")
+    meter_id: Optional[StrictStr] = Field(alias="meterId")
+    external_channel_id: Optional[StrictStr] = Field(alias="externalChannelId")
+    __properties: ClassVar[List[str]] = ["startDateTime", "endDateTime", "value", "readingOrigin", "meterId", "externalChannelId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +75,21 @@ class ValidateMeasurementRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if start_date_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_date_time is None and "start_date_time" in self.model_fields_set:
+            _dict['startDateTime'] = None
+
+        # set to None if value (nullable) is None
+        # and model_fields_set contains the field
+        if self.value is None and "value" in self.model_fields_set:
+            _dict['value'] = None
+
+        # set to None if reading_origin (nullable) is None
+        # and model_fields_set contains the field
+        if self.reading_origin is None and "reading_origin" in self.model_fields_set:
+            _dict['readingOrigin'] = None
+
         # set to None if meter_id (nullable) is None
         # and model_fields_set contains the field
         if self.meter_id is None and "meter_id" in self.model_fields_set:
@@ -94,11 +112,11 @@ class ValidateMeasurementRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "startDateTime": obj.get("startDateTime"),
             "endDateTime": obj.get("endDateTime"),
             "value": obj.get("value"),
+            "readingOrigin": obj.get("readingOrigin"),
             "meterId": obj.get("meterId"),
             "externalChannelId": obj.get("externalChannelId")
         })
         return _obj
-
-

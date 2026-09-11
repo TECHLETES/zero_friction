@@ -26,14 +26,15 @@ class GetAnnualStatementsQueryParams(BaseModel):
     """
     GetAnnualStatementsQueryParams
     """ # noqa: E501
-    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
-    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
-    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
     customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
     statuses: Optional[List[StrictStr]] = None
     year: Optional[StrictInt] = None
     limit: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "customerId", "statuses", "year", "limit"]
+    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
+    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
+    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["customerId", "statuses", "year", "limit", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,30 +75,10 @@ class GetAnnualStatementsQueryParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if flex_search (nullable) is None
-        # and model_fields_set contains the field
-        if self.flex_search is None and "flex_search" in self.model_fields_set:
-            _dict['flexSearch'] = None
-
-        # set to None if include_only_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
         # set to None if customer_id (nullable) is None
         # and model_fields_set contains the field
         if self.customer_id is None and "customer_id" in self.model_fields_set:
             _dict['customerId'] = None
-
-        # set to None if statuses (nullable) is None
-        # and model_fields_set contains the field
-        if self.statuses is None and "statuses" in self.model_fields_set:
-            _dict['statuses'] = None
 
         # set to None if year (nullable) is None
         # and model_fields_set contains the field
@@ -108,6 +89,16 @@ class GetAnnualStatementsQueryParams(BaseModel):
         # and model_fields_set contains the field
         if self.limit is None and "limit" in self.model_fields_set:
             _dict['limit'] = None
+
+        # set to None if flex_search (nullable) is None
+        # and model_fields_set contains the field
+        if self.flex_search is None and "flex_search" in self.model_fields_set:
+            _dict['flexSearch'] = None
+
+        # set to None if page_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
 
         return _dict
 
@@ -121,14 +112,13 @@ class GetAnnualStatementsQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
             "customerId": obj.get("customerId"),
             "statuses": obj.get("statuses"),
             "year": obj.get("year"),
-            "limit": obj.get("limit")
+            "limit": obj.get("limit"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
-
-

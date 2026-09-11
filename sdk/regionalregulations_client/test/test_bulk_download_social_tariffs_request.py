@@ -37,13 +37,14 @@ class TestBulkDownloadSocialTariffsRequest(unittest.TestCase):
             return BulkDownloadSocialTariffsRequest(
                 only_validate = True,
                 var_query_params = regionalregulations_client.models.base_query_params.BaseQueryParams(
-                    flex_search = '', 
+                    flex_search = '',
                     include_only_ids = [
                         ''
-                        ], 
+                        ],
                     exclude_ids = [
                         ''
-                        ], ),
+                        ],
+                    page_size = 56, ),
                 quick_filter = '',
                 social_tariff_ids = [
                     ''

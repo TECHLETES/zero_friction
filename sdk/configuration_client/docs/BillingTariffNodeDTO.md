@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billing_tariff_id** | **str** |  | [optional] 
-**calculation_parameters** | [**BaseTariffCalculationTypeParametersDTO**](BaseTariffCalculationTypeParametersDTO.md) |  | [optional] 
-**condition** | **object** |  | [optional] 
+**billing_tariff_id** | **str** |  | [optional]
+**calculation_parameters** | [**BaseTariffCalculationTypeParametersDTO**](BaseTariffCalculationTypeParametersDTO.md) |  | [optional]
+**condition** | [**BaseTariffConditionTypeParametersDTO**](BaseTariffConditionTypeParametersDTO.md) |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ billing_tariff_node_dto_dict = billing_tariff_node_dto_instance.to_dict()
 billing_tariff_node_dto_from_dict = BillingTariffNodeDTO.from_dict(billing_tariff_node_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class CollectionChargeType(str, Enum):
     """
-    CollectionChargeType
+    Possible values: 'none', 'fixed', 'percentageofopenamount', 'tieredpercentageofopenamount'
     """
 
     """
@@ -35,5 +35,3 @@ class CollectionChargeType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of CollectionChargeType from a JSON string"""
         return cls(json.loads(json_str))
-
-

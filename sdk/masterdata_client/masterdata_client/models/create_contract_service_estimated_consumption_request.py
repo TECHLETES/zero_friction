@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from masterdata_client.models.direction import Direction
 from masterdata_client.models.metering_type import MeteringType
 from masterdata_client.models.unit_of_measure import UnitOfMeasure
 from typing import Optional, Set
@@ -28,12 +29,12 @@ class CreateContractServiceEstimatedConsumptionRequest(BaseModel):
     """
     CreateContractServiceEstimatedConsumptionRequest
     """ # noqa: E501
-    consumer_group_id: Optional[StrictStr] = Field(default=None, alias="consumerGroupId")
-    value: Optional[Union[StrictFloat, StrictInt]] = None
-    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, alias="unitOfMeasure")
-    metering_type: Optional[MeteringType] = Field(default=None, alias="meteringType")
-    is_manual_entry: Optional[StrictBool] = Field(default=None, alias="isManualEntry")
-    __properties: ClassVar[List[str]] = ["consumerGroupId", "value", "unitOfMeasure", "meteringType", "isManualEntry"]
+    consumer_group_id: Optional[StrictStr] = Field(alias="consumerGroupId")
+    unit_of_measure: UnitOfMeasure = Field(alias="unitOfMeasure")
+    metering_type: MeteringType = Field(alias="meteringType")
+    direction: Optional[Direction] = None
+    consumption_quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="consumptionQuantity")
+    __properties: ClassVar[List[str]] = ["consumerGroupId", "unitOfMeasure", "meteringType", "direction", "consumptionQuantity"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,15 +80,10 @@ class CreateContractServiceEstimatedConsumptionRequest(BaseModel):
         if self.consumer_group_id is None and "consumer_group_id" in self.model_fields_set:
             _dict['consumerGroupId'] = None
 
-        # set to None if unit_of_measure (nullable) is None
+        # set to None if consumption_quantity (nullable) is None
         # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
-
-        # set to None if metering_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.metering_type is None and "metering_type" in self.model_fields_set:
-            _dict['meteringType'] = None
+        if self.consumption_quantity is None and "consumption_quantity" in self.model_fields_set:
+            _dict['consumptionQuantity'] = None
 
         return _dict
 
@@ -102,11 +98,9 @@ class CreateContractServiceEstimatedConsumptionRequest(BaseModel):
 
         _obj = cls.model_validate({
             "consumerGroupId": obj.get("consumerGroupId"),
-            "value": obj.get("value"),
             "unitOfMeasure": obj.get("unitOfMeasure"),
             "meteringType": obj.get("meteringType"),
-            "isManualEntry": obj.get("isManualEntry")
+            "direction": obj.get("direction"),
+            "consumptionQuantity": obj.get("consumptionQuantity")
         })
         return _obj
-
-

@@ -37,20 +37,23 @@ class TestUpdateBillingTariffTreeRequest(unittest.TestCase):
             return UpdateBillingTariffTreeRequest(
                 product_id = '',
                 activity_period = configuration_client.models.date_range.DateRange(
-                    start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                     end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
                 deleted_billing_tariff_ids = [
                     ''
                     ],
                 nodes = [
                     configuration_client.models.billing_tariff_node_dto.BillingTariffNodeDTO(
-                        billing_tariff_id = '', 
-                        calculation_parameters = null, 
-                        condition = null, )
+                        billing_tariff_id = '',
+                        calculation_parameters = configuration_client.models.base_tariff_calculation_type_parameters_dto.BaseTariffCalculationTypeParametersDTO(),
+                        condition = configuration_client.models.base_tariff_condition_type_parameters_dto.BaseTariffConditionTypeParametersDTO(), )
                     ]
             )
         else:
             return UpdateBillingTariffTreeRequest(
+                activity_period = configuration_client.models.date_range.DateRange(
+                    start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
         )
         """
 

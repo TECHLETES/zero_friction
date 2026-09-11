@@ -41,6 +41,9 @@ class TestPaymentEntityReferenceRequest(unittest.TestCase):
             )
         else:
             return PaymentEntityReferenceRequest(
+                transaction_id = '',
+                reference_id = '',
+                reference_type = 'payment',
         )
         """
 

@@ -37,15 +37,16 @@ class TestBulkDeleteMoveRequestRequest(unittest.TestCase):
             return BulkDeleteMoveRequestRequest(
                 only_validate = True,
                 var_query_params = masterdata_client.models.get_move_requests_query_params.GetMoveRequestsQueryParams(
-                    flex_search = '', 
+                    location_id = '',
+                    move_request_type_id = '',
+                    flex_search = '',
                     include_only_ids = [
                         ''
-                        ], 
+                        ],
                     exclude_ids = [
                         ''
-                        ], 
-                    location_id = '', 
-                    move_request_type_id = '', ),
+                        ],
+                    page_size = 56, ),
                 quick_filter = ''
             )
         else:

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**domain_name** | **str** |  | [optional] 
+**domain_name** | **str** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ update_domain_authentication_parameters_request_dict = update_domain_authenticat
 update_domain_authentication_parameters_request_from_dict = UpdateDomainAuthenticationParametersRequest.from_dict(update_domain_authentication_parameters_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

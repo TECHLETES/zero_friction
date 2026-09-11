@@ -36,26 +36,29 @@ class TestUpdateMoveRequestServiceLocationDetailsRequest(unittest.TestCase):
         if include_optional:
             return UpdateMoveRequestServiceLocationDetailsRequest(
                 address = masterdata_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 services = [
                     masterdata_client.models.move_request_service_location_service_details_request.MoveRequestServiceLocationServiceDetailsRequest(
-                        external_identifier = '', 
-                        utility_type = null, )
+                        utility_type = 'none', )
                     ],
                 internal_id = ''
             )
         else:
             return UpdateMoveRequestServiceLocationDetailsRequest(
+                services = [
+                    masterdata_client.models.move_request_service_location_service_details_request.MoveRequestServiceLocationServiceDetailsRequest(
+                        utility_type = 'none', )
+                    ],
         )
         """
 

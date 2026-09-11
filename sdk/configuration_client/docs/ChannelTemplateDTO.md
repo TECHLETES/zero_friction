@@ -5,14 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data_frequency** | [**DataFrequency**](DataFrequency.md) |  | [optional] 
-**incrementation_type** | [**IncrementationType**](IncrementationType.md) |  | [optional] 
-**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**direction** | [**Direction**](Direction.md) |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
-**time_of_use** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
+**data_frequency** | [**DataFrequency**](DataFrequency.md) |  | [optional]
+**incrementation_type** | [**IncrementationType**](IncrementationType.md) |  | [optional]
+**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional]
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional]
+**direction** | [**Direction**](Direction.md) |  | [optional]
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional]
+**time_of_use** | **str** |  | [optional]
+**description** | **str** |  | [optional]
+**reset_day** | **int** |  | [optional]
+**reset_month** | **int** |  | [optional]
+**reset_hour** | **int** |  | [optional]
 
 ## Example
 
@@ -32,5 +35,3 @@ channel_template_dto_dict = channel_template_dto_instance.to_dict()
 channel_template_dto_from_dict = ChannelTemplateDTO.from_dict(channel_template_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

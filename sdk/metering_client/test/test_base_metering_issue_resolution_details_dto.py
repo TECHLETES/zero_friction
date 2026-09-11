@@ -35,11 +35,15 @@ class TestBaseMeteringIssueResolutionDetailsDTO(unittest.TestCase):
         model = BaseMeteringIssueResolutionDetailsDTO()
         if include_optional:
             return BaseMeteringIssueResolutionDetailsDTO(
+                type = 'BaseMeteringIssueResolutionDetailsDTO:Automatic',
+                resolved_reason = 'newmeasurementimportjob',
                 resolved_by_user_id = '',
-                new_value = 1.337
+                new_value = 1.337,
+                message = ''
             )
         else:
             return BaseMeteringIssueResolutionDetailsDTO(
+                type = 'BaseMeteringIssueResolutionDetailsDTO:Automatic',
         )
         """
 

@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**retry_attempt** | **int** |  | [optional] 
-**retry_action** | [**PaymentRetryAction**](PaymentRetryAction.md) |  | [optional] 
-**value** | **int** |  | [optional] 
+**retry_attempt** | **int** |  | [optional]
+**retry_action** | [**PaymentRetryAction**](PaymentRetryAction.md) |  |
+**value** | **int** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ payment_retry_parameter_request_dict = payment_retry_parameter_request_instance.
 payment_retry_parameter_request_from_dict = PaymentRetryParameterRequest.from_dict(payment_retry_parameter_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

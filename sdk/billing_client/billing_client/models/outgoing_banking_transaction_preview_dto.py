@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
 from billing_client.models.outgoing_banking_transaction_preview_insights_dto import OutgoingBankingTransactionPreviewInsightsDTO
 from typing import Optional, Set
@@ -25,10 +25,10 @@ from typing_extensions import Self
 
 class OutgoingBankingTransactionPreviewDTO(BaseModel):
     """
-    Provides a preview of outgoing banking transactions, separating requests and refunds.  This DTO contains insights about both payment requests and refund transactions.
+    OutgoingBankingTransactionPreviewDTO
     """ # noqa: E501
-    requests: Optional[OutgoingBankingTransactionPreviewInsightsDTO] = Field(default=None, description="Insights about payment requests in the preview.")
-    refunds: Optional[OutgoingBankingTransactionPreviewInsightsDTO] = Field(default=None, description="Insights about refund transactions in the preview.")
+    requests: Optional[OutgoingBankingTransactionPreviewInsightsDTO] = None
+    refunds: Optional[OutgoingBankingTransactionPreviewInsightsDTO] = None
     __properties: ClassVar[List[str]] = ["requests", "refunds"]
 
     model_config = ConfigDict(
@@ -102,5 +102,3 @@ class OutgoingBankingTransactionPreviewDTO(BaseModel):
             "refunds": OutgoingBankingTransactionPreviewInsightsDTO.from_dict(obj["refunds"]) if obj.get("refunds") is not None else None
         })
         return _obj
-
-

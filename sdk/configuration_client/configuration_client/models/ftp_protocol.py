@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class FtpProtocol(str, Enum):
     """
-    FtpProtocol
+    Possible values: 'none', 'ssl2', 'ssl3', 'tls', 'default', 'tls11', 'tls12'
     """
 
     """
@@ -38,5 +38,3 @@ class FtpProtocol(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of FtpProtocol from a JSON string"""
         return cls(json.loads(json_str))
-
-

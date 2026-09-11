@@ -28,10 +28,10 @@ class CreateConsumerGroupRequest(BaseModel):
     """
     CreateConsumerGroupRequest
     """ # noqa: E501
-    code: Optional[StrictStr] = None
+    code: Optional[StrictStr]
     description: Optional[StrictStr] = None
-    utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
-    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, alias="unitOfMeasure")
+    utility_type: UtilityType = Field(alias="utilityType")
+    unit_of_measure: UnitOfMeasure = Field(alias="unitOfMeasure")
     estimated_annual_volume: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="estimatedAnnualVolume")
     __properties: ClassVar[List[str]] = ["code", "description", "utilityType", "unitOfMeasure", "estimatedAnnualVolume"]
 
@@ -84,16 +84,6 @@ class CreateConsumerGroupRequest(BaseModel):
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
 
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
-
         return _dict
 
     @classmethod
@@ -113,5 +103,3 @@ class CreateConsumerGroupRequest(BaseModel):
             "estimatedAnnualVolume": obj.get("estimatedAnnualVolume")
         })
         return _obj
-
-

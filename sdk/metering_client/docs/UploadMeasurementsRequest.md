@@ -1,15 +1,14 @@
 # UploadMeasurementsRequest
 
-Request data to upload measurements for specific meters.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**automatic_processing** | **bool** | Indicates if we should process the measurement automatically after validation has succeeded.  By default, this value is set to &lt;value&gt;true&lt;/value&gt;. | [optional] 
-**source** | **str** | Free text field to mark the source of the measurements. | [optional] 
-**upload_identifier** | **str** | Optional field which allows you to configure an identifier for the upload of measurements. | [optional] 
-**channel_measurements** | [**List[ChannelMeasurementRequest]**](ChannelMeasurementRequest.md) | Should contain the list of measurements for a specific channel. | [optional] 
+**automatic_processing** | **bool** |  | [optional]
+**source** | **str** |  | [optional]
+**upload_identifier** | **str** |  | [optional]
+**channel_measurements** | [**List[ChannelMeasurementRequest]**](ChannelMeasurementRequest.md) |  |
 
 ## Example
 
@@ -29,5 +28,3 @@ upload_measurements_request_dict = upload_measurements_request_instance.to_dict(
 upload_measurements_request_from_dict = UploadMeasurementsRequest.from_dict(upload_measurements_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

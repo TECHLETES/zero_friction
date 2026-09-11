@@ -19,7 +19,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from billing_client.models.digit_shapes import DigitShapes
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -54,7 +53,7 @@ class NumberFormatInfo(BaseModel):
     percent_symbol: Optional[StrictStr] = Field(default=None, alias="percentSymbol")
     per_mille_symbol: Optional[StrictStr] = Field(default=None, alias="perMilleSymbol")
     native_digits: Optional[List[StrictStr]] = Field(default=None, alias="nativeDigits")
-    digit_substitution: Optional[DigitShapes] = Field(default=None, alias="digitSubstitution")
+    digit_substitution: Optional[StrictInt] = Field(default=None, alias="digitSubstitution")
     __properties: ClassVar[List[str]] = ["currencyDecimalDigits", "currencyDecimalSeparator", "isReadOnly", "currencyGroupSizes", "numberGroupSizes", "percentGroupSizes", "currencyGroupSeparator", "currencySymbol", "naNSymbol", "currencyNegativePattern", "numberNegativePattern", "percentPositivePattern", "percentNegativePattern", "negativeInfinitySymbol", "negativeSign", "numberDecimalDigits", "numberDecimalSeparator", "numberGroupSeparator", "currencyPositivePattern", "positiveInfinitySymbol", "positiveSign", "percentDecimalDigits", "percentDecimalSeparator", "percentGroupSeparator", "percentSymbol", "perMilleSymbol", "nativeDigits", "digitSubstitution"]
 
     model_config = ConfigDict(
@@ -87,10 +86,8 @@ class NumberFormatInfo(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "is_read_only",
         ])
 
         _dict = self.model_dump(
@@ -98,96 +95,6 @@ class NumberFormatInfo(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if currency_decimal_separator (nullable) is None
-        # and model_fields_set contains the field
-        if self.currency_decimal_separator is None and "currency_decimal_separator" in self.model_fields_set:
-            _dict['currencyDecimalSeparator'] = None
-
-        # set to None if currency_group_sizes (nullable) is None
-        # and model_fields_set contains the field
-        if self.currency_group_sizes is None and "currency_group_sizes" in self.model_fields_set:
-            _dict['currencyGroupSizes'] = None
-
-        # set to None if number_group_sizes (nullable) is None
-        # and model_fields_set contains the field
-        if self.number_group_sizes is None and "number_group_sizes" in self.model_fields_set:
-            _dict['numberGroupSizes'] = None
-
-        # set to None if percent_group_sizes (nullable) is None
-        # and model_fields_set contains the field
-        if self.percent_group_sizes is None and "percent_group_sizes" in self.model_fields_set:
-            _dict['percentGroupSizes'] = None
-
-        # set to None if currency_group_separator (nullable) is None
-        # and model_fields_set contains the field
-        if self.currency_group_separator is None and "currency_group_separator" in self.model_fields_set:
-            _dict['currencyGroupSeparator'] = None
-
-        # set to None if currency_symbol (nullable) is None
-        # and model_fields_set contains the field
-        if self.currency_symbol is None and "currency_symbol" in self.model_fields_set:
-            _dict['currencySymbol'] = None
-
-        # set to None if na_n_symbol (nullable) is None
-        # and model_fields_set contains the field
-        if self.na_n_symbol is None and "na_n_symbol" in self.model_fields_set:
-            _dict['naNSymbol'] = None
-
-        # set to None if negative_infinity_symbol (nullable) is None
-        # and model_fields_set contains the field
-        if self.negative_infinity_symbol is None and "negative_infinity_symbol" in self.model_fields_set:
-            _dict['negativeInfinitySymbol'] = None
-
-        # set to None if negative_sign (nullable) is None
-        # and model_fields_set contains the field
-        if self.negative_sign is None and "negative_sign" in self.model_fields_set:
-            _dict['negativeSign'] = None
-
-        # set to None if number_decimal_separator (nullable) is None
-        # and model_fields_set contains the field
-        if self.number_decimal_separator is None and "number_decimal_separator" in self.model_fields_set:
-            _dict['numberDecimalSeparator'] = None
-
-        # set to None if number_group_separator (nullable) is None
-        # and model_fields_set contains the field
-        if self.number_group_separator is None and "number_group_separator" in self.model_fields_set:
-            _dict['numberGroupSeparator'] = None
-
-        # set to None if positive_infinity_symbol (nullable) is None
-        # and model_fields_set contains the field
-        if self.positive_infinity_symbol is None and "positive_infinity_symbol" in self.model_fields_set:
-            _dict['positiveInfinitySymbol'] = None
-
-        # set to None if positive_sign (nullable) is None
-        # and model_fields_set contains the field
-        if self.positive_sign is None and "positive_sign" in self.model_fields_set:
-            _dict['positiveSign'] = None
-
-        # set to None if percent_decimal_separator (nullable) is None
-        # and model_fields_set contains the field
-        if self.percent_decimal_separator is None and "percent_decimal_separator" in self.model_fields_set:
-            _dict['percentDecimalSeparator'] = None
-
-        # set to None if percent_group_separator (nullable) is None
-        # and model_fields_set contains the field
-        if self.percent_group_separator is None and "percent_group_separator" in self.model_fields_set:
-            _dict['percentGroupSeparator'] = None
-
-        # set to None if percent_symbol (nullable) is None
-        # and model_fields_set contains the field
-        if self.percent_symbol is None and "percent_symbol" in self.model_fields_set:
-            _dict['percentSymbol'] = None
-
-        # set to None if per_mille_symbol (nullable) is None
-        # and model_fields_set contains the field
-        if self.per_mille_symbol is None and "per_mille_symbol" in self.model_fields_set:
-            _dict['perMilleSymbol'] = None
-
-        # set to None if native_digits (nullable) is None
-        # and model_fields_set contains the field
-        if self.native_digits is None and "native_digits" in self.model_fields_set:
-            _dict['nativeDigits'] = None
-
         return _dict
 
     @classmethod
@@ -230,5 +137,3 @@ class NumberFormatInfo(BaseModel):
             "digitSubstitution": obj.get("digitSubstitution")
         })
         return _obj
-
-

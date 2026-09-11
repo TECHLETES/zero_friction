@@ -35,55 +35,29 @@ class TestOrganizationScenarioDTO(unittest.TestCase):
         model = OrganizationScenarioDTO()
         if include_optional:
             return OrganizationScenarioDTO(
-                id = '',
-                entity_type = configuration_client.models.entity_type_dto.EntityTypeDTO(
-                    entity_subject_type = null, 
-                    entity_subject_sub_type = '', ),
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
-                pdf_template = configuration_client.models.base_pdf_template_dto.BasePdfTemplateDTO(
-                    file_name = '', 
-                    use_case = null, 
-                    use_build_in = True, 
-                    custom_template_internal_file_path = '', 
-                    custom_template_file_name = '', 
-                    translation_status = null, 
-                    envelope_settings = null, 
-                    render_header_footer = True, 
-                    header_text = '', 
-                    footer_text = '', 
-                    override_external_printing_checks = True, 
-                    supports_external_printing = True, ),
-                email_template = configuration_client.models.base_email_template_dto.BaseEmailTemplateDTO(
-                    file_name = '', 
-                    use_case = null, 
-                    use_build_in = True, 
-                    custom_template_internal_file_path = '', 
-                    custom_template_file_name = '', 
-                    translation_status = null, 
-                    subject = '', 
-                    attachments = [
-                        configuration_client.models.template_attachment_dto.TemplateAttachmentDTO(
-                            id = '', 
-                            internal_file_path = '', 
-                            file_name = '', )
-                        ], ),
-                default_communication_type = 'postal',
+                pdf_template = configuration_client.models.base_pdf_template_dto.BasePdfTemplateDTO(),
+                email_template = configuration_client.models.base_email_template_dto.BaseEmailTemplateDTO(),
+                default_communication_type = 'none',
+                auto_fallback_to_postal = True,
                 translation_list_id = '',
                 translation_list_history_id = '',
                 data_type = 'invoice',
                 entity_subject_type = 'none',
                 entity_subject_sub_type = '',
                 grouping_type = 'invoice',
+                entity_type = configuration_client.models.entity_type_dto.EntityTypeDTO(
+                    entity_subject_type = 'none',
+                    entity_subject_sub_type = '', ),
                 available_communication_types = [
-                    'postal'
-                    ]
+                    'none'
+                    ],
+                organisation_id = '',
+                id = '',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return OrganizationScenarioDTO(

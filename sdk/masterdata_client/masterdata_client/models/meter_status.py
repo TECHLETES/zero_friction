@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MeterStatus(str, Enum):
     """
-    MeterStatus
+    Possible values: 'requested', 'installed', 'removed'
     """
 
     """
@@ -34,5 +34,3 @@ class MeterStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of MeterStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

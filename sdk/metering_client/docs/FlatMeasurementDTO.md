@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**external_channel_identifier** | **str** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
-**value** | **float** |  | [optional] 
+**external_channel_identifier** | **str** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**value** | **float** |  | [optional]
+**time_of_use** | **str** |  | [optional]
 
 ## Example
 
@@ -27,5 +28,3 @@ flat_measurement_dto_dict = flat_measurement_dto_instance.to_dict()
 flat_measurement_dto_from_dict = FlatMeasurementDTO.from_dict(flat_measurement_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

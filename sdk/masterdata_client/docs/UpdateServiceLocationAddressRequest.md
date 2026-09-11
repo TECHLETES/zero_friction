@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
+**address** | [**AddressDTO**](AddressDTO.md) |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ update_service_location_address_request_dict = update_service_location_address_r
 update_service_location_address_request_from_dict = UpdateServiceLocationAddressRequest.from_dict(update_service_location_address_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

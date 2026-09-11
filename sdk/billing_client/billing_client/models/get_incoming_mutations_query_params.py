@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,15 +27,16 @@ class GetIncomingMutationsQueryParams(BaseModel):
     """
     GetIncomingMutationsQueryParams
     """ # noqa: E501
-    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
-    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
-    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
     status: Optional[StrictStr] = None
     incoming_mutation_type: Optional[StrictStr] = Field(default=None, alias="incomingMutationType")
     incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="incomingBankingTransactionId")
     transaction_date_start: Optional[datetime] = Field(default=None, alias="transactionDateStart")
     transaction_date_end: Optional[datetime] = Field(default=None, alias="transactionDateEnd")
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "status", "incomingMutationType", "incomingBankingTransactionId", "transactionDateStart", "transactionDateEnd"]
+    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
+    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
+    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["status", "incomingMutationType", "incomingBankingTransactionId", "transactionDateStart", "transactionDateEnd", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,36 +77,6 @@ class GetIncomingMutationsQueryParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if flex_search (nullable) is None
-        # and model_fields_set contains the field
-        if self.flex_search is None and "flex_search" in self.model_fields_set:
-            _dict['flexSearch'] = None
-
-        # set to None if include_only_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
-
-        # set to None if incoming_mutation_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.incoming_mutation_type is None and "incoming_mutation_type" in self.model_fields_set:
-            _dict['incomingMutationType'] = None
-
-        # set to None if incoming_banking_transaction_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.incoming_banking_transaction_id is None and "incoming_banking_transaction_id" in self.model_fields_set:
-            _dict['incomingBankingTransactionId'] = None
-
         # set to None if transaction_date_start (nullable) is None
         # and model_fields_set contains the field
         if self.transaction_date_start is None and "transaction_date_start" in self.model_fields_set:
@@ -115,6 +86,16 @@ class GetIncomingMutationsQueryParams(BaseModel):
         # and model_fields_set contains the field
         if self.transaction_date_end is None and "transaction_date_end" in self.model_fields_set:
             _dict['transactionDateEnd'] = None
+
+        # set to None if flex_search (nullable) is None
+        # and model_fields_set contains the field
+        if self.flex_search is None and "flex_search" in self.model_fields_set:
+            _dict['flexSearch'] = None
+
+        # set to None if page_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
 
         return _dict
 
@@ -128,15 +109,14 @@ class GetIncomingMutationsQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
             "status": obj.get("status"),
             "incomingMutationType": obj.get("incomingMutationType"),
             "incomingBankingTransactionId": obj.get("incomingBankingTransactionId"),
             "transactionDateStart": obj.get("transactionDateStart"),
-            "transactionDateEnd": obj.get("transactionDateEnd")
+            "transactionDateEnd": obj.get("transactionDateEnd"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
-
-

@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class FirstInvoiceEndDateTimeSuggestionResponseDTO(BaseModel):
     """
-    Represents a suggested end date and time for the first invoice
+    FirstInvoiceEndDateTimeSuggestionResponseDTO
     """ # noqa: E501
-    first_invoice_end_date_time: Optional[datetime] = Field(default=None, description="Suggested end date and time for the first invoice", alias="firstInvoiceEndDateTime")
+    first_invoice_end_date_time: Optional[datetime] = Field(default=None, alias="firstInvoiceEndDateTime")
     __properties: ClassVar[List[str]] = ["firstInvoiceEndDateTime"]
 
     model_config = ConfigDict(
@@ -84,5 +84,3 @@ class FirstInvoiceEndDateTimeSuggestionResponseDTO(BaseModel):
             "firstInvoiceEndDateTime": obj.get("firstInvoiceEndDateTime")
         })
         return _obj
-
-

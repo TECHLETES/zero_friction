@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**remove_date** | **datetime** |  | [optional] 
+**remove_date** | **datetime** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ uninstall_meter_request_dict = uninstall_meter_request_instance.to_dict()
 uninstall_meter_request_from_dict = UninstallMeterRequest.from_dict(uninstall_meter_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -25,15 +25,15 @@ from typing_extensions import Self
 
 class LatestCustomerTransactionsResponseDTO(BaseModel):
     """
-    Represents a response containing the latest transactions for a customer
+    LatestCustomerTransactionsResponseDTO
     """ # noqa: E501
-    latest_open_transactions: Optional[List[TransactionDTO]] = Field(default=None, description="List of the most recent open transactions for the customer", alias="latestOpenTransactions")
-    latest_closed_transactions: Optional[List[TransactionDTO]] = Field(default=None, description="List of the most recent closed transactions for the customer", alias="latestClosedTransactions")
-    has_more_open_transactions: Optional[StrictBool] = Field(default=None, description="Indicates if there are more open transactions beyond the ones returned", alias="hasMoreOpenTransactions")
-    has_more_closed_transactions: Optional[StrictBool] = Field(default=None, description="Indicates if there are more closed transactions beyond the ones returned", alias="hasMoreClosedTransactions")
-    cash_position: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Current cash position of the customer (net amount)", alias="cashPosition")
-    cash_position_debit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Current debit cash position of the customer (amount owed)", alias="cashPositionDebit")
-    cash_position_credit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Current credit cash position of the customer (amount available)", alias="cashPositionCredit")
+    latest_open_transactions: Optional[List[TransactionDTO]] = Field(default=None, alias="latestOpenTransactions")
+    latest_closed_transactions: Optional[List[TransactionDTO]] = Field(default=None, alias="latestClosedTransactions")
+    has_more_open_transactions: Optional[StrictBool] = Field(default=None, alias="hasMoreOpenTransactions")
+    has_more_closed_transactions: Optional[StrictBool] = Field(default=None, alias="hasMoreClosedTransactions")
+    cash_position: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="cashPosition")
+    cash_position_debit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="cashPositionDebit")
+    cash_position_credit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="cashPositionCredit")
     __properties: ClassVar[List[str]] = ["latestOpenTransactions", "latestClosedTransactions", "hasMoreOpenTransactions", "hasMoreClosedTransactions", "cashPosition", "cashPositionDebit", "cashPositionCredit"]
 
     model_config = ConfigDict(
@@ -120,5 +120,3 @@ class LatestCustomerTransactionsResponseDTO(BaseModel):
             "cashPositionCredit": obj.get("cashPositionCredit")
         })
         return _obj
-
-

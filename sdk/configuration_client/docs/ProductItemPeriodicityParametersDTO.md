@@ -5,7 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**periodicity_type** | [**ProductItemPeriodicityType**](ProductItemPeriodicityType.md) |  | [optional] [readonly] 
+**type** | **str** |  |
+**amount** | **int** |  |
+**periodicity_type** | [**ProductItemPeriodicityType**](ProductItemPeriodicityType.md) |  | [optional]
+**frequency** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional]
 
 ## Example
 
@@ -25,5 +28,3 @@ product_item_periodicity_parameters_dto_dict = product_item_periodicity_paramete
 product_item_periodicity_parameters_dto_from_dict = ProductItemPeriodicityParametersDTO.from_dict(product_item_periodicity_parameters_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -40,7 +40,7 @@ class TestManualMatchIncomingMutationRequest(unittest.TestCase):
                 customer_id = '',
                 matching_transactions = [
                     billing_client.models.matching_transaction_request.MatchingTransactionRequest(
-                        matching_transaction_id = '', 
+                        matching_transaction_id = '',
                         amount_to_settle = 1.337, )
                     ]
             )

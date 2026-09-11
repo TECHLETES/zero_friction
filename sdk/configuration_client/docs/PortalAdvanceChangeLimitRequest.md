@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**range_min** | **float** |  | [optional] 
-**range_max** | **float** |  | [optional] 
-**type** | [**AdvanceAmountLimitType**](AdvanceAmountLimitType.md) |  | [optional] 
+**range_min** | **float** |  | [optional]
+**range_max** | **float** |  | [optional]
+**type** | [**AdvanceAmountLimitType**](AdvanceAmountLimitType.md) |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ portal_advance_change_limit_request_dict = portal_advance_change_limit_request_i
 portal_advance_change_limit_request_from_dict = PortalAdvanceChangeLimitRequest.from_dict(portal_advance_change_limit_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

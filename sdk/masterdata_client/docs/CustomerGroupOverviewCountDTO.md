@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** |  | [optional] 
+**all** | **int** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ customer_group_overview_count_dto_dict = customer_group_overview_count_dto_insta
 customer_group_overview_count_dto_from_dict = CustomerGroupOverviewCountDTO.from_dict(customer_group_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

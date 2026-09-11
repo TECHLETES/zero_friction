@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**file_name** | **str** |  | [optional] 
-**localised_file_name** | **str** |  | [optional] 
-**culture** | [**CultureInfo**](CultureInfo.md) |  | [optional] 
+**file_name** | **str** |  | [optional]
+**localised_file_name** | **str** |  | [optional]
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ entity_attachment_file_dto_dict = entity_attachment_file_dto_instance.to_dict()
 entity_attachment_file_dto_from_dict = EntityAttachmentFileDTO.from_dict(entity_attachment_file_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

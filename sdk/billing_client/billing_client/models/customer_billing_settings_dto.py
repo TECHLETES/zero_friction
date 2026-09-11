@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class CustomerBillingSettingsDTO(BaseModel):
     """
-    Represents the billing settings for a customer.  This DTO contains configuration options that affect how billing is handled for the customer.
+    CustomerBillingSettingsDTO
     """ # noqa: E501
-    automatic_settlement_setting: Optional[CustomerBillingSettingsAutomaticSettlementDTO] = Field(default=None, description="Settings related to automatic settlement of transactions.", alias="automaticSettlementSetting")
+    automatic_settlement_setting: Optional[CustomerBillingSettingsAutomaticSettlementDTO] = Field(default=None, alias="automaticSettlementSetting")
     __properties: ClassVar[List[str]] = ["automaticSettlementSetting"]
 
     model_config = ConfigDict(
@@ -92,5 +92,3 @@ class CustomerBillingSettingsDTO(BaseModel):
             "automaticSettlementSetting": CustomerBillingSettingsAutomaticSettlementDTO.from_dict(obj["automaticSettlementSetting"]) if obj.get("automaticSettlementSetting") is not None else None
         })
         return _obj
-
-

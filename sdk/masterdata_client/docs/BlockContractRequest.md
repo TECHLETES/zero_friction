@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**comment** | **str** |  | [optional] 
+**comment** | **str** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ block_contract_request_dict = block_contract_request_instance.to_dict()
 block_contract_request_from_dict = BlockContractRequest.from_dict(block_contract_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

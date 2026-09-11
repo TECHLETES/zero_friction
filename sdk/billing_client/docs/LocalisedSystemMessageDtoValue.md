@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data_type** | [**DataType**](DataType.md) |  | [optional] 
-**value** | **str** |  | [optional] 
+**data_type** | [**DataType**](DataType.md) |  | [optional]
+**value** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ localised_system_message_dto_value_dict = localised_system_message_dto_value_ins
 localised_system_message_dto_value_from_dict = LocalisedSystemMessageDtoValue.from_dict(localised_system_message_dto_value_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

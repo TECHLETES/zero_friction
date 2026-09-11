@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
-**primary_for_type** | **bool** |  | [optional] 
-**contact_type** | [**ContactType**](ContactType.md) |  | [optional] 
+**value** | **str** |  | [optional]
+**description** | **str** |  | [optional]
+**primary_for_type** | **bool** |  | [optional]
+**contact_type** | [**ContactType**](ContactType.md) |  |
 
 ## Example
 
@@ -28,5 +28,3 @@ contact_entry_request_dict = contact_entry_request_instance.to_dict()
 contact_entry_request_from_dict = ContactEntryRequest.from_dict(contact_entry_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

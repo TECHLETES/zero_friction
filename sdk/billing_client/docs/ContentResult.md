@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**content** | **str** |  | [optional] 
-**content_type** | **str** |  | [optional] 
-**status_code** | **int** |  | [optional] 
+**content** | **str** |  | [optional]
+**content_type** | **str** |  | [optional]
+**status_code** | **int** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ content_result_dict = content_result_instance.to_dict()
 content_result_from_dict = ContentResult.from_dict(content_result_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

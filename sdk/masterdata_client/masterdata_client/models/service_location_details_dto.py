@@ -163,5 +163,3 @@ class ServiceLocationDetailsDTO(BaseModel):
             "errors": [LocalisedErrorDTO.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None
         })
         return _obj
-
-

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**external_id** | **str** |  | [optional] 
+**external_id** | **str** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ update_external_id_request_dict = update_external_id_request_instance.to_dict()
 update_external_id_request_from_dict = UpdateExternalIdRequest.from_dict(update_external_id_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

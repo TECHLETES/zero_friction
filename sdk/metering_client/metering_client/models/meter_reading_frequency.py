@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MeterReadingFrequency(str, Enum):
     """
-    MeterReadingFrequency
+    Possible values: 'hourly', 'daily', 'weekly', 'monthly', 'bimonthly', 'quarterly', 'halfyearly', 'yearly'
     """
 
     """
@@ -39,5 +39,3 @@ class MeterReadingFrequency(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of MeterReadingFrequency from a JSON string"""
         return cls(json.loads(json_str))
-
-

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**management_relations** | [**List[ManagementRelationRequest]**](ManagementRelationRequest.md) |  | [optional] 
+**management_relations** | [**List[ManagementRelationRequest]**](ManagementRelationRequest.md) |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ update_property_group_management_relations_request_dict = update_property_group_
 update_property_group_management_relations_request_from_dict = UpdatePropertyGroupManagementRelationsRequest.from_dict(update_property_group_management_relations_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

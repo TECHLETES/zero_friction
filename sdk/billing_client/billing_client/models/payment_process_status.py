@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PaymentProcessStatus(str, Enum):
     """
-    PaymentProcessStatus
+    Possible values: 'readyforpaymentcollection', 'pendingpaymentexport', 'pendingpaymentcollectionconfirmation', 'paid', 'paymentrejected', 'waitingforpayment'
     """
 
     """
@@ -37,5 +37,3 @@ class PaymentProcessStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of PaymentProcessStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

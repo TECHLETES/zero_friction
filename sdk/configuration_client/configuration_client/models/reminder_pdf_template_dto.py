@@ -29,20 +29,20 @@ class ReminderPdfTemplateDTO(BaseModel):
     """
     ReminderPdfTemplateDTO
     """ # noqa: E501
-    file_name: Optional[StrictStr] = Field(default=None, alias="fileName")
-    use_case: Optional[TemplateUsecase] = Field(default=None, alias="useCase")
-    use_build_in: Optional[StrictBool] = Field(default=None, alias="useBuildIn")
-    custom_template_internal_file_path: Optional[StrictStr] = Field(default=None, alias="customTemplateInternalFilePath")
-    custom_template_file_name: Optional[StrictStr] = Field(default=None, alias="customTemplateFileName")
-    translation_status: Optional[TranslationStatus] = Field(default=None, alias="translationStatus")
+    show_country: Optional[StrictBool] = Field(default=None, alias="showCountry")
     envelope_settings: Optional[EnvelopeSettingsDTO] = Field(default=None, alias="envelopeSettings")
     render_header_footer: Optional[StrictBool] = Field(default=None, alias="renderHeaderFooter")
     header_text: Optional[StrictStr] = Field(default=None, alias="headerText")
     footer_text: Optional[StrictStr] = Field(default=None, alias="footerText")
     override_external_printing_checks: Optional[StrictBool] = Field(default=None, alias="overrideExternalPrintingChecks")
     supports_external_printing: Optional[StrictBool] = Field(default=None, alias="supportsExternalPrinting")
-    show_country: Optional[StrictBool] = Field(default=None, alias="showCountry")
-    __properties: ClassVar[List[str]] = ["fileName", "useCase", "useBuildIn", "customTemplateInternalFilePath", "customTemplateFileName", "translationStatus", "envelopeSettings", "renderHeaderFooter", "headerText", "footerText", "overrideExternalPrintingChecks", "supportsExternalPrinting", "showCountry"]
+    file_name: Optional[StrictStr] = Field(default=None, alias="fileName")
+    use_case: Optional[TemplateUsecase] = Field(default=None, alias="useCase")
+    use_build_in: Optional[StrictBool] = Field(default=None, alias="useBuildIn")
+    custom_template_internal_file_path: Optional[StrictStr] = Field(default=None, alias="customTemplateInternalFilePath")
+    custom_template_file_name: Optional[StrictStr] = Field(default=None, alias="customTemplateFileName")
+    translation_status: Optional[TranslationStatus] = Field(default=None, alias="translationStatus")
+    __properties: ClassVar[List[str]] = ["showCountry", "envelopeSettings", "renderHeaderFooter", "headerText", "footerText", "overrideExternalPrintingChecks", "supportsExternalPrinting", "fileName", "useCase", "useBuildIn", "customTemplateInternalFilePath", "customTemplateFileName", "translationStatus"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,10 +74,8 @@ class ReminderPdfTemplateDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "use_build_in",
         ])
 
         _dict = self.model_dump(
@@ -88,31 +86,6 @@ class ReminderPdfTemplateDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of envelope_settings
         if self.envelope_settings:
             _dict['envelopeSettings'] = self.envelope_settings.to_dict()
-        # set to None if file_name (nullable) is None
-        # and model_fields_set contains the field
-        if self.file_name is None and "file_name" in self.model_fields_set:
-            _dict['fileName'] = None
-
-        # set to None if use_case (nullable) is None
-        # and model_fields_set contains the field
-        if self.use_case is None and "use_case" in self.model_fields_set:
-            _dict['useCase'] = None
-
-        # set to None if custom_template_internal_file_path (nullable) is None
-        # and model_fields_set contains the field
-        if self.custom_template_internal_file_path is None and "custom_template_internal_file_path" in self.model_fields_set:
-            _dict['customTemplateInternalFilePath'] = None
-
-        # set to None if custom_template_file_name (nullable) is None
-        # and model_fields_set contains the field
-        if self.custom_template_file_name is None and "custom_template_file_name" in self.model_fields_set:
-            _dict['customTemplateFileName'] = None
-
-        # set to None if translation_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.translation_status is None and "translation_status" in self.model_fields_set:
-            _dict['translationStatus'] = None
-
         # set to None if envelope_settings (nullable) is None
         # and model_fields_set contains the field
         if self.envelope_settings is None and "envelope_settings" in self.model_fields_set:
@@ -128,6 +101,21 @@ class ReminderPdfTemplateDTO(BaseModel):
         if self.footer_text is None and "footer_text" in self.model_fields_set:
             _dict['footerText'] = None
 
+        # set to None if file_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.file_name is None and "file_name" in self.model_fields_set:
+            _dict['fileName'] = None
+
+        # set to None if custom_template_internal_file_path (nullable) is None
+        # and model_fields_set contains the field
+        if self.custom_template_internal_file_path is None and "custom_template_internal_file_path" in self.model_fields_set:
+            _dict['customTemplateInternalFilePath'] = None
+
+        # set to None if custom_template_file_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.custom_template_file_name is None and "custom_template_file_name" in self.model_fields_set:
+            _dict['customTemplateFileName'] = None
+
         return _dict
 
     @classmethod
@@ -140,20 +128,18 @@ class ReminderPdfTemplateDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "fileName": obj.get("fileName"),
-            "useCase": obj.get("useCase"),
-            "useBuildIn": obj.get("useBuildIn"),
-            "customTemplateInternalFilePath": obj.get("customTemplateInternalFilePath"),
-            "customTemplateFileName": obj.get("customTemplateFileName"),
-            "translationStatus": obj.get("translationStatus"),
+            "showCountry": obj.get("showCountry"),
             "envelopeSettings": EnvelopeSettingsDTO.from_dict(obj["envelopeSettings"]) if obj.get("envelopeSettings") is not None else None,
             "renderHeaderFooter": obj.get("renderHeaderFooter"),
             "headerText": obj.get("headerText"),
             "footerText": obj.get("footerText"),
             "overrideExternalPrintingChecks": obj.get("overrideExternalPrintingChecks"),
             "supportsExternalPrinting": obj.get("supportsExternalPrinting"),
-            "showCountry": obj.get("showCountry")
+            "fileName": obj.get("fileName"),
+            "useCase": obj.get("useCase"),
+            "useBuildIn": obj.get("useBuildIn"),
+            "customTemplateInternalFilePath": obj.get("customTemplateInternalFilePath"),
+            "customTemplateFileName": obj.get("customTemplateFileName"),
+            "translationStatus": obj.get("translationStatus")
         })
         return _obj
-
-

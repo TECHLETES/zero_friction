@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**subject** | **str** |  | [optional] 
-**attachments** | [**List[TemplateAttachmentRequest]**](TemplateAttachmentRequest.md) |  | [optional] 
+**type** | **str** |  |
+**subject** | **str** |  | [optional]
+**attachments** | [**List[TemplateAttachmentRequest]**](TemplateAttachmentRequest.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +27,3 @@ base_email_template_request_dict = base_email_template_request_instance.to_dict(
 base_email_template_request_from_dict = BaseEmailTemplateRequest.from_dict(base_email_template_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

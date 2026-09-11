@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** |  | [optional] 
-**new** | **int** |  | [optional] 
-**pending** | **int** |  | [optional] 
-**processed** | **int** |  | [optional] 
-**rejected** | **int** |  | [optional] 
-**to_be_processed** | **int** |  | [optional] 
+**all** | **int** |  | [optional]
+**new** | **int** |  | [optional]
+**pending** | **int** |  | [optional]
+**processed** | **int** |  | [optional]
+**rejected** | **int** |  | [optional]
+**to_be_processed** | **int** |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ move_request_overview_count_dto_dict = move_request_overview_count_dto_instance.
 move_request_overview_count_dto_from_dict = MoveRequestOverviewCountDTO.from_dict(move_request_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

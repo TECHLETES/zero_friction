@@ -41,6 +41,9 @@ class TestGetOutgoingBankingTransactionExportRequest(unittest.TestCase):
             )
         else:
             return GetOutgoingBankingTransactionExportRequest(
+                outgoing_banking_transaction_ids = [
+                    ''
+                    ],
         )
         """
 

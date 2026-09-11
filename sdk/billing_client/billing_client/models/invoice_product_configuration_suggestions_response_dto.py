@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from billing_client.models.localised_system_message_dto import LocalisedSystemMessageDTO
 from typing import Optional, Set
@@ -25,13 +25,12 @@ from typing_extensions import Self
 
 class InvoiceProductConfigurationSuggestionsResponseDTO(BaseModel):
     """
-    Represents suggested product configuration settings for an invoice
+    InvoiceProductConfigurationSuggestionsResponseDTO
     """ # noqa: E501
-    product_id: Optional[StrictStr] = Field(default=None, description="Identifier of the suggested product", alias="productId")
-    product_name: Optional[StrictStr] = Field(default=None, description="Name of the suggested product", alias="productName")
-    cost_allocation_enabled: Optional[StrictBool] = Field(default=None, description="Indicates if cost allocation is enabled for the product", alias="costAllocationEnabled")
-    message: Optional[LocalisedSystemMessageDTO] = Field(default=None, description="Localized system message with additional information")
-    __properties: ClassVar[List[str]] = ["productId", "productName", "costAllocationEnabled", "message"]
+    product_id: Optional[StrictStr] = Field(default=None, alias="productId")
+    product_name: Optional[StrictStr] = Field(default=None, alias="productName")
+    message: Optional[LocalisedSystemMessageDTO] = None
+    __properties: ClassVar[List[str]] = ["productId", "productName", "message"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,9 +103,6 @@ class InvoiceProductConfigurationSuggestionsResponseDTO(BaseModel):
         _obj = cls.model_validate({
             "productId": obj.get("productId"),
             "productName": obj.get("productName"),
-            "costAllocationEnabled": obj.get("costAllocationEnabled"),
             "message": LocalisedSystemMessageDTO.from_dict(obj["message"]) if obj.get("message") is not None else None
         })
         return _obj
-
-

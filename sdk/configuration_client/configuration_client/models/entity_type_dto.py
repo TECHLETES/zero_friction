@@ -70,16 +70,6 @@ class EntityTypeDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if entity_subject_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_subject_type is None and "entity_subject_type" in self.model_fields_set:
-            _dict['entitySubjectType'] = None
-
-        # set to None if entity_subject_sub_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_subject_sub_type is None and "entity_subject_sub_type" in self.model_fields_set:
-            _dict['entitySubjectSubType'] = None
-
         return _dict
 
     @classmethod
@@ -96,5 +86,3 @@ class EntityTypeDTO(BaseModel):
             "entitySubjectSubType": obj.get("entitySubjectSubType")
         })
         return _obj
-
-

@@ -31,30 +31,30 @@ from typing_extensions import Self
 
 class OutgoingBankingTransactionsExportDTO(BaseModel):
     """
-    Represents an outgoing banking transaction for export purposes.  This DTO contains comprehensive information about the transaction, including company, customer, and invoice details.
+    OutgoingBankingTransactionsExportDTO
     """ # noqa: E501
-    transaction_identification: Optional[StrictStr] = Field(default=None, description="The unique identification of the outgoing banking transaction.", alias="transactionIdentification")
-    transaction_type: Optional[OutgoingBankingTransactionType] = Field(default=None, description="The type of outgoing banking transaction.", alias="transactionType")
-    transaction_status: Optional[OutgoingBankingTransactionStatus] = Field(default=None, description="The current status of the outgoing banking transaction.", alias="transactionStatus")
-    transaction_collection_date: Optional[datetime] = Field(default=None, description="The date when the transaction collection is scheduled.", alias="transactionCollectionDate")
-    transaction_total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount of the transaction.", alias="transactionTotalAmount")
-    company_bank_account_holder: Optional[StrictStr] = Field(default=None, description="The name of the company bank account holder.", alias="companyBankAccountHolder")
-    company_bank_account_iban: Optional[StrictStr] = Field(default=None, description="The IBAN of the company bank account.", alias="companyBankAccountIban")
-    outgoing_mutation_type: Optional[OutgoingMutationType] = Field(default=None, description="The type of outgoing mutation.", alias="outgoingMutationType")
-    outgoing_mutation_status: Optional[OutgoingMutationStatus] = Field(default=None, description="The current status of the outgoing mutation.", alias="outgoingMutationStatus")
-    outgoing_mutation_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount of the outgoing mutation.", alias="outgoingMutationAmount")
-    outgoing_mutation_decription: Optional[StrictStr] = Field(default=None, description="The description of the outgoing mutation.", alias="outgoingMutationDecription")
-    customer_account_number: Optional[StrictStr] = Field(default=None, description="The account number of the customer.", alias="customerAccountNumber")
-    customer_name: Optional[StrictStr] = Field(default=None, description="The name of the customer.", alias="customerName")
-    customer_bank_account_iban: Optional[StrictStr] = Field(default=None, description="The IBAN of the customer's bank account.", alias="customerBankAccountIban")
-    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, description="List of property groups associated with this transaction.", alias="propertyGroups")
-    invoice_number: Optional[StrictStr] = Field(default=None, description="The number of the associated invoice.", alias="invoiceNumber")
-    invoice_date: Optional[datetime] = Field(default=None, description="The date when the invoice was issued.", alias="invoiceDate")
-    invoice_due_date: Optional[datetime] = Field(default=None, description="The due date of the invoice.", alias="invoiceDueDate")
-    invoice_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount of the invoice.", alias="invoiceAmount")
-    invoice_type: Optional[InvoiceType] = Field(default=None, description="The type of the invoice.", alias="invoiceType")
-    invoice_period_start_date_time: Optional[datetime] = Field(default=None, description="The start date of the invoice period.", alias="invoicePeriodStartDateTime")
-    invoice_period_end_date_time: Optional[datetime] = Field(default=None, description="The end date of the invoice period.", alias="invoicePeriodEndDateTime")
+    transaction_identification: Optional[StrictStr] = Field(default=None, alias="transactionIdentification")
+    transaction_type: Optional[OutgoingBankingTransactionType] = Field(default=None, alias="transactionType")
+    transaction_status: Optional[OutgoingBankingTransactionStatus] = Field(default=None, alias="transactionStatus")
+    transaction_collection_date: Optional[datetime] = Field(default=None, alias="transactionCollectionDate")
+    transaction_total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="transactionTotalAmount")
+    company_bank_account_holder: Optional[StrictStr] = Field(default=None, alias="companyBankAccountHolder")
+    company_bank_account_iban: Optional[StrictStr] = Field(default=None, alias="companyBankAccountIban")
+    outgoing_mutation_type: Optional[OutgoingMutationType] = Field(default=None, alias="outgoingMutationType")
+    outgoing_mutation_status: Optional[OutgoingMutationStatus] = Field(default=None, alias="outgoingMutationStatus")
+    outgoing_mutation_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="outgoingMutationAmount")
+    outgoing_mutation_decription: Optional[StrictStr] = Field(default=None, alias="outgoingMutationDecription")
+    customer_account_number: Optional[StrictStr] = Field(default=None, alias="customerAccountNumber")
+    customer_name: Optional[StrictStr] = Field(default=None, alias="customerName")
+    customer_bank_account_iban: Optional[StrictStr] = Field(default=None, alias="customerBankAccountIban")
+    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, alias="propertyGroups")
+    invoice_number: Optional[StrictStr] = Field(default=None, alias="invoiceNumber")
+    invoice_date: Optional[datetime] = Field(default=None, alias="invoiceDate")
+    invoice_due_date: Optional[datetime] = Field(default=None, alias="invoiceDueDate")
+    invoice_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="invoiceAmount")
+    invoice_type: Optional[InvoiceType] = Field(default=None, alias="invoiceType")
+    invoice_period_start_date_time: Optional[datetime] = Field(default=None, alias="invoicePeriodStartDateTime")
+    invoice_period_end_date_time: Optional[datetime] = Field(default=None, alias="invoicePeriodEndDateTime")
     __properties: ClassVar[List[str]] = ["transactionIdentification", "transactionType", "transactionStatus", "transactionCollectionDate", "transactionTotalAmount", "companyBankAccountHolder", "companyBankAccountIban", "outgoingMutationType", "outgoingMutationStatus", "outgoingMutationAmount", "outgoingMutationDecription", "customerAccountNumber", "customerName", "customerBankAccountIban", "propertyGroups", "invoiceNumber", "invoiceDate", "invoiceDueDate", "invoiceAmount", "invoiceType", "invoicePeriodStartDateTime", "invoicePeriodEndDateTime"]
 
     model_config = ConfigDict(
@@ -108,16 +108,6 @@ class OutgoingBankingTransactionsExportDTO(BaseModel):
         if self.transaction_identification is None and "transaction_identification" in self.model_fields_set:
             _dict['transactionIdentification'] = None
 
-        # set to None if transaction_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.transaction_type is None and "transaction_type" in self.model_fields_set:
-            _dict['transactionType'] = None
-
-        # set to None if transaction_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.transaction_status is None and "transaction_status" in self.model_fields_set:
-            _dict['transactionStatus'] = None
-
         # set to None if company_bank_account_holder (nullable) is None
         # and model_fields_set contains the field
         if self.company_bank_account_holder is None and "company_bank_account_holder" in self.model_fields_set:
@@ -127,16 +117,6 @@ class OutgoingBankingTransactionsExportDTO(BaseModel):
         # and model_fields_set contains the field
         if self.company_bank_account_iban is None and "company_bank_account_iban" in self.model_fields_set:
             _dict['companyBankAccountIban'] = None
-
-        # set to None if outgoing_mutation_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.outgoing_mutation_type is None and "outgoing_mutation_type" in self.model_fields_set:
-            _dict['outgoingMutationType'] = None
-
-        # set to None if outgoing_mutation_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.outgoing_mutation_status is None and "outgoing_mutation_status" in self.model_fields_set:
-            _dict['outgoingMutationStatus'] = None
 
         # set to None if outgoing_mutation_decription (nullable) is None
         # and model_fields_set contains the field
@@ -182,11 +162,6 @@ class OutgoingBankingTransactionsExportDTO(BaseModel):
         # and model_fields_set contains the field
         if self.invoice_amount is None and "invoice_amount" in self.model_fields_set:
             _dict['invoiceAmount'] = None
-
-        # set to None if invoice_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_type is None and "invoice_type" in self.model_fields_set:
-            _dict['invoiceType'] = None
 
         # set to None if invoice_period_start_date_time (nullable) is None
         # and model_fields_set contains the field
@@ -234,5 +209,3 @@ class OutgoingBankingTransactionsExportDTO(BaseModel):
             "invoicePeriodEndDateTime": obj.get("invoicePeriodEndDateTime")
         })
         return _obj
-
-

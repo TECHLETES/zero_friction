@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from configuration_client.models.base_data_export_settings_dto_invoice_export_settings_dto import BaseDataExportSettingsDTOInvoiceExportSettingsDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,9 +27,9 @@ class CreateDataExportFileFormatRequest(BaseModel):
     """
     CreateDataExportFileFormatRequest
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    description: Optional[StrictStr] = None
-    settings: Optional[Dict[str, Any]] = None
+    name: Optional[StrictStr]
+    description: Optional[StrictStr]
+    settings: BaseDataExportSettingsDTOInvoiceExportSettingsDTO
     __properties: ClassVar[List[str]] = ["name", "description", "settings"]
 
     model_config = ConfigDict(
@@ -70,6 +71,9 @@ class CreateDataExportFileFormatRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of settings
+        if self.settings:
+            _dict['settings'] = self.settings.to_dict()
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -79,11 +83,6 @@ class CreateDataExportFileFormatRequest(BaseModel):
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
-
-        # set to None if settings (nullable) is None
-        # and model_fields_set contains the field
-        if self.settings is None and "settings" in self.model_fields_set:
-            _dict['settings'] = None
 
         return _dict
 
@@ -99,8 +98,6 @@ class CreateDataExportFileFormatRequest(BaseModel):
         _obj = cls.model_validate({
             "name": obj.get("name"),
             "description": obj.get("description"),
-            "settings": obj.get("settings")
+            "settings": BaseDataExportSettingsDTOInvoiceExportSettingsDTO.from_dict(obj["settings"]) if obj.get("settings") is not None else None
         })
         return _obj
-
-

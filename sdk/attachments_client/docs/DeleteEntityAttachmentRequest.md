@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** |  | [optional] 
+**customer_id** | **str** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ delete_entity_attachment_request_dict = delete_entity_attachment_request_instanc
 delete_entity_attachment_request_from_dict = DeleteEntityAttachmentRequest.from_dict(delete_entity_attachment_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

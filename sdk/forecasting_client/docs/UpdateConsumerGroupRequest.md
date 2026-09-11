@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **str** |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
-**description** | **str** |  | [optional] 
-**estimated_annual_volume** | **float** |  | [optional] 
+**code** | **str** |  | [optional]
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional]
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional]
+**description** | **str** |  | [optional]
+**estimated_annual_volume** | **float** |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ update_consumer_group_request_dict = update_consumer_group_request_instance.to_d
 update_consumer_group_request_from_dict = UpdateConsumerGroupRequest.from_dict(update_consumer_group_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

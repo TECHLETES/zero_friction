@@ -26,7 +26,7 @@ class InvoiceProductConfigurationsSuggestionsRequest(BaseModel):
     """
     InvoiceProductConfigurationsSuggestionsRequest
     """ # noqa: E501
-    service_location_ids: Optional[List[StrictStr]] = Field(default=None, alias="serviceLocationIds")
+    service_location_ids: Optional[List[StrictStr]] = Field(alias="serviceLocationIds")
     contract_id: Optional[StrictStr] = Field(default=None, alias="contractId")
     __properties: ClassVar[List[str]] = ["serviceLocationIds", "contractId"]
 
@@ -95,5 +95,3 @@ class InvoiceProductConfigurationsSuggestionsRequest(BaseModel):
             "contractId": obj.get("contractId")
         })
         return _obj
-
-

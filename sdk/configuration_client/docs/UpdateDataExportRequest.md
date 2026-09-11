@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**file_format_id** | **str** |  | [optional] 
-**parameters** | [**BaseDataExportParametersDTO**](BaseDataExportParametersDTO.md) |  | [optional] 
+**file_format_id** | **str** |  |
+**parameters** | [**BaseDataExportParametersDTO**](BaseDataExportParametersDTO.md) |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ update_data_export_request_dict = update_data_export_request_instance.to_dict()
 update_data_export_request_from_dict = UpdateDataExportRequest.from_dict(update_data_export_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

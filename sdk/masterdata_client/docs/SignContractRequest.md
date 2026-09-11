@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mutation_date_time** | **datetime** |  | [optional] 
-**keep_existing_invoice_on_end_date** | **bool** | When this flag is set, if an invoice exists with the end date equal to the move-out date,  no credit note shall be created. | [optional] 
+**mutation_date_time** | **datetime** |  |
+**keep_existing_invoice_on_end_date** | **bool** |  | [optional]
+**create_billing_completenesses_from_existing_invoices** | **bool** |  | [optional]
 
 ## Example
 
@@ -26,5 +27,3 @@ sign_contract_request_dict = sign_contract_request_instance.to_dict()
 sign_contract_request_from_dict = SignContractRequest.from_dict(sign_contract_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

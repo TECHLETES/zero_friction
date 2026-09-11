@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PropertyGroupType(str, Enum):
     """
-    PropertyGroupType
+    Possible values: 'building', 'project'
     """
 
     """
@@ -33,5 +33,3 @@ class PropertyGroupType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of PropertyGroupType from a JSON string"""
         return cls(json.loads(json_str))
-
-

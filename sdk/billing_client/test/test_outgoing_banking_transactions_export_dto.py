@@ -51,7 +51,7 @@ class TestOutgoingBankingTransactionsExportDTO(unittest.TestCase):
                 customer_bank_account_iban = '',
                 property_groups = [
                     billing_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
-                        id = '', 
+                        id = '',
                         name = '', )
                     ],
                 invoice_number = '',

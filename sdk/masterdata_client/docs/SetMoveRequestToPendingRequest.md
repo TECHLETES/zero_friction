@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**new_status** | [**MoveRequestStatus**](MoveRequestStatus.md) |  | [optional] 
+**new_status** | [**MoveRequestStatus**](MoveRequestStatus.md) |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ set_move_request_to_pending_request_dict = set_move_request_to_pending_request_i
 set_move_request_to_pending_request_from_dict = SetMoveRequestToPendingRequest.from_dict(set_move_request_to_pending_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

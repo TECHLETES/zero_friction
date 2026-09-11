@@ -26,13 +26,13 @@ from typing_extensions import Self
 
 class InvoiceUBLValidationSpecificErrorDTO(BaseModel):
     """
-    Represents a specific UBL validation error for a single invoice
+    InvoiceUBLValidationSpecificErrorDTO
     """ # noqa: E501
-    invoice_id: Optional[StrictStr] = Field(default=None, description="Identifier of the invoice with the error", alias="invoiceId")
-    invoice_number: Optional[StrictStr] = Field(default=None, description="Invoice number", alias="invoiceNumber")
-    error_subject: Optional[EntitySubjectType] = Field(default=None, description="Type of entity that caused the error", alias="errorSubject")
-    error_subject_id: Optional[StrictStr] = Field(default=None, description="Identifier of the entity that caused the error", alias="errorSubjectId")
-    error_message: Optional[LocalisedErrorDTO] = Field(default=None, description="Localized error message", alias="errorMessage")
+    invoice_id: Optional[StrictStr] = Field(default=None, alias="invoiceId")
+    invoice_number: Optional[StrictStr] = Field(default=None, alias="invoiceNumber")
+    error_subject: Optional[EntitySubjectType] = Field(default=None, alias="errorSubject")
+    error_subject_id: Optional[StrictStr] = Field(default=None, alias="errorSubjectId")
+    error_message: Optional[LocalisedErrorDTO] = Field(default=None, alias="errorMessage")
     __properties: ClassVar[List[str]] = ["invoiceId", "invoiceNumber", "errorSubject", "errorSubjectId", "errorMessage"]
 
     model_config = ConfigDict(
@@ -87,11 +87,6 @@ class InvoiceUBLValidationSpecificErrorDTO(BaseModel):
         if self.invoice_number is None and "invoice_number" in self.model_fields_set:
             _dict['invoiceNumber'] = None
 
-        # set to None if error_subject (nullable) is None
-        # and model_fields_set contains the field
-        if self.error_subject is None and "error_subject" in self.model_fields_set:
-            _dict['errorSubject'] = None
-
         # set to None if error_subject_id (nullable) is None
         # and model_fields_set contains the field
         if self.error_subject_id is None and "error_subject_id" in self.model_fields_set:
@@ -121,5 +116,3 @@ class InvoiceUBLValidationSpecificErrorDTO(BaseModel):
             "errorMessage": LocalisedErrorDTO.from_dict(obj["errorMessage"]) if obj.get("errorMessage") is not None else None
         })
         return _obj
-
-

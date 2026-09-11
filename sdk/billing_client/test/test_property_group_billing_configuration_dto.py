@@ -35,18 +35,8 @@ class TestPropertyGroupBillingConfigurationDTO(unittest.TestCase):
         model = PropertyGroupBillingConfigurationDTO()
         if include_optional:
             return PropertyGroupBillingConfigurationDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 property_group = billing_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
-                    id = '', 
+                    id = '',
                     name = '', ),
                 company_bank_account_id = '',
                 advance_frequency = 'none',
@@ -55,28 +45,10 @@ class TestPropertyGroupBillingConfigurationDTO(unittest.TestCase):
                 invoice_month = 56,
                 product_id = '',
                 payment_terms_id = '',
-                required_incoming_invoice_components = [
-                    billing_client.models.incoming_invoice_component_dto.IncomingInvoiceComponentDTO(
-                        id = '', 
-                        optional = True, )
-                    ],
-                calculation_configurations = [
-                    billing_client.models.property_group_calculation_configuration_dto.PropertyGroupCalculationConfigurationDTO(
-                        name = '', 
-                        id = '', 
-                        service_location_ids = [
-                            ''
-                            ], 
-                        billing_items = [
-                            billing_client.models.calculation_configuration_billing_item_dto.CalculationConfigurationBillingItemDTO(
-                                billing_item_id = '', 
-                                deviating_tariff_calculation = True, 
-                                tariff_formula = null, 
-                                tariff_validation_result = null, )
-                            ], )
-                    ],
-                cost_allocation_enabled = True,
-                cost_allocation_validated = True,
+                time_of_use_calendar_ids = {
+                    'key' : ''
+                    },
+                default_billing_method = 'credit',
                 note_to_customer = '',
                 localisation_level = 'none',
                 localised_fields = [
@@ -86,7 +58,15 @@ class TestPropertyGroupBillingConfigurationDTO(unittest.TestCase):
                     'key' : {
                         'key' : ''
                         }
-                    }
+                    },
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return PropertyGroupBillingConfigurationDTO(

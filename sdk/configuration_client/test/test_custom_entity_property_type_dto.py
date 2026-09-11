@@ -35,20 +35,11 @@ class TestCustomEntityPropertyTypeDTO(unittest.TestCase):
         model = CustomEntityPropertyTypeDTO()
         if include_optional:
             return CustomEntityPropertyTypeDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
                 name = '',
                 description = '',
                 deleted = True,
                 entity_subject_type = 'none',
-                value_type = None,
+                value_type = configuration_client.models.base_property_value_type_dto.BasePropertyValueTypeDTO(),
                 localisation_level = 'none',
                 localised_fields = [
                     ''
@@ -59,7 +50,14 @@ class TestCustomEntityPropertyTypeDTO(unittest.TestCase):
                         }
                     },
                 show_in_header = True,
-                tag_color = 'blue'
+                tag_color = 'blue',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return CustomEntityPropertyTypeDTO(

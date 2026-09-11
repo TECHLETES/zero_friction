@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ScheduledJobRecurrence(str, Enum):
     """
-    ScheduledJobRecurrence
+    Possible values: 'none', 'pt5m', 'pt30m', 'pt1h', 'pt1d'
     """
 
     """
@@ -28,6 +28,7 @@ class ScheduledJobRecurrence(str, Enum):
     """
     NONE = 'none'
     PT5M = 'pt5m'
+    PT30M = 'pt30m'
     PT1H = 'pt1h'
     PT1D = 'pt1d'
 
@@ -35,5 +36,3 @@ class ScheduledJobRecurrence(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ScheduledJobRecurrence from a JSON string"""
         return cls(json.loads(json_str))
-
-

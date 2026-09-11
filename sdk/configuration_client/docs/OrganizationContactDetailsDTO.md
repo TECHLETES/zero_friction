@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email_address** | **str** |  | [optional] 
-**telephone** | **str** |  | [optional] 
-**website** | **str** |  | [optional] 
-**telephone_interruptions** | **str** |  | [optional] 
-**support** | **str** |  | [optional] 
+**email_address** | **str** |  | [optional]
+**telephone** | **str** |  | [optional]
+**website** | **str** |  | [optional]
+**telephone_interruptions** | **str** |  | [optional]
+**support** | **str** |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ organization_contact_details_dto_dict = organization_contact_details_dto_instanc
 organization_contact_details_dto_from_dict = OrganizationContactDetailsDTO.from_dict(organization_contact_details_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

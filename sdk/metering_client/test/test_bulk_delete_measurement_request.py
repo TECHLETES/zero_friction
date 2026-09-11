@@ -37,22 +37,37 @@ class TestBulkDeleteMeasurementRequest(unittest.TestCase):
             return BulkDeleteMeasurementRequest(
                 only_validate = True,
                 var_query_params = metering_client.models.get_measurements_query_params.GetMeasurementsQueryParams(
-                    flex_search = '', 
+                    external_channel_identifier = '',
+                    start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    show_invalid = True,
+                    data_frequency = 'pt1m',
+                    flex_search = '',
                     include_only_ids = [
                         ''
-                        ], 
+                        ],
                     exclude_ids = [
                         ''
-                        ], 
-                    external_channel_identifier = '', 
-                    start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    show_invalid = True, 
-                    data_frequency = null, ),
+                        ],
+                    page_size = 56, ),
                 quick_filter = ''
             )
         else:
             return BulkDeleteMeasurementRequest(
+                var_query_params = metering_client.models.get_measurements_query_params.GetMeasurementsQueryParams(
+                    external_channel_identifier = '',
+                    start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    show_invalid = True,
+                    data_frequency = 'pt1m',
+                    flex_search = '',
+                    include_only_ids = [
+                        ''
+                        ],
+                    exclude_ids = [
+                        ''
+                        ],
+                    page_size = 56, ),
         )
         """
 

@@ -36,10 +36,16 @@ class TestChangePaymentDetailsRequest(unittest.TestCase):
         if include_optional:
             return ChangePaymentDetailsRequest(
                 new_payment_method = 'sct',
-                collection_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                collection_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                psp_instrument = billing_client.models.psp_instrument_snapshot_request.PspInstrumentSnapshotRequest(
+                    payment_method_id = '',
+                    category = 'unknown',
+                    last4 = '',
+                    bank_code = '', )
             )
         else:
             return ChangePaymentDetailsRequest(
+                new_payment_method = 'sct',
         )
         """
 

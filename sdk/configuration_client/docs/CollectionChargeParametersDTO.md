@@ -5,7 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tax_code_id** | **str** |  | [optional] 
+**type** | **str** |  |
+**amount_excl_vat** | **float** |  |
+**tax_code_id** | **str** |  |
+**percentage** | **float** |  |
+**tiers** | [**List[TierRequest]**](TierRequest.md) |  |
 
 ## Example
 
@@ -25,5 +29,3 @@ collection_charge_parameters_dto_dict = collection_charge_parameters_dto_instanc
 collection_charge_parameters_dto_from_dict = CollectionChargeParametersDTO.from_dict(collection_charge_parameters_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

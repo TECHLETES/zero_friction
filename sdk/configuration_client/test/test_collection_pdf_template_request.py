@@ -35,11 +35,11 @@ class TestCollectionPdfTemplateRequest(unittest.TestCase):
         model = CollectionPdfTemplateRequest()
         if include_optional:
             return CollectionPdfTemplateRequest(
+                show_country = True,
                 envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
-                    margin_position = null, 
-                    margin = 56, 
-                    margin_top = 56, ),
-                show_country = True
+                    margin_position = 'left',
+                    margin = 56,
+                    margin_top = 56, )
             )
         else:
             return CollectionPdfTemplateRequest(

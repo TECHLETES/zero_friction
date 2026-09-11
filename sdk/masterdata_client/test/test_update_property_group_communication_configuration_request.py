@@ -41,26 +41,31 @@ class TestUpdatePropertyGroupCommunicationConfigurationRequest(unittest.TestCase
                 primary_color = '',
                 secondary_color = '',
                 address = masterdata_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 logo = '',
                 contact_details = masterdata_client.models.property_group_contact_details_request.PropertyGroupContactDetailsRequest(
-                    email_address = '', 
-                    telephone = '', 
-                    website = '', 
+                    email_address = '',
+                    telephone = '',
+                    website = '',
                     telephone_interruptions = '', )
             )
         else:
             return UpdatePropertyGroupCommunicationConfigurationRequest(
+                contact_details = masterdata_client.models.property_group_contact_details_request.PropertyGroupContactDetailsRequest(
+                    email_address = '',
+                    telephone = '',
+                    website = '',
+                    telephone_interruptions = '', ),
         )
         """
 

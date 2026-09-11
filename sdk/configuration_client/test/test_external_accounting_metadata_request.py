@@ -35,13 +35,14 @@ class TestExternalAccountingMetadataRequest(unittest.TestCase):
         model = ExternalAccountingMetadataRequest()
         if include_optional:
             return ExternalAccountingMetadataRequest(
-                source = '0',
-                source_entity_id = '0'
+                source = '',
+                source_entity_id = '',
+                source_accounting_company_id = ''
             )
         else:
             return ExternalAccountingMetadataRequest(
-                source = '0',
-                source_entity_id = '0',
+                source = '',
+                source_entity_id = '',
         )
         """
 

@@ -17,6 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.portal_notification_type import PortalNotificationType
@@ -30,8 +31,10 @@ class PortalPageNotificationDTO(BaseModel):
     """ # noqa: E501
     page_identifier: Optional[PortalPageIdentifier] = Field(default=None, alias="pageIdentifier")
     notification_type: Optional[PortalNotificationType] = Field(default=None, alias="notificationType")
-    translated_content: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, alias="translatedContent")
-    __properties: ClassVar[List[str]] = ["pageIdentifier", "notificationType", "translatedContent"]
+    start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
+    end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
+    translated_content: Optional[Dict[str, StrictStr]] = Field(default=None, alias="translatedContent")
+    __properties: ClassVar[List[str]] = ["pageIdentifier", "notificationType", "startDateTime", "endDateTime", "translatedContent"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,15 +75,15 @@ class PortalPageNotificationDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if page_identifier (nullable) is None
+        # set to None if start_date_time (nullable) is None
         # and model_fields_set contains the field
-        if self.page_identifier is None and "page_identifier" in self.model_fields_set:
-            _dict['pageIdentifier'] = None
+        if self.start_date_time is None and "start_date_time" in self.model_fields_set:
+            _dict['startDateTime'] = None
 
-        # set to None if notification_type (nullable) is None
+        # set to None if end_date_time (nullable) is None
         # and model_fields_set contains the field
-        if self.notification_type is None and "notification_type" in self.model_fields_set:
-            _dict['notificationType'] = None
+        if self.end_date_time is None and "end_date_time" in self.model_fields_set:
+            _dict['endDateTime'] = None
 
         # set to None if translated_content (nullable) is None
         # and model_fields_set contains the field
@@ -101,8 +104,8 @@ class PortalPageNotificationDTO(BaseModel):
         _obj = cls.model_validate({
             "pageIdentifier": obj.get("pageIdentifier"),
             "notificationType": obj.get("notificationType"),
+            "startDateTime": obj.get("startDateTime"),
+            "endDateTime": obj.get("endDateTime"),
             "translatedContent": obj.get("translatedContent")
         })
         return _obj
-
-

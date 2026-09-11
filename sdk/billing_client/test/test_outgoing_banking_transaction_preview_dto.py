@@ -36,10 +36,10 @@ class TestOutgoingBankingTransactionPreviewDTO(unittest.TestCase):
         if include_optional:
             return OutgoingBankingTransactionPreviewDTO(
                 requests = billing_client.models.outgoing_banking_transaction_preview_insights_dto.OutgoingBankingTransactionPreviewInsightsDTO(
-                    number_of_invoices = 56, 
+                    number_of_invoices = 56,
                     total_amount = 1.337, ),
                 refunds = billing_client.models.outgoing_banking_transaction_preview_insights_dto.OutgoingBankingTransactionPreviewInsightsDTO(
-                    number_of_invoices = 56, 
+                    number_of_invoices = 56,
                     total_amount = 1.337, )
             )
         else:

@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**total** | **float** |  | [optional] 
-**amount_of_days** | **int** |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
-**service_location_id** | **str** |  | [optional] 
-**average_per_year** | **float** |  | [optional] 
-**period** | **int** |  | [optional] 
+**total** | **float** |  | [optional]
+**amount_of_days** | **int** |  | [optional]
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional]
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional]
+**service_location_id** | **str** |  | [optional]
+**average_per_year** | **float** |  | [optional]
+**period** | **int** |  | [optional]
 
 ## Example
 
@@ -31,5 +31,3 @@ average_service_consumption_per_service_location_dto_dict = average_service_cons
 average_service_consumption_per_service_location_dto_from_dict = AverageServiceConsumptionPerServiceLocationDTO.from_dict(average_service_consumption_per_service_location_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

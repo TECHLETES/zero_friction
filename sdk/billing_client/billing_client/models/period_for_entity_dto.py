@@ -25,11 +25,11 @@ from typing_extensions import Self
 
 class PeriodForEntityDTO(BaseModel):
     """
-    Represents a period associated with an entity in the estimated invoice.  This DTO contains information about the entity's validity period and its current status.
+    PeriodForEntityDTO
     """ # noqa: E501
-    entity_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the entity.", alias="entityId")
-    entity_period: Optional[DateRange] = Field(default=None, description="The date range during which the entity is valid.", alias="entityPeriod")
-    out_dated: Optional[StrictBool] = Field(default=None, description="Indicates whether the entity's period is outdated.", alias="outDated")
+    entity_id: Optional[StrictStr] = Field(default=None, alias="entityId")
+    entity_period: Optional[DateRange] = Field(default=None, alias="entityPeriod")
+    out_dated: Optional[StrictBool] = Field(default=None, alias="outDated")
     __properties: ClassVar[List[str]] = ["entityId", "entityPeriod", "outDated"]
 
     model_config = ConfigDict(
@@ -79,11 +79,6 @@ class PeriodForEntityDTO(BaseModel):
         if self.entity_id is None and "entity_id" in self.model_fields_set:
             _dict['entityId'] = None
 
-        # set to None if entity_period (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_period is None and "entity_period" in self.model_fields_set:
-            _dict['entityPeriod'] = None
-
         return _dict
 
     @classmethod
@@ -101,5 +96,3 @@ class PeriodForEntityDTO(BaseModel):
             "outDated": obj.get("outDated")
         })
         return _obj
-
-

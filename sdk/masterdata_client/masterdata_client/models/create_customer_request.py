@@ -35,25 +35,26 @@ class CreateCustomerRequest(BaseModel):
     CreateCustomerRequest
     """ # noqa: E501
     account_num: Optional[StrictStr] = Field(default=None, alias="accountNum")
-    salutation: Optional[StrictStr] = None
-    initials: Optional[StrictStr] = None
-    first_name: Optional[StrictStr] = Field(default=None, alias="firstName")
-    last_name: Optional[StrictStr] = Field(default=None, alias="lastName")
+    salutation: Optional[StrictStr]
+    initials: Optional[StrictStr]
+    first_name: Optional[StrictStr] = Field(alias="firstName")
+    last_name: Optional[StrictStr] = Field(alias="lastName")
     birth_date: Optional[datetime] = Field(default=None, alias="birthDate")
-    ssin: Optional[StrictStr] = Field(default=None, description="Social security identification number")
-    ssin_country: Optional[CountryCode] = Field(default=None, description="Social security identification number country, used for validation", alias="ssinCountry")
-    customer_type: Optional[CustomerType] = Field(default=None, alias="customerType")
-    company_name: Optional[StrictStr] = Field(default=None, alias="companyName")
+    ssin: Optional[StrictStr]
+    ssin_country: CountryCode = Field(alias="ssinCountry")
+    customer_type: CustomerType = Field(alias="customerType")
+    company_name: Optional[StrictStr] = Field(alias="companyName")
     vat_number: Optional[StrictStr] = Field(default=None, alias="vatNumber")
-    organization_number: Optional[StrictStr] = Field(default=None, alias="organizationNumber")
+    organization_number: Optional[StrictStr] = Field(alias="organizationNumber")
     payment_terms_id: Optional[StrictStr] = Field(default=None, alias="paymentTermsId")
-    default_payment_method: Optional[PaymentMethod] = Field(default=None, alias="defaultPaymentMethod")
+    default_payment_method: PaymentMethod = Field(alias="defaultPaymentMethod")
     customer_group_id: Optional[StrictStr] = Field(default=None, alias="customerGroupId")
-    invoice_address: Optional[AddressDTO] = Field(default=None, alias="invoiceAddress")
-    bank_accounts: Optional[List[BankAccountRequest]] = Field(default=None, alias="bankAccounts")
+    invoice_address: Optional[AddressDTO] = Field(alias="invoiceAddress")
+    bank_accounts: Optional[List[BankAccountRequest]] = Field(alias="bankAccounts")
     contact_details: Optional[List[ContactEntryRequest]] = Field(default=None, alias="contactDetails")
-    communication_preferences: Optional[CustomerCommunicationPreferencesRequest] = Field(default=None, alias="communicationPreferences")
-    __properties: ClassVar[List[str]] = ["accountNum", "salutation", "initials", "firstName", "lastName", "birthDate", "ssin", "ssinCountry", "customerType", "companyName", "vatNumber", "organizationNumber", "paymentTermsId", "defaultPaymentMethod", "customerGroupId", "invoiceAddress", "bankAccounts", "contactDetails", "communicationPreferences"]
+    communication_preferences: Optional[CustomerCommunicationPreferencesRequest] = Field(alias="communicationPreferences")
+    service_number: Optional[StrictStr] = Field(default=None, alias="serviceNumber")
+    __properties: ClassVar[List[str]] = ["accountNum", "salutation", "initials", "firstName", "lastName", "birthDate", "ssin", "ssinCountry", "customerType", "companyName", "vatNumber", "organizationNumber", "paymentTermsId", "defaultPaymentMethod", "customerGroupId", "invoiceAddress", "bankAccounts", "contactDetails", "communicationPreferences", "serviceNumber"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -144,16 +145,6 @@ class CreateCustomerRequest(BaseModel):
         if self.ssin is None and "ssin" in self.model_fields_set:
             _dict['ssin'] = None
 
-        # set to None if ssin_country (nullable) is None
-        # and model_fields_set contains the field
-        if self.ssin_country is None and "ssin_country" in self.model_fields_set:
-            _dict['ssinCountry'] = None
-
-        # set to None if customer_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_type is None and "customer_type" in self.model_fields_set:
-            _dict['customerType'] = None
-
         # set to None if company_name (nullable) is None
         # and model_fields_set contains the field
         if self.company_name is None and "company_name" in self.model_fields_set:
@@ -173,11 +164,6 @@ class CreateCustomerRequest(BaseModel):
         # and model_fields_set contains the field
         if self.payment_terms_id is None and "payment_terms_id" in self.model_fields_set:
             _dict['paymentTermsId'] = None
-
-        # set to None if default_payment_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.default_payment_method is None and "default_payment_method" in self.model_fields_set:
-            _dict['defaultPaymentMethod'] = None
 
         # set to None if customer_group_id (nullable) is None
         # and model_fields_set contains the field
@@ -203,6 +189,11 @@ class CreateCustomerRequest(BaseModel):
         # and model_fields_set contains the field
         if self.communication_preferences is None and "communication_preferences" in self.model_fields_set:
             _dict['communicationPreferences'] = None
+
+        # set to None if service_number (nullable) is None
+        # and model_fields_set contains the field
+        if self.service_number is None and "service_number" in self.model_fields_set:
+            _dict['serviceNumber'] = None
 
         return _dict
 
@@ -234,8 +225,7 @@ class CreateCustomerRequest(BaseModel):
             "invoiceAddress": AddressDTO.from_dict(obj["invoiceAddress"]) if obj.get("invoiceAddress") is not None else None,
             "bankAccounts": [BankAccountRequest.from_dict(_item) for _item in obj["bankAccounts"]] if obj.get("bankAccounts") is not None else None,
             "contactDetails": [ContactEntryRequest.from_dict(_item) for _item in obj["contactDetails"]] if obj.get("contactDetails") is not None else None,
-            "communicationPreferences": CustomerCommunicationPreferencesRequest.from_dict(obj["communicationPreferences"]) if obj.get("communicationPreferences") is not None else None
+            "communicationPreferences": CustomerCommunicationPreferencesRequest.from_dict(obj["communicationPreferences"]) if obj.get("communicationPreferences") is not None else None,
+            "serviceNumber": obj.get("serviceNumber")
         })
         return _obj
-
-

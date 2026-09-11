@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**calculation_parameters** | [**BaseTariffCalculationTypeParametersDTO**](BaseTariffCalculationTypeParametersDTO.md) |  | [optional] 
-**condition** | **object** |  | [optional] 
+**calculation_parameters** | [**BaseTariffCalculationTypeParametersDTO**](BaseTariffCalculationTypeParametersDTO.md) |  | [optional]
+**condition** | [**BaseTariffConditionTypeParametersDTO**](BaseTariffConditionTypeParametersDTO.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ create_billing_tariff_node_request_dict = create_billing_tariff_node_request_ins
 create_billing_tariff_node_request_from_dict = CreateBillingTariffNodeRequest.from_dict(create_billing_tariff_node_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

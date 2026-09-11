@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billing_item_ids** | **List[str]** |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
-**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional] 
+**billing_item_ids** | **List[str]** |  | [optional]
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional]
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional]
+**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ required_estimation_dto_dict = required_estimation_dto_instance.to_dict()
 required_estimation_dto_from_dict = RequiredEstimationDTO.from_dict(required_estimation_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

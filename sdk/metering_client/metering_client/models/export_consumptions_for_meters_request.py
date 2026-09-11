@@ -78,11 +78,6 @@ class ExportConsumptionsForMetersRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
         # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
         if self.quick_filter is None and "quick_filter" in self.model_fields_set:
@@ -113,5 +108,3 @@ class ExportConsumptionsForMetersRequest(BaseModel):
             "onlyValidate": obj.get("onlyValidate")
         })
         return _obj
-
-

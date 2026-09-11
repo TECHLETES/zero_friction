@@ -1,13 +1,14 @@
 # ExternalAccountingMetadataDTO
 
-Represents metadata about an external accounting system entity.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**source** | **str** | The source of the external accounting system. | 
-**source_entity_id** | **str** | The unique identifier of the entity in the external accounting system. | 
+**source** | **str** |  |
+**source_entity_id** | **str** |  |
+**source_accounting_company_id** | **str** |  | [optional]
+**source_references** | [**List[ExternalAccountingReferenceDTO]**](ExternalAccountingReferenceDTO.md) |  | [optional]
 
 ## Example
 
@@ -27,5 +28,3 @@ external_accounting_metadata_dto_dict = external_accounting_metadata_dto_instanc
 external_accounting_metadata_dto_from_dict = ExternalAccountingMetadataDTO.from_dict(external_accounting_metadata_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

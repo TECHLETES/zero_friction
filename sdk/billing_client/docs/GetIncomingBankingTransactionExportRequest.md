@@ -1,12 +1,11 @@
 # GetIncomingBankingTransactionExportRequest
 
-Represents a request to export data for specific incoming banking transactions.  This DTO is used to retrieve transaction data in a format suitable for export.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**incoming_banking_transaction_ids** | **List[str]** | A list of IDs for the incoming banking transactions to be included in the export. | [optional] 
+**incoming_banking_transaction_ids** | **List[str]** |  |
 
 ## Example
 
@@ -26,5 +25,3 @@ get_incoming_banking_transaction_export_request_dict = get_incoming_banking_tran
 get_incoming_banking_transaction_export_request_from_dict = GetIncomingBankingTransactionExportRequest.from_dict(get_incoming_banking_transaction_export_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

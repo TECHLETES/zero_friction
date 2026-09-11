@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] [readonly] 
-**version** | [**SortVersion**](SortVersion.md) |  | [optional] [readonly] 
-**lcid** | **int** |  | [optional] [readonly] 
+**name** | **str** |  | [optional]
+**version** | [**SortVersion**](SortVersion.md) |  | [optional]
+**lcid** | **int** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ compare_info_dict = compare_info_instance.to_dict()
 compare_info_from_dict = CompareInfo.from_dict(compare_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

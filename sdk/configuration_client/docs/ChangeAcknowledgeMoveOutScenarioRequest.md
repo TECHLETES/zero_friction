@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
-**email_template** | [**AcknowledgeMoveOutEmailTemplateRequest**](AcknowledgeMoveOutEmailTemplateRequest.md) |  | [optional] 
+**email_template** | [**AcknowledgeMoveOutEmailTemplateRequest**](AcknowledgeMoveOutEmailTemplateRequest.md) |  |
+**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  |
+**auto_fallback_to_postal** | **bool** |  | [optional]
 
 ## Example
 
@@ -26,5 +27,3 @@ change_acknowledge_move_out_scenario_request_dict = change_acknowledge_move_out_
 change_acknowledge_move_out_scenario_request_from_dict = ChangeAcknowledgeMoveOutScenarioRequest.from_dict(change_acknowledge_move_out_scenario_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

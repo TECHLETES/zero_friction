@@ -26,7 +26,7 @@ class AverageServiceConsumptionPerServiceLocationRequest(BaseModel):
     """
     AverageServiceConsumptionPerServiceLocationRequest
     """ # noqa: E501
-    service_location_ids: Optional[List[StrictStr]] = Field(default=None, alias="serviceLocationIds")
+    service_location_ids: Optional[List[StrictStr]] = Field(alias="serviceLocationIds")
     __properties: ClassVar[List[str]] = ["serviceLocationIds"]
 
     model_config = ConfigDict(
@@ -88,5 +88,3 @@ class AverageServiceConsumptionPerServiceLocationRequest(BaseModel):
             "serviceLocationIds": obj.get("serviceLocationIds")
         })
         return _obj
-
-

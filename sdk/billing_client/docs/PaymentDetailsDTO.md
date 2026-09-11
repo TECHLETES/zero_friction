@@ -1,18 +1,20 @@
 # PaymentDetailsDTO
 
-Represents payment details for an invoice
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**paid** | **bool** | Indicates if the invoice has been paid | [optional] 
-**current_payment_status** | [**PaymentProcessStatus**](PaymentProcessStatus.md) | Current status of the payment process | [optional] 
-**payment_reference** | **str** | Payment reference number | [optional] 
-**payment_method** | [**PaymentMethod**](PaymentMethod.md) | Method of payment | [optional] 
-**direct_debit_collection_date** | **datetime** | Date when direct debit will be collected | [optional] 
-**amount_of_times_retried** | **int** | Number of times payment has been retried | [optional] 
-**status_history** | [**List[PaymentStatusHistoryDTO]**](PaymentStatusHistoryDTO.md) | History of payment status changes | [optional] 
+**paid** | **bool** |  | [optional]
+**current_payment_status** | [**PaymentProcessStatus**](PaymentProcessStatus.md) |  | [optional]
+**payment_reference** | **str** |  | [optional]
+**payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | [optional]
+**collection_details** | [**PaymentCollectionDetailsDTO**](PaymentCollectionDetailsDTO.md) |  | [optional]
+**direct_debit_collection_date** | **datetime** |  | [optional]
+**amount_of_times_retried** | **int** |  | [optional]
+**status_history** | [**List[PaymentStatusHistoryDTO]**](PaymentStatusHistoryDTO.md) |  | [optional]
+**payment_intent** | [**PaymentIntentStateDTO**](PaymentIntentStateDTO.md) |  | [optional]
+**psp_instrument** | [**PspInstrumentSnapshotDTO**](PspInstrumentSnapshotDTO.md) |  | [optional]
 
 ## Example
 
@@ -32,5 +34,3 @@ payment_details_dto_dict = payment_details_dto_instance.to_dict()
 payment_details_dto_from_dict = PaymentDetailsDTO.from_dict(payment_details_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

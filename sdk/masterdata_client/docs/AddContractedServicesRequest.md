@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**supply_start_date** | **datetime** |  | [optional] 
-**supply_end_date** | **datetime** |  | [optional] 
-**services** | [**List[ChangeContractServiceLocationRequest]**](ChangeContractServiceLocationRequest.md) |  | [optional] 
+**supply_start_date** | **datetime** |  |
+**supply_end_date** | **datetime** |  | [optional]
+**services** | [**List[ChangeContractServiceLocationRequest]**](ChangeContractServiceLocationRequest.md) |  |
 
 ## Example
 
@@ -27,5 +27,3 @@ add_contracted_services_request_dict = add_contracted_services_request_instance.
 add_contracted_services_request_from_dict = AddContractedServicesRequest.from_dict(add_contracted_services_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

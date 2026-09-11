@@ -37,7 +37,7 @@ class TestPeriodForEntityDTO(unittest.TestCase):
             return PeriodForEntityDTO(
                 entity_id = '',
                 entity_period = billing_client.models.date_range.DateRange(
-                    start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                     end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
                 out_dated = True
             )

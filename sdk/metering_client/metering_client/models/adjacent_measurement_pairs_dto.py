@@ -96,5 +96,3 @@ class AdjacentMeasurementPairsDTO(BaseModel):
             "pairs": [MeasurementPairDTO.from_dict(_item) for _item in obj["pairs"]] if obj.get("pairs") is not None else None
         })
         return _obj
-
-

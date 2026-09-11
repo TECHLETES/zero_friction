@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**translated_fields** | **Dict[str, Optional[Dict[str, str]]]** |  | [optional] 
+**translated_fields** | **Dict[str, Dict[str, str]]** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ update_entity_translation_request_dict = update_entity_translation_request_insta
 update_entity_translation_request_from_dict = UpdateEntityTranslationRequest.from_dict(update_entity_translation_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

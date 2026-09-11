@@ -27,7 +27,7 @@ class UpdateServiceLocationAddressRequest(BaseModel):
     """
     UpdateServiceLocationAddressRequest
     """ # noqa: E501
-    address: Optional[AddressDTO] = None
+    address: Optional[AddressDTO]
     __properties: ClassVar[List[str]] = ["address"]
 
     model_config = ConfigDict(
@@ -92,5 +92,3 @@ class UpdateServiceLocationAddressRequest(BaseModel):
             "address": AddressDTO.from_dict(obj["address"]) if obj.get("address") is not None else None
         })
         return _obj
-
-

@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**year** | **int** |  | [optional] 
-**value** | **float** |  | [optional] 
-**origin** | [**EstimatedAnnualVolumeOrigin**](EstimatedAnnualVolumeOrigin.md) |  | [optional] 
-**last_recalculated** | **datetime** |  | [optional] 
+**year** | **int** |  | [optional]
+**value** | **float** |  | [optional]
+**origin** | [**EstimatedAnnualVolumeOrigin**](EstimatedAnnualVolumeOrigin.md) |  | [optional]
+**last_recalculated** | **datetime** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ estimated_annual_volume_dto_dict = estimated_annual_volume_dto_instance.to_dict(
 estimated_annual_volume_dto_from_dict = EstimatedAnnualVolumeDTO.from_dict(estimated_annual_volume_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

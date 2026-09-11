@@ -5,7 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**calculation_type** | [**BillingItemTariffCalculationType**](BillingItemTariffCalculationType.md) |  | [optional] [readonly] 
+**type** | **str** |  |
+**calculation_type** | [**BillingItemTariffCalculationType**](BillingItemTariffCalculationType.md) |  | [optional]
+**slices** | [**List[TieredSliceDTO]**](TieredSliceDTO.md) |  | [optional]
+**formula_based** | **bool** |  | [optional]
+**input_parameters** | [**List[BillingTariffInputDTO]**](BillingTariffInputDTO.md) |  | [optional]
+**unit_tariff** | **float** |  | [optional]
+**expression** | **str** |  | [optional]
 
 ## Example
 
@@ -25,5 +31,3 @@ base_tariff_calculation_type_parameters_dto_dict = base_tariff_calculation_type_
 base_tariff_calculation_type_parameters_dto_from_dict = BaseTariffCalculationTypeParametersDTO.from_dict(base_tariff_calculation_type_parameters_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

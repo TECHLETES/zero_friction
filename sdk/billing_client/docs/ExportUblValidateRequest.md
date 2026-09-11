@@ -1,12 +1,11 @@
 # ExportUblValidateRequest
 
-Represents a request to validate invoices in UBL format.  This DTO is used to validate multiple invoices against UBL (Universal Business Language) format specifications.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_ids** | **List[str]** | List of invoice IDs to be validated against UBL format specifications. | [optional] 
+**invoice_ids** | **List[str]** |  |
 
 ## Example
 
@@ -26,5 +25,3 @@ export_ubl_validate_request_dict = export_ubl_validate_request_instance.to_dict(
 export_ubl_validate_request_from_dict = ExportUblValidateRequest.from_dict(export_ubl_validate_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

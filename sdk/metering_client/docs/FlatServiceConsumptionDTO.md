@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
-**consumption_start_date_time** | **datetime** |  | [optional] 
-**consumption_end_date_time** | **datetime** |  | [optional] 
-**value** | **float** |  | [optional] 
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**consumption_start_date_time** | **datetime** |  | [optional]
+**consumption_end_date_time** | **datetime** |  | [optional]
+**value** | **float** |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ flat_service_consumption_dto_dict = flat_service_consumption_dto_instance.to_dic
 flat_service_consumption_dto_from_dict = FlatServiceConsumptionDTO.from_dict(flat_service_consumption_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

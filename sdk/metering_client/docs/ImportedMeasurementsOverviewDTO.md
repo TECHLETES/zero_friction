@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**measurements** | [**ImportedMeasurementProcessingResultDTOPagedResponseModelDTO**](ImportedMeasurementProcessingResultDTOPagedResponseModelDTO.md) |  | [optional] 
-**total_invalid_measurements** | **int** |  | [optional] 
-**total_valid_measurements** | **int** |  | [optional] 
-**total_measurements_not_processed** | **int** |  | [optional] 
-**total_measurements_processed** | **int** |  | [optional] 
-**total_lines_with_format_issues** | **int** |  | [optional] 
+**measurements** | [**PagedResponseModelDTOOfImportedMeasurementProcessingResultDTO**](PagedResponseModelDTOOfImportedMeasurementProcessingResultDTO.md) |  | [optional]
+**total_invalid_measurements** | **int** |  | [optional]
+**total_valid_measurements** | **int** |  | [optional]
+**total_measurements_not_processed** | **int** |  | [optional]
+**total_measurements_processed** | **int** |  | [optional]
+**total_lines_with_format_issues** | **int** |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ imported_measurements_overview_dto_dict = imported_measurements_overview_dto_ins
 imported_measurements_overview_dto_from_dict = ImportedMeasurementsOverviewDTO.from_dict(imported_measurements_overview_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

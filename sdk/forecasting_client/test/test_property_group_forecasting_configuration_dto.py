@@ -35,21 +35,19 @@ class TestPropertyGroupForecastingConfigurationDTO(unittest.TestCase):
         model = PropertyGroupForecastingConfigurationDTO()
         if include_optional:
             return PropertyGroupForecastingConfigurationDTO(
+                consumer_groups = {
+                    'key' : forecasting_client.models.consumer_group_reference.ConsumerGroupReference(
+                        id = '',
+                        code = '', )
+                    },
+                organisation_id = '',
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
-                consumer_groups = {
-                    'key' : forecasting_client.models.consumer_group_reference.ConsumerGroupReference(
-                        id = '', 
-                        code = '', )
-                    }
+                is_read_only = True
             )
         else:
             return PropertyGroupForecastingConfigurationDTO(

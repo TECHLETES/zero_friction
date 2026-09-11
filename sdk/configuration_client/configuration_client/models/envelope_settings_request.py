@@ -27,7 +27,7 @@ class EnvelopeSettingsRequest(BaseModel):
     """
     EnvelopeSettingsRequest
     """ # noqa: E501
-    margin_position: Optional[EnvelopePosition] = Field(default=None, alias="marginPosition")
+    margin_position: EnvelopePosition = Field(alias="marginPosition")
     margin: Optional[StrictInt] = None
     margin_top: Optional[StrictInt] = Field(default=None, alias="marginTop")
     __properties: ClassVar[List[str]] = ["marginPosition", "margin", "marginTop"]
@@ -71,11 +71,6 @@ class EnvelopeSettingsRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if margin_position (nullable) is None
-        # and model_fields_set contains the field
-        if self.margin_position is None and "margin_position" in self.model_fields_set:
-            _dict['marginPosition'] = None
-
         return _dict
 
     @classmethod
@@ -93,5 +88,3 @@ class EnvelopeSettingsRequest(BaseModel):
             "marginTop": obj.get("marginTop")
         })
         return _obj
-
-

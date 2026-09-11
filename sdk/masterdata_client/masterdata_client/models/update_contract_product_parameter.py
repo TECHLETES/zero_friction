@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class UpdateContractProductParameter(str, Enum):
     """
-    UpdateContractProductParameter
+    Possible values: 'fromcontractstartdate', 'fromfirstopenperiod', 'fromsupplieddate', 'fromdatebasedonspecificperiod'
     """
 
     """
@@ -35,5 +35,3 @@ class UpdateContractProductParameter(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of UpdateContractProductParameter from a JSON string"""
         return cls(json.loads(json_str))
-
-

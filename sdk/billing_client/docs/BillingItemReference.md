@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billing_item_id** | **str** |  | [optional] 
-**billing_item_name** | **str** |  | [optional] 
+**billing_item_id** | **str** |  | [optional]
+**billing_item_name** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ billing_item_reference_dict = billing_item_reference_instance.to_dict()
 billing_item_reference_from_dict = BillingItemReference.from_dict(billing_item_reference_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

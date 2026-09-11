@@ -35,26 +35,24 @@ class TestCommunicationParametersDTO(unittest.TestCase):
         model = CommunicationParametersDTO()
         if include_optional:
             return CommunicationParametersDTO(
+                enabled = True,
+                sender_email = configuration_client.models.email_address.EmailAddress(
+                    address = '',
+                    name = '', ),
+                reply_to = configuration_client.models.email_address.EmailAddress(
+                    address = '',
+                    name = '', ),
+                is_sandboxed = True,
+                sandbox_recipient_email = '',
+                sandbox_recipient_phone_number = '',
+                organisation_id = '',
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
-                enabled = True,
-                sender_email = configuration_client.models.email_address.EmailAddress(
-                    address = '', 
-                    name = '', ),
-                reply_to = configuration_client.models.email_address.EmailAddress(
-                    address = '', 
-                    name = '', ),
-                is_sandboxed = True,
-                sandbox_recipient_email = '',
-                sandbox_recipient_phone_number = ''
+                is_read_only = True
             )
         else:
             return CommunicationParametersDTO(

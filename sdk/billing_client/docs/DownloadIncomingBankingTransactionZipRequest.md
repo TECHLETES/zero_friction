@@ -1,12 +1,11 @@
 # DownloadIncomingBankingTransactionZipRequest
 
-Represents a request to download banking transaction documents as a ZIP file.  This DTO is used to retrieve transaction-related documents for multiple transactions at once.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**incoming_banking_transaction_ids** | **List[str]** | An array of IDs for the incoming banking transactions whose documents should be included in the ZIP file. | [optional] 
+**incoming_banking_transaction_ids** | **List[str]** |  |
 
 ## Example
 
@@ -26,5 +25,3 @@ download_incoming_banking_transaction_zip_request_dict = download_incoming_banki
 download_incoming_banking_transaction_zip_request_from_dict = DownloadIncomingBankingTransactionZipRequest.from_dict(download_incoming_banking_transaction_zip_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

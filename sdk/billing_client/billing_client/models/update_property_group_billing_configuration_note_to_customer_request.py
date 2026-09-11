@@ -24,9 +24,9 @@ from typing_extensions import Self
 
 class UpdatePropertyGroupBillingConfigurationNoteToCustomerRequest(BaseModel):
     """
-    Represents a request to update the note to customer for a property group billing configuration.  This DTO is used to modify the note that will be displayed to customers on invoices.
+    UpdatePropertyGroupBillingConfigurationNoteToCustomerRequest
     """ # noqa: E501
-    note_to_customer: Optional[StrictStr] = Field(default=None, description="The new note text to be displayed to customers on invoices.", alias="noteToCustomer")
+    note_to_customer: Optional[StrictStr] = Field(default=None, alias="noteToCustomer")
     __properties: ClassVar[List[str]] = ["noteToCustomer"]
 
     model_config = ConfigDict(
@@ -88,5 +88,3 @@ class UpdatePropertyGroupBillingConfigurationNoteToCustomerRequest(BaseModel):
             "noteToCustomer": obj.get("noteToCustomer")
         })
         return _obj
-
-

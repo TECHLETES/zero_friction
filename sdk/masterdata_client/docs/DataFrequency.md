@@ -1,5 +1,6 @@
 # DataFrequency
 
+Possible values: 'pt1m', 'pt5m', 'pt15m', 'pt30m', 'pt1h', 'p1d', 'na'
 
 ## Enum
 
@@ -18,5 +19,3 @@
 * `NA` (value: `'na'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

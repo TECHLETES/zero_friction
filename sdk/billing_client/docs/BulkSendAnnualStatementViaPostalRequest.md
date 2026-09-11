@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetAnnualStatementsQueryParams**](GetAnnualStatementsQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetAnnualStatementsQueryParams**](GetAnnualStatementsQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
+**apply_start_communication_idempotency** | **bool** |  | [optional]
 
 ## Example
 
@@ -27,5 +28,3 @@ bulk_send_annual_statement_via_postal_request_dict = bulk_send_annual_statement_
 bulk_send_annual_statement_via_postal_request_from_dict = BulkSendAnnualStatementViaPostalRequest.from_dict(bulk_send_annual_statement_via_postal_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

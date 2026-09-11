@@ -88,5 +88,3 @@ class UpdateContractBillingDetailsRequest(BaseModel):
             "paymentTermsId": obj.get("paymentTermsId")
         })
         return _obj
-
-

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ProductExportStatus(str, Enum):
     """
-    ProductExportStatus
+    Possible values: 'new', 'current'
     """
 
     """
@@ -33,5 +33,3 @@ class ProductExportStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ProductExportStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

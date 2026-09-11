@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error_code** | [**ErrorCode**](ErrorCode.md) |  | [optional] 
-**values** | [**List[ErrorCodeMessageValue]**](ErrorCodeMessageValue.md) |  | [optional] 
+**error_code** | **int** |  | [optional]
+**values** | [**List[ErrorCodeMessageValue]**](ErrorCodeMessageValue.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ error_code_message_dict = error_code_message_instance.to_dict()
 error_code_message_from_dict = ErrorCodeMessage.from_dict(error_code_message_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

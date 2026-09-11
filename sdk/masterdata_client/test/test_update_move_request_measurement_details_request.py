@@ -37,12 +37,12 @@ class TestUpdateMoveRequestMeasurementDetailsRequest(unittest.TestCase):
             return UpdateMoveRequestMeasurementDetailsRequest(
                 measurements = [
                     masterdata_client.models.move_request_measurement_details.MoveRequestMeasurementDetails(
-                        internal_meter_id = '', 
-                        external_channel_identifier = '', 
-                        meter_serial_number = '', 
-                        utility_type = null, 
-                        unit_of_measure = null, 
-                        time_of_use = '', 
+                        internal_meter_id = '',
+                        external_channel_identifier = '',
+                        meter_serial_number = '',
+                        utility_type = 'none',
+                        unit_of_measure = 'none',
+                        time_of_use = '',
                         value = 1.337, )
                     ]
             )

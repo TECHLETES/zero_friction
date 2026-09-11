@@ -40,6 +40,8 @@ class TestMatchingTransactionRequest(unittest.TestCase):
             )
         else:
             return MatchingTransactionRequest(
+                matching_transaction_id = '',
+                amount_to_settle = 1.337,
         )
         """
 

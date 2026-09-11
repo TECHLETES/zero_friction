@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ExportStatus(str, Enum):
     """
-    ExportStatus
+    Possible values: 'notexported', 'exported'
     """
 
     """
@@ -33,5 +33,3 @@ class ExportStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ExportStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

@@ -103,5 +103,3 @@ class ReminderEmailTemplateRequest(BaseModel):
             "attachments": [TemplateAttachmentRequest.from_dict(_item) for _item in obj["attachments"]] if obj.get("attachments") is not None else None
         })
         return _obj
-
-

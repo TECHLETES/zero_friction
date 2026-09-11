@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MandateType(str, Enum):
     """
-    MandateType
+    Possible values: 'core', 'b2b'
     """
 
     """
@@ -33,5 +33,3 @@ class MandateType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of MandateType from a JSON string"""
         return cls(json.loads(json_str))
-
-

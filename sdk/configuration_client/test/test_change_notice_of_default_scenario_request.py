@@ -36,19 +36,36 @@ class TestChangeNoticeOfDefaultScenarioRequest(unittest.TestCase):
         if include_optional:
             return ChangeNoticeOfDefaultScenarioRequest(
                 pdf_template = configuration_client.models.notice_of_default_pdf_template_request.NoticeOfDefaultPdfTemplateRequest(
-                    envelope_settings = null, 
-                    show_country = True, ),
+                    show_country = True,
+                    envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                        margin_position = 'left',
+                        margin = 56,
+                        margin_top = 56, ), ),
                 email_template = configuration_client.models.notice_of_default_email_template_request.NoticeOfDefaultEmailTemplateRequest(
-                    subject = '', 
+                    subject = '',
                     attachments = [
                         configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
-                            id = '', 
-                            internal_file_path = '', 
+                            id = '',
+                            internal_file_path = '',
                             file_name = '', )
                         ], )
             )
         else:
             return ChangeNoticeOfDefaultScenarioRequest(
+                pdf_template = configuration_client.models.notice_of_default_pdf_template_request.NoticeOfDefaultPdfTemplateRequest(
+                    show_country = True,
+                    envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                        margin_position = 'left',
+                        margin = 56,
+                        margin_top = 56, ), ),
+                email_template = configuration_client.models.notice_of_default_email_template_request.NoticeOfDefaultEmailTemplateRequest(
+                    subject = '',
+                    attachments = [
+                        configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
+                            id = '',
+                            internal_file_path = '',
+                            file_name = '', )
+                        ], ),
         )
         """
 

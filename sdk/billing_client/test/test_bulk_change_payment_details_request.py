@@ -35,48 +35,63 @@ class TestBulkChangePaymentDetailsRequest(unittest.TestCase):
         model = BulkChangePaymentDetailsRequest()
         if include_optional:
             return BulkChangePaymentDetailsRequest(
-                new_payment_method = 'sct',
-                collection_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 only_validate = True,
                 var_query_params = billing_client.models.get_invoices_query_params.GetInvoicesQueryParams(
-                    flex_search = '', 
-                    include_only_ids = [
-                        ''
-                        ], 
-                    exclude_ids = [
-                        ''
-                        ], 
                     invoice_type = [
                         ''
-                        ], 
+                        ],
                     property_group_ids = [
                         ''
-                        ], 
-                    product_id = '', 
-                    customer_id = '', 
-                    contract_id = '', 
+                        ],
+                    product_id = '',
+                    customer_id = '',
+                    customer_type = '',
+                    contract_id = '',
                     invoice_status = [
                         ''
-                        ], 
+                        ],
                     payment_process_status = [
                         ''
-                        ], 
-                    billing_completeness_id = '', 
-                    payment_method = '', 
-                    start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    period_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    period_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    period_start_date_time_begin = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    period_start_date_time_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    period_end_date_time_begin = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    period_end_date_time_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    paid_date_time_begin = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    export_status = '', 
-                    collection_case_id = '', 
-                    customer_group_id = '', 
-                    company_bank_account_id = '', ),
-                quick_filter = ''
+                        ],
+                    billing_completeness_id = '',
+                    payment_method = '',
+                    start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    period_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    period_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    period_start_date_time_begin = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    period_start_date_time_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    period_end_date_time_begin = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    period_end_date_time_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    paid_date_time_begin = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    export_status = '',
+                    collection_case_id = '',
+                    customer_group_id = '',
+                    company_bank_account_id = '',
+                    has_attachment = True,
+                    payment_plan_id = '',
+                    apply_filters_over_included_ids = True,
+                    only_with_estimated_origin_measurements = True,
+                    only_credited_invoices = True,
+                    auto_approved_filter = True,
+                    validation_score_min = 56,
+                    validation_score_max = 56,
+                    flex_search = '',
+                    include_only_ids = [
+                        ''
+                        ],
+                    exclude_ids = [
+                        ''
+                        ],
+                    page_size = 56, ),
+                quick_filter = '',
+                new_payment_method = 'sct',
+                collection_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                psp_instrument = billing_client.models.psp_instrument_snapshot_request.PspInstrumentSnapshotRequest(
+                    payment_method_id = '',
+                    category = 'unknown',
+                    last4 = '',
+                    bank_code = '', )
             )
         else:
             return BulkChangePaymentDetailsRequest(

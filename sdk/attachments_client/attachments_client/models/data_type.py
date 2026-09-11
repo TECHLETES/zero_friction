@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class DataType(str, Enum):
     """
-    DataType
+    Possible values: 'text', 'number', 'date', 'dateandtime', 'enumeration'
     """
 
     """
@@ -36,5 +36,3 @@ class DataType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of DataType from a JSON string"""
         return cls(json.loads(json_str))
-
-

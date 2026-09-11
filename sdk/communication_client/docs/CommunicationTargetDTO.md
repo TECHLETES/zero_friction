@@ -5,11 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** |  | [optional] 
-**address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
-**email** | **str** |  | [optional] 
-**preferred_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
-**mobile_phone_number** | **str** |  | [optional] 
+**customer_id** | **str** |  | [optional]
+**customer_display_name** | **str** |  | [optional]
+**customer_account_number** | **str** |  | [optional]
+**address** | [**AddressDTO**](AddressDTO.md) |  | [optional]
+**email** | **str** |  | [optional]
+**preferred_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional]
+**mobile_phone_number** | **str** |  | [optional]
 
 ## Example
 
@@ -29,5 +31,3 @@ communication_target_dto_dict = communication_target_dto_instance.to_dict()
 communication_target_dto_from_dict = CommunicationTargetDTO.from_dict(communication_target_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

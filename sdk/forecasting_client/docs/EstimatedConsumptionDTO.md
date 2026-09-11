@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
-**origin** | [**EstimatedAnnualVolumeOrigin**](EstimatedAnnualVolumeOrigin.md) |  | [optional] 
-**last_recalculated** | **datetime** |  | [optional] 
-**consumer_group_id** | **str** |  | [optional] 
-**contract_id** | **str** |  | [optional] 
-**value** | **float** |  | [optional] 
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**origin** | [**EstimatedAnnualVolumeOrigin**](EstimatedAnnualVolumeOrigin.md) |  | [optional]
+**last_recalculated** | **datetime** |  | [optional]
+**consumer_group_id** | **str** |  | [optional]
+**contract_id** | **str** |  | [optional]
+**value** | **float** |  | [optional]
 
 ## Example
 
@@ -31,5 +31,3 @@ estimated_consumption_dto_dict = estimated_consumption_dto_instance.to_dict()
 estimated_consumption_dto_from_dict = EstimatedConsumptionDTO.from_dict(estimated_consumption_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

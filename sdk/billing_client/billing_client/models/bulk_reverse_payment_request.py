@@ -25,13 +25,13 @@ from typing_extensions import Self
 
 class BulkReversePaymentRequest(BaseModel):
     """
-    Represents a bulk request to reverse multiple payments.  This DTO extends the base reversal request with bulk operation capabilities.
+    BulkReversePaymentRequest
     """ # noqa: E501
-    reversal_additional_information: Optional[StrictStr] = Field(default=None, description="Additional information or reason for the payment reversal.", alias="reversalAdditionalInformation")
-    only_validate: Optional[StrictBool] = Field(default=None, description="Indicates whether this is a validation-only request without actual reversal.", alias="onlyValidate")
-    var_query_params: Optional[GetPaymentsQueryParams] = Field(default=None, description="Query parameters to filter the payments to be reversed.", alias="queryParams")
-    quick_filter: Optional[StrictStr] = Field(default=None, description="A quick filter string to further refine the selection of payments to be reversed.", alias="quickFilter")
-    __properties: ClassVar[List[str]] = ["reversalAdditionalInformation", "onlyValidate", "queryParams", "quickFilter"]
+    only_validate: Optional[StrictBool] = Field(default=None, alias="onlyValidate")
+    var_query_params: Optional[GetPaymentsQueryParams] = Field(default=None, alias="queryParams")
+    quick_filter: Optional[StrictStr] = Field(default=None, alias="quickFilter")
+    reversal_additional_information: Optional[StrictStr] = Field(default=None, alias="reversalAdditionalInformation")
+    __properties: ClassVar[List[str]] = ["onlyValidate", "queryParams", "quickFilter", "reversalAdditionalInformation"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,20 +75,15 @@ class BulkReversePaymentRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if reversal_additional_information (nullable) is None
-        # and model_fields_set contains the field
-        if self.reversal_additional_information is None and "reversal_additional_information" in self.model_fields_set:
-            _dict['reversalAdditionalInformation'] = None
-
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
         # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
         if self.quick_filter is None and "quick_filter" in self.model_fields_set:
             _dict['quickFilter'] = None
+
+        # set to None if reversal_additional_information (nullable) is None
+        # and model_fields_set contains the field
+        if self.reversal_additional_information is None and "reversal_additional_information" in self.model_fields_set:
+            _dict['reversalAdditionalInformation'] = None
 
         return _dict
 
@@ -102,11 +97,9 @@ class BulkReversePaymentRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "reversalAdditionalInformation": obj.get("reversalAdditionalInformation"),
             "onlyValidate": obj.get("onlyValidate"),
             "queryParams": GetPaymentsQueryParams.from_dict(obj["queryParams"]) if obj.get("queryParams") is not None else None,
-            "quickFilter": obj.get("quickFilter")
+            "quickFilter": obj.get("quickFilter"),
+            "reversalAdditionalInformation": obj.get("reversalAdditionalInformation")
         })
         return _obj
-
-

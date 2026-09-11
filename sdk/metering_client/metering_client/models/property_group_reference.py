@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,8 +26,8 @@ class PropertyGroupReference(BaseModel):
     """
     PropertyGroupReference
     """ # noqa: E501
-    id: Optional[StrictStr] = None
-    name: Optional[StrictStr] = None
+    id: StrictStr
+    name: StrictStr
     __properties: ClassVar[List[str]] = ["id", "name"]
 
     model_config = ConfigDict(
@@ -69,16 +69,6 @@ class PropertyGroupReference(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if name (nullable) is None
-        # and model_fields_set contains the field
-        if self.name is None and "name" in self.model_fields_set:
-            _dict['name'] = None
-
         return _dict
 
     @classmethod
@@ -95,5 +85,3 @@ class PropertyGroupReference(BaseModel):
             "name": obj.get("name")
         })
         return _obj
-
-

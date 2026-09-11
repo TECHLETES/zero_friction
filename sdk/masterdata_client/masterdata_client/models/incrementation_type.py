@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class IncrementationType(str, Enum):
     """
-    IncrementationType
+    Possible values: 'delta', 'cumul', 'na'
     """
 
     """
@@ -34,5 +34,3 @@ class IncrementationType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of IncrementationType from a JSON string"""
         return cls(json.loads(json_str))
-
-

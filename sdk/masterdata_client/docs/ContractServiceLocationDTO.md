@@ -5,10 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
-**address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
-**property_group_id** | **str** |  | [optional] 
-**services** | [**List[ContractedServiceDTO]**](ContractedServiceDTO.md) |  | [optional] 
+**id** | **str** |  | [optional]
+**address** | [**AddressDTO**](AddressDTO.md) |  | [optional]
+**property_group_id** | **str** |  | [optional]
+**services** | [**List[ContractedServiceDTO]**](ContractedServiceDTO.md) |  | [optional]
+**prepayment_device_coverage_references** | [**List[PrepaymentDeviceCoverageReferenceDTO]**](PrepaymentDeviceCoverageReferenceDTO.md) |  | [optional]
 
 ## Example
 
@@ -28,5 +29,3 @@ contract_service_location_dto_dict = contract_service_location_dto_instance.to_d
 contract_service_location_dto_from_dict = ContractServiceLocationDTO.from_dict(contract_service_location_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

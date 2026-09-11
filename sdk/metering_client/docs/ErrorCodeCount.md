@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error_code** | **str** |  | [optional] 
-**count** | **int** |  | [optional] 
+**error_code** | **str** |  |
+**count** | **int** |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ error_code_count_dict = error_code_count_instance.to_dict()
 error_code_count_from_dict = ErrorCodeCount.from_dict(error_code_count_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

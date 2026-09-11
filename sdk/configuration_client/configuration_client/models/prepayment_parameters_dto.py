@@ -17,8 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from configuration_client.models.entity_subject_type import EntitySubjectType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,10 +28,15 @@ class PrepaymentParametersDTO(BaseModel):
     """
     PrepaymentParametersDTO
     """ # noqa: E501
-    emergency_credit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="emergencyCredit")
-    enable_deduction: Optional[StrictBool] = Field(default=None, alias="enableDeduction")
-    deduction_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="deductionRate")
-    __properties: ClassVar[List[str]] = ["emergencyCredit", "enableDeduction", "deductionRate"]
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,10 +89,13 @@ class PrepaymentParametersDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "emergencyCredit": obj.get("emergencyCredit"),
-            "enableDeduction": obj.get("enableDeduction"),
-            "deductionRate": obj.get("deductionRate")
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
-
-

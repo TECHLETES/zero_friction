@@ -35,64 +35,53 @@ class TestServiceLocationDTO(unittest.TestCase):
         model = ServiceLocationDTO()
         if include_optional:
             return ServiceLocationDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 address = masterdata_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 display_address = '',
                 property_group = masterdata_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
-                    id = '', 
+                    id = '',
                     name = '', ),
                 product = masterdata_client.models.product_reference_dto.ProductReferenceDTO(
-                    id = '', 
-                    name = '', 
-                    product_id = '', 
+                    id = '',
+                    name = '',
+                    product_id = '',
                     product_name = '', ),
                 management_relations = [
-                    masterdata_client.models.management_relation_dto2.ManagementRelationDTO2(
-                        customer_id = '', 
-                        short_display_name = '', 
-                        account_number = '', 
-                        management_relation_type = null, )
+                    masterdata_client.models.management_relation_dto.ManagementRelationDTO(
+                        customer_id = '',
+                        short_display_name = '',
+                        account_number = '',
+                        management_relation_type = 'owner', )
                     ],
                 services = [
                     masterdata_client.models.service_dto.ServiceDTO(
-                        external_identifier = '', 
-                        utility_type = null, 
+                        utility_type = 'none',
                         status_history = [
                             masterdata_client.models.service_status_history_dto.ServiceStatusHistoryDTO(
-                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                service_status = null, )
-                            ], 
+                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                                service_status = 'supplied', )
+                            ],
                         contracts = [
                             masterdata_client.models.service_contract_dto.ServiceContractDTO(
-                                contract_id = '', 
-                                contract_number = '', 
-                                contractor_id = '', 
-                                contractor_acount_number = '', 
-                                contractor_display_name = '', 
-                                supply_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                supply_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                current_contract_status = null, )
+                                contract_id = '',
+                                contract_number = '',
+                                contractor_id = '',
+                                contractor_acount_number = '',
+                                contractor_display_name = '',
+                                supply_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                                supply_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                                current_contract_status = 'draft', )
                             ], )
                     ],
                 has_meters = True,
@@ -100,22 +89,34 @@ class TestServiceLocationDTO(unittest.TestCase):
                 time_zone = '',
                 custom_properties = [
                     masterdata_client.models.custom_entity_property_dto.CustomEntityPropertyDTO(
-                        custom_entity_property_type_id = '', 
+                        custom_entity_property_type_id = '',
                         values = [
                             masterdata_client.models.custom_entity_property_value_dto.CustomEntityPropertyValueDTO(
-                                value_decimal = 1.337, 
-                                value_string = '', 
-                                value_boolean = True, 
-                                value_number = 56, 
-                                value_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                value_decimal = 1.337,
+                                value_string = '',
+                                value_boolean = True,
+                                value_number = 56,
+                                value_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                                 value_dropdown = [
                                     ''
-                                    ], 
-                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                    ],
+                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                             ], )
                     ],
-                current_status = 'supplied'
+                archived_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                last_time_received_data = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                has_recent_measurements = True,
+                is_auto_restored = True,
+                current_status = 'supplied',
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return ServiceLocationDTO(

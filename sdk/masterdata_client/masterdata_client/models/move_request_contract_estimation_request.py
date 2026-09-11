@@ -30,10 +30,10 @@ class MoveRequestContractEstimationRequest(BaseModel):
     MoveRequestContractEstimationRequest
     """ # noqa: E501
     utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
-    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, alias="unitOfMeasure")
-    metering_type: Optional[MeteringType] = Field(default=None, alias="meteringType")
+    unit_of_measure: Optional[UnitOfMeasure] = Field(alias="unitOfMeasure")
+    metering_type: Optional[MeteringType] = Field(alias="meteringType")
     value: Optional[Union[StrictFloat, StrictInt]] = None
-    consumer_group_id: Optional[StrictStr] = Field(default=None, alias="consumerGroupId")
+    consumer_group_id: Optional[StrictStr] = Field(alias="consumerGroupId")
     __properties: ClassVar[List[str]] = ["utilityType", "unitOfMeasure", "meteringType", "value", "consumerGroupId"]
 
     model_config = ConfigDict(
@@ -114,5 +114,3 @@ class MoveRequestContractEstimationRequest(BaseModel):
             "consumerGroupId": obj.get("consumerGroupId")
         })
         return _obj
-
-

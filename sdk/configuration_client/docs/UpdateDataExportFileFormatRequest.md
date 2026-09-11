@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
-**settings** | **object** |  | [optional] 
+**name** | **str** |  |
+**description** | **str** |  |
+**settings** | [**BaseDataExportSettingsDTOInvoiceExportSettingsDTO**](BaseDataExportSettingsDTOInvoiceExportSettingsDTO.md) |  |
 
 ## Example
 
@@ -27,5 +27,3 @@ update_data_export_file_format_request_dict = update_data_export_file_format_req
 update_data_export_file_format_request_from_dict = UpdateDataExportFileFormatRequest.from_dict(update_data_export_file_format_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

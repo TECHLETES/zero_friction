@@ -43,6 +43,9 @@ class TestPropertyGroupFirstInvoiceEndDateTimeSuggestionsRequest(unittest.TestCa
             )
         else:
             return PropertyGroupFirstInvoiceEndDateTimeSuggestionsRequest(
+                service_location_ids = [
+                    ''
+                    ],
         )
         """
 

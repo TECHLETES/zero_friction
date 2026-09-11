@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metering_issue_id** | **str** |  | [optional] 
-**error** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional] 
-**status** | [**MeteringIssueStatus**](MeteringIssueStatus.md) |  | [optional] 
-**noticed_date_time** | **datetime** |  | [optional] 
+**metering_issue_id** | **str** |  | [optional]
+**error** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional]
+**status** | [**MeteringIssueStatus**](MeteringIssueStatus.md) |  | [optional]
+**noticed_date_time** | **datetime** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ metering_issue_reference_dict = metering_issue_reference_instance.to_dict()
 metering_issue_reference_from_dict = MeteringIssueReference.from_dict(metering_issue_reference_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

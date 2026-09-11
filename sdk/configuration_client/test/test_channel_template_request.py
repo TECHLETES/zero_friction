@@ -42,10 +42,24 @@ class TestChannelTemplateRequest(unittest.TestCase):
                 incrementation_type = 'delta',
                 time_of_use = '',
                 unit_of_measure = 'none',
-                description = ''
+                description = '',
+                reset_day = 56,
+                reset_month = 56,
+                reset_hour = 56
             )
         else:
             return ChannelTemplateRequest(
+                data_frequency = 'pt1m',
+                metering_type = 'none',
+                utility_type = 'none',
+                direction = 'offtake',
+                incrementation_type = 'delta',
+                time_of_use = '',
+                unit_of_measure = 'none',
+                description = '',
+                reset_day = 56,
+                reset_month = 56,
+                reset_hour = 56,
         )
         """
 

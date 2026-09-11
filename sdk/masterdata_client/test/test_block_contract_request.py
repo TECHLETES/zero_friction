@@ -39,6 +39,7 @@ class TestBlockContractRequest(unittest.TestCase):
             )
         else:
             return BlockContractRequest(
+                comment = '',
         )
         """
 

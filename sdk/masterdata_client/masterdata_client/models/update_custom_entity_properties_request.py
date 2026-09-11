@@ -76,11 +76,6 @@ class UpdateCustomEntityPropertiesRequest(BaseModel):
                 if _item_properties:
                     _items.append(_item_properties.to_dict())
             _dict['properties'] = _items
-        # set to None if properties (nullable) is None
-        # and model_fields_set contains the field
-        if self.properties is None and "properties" in self.model_fields_set:
-            _dict['properties'] = None
-
         return _dict
 
     @classmethod
@@ -96,5 +91,3 @@ class UpdateCustomEntityPropertiesRequest(BaseModel):
             "properties": [UpdateCustomEntityPropertyRequest.from_dict(_item) for _item in obj["properties"]] if obj.get("properties") is not None else None
         })
         return _obj
-
-

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AggregationFrequency(str, Enum):
     """
-    AggregationFrequency
+    Possible values: 'none', 'daily', 'monthly', 'yearly'
     """
 
     """
@@ -35,5 +35,3 @@ class AggregationFrequency(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of AggregationFrequency from a JSON string"""
         return cls(json.loads(json_str))
-
-

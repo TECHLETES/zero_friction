@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class EnvelopePosition(str, Enum):
     """
-    EnvelopePosition
+    Possible values: 'left', 'right'
     """
 
     """
@@ -33,5 +33,3 @@ class EnvelopePosition(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of EnvelopePosition from a JSON string"""
         return cls(json.loads(json_str))
-
-

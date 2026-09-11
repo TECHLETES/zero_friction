@@ -35,13 +35,14 @@ class TestCustomerCommunicationPreferencesDTO(unittest.TestCase):
         model = CustomerCommunicationPreferencesDTO()
         if include_optional:
             return CustomerCommunicationPreferencesDTO(
-                culture = ,
+                culture = '',
                 invoice_communication_preferences = [
                     masterdata_client.models.invoice_communication_preference_dto.InvoiceCommunicationPreferenceDTO(
-                        invoice_type = null, 
-                        communication_type = null, )
+                        invoice_type = 'advance',
+                        communication_type = 'none', )
                     ],
-                annual_statement_communication_preference = 'postal',
+                annual_statement_communication_preference = 'none',
+                prepayment_statement_communication_preference = 'none',
                 collection_flow_id = ''
             )
         else:

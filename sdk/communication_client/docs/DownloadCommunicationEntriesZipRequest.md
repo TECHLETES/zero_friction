@@ -5,7 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**communication_entry_ids** | **List[str]** |  | [optional] 
+**communication_entry_ids** | **List[str]** |  |
+**var_query_params** | [**GetCommunicationEntriesQueryParams**](GetCommunicationEntriesQueryParams.md) |  |
+**quick_filter** | [**CommunicationEntryQuickFilter**](CommunicationEntryQuickFilter.md) |  | [optional]
+**excluded_ids** | **List[str]** |  | [optional]
 
 ## Example
 
@@ -25,5 +28,3 @@ download_communication_entries_zip_request_dict = download_communication_entries
 download_communication_entries_zip_request_from_dict = DownloadCommunicationEntriesZipRequest.from_dict(download_communication_entries_zip_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

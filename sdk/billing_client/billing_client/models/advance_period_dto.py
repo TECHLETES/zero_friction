@@ -20,25 +20,28 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from billing_client.models.advance_period_blocked_reason import AdvancePeriodBlockedReason
 from billing_client.models.sent_status import SentStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
 class AdvancePeriodDTO(BaseModel):
     """
-    Represents an advance payment period
+    AdvancePeriodDTO
     """ # noqa: E501
-    start_date_time: Optional[datetime] = Field(default=None, description="Start date and time of the advance period", alias="startDateTime")
-    end_date_time: Optional[datetime] = Field(default=None, description="End date and time of the advance period", alias="endDateTime")
-    advance_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount of the advance payment excluding VAT", alias="advanceAmountExclVAT")
-    invoice_id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the invoice", alias="invoiceId")
-    invoice_num: Optional[StrictStr] = Field(default=None, description="Invoice number", alias="invoiceNum")
-    invoice_date: Optional[datetime] = Field(default=None, description="Date of the invoice", alias="invoiceDate")
-    sent_status: Optional[SentStatus] = Field(default=None, description="Current status of the invoice sending", alias="sentStatus")
-    paid: Optional[StrictBool] = Field(default=None, description="Indicates if the advance has been paid")
-    automatically_deleted: Optional[StrictBool] = Field(default=None, description="Indicates if the advance was automatically deleted", alias="automaticallyDeleted")
-    manually_deleted: Optional[StrictBool] = Field(default=None, description="Indicates if the advance was manually deleted", alias="manuallyDeleted")
-    __properties: ClassVar[List[str]] = ["startDateTime", "endDateTime", "advanceAmountExclVAT", "invoiceId", "invoiceNum", "invoiceDate", "sentStatus", "paid", "automaticallyDeleted", "manuallyDeleted"]
+    start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
+    end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
+    advance_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="advanceAmountExclVAT")
+    advance_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="advanceAmountInclVAT")
+    invoice_id: Optional[StrictStr] = Field(default=None, alias="invoiceId")
+    invoice_num: Optional[StrictStr] = Field(default=None, alias="invoiceNum")
+    invoice_date: Optional[datetime] = Field(default=None, alias="invoiceDate")
+    sent_status: Optional[SentStatus] = Field(default=None, alias="sentStatus")
+    paid: Optional[StrictBool] = None
+    automatically_deleted: Optional[StrictBool] = Field(default=None, alias="automaticallyDeleted")
+    manually_deleted: Optional[StrictBool] = Field(default=None, alias="manuallyDeleted")
+    blocked_reason: Optional[AdvancePeriodBlockedReason] = Field(default=None, alias="blockedReason")
+    __properties: ClassVar[List[str]] = ["startDateTime", "endDateTime", "advanceAmountExclVAT", "advanceAmountInclVAT", "invoiceId", "invoiceNum", "invoiceDate", "sentStatus", "paid", "automaticallyDeleted", "manuallyDeleted", "blockedReason"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,6 +82,11 @@ class AdvancePeriodDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if advance_amount_incl_vat (nullable) is None
+        # and model_fields_set contains the field
+        if self.advance_amount_incl_vat is None and "advance_amount_incl_vat" in self.model_fields_set:
+            _dict['advanceAmountInclVAT'] = None
+
         # set to None if invoice_id (nullable) is None
         # and model_fields_set contains the field
         if self.invoice_id is None and "invoice_id" in self.model_fields_set:
@@ -89,10 +97,10 @@ class AdvancePeriodDTO(BaseModel):
         if self.invoice_num is None and "invoice_num" in self.model_fields_set:
             _dict['invoiceNum'] = None
 
-        # set to None if sent_status (nullable) is None
+        # set to None if blocked_reason (nullable) is None
         # and model_fields_set contains the field
-        if self.sent_status is None and "sent_status" in self.model_fields_set:
-            _dict['sentStatus'] = None
+        if self.blocked_reason is None and "blocked_reason" in self.model_fields_set:
+            _dict['blockedReason'] = None
 
         return _dict
 
@@ -109,14 +117,14 @@ class AdvancePeriodDTO(BaseModel):
             "startDateTime": obj.get("startDateTime"),
             "endDateTime": obj.get("endDateTime"),
             "advanceAmountExclVAT": obj.get("advanceAmountExclVAT"),
+            "advanceAmountInclVAT": obj.get("advanceAmountInclVAT"),
             "invoiceId": obj.get("invoiceId"),
             "invoiceNum": obj.get("invoiceNum"),
             "invoiceDate": obj.get("invoiceDate"),
             "sentStatus": obj.get("sentStatus"),
             "paid": obj.get("paid"),
             "automaticallyDeleted": obj.get("automaticallyDeleted"),
-            "manuallyDeleted": obj.get("manuallyDeleted")
+            "manuallyDeleted": obj.get("manuallyDeleted"),
+            "blockedReason": obj.get("blockedReason")
         })
         return _obj
-
-

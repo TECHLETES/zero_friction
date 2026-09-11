@@ -35,19 +35,19 @@ class TestDataExportFileFormatDTO(unittest.TestCase):
         model = DataExportFileFormatDTO()
         if include_optional:
             return DataExportFileFormatDTO(
+                name = '',
+                description = '',
+                deleted = True,
+                settings = configuration_client.models.base_data_export_settings_dto_invoice_export_settings_dto.BaseDataExportSettingsDTOInvoiceExportSettingsDTO(
+                    type = 'invoice',
+                    format = configuration_client.models.base_invoice_export_format_dto.BaseInvoiceExportFormatDTO(), ),
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                name = '',
-                description = '',
-                deleted = True,
-                settings = None
+                is_read_only = True
             )
         else:
             return DataExportFileFormatDTO(

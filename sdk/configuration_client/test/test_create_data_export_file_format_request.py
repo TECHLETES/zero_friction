@@ -37,10 +37,17 @@ class TestCreateDataExportFileFormatRequest(unittest.TestCase):
             return CreateDataExportFileFormatRequest(
                 name = '',
                 description = '',
-                settings = None
+                settings = configuration_client.models.base_data_export_settings_dto_invoice_export_settings_dto.BaseDataExportSettingsDTOInvoiceExportSettingsDTO(
+                    type = 'invoice',
+                    format = configuration_client.models.base_invoice_export_format_dto.BaseInvoiceExportFormatDTO(), )
             )
         else:
             return CreateDataExportFileFormatRequest(
+                name = '',
+                description = '',
+                settings = configuration_client.models.base_data_export_settings_dto_invoice_export_settings_dto.BaseDataExportSettingsDTOInvoiceExportSettingsDTO(
+                    type = 'invoice',
+                    format = configuration_client.models.base_invoice_export_format_dto.BaseInvoiceExportFormatDTO(), ),
         )
         """
 

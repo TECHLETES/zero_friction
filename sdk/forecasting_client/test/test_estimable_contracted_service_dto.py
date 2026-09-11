@@ -48,9 +48,9 @@ class TestEstimableContractedServiceDTO(unittest.TestCase):
                 supply_end_year = 56,
                 estimated_annual_volumes = [
                     forecasting_client.models.estimated_annual_volume_dto.EstimatedAnnualVolumeDTO(
-                        year = 56, 
-                        value = 1.337, 
-                        origin = null, 
+                        year = 56,
+                        value = 1.337,
+                        origin = 'manual',
                         last_recalculated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ]
             )

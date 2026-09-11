@@ -71,11 +71,6 @@ class EnvelopeSettingsDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if margin_position (nullable) is None
-        # and model_fields_set contains the field
-        if self.margin_position is None and "margin_position" in self.model_fields_set:
-            _dict['marginPosition'] = None
-
         return _dict
 
     @classmethod
@@ -93,5 +88,3 @@ class EnvelopeSettingsDTO(BaseModel):
             "marginTop": obj.get("marginTop")
         })
         return _obj
-
-

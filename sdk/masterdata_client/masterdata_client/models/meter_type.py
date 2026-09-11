@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MeterType(str, Enum):
     """
-    MeterType
+    Possible values: 'individual', 'aggregating', 'communal', 'root'
     """
 
     """
@@ -30,11 +30,8 @@ class MeterType(str, Enum):
     AGGREGATING = 'aggregating'
     COMMUNAL = 'communal'
     ROOT = 'root'
-    PREPAYMENT = 'prepayment'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of MeterType from a JSON string"""
         return cls(json.loads(json_str))
-
-

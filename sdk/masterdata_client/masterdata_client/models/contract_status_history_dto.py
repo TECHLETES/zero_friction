@@ -71,11 +71,6 @@ class ContractStatusHistoryDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if contract_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.contract_status is None and "contract_status" in self.model_fields_set:
-            _dict['contractStatus'] = None
-
         return _dict
 
     @classmethod
@@ -92,5 +87,3 @@ class ContractStatusHistoryDTO(BaseModel):
             "mutationDateTime": obj.get("mutationDateTime")
         })
         return _obj
-
-

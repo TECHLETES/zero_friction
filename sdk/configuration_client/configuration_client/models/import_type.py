@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ImportType(str, Enum):
     """
-    ImportType
+    Possible values: 'billingtariff'
     """
 
     """
@@ -32,5 +32,3 @@ class ImportType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ImportType from a JSON string"""
         return cls(json.loads(json_str))
-
-

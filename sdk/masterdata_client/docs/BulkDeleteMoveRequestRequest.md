@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetMoveRequestsQueryParams**](GetMoveRequestsQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetMoveRequestsQueryParams**](GetMoveRequestsQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ bulk_delete_move_request_request_dict = bulk_delete_move_request_request_instanc
 bulk_delete_move_request_request_from_dict = BulkDeleteMoveRequestRequest.from_dict(bulk_delete_move_request_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** |  | [optional] 
-**latest_annual_statement_generation_in_progress** | **int** |  | [optional] 
-**latest_annual_statement_generated** | **int** |  | [optional] 
-**latest_annual_statement_failed** | **int** |  | [optional] 
+**all** | **int** |  | [optional]
+**latest_annual_statement_generation_in_progress** | **int** |  | [optional]
+**latest_annual_statement_generated** | **int** |  | [optional]
+**latest_annual_statement_failed** | **int** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ customer_annual_statement_overview_count_dto_dict = customer_annual_statement_ov
 customer_annual_statement_overview_count_dto_from_dict = CustomerAnnualStatementOverviewCountDTO.from_dict(customer_annual_statement_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -95,5 +95,3 @@ class CreateMeterParentRelationRequest(BaseModel):
             "externalReference": obj.get("externalReference")
         })
         return _obj
-
-

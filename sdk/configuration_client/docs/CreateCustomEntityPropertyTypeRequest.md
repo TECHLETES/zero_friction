@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
-**show_in_header** | **bool** |  | [optional] 
-**tag_color** | [**CustomEntityPropertyTypeTagColor**](CustomEntityPropertyTypeTagColor.md) |  | [optional] 
-**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
-**value_type** | **object** |  | [optional] 
+**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  |
+**value_type** | [**BasePropertyValueTypeDTO**](BasePropertyValueTypeDTO.md) |  |
+**name** | **str** |  | [optional]
+**description** | **str** |  | [optional]
+**show_in_header** | **bool** |  | [optional]
+**tag_color** | [**CustomEntityPropertyTypeTagColor**](CustomEntityPropertyTypeTagColor.md) |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ create_custom_entity_property_type_request_dict = create_custom_entity_property_
 create_custom_entity_property_type_request_from_dict = CreateCustomEntityPropertyTypeRequest.from_dict(create_custom_entity_property_type_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

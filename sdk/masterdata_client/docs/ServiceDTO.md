@@ -5,10 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**external_identifier** | **str** |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**status_history** | [**List[ServiceStatusHistoryDTO]**](ServiceStatusHistoryDTO.md) |  | [optional] 
-**contracts** | [**List[ServiceContractDTO]**](ServiceContractDTO.md) |  | [optional] 
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional]
+**status_history** | [**List[ServiceStatusHistoryDTO]**](ServiceStatusHistoryDTO.md) |  | [optional]
+**contracts** | [**List[ServiceContractDTO]**](ServiceContractDTO.md) |  | [optional]
 
 ## Example
 
@@ -28,5 +27,3 @@ service_dto_dict = service_dto_instance.to_dict()
 service_dto_from_dict = ServiceDTO.from_dict(service_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

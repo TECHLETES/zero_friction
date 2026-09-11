@@ -88,5 +88,3 @@ class UpdateExternalIdRequest(BaseModel):
             "externalId": obj.get("externalId")
         })
         return _obj
-
-

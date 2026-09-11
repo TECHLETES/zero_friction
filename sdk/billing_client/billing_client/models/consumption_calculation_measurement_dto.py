@@ -20,18 +20,22 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from billing_client.models.measurement_reading_method import MeasurementReadingMethod
+from billing_client.models.measurement_reading_origin import MeasurementReadingOrigin
 from billing_client.models.unit_of_measure import UnitOfMeasure
 from typing import Optional, Set
 from typing_extensions import Self
 
 class ConsumptionCalculationMeasurementDTO(BaseModel):
     """
-    Represents a measurement used in consumption calculations
+    ConsumptionCalculationMeasurementDTO
     """ # noqa: E501
-    value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Value of the measurement")
-    reading_date_time: Optional[datetime] = Field(default=None, description="Date and time when the reading was taken", alias="readingDateTime")
-    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, description="Unit of measure for the reading", alias="unitOfMeasure")
-    __properties: ClassVar[List[str]] = ["value", "readingDateTime", "unitOfMeasure"]
+    value: Optional[Union[StrictFloat, StrictInt]] = None
+    reading_date_time: Optional[datetime] = Field(default=None, alias="readingDateTime")
+    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, alias="unitOfMeasure")
+    reading_origin: Optional[MeasurementReadingOrigin] = Field(default=None, alias="readingOrigin")
+    reading_method: Optional[MeasurementReadingMethod] = Field(default=None, alias="readingMethod")
+    __properties: ClassVar[List[str]] = ["value", "readingDateTime", "unitOfMeasure", "readingOrigin", "readingMethod"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,10 +76,15 @@ class ConsumptionCalculationMeasurementDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if unit_of_measure (nullable) is None
+        # set to None if reading_origin (nullable) is None
         # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
+        if self.reading_origin is None and "reading_origin" in self.model_fields_set:
+            _dict['readingOrigin'] = None
+
+        # set to None if reading_method (nullable) is None
+        # and model_fields_set contains the field
+        if self.reading_method is None and "reading_method" in self.model_fields_set:
+            _dict['readingMethod'] = None
 
         return _dict
 
@@ -91,8 +100,8 @@ class ConsumptionCalculationMeasurementDTO(BaseModel):
         _obj = cls.model_validate({
             "value": obj.get("value"),
             "readingDateTime": obj.get("readingDateTime"),
-            "unitOfMeasure": obj.get("unitOfMeasure")
+            "unitOfMeasure": obj.get("unitOfMeasure"),
+            "readingOrigin": obj.get("readingOrigin"),
+            "readingMethod": obj.get("readingMethod")
         })
         return _obj
-
-

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class SentStatus(str, Enum):
     """
-    SentStatus
+    Possible values: 'notsent', 'sending', 'printing', 'skipped', 'sent', 'failed'
     """
 
     """
@@ -37,5 +37,3 @@ class SentStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SentStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

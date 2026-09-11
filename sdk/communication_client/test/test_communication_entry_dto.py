@@ -35,27 +35,30 @@ class TestCommunicationEntryDTO(unittest.TestCase):
         model = CommunicationEntryDTO()
         if include_optional:
             return CommunicationEntryDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 subject_type = 'none',
                 subject_subtype = '',
                 subject_id = '',
                 reference = '',
-                communication_type = 'postal',
+                communication_type = 'none',
                 title = '',
                 target = communication_client.models.communication_target_dto.CommunicationTargetDTO(
-                    customer_id = '', 
-                    address = null, 
-                    email = '', 
-                    preferred_communication_type = null, 
+                    customer_id = '',
+                    customer_display_name = '',
+                    customer_account_number = '',
+                    address = communication_client.models.address_dto.AddressDTO(
+                        street_name = '',
+                        street_number = '',
+                        street_number_addition = '',
+                        postal_code = '',
+                        building_name = '',
+                        locality = '',
+                        city = '',
+                        country = 'aut',
+                        localized_display = '',
+                        line_one = '',
+                        line_two = '', ),
+                    email = '',
+                    preferred_communication_type = 'none',
                     mobile_phone_number = '', ),
                 sent_requested = True,
                 sent_request_id = '',
@@ -63,17 +66,37 @@ class TestCommunicationEntryDTO(unittest.TestCase):
                 sent_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 finished = True,
                 failure_reason_code = communication_client.models.localised_error_dto.LocalisedErrorDTO(
-                    key = null, 
-                    correlation_id = '', 
-                    message = '', 
+                    key = 56,
+                    correlation_id = '',
+                    message = '',
                     message_values = [
                         communication_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                            data_type = null, 
-                            value = '', 
+                            data_type = 'text',
+                            value = '',
+                            capitalize = True, )
+                        ], ),
+                communication_provider_error = communication_client.models.localised_error_dto.LocalisedErrorDTO(
+                    key = 56,
+                    correlation_id = '',
+                    message = '',
+                    message_values = [
+                        communication_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
+                            data_type = 'text',
+                            value = '',
                             capitalize = True, )
                         ], ),
                 failure_details = '',
-                communication_entry_status = 'generating'
+                communication_entry_status = 'generating',
+                subject_reference_parameters = communication_client.models.subject_reference_parameters_dto.SubjectReferenceParametersDTO(),
+                communication_entry_id = '',
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return CommunicationEntryDTO(

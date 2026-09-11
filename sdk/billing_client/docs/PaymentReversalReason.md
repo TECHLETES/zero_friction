@@ -1,5 +1,6 @@
 # PaymentReversalReason
 
+Possible values: 'manualreverse', 'unpaiddirectdebit', 'reversalsepadirectdebit', 'rejectdomesticdirectdebit', 'unknownbankaccount', 'terminatedbankaccount', 'blockedbankaccount', 'unsupportedbankaccount', 'invalidsequencetype', 'insufficientfunds', 'invalidmandate', 'debtordeceased', 'refusalbydebtor', 'refusalotherreason', 'maximumamountperiodreached'
 
 ## Enum
 
@@ -34,5 +35,3 @@
 * `MAXIMUMAMOUNTPERIODREACHED` (value: `'maximumamountperiodreached'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

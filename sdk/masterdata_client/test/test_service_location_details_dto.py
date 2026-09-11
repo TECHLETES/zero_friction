@@ -36,54 +36,54 @@ class TestServiceLocationDetailsDTO(unittest.TestCase):
         if include_optional:
             return ServiceLocationDetailsDTO(
                 previous_contract_details = masterdata_client.models.move_request_contract_details_dto.MoveRequestContractDetailsDTO(
-                    contract_id = '', 
-                    contract_number = '', 
-                    contract_supply_start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    contract_supply_end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    customer_id = '', 
-                    customer_display_name = '', 
+                    contract_id = '',
+                    contract_number = '',
+                    contract_supply_start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    contract_supply_end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    customer_id = '',
+                    customer_display_name = '',
                     customer_account_number = '', ),
                 current_contract_details = masterdata_client.models.move_request_contract_details_dto.MoveRequestContractDetailsDTO(
-                    contract_id = '', 
-                    contract_number = '', 
-                    contract_supply_start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    contract_supply_end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    customer_id = '', 
-                    customer_display_name = '', 
+                    contract_id = '',
+                    contract_number = '',
+                    contract_supply_start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    contract_supply_end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    customer_id = '',
+                    customer_display_name = '',
                     customer_account_number = '', ),
                 owner = masterdata_client.models.management_relation_dto.ManagementRelationDTO(
-                    customer_id = '', 
-                    short_display_name = '', 
-                    account_number = '', 
-                    management_relation_type = null, ),
+                    customer_id = '',
+                    short_display_name = '',
+                    account_number = '',
+                    management_relation_type = 'owner', ),
                 address = masterdata_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 services = [
                     masterdata_client.models.service_location_service_details_dto.ServiceLocationServiceDetailsDTO(
-                        external_identifier = '', 
-                        utility_type = null, )
+                        external_identifier = '',
+                        utility_type = 'none', )
                     ],
                 linked = True,
                 internal_id = '',
                 errors = [
                     masterdata_client.models.localised_error_dto.LocalisedErrorDTO(
-                        key = null, 
-                        correlation_id = '', 
-                        message = '', 
+                        key = 56,
+                        correlation_id = '',
+                        message = '',
                         message_values = [
                             masterdata_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                data_type = null, 
-                                value = '', 
+                                data_type = 'text',
+                                value = '',
                                 capitalize = True, )
                             ], )
                     ]

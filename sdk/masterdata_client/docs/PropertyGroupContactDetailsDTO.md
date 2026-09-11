@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email_address** | **str** |  | [optional] 
-**telephone** | **str** |  | [optional] 
-**website** | **str** |  | [optional] 
-**telephone_interruptions** | **str** |  | [optional] 
+**email_address** | **str** |  | [optional]
+**telephone** | **str** |  | [optional]
+**website** | **str** |  | [optional]
+**telephone_interruptions** | **str** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ property_group_contact_details_dto_dict = property_group_contact_details_dto_ins
 property_group_contact_details_dto_from_dict = PropertyGroupContactDetailsDTO.from_dict(property_group_contact_details_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

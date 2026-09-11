@@ -1,15 +1,14 @@
 # OutgoingMutationsOverviewCountDTO
 
-Provides an overview of outgoing mutation counts by their type.  This DTO contains aggregated counts of different types of mutations.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** | The total number of outgoing mutations. | [optional] 
-**invoices** | **int** | The number of invoice-related mutations. | [optional] 
-**manual_entries** | **int** | The number of manually entered mutations. | [optional] 
-**resolve_issues** | **int** | The number of mutations that have issues requiring resolution. | [optional] 
+**all** | **int** |  | [optional]
+**invoices** | **int** |  | [optional]
+**manual_entries** | **int** |  | [optional]
+**resolve_issues** | **int** |  | [optional]
 
 ## Example
 
@@ -29,5 +28,3 @@ outgoing_mutations_overview_count_dto_dict = outgoing_mutations_overview_count_d
 outgoing_mutations_overview_count_dto_from_dict = OutgoingMutationsOverviewCountDTO.from_dict(outgoing_mutations_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

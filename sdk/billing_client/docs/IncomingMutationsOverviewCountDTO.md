@@ -1,16 +1,15 @@
 # IncomingMutationsOverviewCountDTO
 
-Provides an overview of incoming mutation counts by their type.  This DTO contains aggregated counts of different types of mutations.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** | The total number of incoming mutations. | [optional] 
-**bank_transfers** | **int** | The number of bank transfer mutations. | [optional] 
-**reversals** | **int** | The number of reversal mutations. | [optional] 
-**bank_confirmations** | **int** | The number of bank confirmation mutations. | [optional] 
-**resolve_issues** | **int** | The number of mutations that have issues requiring resolution. | [optional] 
+**all** | **int** |  | [optional]
+**bank_transfers** | **int** |  | [optional]
+**reversals** | **int** |  | [optional]
+**bank_confirmations** | **int** |  | [optional]
+**resolve_issues** | **int** |  | [optional]
 
 ## Example
 
@@ -30,5 +29,3 @@ incoming_mutations_overview_count_dto_dict = incoming_mutations_overview_count_d
 incoming_mutations_overview_count_dto_from_dict = IncomingMutationsOverviewCountDTO.from_dict(incoming_mutations_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

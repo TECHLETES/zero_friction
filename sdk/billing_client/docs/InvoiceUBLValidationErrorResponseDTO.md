@@ -1,14 +1,13 @@
 # InvoiceUBLValidationErrorResponseDTO
 
-Represents UBL validation errors for invoices
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**general_errors** | [**List[InvoiceUBLValidationGeneralErrorDTO]**](InvoiceUBLValidationGeneralErrorDTO.md) | List of general validation errors that apply to multiple invoices | [optional] 
-**specific_errors** | [**List[InvoiceUBLValidationSpecificErrorDTO]**](InvoiceUBLValidationSpecificErrorDTO.md) | List of specific validation errors for individual invoices | [optional] 
-**unique_invoices_with_errors** | **int** | Number of unique invoices that have validation errors | [optional] [readonly] 
+**general_errors** | [**List[InvoiceUBLValidationGeneralErrorDTO]**](InvoiceUBLValidationGeneralErrorDTO.md) |  | [optional]
+**specific_errors** | [**List[InvoiceUBLValidationSpecificErrorDTO]**](InvoiceUBLValidationSpecificErrorDTO.md) |  | [optional]
+**unique_invoices_with_errors** | **int** |  | [optional]
 
 ## Example
 
@@ -28,5 +27,3 @@ invoice_ubl_validation_error_response_dto_dict = invoice_ubl_validation_error_re
 invoice_ubl_validation_error_response_dto_from_dict = InvoiceUBLValidationErrorResponseDTO.from_dict(invoice_ubl_validation_error_response_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

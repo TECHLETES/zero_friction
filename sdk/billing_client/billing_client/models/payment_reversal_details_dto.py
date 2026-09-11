@@ -26,15 +26,18 @@ from typing_extensions import Self
 
 class PaymentReversalDetailsDTO(BaseModel):
     """
-    Contains details about a payment reversal.  This DTO includes information about why and when a payment was reversed.
+    PaymentReversalDetailsDTO
     """ # noqa: E501
-    reversal_reason: Optional[PaymentReversalReason] = Field(default=None, description="The reason for the payment reversal.", alias="reversalReason")
-    reversal_additional_information: Optional[StrictStr] = Field(default=None, description="Additional information about the reversal.", alias="reversalAdditionalInformation")
-    reversal_date: Optional[datetime] = Field(default=None, description="The date when the reversal occurred.", alias="reversalDate")
-    reversal_incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, description="The ID of the incoming banking transaction that reversed this payment.", alias="reversalIncomingBankingTransactionId")
-    reversal_incoming_banking_transaction_identification: Optional[StrictStr] = Field(default=None, description="The identification of the incoming banking transaction that reversed this payment.", alias="reversalIncomingBankingTransactionIdentification")
-    reversal_incoming_mutation_id: Optional[StrictStr] = Field(default=None, description="The ID of the incoming mutation that reversed this payment.", alias="reversalIncomingMutationId")
-    __properties: ClassVar[List[str]] = ["reversalReason", "reversalAdditionalInformation", "reversalDate", "reversalIncomingBankingTransactionId", "reversalIncomingBankingTransactionIdentification", "reversalIncomingMutationId"]
+    reversal_reason: Optional[PaymentReversalReason] = Field(default=None, alias="reversalReason")
+    reversal_additional_information: Optional[StrictStr] = Field(default=None, alias="reversalAdditionalInformation")
+    reversal_date: Optional[datetime] = Field(default=None, alias="reversalDate")
+    reversal_incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="reversalIncomingBankingTransactionId")
+    reversal_incoming_banking_transaction_identification: Optional[StrictStr] = Field(default=None, alias="reversalIncomingBankingTransactionIdentification")
+    reversal_incoming_mutation_id: Optional[StrictStr] = Field(default=None, alias="reversalIncomingMutationId")
+    reversal_outgoing_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="reversalOutgoingBankingTransactionId")
+    reversal_outgoing_banking_transaction_identification: Optional[StrictStr] = Field(default=None, alias="reversalOutgoingBankingTransactionIdentification")
+    reversal_outgoing_mutation_id: Optional[StrictStr] = Field(default=None, alias="reversalOutgoingMutationId")
+    __properties: ClassVar[List[str]] = ["reversalReason", "reversalAdditionalInformation", "reversalDate", "reversalIncomingBankingTransactionId", "reversalIncomingBankingTransactionIdentification", "reversalIncomingMutationId", "reversalOutgoingBankingTransactionId", "reversalOutgoingBankingTransactionIdentification", "reversalOutgoingMutationId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,11 +78,6 @@ class PaymentReversalDetailsDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if reversal_reason (nullable) is None
-        # and model_fields_set contains the field
-        if self.reversal_reason is None and "reversal_reason" in self.model_fields_set:
-            _dict['reversalReason'] = None
-
         # set to None if reversal_additional_information (nullable) is None
         # and model_fields_set contains the field
         if self.reversal_additional_information is None and "reversal_additional_information" in self.model_fields_set:
@@ -100,6 +98,21 @@ class PaymentReversalDetailsDTO(BaseModel):
         if self.reversal_incoming_mutation_id is None and "reversal_incoming_mutation_id" in self.model_fields_set:
             _dict['reversalIncomingMutationId'] = None
 
+        # set to None if reversal_outgoing_banking_transaction_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.reversal_outgoing_banking_transaction_id is None and "reversal_outgoing_banking_transaction_id" in self.model_fields_set:
+            _dict['reversalOutgoingBankingTransactionId'] = None
+
+        # set to None if reversal_outgoing_banking_transaction_identification (nullable) is None
+        # and model_fields_set contains the field
+        if self.reversal_outgoing_banking_transaction_identification is None and "reversal_outgoing_banking_transaction_identification" in self.model_fields_set:
+            _dict['reversalOutgoingBankingTransactionIdentification'] = None
+
+        # set to None if reversal_outgoing_mutation_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.reversal_outgoing_mutation_id is None and "reversal_outgoing_mutation_id" in self.model_fields_set:
+            _dict['reversalOutgoingMutationId'] = None
+
         return _dict
 
     @classmethod
@@ -117,8 +130,9 @@ class PaymentReversalDetailsDTO(BaseModel):
             "reversalDate": obj.get("reversalDate"),
             "reversalIncomingBankingTransactionId": obj.get("reversalIncomingBankingTransactionId"),
             "reversalIncomingBankingTransactionIdentification": obj.get("reversalIncomingBankingTransactionIdentification"),
-            "reversalIncomingMutationId": obj.get("reversalIncomingMutationId")
+            "reversalIncomingMutationId": obj.get("reversalIncomingMutationId"),
+            "reversalOutgoingBankingTransactionId": obj.get("reversalOutgoingBankingTransactionId"),
+            "reversalOutgoingBankingTransactionIdentification": obj.get("reversalOutgoingBankingTransactionIdentification"),
+            "reversalOutgoingMutationId": obj.get("reversalOutgoingMutationId")
         })
         return _obj
-
-

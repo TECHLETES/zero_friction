@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**status** | [**TranslationStatus**](TranslationStatus.md) |  | [optional] 
-**has_default_translation** | **bool** |  | [optional] 
-**translations** | **Dict[str, Optional[str]]** |  | [optional] 
-**use_cases** | [**List[TemplateUsecase]**](TemplateUsecase.md) |  | [optional] 
+**name** | **str** |  | [optional]
+**status** | [**TranslationStatus**](TranslationStatus.md) |  | [optional]
+**has_default_translation** | **bool** |  | [optional]
+**translations** | **Dict[str, str]** |  | [optional]
+**use_cases** | [**List[TemplateUsecase]**](TemplateUsecase.md) |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ scenario_translation_dto_dict = scenario_translation_dto_instance.to_dict()
 scenario_translation_dto_from_dict = ScenarioTranslationDTO.from_dict(scenario_translation_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

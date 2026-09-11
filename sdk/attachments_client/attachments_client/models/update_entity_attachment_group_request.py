@@ -29,10 +29,10 @@ class UpdateEntityAttachmentGroupRequest(BaseModel):
     UpdateEntityAttachmentGroupRequest
     """ # noqa: E501
     include_in_welcome_email: Optional[StrictBool] = Field(default=None, alias="includeInWelcomeEmail")
-    visibility: Optional[AttachmentVisibility] = None
+    visibility: AttachmentVisibility
     approval_required: Optional[StrictBool] = Field(default=None, alias="approvalRequired")
     valid_from: Optional[datetime] = Field(default=None, alias="validFrom")
-    valid_until: Optional[datetime] = Field(default=None, alias="validUntil")
+    valid_until: datetime = Field(alias="validUntil")
     __properties: ClassVar[List[str]] = ["includeInWelcomeEmail", "visibility", "approvalRequired", "validFrom", "validUntil"]
 
     model_config = ConfigDict(
@@ -74,11 +74,6 @@ class UpdateEntityAttachmentGroupRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if visibility (nullable) is None
-        # and model_fields_set contains the field
-        if self.visibility is None and "visibility" in self.model_fields_set:
-            _dict['visibility'] = None
-
         return _dict
 
     @classmethod
@@ -98,5 +93,3 @@ class UpdateEntityAttachmentGroupRequest(BaseModel):
             "validUntil": obj.get("validUntil")
         })
         return _obj
-
-

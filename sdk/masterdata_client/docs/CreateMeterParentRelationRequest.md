@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**parent_meter_id** | **str** |  | [optional] 
-**external_reference** | **str** |  | [optional] 
+**parent_meter_id** | **str** |  | [optional]
+**external_reference** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ create_meter_parent_relation_request_dict = create_meter_parent_relation_request
 create_meter_parent_relation_request_from_dict = CreateMeterParentRelationRequest.from_dict(create_meter_parent_relation_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -1,13 +1,12 @@
 # ImpactedEntityDTO
 
-Represents the entity that is impacted by the validation error
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) | Type of the entity subject | [optional] 
-**entity_subject_id** | **str** | Identifier of the entity subject | [optional] 
+**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional]
+**entity_subject_id** | **str** |  | [optional]
 
 ## Example
 
@@ -27,5 +26,3 @@ impacted_entity_dto_dict = impacted_entity_dto_instance.to_dict()
 impacted_entity_dto_from_dict = ImpactedEntityDTO.from_dict(impacted_entity_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

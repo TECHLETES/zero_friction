@@ -1,17 +1,16 @@
 # AddEntryToOutgoingBankingTransactionRequest
 
-Represents a request to add a new entry to an outgoing banking transaction.  This DTO supports two types of entries: invoice-based or manual entries with custom details.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_id** | **str** | The ID of the invoice to be included in the transaction.  This field is required if no manual entry details are provided. | [optional] 
-**amount** | **float** | The amount for the manual entry.  Required when no invoice ID is provided. | [optional] 
-**payment_reference** | **str** | The payment reference text for the manual entry.  Required when no invoice ID is provided. | [optional] 
-**iban** | **str** | The IBAN (International Bank Account Number) for the manual entry.  Required when no invoice ID is provided. | [optional] 
-**customer_id** | **str** | The ID of the customer associated with the manual entry.  Required when no invoice ID is provided. | [optional] 
-**transaction_id** | **str** | The ID of the transaction to add the entry to. | [optional] 
+**invoice_id** | **str** |  |
+**amount** | **float** |  |
+**payment_reference** | **str** |  |
+**iban** | **str** |  | [optional]
+**customer_id** | **str** |  |
+**transaction_id** | **str** |  | [optional]
 
 ## Example
 
@@ -31,5 +30,3 @@ add_entry_to_outgoing_banking_transaction_request_dict = add_entry_to_outgoing_b
 add_entry_to_outgoing_banking_transaction_request_from_dict = AddEntryToOutgoingBankingTransactionRequest.from_dict(add_entry_to_outgoing_banking_transaction_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

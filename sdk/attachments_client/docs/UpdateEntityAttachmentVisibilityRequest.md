@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** |  | [optional] 
-**visibility** | [**AttachmentVisibility**](AttachmentVisibility.md) |  | [optional] 
+**customer_id** | **str** |  |
+**visibility** | [**AttachmentVisibility**](AttachmentVisibility.md) |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ update_entity_attachment_visibility_request_dict = update_entity_attachment_visi
 update_entity_attachment_visibility_request_from_dict = UpdateEntityAttachmentVisibilityRequest.from_dict(update_entity_attachment_visibility_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

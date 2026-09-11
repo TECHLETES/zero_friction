@@ -92,5 +92,3 @@ class UpdateRegionalRegulationsParametersForGBRRequest(BaseModel):
             "priorityRegisterParameters": PriorityRegisterParametersRequest.from_dict(obj["priorityRegisterParameters"]) if obj.get("priorityRegisterParameters") is not None else None
         })
         return _obj
-
-

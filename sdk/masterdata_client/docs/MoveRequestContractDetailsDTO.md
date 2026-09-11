@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**contract_id** | **str** |  | [optional] 
-**contract_number** | **str** |  | [optional] 
-**contract_supply_start_date** | **datetime** |  | [optional] 
-**contract_supply_end_date** | **datetime** |  | [optional] 
-**customer_id** | **str** |  | [optional] 
-**customer_display_name** | **str** |  | [optional] 
-**customer_account_number** | **str** |  | [optional] 
+**contract_id** | **str** |  | [optional]
+**contract_number** | **str** |  | [optional]
+**contract_supply_start_date** | **datetime** |  | [optional]
+**contract_supply_end_date** | **datetime** |  | [optional]
+**customer_id** | **str** |  | [optional]
+**customer_display_name** | **str** |  | [optional]
+**customer_account_number** | **str** |  | [optional]
 
 ## Example
 
@@ -31,5 +31,3 @@ move_request_contract_details_dto_dict = move_request_contract_details_dto_insta
 move_request_contract_details_dto_from_dict = MoveRequestContractDetailsDTO.from_dict(move_request_contract_details_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -5,7 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**validation_rules** | [**List[BaseMeteringValidationRuleDTO]**](BaseMeteringValidationRuleDTO.md) |  | [optional] 
+**metering_validation_enabled** | **bool** |  | [optional]
+**measurement_origin_enabled** | **bool** |  | [optional]
+**validation_rules** | [**List[BaseMeteringValidationRuleDTO]**](BaseMeteringValidationRuleDTO.md) |  | [optional]
 
 ## Example
 
@@ -25,5 +27,3 @@ metering_parameters_dto_dict = metering_parameters_dto_instance.to_dict()
 metering_parameters_dto_from_dict = MeteringParametersDTO.from_dict(metering_parameters_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

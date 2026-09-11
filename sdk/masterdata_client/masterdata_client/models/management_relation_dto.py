@@ -87,11 +87,6 @@ class ManagementRelationDTO(BaseModel):
         if self.account_number is None and "account_number" in self.model_fields_set:
             _dict['accountNumber'] = None
 
-        # set to None if management_relation_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.management_relation_type is None and "management_relation_type" in self.model_fields_set:
-            _dict['managementRelationType'] = None
-
         return _dict
 
     @classmethod
@@ -110,5 +105,3 @@ class ManagementRelationDTO(BaseModel):
             "managementRelationType": obj.get("managementRelationType")
         })
         return _obj
-
-

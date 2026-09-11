@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
-**option** | **str** |  | [optional] 
-**deleted** | **bool** |  | [optional] 
+**id** | **str** |  | [optional]
+**option** | **str** |  | [optional]
+**deleted** | **bool** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ custom_entity_property_type_dropdown_option_dto_dict = custom_entity_property_ty
 custom_entity_property_type_dropdown_option_dto_from_dict = CustomEntityPropertyTypeDropdownOptionDTO.from_dict(custom_entity_property_type_dropdown_option_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -5,11 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**envelope_settings** | [**EnvelopeSettingsRequest**](EnvelopeSettingsRequest.md) |  | [optional] 
-**show_country** | **bool** |  | [optional] 
-**show_balance** | **bool** |  | [optional] 
-**show_vat_specs** | **bool** |  | [optional] 
-**show_custom_information** | **bool** |  | [optional] 
+**show_country** | **bool** |  | [optional]
+**show_balance** | **bool** |  | [optional]
+**show_vat_specs** | **bool** |  | [optional]
+**show_custom_information** | **bool** |  | [optional]
+**unit_price_excl_vat_for_persons** | **bool** |  | [optional]
+**envelope_settings** | [**EnvelopeSettingsRequest**](EnvelopeSettingsRequest.md) |  | [optional]
 
 ## Example
 
@@ -29,5 +30,3 @@ incidental_note_pdf_template_request_dict = incidental_note_pdf_template_request
 incidental_note_pdf_template_request_from_dict = IncidentalNotePdfTemplateRequest.from_dict(incidental_note_pdf_template_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -79,16 +79,6 @@ class UpdateConsumerGroupRequest(BaseModel):
         if self.code is None and "code" in self.model_fields_set:
             _dict['code'] = None
 
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
-
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -113,5 +103,3 @@ class UpdateConsumerGroupRequest(BaseModel):
             "estimatedAnnualVolume": obj.get("estimatedAnnualVolume")
         })
         return _obj
-
-

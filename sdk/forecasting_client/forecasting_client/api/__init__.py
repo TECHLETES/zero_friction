@@ -1,9 +1,4 @@
 # flake8: noqa
 
 # import apis into api package
-from forecasting_client.api.consumer_groups_api import ConsumerGroupsApi
-from forecasting_client.api.estimable_contracts_api import EstimableContractsApi
-from forecasting_client.api.estimations_api import EstimationsApi
-from forecasting_client.api.property_group_forecasting_configuration_api import PropertyGroupForecastingConfigurationApi
-from forecasting_client.api.synthetic_load_profiles_api import SyntheticLoadProfilesApi
-
+from forecasting_client.api.default_api import DefaultApi

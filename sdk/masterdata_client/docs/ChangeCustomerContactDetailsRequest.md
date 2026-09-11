@@ -5,7 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**contact_entries** | [**List[ContactEntryRequest]**](ContactEntryRequest.md) |  | [optional] 
+**contact_entries** | [**List[ContactEntryRequest]**](ContactEntryRequest.md) |  | [optional]
+**country_code** | [**CountryCode**](CountryCode.md) |  | [optional]
+**changed_by_portal** | **bool** |  | [optional]
 
 ## Example
 
@@ -25,5 +27,3 @@ change_customer_contact_details_request_dict = change_customer_contact_details_r
 change_customer_contact_details_request_from_dict = ChangeCustomerContactDetailsRequest.from_dict(change_customer_contact_details_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

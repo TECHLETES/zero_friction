@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_culture_name** | **str** |  | [optional] 
-**supported_culture_names** | **List[str]** |  | [optional] 
+**default_culture_name** | **str** |  |
+**supported_culture_names** | **List[str]** |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ update_culture_table_request_dict = update_culture_table_request_instance.to_dic
 update_culture_table_request_from_dict = UpdateCultureTableRequest.from_dict(update_culture_table_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

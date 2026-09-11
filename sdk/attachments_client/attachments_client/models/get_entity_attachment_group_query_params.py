@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,9 +27,6 @@ class GetEntityAttachmentGroupQueryParams(BaseModel):
     """
     GetEntityAttachmentGroupQueryParams
     """ # noqa: E501
-    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
-    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
-    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
     subject_type: Optional[StrictStr] = Field(default=None, alias="subjectType")
     subject_id: Optional[StrictStr] = Field(default=None, alias="subjectId")
     viewed: Optional[StrictBool] = None
@@ -37,7 +34,11 @@ class GetEntityAttachmentGroupQueryParams(BaseModel):
     created_start_date_time: Optional[datetime] = Field(default=None, alias="createdStartDateTime")
     created_end_date_time: Optional[datetime] = Field(default=None, alias="createdEndDateTime")
     validity_date: Optional[datetime] = Field(default=None, alias="validityDate")
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "subjectType", "subjectId", "viewed", "visibilities", "createdStartDateTime", "createdEndDateTime", "validityDate"]
+    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
+    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
+    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["subjectType", "subjectId", "viewed", "visibilities", "createdStartDateTime", "createdEndDateTime", "validityDate", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,21 +79,6 @@ class GetEntityAttachmentGroupQueryParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if flex_search (nullable) is None
-        # and model_fields_set contains the field
-        if self.flex_search is None and "flex_search" in self.model_fields_set:
-            _dict['flexSearch'] = None
-
-        # set to None if include_only_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
         # set to None if subject_type (nullable) is None
         # and model_fields_set contains the field
         if self.subject_type is None and "subject_type" in self.model_fields_set:
@@ -107,11 +93,6 @@ class GetEntityAttachmentGroupQueryParams(BaseModel):
         # and model_fields_set contains the field
         if self.viewed is None and "viewed" in self.model_fields_set:
             _dict['viewed'] = None
-
-        # set to None if visibilities (nullable) is None
-        # and model_fields_set contains the field
-        if self.visibilities is None and "visibilities" in self.model_fields_set:
-            _dict['visibilities'] = None
 
         # set to None if created_start_date_time (nullable) is None
         # and model_fields_set contains the field
@@ -128,6 +109,16 @@ class GetEntityAttachmentGroupQueryParams(BaseModel):
         if self.validity_date is None and "validity_date" in self.model_fields_set:
             _dict['validityDate'] = None
 
+        # set to None if flex_search (nullable) is None
+        # and model_fields_set contains the field
+        if self.flex_search is None and "flex_search" in self.model_fields_set:
+            _dict['flexSearch'] = None
+
+        # set to None if page_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
+
         return _dict
 
     @classmethod
@@ -140,17 +131,16 @@ class GetEntityAttachmentGroupQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
             "subjectType": obj.get("subjectType"),
             "subjectId": obj.get("subjectId"),
             "viewed": obj.get("viewed"),
             "visibilities": obj.get("visibilities"),
             "createdStartDateTime": obj.get("createdStartDateTime"),
             "createdEndDateTime": obj.get("createdEndDateTime"),
-            "validityDate": obj.get("validityDate")
+            "validityDate": obj.get("validityDate"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
-
-

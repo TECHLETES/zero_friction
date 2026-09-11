@@ -26,13 +26,13 @@ from typing_extensions import Self
 
 class AssignInvoicesToOutgoingBankingTransactionRequest(BaseModel):
     """
-    Represents a request to assign invoices to outgoing banking transactions.  This DTO supports both assigning specific invoices or all applicable invoices based on type.
+    AssignInvoicesToOutgoingBankingTransactionRequest
     """ # noqa: E501
-    all_applicable: Optional[StrictBool] = Field(default=None, description="Indicates whether all applicable invoices should be assigned.  Must be true if no specific invoice IDs are provided.", alias="allApplicable")
-    outgoing_banking_transaction_type: Optional[OutgoingBankingTransactionType] = Field(default=None, description="The type of outgoing banking transaction to assign invoices to.", alias="outgoingBankingTransactionType")
-    invoice_ids: Optional[List[StrictStr]] = Field(default=None, description="A list of specific invoice IDs to assign.  Required if AllApplicable is false.", alias="invoiceIds")
-    add_to_new_outgoing_banking_transactions: Optional[StrictBool] = Field(default=None, description="Indicates whether invoices should be added to new outgoing banking transactions.", alias="addToNewOutgoingBankingTransactions")
-    overridden_collection_date: Optional[datetime] = Field(default=None, description="An optional override for the collection date of the transactions.  Can only be set when AddToNewOutgoingBankingTransactions is true.", alias="overriddenCollectionDate")
+    all_applicable: Optional[StrictBool] = Field(default=None, alias="allApplicable")
+    outgoing_banking_transaction_type: Optional[OutgoingBankingTransactionType] = Field(default=None, alias="outgoingBankingTransactionType")
+    invoice_ids: Optional[List[StrictStr]] = Field(default=None, alias="invoiceIds")
+    add_to_new_outgoing_banking_transactions: Optional[StrictBool] = Field(default=None, alias="addToNewOutgoingBankingTransactions")
+    overridden_collection_date: Optional[datetime] = Field(default=None, alias="overriddenCollectionDate")
     __properties: ClassVar[List[str]] = ["allApplicable", "outgoingBankingTransactionType", "invoiceIds", "addToNewOutgoingBankingTransactions", "overriddenCollectionDate"]
 
     model_config = ConfigDict(
@@ -74,11 +74,6 @@ class AssignInvoicesToOutgoingBankingTransactionRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if outgoing_banking_transaction_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.outgoing_banking_transaction_type is None and "outgoing_banking_transaction_type" in self.model_fields_set:
-            _dict['outgoingBankingTransactionType'] = None
-
         # set to None if invoice_ids (nullable) is None
         # and model_fields_set contains the field
         if self.invoice_ids is None and "invoice_ids" in self.model_fields_set:
@@ -108,5 +103,3 @@ class AssignInvoicesToOutgoingBankingTransactionRequest(BaseModel):
             "overriddenCollectionDate": obj.get("overriddenCollectionDate")
         })
         return _obj
-
-

@@ -18,9 +18,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from metering_client.models.measurement_reading_origin import MeasurementReadingOrigin
 from metering_client.models.metering_issue_error import MeteringIssueError
+from metering_client.models.metering_issue_status import MeteringIssueStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,17 +30,20 @@ class GetMeteringIssuesQueryParams(BaseModel):
     """
     GetMeteringIssuesQueryParams
     """ # noqa: E501
-    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
-    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
-    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
     meter_ids: Optional[List[StrictStr]] = Field(default=None, alias="meterIds")
     noticed_start_date_time: Optional[datetime] = Field(default=None, alias="noticedStartDateTime")
     noticed_end_date_time: Optional[datetime] = Field(default=None, alias="noticedEndDateTime")
-    statuses: Optional[List[StrictStr]] = None
+    statuses: Optional[List[MeteringIssueStatus]] = None
     property_group_ids: Optional[List[StrictStr]] = Field(default=None, alias="propertyGroupIds")
     meter_model_ids: Optional[List[StrictStr]] = Field(default=None, alias="meterModelIds")
     errors: Optional[List[MeteringIssueError]] = None
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "meterIds", "noticedStartDateTime", "noticedEndDateTime", "statuses", "propertyGroupIds", "meterModelIds", "errors"]
+    reading_origins: Optional[List[MeasurementReadingOrigin]] = Field(default=None, alias="readingOrigins")
+    data_provider_ids: Optional[List[StrictStr]] = Field(default=None, alias="dataProviderIds")
+    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
+    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
+    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["meterIds", "noticedStartDateTime", "noticedEndDateTime", "statuses", "propertyGroupIds", "meterModelIds", "errors", "readingOrigins", "dataProviderIds", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,26 +84,6 @@ class GetMeteringIssuesQueryParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if flex_search (nullable) is None
-        # and model_fields_set contains the field
-        if self.flex_search is None and "flex_search" in self.model_fields_set:
-            _dict['flexSearch'] = None
-
-        # set to None if include_only_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
-        # set to None if meter_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.meter_ids is None and "meter_ids" in self.model_fields_set:
-            _dict['meterIds'] = None
-
         # set to None if noticed_start_date_time (nullable) is None
         # and model_fields_set contains the field
         if self.noticed_start_date_time is None and "noticed_start_date_time" in self.model_fields_set:
@@ -109,25 +94,20 @@ class GetMeteringIssuesQueryParams(BaseModel):
         if self.noticed_end_date_time is None and "noticed_end_date_time" in self.model_fields_set:
             _dict['noticedEndDateTime'] = None
 
-        # set to None if statuses (nullable) is None
+        # set to None if data_provider_ids (nullable) is None
         # and model_fields_set contains the field
-        if self.statuses is None and "statuses" in self.model_fields_set:
-            _dict['statuses'] = None
+        if self.data_provider_ids is None and "data_provider_ids" in self.model_fields_set:
+            _dict['dataProviderIds'] = None
 
-        # set to None if property_group_ids (nullable) is None
+        # set to None if flex_search (nullable) is None
         # and model_fields_set contains the field
-        if self.property_group_ids is None and "property_group_ids" in self.model_fields_set:
-            _dict['propertyGroupIds'] = None
+        if self.flex_search is None and "flex_search" in self.model_fields_set:
+            _dict['flexSearch'] = None
 
-        # set to None if meter_model_ids (nullable) is None
+        # set to None if page_size (nullable) is None
         # and model_fields_set contains the field
-        if self.meter_model_ids is None and "meter_model_ids" in self.model_fields_set:
-            _dict['meterModelIds'] = None
-
-        # set to None if errors (nullable) is None
-        # and model_fields_set contains the field
-        if self.errors is None and "errors" in self.model_fields_set:
-            _dict['errors'] = None
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
 
         return _dict
 
@@ -141,17 +121,18 @@ class GetMeteringIssuesQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
             "meterIds": obj.get("meterIds"),
             "noticedStartDateTime": obj.get("noticedStartDateTime"),
             "noticedEndDateTime": obj.get("noticedEndDateTime"),
             "statuses": obj.get("statuses"),
             "propertyGroupIds": obj.get("propertyGroupIds"),
             "meterModelIds": obj.get("meterModelIds"),
-            "errors": obj.get("errors")
+            "errors": obj.get("errors"),
+            "readingOrigins": obj.get("readingOrigins"),
+            "dataProviderIds": obj.get("dataProviderIds"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
-
-

@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** |  | [optional] 
-**waiting** | **int** |  | [optional] 
-**input_missing** | **int** |  | [optional] 
-**manually_corrected** | **int** |  | [optional] 
-**previous_still_open** | **int** |  | [optional] 
-**missing_advances** | **int** |  | [optional] 
+**all** | **int** |  | [optional]
+**waiting** | **int** |  | [optional]
+**input_missing** | **int** |  | [optional]
+**manually_corrected** | **int** |  | [optional]
+**previous_still_open** | **int** |  | [optional]
+**missing_advances** | **int** |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ billing_completeness_overview_count_dto_dict = billing_completeness_overview_cou
 billing_completeness_overview_count_dto_from_dict = BillingCompletenessOverviewCountDTO.from_dict(billing_completeness_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

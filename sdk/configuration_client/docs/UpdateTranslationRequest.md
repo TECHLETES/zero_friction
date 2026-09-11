@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**update_all_scenarios** | **bool** |  | [optional] 
-**translations** | **Dict[str, Optional[str]]** |  | [optional] 
-**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
-**entity_subject_sub_type** | **str** |  | [optional] 
+**update_all_scenarios** | **bool** |  | [optional]
+**translations** | **Dict[str, str]** |  |
+**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional]
+**entity_subject_sub_type** | **str** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ update_translation_request_dict = update_translation_request_instance.to_dict()
 update_translation_request_from_dict = UpdateTranslationRequest.from_dict(update_translation_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

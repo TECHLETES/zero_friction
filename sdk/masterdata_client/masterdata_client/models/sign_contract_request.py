@@ -27,9 +27,10 @@ class SignContractRequest(BaseModel):
     """
     SignContractRequest
     """ # noqa: E501
-    mutation_date_time: Optional[datetime] = Field(default=None, alias="mutationDateTime")
-    keep_existing_invoice_on_end_date: Optional[StrictBool] = Field(default=None, description="When this flag is set, if an invoice exists with the end date equal to the move-out date,  no credit note shall be created.", alias="keepExistingInvoiceOnEndDate")
-    __properties: ClassVar[List[str]] = ["mutationDateTime", "keepExistingInvoiceOnEndDate"]
+    mutation_date_time: datetime = Field(alias="mutationDateTime")
+    keep_existing_invoice_on_end_date: Optional[StrictBool] = Field(default=None, alias="keepExistingInvoiceOnEndDate")
+    create_billing_completenesses_from_existing_invoices: Optional[StrictBool] = Field(default=None, alias="createBillingCompletenessesFromExistingInvoices")
+    __properties: ClassVar[List[str]] = ["mutationDateTime", "keepExistingInvoiceOnEndDate", "createBillingCompletenessesFromExistingInvoices"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,8 +84,7 @@ class SignContractRequest(BaseModel):
 
         _obj = cls.model_validate({
             "mutationDateTime": obj.get("mutationDateTime"),
-            "keepExistingInvoiceOnEndDate": obj.get("keepExistingInvoiceOnEndDate")
+            "keepExistingInvoiceOnEndDate": obj.get("keepExistingInvoiceOnEndDate"),
+            "createBillingCompletenessesFromExistingInvoices": obj.get("createBillingCompletenessesFromExistingInvoices")
         })
         return _obj
-
-

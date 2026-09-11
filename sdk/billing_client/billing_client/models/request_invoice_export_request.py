@@ -25,12 +25,12 @@ from typing_extensions import Self
 
 class RequestInvoiceExportRequest(BaseModel):
     """
-    Represents a request to export invoices.  This DTO is used to initiate the export of invoices based on specified criteria and configuration.
+    RequestInvoiceExportRequest
     """ # noqa: E501
-    var_query_params: Optional[GetInvoicesQueryParams] = Field(default=None, description="Query parameters to filter the invoices to be exported.", alias="queryParams")
-    quick_filter: Optional[StrictStr] = Field(default=None, description="Quick filter string to filter invoices without using complex query parameters.", alias="quickFilter")
-    configured_plugin_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the configured export plugin to use for the export.", alias="configuredPluginId")
-    mark_as_exported: Optional[StrictBool] = Field(default=None, description="Indicates whether the exported invoices should be marked as exported in the system.", alias="markAsExported")
+    var_query_params: Optional[GetInvoicesQueryParams] = Field(default=None, alias="queryParams")
+    quick_filter: Optional[StrictStr] = Field(default=None, alias="quickFilter")
+    configured_plugin_id: Optional[StrictStr] = Field(alias="configuredPluginId")
+    mark_as_exported: Optional[StrictBool] = Field(default=None, alias="markAsExported")
     __properties: ClassVar[List[str]] = ["queryParams", "quickFilter", "configuredPluginId", "markAsExported"]
 
     model_config = ConfigDict(
@@ -75,11 +75,6 @@ class RequestInvoiceExportRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
         # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
         if self.quick_filter is None and "quick_filter" in self.model_fields_set:
@@ -108,5 +103,3 @@ class RequestInvoiceExportRequest(BaseModel):
             "markAsExported": obj.get("markAsExported")
         })
         return _obj
-
-

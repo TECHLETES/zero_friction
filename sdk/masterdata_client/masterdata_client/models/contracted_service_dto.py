@@ -83,11 +83,6 @@ class ContractedServiceDTO(BaseModel):
                 if _item_estimated_consumptions:
                     _items.append(_item_estimated_consumptions.to_dict())
             _dict['estimatedConsumptions'] = _items
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
         # set to None if external_identifier (nullable) is None
         # and model_fields_set contains the field
         if self.external_identifier is None and "external_identifier" in self.model_fields_set:
@@ -118,5 +113,3 @@ class ContractedServiceDTO(BaseModel):
             "estimatedConsumptions": [ContractedServiceEstimatedConsumptionDTO.from_dict(_item) for _item in obj["estimatedConsumptions"]] if obj.get("estimatedConsumptions") is not None else None
         })
         return _obj
-
-

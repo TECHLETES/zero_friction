@@ -1,5 +1,6 @@
 # IncrementationType
 
+Possible values: 'delta', 'cumul', 'na'
 
 ## Enum
 
@@ -10,5 +11,3 @@
 * `NA` (value: `'na'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

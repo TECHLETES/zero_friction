@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class TransactionType(str, Enum):
     """
-    TransactionType
+    Possible values: 'invoice', 'payment', 'reversal', 'collectionfee', 'writeoff', 'prepaymentcost', 'prepaymenttopup', 'prepaymentcorrection', 'prepaymentgift', 'prepaymentbalancetransfer'
     """
 
     """
@@ -31,10 +31,13 @@ class TransactionType(str, Enum):
     REVERSAL = 'reversal'
     COLLECTIONFEE = 'collectionfee'
     WRITEOFF = 'writeoff'
+    PREPAYMENTCOST = 'prepaymentcost'
+    PREPAYMENTTOPUP = 'prepaymenttopup'
+    PREPAYMENTCORRECTION = 'prepaymentcorrection'
+    PREPAYMENTGIFT = 'prepaymentgift'
+    PREPAYMENTBALANCETRANSFER = 'prepaymentbalancetransfer'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of TransactionType from a JSON string"""
         return cls(json.loads(json_str))
-
-

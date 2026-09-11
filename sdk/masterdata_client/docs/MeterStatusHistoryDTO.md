@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
-**meter_status** | [**MeterStatus**](MeterStatus.md) |  | [optional] 
-**service_location_id** | **str** |  | [optional] 
-**installed_at_address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
-**property_group** | [**PropertyGroupReferenceDTO**](PropertyGroupReferenceDTO.md) |  | [optional] 
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**meter_status** | [**MeterStatus**](MeterStatus.md) |  | [optional]
+**service_location_id** | **str** |  | [optional]
+**installed_at_address** | [**AddressDTO**](AddressDTO.md) |  | [optional]
+**property_group** | [**PropertyGroupReferenceDTO**](PropertyGroupReferenceDTO.md) |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ meter_status_history_dto_dict = meter_status_history_dto_instance.to_dict()
 meter_status_history_dto_from_dict = MeterStatusHistoryDTO.from_dict(meter_status_history_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

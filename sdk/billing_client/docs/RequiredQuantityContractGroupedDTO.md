@@ -1,13 +1,12 @@
 # RequiredQuantityContractGroupedDTO
 
-Represents required quantities grouped by contract
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billing_item_id** | **str** | Unique identifier of the billing item | [optional] 
-**required_quantities** | [**List[RequiredQuantityDTO]**](RequiredQuantityDTO.md) | List of required quantities for this contract | [optional] 
+**billing_item_id** | **str** |  | [optional]
+**required_quantities** | [**List[RequiredQuantityDTO]**](RequiredQuantityDTO.md) |  | [optional]
 
 ## Example
 
@@ -27,5 +26,3 @@ required_quantity_contract_grouped_dto_dict = required_quantity_contract_grouped
 required_quantity_contract_grouped_dto_from_dict = RequiredQuantityContractGroupedDTO.from_dict(required_quantity_contract_grouped_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

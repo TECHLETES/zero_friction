@@ -95,5 +95,3 @@ class DeleteBillingTariffTreeRequest(BaseModel):
             "billingTariffIds": obj.get("billingTariffIds")
         })
         return _obj
-
-

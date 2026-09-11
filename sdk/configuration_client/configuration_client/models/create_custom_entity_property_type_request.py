@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from configuration_client.models.base_property_value_type_dto import BasePropertyValueTypeDTO
 from configuration_client.models.custom_entity_property_type_tag_color import CustomEntityPropertyTypeTagColor
 from configuration_client.models.entity_subject_type import EntitySubjectType
 from typing import Optional, Set
@@ -28,13 +29,13 @@ class CreateCustomEntityPropertyTypeRequest(BaseModel):
     """
     CreateCustomEntityPropertyTypeRequest
     """ # noqa: E501
+    entity_subject_type: EntitySubjectType = Field(alias="entitySubjectType")
+    value_type: Optional[BasePropertyValueTypeDTO] = Field(alias="valueType")
     name: Optional[StrictStr] = None
     description: Optional[StrictStr] = None
     show_in_header: Optional[StrictBool] = Field(default=None, alias="showInHeader")
     tag_color: Optional[CustomEntityPropertyTypeTagColor] = Field(default=None, alias="tagColor")
-    entity_subject_type: Optional[EntitySubjectType] = Field(default=None, alias="entitySubjectType")
-    value_type: Optional[Dict[str, Any]] = Field(default=None, alias="valueType")
-    __properties: ClassVar[List[str]] = ["name", "description", "showInHeader", "tagColor", "entitySubjectType", "valueType"]
+    __properties: ClassVar[List[str]] = ["entitySubjectType", "valueType", "name", "description", "showInHeader", "tagColor"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,6 +76,14 @@ class CreateCustomEntityPropertyTypeRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of value_type
+        if self.value_type:
+            _dict['valueType'] = self.value_type.to_dict()
+        # set to None if value_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.value_type is None and "value_type" in self.model_fields_set:
+            _dict['valueType'] = None
+
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -84,21 +93,6 @@ class CreateCustomEntityPropertyTypeRequest(BaseModel):
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
-
-        # set to None if tag_color (nullable) is None
-        # and model_fields_set contains the field
-        if self.tag_color is None and "tag_color" in self.model_fields_set:
-            _dict['tagColor'] = None
-
-        # set to None if entity_subject_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_subject_type is None and "entity_subject_type" in self.model_fields_set:
-            _dict['entitySubjectType'] = None
-
-        # set to None if value_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.value_type is None and "value_type" in self.model_fields_set:
-            _dict['valueType'] = None
 
         return _dict
 
@@ -112,13 +106,11 @@ class CreateCustomEntityPropertyTypeRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "entitySubjectType": obj.get("entitySubjectType"),
+            "valueType": BasePropertyValueTypeDTO.from_dict(obj["valueType"]) if obj.get("valueType") is not None else None,
             "name": obj.get("name"),
             "description": obj.get("description"),
             "showInHeader": obj.get("showInHeader"),
-            "tagColor": obj.get("tagColor"),
-            "entitySubjectType": obj.get("entitySubjectType"),
-            "valueType": obj.get("valueType")
+            "tagColor": obj.get("tagColor")
         })
         return _obj
-
-

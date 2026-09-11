@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**display_name** | **str** |  | [optional] 
-**class_type** | **str** |  | [optional] 
-**properties** | [**List[ClassProperty]**](ClassProperty.md) |  | [optional] 
+**display_name** | **str** |  | [optional]
+**class_type** | **str** |  | [optional]
+**properties** | [**List[ClassProperty]**](ClassProperty.md) |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ class_description_dict = class_description_instance.to_dict()
 class_description_from_dict = ClassDescription.from_dict(class_description_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -28,11 +28,12 @@ class CustomerCommunicationPreferencesRequest(BaseModel):
     """
     CustomerCommunicationPreferencesRequest
     """ # noqa: E501
-    culture: Optional[str] = None
-    invoice_communication_preferences: Optional[List[CustomerInvoiceCommunicationPreferencesRequest]] = Field(default=None, alias="invoiceCommunicationPreferences")
+    culture: Optional[StrictStr] = Field(default=None, description="Culture identifier (e.g., 'en-US', 'nl-NL')")
+    invoice_communication_preferences: Optional[List[CustomerInvoiceCommunicationPreferencesRequest]] = Field(alias="invoiceCommunicationPreferences")
     annual_statement_communication_preference: Optional[CommunicationType] = Field(default=None, alias="annualStatementCommunicationPreference")
+    prepayment_statement_communication_preference: Optional[CommunicationType] = Field(default=None, alias="prepaymentStatementCommunicationPreference")
     collection_flow_id: Optional[StrictStr] = Field(default=None, alias="collectionFlowId")
-    __properties: ClassVar[List[str]] = ["culture", "invoiceCommunicationPreferences", "annualStatementCommunicationPreference", "collectionFlowId"]
+    __properties: ClassVar[List[str]] = ["culture", "invoiceCommunicationPreferences", "annualStatementCommunicationPreference", "prepaymentStatementCommunicationPreference", "collectionFlowId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,11 +86,6 @@ class CustomerCommunicationPreferencesRequest(BaseModel):
         if self.invoice_communication_preferences is None and "invoice_communication_preferences" in self.model_fields_set:
             _dict['invoiceCommunicationPreferences'] = None
 
-        # set to None if annual_statement_communication_preference (nullable) is None
-        # and model_fields_set contains the field
-        if self.annual_statement_communication_preference is None and "annual_statement_communication_preference" in self.model_fields_set:
-            _dict['annualStatementCommunicationPreference'] = None
-
         # set to None if collection_flow_id (nullable) is None
         # and model_fields_set contains the field
         if self.collection_flow_id is None and "collection_flow_id" in self.model_fields_set:
@@ -110,8 +106,7 @@ class CustomerCommunicationPreferencesRequest(BaseModel):
             "culture": obj.get("culture"),
             "invoiceCommunicationPreferences": [CustomerInvoiceCommunicationPreferencesRequest.from_dict(_item) for _item in obj["invoiceCommunicationPreferences"]] if obj.get("invoiceCommunicationPreferences") is not None else None,
             "annualStatementCommunicationPreference": obj.get("annualStatementCommunicationPreference"),
+            "prepaymentStatementCommunicationPreference": obj.get("prepaymentStatementCommunicationPreference"),
             "collectionFlowId": obj.get("collectionFlowId")
         })
         return _obj
-
-

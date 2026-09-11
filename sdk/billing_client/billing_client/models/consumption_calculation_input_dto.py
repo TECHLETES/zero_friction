@@ -29,21 +29,21 @@ from typing_extensions import Self
 
 class ConsumptionCalculationInputDTO(BaseModel):
     """
-    Represents input data for consumption calculations
+    ConsumptionCalculationInputDTO
     """ # noqa: E501
-    service_location_id: Optional[StrictStr] = Field(default=None, description="Identifier of the service location", alias="serviceLocationId")
-    external_channel_identifier: Optional[StrictStr] = Field(default=None, description="External channel identifier", alias="externalChannelIdentifier")
-    meter_serial_number: Optional[StrictStr] = Field(default=None, description="Serial number of the meter", alias="meterSerialNumber")
-    time_zone: Optional[StrictStr] = Field(default=None, description="Time zone for the measurements", alias="timeZone")
-    utility_type: Optional[UtilityType] = Field(default=None, description="Type of utility being measured", alias="utilityType")
-    metering_type: Optional[MeteringType] = Field(default=None, description="Type of metering used", alias="meteringType")
-    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, description="Unit of measure for the measurements", alias="unitOfMeasure")
-    time_of_use: Optional[StrictStr] = Field(default=None, description="Time of use identifier", alias="timeOfUse")
-    first_measurement: Optional[ConsumptionCalculationMeasurementDTO] = Field(default=None, description="First measurement in the period", alias="firstMeasurement")
-    second_measurement: Optional[ConsumptionCalculationMeasurementDTO] = Field(default=None, description="Second measurement in the period", alias="secondMeasurement")
-    consumption_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Calculated consumption value", alias="consumptionValue")
-    start_date_time: Optional[datetime] = Field(default=None, description="Start date and time of the calculation period", alias="startDateTime")
-    end_date_time: Optional[datetime] = Field(default=None, description="End date and time of the calculation period", alias="endDateTime")
+    service_location_id: Optional[StrictStr] = Field(default=None, alias="serviceLocationId")
+    external_channel_identifier: Optional[StrictStr] = Field(default=None, alias="externalChannelIdentifier")
+    meter_serial_number: Optional[StrictStr] = Field(default=None, alias="meterSerialNumber")
+    time_zone: Optional[StrictStr] = Field(default=None, alias="timeZone")
+    utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
+    metering_type: Optional[MeteringType] = Field(default=None, alias="meteringType")
+    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, alias="unitOfMeasure")
+    time_of_use: Optional[StrictStr] = Field(default=None, alias="timeOfUse")
+    first_measurement: Optional[ConsumptionCalculationMeasurementDTO] = Field(default=None, alias="firstMeasurement")
+    second_measurement: Optional[ConsumptionCalculationMeasurementDTO] = Field(default=None, alias="secondMeasurement")
+    consumption_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="consumptionValue")
+    start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
+    end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
     __properties: ClassVar[List[str]] = ["serviceLocationId", "externalChannelIdentifier", "meterSerialNumber", "timeZone", "utilityType", "meteringType", "unitOfMeasure", "timeOfUse", "firstMeasurement", "secondMeasurement", "consumptionValue", "startDateTime", "endDateTime"]
 
     model_config = ConfigDict(
@@ -111,21 +111,6 @@ class ConsumptionCalculationInputDTO(BaseModel):
         if self.time_zone is None and "time_zone" in self.model_fields_set:
             _dict['timeZone'] = None
 
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if metering_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.metering_type is None and "metering_type" in self.model_fields_set:
-            _dict['meteringType'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
-
         # set to None if time_of_use (nullable) is None
         # and model_fields_set contains the field
         if self.time_of_use is None and "time_of_use" in self.model_fields_set:
@@ -168,5 +153,3 @@ class ConsumptionCalculationInputDTO(BaseModel):
             "endDateTime": obj.get("endDateTime")
         })
         return _obj
-
-

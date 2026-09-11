@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MeteringIssueResolutionReason(str, Enum):
     """
-    MeteringIssueResolutionReason
+    Possible values: 'newmeasurementimportjob', 'measurementdeleted', 'newmeasurementmanuallyadded', 'newmeasurementmoverequest', 'measurementvalidated', 'meterdeleted', 'meterresetmeasurementreceived', 'meterresetdatereconfigured', 'meterreadingfrequencyrestored', 'mutingrulecreated'
     """
 
     """
@@ -31,10 +31,13 @@ class MeteringIssueResolutionReason(str, Enum):
     NEWMEASUREMENTMANUALLYADDED = 'newmeasurementmanuallyadded'
     NEWMEASUREMENTMOVEREQUEST = 'newmeasurementmoverequest'
     MEASUREMENTVALIDATED = 'measurementvalidated'
+    METERDELETED = 'meterdeleted'
+    METERRESETMEASUREMENTRECEIVED = 'meterresetmeasurementreceived'
+    METERRESETDATERECONFIGURED = 'meterresetdatereconfigured'
+    METERREADINGFREQUENCYRESTORED = 'meterreadingfrequencyrestored'
+    MUTINGRULECREATED = 'mutingrulecreated'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of MeteringIssueResolutionReason from a JSON string"""
         return cls(json.loads(json_str))
-
-

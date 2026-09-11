@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**subject** | **str** |  | [optional] 
-**attachments** | [**List[TemplateAttachmentRequest]**](TemplateAttachmentRequest.md) |  | [optional] 
+**subject** | **str** |  | [optional]
+**attachments** | [**List[TemplateAttachmentRequest]**](TemplateAttachmentRequest.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ advance_email_template_request_dict = advance_email_template_request_instance.to
 advance_email_template_request_from_dict = AdvanceEmailTemplateRequest.from_dict(advance_email_template_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

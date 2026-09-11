@@ -24,6 +24,9 @@ from metering_client.models.data_frequency import DataFrequency
 from metering_client.models.direction import Direction
 from metering_client.models.entity_subject_type import EntitySubjectType
 from metering_client.models.incrementation_type import IncrementationType
+from metering_client.models.measurement_origin_details_dto_metering_import_job_origin_details_dto import MeasurementOriginDetailsDTOMeteringImportJobOriginDetailsDTO
+from metering_client.models.measurement_reading_method import MeasurementReadingMethod
+from metering_client.models.measurement_reading_origin import MeasurementReadingOrigin
 from metering_client.models.metering_issue_reference import MeteringIssueReference
 from metering_client.models.metering_type import MeteringType
 from metering_client.models.unit_of_measure import UnitOfMeasure
@@ -33,34 +36,36 @@ from typing_extensions import Self
 
 class MeasurementDTO(BaseModel):
     """
-    Represents a measurement reading from a meter with associated metadata
+    MeasurementDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
-    external_channel_identifier: Optional[StrictStr] = Field(default=None, description="External identifier for the channel", alias="externalChannelIdentifier")
-    meter_serial_number: Optional[StrictStr] = Field(default=None, description="Serial number of the meter that took the measurement", alias="meterSerialNumber")
-    operation_id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the operation that generated this measurement", alias="operationId")
-    value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The measured value")
-    end_date_time: Optional[datetime] = Field(default=None, description="Date and time when the measurement was taken", alias="endDateTime")
-    deleted: Optional[StrictBool] = Field(default=None, description="Indicates whether this measurement has been deleted")
-    data_frequency: Optional[DataFrequency] = Field(default=None, description="Frequency of the measurement data points", alias="dataFrequency")
-    incrementation_type: Optional[IncrementationType] = Field(default=None, description="Type of increment used for the measurement", alias="incrementationType")
-    metering_type: Optional[MeteringType] = Field(default=None, description="Type of metering used for the measurement", alias="meteringType")
-    utility_type: Optional[UtilityType] = Field(default=None, description="Type of utility being measured", alias="utilityType")
-    direction: Optional[Direction] = Field(default=None, description="Direction of the measurement flow")
-    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, description="Unit of measure for the measurement value", alias="unitOfMeasure")
-    time_of_use: Optional[StrictStr] = Field(default=None, description="Time of use classification for the measurement", alias="timeOfUse")
-    issue: Optional[MeteringIssueReference] = Field(default=None, description="Reference to any metering issue associated with this measurement")
-    has_issue: Optional[StrictBool] = Field(default=None, description="Indicates whether this measurement has an associated issue", alias="hasIssue")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "externalChannelIdentifier", "meterSerialNumber", "operationId", "value", "endDateTime", "deleted", "dataFrequency", "incrementationType", "meteringType", "utilityType", "direction", "unitOfMeasure", "timeOfUse", "issue", "hasIssue"]
+    external_channel_identifier: Optional[StrictStr] = Field(default=None, alias="externalChannelIdentifier")
+    meter_serial_number: Optional[StrictStr] = Field(default=None, alias="meterSerialNumber")
+    operation_id: Optional[StrictStr] = Field(default=None, alias="operationId")
+    value: Optional[Union[StrictFloat, StrictInt]] = None
+    start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
+    end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
+    deleted: Optional[StrictBool] = None
+    data_frequency: Optional[DataFrequency] = Field(default=None, alias="dataFrequency")
+    incrementation_type: Optional[IncrementationType] = Field(default=None, alias="incrementationType")
+    metering_type: Optional[MeteringType] = Field(default=None, alias="meteringType")
+    utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
+    direction: Optional[Direction] = None
+    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, alias="unitOfMeasure")
+    time_of_use: Optional[StrictStr] = Field(default=None, alias="timeOfUse")
+    issue: Optional[MeteringIssueReference] = None
+    has_issue: Optional[StrictBool] = Field(default=None, alias="hasIssue")
+    reading_origin: Optional[MeasurementReadingOrigin] = Field(default=None, alias="readingOrigin")
+    reading_method: Optional[MeasurementReadingMethod] = Field(default=None, alias="readingMethod")
+    origin_details: Optional[MeasurementOriginDetailsDTOMeteringImportJobOriginDetailsDTO] = Field(default=None, alias="originDetails")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["externalChannelIdentifier", "meterSerialNumber", "operationId", "value", "startDateTime", "endDateTime", "deleted", "dataFrequency", "incrementationType", "meteringType", "utilityType", "direction", "unitOfMeasure", "timeOfUse", "issue", "hasIssue", "readingOrigin", "readingMethod", "originDetails", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,12 +97,8 @@ class MeasurementDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
-            "has_issue",
         ])
 
         _dict = self.model_dump(
@@ -108,31 +109,9 @@ class MeasurementDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of issue
         if self.issue:
             _dict['issue'] = self.issue.to_dict()
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of origin_details
+        if self.origin_details:
+            _dict['originDetails'] = self.origin_details.to_dict()
         # set to None if external_channel_identifier (nullable) is None
         # and model_fields_set contains the field
         if self.external_channel_identifier is None and "external_channel_identifier" in self.model_fields_set:
@@ -148,45 +127,25 @@ class MeasurementDTO(BaseModel):
         if self.operation_id is None and "operation_id" in self.model_fields_set:
             _dict['operationId'] = None
 
-        # set to None if data_frequency (nullable) is None
+        # set to None if start_date_time (nullable) is None
         # and model_fields_set contains the field
-        if self.data_frequency is None and "data_frequency" in self.model_fields_set:
-            _dict['dataFrequency'] = None
-
-        # set to None if incrementation_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.incrementation_type is None and "incrementation_type" in self.model_fields_set:
-            _dict['incrementationType'] = None
-
-        # set to None if metering_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.metering_type is None and "metering_type" in self.model_fields_set:
-            _dict['meteringType'] = None
-
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if direction (nullable) is None
-        # and model_fields_set contains the field
-        if self.direction is None and "direction" in self.model_fields_set:
-            _dict['direction'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
+        if self.start_date_time is None and "start_date_time" in self.model_fields_set:
+            _dict['startDateTime'] = None
 
         # set to None if time_of_use (nullable) is None
         # and model_fields_set contains the field
         if self.time_of_use is None and "time_of_use" in self.model_fields_set:
             _dict['timeOfUse'] = None
 
-        # set to None if issue (nullable) is None
+        # set to None if reading_origin (nullable) is None
         # and model_fields_set contains the field
-        if self.issue is None and "issue" in self.model_fields_set:
-            _dict['issue'] = None
+        if self.reading_origin is None and "reading_origin" in self.model_fields_set:
+            _dict['readingOrigin'] = None
+
+        # set to None if reading_method (nullable) is None
+        # and model_fields_set contains the field
+        if self.reading_method is None and "reading_method" in self.model_fields_set:
+            _dict['readingMethod'] = None
 
         return _dict
 
@@ -200,20 +159,11 @@ class MeasurementDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "externalChannelIdentifier": obj.get("externalChannelIdentifier"),
             "meterSerialNumber": obj.get("meterSerialNumber"),
             "operationId": obj.get("operationId"),
             "value": obj.get("value"),
+            "startDateTime": obj.get("startDateTime"),
             "endDateTime": obj.get("endDateTime"),
             "deleted": obj.get("deleted"),
             "dataFrequency": obj.get("dataFrequency"),
@@ -224,8 +174,17 @@ class MeasurementDTO(BaseModel):
             "unitOfMeasure": obj.get("unitOfMeasure"),
             "timeOfUse": obj.get("timeOfUse"),
             "issue": MeteringIssueReference.from_dict(obj["issue"]) if obj.get("issue") is not None else None,
-            "hasIssue": obj.get("hasIssue")
+            "hasIssue": obj.get("hasIssue"),
+            "readingOrigin": obj.get("readingOrigin"),
+            "readingMethod": obj.get("readingMethod"),
+            "originDetails": MeasurementOriginDetailsDTOMeteringImportJobOriginDetailsDTO.from_dict(obj["originDetails"]) if obj.get("originDetails") is not None else None,
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
-
-

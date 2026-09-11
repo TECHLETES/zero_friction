@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, Stric
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from billing_client.models.collection_case_details_dto import CollectionCaseDetailsDTO
 from billing_client.models.customer_type import CustomerType
+from billing_client.models.payment_plan_details_dto import PaymentPlanDetailsDTO
 from billing_client.models.property_group_reference_dto import PropertyGroupReferenceDTO
 from billing_client.models.transaction_type import TransactionType
 from typing import Optional, Set
@@ -29,28 +30,29 @@ from typing_extensions import Self
 
 class CustAgingLineDTO(BaseModel):
     """
-    Represents a detailed line item in the customer aging analysis.  This DTO contains information about individual transactions and their aging status.
+    CustAgingLineDTO
     """ # noqa: E501
-    transaction_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the transaction.", alias="transactionId")
-    transaction_reference_type: Optional[StrictStr] = Field(default=None, description="The type of reference for this transaction (e.g., invoice, credit note).", alias="transactionReferenceType")
-    transaction_reference_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the referenced transaction.", alias="transactionReferenceId")
-    reference_number: Optional[StrictStr] = Field(default=None, description="The reference number associated with this transaction.", alias="referenceNumber")
-    open_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The remaining open amount for this transaction.", alias="openAmount")
-    display_name: Optional[StrictStr] = Field(default=None, description="The display name for this transaction.", alias="displayName")
-    customer_account_number: Optional[StrictStr] = Field(default=None, description="The account number of the customer associated with this transaction.", alias="customerAccountNumber")
-    customer_type: Optional[CustomerType] = Field(default=None, description="The type of customer associated with this transaction.", alias="customerType")
-    transaction_type: Optional[TransactionType] = Field(default=None, description="The type of transaction (e.g., debit, credit).", alias="transactionType")
-    transaction_date: Optional[datetime] = Field(default=None, description="The date when this transaction was created.", alias="transactionDate")
-    transaction_due_date: Optional[datetime] = Field(default=None, description="The date when this transaction is due for payment.", alias="transactionDueDate")
-    open_credit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The open credit amount for this transaction.", alias="openCredit")
-    total_open_not_overdue: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount that is open but not yet overdue.", alias="totalOpenNotOverdue")
-    total_overdue30_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount overdue between 0 and 30 days.", alias="totalOverdue30D")
-    total_overdue60_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount overdue between 30 and 60 days.", alias="totalOverdue60D")
-    total_overdue90_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount overdue between 60 and 90 days.", alias="totalOverdue90D")
-    total_overdue_over90_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount overdue for more than 90 days.", alias="totalOverdueOver90D")
-    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, description="List of property groups associated with this transaction.", alias="propertyGroups")
-    collection_case_details: Optional[CollectionCaseDetailsDTO] = Field(default=None, description="Details about any collection case associated with this transaction.", alias="collectionCaseDetails")
-    __properties: ClassVar[List[str]] = ["transactionId", "transactionReferenceType", "transactionReferenceId", "referenceNumber", "openAmount", "displayName", "customerAccountNumber", "customerType", "transactionType", "transactionDate", "transactionDueDate", "openCredit", "totalOpenNotOverdue", "totalOverdue30D", "totalOverdue60D", "totalOverdue90D", "totalOverdueOver90D", "propertyGroups", "collectionCaseDetails"]
+    transaction_id: Optional[StrictStr] = Field(default=None, alias="transactionId")
+    transaction_reference_type: Optional[StrictStr] = Field(default=None, alias="transactionReferenceType")
+    transaction_reference_id: Optional[StrictStr] = Field(default=None, alias="transactionReferenceId")
+    reference_number: Optional[StrictStr] = Field(default=None, alias="referenceNumber")
+    open_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="openAmount")
+    display_name: Optional[StrictStr] = Field(default=None, alias="displayName")
+    customer_account_number: Optional[StrictStr] = Field(default=None, alias="customerAccountNumber")
+    customer_type: Optional[CustomerType] = Field(default=None, alias="customerType")
+    transaction_type: Optional[TransactionType] = Field(default=None, alias="transactionType")
+    transaction_date: Optional[datetime] = Field(default=None, alias="transactionDate")
+    transaction_due_date: Optional[datetime] = Field(default=None, alias="transactionDueDate")
+    open_credit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="openCredit")
+    total_open_not_overdue: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOpenNotOverdue")
+    total_overdue30_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOverdue30D")
+    total_overdue60_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOverdue60D")
+    total_overdue90_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOverdue90D")
+    total_overdue_over90_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOverdueOver90D")
+    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, alias="propertyGroups")
+    collection_case_details: Optional[CollectionCaseDetailsDTO] = Field(default=None, alias="collectionCaseDetails")
+    payment_plan_details: Optional[PaymentPlanDetailsDTO] = Field(default=None, alias="paymentPlanDetails")
+    __properties: ClassVar[List[str]] = ["transactionId", "transactionReferenceType", "transactionReferenceId", "referenceNumber", "openAmount", "displayName", "customerAccountNumber", "customerType", "transactionType", "transactionDate", "transactionDueDate", "openCredit", "totalOpenNotOverdue", "totalOverdue30D", "totalOverdue60D", "totalOverdue90D", "totalOverdueOver90D", "propertyGroups", "collectionCaseDetails", "paymentPlanDetails"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,6 +103,9 @@ class CustAgingLineDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of collection_case_details
         if self.collection_case_details:
             _dict['collectionCaseDetails'] = self.collection_case_details.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of payment_plan_details
+        if self.payment_plan_details:
+            _dict['paymentPlanDetails'] = self.payment_plan_details.to_dict()
         # set to None if transaction_id (nullable) is None
         # and model_fields_set contains the field
         if self.transaction_id is None and "transaction_id" in self.model_fields_set:
@@ -131,16 +136,6 @@ class CustAgingLineDTO(BaseModel):
         if self.customer_account_number is None and "customer_account_number" in self.model_fields_set:
             _dict['customerAccountNumber'] = None
 
-        # set to None if customer_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_type is None and "customer_type" in self.model_fields_set:
-            _dict['customerType'] = None
-
-        # set to None if transaction_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.transaction_type is None and "transaction_type" in self.model_fields_set:
-            _dict['transactionType'] = None
-
         # set to None if property_groups (nullable) is None
         # and model_fields_set contains the field
         if self.property_groups is None and "property_groups" in self.model_fields_set:
@@ -150,6 +145,11 @@ class CustAgingLineDTO(BaseModel):
         # and model_fields_set contains the field
         if self.collection_case_details is None and "collection_case_details" in self.model_fields_set:
             _dict['collectionCaseDetails'] = None
+
+        # set to None if payment_plan_details (nullable) is None
+        # and model_fields_set contains the field
+        if self.payment_plan_details is None and "payment_plan_details" in self.model_fields_set:
+            _dict['paymentPlanDetails'] = None
 
         return _dict
 
@@ -181,8 +181,7 @@ class CustAgingLineDTO(BaseModel):
             "totalOverdue90D": obj.get("totalOverdue90D"),
             "totalOverdueOver90D": obj.get("totalOverdueOver90D"),
             "propertyGroups": [PropertyGroupReferenceDTO.from_dict(_item) for _item in obj["propertyGroups"]] if obj.get("propertyGroups") is not None else None,
-            "collectionCaseDetails": CollectionCaseDetailsDTO.from_dict(obj["collectionCaseDetails"]) if obj.get("collectionCaseDetails") is not None else None
+            "collectionCaseDetails": CollectionCaseDetailsDTO.from_dict(obj["collectionCaseDetails"]) if obj.get("collectionCaseDetails") is not None else None,
+            "paymentPlanDetails": PaymentPlanDetailsDTO.from_dict(obj["paymentPlanDetails"]) if obj.get("paymentPlanDetails") is not None else None
         })
         return _obj
-
-

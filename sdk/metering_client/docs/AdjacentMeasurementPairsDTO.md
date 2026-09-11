@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pairs** | [**List[MeasurementPairDTO]**](MeasurementPairDTO.md) |  | [optional] 
+**pairs** | [**List[MeasurementPairDTO]**](MeasurementPairDTO.md) |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ adjacent_measurement_pairs_dto_dict = adjacent_measurement_pairs_dto_instance.to
 adjacent_measurement_pairs_dto_from_dict = AdjacentMeasurementPairsDTO.from_dict(adjacent_measurement_pairs_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -1,5 +1,6 @@
 # BillingCompletenessStatus
 
+Possible values: 'waiting', 'gatheringinput', 'inputmissing', 'pendingcalculation', 'calculating', 'closed', 'previousnotclosed', 'manuallycorrected', 'waitingforapproval', 'manuallyclosed', 'waitingfornextestimation'
 
 ## Enum
 
@@ -26,5 +27,3 @@
 * `WAITINGFORNEXTESTIMATION` (value: `'waitingfornextestimation'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

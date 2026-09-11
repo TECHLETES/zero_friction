@@ -25,11 +25,11 @@ from typing_extensions import Self
 
 class CustomerBillingSettingsAutomaticSettlementDTO(BaseModel):
     """
-    Represents automatic settlement settings for a customer
+    CustomerBillingSettingsAutomaticSettlementDTO
     """ # noqa: E501
-    automatic_settlement: Optional[StrictBool] = Field(default=None, description="Indicates whether automatic settlement is enabled", alias="automaticSettlement")
-    originator_type: Optional[EntitySubjectType] = Field(default=None, description="Type of entity that initiated the automatic settlement", alias="originatorType")
-    originator_id: Optional[StrictStr] = Field(default=None, description="Identifier of the entity that initiated the automatic settlement", alias="originatorId")
+    automatic_settlement: Optional[StrictBool] = Field(default=None, alias="automaticSettlement")
+    originator_type: Optional[EntitySubjectType] = Field(default=None, alias="originatorType")
+    originator_id: Optional[StrictStr] = Field(default=None, alias="originatorId")
     __properties: ClassVar[List[str]] = ["automaticSettlement", "originatorType", "originatorId"]
 
     model_config = ConfigDict(
@@ -76,11 +76,6 @@ class CustomerBillingSettingsAutomaticSettlementDTO(BaseModel):
         if self.automatic_settlement is None and "automatic_settlement" in self.model_fields_set:
             _dict['automaticSettlement'] = None
 
-        # set to None if originator_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.originator_type is None and "originator_type" in self.model_fields_set:
-            _dict['originatorType'] = None
-
         # set to None if originator_id (nullable) is None
         # and model_fields_set contains the field
         if self.originator_id is None and "originator_id" in self.model_fields_set:
@@ -103,5 +98,3 @@ class CustomerBillingSettingsAutomaticSettlementDTO(BaseModel):
             "originatorId": obj.get("originatorId")
         })
         return _obj
-
-

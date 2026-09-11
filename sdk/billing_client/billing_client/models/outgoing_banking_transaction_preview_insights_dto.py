@@ -24,10 +24,10 @@ from typing_extensions import Self
 
 class OutgoingBankingTransactionPreviewInsightsDTO(BaseModel):
     """
-    Contains insights about a specific type of outgoing banking transaction.  This DTO provides information about the number of invoices and total amount.
+    OutgoingBankingTransactionPreviewInsightsDTO
     """ # noqa: E501
-    number_of_invoices: Optional[StrictInt] = Field(default=None, description="The total number of invoices included in this preview.", alias="numberOfInvoices")
-    total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount of all invoices in this preview.", alias="totalAmount")
+    number_of_invoices: Optional[StrictInt] = Field(default=None, alias="numberOfInvoices")
+    total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalAmount")
     __properties: ClassVar[List[str]] = ["numberOfInvoices", "totalAmount"]
 
     model_config = ConfigDict(
@@ -85,5 +85,3 @@ class OutgoingBankingTransactionPreviewInsightsDTO(BaseModel):
             "totalAmount": obj.get("totalAmount")
         })
         return _obj
-
-

@@ -37,7 +37,7 @@ class TestGBRRegionalRegulationsConfigurationDTO(unittest.TestCase):
             return GBRRegionalRegulationsConfigurationDTO(
                 country_code = 'aut',
                 priority_register_parameters = configuration_client.models.priority_register_parameters_dto.PriorityRegisterParametersDTO(
-                    psr_codes_custom_entity_property_type_id = '', 
+                    psr_codes_custom_entity_property_type_id = '',
                     vr_codes_custom_entity_property_type_id = '', )
             )
         else:

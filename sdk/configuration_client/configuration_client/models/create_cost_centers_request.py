@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class CreateCostCentersRequest(BaseModel):
     """
-    Request model for creating new cost centers.  Cost centers should correspond to entries in an external accounting system  to enable proper data synchronization during billing operations.
+    CreateCostCentersRequest
     """ # noqa: E501
-    cost_centers: Optional[List[CreateCostCenterRequest]] = Field(default=None, description="List of cost centers to create.", alias="costCenters")
+    cost_centers: Optional[List[CreateCostCenterRequest]] = Field(default=None, alias="costCenters")
     __properties: ClassVar[List[str]] = ["costCenters"]
 
     model_config = ConfigDict(
@@ -96,5 +96,3 @@ class CreateCostCentersRequest(BaseModel):
             "costCenters": [CreateCostCenterRequest.from_dict(_item) for _item in obj["costCenters"]] if obj.get("costCenters") is not None else None
         })
         return _obj
-
-

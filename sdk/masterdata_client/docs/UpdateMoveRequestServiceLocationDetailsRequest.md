@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
-**services** | [**List[MoveRequestServiceLocationServiceDetailsRequest]**](MoveRequestServiceLocationServiceDetailsRequest.md) |  | [optional] 
-**internal_id** | **str** |  | [optional] 
+**address** | [**AddressDTO**](AddressDTO.md) |  | [optional]
+**services** | [**List[MoveRequestServiceLocationServiceDetailsRequest]**](MoveRequestServiceLocationServiceDetailsRequest.md) |  |
+**internal_id** | **str** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ update_move_request_service_location_details_request_dict = update_move_request_
 update_move_request_service_location_details_request_from_dict = UpdateMoveRequestServiceLocationDetailsRequest.from_dict(update_move_request_service_location_details_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

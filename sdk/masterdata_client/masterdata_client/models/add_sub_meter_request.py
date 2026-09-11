@@ -95,5 +95,3 @@ class AddSubMeterRequest(BaseModel):
             "externalReference": obj.get("externalReference")
         })
         return _obj
-
-

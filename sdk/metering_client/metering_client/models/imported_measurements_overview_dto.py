@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from metering_client.models.imported_measurement_processing_result_dto_paged_response_model_dto import ImportedMeasurementProcessingResultDTOPagedResponseModelDTO
+from metering_client.models.paged_response_model_dtoof_imported_measurement_processing_result_dto import PagedResponseModelDTOOfImportedMeasurementProcessingResultDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class ImportedMeasurementsOverviewDTO(BaseModel):
     """
     ImportedMeasurementsOverviewDTO
     """ # noqa: E501
-    measurements: Optional[ImportedMeasurementProcessingResultDTOPagedResponseModelDTO] = None
+    measurements: Optional[PagedResponseModelDTOOfImportedMeasurementProcessingResultDTO] = None
     total_invalid_measurements: Optional[StrictInt] = Field(default=None, alias="totalInvalidMeasurements")
     total_valid_measurements: Optional[StrictInt] = Field(default=None, alias="totalValidMeasurements")
     total_measurements_not_processed: Optional[StrictInt] = Field(default=None, alias="totalMeasurementsNotProcessed")
@@ -77,11 +77,6 @@ class ImportedMeasurementsOverviewDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of measurements
         if self.measurements:
             _dict['measurements'] = self.measurements.to_dict()
-        # set to None if measurements (nullable) is None
-        # and model_fields_set contains the field
-        if self.measurements is None and "measurements" in self.model_fields_set:
-            _dict['measurements'] = None
-
         return _dict
 
     @classmethod
@@ -94,7 +89,7 @@ class ImportedMeasurementsOverviewDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "measurements": ImportedMeasurementProcessingResultDTOPagedResponseModelDTO.from_dict(obj["measurements"]) if obj.get("measurements") is not None else None,
+            "measurements": PagedResponseModelDTOOfImportedMeasurementProcessingResultDTO.from_dict(obj["measurements"]) if obj.get("measurements") is not None else None,
             "totalInvalidMeasurements": obj.get("totalInvalidMeasurements"),
             "totalValidMeasurements": obj.get("totalValidMeasurements"),
             "totalMeasurementsNotProcessed": obj.get("totalMeasurementsNotProcessed"),
@@ -102,5 +97,3 @@ class ImportedMeasurementsOverviewDTO(BaseModel):
             "totalLinesWithFormatIssues": obj.get("totalLinesWithFormatIssues")
         })
         return _obj
-
-

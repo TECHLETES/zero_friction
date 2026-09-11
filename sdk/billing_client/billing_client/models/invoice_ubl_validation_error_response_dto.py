@@ -26,11 +26,11 @@ from typing_extensions import Self
 
 class InvoiceUBLValidationErrorResponseDTO(BaseModel):
     """
-    Represents UBL validation errors for invoices
+    InvoiceUBLValidationErrorResponseDTO
     """ # noqa: E501
-    general_errors: Optional[List[InvoiceUBLValidationGeneralErrorDTO]] = Field(default=None, description="List of general validation errors that apply to multiple invoices", alias="generalErrors")
-    specific_errors: Optional[List[InvoiceUBLValidationSpecificErrorDTO]] = Field(default=None, description="List of specific validation errors for individual invoices", alias="specificErrors")
-    unique_invoices_with_errors: Optional[StrictInt] = Field(default=None, description="Number of unique invoices that have validation errors", alias="uniqueInvoicesWithErrors")
+    general_errors: Optional[List[InvoiceUBLValidationGeneralErrorDTO]] = Field(default=None, alias="generalErrors")
+    specific_errors: Optional[List[InvoiceUBLValidationSpecificErrorDTO]] = Field(default=None, alias="specificErrors")
+    unique_invoices_with_errors: Optional[StrictInt] = Field(default=None, alias="uniqueInvoicesWithErrors")
     __properties: ClassVar[List[str]] = ["generalErrors", "specificErrors", "uniqueInvoicesWithErrors"]
 
     model_config = ConfigDict(
@@ -63,10 +63,8 @@ class InvoiceUBLValidationErrorResponseDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "unique_invoices_with_errors",
         ])
 
         _dict = self.model_dump(
@@ -115,5 +113,3 @@ class InvoiceUBLValidationErrorResponseDTO(BaseModel):
             "uniqueInvoicesWithErrors": obj.get("uniqueInvoicesWithErrors")
         })
         return _obj
-
-

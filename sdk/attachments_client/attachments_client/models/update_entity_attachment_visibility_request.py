@@ -27,8 +27,8 @@ class UpdateEntityAttachmentVisibilityRequest(BaseModel):
     """
     UpdateEntityAttachmentVisibilityRequest
     """ # noqa: E501
-    customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
-    visibility: Optional[AttachmentVisibility] = None
+    customer_id: Optional[StrictStr] = Field(alias="customerId")
+    visibility: AttachmentVisibility
     __properties: ClassVar[List[str]] = ["customerId", "visibility"]
 
     model_config = ConfigDict(
@@ -75,11 +75,6 @@ class UpdateEntityAttachmentVisibilityRequest(BaseModel):
         if self.customer_id is None and "customer_id" in self.model_fields_set:
             _dict['customerId'] = None
 
-        # set to None if visibility (nullable) is None
-        # and model_fields_set contains the field
-        if self.visibility is None and "visibility" in self.model_fields_set:
-            _dict['visibility'] = None
-
         return _dict
 
     @classmethod
@@ -96,5 +91,3 @@ class UpdateEntityAttachmentVisibilityRequest(BaseModel):
             "visibility": obj.get("visibility")
         })
         return _obj
-
-

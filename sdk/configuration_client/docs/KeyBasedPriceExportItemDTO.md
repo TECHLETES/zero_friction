@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**key** | **str** |  | [optional] 
-**unit_price** | **float** |  | [optional] 
-**unit_price_uses_formula** | **bool** |  | [optional] 
-**formula_expression** | **str** |  | [optional] 
+**key** | **str** |  | [optional]
+**unit_price** | **float** |  | [optional]
+**unit_price_uses_formula** | **bool** |  | [optional]
+**formula_expression** | **str** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ key_based_price_export_item_dto_dict = key_based_price_export_item_dto_instance.
 key_based_price_export_item_dto_from_dict = KeyBasedPriceExportItemDTO.from_dict(key_based_price_export_item_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

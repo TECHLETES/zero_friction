@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** |  | [optional] 
-**installed** | **int** |  | [optional] 
-**inactive** | **int** |  | [optional] 
+**all** | **int** |  | [optional]
+**installed** | **int** |  | [optional]
+**inactive** | **int** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ meter_overview_count_dto_dict = meter_overview_count_dto_instance.to_dict()
 meter_overview_count_dto_from_dict = MeterOverviewCountDTO.from_dict(meter_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

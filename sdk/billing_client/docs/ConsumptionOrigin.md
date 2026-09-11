@@ -1,5 +1,6 @@
 # ConsumptionOrigin
 
+Possible values: 'actual', 'manual', 'frompreviousyear', 'fromconsumergroup', 'forecast', 'estimatedmeasurement'
 
 ## Enum
 
@@ -13,6 +14,6 @@
 
 * `FORECAST` (value: `'forecast'`)
 
+* `ESTIMATEDMEASUREMENT` (value: `'estimatedmeasurement'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

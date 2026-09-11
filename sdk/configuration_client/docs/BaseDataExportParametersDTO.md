@@ -5,9 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**auto_move_after_generation** | **bool** |  | 
-**zip_files** | **bool** |  | 
-**auto_assign_entities_to_export** | **bool** |  | 
+**type** | **str** |  |
+**host** | **str** |  |
+**port** | **int** |  | [default to 22]
+**user_name** | **str** |  |
+**password** | **str** |  |
+**directory** | **str** |  |
+**auto_move_after_generation** | **bool** |  |
+**zip_files** | **bool** |  |
+**auto_assign_entities_to_export** | **bool** |  |
+**protocol** | [**FtpProtocol**](FtpProtocol.md) |  |
 
 ## Example
 
@@ -27,5 +34,3 @@ base_data_export_parameters_dto_dict = base_data_export_parameters_dto_instance.
 base_data_export_parameters_dto_from_dict = BaseDataExportParametersDTO.from_dict(base_data_export_parameters_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

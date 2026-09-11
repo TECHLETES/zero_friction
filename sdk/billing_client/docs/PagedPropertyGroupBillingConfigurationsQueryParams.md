@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**property_group_ids** | **List[str]** |  | [optional] 
+**property_group_ids** | **List[str]** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ paged_property_group_billing_configurations_query_params_dict = paged_property_g
 paged_property_group_billing_configurations_query_params_from_dict = PagedPropertyGroupBillingConfigurationsQueryParams.from_dict(paged_property_group_billing_configurations_query_params_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

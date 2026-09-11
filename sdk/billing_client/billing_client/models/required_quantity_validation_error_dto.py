@@ -17,9 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from billing_client.models.error_code import ErrorCode
 from billing_client.models.impacted_entity_dto import ImpactedEntityDTO
 from billing_client.models.input_missing_reason import InputMissingReason
 from billing_client.models.reason_entity_dto import ReasonEntityDTO
@@ -29,13 +28,13 @@ from typing_extensions import Self
 
 class RequiredQuantityValidationErrorDTO(BaseModel):
     """
-    Represents validation errors for required quantities in billing completeness
+    RequiredQuantityValidationErrorDTO
     """ # noqa: E501
-    reason: Optional[InputMissingReason] = Field(default=None, description="Reason for missing input (mutually exclusive with Error)")
-    error: Optional[ErrorCode] = Field(default=None, description="Error code for validation failure (mutually exclusive with Reason)")
-    problem_entity: Optional[ReasonEntityDTO] = Field(default=None, description="Entity that caused the validation error", alias="problemEntity")
-    impacted_entity: Optional[ImpactedEntityDTO] = Field(default=None, description="Entity that is impacted by the validation error", alias="impactedEntity")
-    related_entities: Optional[List[RelatedEntityDTO]] = Field(default=None, description="List of entities related to the validation error", alias="relatedEntities")
+    reason: Optional[InputMissingReason] = None
+    error: Optional[StrictInt] = None
+    problem_entity: Optional[ReasonEntityDTO] = Field(default=None, alias="problemEntity")
+    impacted_entity: Optional[ImpactedEntityDTO] = Field(default=None, alias="impactedEntity")
+    related_entities: Optional[List[RelatedEntityDTO]] = Field(default=None, alias="relatedEntities")
     __properties: ClassVar[List[str]] = ["reason", "error", "problemEntity", "impactedEntity", "relatedEntities"]
 
     model_config = ConfigDict(
@@ -90,11 +89,6 @@ class RequiredQuantityValidationErrorDTO(BaseModel):
                 if _item_related_entities:
                     _items.append(_item_related_entities.to_dict())
             _dict['relatedEntities'] = _items
-        # set to None if reason (nullable) is None
-        # and model_fields_set contains the field
-        if self.reason is None and "reason" in self.model_fields_set:
-            _dict['reason'] = None
-
         # set to None if problem_entity (nullable) is None
         # and model_fields_set contains the field
         if self.problem_entity is None and "problem_entity" in self.model_fields_set:
@@ -129,5 +123,3 @@ class RequiredQuantityValidationErrorDTO(BaseModel):
             "relatedEntities": [RelatedEntityDTO.from_dict(_item) for _item in obj["relatedEntities"]] if obj.get("relatedEntities") is not None else None
         })
         return _obj
-
-

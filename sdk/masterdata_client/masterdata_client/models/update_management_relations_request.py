@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class UpdateManagementRelationsRequest(BaseModel):
     """
-    Represents a request to update multiple management relations in a single operation
+    UpdateManagementRelationsRequest
     """ # noqa: E501
-    management_relations: Optional[List[ManagementRelationRequest]] = Field(default=None, description="Collection of management relations to be updated", alias="managementRelations")
+    management_relations: Optional[List[ManagementRelationRequest]] = Field(default=None, alias="managementRelations")
     __properties: ClassVar[List[str]] = ["managementRelations"]
 
     model_config = ConfigDict(
@@ -96,5 +96,3 @@ class UpdateManagementRelationsRequest(BaseModel):
             "managementRelations": [ManagementRelationRequest.from_dict(_item) for _item in obj["managementRelations"]] if obj.get("managementRelations") is not None else None
         })
         return _obj
-
-

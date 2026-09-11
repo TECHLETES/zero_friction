@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payment_terms_id** | **str** |  | [optional] 
-**default_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | [optional] 
+**payment_terms_id** | **str** |  | [optional]
+**default_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  |
+**collection_day_of_month** | **int** |  | [optional]
 
 ## Example
 
@@ -26,5 +27,3 @@ update_customer_billing_details_request_dict = update_customer_billing_details_r
 update_customer_billing_details_request_from_dict = UpdateCustomerBillingDetailsRequest.from_dict(update_customer_billing_details_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -40,18 +40,37 @@ class TestUpdateModelRequest(unittest.TestCase):
                 brand_name = '',
                 channel_templates = [
                     configuration_client.models.channel_template_request.ChannelTemplateRequest(
-                        data_frequency = null, 
-                        metering_type = null, 
-                        utility_type = null, 
-                        direction = null, 
-                        incrementation_type = null, 
-                        time_of_use = '', 
-                        unit_of_measure = null, 
-                        description = '', )
+                        data_frequency = 'pt1m',
+                        metering_type = 'none',
+                        utility_type = 'none',
+                        direction = 'offtake',
+                        incrementation_type = 'delta',
+                        time_of_use = '',
+                        unit_of_measure = 'none',
+                        description = '',
+                        reset_day = 56,
+                        reset_month = 56,
+                        reset_hour = 56, )
                     ]
             )
         else:
             return UpdateModelRequest(
+                name = '',
+                brand_name = '',
+                channel_templates = [
+                    configuration_client.models.channel_template_request.ChannelTemplateRequest(
+                        data_frequency = 'pt1m',
+                        metering_type = 'none',
+                        utility_type = 'none',
+                        direction = 'offtake',
+                        incrementation_type = 'delta',
+                        time_of_use = '',
+                        unit_of_measure = 'none',
+                        description = '',
+                        reset_day = 56,
+                        reset_month = 56,
+                        reset_hour = 56, )
+                    ],
         )
         """
 

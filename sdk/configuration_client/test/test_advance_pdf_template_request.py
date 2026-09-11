@@ -35,14 +35,14 @@ class TestAdvancePdfTemplateRequest(unittest.TestCase):
         model = AdvancePdfTemplateRequest()
         if include_optional:
             return AdvancePdfTemplateRequest(
-                envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
-                    margin_position = null, 
-                    margin = 56, 
-                    margin_top = 56, ),
                 show_country = True,
                 show_balance = True,
                 show_vat_specs = True,
-                show_custom_information = True
+                show_custom_information = True,
+                envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                    margin_position = 'left',
+                    margin = 56,
+                    margin_top = 56, )
             )
         else:
             return AdvancePdfTemplateRequest(

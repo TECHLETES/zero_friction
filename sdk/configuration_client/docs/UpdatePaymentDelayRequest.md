@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payment_delay** | [**PaymentDelay**](PaymentDelay.md) |  | [optional] 
-**value** | **int** |  | [optional] 
+**payment_delay** | [**PaymentDelay**](PaymentDelay.md) |  |
+**value** | **int** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ update_payment_delay_request_dict = update_payment_delay_request_instance.to_dic
 update_payment_delay_request_from_dict = UpdatePaymentDelayRequest.from_dict(update_payment_delay_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

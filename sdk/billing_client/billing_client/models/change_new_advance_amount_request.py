@@ -18,15 +18,15 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
 class ChangeNewAdvanceAmountRequest(BaseModel):
     """
-    Represents a request to change the advance amount for an invoice.  This DTO is used to update the advance payment amount that will be charged to the customer.
+    ChangeNewAdvanceAmountRequest
     """ # noqa: E501
-    new_advance_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The new advance amount including VAT to be charged to the customer.", alias="newAdvanceAmountInclVAT")
+    new_advance_amount_incl_vat: Union[StrictFloat, StrictInt] = Field(alias="newAdvanceAmountInclVAT")
     __properties: ClassVar[List[str]] = ["newAdvanceAmountInclVAT"]
 
     model_config = ConfigDict(
@@ -83,5 +83,3 @@ class ChangeNewAdvanceAmountRequest(BaseModel):
             "newAdvanceAmountInclVAT": obj.get("newAdvanceAmountInclVAT")
         })
         return _obj
-
-

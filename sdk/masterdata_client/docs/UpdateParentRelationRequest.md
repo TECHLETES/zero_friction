@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**meter_id** | **str** |  | [optional] 
-**external_reference** | **str** |  | [optional] 
+**meter_id** | **str** |  | [optional]
+**external_reference** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ update_parent_relation_request_dict = update_parent_relation_request_instance.to
 update_parent_relation_request_from_dict = UpdateParentRelationRequest.from_dict(update_parent_relation_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

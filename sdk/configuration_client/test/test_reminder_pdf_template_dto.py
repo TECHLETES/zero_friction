@@ -35,22 +35,22 @@ class TestReminderPdfTemplateDTO(unittest.TestCase):
         model = ReminderPdfTemplateDTO()
         if include_optional:
             return ReminderPdfTemplateDTO(
-                file_name = '',
-                use_case = 'pdf',
-                use_build_in = True,
-                custom_template_internal_file_path = '',
-                custom_template_file_name = '',
-                translation_status = 'defaulttranslation',
+                show_country = True,
                 envelope_settings = configuration_client.models.envelope_settings_dto.EnvelopeSettingsDTO(
-                    margin_position = null, 
-                    margin = 56, 
+                    margin_position = 'left',
+                    margin = 56,
                     margin_top = 56, ),
                 render_header_footer = True,
                 header_text = '',
                 footer_text = '',
                 override_external_printing_checks = True,
                 supports_external_printing = True,
-                show_country = True
+                file_name = '',
+                use_case = 'pdf',
+                use_build_in = True,
+                custom_template_internal_file_path = '',
+                custom_template_file_name = '',
+                translation_status = 'defaulttranslation'
             )
         else:
             return ReminderPdfTemplateDTO(

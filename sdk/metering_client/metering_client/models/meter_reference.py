@@ -95,5 +95,3 @@ class MeterReference(BaseModel):
             "serialNumber": obj.get("serialNumber")
         })
         return _obj
-
-

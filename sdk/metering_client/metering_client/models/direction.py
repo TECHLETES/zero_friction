@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class Direction(str, Enum):
     """
-    Direction
+    Possible values: 'offtake', 'injection', 'na'
     """
 
     """
@@ -34,5 +34,3 @@ class Direction(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of Direction from a JSON string"""
         return cls(json.loads(json_str))
-
-

@@ -28,23 +28,23 @@ class BankAccountDTO(BaseModel):
     """
     BankAccountDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
     iban: Optional[StrictStr] = None
     account_holder: Optional[StrictStr] = Field(default=None, alias="accountHolder")
     bic: Optional[StrictStr] = None
     sepa_creditor_id: Optional[StrictStr] = Field(default=None, alias="sepaCreditorId")
     is_default: Optional[StrictBool] = Field(default=None, alias="isDefault")
     deleted: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "iban", "accountHolder", "bic", "sepaCreditorId", "isDefault", "deleted"]
+    accounting_code_id_for_processed_transactions: Optional[StrictStr] = Field(default=None, alias="accountingCodeIdForProcessedTransactions")
+    accounting_code_id_for_ignored_transactions: Optional[StrictStr] = Field(default=None, alias="accountingCodeIdForIgnoredTransactions")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["iban", "accountHolder", "bic", "sepaCreditorId", "isDefault", "deleted", "accountingCodeIdForProcessedTransactions", "accountingCodeIdForIgnoredTransactions", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,10 +76,8 @@ class BankAccountDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -87,31 +85,6 @@ class BankAccountDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
         # set to None if iban (nullable) is None
         # and model_fields_set contains the field
         if self.iban is None and "iban" in self.model_fields_set:
@@ -132,6 +105,16 @@ class BankAccountDTO(BaseModel):
         if self.sepa_creditor_id is None and "sepa_creditor_id" in self.model_fields_set:
             _dict['sepaCreditorId'] = None
 
+        # set to None if accounting_code_id_for_processed_transactions (nullable) is None
+        # and model_fields_set contains the field
+        if self.accounting_code_id_for_processed_transactions is None and "accounting_code_id_for_processed_transactions" in self.model_fields_set:
+            _dict['accountingCodeIdForProcessedTransactions'] = None
+
+        # set to None if accounting_code_id_for_ignored_transactions (nullable) is None
+        # and model_fields_set contains the field
+        if self.accounting_code_id_for_ignored_transactions is None and "accounting_code_id_for_ignored_transactions" in self.model_fields_set:
+            _dict['accountingCodeIdForIgnoredTransactions'] = None
+
         return _dict
 
     @classmethod
@@ -144,23 +127,21 @@ class BankAccountDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "iban": obj.get("iban"),
             "accountHolder": obj.get("accountHolder"),
             "bic": obj.get("bic"),
             "sepaCreditorId": obj.get("sepaCreditorId"),
             "isDefault": obj.get("isDefault"),
-            "deleted": obj.get("deleted")
+            "deleted": obj.get("deleted"),
+            "accountingCodeIdForProcessedTransactions": obj.get("accountingCodeIdForProcessedTransactions"),
+            "accountingCodeIdForIgnoredTransactions": obj.get("accountingCodeIdForIgnoredTransactions"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
-
-

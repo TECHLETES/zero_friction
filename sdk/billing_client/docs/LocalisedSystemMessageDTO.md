@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**key** | [**SystemMessageCode**](SystemMessageCode.md) |  | [optional] 
-**message** | **str** |  | [optional] 
-**message_values** | [**List[LocalisedSystemMessageDtoValue]**](LocalisedSystemMessageDtoValue.md) |  | [optional] 
-**level** | [**SystemMessageLevel**](SystemMessageLevel.md) |  | [optional] 
+**key** | **int** |  | [optional]
+**message** | **str** |  | [optional]
+**message_values** | [**List[LocalisedSystemMessageDtoValue]**](LocalisedSystemMessageDtoValue.md) |  | [optional]
+**level** | **int** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ localised_system_message_dto_dict = localised_system_message_dto_instance.to_dic
 localised_system_message_dto_from_dict = LocalisedSystemMessageDTO.from_dict(localised_system_message_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

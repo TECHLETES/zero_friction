@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**supply_end_date** | **datetime** |  | [optional] 
-**services** | [**List[ChangeContractServiceLocationRequest]**](ChangeContractServiceLocationRequest.md) |  | [optional] 
+**supply_end_date** | **datetime** |  | [optional]
+**services** | [**List[ChangeContractServiceLocationRequest]**](ChangeContractServiceLocationRequest.md) |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ remove_contracted_services_request_dict = remove_contracted_services_request_ins
 remove_contracted_services_request_from_dict = RemoveContractedServicesRequest.from_dict(remove_contracted_services_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

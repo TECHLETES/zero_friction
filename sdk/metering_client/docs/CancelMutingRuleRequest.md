@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error_type** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional] 
-**meter_ids** | **List[str]** |  | [optional] 
+**error_type** | [**MeteringIssueError**](MeteringIssueError.md) |  |
+**meter_ids** | **List[str]** |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ cancel_muting_rule_request_dict = cancel_muting_rule_request_instance.to_dict()
 cancel_muting_rule_request_from_dict = CancelMutingRuleRequest.from_dict(cancel_muting_rule_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

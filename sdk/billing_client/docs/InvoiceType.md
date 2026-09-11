@@ -1,5 +1,6 @@
 # InvoiceType
 
+Possible values: 'advance', 'invoice', 'endnote', 'creditnote', 'incidentalnote', 'correctionnote'
 
 ## Enum
 
@@ -16,5 +17,3 @@
 * `CORRECTIONNOTE` (value: `'correctionnote'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -25,10 +25,10 @@ from typing_extensions import Self
 
 class ManagementRelationRequest(BaseModel):
     """
-    Represents a request to create or update a management relation between entities
+    ManagementRelationRequest
     """ # noqa: E501
-    customer_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the customer for whom the management relation is being created", alias="customerId")
-    management_relation_type: Optional[ManagementRelationType] = Field(default=None, description="The type of management relation being established between the entities", alias="managementRelationType")
+    customer_id: Optional[StrictStr] = Field(alias="customerId")
+    management_relation_type: ManagementRelationType = Field(alias="managementRelationType")
     __properties: ClassVar[List[str]] = ["customerId", "managementRelationType"]
 
     model_config = ConfigDict(
@@ -75,11 +75,6 @@ class ManagementRelationRequest(BaseModel):
         if self.customer_id is None and "customer_id" in self.model_fields_set:
             _dict['customerId'] = None
 
-        # set to None if management_relation_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.management_relation_type is None and "management_relation_type" in self.model_fields_set:
-            _dict['managementRelationType'] = None
-
         return _dict
 
     @classmethod
@@ -96,5 +91,3 @@ class ManagementRelationRequest(BaseModel):
             "managementRelationType": obj.get("managementRelationType")
         })
         return _obj
-
-

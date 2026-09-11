@@ -5,8 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resolved_by_user_id** | **str** |  | [optional] 
-**new_value** | **float** |  | [optional] 
+**type** | **str** |  |
+**resolved_reason** | [**MeteringIssueResolutionReason**](MeteringIssueResolutionReason.md) |  | [optional]
+**resolved_by_user_id** | **str** |  | [optional]
+**new_value** | **float** |  | [optional]
+**message** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +29,3 @@ base_metering_issue_resolution_details_dto_dict = base_metering_issue_resolution
 base_metering_issue_resolution_details_dto_from_dict = BaseMeteringIssueResolutionDetailsDTO.from_dict(base_metering_issue_resolution_details_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -1,15 +1,15 @@
 # CustomerPortalPropertiesDTO
 
-Represents portal-specific properties for a customer
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**application_user_id** | **str** | Unique identifier for the application user | [optional] 
-**confirm_account_token** | **str** | Token for account confirmation | [optional] 
-**reset_password_token** | **str** | Token for password reset | [optional] 
-**email** | **str** | Email address for the customer | [optional] 
+**application_user_id** | **str** |  | [optional]
+**confirm_account_token** | **str** |  | [optional]
+**reset_password_token** | **str** |  | [optional]
+**email** | **str** |  | [optional]
+**email_confirmed** | **bool** |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ customer_portal_properties_dto_dict = customer_portal_properties_dto_instance.to
 customer_portal_properties_dto_from_dict = CustomerPortalPropertiesDTO.from_dict(customer_portal_properties_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -37,7 +37,7 @@ class TestCompareInfo(unittest.TestCase):
             return CompareInfo(
                 name = '',
                 version = attachments_client.models.sort_version.SortVersion(
-                    full_version = 56, 
+                    full_version = 56,
                     sort_id = '', ),
                 lcid = 56
             )

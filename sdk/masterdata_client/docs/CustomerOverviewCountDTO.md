@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** |  | [optional] 
-**supplied** | **int** |  | [optional] 
-**unsupplied** | **int** |  | [optional] 
+**all** | **int** |  | [optional]
+**supplied** | **int** |  | [optional]
+**unsupplied** | **int** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ customer_overview_count_dto_dict = customer_overview_count_dto_instance.to_dict(
 customer_overview_count_dto_from_dict = CustomerOverviewCountDTO.from_dict(customer_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

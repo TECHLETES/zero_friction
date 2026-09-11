@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_location_ids** | **List[str]** |  | [optional] 
+**service_location_ids** | **List[str]** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ average_service_consumption_per_service_location_request_dict = average_service_
 average_service_consumption_per_service_location_request_from_dict = AverageServiceConsumptionPerServiceLocationRequest.from_dict(average_service_consumption_per_service_location_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

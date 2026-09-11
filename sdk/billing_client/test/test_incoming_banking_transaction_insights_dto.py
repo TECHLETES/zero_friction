@@ -44,17 +44,17 @@ class TestIncomingBankingTransactionInsightsDTO(unittest.TestCase):
                 closing_balance_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 status_details = {
                     'key' : billing_client.models.incoming_mutation_grouped_details_dto.IncomingMutationGroupedDetailsDTO(
-                        count = 56, 
+                        count = 56,
                         amount = 1.337, )
                     },
                 mutation_type_details = {
                     'key' : billing_client.models.incoming_mutation_grouped_details_dto.IncomingMutationGroupedDetailsDTO(
-                        count = 56, 
+                        count = 56,
                         amount = 1.337, )
                     },
                 payment_method_details = {
                     'key' : billing_client.models.incoming_mutation_grouped_details_dto.IncomingMutationGroupedDetailsDTO(
-                        count = 56, 
+                        count = 56,
                         amount = 1.337, )
                     }
             )

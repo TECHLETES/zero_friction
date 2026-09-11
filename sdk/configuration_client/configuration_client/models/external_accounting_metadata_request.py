@@ -17,19 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
-from typing_extensions import Annotated
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
 class ExternalAccountingMetadataRequest(BaseModel):
     """
-    Metadata to track back the origin of the data.  This is required so that we can push the data back to the source accounting system.
+    ExternalAccountingMetadataRequest
     """ # noqa: E501
-    source: Annotated[str, Field(min_length=1, strict=True)] = Field(description="Name of the source accounting system.")
-    source_entity_id: Annotated[str, Field(min_length=1, strict=True)] = Field(description="The ID of the entity in the source accounting system.", alias="sourceEntityId")
-    __properties: ClassVar[List[str]] = ["source", "sourceEntityId"]
+    source: StrictStr
+    source_entity_id: StrictStr = Field(alias="sourceEntityId")
+    source_accounting_company_id: Optional[StrictStr] = Field(default=None, alias="sourceAccountingCompanyId")
+    __properties: ClassVar[List[str]] = ["source", "sourceEntityId", "sourceAccountingCompanyId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,6 +70,11 @@ class ExternalAccountingMetadataRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if source_accounting_company_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_accounting_company_id is None and "source_accounting_company_id" in self.model_fields_set:
+            _dict['sourceAccountingCompanyId'] = None
+
         return _dict
 
     @classmethod
@@ -83,8 +88,7 @@ class ExternalAccountingMetadataRequest(BaseModel):
 
         _obj = cls.model_validate({
             "source": obj.get("source"),
-            "sourceEntityId": obj.get("sourceEntityId")
+            "sourceEntityId": obj.get("sourceEntityId"),
+            "sourceAccountingCompanyId": obj.get("sourceAccountingCompanyId")
         })
         return _obj
-
-

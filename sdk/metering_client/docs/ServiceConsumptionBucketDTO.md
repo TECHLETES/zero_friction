@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | **float** |  | [optional] 
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
+**value** | **float** |  | [optional]
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**gaps** | [**List[DateRange]**](DateRange.md) |  | [optional]
 
 ## Example
 
@@ -27,5 +28,3 @@ service_consumption_bucket_dto_dict = service_consumption_bucket_dto_instance.to
 service_consumption_bucket_dto_from_dict = ServiceConsumptionBucketDTO.from_dict(service_consumption_bucket_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

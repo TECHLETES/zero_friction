@@ -24,9 +24,9 @@ from typing_extensions import Self
 
 class UpdateOutgoingBankingTransactionBankAccountRequest(BaseModel):
     """
-    Represents a request to update the bank account associated with an outgoing banking transaction.  This DTO is used to change which company bank account the transaction will be processed from.
+    UpdateOutgoingBankingTransactionBankAccountRequest
     """ # noqa: E501
-    company_bank_account_id: Optional[StrictStr] = Field(default=None, description="The ID of the company bank account to be used for the transaction.", alias="companyBankAccountId")
+    company_bank_account_id: Optional[StrictStr] = Field(alias="companyBankAccountId")
     __properties: ClassVar[List[str]] = ["companyBankAccountId"]
 
     model_config = ConfigDict(
@@ -88,5 +88,3 @@ class UpdateOutgoingBankingTransactionBankAccountRequest(BaseModel):
             "companyBankAccountId": obj.get("companyBankAccountId")
         })
         return _obj
-
-

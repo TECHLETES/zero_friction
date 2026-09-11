@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
-**time_of_use** | **str** |  | [optional] 
-**formula_stream_name** | **str** |  | [optional] 
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional]
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional]
+**time_of_use** | **str** |  | [optional]
+**formula_stream_name** | **str** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ consumption_type_dto_dict = consumption_type_dto_instance.to_dict()
 consumption_type_dto_from_dict = ConsumptionTypeDTO.from_dict(consumption_type_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

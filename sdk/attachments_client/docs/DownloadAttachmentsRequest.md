@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**attachment_ids** | **List[str]** |  | [optional] 
+**attachment_ids** | **List[str]** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ download_attachments_request_dict = download_attachments_request_instance.to_dic
 download_attachments_request_from_dict = DownloadAttachmentsRequest.from_dict(download_attachments_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

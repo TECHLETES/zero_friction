@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**communication_preferences** | [**CustomerCommunicationPreferencesRequest**](CustomerCommunicationPreferencesRequest.md) |  | [optional] 
+**communication_preferences** | [**CustomerCommunicationPreferencesRequest**](CustomerCommunicationPreferencesRequest.md) |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ change_customer_communication_preferences_request_dict = change_customer_communi
 change_customer_communication_preferences_request_from_dict = ChangeCustomerCommunicationPreferencesRequest.from_dict(change_customer_communication_preferences_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,18 +27,23 @@ class GetServiceLocationsQueryParams(BaseModel):
     """
     GetServiceLocationsQueryParams
     """ # noqa: E501
-    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
-    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
-    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    has_utility_types: Optional[List[StrictStr]] = Field(default=None, alias="hasUtilityTypes")
+    has_not_utility_types: Optional[List[StrictStr]] = Field(default=None, alias="hasNotUtilityTypes")
     customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
     property_group_ids: Optional[List[StrictStr]] = Field(default=None, alias="propertyGroupIds")
     exclude_service_locations_supplied_in_contract_id: Optional[StrictStr] = Field(default=None, alias="excludeServiceLocationsSuppliedInContractId")
     exclude_service_locations_in_property_group_id: Optional[StrictStr] = Field(default=None, alias="excludeServiceLocationsInPropertyGroupId")
     reference_date_time: Optional[datetime] = Field(default=None, alias="referenceDateTime")
+    exclude_archived: Optional[StrictBool] = Field(default=None, alias="excludeArchived")
+    is_auto_restored: Optional[StrictBool] = Field(default=None, alias="isAutoRestored")
     postal_code: Optional[StrictStr] = Field(default=None, alias="postalCode")
     city: Optional[StrictStr] = None
     street_number: Optional[StrictStr] = Field(default=None, alias="streetNumber")
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "customerId", "propertyGroupIds", "excludeServiceLocationsSuppliedInContractId", "excludeServiceLocationsInPropertyGroupId", "referenceDateTime", "postalCode", "city", "streetNumber"]
+    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
+    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
+    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["hasUtilityTypes", "hasNotUtilityTypes", "customerId", "propertyGroupIds", "excludeServiceLocationsSuppliedInContractId", "excludeServiceLocationsInPropertyGroupId", "referenceDateTime", "excludeArchived", "isAutoRestored", "postalCode", "city", "streetNumber", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,60 +84,20 @@ class GetServiceLocationsQueryParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if flex_search (nullable) is None
-        # and model_fields_set contains the field
-        if self.flex_search is None and "flex_search" in self.model_fields_set:
-            _dict['flexSearch'] = None
-
-        # set to None if include_only_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
-        # set to None if customer_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_id is None and "customer_id" in self.model_fields_set:
-            _dict['customerId'] = None
-
-        # set to None if property_group_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.property_group_ids is None and "property_group_ids" in self.model_fields_set:
-            _dict['propertyGroupIds'] = None
-
-        # set to None if exclude_service_locations_supplied_in_contract_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_service_locations_supplied_in_contract_id is None and "exclude_service_locations_supplied_in_contract_id" in self.model_fields_set:
-            _dict['excludeServiceLocationsSuppliedInContractId'] = None
-
-        # set to None if exclude_service_locations_in_property_group_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_service_locations_in_property_group_id is None and "exclude_service_locations_in_property_group_id" in self.model_fields_set:
-            _dict['excludeServiceLocationsInPropertyGroupId'] = None
-
         # set to None if reference_date_time (nullable) is None
         # and model_fields_set contains the field
         if self.reference_date_time is None and "reference_date_time" in self.model_fields_set:
             _dict['referenceDateTime'] = None
 
-        # set to None if postal_code (nullable) is None
+        # set to None if flex_search (nullable) is None
         # and model_fields_set contains the field
-        if self.postal_code is None and "postal_code" in self.model_fields_set:
-            _dict['postalCode'] = None
+        if self.flex_search is None and "flex_search" in self.model_fields_set:
+            _dict['flexSearch'] = None
 
-        # set to None if city (nullable) is None
+        # set to None if page_size (nullable) is None
         # and model_fields_set contains the field
-        if self.city is None and "city" in self.model_fields_set:
-            _dict['city'] = None
-
-        # set to None if street_number (nullable) is None
-        # and model_fields_set contains the field
-        if self.street_number is None and "street_number" in self.model_fields_set:
-            _dict['streetNumber'] = None
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
 
         return _dict
 
@@ -146,18 +111,21 @@ class GetServiceLocationsQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
+            "hasUtilityTypes": obj.get("hasUtilityTypes"),
+            "hasNotUtilityTypes": obj.get("hasNotUtilityTypes"),
             "customerId": obj.get("customerId"),
             "propertyGroupIds": obj.get("propertyGroupIds"),
             "excludeServiceLocationsSuppliedInContractId": obj.get("excludeServiceLocationsSuppliedInContractId"),
             "excludeServiceLocationsInPropertyGroupId": obj.get("excludeServiceLocationsInPropertyGroupId"),
             "referenceDateTime": obj.get("referenceDateTime"),
+            "excludeArchived": obj.get("excludeArchived"),
+            "isAutoRestored": obj.get("isAutoRestored"),
             "postalCode": obj.get("postalCode"),
             "city": obj.get("city"),
-            "streetNumber": obj.get("streetNumber")
+            "streetNumber": obj.get("streetNumber"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
-
-

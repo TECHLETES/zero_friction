@@ -1,13 +1,12 @@
 # BankAccountDTO
 
-Represents a bank account associated with a customer
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iban** | **str** | International Bank Account Number (IBAN) | [optional] 
-**is_default** | **bool** | Indicates whether this is the default bank account | [optional] 
+**iban** | **str** |  | [optional]
+**is_default** | **bool** |  | [optional]
 
 ## Example
 
@@ -27,5 +26,3 @@ bank_account_dto_dict = bank_account_dto_instance.to_dict()
 bank_account_dto_from_dict = BankAccountDTO.from_dict(bank_account_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

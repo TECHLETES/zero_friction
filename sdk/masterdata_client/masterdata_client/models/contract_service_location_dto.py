@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from masterdata_client.models.address_dto import AddressDTO
 from masterdata_client.models.contracted_service_dto import ContractedServiceDTO
+from masterdata_client.models.prepayment_device_coverage_reference_dto import PrepaymentDeviceCoverageReferenceDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,7 +33,8 @@ class ContractServiceLocationDTO(BaseModel):
     address: Optional[AddressDTO] = None
     property_group_id: Optional[StrictStr] = Field(default=None, alias="propertyGroupId")
     services: Optional[List[ContractedServiceDTO]] = None
-    __properties: ClassVar[List[str]] = ["id", "address", "propertyGroupId", "services"]
+    prepayment_device_coverage_references: Optional[List[PrepaymentDeviceCoverageReferenceDTO]] = Field(default=None, alias="prepaymentDeviceCoverageReferences")
+    __properties: ClassVar[List[str]] = ["id", "address", "propertyGroupId", "services", "prepaymentDeviceCoverageReferences"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,6 +85,13 @@ class ContractServiceLocationDTO(BaseModel):
                 if _item_services:
                     _items.append(_item_services.to_dict())
             _dict['services'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in prepayment_device_coverage_references (list)
+        _items = []
+        if self.prepayment_device_coverage_references:
+            for _item_prepayment_device_coverage_references in self.prepayment_device_coverage_references:
+                if _item_prepayment_device_coverage_references:
+                    _items.append(_item_prepayment_device_coverage_references.to_dict())
+            _dict['prepaymentDeviceCoverageReferences'] = _items
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
         if self.id is None and "id" in self.model_fields_set:
@@ -103,6 +112,11 @@ class ContractServiceLocationDTO(BaseModel):
         if self.services is None and "services" in self.model_fields_set:
             _dict['services'] = None
 
+        # set to None if prepayment_device_coverage_references (nullable) is None
+        # and model_fields_set contains the field
+        if self.prepayment_device_coverage_references is None and "prepayment_device_coverage_references" in self.model_fields_set:
+            _dict['prepaymentDeviceCoverageReferences'] = None
+
         return _dict
 
     @classmethod
@@ -118,8 +132,7 @@ class ContractServiceLocationDTO(BaseModel):
             "id": obj.get("id"),
             "address": AddressDTO.from_dict(obj["address"]) if obj.get("address") is not None else None,
             "propertyGroupId": obj.get("propertyGroupId"),
-            "services": [ContractedServiceDTO.from_dict(_item) for _item in obj["services"]] if obj.get("services") is not None else None
+            "services": [ContractedServiceDTO.from_dict(_item) for _item in obj["services"]] if obj.get("services") is not None else None,
+            "prepaymentDeviceCoverageReferences": [PrepaymentDeviceCoverageReferenceDTO.from_dict(_item) for _item in obj["prepaymentDeviceCoverageReferences"]] if obj.get("prepaymentDeviceCoverageReferences") is not None else None
         })
         return _obj
-
-

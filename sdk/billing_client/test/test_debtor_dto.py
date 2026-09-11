@@ -40,7 +40,7 @@ class TestDebtorDTO(unittest.TestCase):
                 customer_account_number = '',
                 customer_type = 'person',
                 customer_group = billing_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
-                    id = '', 
+                    id = '',
                     name = '', )
             )
         else:

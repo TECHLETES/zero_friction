@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**automatic_settlement** | **bool** |  | [optional] 
+**automatic_settlement** | **bool** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ create_customer_group_settings_request_dict = create_customer_group_settings_req
 create_customer_group_settings_request_from_dict = CreateCustomerGroupSettingsRequest.from_dict(create_customer_group_settings_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

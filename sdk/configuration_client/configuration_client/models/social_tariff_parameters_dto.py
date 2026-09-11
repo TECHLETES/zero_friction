@@ -93,11 +93,6 @@ class SocialTariffParametersDTO(BaseModel):
         if self.gln_id is None and "gln_id" in self.model_fields_set:
             _dict['glnId'] = None
 
-        # set to None if supplier_address (nullable) is None
-        # and model_fields_set contains the field
-        if self.supplier_address is None and "supplier_address" in self.model_fields_set:
-            _dict['supplierAddress'] = None
-
         # set to None if contact_email_address (nullable) is None
         # and model_fields_set contains the field
         if self.contact_email_address is None and "contact_email_address" in self.model_fields_set:
@@ -164,5 +159,3 @@ class SocialTariffParametersDTO(BaseModel):
             "configured": obj.get("configured")
         })
         return _obj
-
-

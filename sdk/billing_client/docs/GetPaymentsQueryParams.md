@@ -5,14 +5,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
-**payment_type** | **str** |  | [optional] 
-**customer_id** | **str** |  | [optional] 
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
-**batch_mutation_id** | **str** |  | [optional] 
+**payment_type** | **str** |  | [optional]
+**customer_id** | **str** |  | [optional]
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**psp_provider_account_zfh_id** | **str** |  | [optional]
+**psp_requested_payment_rail** | [**PaymentRail**](PaymentRail.md) |  | [optional]
+**psp_refund_statuses** | **List[str]** |  | [optional]
+**prepayment_account_id** | **str** |  | [optional]
+**flex_search** | **str** |  | [optional]
+**include_only_ids** | **List[str]** |  | [optional]
+**exclude_ids** | **List[str]** |  | [optional]
+**page_size** | **int** |  | [optional]
 
 ## Example
 
@@ -32,5 +36,3 @@ get_payments_query_params_dict = get_payments_query_params_instance.to_dict()
 get_payments_query_params_from_dict = GetPaymentsQueryParams.from_dict(get_payments_query_params_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

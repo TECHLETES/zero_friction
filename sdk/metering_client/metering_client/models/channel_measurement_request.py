@@ -29,15 +29,15 @@ from typing_extensions import Self
 
 class ChannelMeasurementRequest(BaseModel):
     """
-    Holds the measurements for a specific meter.
+    ChannelMeasurementRequest
     """ # noqa: E501
-    utility_type: Optional[UtilityType] = Field(default=None, description="Indicates what kind of utility the measurement is about (electricity, heat, ...).    Recommended to be set when the ZFH.DataTransfer.Metering.DTO.v1.Requests.MeteringImports.ChannelMeasurementRequest.ExternalChannelIdentifier is not set to ensure the correct  channel can be detected.", alias="utilityType")
-    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, description="Indicates the unit of measurement.    Recommended to be set when the ZFH.DataTransfer.Metering.DTO.v1.Requests.MeteringImports.ChannelMeasurementRequest.ExternalChannelIdentifier is not set to ensure the correct  channel can be detected.", alias="unitOfMeasure")
-    metering_type: Optional[MeteringType] = Field(default=None, description="Indicates what kind of metering the measurement is about (energy, volume, ...)    Recommended to be set when the ZFH.DataTransfer.Metering.DTO.v1.Requests.MeteringImports.ChannelMeasurementRequest.ExternalChannelIdentifier is not set to ensure the correct  channel can be detected.", alias="meteringType")
-    direction: Optional[Direction] = Field(default=None, description="Is the measurement about injection or off take?    Recommended to be set when the ZFH.DataTransfer.Metering.DTO.v1.Requests.MeteringImports.ChannelMeasurementRequest.ExternalChannelIdentifier is not set to ensure the correct  channel can be detected.")
-    meter_serial_number: Optional[StrictStr] = Field(default=None, description="The serial number of the meter for which the measurements are taken.", alias="meterSerialNumber")
-    external_channel_identifier: Optional[StrictStr] = Field(default=None, description="The channel identifier for the specified meter within the Zero Friction platform.    If this is not set, it is recommended to configure the following properties to ensure the correct  channel can be detected.  - ZFH.DataTransfer.Metering.DTO.v1.Requests.MeteringImports.ChannelMeasurementRequest.UtilityType  - ZFH.DataTransfer.Metering.DTO.v1.Requests.MeteringImports.ChannelMeasurementRequest.UnitOfMeasure  - ZFH.DataTransfer.Metering.DTO.v1.Requests.MeteringImports.ChannelMeasurementRequest.MeteringType  - ZFH.DataTransfer.Metering.DTO.v1.Requests.MeteringImports.ChannelMeasurementRequest.Direction", alias="externalChannelIdentifier")
-    measurements: Optional[List[MeasurementRequest]] = Field(default=None, description="The actual measurement values.    The total number of measurements supported across channel measurements in one request is limited to 5000.  If you, for instance, have two channel measurements with more than 2500 measurements per channel, a validation  error will be returned.")
+    utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
+    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, alias="unitOfMeasure")
+    metering_type: Optional[MeteringType] = Field(default=None, alias="meteringType")
+    direction: Optional[Direction] = None
+    meter_serial_number: Optional[StrictStr] = Field(alias="meterSerialNumber")
+    external_channel_identifier: Optional[StrictStr] = Field(default=None, alias="externalChannelIdentifier")
+    measurements: Optional[List[MeasurementRequest]]
     __properties: ClassVar[List[str]] = ["utilityType", "unitOfMeasure", "meteringType", "direction", "meterSerialNumber", "externalChannelIdentifier", "measurements"]
 
     model_config = ConfigDict(
@@ -86,26 +86,6 @@ class ChannelMeasurementRequest(BaseModel):
                 if _item_measurements:
                     _items.append(_item_measurements.to_dict())
             _dict['measurements'] = _items
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
-
-        # set to None if metering_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.metering_type is None and "metering_type" in self.model_fields_set:
-            _dict['meteringType'] = None
-
-        # set to None if direction (nullable) is None
-        # and model_fields_set contains the field
-        if self.direction is None and "direction" in self.model_fields_set:
-            _dict['direction'] = None
-
         # set to None if meter_serial_number (nullable) is None
         # and model_fields_set contains the field
         if self.meter_serial_number is None and "meter_serial_number" in self.model_fields_set:
@@ -142,5 +122,3 @@ class ChannelMeasurementRequest(BaseModel):
             "measurements": [MeasurementRequest.from_dict(_item) for _item in obj["measurements"]] if obj.get("measurements") is not None else None
         })
         return _obj
-
-

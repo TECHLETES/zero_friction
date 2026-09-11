@@ -35,7 +35,22 @@ class TestAdvanceAmountChangedScenarioDTO(unittest.TestCase):
         model = AdvanceAmountChangedScenarioDTO()
         if include_optional:
             return AdvanceAmountChangedScenarioDTO(
-                default_communication_type = 'postal',
+                email_template = configuration_client.models.advance_amount_changed_email_template_dto.AdvanceAmountChangedEmailTemplateDTO(
+                    subject = '',
+                    attachments = [
+                        configuration_client.models.template_attachment_dto.TemplateAttachmentDTO(
+                            id = '',
+                            internal_file_path = '',
+                            file_name = '', )
+                        ],
+                    file_name = '',
+                    use_case = 'pdf',
+                    use_build_in = True,
+                    custom_template_internal_file_path = '',
+                    custom_template_file_name = '',
+                    translation_status = 'defaulttranslation', ),
+                default_communication_type = 'none',
+                auto_fallback_to_postal = True,
                 translation_list_id = '',
                 translation_list_history_id = '',
                 data_type = 'invoice',
@@ -43,25 +58,11 @@ class TestAdvanceAmountChangedScenarioDTO(unittest.TestCase):
                 entity_subject_sub_type = '',
                 grouping_type = 'invoice',
                 entity_type = configuration_client.models.entity_type_dto.EntityTypeDTO(
-                    entity_subject_type = null, 
+                    entity_subject_type = 'none',
                     entity_subject_sub_type = '', ),
                 available_communication_types = [
-                    'postal'
-                    ],
-                email_template = configuration_client.models.advance_amount_changed_email_template_dto.AdvanceAmountChangedEmailTemplateDTO(
-                    file_name = '', 
-                    use_case = null, 
-                    use_build_in = True, 
-                    custom_template_internal_file_path = '', 
-                    custom_template_file_name = '', 
-                    translation_status = null, 
-                    subject = '', 
-                    attachments = [
-                        configuration_client.models.template_attachment_dto.TemplateAttachmentDTO(
-                            id = '', 
-                            internal_file_path = '', 
-                            file_name = '', )
-                        ], )
+                    'none'
+                    ]
             )
         else:
             return AdvanceAmountChangedScenarioDTO(

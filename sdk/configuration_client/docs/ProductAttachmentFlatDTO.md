@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**attachment** | [**ProductAttachmentDTO**](ProductAttachmentDTO.md) |  | [optional] 
-**product** | [**ProductDTO**](ProductDTO.md) |  | [optional] 
+**attachment** | [**ProductAttachmentDTO**](ProductAttachmentDTO.md) |  | [optional]
+**product** | [**ProductDTO**](ProductDTO.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ product_attachment_flat_dto_dict = product_attachment_flat_dto_instance.to_dict(
 product_attachment_flat_dto_from_dict = ProductAttachmentFlatDTO.from_dict(product_attachment_flat_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

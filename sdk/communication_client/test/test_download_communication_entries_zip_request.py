@@ -37,10 +37,57 @@ class TestDownloadCommunicationEntriesZipRequest(unittest.TestCase):
             return DownloadCommunicationEntriesZipRequest(
                 communication_entry_ids = [
                     ''
+                    ],
+                var_query_params = communication_client.models.get_communication_entries_query_params.GetCommunicationEntriesQueryParams(
+                    communication_type = 'none',
+                    exclude_communication_type = 'none',
+                    exclude_communication_entry_status = 'generating',
+                    communication_entry_status = 'generating',
+                    entity_subject_type = 'none',
+                    subject_sub_type = '',
+                    entity_subject_id = '',
+                    failure_reason_code = 56,
+                    sent_start_date_time_offset = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    sent_end_date_time_offset = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    customer_id = '',
+                    flex_search = '',
+                    include_only_ids = [
+                        ''
+                        ],
+                    exclude_ids = [
+                        ''
+                        ],
+                    page_size = 56, ),
+                quick_filter = 'all',
+                excluded_ids = [
+                    ''
                     ]
             )
         else:
             return DownloadCommunicationEntriesZipRequest(
+                communication_entry_ids = [
+                    ''
+                    ],
+                var_query_params = communication_client.models.get_communication_entries_query_params.GetCommunicationEntriesQueryParams(
+                    communication_type = 'none',
+                    exclude_communication_type = 'none',
+                    exclude_communication_entry_status = 'generating',
+                    communication_entry_status = 'generating',
+                    entity_subject_type = 'none',
+                    subject_sub_type = '',
+                    entity_subject_id = '',
+                    failure_reason_code = 56,
+                    sent_start_date_time_offset = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    sent_end_date_time_offset = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    customer_id = '',
+                    flex_search = '',
+                    include_only_ids = [
+                        ''
+                        ],
+                    exclude_ids = [
+                        ''
+                        ],
+                    page_size = 56, ),
         )
         """
 

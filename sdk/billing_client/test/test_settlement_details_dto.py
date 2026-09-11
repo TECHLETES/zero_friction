@@ -37,11 +37,11 @@ class TestSettlementDetailsDTO(unittest.TestCase):
             return SettlementDetailsDTO(
                 settled_transactions_with_amounts = [
                     billing_client.models.settled_transaction_dto.SettledTransactionDTO(
-                        transaction_id = '', 
-                        settled_amount = 1.337, 
-                        transaction_reference_type = null, 
-                        transaction_reference_id = '', 
-                        transaction_reference_display_name = '', 
+                        transaction_id = '',
+                        settled_amount = 1.337,
+                        transaction_reference_type = 'payment',
+                        transaction_reference_id = '',
+                        transaction_reference_display_name = '',
                         transaction_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ]
             )

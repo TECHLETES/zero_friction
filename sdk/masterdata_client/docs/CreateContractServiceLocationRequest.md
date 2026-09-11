@@ -5,10 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_location_id** | **str** |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**external_identifier** | **str** |  | [optional] 
-**estimated_consumptions** | [**List[CreateContractServiceEstimatedConsumptionRequest]**](CreateContractServiceEstimatedConsumptionRequest.md) |  | [optional] 
+**type** | **str** |  |
+**reference** | **str** |  | [optional]
+**service_location_external_id** | **str** |  | [optional]
+**service_location_id** | **str** |  | [optional]
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional]
+**estimated_consumptions** | [**List[CreateContractServiceEstimatedConsumptionRequest]**](CreateContractServiceEstimatedConsumptionRequest.md) |  | [optional]
 
 ## Example
 
@@ -28,5 +30,3 @@ create_contract_service_location_request_dict = create_contract_service_location
 create_contract_service_location_request_from_dict = CreateContractServiceLocationRequest.from_dict(create_contract_service_location_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -83,11 +83,6 @@ class MeterStatusHistoryDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of property_group
         if self.property_group:
             _dict['propertyGroup'] = self.property_group.to_dict()
-        # set to None if meter_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.meter_status is None and "meter_status" in self.model_fields_set:
-            _dict['meterStatus'] = None
-
         # set to None if service_location_id (nullable) is None
         # and model_fields_set contains the field
         if self.service_location_id is None and "service_location_id" in self.model_fields_set:
@@ -123,5 +118,3 @@ class MeterStatusHistoryDTO(BaseModel):
             "propertyGroup": PropertyGroupReferenceDTO.from_dict(obj["propertyGroup"]) if obj.get("propertyGroup") is not None else None
         })
         return _obj
-
-

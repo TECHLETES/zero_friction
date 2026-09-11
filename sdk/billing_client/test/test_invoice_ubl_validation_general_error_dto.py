@@ -36,13 +36,13 @@ class TestInvoiceUBLValidationGeneralErrorDTO(unittest.TestCase):
         if include_optional:
             return InvoiceUBLValidationGeneralErrorDTO(
                 error_message = billing_client.models.localised_error_dto.LocalisedErrorDTO(
-                    key = null, 
-                    correlation_id = '', 
-                    message = '', 
+                    key = 56,
+                    correlation_id = '',
+                    message = '',
                     message_values = [
                         billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                            data_type = null, 
-                            value = '', 
+                            data_type = 'text',
+                            value = '',
                             capitalize = True, )
                         ], )
             )

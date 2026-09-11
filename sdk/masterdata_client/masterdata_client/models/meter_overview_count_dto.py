@@ -87,5 +87,3 @@ class MeterOverviewCountDTO(BaseModel):
             "inactive": obj.get("inactive")
         })
         return _obj
-
-

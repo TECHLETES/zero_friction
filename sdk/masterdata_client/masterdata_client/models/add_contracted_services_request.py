@@ -28,9 +28,9 @@ class AddContractedServicesRequest(BaseModel):
     """
     AddContractedServicesRequest
     """ # noqa: E501
-    supply_start_date: Optional[datetime] = Field(default=None, alias="supplyStartDate")
+    supply_start_date: datetime = Field(alias="supplyStartDate")
     supply_end_date: Optional[datetime] = Field(default=None, alias="supplyEndDate")
-    services: Optional[List[ChangeContractServiceLocationRequest]] = None
+    services: Optional[List[ChangeContractServiceLocationRequest]]
     __properties: ClassVar[List[str]] = ["supplyStartDate", "supplyEndDate", "services"]
 
     model_config = ConfigDict(
@@ -106,5 +106,3 @@ class AddContractedServicesRequest(BaseModel):
             "services": [ChangeContractServiceLocationRequest.from_dict(_item) for _item in obj["services"]] if obj.get("services") is not None else None
         })
         return _obj
-
-

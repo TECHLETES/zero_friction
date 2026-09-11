@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from masterdata_client.models.country_code import CountryCode
 from masterdata_client.models.customer_type import CustomerType
@@ -29,19 +29,21 @@ class ChangeCustomerDetailsRequest(BaseModel):
     """
     ChangeCustomerDetailsRequest
     """ # noqa: E501
-    account_number: Optional[StrictStr] = Field(default=None, alias="accountNumber")
-    salutation: Optional[StrictStr] = None
-    initials: Optional[StrictStr] = None
-    first_name: Optional[StrictStr] = Field(default=None, alias="firstName")
-    last_name: Optional[StrictStr] = Field(default=None, alias="lastName")
+    account_number: Optional[StrictStr] = Field(alias="accountNumber")
+    salutation: Optional[StrictStr]
+    initials: Optional[StrictStr]
+    first_name: Optional[StrictStr] = Field(alias="firstName")
+    last_name: Optional[StrictStr] = Field(alias="lastName")
     birth_date: Optional[datetime] = Field(default=None, alias="birthDate")
-    ssin: Optional[StrictStr] = Field(default=None, description="Social security identification number")
-    ssin_country: Optional[CountryCode] = Field(default=None, description="Social security identification number country, used for validation", alias="ssinCountry")
-    company_name: Optional[StrictStr] = Field(default=None, alias="companyName")
+    ssin: Optional[StrictStr]
+    ssin_country: CountryCode = Field(alias="ssinCountry")
+    company_name: Optional[StrictStr] = Field(alias="companyName")
     organization_number: Optional[StrictStr] = Field(default=None, alias="organizationNumber")
     vat_number: Optional[StrictStr] = Field(default=None, alias="vatNumber")
+    country_code: Optional[CountryCode] = Field(default=None, alias="countryCode")
     customer_type: Optional[CustomerType] = Field(default=None, alias="customerType")
-    __properties: ClassVar[List[str]] = ["accountNumber", "salutation", "initials", "firstName", "lastName", "birthDate", "ssin", "ssinCountry", "companyName", "organizationNumber", "vatNumber", "customerType"]
+    changed_by_portal: Optional[StrictBool] = Field(default=None, alias="changedByPortal")
+    __properties: ClassVar[List[str]] = ["accountNumber", "salutation", "initials", "firstName", "lastName", "birthDate", "ssin", "ssinCountry", "companyName", "organizationNumber", "vatNumber", "countryCode", "customerType", "changedByPortal"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -112,11 +114,6 @@ class ChangeCustomerDetailsRequest(BaseModel):
         if self.ssin is None and "ssin" in self.model_fields_set:
             _dict['ssin'] = None
 
-        # set to None if ssin_country (nullable) is None
-        # and model_fields_set contains the field
-        if self.ssin_country is None and "ssin_country" in self.model_fields_set:
-            _dict['ssinCountry'] = None
-
         # set to None if company_name (nullable) is None
         # and model_fields_set contains the field
         if self.company_name is None and "company_name" in self.model_fields_set:
@@ -132,10 +129,10 @@ class ChangeCustomerDetailsRequest(BaseModel):
         if self.vat_number is None and "vat_number" in self.model_fields_set:
             _dict['vatNumber'] = None
 
-        # set to None if customer_type (nullable) is None
+        # set to None if country_code (nullable) is None
         # and model_fields_set contains the field
-        if self.customer_type is None and "customer_type" in self.model_fields_set:
-            _dict['customerType'] = None
+        if self.country_code is None and "country_code" in self.model_fields_set:
+            _dict['countryCode'] = None
 
         return _dict
 
@@ -160,8 +157,8 @@ class ChangeCustomerDetailsRequest(BaseModel):
             "companyName": obj.get("companyName"),
             "organizationNumber": obj.get("organizationNumber"),
             "vatNumber": obj.get("vatNumber"),
-            "customerType": obj.get("customerType")
+            "countryCode": obj.get("countryCode"),
+            "customerType": obj.get("customerType"),
+            "changedByPortal": obj.get("changedByPortal")
         })
         return _obj
-
-

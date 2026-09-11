@@ -27,21 +27,22 @@ from typing_extensions import Self
 
 class PaymentStatusHistoryDTO(BaseModel):
     """
-    Represents a history entry for payment status changes
+    PaymentStatusHistoryDTO
     """ # noqa: E501
-    payment_status: Optional[PaymentProcessStatus] = Field(default=None, description="Status of the payment process", alias="paymentStatus")
-    outgoing_banking_transaction_id: Optional[StrictStr] = Field(default=None, description="Identifier of the outgoing banking transaction", alias="outgoingBankingTransactionId")
-    outgoing_banking_transaction_identification: Optional[StrictStr] = Field(default=None, description="Identification of the outgoing banking transaction", alias="outgoingBankingTransactionIdentification")
-    outgoing_mutation_id: Optional[StrictStr] = Field(default=None, description="Identifier of the outgoing mutation", alias="outgoingMutationId")
-    outgoing_mutation_description: Optional[StrictStr] = Field(default=None, description="Description of the outgoing mutation", alias="outgoingMutationDescription")
-    incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, description="Identifier of the incoming banking transaction", alias="incomingBankingTransactionId")
-    incoming_banking_transaction_identification: Optional[StrictStr] = Field(default=None, description="Identification of the incoming banking transaction", alias="incomingBankingTransactionIdentification")
-    incoming_mutation_id: Optional[StrictStr] = Field(default=None, description="Identifier of the incoming mutation", alias="incomingMutationId")
-    incoming_mutation_description: Optional[StrictStr] = Field(default=None, description="Description of the incoming mutation", alias="incomingMutationDescription")
-    reversal_reason: Optional[PaymentReversalReason] = Field(default=None, description="Reason for payment reversal", alias="reversalReason")
-    reversal_additional_information: Optional[StrictStr] = Field(default=None, description="Additional information about the reversal", alias="reversalAdditionalInformation")
-    mutation_date_time: Optional[datetime] = Field(default=None, description="Date and time of the mutation", alias="mutationDateTime")
-    __properties: ClassVar[List[str]] = ["paymentStatus", "outgoingBankingTransactionId", "outgoingBankingTransactionIdentification", "outgoingMutationId", "outgoingMutationDescription", "incomingBankingTransactionId", "incomingBankingTransactionIdentification", "incomingMutationId", "incomingMutationDescription", "reversalReason", "reversalAdditionalInformation", "mutationDateTime"]
+    payment_status: Optional[PaymentProcessStatus] = Field(default=None, alias="paymentStatus")
+    outgoing_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="outgoingBankingTransactionId")
+    outgoing_banking_transaction_identification: Optional[StrictStr] = Field(default=None, alias="outgoingBankingTransactionIdentification")
+    outgoing_mutation_id: Optional[StrictStr] = Field(default=None, alias="outgoingMutationId")
+    outgoing_mutation_description: Optional[StrictStr] = Field(default=None, alias="outgoingMutationDescription")
+    incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="incomingBankingTransactionId")
+    incoming_banking_transaction_identification: Optional[StrictStr] = Field(default=None, alias="incomingBankingTransactionIdentification")
+    incoming_mutation_id: Optional[StrictStr] = Field(default=None, alias="incomingMutationId")
+    incoming_mutation_description: Optional[StrictStr] = Field(default=None, alias="incomingMutationDescription")
+    reversal_reason: Optional[PaymentReversalReason] = Field(default=None, alias="reversalReason")
+    reversal_additional_information: Optional[StrictStr] = Field(default=None, alias="reversalAdditionalInformation")
+    mutation_date_time: Optional[datetime] = Field(default=None, alias="mutationDateTime")
+    payment_intent_id: Optional[StrictStr] = Field(default=None, alias="paymentIntentId")
+    __properties: ClassVar[List[str]] = ["paymentStatus", "outgoingBankingTransactionId", "outgoingBankingTransactionIdentification", "outgoingMutationId", "outgoingMutationDescription", "incomingBankingTransactionId", "incomingBankingTransactionIdentification", "incomingMutationId", "incomingMutationDescription", "reversalReason", "reversalAdditionalInformation", "mutationDateTime", "paymentIntentId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,11 +83,6 @@ class PaymentStatusHistoryDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if payment_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.payment_status is None and "payment_status" in self.model_fields_set:
-            _dict['paymentStatus'] = None
-
         # set to None if outgoing_banking_transaction_id (nullable) is None
         # and model_fields_set contains the field
         if self.outgoing_banking_transaction_id is None and "outgoing_banking_transaction_id" in self.model_fields_set:
@@ -127,15 +123,15 @@ class PaymentStatusHistoryDTO(BaseModel):
         if self.incoming_mutation_description is None and "incoming_mutation_description" in self.model_fields_set:
             _dict['incomingMutationDescription'] = None
 
-        # set to None if reversal_reason (nullable) is None
-        # and model_fields_set contains the field
-        if self.reversal_reason is None and "reversal_reason" in self.model_fields_set:
-            _dict['reversalReason'] = None
-
         # set to None if reversal_additional_information (nullable) is None
         # and model_fields_set contains the field
         if self.reversal_additional_information is None and "reversal_additional_information" in self.model_fields_set:
             _dict['reversalAdditionalInformation'] = None
+
+        # set to None if payment_intent_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.payment_intent_id is None and "payment_intent_id" in self.model_fields_set:
+            _dict['paymentIntentId'] = None
 
         return _dict
 
@@ -160,8 +156,7 @@ class PaymentStatusHistoryDTO(BaseModel):
             "incomingMutationDescription": obj.get("incomingMutationDescription"),
             "reversalReason": obj.get("reversalReason"),
             "reversalAdditionalInformation": obj.get("reversalAdditionalInformation"),
-            "mutationDateTime": obj.get("mutationDateTime")
+            "mutationDateTime": obj.get("mutationDateTime"),
+            "paymentIntentId": obj.get("paymentIntentId")
         })
         return _obj
-
-

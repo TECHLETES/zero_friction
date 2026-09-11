@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | **str** |  | [optional] 
-**name** | **str** |  | [optional] 
+**address** | **str** |  |
+**name** | **str** |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ email_address_dict = email_address_instance.to_dict()
 email_address_from_dict = EmailAddress.from_dict(email_address_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -109,5 +109,3 @@ class PropertyGroupContactDetailsDTO(BaseModel):
             "telephoneInterruptions": obj.get("telephoneInterruptions")
         })
         return _obj
-
-

@@ -112,5 +112,3 @@ class ServiceConsumptionSumRequest(BaseModel):
             "sumByUtilityType": obj.get("sumByUtilityType")
         })
         return _obj
-
-

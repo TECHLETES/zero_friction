@@ -1,12 +1,11 @@
 # SettleTransactionsRequest
 
-Represents a request to settle multiple transactions.  This DTO is used to mark multiple transactions as settled, indicating they have been processed and completed.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transaction_ids** | **List[str]** | List of transaction IDs to be marked as settled. | [optional] 
+**transaction_ids** | **List[str]** |  |
 
 ## Example
 
@@ -26,5 +25,3 @@ settle_transactions_request_dict = settle_transactions_request_instance.to_dict(
 settle_transactions_request_from_dict = SettleTransactionsRequest.from_dict(settle_transactions_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -103,5 +103,3 @@ class ProductAttachmentFlatDTO(BaseModel):
             "product": ProductDTO.from_dict(obj["product"]) if obj.get("product") is not None else None
         })
         return _obj
-
-

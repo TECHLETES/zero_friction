@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class ManuallyProcessCollectionCaseRequest(BaseModel):
     """
-    Represents a request to manually process a collection case.  This DTO is used to trigger manual processing of a collection case up to a specified date.
+    ManuallyProcessCollectionCaseRequest
     """ # noqa: E501
-    execute_until: Optional[datetime] = Field(default=None, description="The date and time until which the collection case should be processed.  If null, the case will be processed until the current date.", alias="executeUntil")
+    execute_until: Optional[datetime] = Field(default=None, alias="executeUntil")
     __properties: ClassVar[List[str]] = ["executeUntil"]
 
     model_config = ConfigDict(
@@ -89,5 +89,3 @@ class ManuallyProcessCollectionCaseRequest(BaseModel):
             "executeUntil": obj.get("executeUntil")
         })
         return _obj
-
-

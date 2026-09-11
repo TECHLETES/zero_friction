@@ -1,13 +1,12 @@
 # ExportUblFormatBulkRequest
 
-Represents a bulk request to export invoices in UBL format.  This DTO is used to export multiple invoices in UBL (Universal Business Language) format in a single operation.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_ids** | **List[str]** | List of invoice IDs to be exported in UBL format. | [optional] 
-**mark_as_exported** | **bool** | Indicates whether the exported invoices should be marked as exported in the system. | [optional] 
+**invoice_ids** | **List[str]** |  |
+**mark_as_exported** | **bool** |  | [optional]
 
 ## Example
 
@@ -27,5 +26,3 @@ export_ubl_format_bulk_request_dict = export_ubl_format_bulk_request_instance.to
 export_ubl_format_bulk_request_from_dict = ExportUblFormatBulkRequest.from_dict(export_ubl_format_bulk_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

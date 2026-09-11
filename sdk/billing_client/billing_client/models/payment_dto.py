@@ -23,46 +23,49 @@ from typing import Any, ClassVar, Dict, List, Optional, Union
 from billing_client.models.debtor_dto import DebtorDTO
 from billing_client.models.entity_subject_type import EntitySubjectType
 from billing_client.models.payment_entity_reference_dto import PaymentEntityReferenceDTO
+from billing_client.models.payment_psp_source_dto import PaymentPspSourceDTO
 from billing_client.models.payment_reversal_details_dto import PaymentReversalDetailsDTO
+from billing_client.models.payment_source_dto import PaymentSourceDTO
 from billing_client.models.payment_type import PaymentType
 from typing import Optional, Set
 from typing_extensions import Self
 
 class PaymentDTO(BaseModel):
     """
-    Represents a payment in the billing system.  This DTO contains comprehensive information about the payment, including its status, amounts, and related transactions.
+    PaymentDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
-    type: Optional[PaymentType] = Field(default=None, description="The type of payment.")
-    payment_date_time: Optional[datetime] = Field(default=None, description="The date and time when the payment was made.", alias="paymentDateTime")
-    payment_reference: Optional[StrictStr] = Field(default=None, description="The unique reference number for the payment.", alias="paymentReference")
-    remittance_information: Optional[StrictStr] = Field(default=None, description="Additional remittance information associated with the payment.", alias="remittanceInformation")
-    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount of the payment.")
-    company_bank_account_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the company bank account.", alias="companyBankAccountId")
-    debtor: Optional[DebtorDTO] = Field(default=None, description="Information about the debtor associated with this payment.")
-    customer_bank_account_iban: Optional[StrictStr] = Field(default=None, description="The IBAN of the customer's bank account.", alias="customerBankAccountIBAN")
-    is_manual: Optional[StrictBool] = Field(default=None, description="Indicates whether this payment was manually entered.", alias="isManual")
-    payment_entity_references: Optional[List[PaymentEntityReferenceDTO]] = Field(default=None, description="List of entity references associated with this payment.", alias="paymentEntityReferences")
-    is_reversed: Optional[StrictBool] = Field(default=None, description="Indicates whether this payment has been reversed.", alias="isReversed")
-    reversal_details: Optional[PaymentReversalDetailsDTO] = Field(default=None, description="Details about the payment reversal, if applicable.", alias="reversalDetails")
-    outgoing_mutation_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated outgoing mutation.", alias="outgoingMutationId")
-    outgoing_banking_transaction_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated outgoing banking transaction.", alias="outgoingBankingTransactionId")
-    outgoing_banking_transaction_identification: Optional[StrictStr] = Field(default=None, description="The identification of the associated outgoing banking transaction.", alias="outgoingBankingTransactionIdentification")
-    is_confirmed_by_bank: Optional[StrictBool] = Field(default=None, description="Indicates whether this payment has been confirmed by the bank.", alias="isConfirmedByBank")
-    incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated incoming banking transaction.", alias="incomingBankingTransactionId")
-    incoming_banking_transaction_identification: Optional[StrictStr] = Field(default=None, description="The identification of the associated incoming banking transaction.", alias="incomingBankingTransactionIdentification")
-    incoming_mutation_id: Optional[StrictStr] = Field(default=None, description="The ID of the associated incoming mutation.", alias="incomingMutationId")
-    canonical_search: Optional[StrictStr] = Field(default=None, description="A canonical search string for this payment.", alias="canonicalSearch")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "type", "paymentDateTime", "paymentReference", "remittanceInformation", "amount", "companyBankAccountId", "debtor", "customerBankAccountIBAN", "isManual", "paymentEntityReferences", "isReversed", "reversalDetails", "outgoingMutationId", "outgoingBankingTransactionId", "outgoingBankingTransactionIdentification", "isConfirmedByBank", "incomingBankingTransactionId", "incomingBankingTransactionIdentification", "incomingMutationId", "canonicalSearch"]
+    type: Optional[PaymentType] = None
+    payment_date_time: Optional[datetime] = Field(default=None, alias="paymentDateTime")
+    payment_reference: Optional[StrictStr] = Field(default=None, alias="paymentReference")
+    remittance_information: Optional[StrictStr] = Field(default=None, alias="remittanceInformation")
+    amount: Optional[Union[StrictFloat, StrictInt]] = None
+    company_bank_account_id: Optional[StrictStr] = Field(default=None, alias="companyBankAccountId")
+    debtor: Optional[DebtorDTO] = None
+    source: Optional[PaymentSourceDTO] = None
+    customer_bank_account_iban: Optional[StrictStr] = Field(default=None, alias="customerBankAccountIBAN")
+    is_manual: Optional[StrictBool] = Field(default=None, alias="isManual")
+    payment_entity_references: Optional[List[PaymentEntityReferenceDTO]] = Field(default=None, alias="paymentEntityReferences")
+    is_reversed: Optional[StrictBool] = Field(default=None, alias="isReversed")
+    reversal_details: Optional[PaymentReversalDetailsDTO] = Field(default=None, alias="reversalDetails")
+    outgoing_mutation_id: Optional[StrictStr] = Field(default=None, alias="outgoingMutationId")
+    outgoing_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="outgoingBankingTransactionId")
+    outgoing_banking_transaction_identification: Optional[StrictStr] = Field(default=None, alias="outgoingBankingTransactionIdentification")
+    is_confirmed_by_bank: Optional[StrictBool] = Field(default=None, alias="isConfirmedByBank")
+    incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="incomingBankingTransactionId")
+    incoming_banking_transaction_identification: Optional[StrictStr] = Field(default=None, alias="incomingBankingTransactionIdentification")
+    incoming_mutation_id: Optional[StrictStr] = Field(default=None, alias="incomingMutationId")
+    canonical_search: Optional[StrictStr] = Field(default=None, alias="canonicalSearch")
+    prepayment_account_id: Optional[StrictStr] = Field(default=None, alias="prepaymentAccountId")
+    psp: Optional[PaymentPspSourceDTO] = None
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["type", "paymentDateTime", "paymentReference", "remittanceInformation", "amount", "companyBankAccountId", "debtor", "source", "customerBankAccountIBAN", "isManual", "paymentEntityReferences", "isReversed", "reversalDetails", "outgoingMutationId", "outgoingBankingTransactionId", "outgoingBankingTransactionIdentification", "isConfirmedByBank", "incomingBankingTransactionId", "incomingBankingTransactionIdentification", "incomingMutationId", "canonicalSearch", "prepaymentAccountId", "psp", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,10 +97,8 @@ class PaymentDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -108,6 +109,9 @@ class PaymentDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of debtor
         if self.debtor:
             _dict['debtor'] = self.debtor.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of source
+        if self.source:
+            _dict['source'] = self.source.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in payment_entity_references (list)
         _items = []
         if self.payment_entity_references:
@@ -118,36 +122,9 @@ class PaymentDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of reversal_details
         if self.reversal_details:
             _dict['reversalDetails'] = self.reversal_details.to_dict()
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
-        # set to None if type (nullable) is None
-        # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of psp
+        if self.psp:
+            _dict['psp'] = self.psp.to_dict()
         # set to None if payment_reference (nullable) is None
         # and model_fields_set contains the field
         if self.payment_reference is None and "payment_reference" in self.model_fields_set:
@@ -167,6 +144,11 @@ class PaymentDTO(BaseModel):
         # and model_fields_set contains the field
         if self.debtor is None and "debtor" in self.model_fields_set:
             _dict['debtor'] = None
+
+        # set to None if source (nullable) is None
+        # and model_fields_set contains the field
+        if self.source is None and "source" in self.model_fields_set:
+            _dict['source'] = None
 
         # set to None if customer_bank_account_iban (nullable) is None
         # and model_fields_set contains the field
@@ -218,6 +200,16 @@ class PaymentDTO(BaseModel):
         if self.canonical_search is None and "canonical_search" in self.model_fields_set:
             _dict['canonicalSearch'] = None
 
+        # set to None if prepayment_account_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.prepayment_account_id is None and "prepayment_account_id" in self.model_fields_set:
+            _dict['prepaymentAccountId'] = None
+
+        # set to None if psp (nullable) is None
+        # and model_fields_set contains the field
+        if self.psp is None and "psp" in self.model_fields_set:
+            _dict['psp'] = None
+
         return _dict
 
     @classmethod
@@ -230,16 +222,6 @@ class PaymentDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "type": obj.get("type"),
             "paymentDateTime": obj.get("paymentDateTime"),
             "paymentReference": obj.get("paymentReference"),
@@ -247,6 +229,7 @@ class PaymentDTO(BaseModel):
             "amount": obj.get("amount"),
             "companyBankAccountId": obj.get("companyBankAccountId"),
             "debtor": DebtorDTO.from_dict(obj["debtor"]) if obj.get("debtor") is not None else None,
+            "source": PaymentSourceDTO.from_dict(obj["source"]) if obj.get("source") is not None else None,
             "customerBankAccountIBAN": obj.get("customerBankAccountIBAN"),
             "isManual": obj.get("isManual"),
             "paymentEntityReferences": [PaymentEntityReferenceDTO.from_dict(_item) for _item in obj["paymentEntityReferences"]] if obj.get("paymentEntityReferences") is not None else None,
@@ -259,8 +242,16 @@ class PaymentDTO(BaseModel):
             "incomingBankingTransactionId": obj.get("incomingBankingTransactionId"),
             "incomingBankingTransactionIdentification": obj.get("incomingBankingTransactionIdentification"),
             "incomingMutationId": obj.get("incomingMutationId"),
-            "canonicalSearch": obj.get("canonicalSearch")
+            "canonicalSearch": obj.get("canonicalSearch"),
+            "prepaymentAccountId": obj.get("prepaymentAccountId"),
+            "psp": PaymentPspSourceDTO.from_dict(obj["psp"]) if obj.get("psp") is not None else None,
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
-
-

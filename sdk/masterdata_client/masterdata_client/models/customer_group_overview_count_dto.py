@@ -83,5 +83,3 @@ class CustomerGroupOverviewCountDTO(BaseModel):
             "all": obj.get("all")
         })
         return _obj
-
-

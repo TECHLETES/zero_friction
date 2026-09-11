@@ -75,11 +75,6 @@ class DnsRecordDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if meaning (nullable) is None
-        # and model_fields_set contains the field
-        if self.meaning is None and "meaning" in self.model_fields_set:
-            _dict['meaning'] = None
-
         # set to None if type (nullable) is None
         # and model_fields_set contains the field
         if self.type is None and "type" in self.model_fields_set:
@@ -94,11 +89,6 @@ class DnsRecordDTO(BaseModel):
         # and model_fields_set contains the field
         if self.value is None and "value" in self.model_fields_set:
             _dict['value'] = None
-
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
 
         # set to None if errors (nullable) is None
         # and model_fields_set contains the field
@@ -125,5 +115,3 @@ class DnsRecordDTO(BaseModel):
             "errors": obj.get("errors")
         })
         return _obj
-
-

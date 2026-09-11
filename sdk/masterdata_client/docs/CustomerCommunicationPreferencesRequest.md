@@ -5,10 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**culture** | **str** |  | [optional] 
-**invoice_communication_preferences** | [**List[CustomerInvoiceCommunicationPreferencesRequest]**](CustomerInvoiceCommunicationPreferencesRequest.md) |  | [optional] 
-**annual_statement_communication_preference** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
-**collection_flow_id** | **str** |  | [optional] 
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | [optional]
+**invoice_communication_preferences** | [**List[CustomerInvoiceCommunicationPreferencesRequest]**](CustomerInvoiceCommunicationPreferencesRequest.md) |  |
+**annual_statement_communication_preference** | [**CommunicationType**](CommunicationType.md) |  | [optional]
+**prepayment_statement_communication_preference** | [**CommunicationType**](CommunicationType.md) |  | [optional]
+**collection_flow_id** | **str** |  | [optional]
 
 ## Example
 
@@ -28,5 +29,3 @@ customer_communication_preferences_request_dict = customer_communication_prefere
 customer_communication_preferences_request_from_dict = CustomerCommunicationPreferencesRequest.from_dict(customer_communication_preferences_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

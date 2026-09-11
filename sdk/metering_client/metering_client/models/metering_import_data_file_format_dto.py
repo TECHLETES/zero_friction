@@ -24,16 +24,16 @@ from typing_extensions import Self
 
 class MeteringImportDataFileFormatDto(BaseModel):
     """
-    Stores the configuration values of the custom file format that was applied during processing.  This snapshot ensures that historical format settings are preserved, even if the format configuration changes later.                This is particularly useful for audit trails.
+    MeteringImportDataFileFormatDto
     """ # noqa: E501
-    name: Optional[StrictStr] = Field(default=None, description="The name of the custom file format.")
-    delimiter: Optional[StrictStr] = Field(default=None, description="The delimiter to parse the measurements file.")
-    date_time_format: Optional[StrictStr] = Field(default=None, description="The date time format used during processing.", alias="dateTimeFormat")
-    time_zone: Optional[StrictStr] = Field(default=None, description="The timezone used during processing.", alias="timeZone")
-    decimal_separator: Optional[StrictStr] = Field(default=None, description="The decimal separator used during processing.", alias="decimalSeparator")
-    thousands_separator: Optional[StrictStr] = Field(default=None, description="The thousands separator used during processing.", alias="thousandsSeparator")
-    culture: Optional[StrictStr] = Field(default=None, description="The culture used during processing for number formatting.")
-    first_line_is_header: Optional[StrictBool] = Field(default=None, description="Used for custom CSV formats which indicates if the first line was a header or not.", alias="firstLineIsHeader")
+    name: Optional[StrictStr] = None
+    delimiter: Optional[StrictStr] = None
+    date_time_format: Optional[StrictStr] = Field(default=None, alias="dateTimeFormat")
+    time_zone: Optional[StrictStr] = Field(default=None, alias="timeZone")
+    decimal_separator: Optional[StrictStr] = Field(default=None, alias="decimalSeparator")
+    thousands_separator: Optional[StrictStr] = Field(default=None, alias="thousandsSeparator")
+    culture: Optional[StrictStr] = None
+    first_line_is_header: Optional[StrictBool] = Field(default=None, alias="firstLineIsHeader")
     __properties: ClassVar[List[str]] = ["name", "delimiter", "dateTimeFormat", "timeZone", "decimalSeparator", "thousandsSeparator", "culture", "firstLineIsHeader"]
 
     model_config = ConfigDict(
@@ -137,5 +137,3 @@ class MeteringImportDataFileFormatDto(BaseModel):
             "firstLineIsHeader": obj.get("firstLineIsHeader")
         })
         return _obj
-
-

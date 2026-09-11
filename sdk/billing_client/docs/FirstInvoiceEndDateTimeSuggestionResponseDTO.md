@@ -1,12 +1,11 @@
 # FirstInvoiceEndDateTimeSuggestionResponseDTO
 
-Represents a suggested end date and time for the first invoice
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**first_invoice_end_date_time** | **datetime** | Suggested end date and time for the first invoice | [optional] 
+**first_invoice_end_date_time** | **datetime** |  | [optional]
 
 ## Example
 
@@ -26,5 +25,3 @@ first_invoice_end_date_time_suggestion_response_dto_dict = first_invoice_end_dat
 first_invoice_end_date_time_suggestion_response_dto_from_dict = FirstInvoiceEndDateTimeSuggestionResponseDTO.from_dict(first_invoice_end_date_time_suggestion_response_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

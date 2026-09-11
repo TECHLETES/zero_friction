@@ -36,8 +36,8 @@ class TestCustomerBillingSettingsDTO(unittest.TestCase):
         if include_optional:
             return CustomerBillingSettingsDTO(
                 automatic_settlement_setting = billing_client.models.customer_billing_settings_automatic_settlement_dto.CustomerBillingSettingsAutomaticSettlementDTO(
-                    automatic_settlement = True, 
-                    originator_type = null, 
+                    automatic_settlement = True,
+                    originator_type = 'none',
                     originator_id = '', )
             )
         else:

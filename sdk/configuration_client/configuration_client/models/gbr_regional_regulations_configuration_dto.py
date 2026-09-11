@@ -74,11 +74,6 @@ class GBRRegionalRegulationsConfigurationDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of priority_register_parameters
         if self.priority_register_parameters:
             _dict['priorityRegisterParameters'] = self.priority_register_parameters.to_dict()
-        # set to None if country_code (nullable) is None
-        # and model_fields_set contains the field
-        if self.country_code is None and "country_code" in self.model_fields_set:
-            _dict['countryCode'] = None
-
         # set to None if priority_register_parameters (nullable) is None
         # and model_fields_set contains the field
         if self.priority_register_parameters is None and "priority_register_parameters" in self.model_fields_set:
@@ -100,5 +95,3 @@ class GBRRegionalRegulationsConfigurationDTO(BaseModel):
             "priorityRegisterParameters": PriorityRegisterParametersDTO.from_dict(obj["priorityRegisterParameters"]) if obj.get("priorityRegisterParameters") is not None else None
         })
         return _obj
-
-

@@ -31,17 +31,16 @@ class CreateMeterRequest(BaseModel):
     """
     CreateMeterRequest
     """ # noqa: E501
-    serial_number: Optional[StrictStr] = Field(default=None, alias="serialNumber")
-    meter_type: Optional[MeterType] = Field(default=None, alias="meterType")
+    serial_number: Optional[StrictStr] = Field(alias="serialNumber")
+    meter_type: MeterType = Field(alias="meterType")
     meter_tag: Optional[StrictStr] = Field(default=None, alias="meterTag")
     model_id: Optional[StrictStr] = Field(default=None, alias="modelId")
-    mutation_date_time: Optional[datetime] = Field(default=None, alias="mutationDateTime")
-    channels: Optional[List[ExternalChannelRequest]] = None
+    mutation_date_time: datetime = Field(alias="mutationDateTime")
+    channels: List[ExternalChannelRequest]
     reading_frequency: Optional[MeterReadingFrequency] = Field(default=None, alias="readingFrequency")
     next_expected_reading_date: Optional[datetime] = Field(default=None, alias="nextExpectedReadingDate")
-    properties: Optional[Dict[str, Any]] = None
     parent_relation: Optional[CreateMeterParentRelationRequest] = Field(default=None, alias="parentRelation")
-    __properties: ClassVar[List[str]] = ["serialNumber", "meterType", "meterTag", "modelId", "mutationDateTime", "channels", "readingFrequency", "nextExpectedReadingDate", "properties", "parentRelation"]
+    __properties: ClassVar[List[str]] = ["serialNumber", "meterType", "meterTag", "modelId", "mutationDateTime", "channels", "readingFrequency", "nextExpectedReadingDate", "parentRelation"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,11 +96,6 @@ class CreateMeterRequest(BaseModel):
         if self.serial_number is None and "serial_number" in self.model_fields_set:
             _dict['serialNumber'] = None
 
-        # set to None if meter_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.meter_type is None and "meter_type" in self.model_fields_set:
-            _dict['meterType'] = None
-
         # set to None if meter_tag (nullable) is None
         # and model_fields_set contains the field
         if self.meter_tag is None and "meter_tag" in self.model_fields_set:
@@ -112,25 +106,10 @@ class CreateMeterRequest(BaseModel):
         if self.model_id is None and "model_id" in self.model_fields_set:
             _dict['modelId'] = None
 
-        # set to None if channels (nullable) is None
-        # and model_fields_set contains the field
-        if self.channels is None and "channels" in self.model_fields_set:
-            _dict['channels'] = None
-
-        # set to None if reading_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.reading_frequency is None and "reading_frequency" in self.model_fields_set:
-            _dict['readingFrequency'] = None
-
         # set to None if next_expected_reading_date (nullable) is None
         # and model_fields_set contains the field
         if self.next_expected_reading_date is None and "next_expected_reading_date" in self.model_fields_set:
             _dict['nextExpectedReadingDate'] = None
-
-        # set to None if properties (nullable) is None
-        # and model_fields_set contains the field
-        if self.properties is None and "properties" in self.model_fields_set:
-            _dict['properties'] = None
 
         # set to None if parent_relation (nullable) is None
         # and model_fields_set contains the field
@@ -157,9 +136,6 @@ class CreateMeterRequest(BaseModel):
             "channels": [ExternalChannelRequest.from_dict(_item) for _item in obj["channels"]] if obj.get("channels") is not None else None,
             "readingFrequency": obj.get("readingFrequency"),
             "nextExpectedReadingDate": obj.get("nextExpectedReadingDate"),
-            "properties": obj.get("properties"),
             "parentRelation": CreateMeterParentRelationRequest.from_dict(obj["parentRelation"]) if obj.get("parentRelation") is not None else None
         })
         return _obj
-
-

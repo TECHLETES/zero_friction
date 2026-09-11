@@ -5,8 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** |  | [optional] 
-**failed** | **int** |  | [optional] 
+**all** | **int** |  | [optional]
+**failed** | **int** |  | [optional]
+**sent** | **int** |  | [optional]
+**not_sent** | **int** |  | [optional]
+**in_transit** | **int** |  | [optional]
 
 ## Example
 
@@ -26,5 +29,3 @@ communication_entry_overview_count_dto_dict = communication_entry_overview_count
 communication_entry_overview_count_dto_from_dict = CommunicationEntryOverviewCountDTO.from_dict(communication_entry_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

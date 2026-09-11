@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class LocalisationLevel(str, Enum):
     """
-    LocalisationLevel
+    Possible values: 'none', 'partial', 'all'
     """
 
     """
@@ -34,5 +34,3 @@ class LocalisationLevel(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of LocalisationLevel from a JSON string"""
         return cls(json.loads(json_str))
-
-

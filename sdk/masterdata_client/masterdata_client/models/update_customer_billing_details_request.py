@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from masterdata_client.models.payment_method import PaymentMethod
 from typing import Optional, Set
@@ -28,8 +28,9 @@ class UpdateCustomerBillingDetailsRequest(BaseModel):
     UpdateCustomerBillingDetailsRequest
     """ # noqa: E501
     payment_terms_id: Optional[StrictStr] = Field(default=None, alias="paymentTermsId")
-    default_payment_method: Optional[PaymentMethod] = Field(default=None, alias="defaultPaymentMethod")
-    __properties: ClassVar[List[str]] = ["paymentTermsId", "defaultPaymentMethod"]
+    default_payment_method: PaymentMethod = Field(alias="defaultPaymentMethod")
+    collection_day_of_month: Optional[StrictInt] = Field(default=None, alias="collectionDayOfMonth")
+    __properties: ClassVar[List[str]] = ["paymentTermsId", "defaultPaymentMethod", "collectionDayOfMonth"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,10 +76,10 @@ class UpdateCustomerBillingDetailsRequest(BaseModel):
         if self.payment_terms_id is None and "payment_terms_id" in self.model_fields_set:
             _dict['paymentTermsId'] = None
 
-        # set to None if default_payment_method (nullable) is None
+        # set to None if collection_day_of_month (nullable) is None
         # and model_fields_set contains the field
-        if self.default_payment_method is None and "default_payment_method" in self.model_fields_set:
-            _dict['defaultPaymentMethod'] = None
+        if self.collection_day_of_month is None and "collection_day_of_month" in self.model_fields_set:
+            _dict['collectionDayOfMonth'] = None
 
         return _dict
 
@@ -93,8 +94,7 @@ class UpdateCustomerBillingDetailsRequest(BaseModel):
 
         _obj = cls.model_validate({
             "paymentTermsId": obj.get("paymentTermsId"),
-            "defaultPaymentMethod": obj.get("defaultPaymentMethod")
+            "defaultPaymentMethod": obj.get("defaultPaymentMethod"),
+            "collectionDayOfMonth": obj.get("collectionDayOfMonth")
         })
         return _obj
-
-

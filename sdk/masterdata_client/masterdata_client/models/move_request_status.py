@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MoveRequestStatus(str, Enum):
     """
-    MoveRequestStatus
+    Possible values: 'new', 'pendingatcustomer', 'pendingatsupplier', 'processed', 'rejected', 'gatheringdata'
     """
 
     """
@@ -37,5 +37,3 @@ class MoveRequestStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of MoveRequestStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

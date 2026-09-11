@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class TransactionSubType(str, Enum):
     """
-    TransactionSubType
+    Possible values: 'adjustbalance', 'incomingpayment', 'outgoingpayment', 'ignoredmutation'
     """
 
     """
@@ -29,10 +29,9 @@ class TransactionSubType(str, Enum):
     ADJUSTBALANCE = 'adjustbalance'
     INCOMINGPAYMENT = 'incomingpayment'
     OUTGOINGPAYMENT = 'outgoingpayment'
+    IGNOREDMUTATION = 'ignoredmutation'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of TransactionSubType from a JSON string"""
         return cls(json.loads(json_str))
-
-

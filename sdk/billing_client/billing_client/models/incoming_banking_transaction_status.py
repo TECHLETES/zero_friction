@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class IncomingBankingTransactionStatus(str, Enum):
     """
-    IncomingBankingTransactionStatus
+    Possible values: 'created', 'processing', 'matching', 'resolveissues', 'readytoprocess', 'closed'
     """
 
     """
@@ -37,5 +37,3 @@ class IncomingBankingTransactionStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of IncomingBankingTransactionStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

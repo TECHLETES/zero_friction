@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AdvanceRecalculationType(str, Enum):
     """
-    AdvanceRecalculationType
+    Possible values: 'none', 'usingpreviousinvoice', 'usingestimatedinvoice'
     """
 
     """
@@ -34,5 +34,3 @@ class AdvanceRecalculationType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of AdvanceRecalculationType from a JSON string"""
         return cls(json.loads(json_str))
-
-

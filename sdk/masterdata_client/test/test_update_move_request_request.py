@@ -40,17 +40,25 @@ class TestUpdateMoveRequestRequest(unittest.TestCase):
                 contract_number = '',
                 estimations = [
                     masterdata_client.models.move_request_contract_estimation_request.MoveRequestContractEstimationRequest(
-                        utility_type = null, 
-                        unit_of_measure = null, 
-                        metering_type = null, 
-                        value = 1.337, 
+                        utility_type = 'none',
+                        unit_of_measure = 'none',
+                        metering_type = 'none',
+                        value = 1.337,
                         consumer_group_id = '', )
                     ],
-                billing_properties = masterdata_client.models.contract_details_billing_properties_base_dto.ContractDetailsBillingPropertiesBaseDTO(
-                    billing_method = null, )
+                billing_properties = masterdata_client.models.contract_details_billing_properties_base_dto.ContractDetailsBillingPropertiesBaseDTO()
             )
         else:
             return UpdateMoveRequestRequest(
+                estimations = [
+                    masterdata_client.models.move_request_contract_estimation_request.MoveRequestContractEstimationRequest(
+                        utility_type = 'none',
+                        unit_of_measure = 'none',
+                        metering_type = 'none',
+                        value = 1.337,
+                        consumer_group_id = '', )
+                    ],
+                billing_properties = masterdata_client.models.contract_details_billing_properties_base_dto.ContractDetailsBillingPropertiesBaseDTO(),
         )
         """
 

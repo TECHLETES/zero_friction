@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active** | **int** |  | [optional] 
-**expired** | **int** |  | [optional] 
+**active** | **int** |  | [optional]
+**expired** | **int** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ muting_rule_overview_count_dto_dict = muting_rule_overview_count_dto_instance.to
 muting_rule_overview_count_dto_from_dict = MutingRuleOverviewCountDTO.from_dict(muting_rule_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

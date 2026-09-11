@@ -20,24 +20,30 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from billing_client.models.payment_collection_details_dto import PaymentCollectionDetailsDTO
+from billing_client.models.payment_intent_state_dto import PaymentIntentStateDTO
 from billing_client.models.payment_method import PaymentMethod
 from billing_client.models.payment_process_status import PaymentProcessStatus
 from billing_client.models.payment_status_history_dto import PaymentStatusHistoryDTO
+from billing_client.models.psp_instrument_snapshot_dto import PspInstrumentSnapshotDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
 class PaymentDetailsDTO(BaseModel):
     """
-    Represents payment details for an invoice
+    PaymentDetailsDTO
     """ # noqa: E501
-    paid: Optional[StrictBool] = Field(default=None, description="Indicates if the invoice has been paid")
-    current_payment_status: Optional[PaymentProcessStatus] = Field(default=None, description="Current status of the payment process", alias="currentPaymentStatus")
-    payment_reference: Optional[StrictStr] = Field(default=None, description="Payment reference number", alias="paymentReference")
-    payment_method: Optional[PaymentMethod] = Field(default=None, description="Method of payment", alias="paymentMethod")
-    direct_debit_collection_date: Optional[datetime] = Field(default=None, description="Date when direct debit will be collected", alias="directDebitCollectionDate")
-    amount_of_times_retried: Optional[StrictInt] = Field(default=None, description="Number of times payment has been retried", alias="amountOfTimesRetried")
-    status_history: Optional[List[PaymentStatusHistoryDTO]] = Field(default=None, description="History of payment status changes", alias="statusHistory")
-    __properties: ClassVar[List[str]] = ["paid", "currentPaymentStatus", "paymentReference", "paymentMethod", "directDebitCollectionDate", "amountOfTimesRetried", "statusHistory"]
+    paid: Optional[StrictBool] = None
+    current_payment_status: Optional[PaymentProcessStatus] = Field(default=None, alias="currentPaymentStatus")
+    payment_reference: Optional[StrictStr] = Field(default=None, alias="paymentReference")
+    payment_method: Optional[PaymentMethod] = Field(default=None, alias="paymentMethod")
+    collection_details: Optional[PaymentCollectionDetailsDTO] = Field(default=None, alias="collectionDetails")
+    direct_debit_collection_date: Optional[datetime] = Field(default=None, alias="directDebitCollectionDate")
+    amount_of_times_retried: Optional[StrictInt] = Field(default=None, alias="amountOfTimesRetried")
+    status_history: Optional[List[PaymentStatusHistoryDTO]] = Field(default=None, alias="statusHistory")
+    payment_intent: Optional[PaymentIntentStateDTO] = Field(default=None, alias="paymentIntent")
+    psp_instrument: Optional[PspInstrumentSnapshotDTO] = Field(default=None, alias="pspInstrument")
+    __properties: ClassVar[List[str]] = ["paid", "currentPaymentStatus", "paymentReference", "paymentMethod", "collectionDetails", "directDebitCollectionDate", "amountOfTimesRetried", "statusHistory", "paymentIntent", "pspInstrument"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +84,9 @@ class PaymentDetailsDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of collection_details
+        if self.collection_details:
+            _dict['collectionDetails'] = self.collection_details.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in status_history (list)
         _items = []
         if self.status_history:
@@ -85,25 +94,36 @@ class PaymentDetailsDTO(BaseModel):
                 if _item_status_history:
                     _items.append(_item_status_history.to_dict())
             _dict['statusHistory'] = _items
-        # set to None if current_payment_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.current_payment_status is None and "current_payment_status" in self.model_fields_set:
-            _dict['currentPaymentStatus'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of payment_intent
+        if self.payment_intent:
+            _dict['paymentIntent'] = self.payment_intent.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of psp_instrument
+        if self.psp_instrument:
+            _dict['pspInstrument'] = self.psp_instrument.to_dict()
         # set to None if payment_reference (nullable) is None
         # and model_fields_set contains the field
         if self.payment_reference is None and "payment_reference" in self.model_fields_set:
             _dict['paymentReference'] = None
 
-        # set to None if payment_method (nullable) is None
+        # set to None if collection_details (nullable) is None
         # and model_fields_set contains the field
-        if self.payment_method is None and "payment_method" in self.model_fields_set:
-            _dict['paymentMethod'] = None
+        if self.collection_details is None and "collection_details" in self.model_fields_set:
+            _dict['collectionDetails'] = None
 
         # set to None if status_history (nullable) is None
         # and model_fields_set contains the field
         if self.status_history is None and "status_history" in self.model_fields_set:
             _dict['statusHistory'] = None
+
+        # set to None if payment_intent (nullable) is None
+        # and model_fields_set contains the field
+        if self.payment_intent is None and "payment_intent" in self.model_fields_set:
+            _dict['paymentIntent'] = None
+
+        # set to None if psp_instrument (nullable) is None
+        # and model_fields_set contains the field
+        if self.psp_instrument is None and "psp_instrument" in self.model_fields_set:
+            _dict['pspInstrument'] = None
 
         return _dict
 
@@ -121,10 +141,11 @@ class PaymentDetailsDTO(BaseModel):
             "currentPaymentStatus": obj.get("currentPaymentStatus"),
             "paymentReference": obj.get("paymentReference"),
             "paymentMethod": obj.get("paymentMethod"),
+            "collectionDetails": PaymentCollectionDetailsDTO.from_dict(obj["collectionDetails"]) if obj.get("collectionDetails") is not None else None,
             "directDebitCollectionDate": obj.get("directDebitCollectionDate"),
             "amountOfTimesRetried": obj.get("amountOfTimesRetried"),
-            "statusHistory": [PaymentStatusHistoryDTO.from_dict(_item) for _item in obj["statusHistory"]] if obj.get("statusHistory") is not None else None
+            "statusHistory": [PaymentStatusHistoryDTO.from_dict(_item) for _item in obj["statusHistory"]] if obj.get("statusHistory") is not None else None,
+            "paymentIntent": PaymentIntentStateDTO.from_dict(obj["paymentIntent"]) if obj.get("paymentIntent") is not None else None,
+            "pspInstrument": PspInstrumentSnapshotDTO.from_dict(obj["pspInstrument"]) if obj.get("pspInstrument") is not None else None
         })
         return _obj
-
-

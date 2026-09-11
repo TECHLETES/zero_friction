@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error_type** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional] 
-**message** | **str** |  | [optional] 
-**time_period** | [**MutingRuleTimePeriod**](MutingRuleTimePeriod.md) |  | [optional] 
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetMetersQueryParams**](GetMetersQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetMetersQueryParams**](GetMetersQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
+**error_type** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional]
+**message** | **str** |  | [optional]
+**time_period** | [**MutingRuleTimePeriod**](MutingRuleTimePeriod.md) |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ bulk_create_muting_rule_request_dict = bulk_create_muting_rule_request_instance.
 bulk_create_muting_rule_request_from_dict = BulkCreateMutingRuleRequest.from_dict(bulk_create_muting_rule_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

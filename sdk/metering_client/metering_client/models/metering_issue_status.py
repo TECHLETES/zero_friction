@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MeteringIssueStatus(str, Enum):
     """
-    MeteringIssueStatus
+    Possible values: 'unresolved', 'ignored', 'resolved', 'muted'
     """
 
     """
@@ -35,5 +35,3 @@ class MeteringIssueStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of MeteringIssueStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

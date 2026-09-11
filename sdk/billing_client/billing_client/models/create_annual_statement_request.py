@@ -17,16 +17,16 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, StrictInt
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateAnnualStatementRequest(BaseModel):
     """
-    Represents a request to create an annual statement.  This DTO is used to generate an annual statement for a specific year.
+    CreateAnnualStatementRequest
     """ # noqa: E501
-    year: Optional[StrictInt] = Field(default=None, description="The year for which the annual statement should be generated.")
+    year: StrictInt
     __properties: ClassVar[List[str]] = ["year"]
 
     model_config = ConfigDict(
@@ -83,5 +83,3 @@ class CreateAnnualStatementRequest(BaseModel):
             "year": obj.get("year")
         })
         return _obj
-
-

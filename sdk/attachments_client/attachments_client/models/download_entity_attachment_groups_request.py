@@ -19,7 +19,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from attachments_client.models.culture_info import CultureInfo
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,8 +26,8 @@ class DownloadEntityAttachmentGroupsRequest(BaseModel):
     """
     DownloadEntityAttachmentGroupsRequest
     """ # noqa: E501
-    entity_attachment_group_ids: Optional[List[StrictStr]] = Field(default=None, alias="entityAttachmentGroupIds")
-    culture: Optional[CultureInfo] = None
+    entity_attachment_group_ids: Optional[List[StrictStr]] = Field(alias="entityAttachmentGroupIds")
+    culture: StrictStr = Field(description="Culture identifier (e.g., 'en-US', 'nl-NL')")
     __properties: ClassVar[List[str]] = ["entityAttachmentGroupIds", "culture"]
 
     model_config = ConfigDict(
@@ -75,11 +74,6 @@ class DownloadEntityAttachmentGroupsRequest(BaseModel):
         if self.entity_attachment_group_ids is None and "entity_attachment_group_ids" in self.model_fields_set:
             _dict['entityAttachmentGroupIds'] = None
 
-        # set to None if culture (nullable) is None
-        # and model_fields_set contains the field
-        if self.culture is None and "culture" in self.model_fields_set:
-            _dict['culture'] = None
-
         return _dict
 
     @classmethod
@@ -96,5 +90,3 @@ class DownloadEntityAttachmentGroupsRequest(BaseModel):
             "culture": obj.get("culture")
         })
         return _obj
-
-

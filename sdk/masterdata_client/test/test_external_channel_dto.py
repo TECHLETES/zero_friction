@@ -53,13 +53,17 @@ class TestExternalChannelDTO(unittest.TestCase):
                 has_issue = True,
                 issues = [
                     masterdata_client.models.metering_issue_reference.MeteringIssueReference(
-                        metering_issue_id = '', 
-                        error = null, 
-                        status = null, 
+                        metering_issue_id = '',
+                        error = 'consumptionnegative',
+                        status = 'unresolved',
                         noticed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ],
                 built_in = True,
-                hidden = True
+                hidden = True,
+                reset_day = 56,
+                reset_month = 56,
+                reset_hour = 56,
+                reset_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
         else:
             return ExternalChannelDTO(

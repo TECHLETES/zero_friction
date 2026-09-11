@@ -1,14 +1,13 @@
 # IncomingMutationIbanConfirmationStatusDTO
 
-Represents the IBAN confirmation status for an incoming mutation.  This DTO contains information about the customer's IBAN confirmation status.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** | The unique identifier of the customer. | [optional] 
-**iban_confirmation_status** | [**IbanConfirmationStatus**](IbanConfirmationStatus.md) | The current status of the IBAN confirmation. | [optional] 
-**is_iban_confirmed_on_transaction** | **bool** | Indicates whether the IBAN is confirmed on the transaction. | [optional] 
+**customer_id** | **str** |  | [optional]
+**iban_confirmation_status** | [**IbanConfirmationStatus**](IbanConfirmationStatus.md) |  | [optional]
+**is_iban_confirmed_on_transaction** | **bool** |  | [optional]
 
 ## Example
 
@@ -28,5 +27,3 @@ incoming_mutation_iban_confirmation_status_dto_dict = incoming_mutation_iban_con
 incoming_mutation_iban_confirmation_status_dto_from_dict = IncomingMutationIbanConfirmationStatusDTO.from_dict(incoming_mutation_iban_confirmation_status_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

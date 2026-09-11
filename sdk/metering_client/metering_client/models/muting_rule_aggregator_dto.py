@@ -30,16 +30,8 @@ class MutingRuleAggregatorDTO(BaseModel):
     """
     MutingRuleAggregatorDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
+    meter_count: Optional[StrictInt] = Field(default=None, alias="meterCount")
+    meter_serial_number: Optional[StrictStr] = Field(default=None, alias="meterSerialNumber")
     error_type: Optional[MeteringIssueError] = Field(default=None, alias="errorType")
     message: Optional[StrictStr] = None
     time_period: Optional[MutingRuleTimePeriod] = Field(default=None, alias="timePeriod")
@@ -49,9 +41,15 @@ class MutingRuleAggregatorDTO(BaseModel):
     mute_from_with_numeric_value: Optional[StrictInt] = Field(default=None, alias="muteFromWithNumericValue")
     mute_until_with_numeric_value: Optional[StrictInt] = Field(default=None, alias="muteUntilWithNumericValue")
     user_id: Optional[StrictStr] = Field(default=None, alias="userId")
-    meter_count: Optional[StrictInt] = Field(default=None, alias="meterCount")
-    meter_serial_number: Optional[StrictStr] = Field(default=None, alias="meterSerialNumber")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "errorType", "message", "timePeriod", "muteFrom", "muteUntil", "meterId", "muteFromWithNumericValue", "muteUntilWithNumericValue", "userId", "meterCount", "meterSerialNumber"]
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["meterCount", "meterSerialNumber", "errorType", "message", "timePeriod", "muteFrom", "muteUntil", "meterId", "muteFromWithNumericValue", "muteUntilWithNumericValue", "userId", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,10 +81,8 @@ class MutingRuleAggregatorDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -94,30 +90,10 @@ class MutingRuleAggregatorDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if id (nullable) is None
+        # set to None if meter_serial_number (nullable) is None
         # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
+        if self.meter_serial_number is None and "meter_serial_number" in self.model_fields_set:
+            _dict['meterSerialNumber'] = None
 
         # set to None if error_type (nullable) is None
         # and model_fields_set contains the field
@@ -144,11 +120,6 @@ class MutingRuleAggregatorDTO(BaseModel):
         if self.user_id is None and "user_id" in self.model_fields_set:
             _dict['userId'] = None
 
-        # set to None if meter_serial_number (nullable) is None
-        # and model_fields_set contains the field
-        if self.meter_serial_number is None and "meter_serial_number" in self.model_fields_set:
-            _dict['meterSerialNumber'] = None
-
         return _dict
 
     @classmethod
@@ -161,16 +132,8 @@ class MutingRuleAggregatorDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
+            "meterCount": obj.get("meterCount"),
+            "meterSerialNumber": obj.get("meterSerialNumber"),
             "errorType": obj.get("errorType"),
             "message": obj.get("message"),
             "timePeriod": obj.get("timePeriod"),
@@ -180,9 +143,13 @@ class MutingRuleAggregatorDTO(BaseModel):
             "muteFromWithNumericValue": obj.get("muteFromWithNumericValue"),
             "muteUntilWithNumericValue": obj.get("muteUntilWithNumericValue"),
             "userId": obj.get("userId"),
-            "meterCount": obj.get("meterCount"),
-            "meterSerialNumber": obj.get("meterSerialNumber")
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
-
-

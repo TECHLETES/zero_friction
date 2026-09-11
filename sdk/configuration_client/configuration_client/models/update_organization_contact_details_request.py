@@ -116,5 +116,3 @@ class UpdateOrganizationContactDetailsRequest(BaseModel):
             "support": obj.get("support")
         })
         return _obj
-
-

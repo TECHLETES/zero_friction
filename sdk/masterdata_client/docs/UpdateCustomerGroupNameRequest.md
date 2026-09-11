@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
+**name** | **str** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ update_customer_group_name_request_dict = update_customer_group_name_request_ins
 update_customer_group_name_request_from_dict = UpdateCustomerGroupNameRequest.from_dict(update_customer_group_name_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

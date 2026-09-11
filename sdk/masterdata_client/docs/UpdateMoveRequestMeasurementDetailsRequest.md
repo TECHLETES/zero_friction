@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**measurements** | [**List[MoveRequestMeasurementDetails]**](MoveRequestMeasurementDetails.md) |  | [optional] 
+**measurements** | [**List[MoveRequestMeasurementDetails]**](MoveRequestMeasurementDetails.md) |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ update_move_request_measurement_details_request_dict = update_move_request_measu
 update_move_request_measurement_details_request_from_dict = UpdateMoveRequestMeasurementDetailsRequest.from_dict(update_move_request_measurement_details_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

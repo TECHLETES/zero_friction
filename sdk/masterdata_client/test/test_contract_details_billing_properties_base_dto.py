@@ -35,10 +35,30 @@ class TestContractDetailsBillingPropertiesBaseDTO(unittest.TestCase):
         model = ContractDetailsBillingPropertiesBaseDTO()
         if include_optional:
             return ContractDetailsBillingPropertiesBaseDTO(
-                billing_method = 'credit'
+                type = 'ContractDetailsBillingPropertiesBaseDTO.Credit',
+                billing_method = 'credit',
+                invoice_frequency = 'monthly',
+                advance_frequency = 'none',
+                advance_amount = 1.337,
+                payment_terms_id = '',
+                deviating_first_advance_start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                advance_calculation_type = 'fixed',
+                advance_period_percentages = [
+                    masterdata_client.models.advance_period_percentage.AdvancePeriodPercentage(
+                        period_index = 56,
+                        percentage = 1.337, )
+                    ],
+                statement_frequency = 'monthly',
+                back_charge_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                gift_amount = 1.337
             )
         else:
             return ContractDetailsBillingPropertiesBaseDTO(
+                type = 'ContractDetailsBillingPropertiesBaseDTO.Credit',
+                invoice_frequency = 'monthly',
+                advance_frequency = 'none',
+                advance_amount = 1.337,
+                statement_frequency = 'monthly',
         )
         """
 

@@ -88,5 +88,3 @@ class UpdateMeterTagRequest(BaseModel):
             "meterTag": obj.get("meterTag")
         })
         return _obj
-
-

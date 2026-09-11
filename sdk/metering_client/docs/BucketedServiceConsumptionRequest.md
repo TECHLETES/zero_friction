@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_location_ids** | **List[str]** |  | [optional] 
-**buckets** | [**List[DateRange]**](DateRange.md) |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
+**service_location_ids** | **List[str]** |  | [optional]
+**buckets** | [**List[DateRange]**](DateRange.md) |  | [optional]
+**utility_type** | [**UtilityType**](UtilityType.md) |  |
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  |
 
 ## Example
 
@@ -28,5 +28,3 @@ bucketed_service_consumption_request_dict = bucketed_service_consumption_request
 bucketed_service_consumption_request_from_dict = BucketedServiceConsumptionRequest.from_dict(bucketed_service_consumption_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

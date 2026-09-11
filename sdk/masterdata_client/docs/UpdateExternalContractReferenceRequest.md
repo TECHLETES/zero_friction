@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**external_contract_reference** | **str** |  | [optional] 
+**external_contract_reference** | **str** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ update_external_contract_reference_request_dict = update_external_contract_refer
 update_external_contract_reference_request_from_dict = UpdateExternalContractReferenceRequest.from_dict(update_external_contract_reference_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billing_item_id** | **str** |  | [optional] 
-**order** | **int** |  | [optional] 
-**periodicity_parameters** | [**ProductItemPeriodicityParametersDTO**](ProductItemPeriodicityParametersDTO.md) |  | [optional] 
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
+**billing_item_id** | **str** |  | [optional]
+**order** | **int** |  | [optional]
+**periodicity_parameters** | [**ProductItemPeriodicityParametersDTO**](ProductItemPeriodicityParametersDTO.md) |  |
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ upsert_product_billing_items_request_dict = upsert_product_billing_items_request
 upsert_product_billing_items_request_from_dict = UpsertProductBillingItemsRequest.from_dict(upsert_product_billing_items_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

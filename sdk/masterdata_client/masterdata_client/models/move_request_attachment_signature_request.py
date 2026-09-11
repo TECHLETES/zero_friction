@@ -28,10 +28,10 @@ class MoveRequestAttachmentSignatureRequest(BaseModel):
     """
     MoveRequestAttachmentSignatureRequest
     """ # noqa: E501
-    origin: Optional[EntityAttachmentOrigin] = None
-    culture: Optional[str] = None
-    product_attachment_id: Optional[StrictStr] = Field(default=None, alias="productAttachmentId")
-    entity_attachment_group_id: Optional[StrictStr] = Field(default=None, alias="entityAttachmentGroupId")
+    origin: EntityAttachmentOrigin
+    culture: StrictStr = Field(description="Culture identifier (e.g., 'en-US', 'nl-NL')")
+    product_attachment_id: Optional[StrictStr] = Field(alias="productAttachmentId")
+    entity_attachment_group_id: Optional[StrictStr] = Field(alias="entityAttachmentGroupId")
     sign_date: Optional[datetime] = Field(default=None, alias="signDate")
     viewed_date: Optional[datetime] = Field(default=None, alias="viewedDate")
     __properties: ClassVar[List[str]] = ["origin", "culture", "productAttachmentId", "entityAttachmentGroupId", "signDate", "viewedDate"]
@@ -75,11 +75,6 @@ class MoveRequestAttachmentSignatureRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if origin (nullable) is None
-        # and model_fields_set contains the field
-        if self.origin is None and "origin" in self.model_fields_set:
-            _dict['origin'] = None
-
         # set to None if product_attachment_id (nullable) is None
         # and model_fields_set contains the field
         if self.product_attachment_id is None and "product_attachment_id" in self.model_fields_set:
@@ -120,5 +115,3 @@ class MoveRequestAttachmentSignatureRequest(BaseModel):
             "viewedDate": obj.get("viewedDate")
         })
         return _obj
-
-

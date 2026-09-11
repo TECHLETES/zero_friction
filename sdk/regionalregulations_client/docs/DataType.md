@@ -1,5 +1,6 @@
 # DataType
 
+Possible values: 'text', 'number', 'date', 'dateandtime', 'enumeration'
 
 ## Enum
 
@@ -14,5 +15,3 @@
 * `ENUMERATION` (value: `'enumeration'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

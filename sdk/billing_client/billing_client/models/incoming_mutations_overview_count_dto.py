@@ -24,13 +24,13 @@ from typing_extensions import Self
 
 class IncomingMutationsOverviewCountDTO(BaseModel):
     """
-    Provides an overview of incoming mutation counts by their type.  This DTO contains aggregated counts of different types of mutations.
+    IncomingMutationsOverviewCountDTO
     """ # noqa: E501
-    all: Optional[StrictInt] = Field(default=None, description="The total number of incoming mutations.")
-    bank_transfers: Optional[StrictInt] = Field(default=None, description="The number of bank transfer mutations.", alias="bankTransfers")
-    reversals: Optional[StrictInt] = Field(default=None, description="The number of reversal mutations.")
-    bank_confirmations: Optional[StrictInt] = Field(default=None, description="The number of bank confirmation mutations.", alias="bankConfirmations")
-    resolve_issues: Optional[StrictInt] = Field(default=None, description="The number of mutations that have issues requiring resolution.", alias="resolveIssues")
+    all: Optional[StrictInt] = None
+    bank_transfers: Optional[StrictInt] = Field(default=None, alias="bankTransfers")
+    reversals: Optional[StrictInt] = None
+    bank_confirmations: Optional[StrictInt] = Field(default=None, alias="bankConfirmations")
+    resolve_issues: Optional[StrictInt] = Field(default=None, alias="resolveIssues")
     __properties: ClassVar[List[str]] = ["all", "bankTransfers", "reversals", "bankConfirmations", "resolveIssues"]
 
     model_config = ConfigDict(
@@ -91,5 +91,3 @@ class IncomingMutationsOverviewCountDTO(BaseModel):
             "resolveIssues": obj.get("resolveIssues")
         })
         return _obj
-
-

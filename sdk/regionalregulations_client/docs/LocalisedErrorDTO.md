@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**key** | [**ErrorCode**](ErrorCode.md) |  | [optional] 
-**correlation_id** | **str** |  | [optional] 
-**message** | **str** |  | [optional] 
-**message_values** | [**List[LocalisedErrorDTOMessageValue]**](LocalisedErrorDTOMessageValue.md) |  | [optional] 
+**key** | **int** |  | [optional]
+**correlation_id** | **str** |  | [optional]
+**message** | **str** |  | [optional]
+**message_values** | [**List[LocalisedErrorDTOMessageValue]**](LocalisedErrorDTOMessageValue.md) |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ localised_error_dto_dict = localised_error_dto_instance.to_dict()
 localised_error_dto_from_dict = LocalisedErrorDTO.from_dict(localised_error_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

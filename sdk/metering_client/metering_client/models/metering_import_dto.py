@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional
 from metering_client.models.data_import_communication_type import DataImportCommunicationType
 from metering_client.models.data_import_metering_format_type import DataImportMeteringFormatType
 from metering_client.models.entity_subject_type import EntitySubjectType
+from metering_client.models.measurement_reading_method import MeasurementReadingMethod
+from metering_client.models.measurement_reading_origin import MeasurementReadingOrigin
 from metering_client.models.metering_import_data_file_format_dto import MeteringImportDataFileFormatDto
 from metering_client.models.metering_import_data_import_dto import MeteringImportDataImportDto
 from metering_client.models.metering_import_statistic_dto import MeteringImportStatisticDTO
@@ -33,32 +35,32 @@ from typing_extensions import Self
 
 class MeteringImportDTO(BaseModel):
     """
-    Contains the details of the metering import to determine the status and how many measurements we could process,  as well as the information how the metering import was originally created.
+    MeteringImportDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
-    type: Optional[MeteringImportType] = Field(default=None, description="What kind of data do we want to process in this metering import?")
-    custom_file_format_id: Optional[StrictStr] = Field(default=None, description="The ID of a configured custom file format if you want to process a file in a specific format.", alias="customFileFormatId")
-    data_import: Optional[MeteringImportDataImportDto] = Field(default=None, description="If the metering import was created via a data provider (mail, FTP, ...), it will contain the data  of that data provider.", alias="dataImport")
-    data_file_format_settings: Optional[MeteringImportDataFileFormatDto] = Field(default=None, description="Stores the configuration values of the custom file format that was applied during processing.  This snapshot ensures that historical format settings are preserved, even if the format configuration changes later.                This is particularly useful for audit trails.", alias="dataFileFormatSettings")
-    metering_format: Optional[DataImportMeteringFormatType] = Field(default=None, description="The type of metering import file that you want to process.", alias="meteringFormat")
-    communication_type: Optional[DataImportCommunicationType] = Field(default=None, description="How did we receive the data for the metering import?  Mainly used for auditing purposes.", alias="communicationType")
-    automatically_process: Optional[StrictBool] = Field(default=None, description="Should the metering import start processing automatically (even if there are failed values) or should  it be started manually?", alias="automaticallyProcess")
-    status: Optional[MeteringImportStatus] = Field(default=None, description="The status or different phases of the metering import.")
-    file_name: Optional[StrictStr] = Field(default=None, description="The filename of the file to process.  Is set to 'source.json' by default if you create a metering import with values based on JSON input.", alias="fileName")
-    source: Optional[StrictStr] = Field(default=None, description="Set the source of the metering import.  Mainly used for auditing purposes.")
-    interpretation_result: Optional[MeteringImportStatisticDTO] = Field(default=None, description="Statistics about how many values we could interpreted successfully.", alias="interpretationResult")
-    validation_result: Optional[MeteringImportStatisticDTO] = Field(default=None, description="Statistics about how many values we could validate successfully.", alias="validationResult")
-    processing_result: Optional[MeteringImportStatisticDTO] = Field(default=None, description="Statistics about how many values we could process successfully.", alias="processingResult")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "type", "customFileFormatId", "dataImport", "dataFileFormatSettings", "meteringFormat", "communicationType", "automaticallyProcess", "status", "fileName", "source", "interpretationResult", "validationResult", "processingResult"]
+    type: Optional[MeteringImportType] = None
+    custom_file_format_id: Optional[StrictStr] = Field(default=None, alias="customFileFormatId")
+    data_import: Optional[MeteringImportDataImportDto] = Field(default=None, alias="dataImport")
+    data_file_format_settings: Optional[MeteringImportDataFileFormatDto] = Field(default=None, alias="dataFileFormatSettings")
+    metering_format: Optional[DataImportMeteringFormatType] = Field(default=None, alias="meteringFormat")
+    communication_type: Optional[DataImportCommunicationType] = Field(default=None, alias="communicationType")
+    automatically_process: Optional[StrictBool] = Field(default=None, alias="automaticallyProcess")
+    status: Optional[MeteringImportStatus] = None
+    file_name: Optional[StrictStr] = Field(default=None, alias="fileName")
+    source: Optional[StrictStr] = None
+    interpretation_result: Optional[MeteringImportStatisticDTO] = Field(default=None, alias="interpretationResult")
+    validation_result: Optional[MeteringImportStatisticDTO] = Field(default=None, alias="validationResult")
+    processing_result: Optional[MeteringImportStatisticDTO] = Field(default=None, alias="processingResult")
+    fallback_reading_origin: Optional[MeasurementReadingOrigin] = Field(default=None, alias="fallbackReadingOrigin")
+    fallback_reading_method: Optional[MeasurementReadingMethod] = Field(default=None, alias="fallbackReadingMethod")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["type", "customFileFormatId", "dataImport", "dataFileFormatSettings", "meteringFormat", "communicationType", "automaticallyProcess", "status", "fileName", "source", "interpretationResult", "validationResult", "processingResult", "fallbackReadingOrigin", "fallbackReadingMethod", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,10 +92,8 @@ class MeteringImportDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -116,36 +116,6 @@ class MeteringImportDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of processing_result
         if self.processing_result:
             _dict['processingResult'] = self.processing_result.to_dict()
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
-        # set to None if type (nullable) is None
-        # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
-
         # set to None if custom_file_format_id (nullable) is None
         # and model_fields_set contains the field
         if self.custom_file_format_id is None and "custom_file_format_id" in self.model_fields_set:
@@ -160,21 +130,6 @@ class MeteringImportDTO(BaseModel):
         # and model_fields_set contains the field
         if self.data_file_format_settings is None and "data_file_format_settings" in self.model_fields_set:
             _dict['dataFileFormatSettings'] = None
-
-        # set to None if metering_format (nullable) is None
-        # and model_fields_set contains the field
-        if self.metering_format is None and "metering_format" in self.model_fields_set:
-            _dict['meteringFormat'] = None
-
-        # set to None if communication_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.communication_type is None and "communication_type" in self.model_fields_set:
-            _dict['communicationType'] = None
-
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
 
         # set to None if file_name (nullable) is None
         # and model_fields_set contains the field
@@ -201,6 +156,16 @@ class MeteringImportDTO(BaseModel):
         if self.processing_result is None and "processing_result" in self.model_fields_set:
             _dict['processingResult'] = None
 
+        # set to None if fallback_reading_origin (nullable) is None
+        # and model_fields_set contains the field
+        if self.fallback_reading_origin is None and "fallback_reading_origin" in self.model_fields_set:
+            _dict['fallbackReadingOrigin'] = None
+
+        # set to None if fallback_reading_method (nullable) is None
+        # and model_fields_set contains the field
+        if self.fallback_reading_method is None and "fallback_reading_method" in self.model_fields_set:
+            _dict['fallbackReadingMethod'] = None
+
         return _dict
 
     @classmethod
@@ -213,16 +178,6 @@ class MeteringImportDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "type": obj.get("type"),
             "customFileFormatId": obj.get("customFileFormatId"),
             "dataImport": MeteringImportDataImportDto.from_dict(obj["dataImport"]) if obj.get("dataImport") is not None else None,
@@ -235,8 +190,16 @@ class MeteringImportDTO(BaseModel):
             "source": obj.get("source"),
             "interpretationResult": MeteringImportStatisticDTO.from_dict(obj["interpretationResult"]) if obj.get("interpretationResult") is not None else None,
             "validationResult": MeteringImportStatisticDTO.from_dict(obj["validationResult"]) if obj.get("validationResult") is not None else None,
-            "processingResult": MeteringImportStatisticDTO.from_dict(obj["processingResult"]) if obj.get("processingResult") is not None else None
+            "processingResult": MeteringImportStatisticDTO.from_dict(obj["processingResult"]) if obj.get("processingResult") is not None else None,
+            "fallbackReadingOrigin": obj.get("fallbackReadingOrigin"),
+            "fallbackReadingMethod": obj.get("fallbackReadingMethod"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
-
-

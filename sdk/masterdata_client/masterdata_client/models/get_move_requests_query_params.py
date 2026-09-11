@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,12 +26,13 @@ class GetMoveRequestsQueryParams(BaseModel):
     """
     GetMoveRequestsQueryParams
     """ # noqa: E501
+    location_id: Optional[StrictStr] = Field(default=None, alias="locationId")
+    move_request_type_id: Optional[StrictStr] = Field(default=None, alias="moveRequestTypeId")
     flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
     include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
     exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
-    location_id: Optional[StrictStr] = Field(default=None, alias="locationId")
-    move_request_type_id: Optional[StrictStr] = Field(default=None, alias="moveRequestTypeId")
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "locationId", "moveRequestTypeId"]
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["locationId", "moveRequestTypeId", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,25 +78,10 @@ class GetMoveRequestsQueryParams(BaseModel):
         if self.flex_search is None and "flex_search" in self.model_fields_set:
             _dict['flexSearch'] = None
 
-        # set to None if include_only_ids (nullable) is None
+        # set to None if page_size (nullable) is None
         # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
-        # set to None if location_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.location_id is None and "location_id" in self.model_fields_set:
-            _dict['locationId'] = None
-
-        # set to None if move_request_type_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.move_request_type_id is None and "move_request_type_id" in self.model_fields_set:
-            _dict['moveRequestTypeId'] = None
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
 
         return _dict
 
@@ -109,12 +95,11 @@ class GetMoveRequestsQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "locationId": obj.get("locationId"),
+            "moveRequestTypeId": obj.get("moveRequestTypeId"),
             "flexSearch": obj.get("flexSearch"),
             "includeOnlyIds": obj.get("includeOnlyIds"),
             "excludeIds": obj.get("excludeIds"),
-            "locationId": obj.get("locationId"),
-            "moveRequestTypeId": obj.get("moveRequestTypeId")
+            "pageSize": obj.get("pageSize")
         })
         return _obj
-
-

@@ -36,7 +36,7 @@ class TestUpdateRegionalRegulationsParametersForGBRRequest(unittest.TestCase):
         if include_optional:
             return UpdateRegionalRegulationsParametersForGBRRequest(
                 priority_register_parameters = configuration_client.models.priority_register_parameters_request.PriorityRegisterParametersRequest(
-                    psr_codes_custom_entity_property_type_id = '', 
+                    psr_codes_custom_entity_property_type_id = '',
                     vr_codes_custom_entity_property_type_id = '', )
             )
         else:

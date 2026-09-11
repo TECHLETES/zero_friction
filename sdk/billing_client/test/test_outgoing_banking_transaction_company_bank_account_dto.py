@@ -39,7 +39,19 @@ class TestOutgoingBankingTransactionCompanyBankAccountDTO(unittest.TestCase):
                 iban = '',
                 bic = '',
                 account_holder = '',
-                sepa_creditor_id = ''
+                sepa_creditor_id = '',
+                address = billing_client.models.address_dto.AddressDTO(
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
+                    line_two = '', )
             )
         else:
             return OutgoingBankingTransactionCompanyBankAccountDTO(

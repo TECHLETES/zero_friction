@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from billing_client.models.banking_transaction_provider_type import BankingTransactionProviderType
 from billing_client.models.entity_subject_type import EntitySubjectType
 from billing_client.models.outgoing_banking_transaction_company_bank_account_dto import OutgoingBankingTransactionCompanyBankAccountDTO
 from billing_client.models.outgoing_banking_transaction_entity_counts_dto import OutgoingBankingTransactionEntityCountsDTO
@@ -30,32 +31,31 @@ from typing_extensions import Self
 
 class OutgoingBankingTransactionDTO(BaseModel):
     """
-    Represents an outgoing banking transaction in the system.  This DTO contains comprehensive information about the transaction, including its status, amounts, and related entities.
+    OutgoingBankingTransactionDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
-    identification: Optional[StrictStr] = Field(default=None, description="The unique identification of the outgoing banking transaction.")
-    sequence_num: Optional[StrictInt] = Field(default=None, description="The sequence number of the transaction.", alias="sequenceNum")
-    type: Optional[OutgoingBankingTransactionType] = Field(default=None, description="The type of outgoing banking transaction.")
-    status: Optional[OutgoingBankingTransactionStatus] = Field(default=None, description="The current status of the outgoing banking transaction.")
-    mutation_date_time: Optional[datetime] = Field(default=None, description="The date and time when the mutation occurred.", alias="mutationDateTime")
-    company_bank_account: Optional[OutgoingBankingTransactionCompanyBankAccountDTO] = Field(default=None, description="Information about the company bank account associated with this transaction.", alias="companyBankAccount")
-    file_name: Optional[StrictStr] = Field(default=None, description="The name of the file containing the transaction details.", alias="fileName")
-    internal_file_path: Optional[StrictStr] = Field(default=None, description="The internal file path where the transaction file is stored.", alias="internalFilePath")
-    total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount of the transaction.", alias="totalAmount")
-    entity_counts: Optional[OutgoingBankingTransactionEntityCountsDTO] = Field(default=None, description="Counts of various entities associated with this transaction.", alias="entityCounts")
-    migrated: Optional[StrictBool] = Field(default=None, description="Indicates whether this transaction has been migrated from an older system.")
-    locked: Optional[StrictBool] = Field(default=None, description="Indicates whether this transaction is locked for modifications.")
-    confirming_incoming_banking_transactions: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="Dictionary mapping incoming banking transaction IDs to their confirmations.", alias="confirmingIncomingBankingTransactions")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "identification", "sequenceNum", "type", "status", "mutationDateTime", "companyBankAccount", "fileName", "internalFilePath", "totalAmount", "entityCounts", "migrated", "locked", "confirmingIncomingBankingTransactions"]
+    identification: Optional[StrictStr] = None
+    sequence_num: Optional[StrictInt] = Field(default=None, alias="sequenceNum")
+    type: Optional[OutgoingBankingTransactionType] = None
+    status: Optional[OutgoingBankingTransactionStatus] = None
+    provider_type: Optional[BankingTransactionProviderType] = Field(default=None, alias="providerType")
+    mutation_date_time: Optional[datetime] = Field(default=None, alias="mutationDateTime")
+    company_bank_account: Optional[OutgoingBankingTransactionCompanyBankAccountDTO] = Field(default=None, alias="companyBankAccount")
+    file_name: Optional[StrictStr] = Field(default=None, alias="fileName")
+    internal_file_path: Optional[StrictStr] = Field(default=None, alias="internalFilePath")
+    total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalAmount")
+    entity_counts: Optional[OutgoingBankingTransactionEntityCountsDTO] = Field(default=None, alias="entityCounts")
+    migrated: Optional[StrictBool] = None
+    locked: Optional[StrictBool] = None
+    confirming_incoming_banking_transactions: Optional[Dict[str, StrictStr]] = Field(default=None, alias="confirmingIncomingBankingTransactions")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["identification", "sequenceNum", "type", "status", "providerType", "mutationDateTime", "companyBankAccount", "fileName", "internalFilePath", "totalAmount", "entityCounts", "migrated", "locked", "confirmingIncomingBankingTransactions", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,10 +87,8 @@ class OutgoingBankingTransactionDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -104,45 +102,10 @@ class OutgoingBankingTransactionDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of entity_counts
         if self.entity_counts:
             _dict['entityCounts'] = self.entity_counts.to_dict()
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
         # set to None if identification (nullable) is None
         # and model_fields_set contains the field
         if self.identification is None and "identification" in self.model_fields_set:
             _dict['identification'] = None
-
-        # set to None if type (nullable) is None
-        # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
-
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
 
         # set to None if company_bank_account (nullable) is None
         # and model_fields_set contains the field
@@ -181,20 +144,11 @@ class OutgoingBankingTransactionDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "identification": obj.get("identification"),
             "sequenceNum": obj.get("sequenceNum"),
             "type": obj.get("type"),
             "status": obj.get("status"),
+            "providerType": obj.get("providerType"),
             "mutationDateTime": obj.get("mutationDateTime"),
             "companyBankAccount": OutgoingBankingTransactionCompanyBankAccountDTO.from_dict(obj["companyBankAccount"]) if obj.get("companyBankAccount") is not None else None,
             "fileName": obj.get("fileName"),
@@ -203,8 +157,14 @@ class OutgoingBankingTransactionDTO(BaseModel):
             "entityCounts": OutgoingBankingTransactionEntityCountsDTO.from_dict(obj["entityCounts"]) if obj.get("entityCounts") is not None else None,
             "migrated": obj.get("migrated"),
             "locked": obj.get("locked"),
-            "confirmingIncomingBankingTransactions": obj.get("confirmingIncomingBankingTransactions")
+            "confirmingIncomingBankingTransactions": obj.get("confirmingIncomingBankingTransactions"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
-
-

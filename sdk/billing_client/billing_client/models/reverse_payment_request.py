@@ -24,9 +24,9 @@ from typing_extensions import Self
 
 class ReversePaymentRequest(BaseModel):
     """
-    Represents a request to reverse a payment.  This DTO is used to initiate the reversal of a previously processed payment.
+    ReversePaymentRequest
     """ # noqa: E501
-    reversal_additional_information: Optional[StrictStr] = Field(default=None, description="Additional information or reason for the payment reversal.", alias="reversalAdditionalInformation")
+    reversal_additional_information: Optional[StrictStr] = Field(default=None, alias="reversalAdditionalInformation")
     __properties: ClassVar[List[str]] = ["reversalAdditionalInformation"]
 
     model_config = ConfigDict(
@@ -88,5 +88,3 @@ class ReversePaymentRequest(BaseModel):
             "reversalAdditionalInformation": obj.get("reversalAdditionalInformation")
         })
         return _obj
-
-

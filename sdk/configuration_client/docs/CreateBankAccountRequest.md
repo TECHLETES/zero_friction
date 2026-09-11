@@ -5,11 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iban** | **str** |  | [optional] 
-**account_holder** | **str** |  | [optional] 
-**bic** | **str** |  | [optional] 
-**sepa_creditor_id** | **str** |  | [optional] 
-**is_default** | **bool** |  | [optional] 
+**account_holder** | **str** |  |
+**sepa_creditor_id** | **str** |  |
+**accounting_code_id_for_processed_transactions** | **str** |  | [optional]
+**accounting_code_id_for_ignored_transactions** | **str** |  | [optional]
+**is_default** | **bool** |  |
+**iban** | **str** |  | [optional]
+**bic** | **str** |  |
 
 ## Example
 
@@ -29,5 +31,3 @@ create_bank_account_request_dict = create_bank_account_request_instance.to_dict(
 create_bank_account_request_from_dict = CreateBankAccountRequest.from_dict(create_bank_account_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -94,16 +94,6 @@ class ContractorDTO(BaseModel):
         if self.short_display_name is None and "short_display_name" in self.model_fields_set:
             _dict['shortDisplayName'] = None
 
-        # set to None if payment_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.payment_method is None and "payment_method" in self.model_fields_set:
-            _dict['paymentMethod'] = None
-
-        # set to None if customer_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_type is None and "customer_type" in self.model_fields_set:
-            _dict['customerType'] = None
-
         # set to None if customer_group (nullable) is None
         # and model_fields_set contains the field
         if self.customer_group is None and "customer_group" in self.model_fields_set:
@@ -129,5 +119,3 @@ class ContractorDTO(BaseModel):
             "customerGroup": CustomerGroupReferenceDTO.from_dict(obj["customerGroup"]) if obj.get("customerGroup") is not None else None
         })
         return _obj
-
-

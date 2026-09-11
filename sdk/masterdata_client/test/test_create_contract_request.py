@@ -40,50 +40,44 @@ class TestCreateContractRequest(unittest.TestCase):
                 supply_start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 supply_end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 contracted_service_locations = [
-                    masterdata_client.models.create_contract_service_location_request.CreateContractServiceLocationRequest(
-                        service_location_id = '', 
-                        utility_type = null, 
-                        external_identifier = '', 
-                        estimated_consumptions = [
-                            masterdata_client.models.create_contract_service_estimated_consumption_request.CreateContractServiceEstimatedConsumptionRequest(
-                                consumer_group_id = '', 
-                                value = 1.337, 
-                                unit_of_measure = null, 
-                                metering_type = null, 
-                                is_manual_entry = True, )
-                            ], )
+                    masterdata_client.models.create_contract_service_location_request.CreateContractServiceLocationRequest()
                     ],
                 attachment_signatures = [
                     masterdata_client.models.attachment_signature.AttachmentSignature(
-                        culture = null, 
-                        attachment_file_name = '', 
-                        error_code = null, 
-                        origin = null, 
-                        product_attachment_id = '', 
-                        attachment_file_id = '', 
-                        entity_attachment_group_id = '', 
-                        sign_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        culture = '',
+                        attachment_file_name = '',
+                        error_code = 56,
+                        origin = 'customer',
+                        product_attachment_id = '',
+                        attachment_file_id = '',
+                        entity_attachment_group_id = '',
+                        sign_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                         viewed_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ],
                 product_id = '',
-                use_property_group_product = True,
                 invoice_address = masterdata_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 external_contract_reference = '',
-                billing_properties = None
+                billing_properties = masterdata_client.models.create_contract_billing_properties_base_request.CreateContractBillingPropertiesBaseRequest()
             )
         else:
             return CreateContractRequest(
+                supply_start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                contracted_service_locations = [
+                    masterdata_client.models.create_contract_service_location_request.CreateContractServiceLocationRequest()
+                    ],
+                external_contract_reference = '',
+                billing_properties = masterdata_client.models.create_contract_billing_properties_base_request.CreateContractBillingPropertiesBaseRequest(),
         )
         """
 

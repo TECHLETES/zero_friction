@@ -1,12 +1,11 @@
 # CustomerBillingSettingsDTO
 
-Represents the billing settings for a customer.  This DTO contains configuration options that affect how billing is handled for the customer.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**automatic_settlement_setting** | [**CustomerBillingSettingsAutomaticSettlementDTO**](CustomerBillingSettingsAutomaticSettlementDTO.md) | Settings related to automatic settlement of transactions. | [optional] 
+**automatic_settlement_setting** | [**CustomerBillingSettingsAutomaticSettlementDTO**](CustomerBillingSettingsAutomaticSettlementDTO.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +25,3 @@ customer_billing_settings_dto_dict = customer_billing_settings_dto_instance.to_d
 customer_billing_settings_dto_from_dict = CustomerBillingSettingsDTO.from_dict(customer_billing_settings_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

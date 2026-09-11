@@ -21,8 +21,8 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from configuration_client.models.advance_calculation_parameters_dto import AdvanceCalculationParametersDTO
+from configuration_client.models.advance_percentage_parameters_dto import AdvancePercentageParametersDTO
 from configuration_client.models.entity_subject_type import EntitySubjectType
-from configuration_client.models.prepayment_parameters_dto import PrepaymentParametersDTO
 from configuration_client.models.write_off_handling_type import WriteOffHandlingType
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,16 +31,6 @@ class BillingParametersDTO(BaseModel):
     """
     BillingParametersDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
     skip_approval: Optional[StrictBool] = Field(default=None, alias="skipApproval")
     skip_payment: Optional[StrictBool] = Field(default=None, alias="skipPayment")
     enable_ubl: Optional[StrictBool] = Field(default=None, alias="enableUBL")
@@ -54,10 +44,27 @@ class BillingParametersDTO(BaseModel):
     days_before_advance_start_date_to_create_advance: Optional[StrictInt] = Field(default=None, alias="daysBeforeAdvanceStartDateToCreateAdvance")
     advance_amount_lower_threshold: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="advanceAmountLowerThreshold")
     advance_calculation_parameters: Optional[AdvanceCalculationParametersDTO] = Field(default=None, alias="advanceCalculationParameters")
+    advance_percentage_parameters: Optional[AdvancePercentageParametersDTO] = Field(default=None, alias="advancePercentageParameters")
     default_tax_code_for_person_advances: Optional[StrictStr] = Field(default=None, alias="defaultTaxCodeForPersonAdvances")
     default_tax_code_for_organisation_advances: Optional[StrictStr] = Field(default=None, alias="defaultTaxCodeForOrganisationAdvances")
-    prepayment_parameters: Optional[PrepaymentParametersDTO] = Field(default=None, alias="prepaymentParameters")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "skipApproval", "skipPayment", "enableUBL", "disableAutomaticBillingProcesses", "enableInvoiceCollection", "doNotCreditAdvancesWhenUnpaid", "collectionBorderInvoiceCreatedDateTime", "collectionWriteOffHandling", "groupInvoiceCollectionByCustomer", "daysAfterInvoiceCheckpointDateToCreateInvoice", "daysBeforeAdvanceStartDateToCreateAdvance", "advanceAmountLowerThreshold", "advanceCalculationParameters", "defaultTaxCodeForPersonAdvances", "defaultTaxCodeForOrganisationAdvances", "prepaymentParameters"]
+    estimated_measurements_enabled: Optional[StrictBool] = Field(default=None, alias="estimatedMeasurementsEnabled")
+    enable_automatic_estimated_measurement: Optional[StrictBool] = Field(default=None, alias="enableAutomaticEstimatedMeasurement")
+    days_after_checkpoint_automatic_estimated_measurement: Optional[StrictInt] = Field(default=None, alias="daysAfterCheckpointAutomaticEstimatedMeasurement")
+    allow_consumption_invoice_end_date_deviation_window: Optional[StrictBool] = Field(default=None, alias="allowConsumptionInvoiceEndDateDeviationWindow")
+    consumption_invoice_end_date_deviation_local_days: Optional[StrictInt] = Field(default=None, alias="consumptionInvoiceEndDateDeviationLocalDays")
+    ai_invoice_validation_integration_enabled: Optional[StrictBool] = Field(default=None, alias="aiInvoiceValidationIntegrationEnabled")
+    ai_invoice_validation_auto_approve_min_score_invoice: Optional[StrictInt] = Field(default=None, alias="aiInvoiceValidationAutoApproveMinScoreInvoice")
+    ai_invoice_validation_auto_approve_min_score_end_note: Optional[StrictInt] = Field(default=None, alias="aiInvoiceValidationAutoApproveMinScoreEndNote")
+    ai_invoice_validation_auto_approve_min_score_advance: Optional[StrictInt] = Field(default=None, alias="aiInvoiceValidationAutoApproveMinScoreAdvance")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["skipApproval", "skipPayment", "enableUBL", "disableAutomaticBillingProcesses", "enableInvoiceCollection", "doNotCreditAdvancesWhenUnpaid", "collectionBorderInvoiceCreatedDateTime", "collectionWriteOffHandling", "groupInvoiceCollectionByCustomer", "daysAfterInvoiceCheckpointDateToCreateInvoice", "daysBeforeAdvanceStartDateToCreateAdvance", "advanceAmountLowerThreshold", "advanceCalculationParameters", "advancePercentageParameters", "defaultTaxCodeForPersonAdvances", "defaultTaxCodeForOrganisationAdvances", "estimatedMeasurementsEnabled", "enableAutomaticEstimatedMeasurement", "daysAfterCheckpointAutomaticEstimatedMeasurement", "allowConsumptionInvoiceEndDateDeviationWindow", "consumptionInvoiceEndDateDeviationLocalDays", "aiInvoiceValidationIntegrationEnabled", "aiInvoiceValidationAutoApproveMinScoreInvoice", "aiInvoiceValidationAutoApproveMinScoreEndNote", "aiInvoiceValidationAutoApproveMinScoreAdvance", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,10 +96,8 @@ class BillingParametersDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -103,43 +108,18 @@ class BillingParametersDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of advance_calculation_parameters
         if self.advance_calculation_parameters:
             _dict['advanceCalculationParameters'] = self.advance_calculation_parameters.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of prepayment_parameters
-        if self.prepayment_parameters:
-            _dict['prepaymentParameters'] = self.prepayment_parameters.to_dict()
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
-        # set to None if collection_write_off_handling (nullable) is None
-        # and model_fields_set contains the field
-        if self.collection_write_off_handling is None and "collection_write_off_handling" in self.model_fields_set:
-            _dict['collectionWriteOffHandling'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of advance_percentage_parameters
+        if self.advance_percentage_parameters:
+            _dict['advancePercentageParameters'] = self.advance_percentage_parameters.to_dict()
         # set to None if advance_calculation_parameters (nullable) is None
         # and model_fields_set contains the field
         if self.advance_calculation_parameters is None and "advance_calculation_parameters" in self.model_fields_set:
             _dict['advanceCalculationParameters'] = None
+
+        # set to None if advance_percentage_parameters (nullable) is None
+        # and model_fields_set contains the field
+        if self.advance_percentage_parameters is None and "advance_percentage_parameters" in self.model_fields_set:
+            _dict['advancePercentageParameters'] = None
 
         # set to None if default_tax_code_for_person_advances (nullable) is None
         # and model_fields_set contains the field
@@ -151,10 +131,20 @@ class BillingParametersDTO(BaseModel):
         if self.default_tax_code_for_organisation_advances is None and "default_tax_code_for_organisation_advances" in self.model_fields_set:
             _dict['defaultTaxCodeForOrganisationAdvances'] = None
 
-        # set to None if prepayment_parameters (nullable) is None
+        # set to None if ai_invoice_validation_auto_approve_min_score_invoice (nullable) is None
         # and model_fields_set contains the field
-        if self.prepayment_parameters is None and "prepayment_parameters" in self.model_fields_set:
-            _dict['prepaymentParameters'] = None
+        if self.ai_invoice_validation_auto_approve_min_score_invoice is None and "ai_invoice_validation_auto_approve_min_score_invoice" in self.model_fields_set:
+            _dict['aiInvoiceValidationAutoApproveMinScoreInvoice'] = None
+
+        # set to None if ai_invoice_validation_auto_approve_min_score_end_note (nullable) is None
+        # and model_fields_set contains the field
+        if self.ai_invoice_validation_auto_approve_min_score_end_note is None and "ai_invoice_validation_auto_approve_min_score_end_note" in self.model_fields_set:
+            _dict['aiInvoiceValidationAutoApproveMinScoreEndNote'] = None
+
+        # set to None if ai_invoice_validation_auto_approve_min_score_advance (nullable) is None
+        # and model_fields_set contains the field
+        if self.ai_invoice_validation_auto_approve_min_score_advance is None and "ai_invoice_validation_auto_approve_min_score_advance" in self.model_fields_set:
+            _dict['aiInvoiceValidationAutoApproveMinScoreAdvance'] = None
 
         return _dict
 
@@ -168,16 +158,6 @@ class BillingParametersDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "skipApproval": obj.get("skipApproval"),
             "skipPayment": obj.get("skipPayment"),
             "enableUBL": obj.get("enableUBL"),
@@ -191,10 +171,25 @@ class BillingParametersDTO(BaseModel):
             "daysBeforeAdvanceStartDateToCreateAdvance": obj.get("daysBeforeAdvanceStartDateToCreateAdvance"),
             "advanceAmountLowerThreshold": obj.get("advanceAmountLowerThreshold"),
             "advanceCalculationParameters": AdvanceCalculationParametersDTO.from_dict(obj["advanceCalculationParameters"]) if obj.get("advanceCalculationParameters") is not None else None,
+            "advancePercentageParameters": AdvancePercentageParametersDTO.from_dict(obj["advancePercentageParameters"]) if obj.get("advancePercentageParameters") is not None else None,
             "defaultTaxCodeForPersonAdvances": obj.get("defaultTaxCodeForPersonAdvances"),
             "defaultTaxCodeForOrganisationAdvances": obj.get("defaultTaxCodeForOrganisationAdvances"),
-            "prepaymentParameters": PrepaymentParametersDTO.from_dict(obj["prepaymentParameters"]) if obj.get("prepaymentParameters") is not None else None
+            "estimatedMeasurementsEnabled": obj.get("estimatedMeasurementsEnabled"),
+            "enableAutomaticEstimatedMeasurement": obj.get("enableAutomaticEstimatedMeasurement"),
+            "daysAfterCheckpointAutomaticEstimatedMeasurement": obj.get("daysAfterCheckpointAutomaticEstimatedMeasurement"),
+            "allowConsumptionInvoiceEndDateDeviationWindow": obj.get("allowConsumptionInvoiceEndDateDeviationWindow"),
+            "consumptionInvoiceEndDateDeviationLocalDays": obj.get("consumptionInvoiceEndDateDeviationLocalDays"),
+            "aiInvoiceValidationIntegrationEnabled": obj.get("aiInvoiceValidationIntegrationEnabled"),
+            "aiInvoiceValidationAutoApproveMinScoreInvoice": obj.get("aiInvoiceValidationAutoApproveMinScoreInvoice"),
+            "aiInvoiceValidationAutoApproveMinScoreEndNote": obj.get("aiInvoiceValidationAutoApproveMinScoreEndNote"),
+            "aiInvoiceValidationAutoApproveMinScoreAdvance": obj.get("aiInvoiceValidationAutoApproveMinScoreAdvance"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
-
-

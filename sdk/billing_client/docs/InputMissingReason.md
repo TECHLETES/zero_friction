@@ -1,5 +1,6 @@
 # InputMissingReason
 
+Possible values: 'unknown', 'missingadvances', 'missingreceivingperiods', 'missingtariffs', 'invoicecreationfailed', 'invoicelinecalculationfailed', 'missingreceivingperiodsfortieredtariffcalculation', 'missingbillingitems', 'missingcustomentityproperty', 'missingaskingperiods', 'askingperiodscontainsgap', 'missingtaxrate', 'missingpropertygrouponlocation', 'propertygroupnotfound', 'servicelocationnotfound', 'missingcep', 'missingmeter', 'prepaymentstatementnumbergenerationfailed', 'firstmeasurementonwrongdate', 'nomeasurementonstart', 'nomeasurementonend', 'nomeasurementsfound', 'lastmeasurementonwrongdate', 'measurementnotwithindeviationwindow', 'noproductfound'
 
 ## Enum
 
@@ -37,6 +38,8 @@
 
 * `MISSINGMETER` (value: `'missingmeter'`)
 
+* `PREPAYMENTSTATEMENTNUMBERGENERATIONFAILED` (value: `'prepaymentstatementnumbergenerationfailed'`)
+
 * `FIRSTMEASUREMENTONWRONGDATE` (value: `'firstmeasurementonwrongdate'`)
 
 * `NOMEASUREMENTONSTART` (value: `'nomeasurementonstart'`)
@@ -52,5 +55,3 @@
 * `NOPRODUCTFOUND` (value: `'noproductfound'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

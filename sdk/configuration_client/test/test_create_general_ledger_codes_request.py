@@ -37,9 +37,12 @@ class TestCreateGeneralLedgerCodesRequest(unittest.TestCase):
             return CreateGeneralLedgerCodesRequest(
                 general_ledger_codes = [
                     configuration_client.models.create_general_ledger_code_request.CreateGeneralLedgerCodeRequest(
-                        code = '', 
-                        description = '', 
-                        metadata = null, )
+                        code = '',
+                        description = '',
+                        metadata = configuration_client.models.external_accounting_metadata_request.ExternalAccountingMetadataRequest(
+                            source = '',
+                            source_entity_id = '',
+                            source_accounting_company_id = '', ), )
                     ]
             )
         else:

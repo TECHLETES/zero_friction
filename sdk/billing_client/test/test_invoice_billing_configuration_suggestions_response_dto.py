@@ -39,18 +39,19 @@ class TestInvoiceBillingConfigurationSuggestionsResponseDTO(unittest.TestCase):
                 invoice_frequency = 'monthly',
                 payment_terms_id = '',
                 message = billing_client.models.localised_system_message_dto.LocalisedSystemMessageDTO(
-                    key = null, 
-                    message = '', 
+                    key = 56,
                     message_values = [
                         billing_client.models.localised_system_message_dto_value.LocalisedSystemMessageDtoValue(
-                            data_type = null, 
+                            data_type = 'text',
                             value = '', )
-                        ], 
-                    level = null, ),
+                        ],
+                    level = 56, ),
                 invoice_month = 56,
                 invoice_day = 56,
                 iban = '',
-                company_bank_account_id = ''
+                company_bank_account_id = '',
+                default_billing_method = 'credit',
+                property_group_id = ''
             )
         else:
             return InvoiceBillingConfigurationSuggestionsResponseDTO(

@@ -1,12 +1,11 @@
 # ApproveInvoiceRequest
 
-Represents a request to approve an invoice.  This DTO is used to approve a single invoice with a specified invoice date.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_date** | **datetime** | The date when the invoice should be approved. | [optional] 
+**invoice_date** | **datetime** |  |
 
 ## Example
 
@@ -26,5 +25,3 @@ approve_invoice_request_dict = approve_invoice_request_instance.to_dict()
 approve_invoice_request_from_dict = ApproveInvoiceRequest.from_dict(approve_invoice_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

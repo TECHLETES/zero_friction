@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ServiceStatus(str, Enum):
     """
-    ServiceStatus
+    Possible values: 'supplied', 'unsupplied', 'removed'
     """
 
     """
@@ -28,12 +28,9 @@ class ServiceStatus(str, Enum):
     """
     SUPPLIED = 'supplied'
     UNSUPPLIED = 'unsupplied'
-    REQUESTED = 'requested'
     REMOVED = 'removed'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ServiceStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pdf_template** | [**NoticeOfDefaultPdfTemplateRequest**](NoticeOfDefaultPdfTemplateRequest.md) |  | [optional] 
-**email_template** | [**NoticeOfDefaultEmailTemplateRequest**](NoticeOfDefaultEmailTemplateRequest.md) |  | [optional] 
+**pdf_template** | [**NoticeOfDefaultPdfTemplateRequest**](NoticeOfDefaultPdfTemplateRequest.md) |  |
+**email_template** | [**NoticeOfDefaultEmailTemplateRequest**](NoticeOfDefaultEmailTemplateRequest.md) |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ change_notice_of_default_scenario_request_dict = change_notice_of_default_scenar
 change_notice_of_default_scenario_request_from_dict = ChangeNoticeOfDefaultScenarioRequest.from_dict(change_notice_of_default_scenario_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

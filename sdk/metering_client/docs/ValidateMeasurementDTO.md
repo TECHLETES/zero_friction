@@ -5,9 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional] 
-**is_valid** | **bool** |  | [optional] [readonly] 
-**is_error_muted** | **bool** |  | [optional] 
+**error** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional]
+**is_valid** | **bool** |  | [optional]
+**is_error_muted** | **bool** |  | [optional]
+**is_pending_async_validation** | **bool** |  | [optional]
+**auto_solve_warning** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional]
 
 ## Example
 
@@ -27,5 +29,3 @@ validate_measurement_dto_dict = validate_measurement_dto_instance.to_dict()
 validate_measurement_dto_from_dict = ValidateMeasurementDTO.from_dict(validate_measurement_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

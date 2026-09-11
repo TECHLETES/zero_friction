@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AttachmentVisibility(str, Enum):
     """
-    AttachmentVisibility
+    Possible values: 'internal', 'portal', 'portalandmovein'
     """
 
     """
@@ -34,5 +34,3 @@ class AttachmentVisibility(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of AttachmentVisibility from a JSON string"""
         return cls(json.loads(json_str))
-
-

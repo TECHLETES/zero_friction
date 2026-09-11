@@ -28,7 +28,7 @@ class UpdateTranslationRequest(BaseModel):
     UpdateTranslationRequest
     """ # noqa: E501
     update_all_scenarios: Optional[StrictBool] = Field(default=None, alias="updateAllScenarios")
-    translations: Optional[Dict[str, Optional[StrictStr]]] = None
+    translations: Optional[Dict[str, StrictStr]]
     entity_subject_type: Optional[EntitySubjectType] = Field(default=None, alias="entitySubjectType")
     entity_subject_sub_type: Optional[StrictStr] = Field(default=None, alias="entitySubjectSubType")
     __properties: ClassVar[List[str]] = ["updateAllScenarios", "translations", "entitySubjectType", "entitySubjectSubType"]
@@ -77,11 +77,6 @@ class UpdateTranslationRequest(BaseModel):
         if self.translations is None and "translations" in self.model_fields_set:
             _dict['translations'] = None
 
-        # set to None if entity_subject_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_subject_type is None and "entity_subject_type" in self.model_fields_set:
-            _dict['entitySubjectType'] = None
-
         # set to None if entity_subject_sub_type (nullable) is None
         # and model_fields_set contains the field
         if self.entity_subject_sub_type is None and "entity_subject_sub_type" in self.model_fields_set:
@@ -105,5 +100,3 @@ class UpdateTranslationRequest(BaseModel):
             "entitySubjectSubType": obj.get("entitySubjectSubType")
         })
         return _obj
-
-

@@ -26,7 +26,7 @@ class UpdateDomainAuthenticationParametersRequest(BaseModel):
     """
     UpdateDomainAuthenticationParametersRequest
     """ # noqa: E501
-    domain_name: Optional[StrictStr] = Field(default=None, alias="domainName")
+    domain_name: Optional[StrictStr] = Field(alias="domainName")
     __properties: ClassVar[List[str]] = ["domainName"]
 
     model_config = ConfigDict(
@@ -88,5 +88,3 @@ class UpdateDomainAuthenticationParametersRequest(BaseModel):
             "domainName": obj.get("domainName")
         })
         return _obj
-
-

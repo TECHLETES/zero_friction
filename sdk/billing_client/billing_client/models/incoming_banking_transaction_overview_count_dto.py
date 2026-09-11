@@ -24,13 +24,13 @@ from typing_extensions import Self
 
 class IncomingBankingTransactionOverviewCountDTO(BaseModel):
     """
-    Provides an overview of incoming banking transaction counts by their status.  This DTO contains aggregated counts of transactions in different states.
+    IncomingBankingTransactionOverviewCountDTO
     """ # noqa: E501
-    all: Optional[StrictInt] = Field(default=None, description="The total number of incoming banking transactions.")
-    ready: Optional[StrictInt] = Field(default=None, description="The number of transactions that are ready for processing.")
-    resolve_issues: Optional[StrictInt] = Field(default=None, description="The number of transactions that have issues requiring resolution.", alias="resolveIssues")
-    closed: Optional[StrictInt] = Field(default=None, description="The number of closed transactions.")
-    attention: Optional[StrictInt] = Field(default=None, description="The number of transactions that require attention.")
+    all: Optional[StrictInt] = None
+    ready: Optional[StrictInt] = None
+    resolve_issues: Optional[StrictInt] = Field(default=None, alias="resolveIssues")
+    closed: Optional[StrictInt] = None
+    attention: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["all", "ready", "resolveIssues", "closed", "attention"]
 
     model_config = ConfigDict(
@@ -91,5 +91,3 @@ class IncomingBankingTransactionOverviewCountDTO(BaseModel):
             "attention": obj.get("attention")
         })
         return _obj
-
-

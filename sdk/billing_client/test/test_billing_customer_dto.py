@@ -35,35 +35,36 @@ class TestBillingCustomerDTO(unittest.TestCase):
         model = BillingCustomerDTO()
         if include_optional:
             return BillingCustomerDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 account_number = '',
                 short_display_name = '',
                 payment_terms_id = '',
                 default_payment_method = 'sct',
                 customer_type = 'person',
                 customer_group = billing_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
-                    id = '', 
+                    id = '',
                     name = '', ),
                 property_groups = [
                     billing_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
-                        id = '', 
+                        id = '',
                         name = '', )
                     ],
-                culture = ,
+                culture = '',
                 collection_flow_id = '',
                 billing_settings = billing_client.models.customer_billing_settings_dto.CustomerBillingSettingsDTO(
-                    automatic_settlement_setting = null, ),
+                    automatic_settlement_setting = billing_client.models.customer_billing_settings_automatic_settlement_dto.CustomerBillingSettingsAutomaticSettlementDTO(
+                        automatic_settlement = True,
+                        originator_type = 'none',
+                        originator_id = '', ), ),
                 organization_number = '',
-                vat_number = ''
+                vat_number = '',
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return BillingCustomerDTO(

@@ -27,12 +27,13 @@ class IncidentalNotePdfTemplateRequest(BaseModel):
     """
     IncidentalNotePdfTemplateRequest
     """ # noqa: E501
-    envelope_settings: Optional[EnvelopeSettingsRequest] = Field(default=None, alias="envelopeSettings")
     show_country: Optional[StrictBool] = Field(default=None, alias="showCountry")
     show_balance: Optional[StrictBool] = Field(default=None, alias="showBalance")
     show_vat_specs: Optional[StrictBool] = Field(default=None, alias="showVatSpecs")
     show_custom_information: Optional[StrictBool] = Field(default=None, alias="showCustomInformation")
-    __properties: ClassVar[List[str]] = ["envelopeSettings", "showCountry", "showBalance", "showVatSpecs", "showCustomInformation"]
+    unit_price_excl_vat_for_persons: Optional[StrictBool] = Field(default=None, alias="unitPriceExclVatForPersons")
+    envelope_settings: Optional[EnvelopeSettingsRequest] = Field(default=None, alias="envelopeSettings")
+    __properties: ClassVar[List[str]] = ["showCountry", "showBalance", "showVatSpecs", "showCustomInformation", "unitPriceExclVatForPersons", "envelopeSettings"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,12 +94,11 @@ class IncidentalNotePdfTemplateRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "envelopeSettings": EnvelopeSettingsRequest.from_dict(obj["envelopeSettings"]) if obj.get("envelopeSettings") is not None else None,
             "showCountry": obj.get("showCountry"),
             "showBalance": obj.get("showBalance"),
             "showVatSpecs": obj.get("showVatSpecs"),
-            "showCustomInformation": obj.get("showCustomInformation")
+            "showCustomInformation": obj.get("showCustomInformation"),
+            "unitPriceExclVatForPersons": obj.get("unitPriceExclVatForPersons"),
+            "envelopeSettings": EnvelopeSettingsRequest.from_dict(obj["envelopeSettings"]) if obj.get("envelopeSettings") is not None else None
         })
         return _obj
-
-

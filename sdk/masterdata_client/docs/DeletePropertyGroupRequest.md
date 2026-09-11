@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mutation_date_time** | **datetime** |  | [optional] 
+**mutation_date_time** | **datetime** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ delete_property_group_request_dict = delete_property_group_request_instance.to_d
 delete_property_group_request_from_dict = DeletePropertyGroupRequest.from_dict(delete_property_group_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

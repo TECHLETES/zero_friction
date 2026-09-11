@@ -5,12 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**end_date_time** | **datetime** |  | [optional] 
-**value** | **float** |  | [optional] 
-**external_channel_identifier** | **str** |  | [optional] 
-**meter_id** | **str** |  | [optional] 
-**skip_validation** | **bool** |  | [optional] 
-**resolve_issues_manually** | **bool** |  | [optional] 
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  |
+**value** | **float** |  | [optional]
+**external_channel_identifier** | **str** |  |
+**meter_id** | **str** |  |
+**skip_validation** | **bool** |  | [optional]
+**resolve_issues_manually** | **bool** |  | [optional]
+**reading_origin** | [**MeasurementReadingOrigin**](MeasurementReadingOrigin.md) |  | [optional]
+**reading_method** | [**MeasurementReadingMethod**](MeasurementReadingMethod.md) |  | [optional]
 
 ## Example
 
@@ -30,5 +33,3 @@ add_measurement_request_dict = add_measurement_request_instance.to_dict()
 add_measurement_request_from_dict = AddMeasurementRequest.from_dict(add_measurement_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -20,7 +20,9 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from billing_client.models.base_incoming_mutation_details_dto import BaseIncomingMutationDetailsDTO
 from billing_client.models.entity_subject_type import EntitySubjectType
+from billing_client.models.incoming_mutation_reference_analysis_dto import IncomingMutationReferenceAnalysisDTO
 from billing_client.models.incoming_mutation_status import IncomingMutationStatus
 from billing_client.models.incoming_mutation_type import IncomingMutationType
 from billing_client.models.localised_error_dto import LocalisedErrorDTO
@@ -29,27 +31,27 @@ from typing_extensions import Self
 
 class IncomingMutationDTO(BaseModel):
     """
-    Represents an incoming banking transaction mutation.  This DTO contains information about the transaction, its status, and associated details.
+    IncomingMutationDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
-    incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the incoming banking transaction.", alias="incomingBankingTransactionId")
-    transaction_date: Optional[datetime] = Field(default=None, description="The date and time when the transaction occurred.", alias="transactionDate")
-    type: Optional[IncomingMutationType] = Field(default=None, description="The type of incoming mutation.")
-    status: Optional[IncomingMutationStatus] = Field(default=None, description="The current status of the incoming mutation.")
-    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The transaction amount.")
-    is_manual_match: Optional[StrictBool] = Field(default=None, description="Indicates whether this mutation was manually matched.", alias="isManualMatch")
-    details: Optional[Dict[str, Any]] = Field(default=None, description="The details specific to this type of incoming mutation.")
-    errors: Optional[List[LocalisedErrorDTO]] = Field(default=None, description="List of localized errors associated with this mutation.")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "incomingBankingTransactionId", "transactionDate", "type", "status", "amount", "isManualMatch", "details", "errors"]
+    incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="incomingBankingTransactionId")
+    transaction_date: Optional[datetime] = Field(default=None, alias="transactionDate")
+    type: Optional[IncomingMutationType] = None
+    status: Optional[IncomingMutationStatus] = None
+    amount: Optional[Union[StrictFloat, StrictInt]] = None
+    display_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="displayAmount")
+    is_manual_match: Optional[StrictBool] = Field(default=None, alias="isManualMatch")
+    details: Optional[BaseIncomingMutationDetailsDTO] = None
+    reference_analysis: Optional[IncomingMutationReferenceAnalysisDTO] = Field(default=None, alias="referenceAnalysis")
+    errors: Optional[List[LocalisedErrorDTO]] = None
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["incomingBankingTransactionId", "transactionDate", "type", "status", "amount", "displayAmount", "isManualMatch", "details", "referenceAnalysis", "errors", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,10 +83,8 @@ class IncomingMutationDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -92,6 +92,12 @@ class IncomingMutationDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of details
+        if self.details:
+            _dict['details'] = self.details.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of reference_analysis
+        if self.reference_analysis:
+            _dict['referenceAnalysis'] = self.reference_analysis.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in errors (list)
         _items = []
         if self.errors:
@@ -99,50 +105,20 @@ class IncomingMutationDTO(BaseModel):
                 if _item_errors:
                     _items.append(_item_errors.to_dict())
             _dict['errors'] = _items
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
         # set to None if incoming_banking_transaction_id (nullable) is None
         # and model_fields_set contains the field
         if self.incoming_banking_transaction_id is None and "incoming_banking_transaction_id" in self.model_fields_set:
             _dict['incomingBankingTransactionId'] = None
 
-        # set to None if type (nullable) is None
-        # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
-
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
-
         # set to None if details (nullable) is None
         # and model_fields_set contains the field
         if self.details is None and "details" in self.model_fields_set:
             _dict['details'] = None
+
+        # set to None if reference_analysis (nullable) is None
+        # and model_fields_set contains the field
+        if self.reference_analysis is None and "reference_analysis" in self.model_fields_set:
+            _dict['referenceAnalysis'] = None
 
         # set to None if errors (nullable) is None
         # and model_fields_set contains the field
@@ -161,25 +137,23 @@ class IncomingMutationDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "incomingBankingTransactionId": obj.get("incomingBankingTransactionId"),
             "transactionDate": obj.get("transactionDate"),
             "type": obj.get("type"),
             "status": obj.get("status"),
             "amount": obj.get("amount"),
+            "displayAmount": obj.get("displayAmount"),
             "isManualMatch": obj.get("isManualMatch"),
-            "details": obj.get("details"),
-            "errors": [LocalisedErrorDTO.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None
+            "details": BaseIncomingMutationDetailsDTO.from_dict(obj["details"]) if obj.get("details") is not None else None,
+            "referenceAnalysis": IncomingMutationReferenceAnalysisDTO.from_dict(obj["referenceAnalysis"]) if obj.get("referenceAnalysis") is not None else None,
+            "errors": [LocalisedErrorDTO.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None,
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
-
-

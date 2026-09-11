@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,15 +27,16 @@ class GetIncomingBankingTransactionsQueryParams(BaseModel):
     """
     GetIncomingBankingTransactionsQueryParams
     """ # noqa: E501
-    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
-    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
-    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
     company_bank_account_id: Optional[StrictStr] = Field(default=None, alias="companyBankAccountId")
     mutation_date_time_start: Optional[datetime] = Field(default=None, alias="mutationDateTimeStart")
     mutation_date_time_end: Optional[datetime] = Field(default=None, alias="mutationDateTimeEnd")
     opening_balance_date_start: Optional[datetime] = Field(default=None, alias="openingBalanceDateStart")
     opening_balance_date_end: Optional[datetime] = Field(default=None, alias="openingBalanceDateEnd")
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "companyBankAccountId", "mutationDateTimeStart", "mutationDateTimeEnd", "openingBalanceDateStart", "openingBalanceDateEnd"]
+    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
+    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
+    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["companyBankAccountId", "mutationDateTimeStart", "mutationDateTimeEnd", "openingBalanceDateStart", "openingBalanceDateEnd", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,26 +77,6 @@ class GetIncomingBankingTransactionsQueryParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if flex_search (nullable) is None
-        # and model_fields_set contains the field
-        if self.flex_search is None and "flex_search" in self.model_fields_set:
-            _dict['flexSearch'] = None
-
-        # set to None if include_only_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
-        # set to None if company_bank_account_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.company_bank_account_id is None and "company_bank_account_id" in self.model_fields_set:
-            _dict['companyBankAccountId'] = None
-
         # set to None if mutation_date_time_start (nullable) is None
         # and model_fields_set contains the field
         if self.mutation_date_time_start is None and "mutation_date_time_start" in self.model_fields_set:
@@ -116,6 +97,16 @@ class GetIncomingBankingTransactionsQueryParams(BaseModel):
         if self.opening_balance_date_end is None and "opening_balance_date_end" in self.model_fields_set:
             _dict['openingBalanceDateEnd'] = None
 
+        # set to None if flex_search (nullable) is None
+        # and model_fields_set contains the field
+        if self.flex_search is None and "flex_search" in self.model_fields_set:
+            _dict['flexSearch'] = None
+
+        # set to None if page_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
+
         return _dict
 
     @classmethod
@@ -128,15 +119,14 @@ class GetIncomingBankingTransactionsQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
             "companyBankAccountId": obj.get("companyBankAccountId"),
             "mutationDateTimeStart": obj.get("mutationDateTimeStart"),
             "mutationDateTimeEnd": obj.get("mutationDateTimeEnd"),
             "openingBalanceDateStart": obj.get("openingBalanceDateStart"),
-            "openingBalanceDateEnd": obj.get("openingBalanceDateEnd")
+            "openingBalanceDateEnd": obj.get("openingBalanceDateEnd"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
-
-

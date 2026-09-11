@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.communication_type import CommunicationType
 from configuration_client.models.reject_move_in_email_template_request import RejectMoveInEmailTemplateRequest
@@ -28,9 +28,10 @@ class ChangeRejectMoveInScenarioRequest(BaseModel):
     """
     ChangeRejectMoveInScenarioRequest
     """ # noqa: E501
-    default_communication_type: Optional[CommunicationType] = Field(default=None, alias="defaultCommunicationType")
-    email_template: Optional[RejectMoveInEmailTemplateRequest] = Field(default=None, alias="emailTemplate")
-    __properties: ClassVar[List[str]] = ["defaultCommunicationType", "emailTemplate"]
+    email_template: Optional[RejectMoveInEmailTemplateRequest] = Field(alias="emailTemplate")
+    default_communication_type: CommunicationType = Field(alias="defaultCommunicationType")
+    auto_fallback_to_postal: Optional[StrictBool] = Field(default=None, alias="autoFallbackToPostal")
+    __properties: ClassVar[List[str]] = ["emailTemplate", "defaultCommunicationType", "autoFallbackToPostal"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,11 +75,6 @@ class ChangeRejectMoveInScenarioRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of email_template
         if self.email_template:
             _dict['emailTemplate'] = self.email_template.to_dict()
-        # set to None if default_communication_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.default_communication_type is None and "default_communication_type" in self.model_fields_set:
-            _dict['defaultCommunicationType'] = None
-
         # set to None if email_template (nullable) is None
         # and model_fields_set contains the field
         if self.email_template is None and "email_template" in self.model_fields_set:
@@ -96,9 +92,8 @@ class ChangeRejectMoveInScenarioRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "emailTemplate": RejectMoveInEmailTemplateRequest.from_dict(obj["emailTemplate"]) if obj.get("emailTemplate") is not None else None,
             "defaultCommunicationType": obj.get("defaultCommunicationType"),
-            "emailTemplate": RejectMoveInEmailTemplateRequest.from_dict(obj["emailTemplate"]) if obj.get("emailTemplate") is not None else None
+            "autoFallbackToPostal": obj.get("autoFallbackToPostal")
         })
         return _obj
-
-

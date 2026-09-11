@@ -36,11 +36,13 @@ class TestCustAgingHeaderDTO(unittest.TestCase):
         if include_optional:
             return CustAgingHeaderDTO(
                 debtor = billing_client.models.debtor_dto.DebtorDTO(
-                    customer_id = '', 
-                    display_name = '', 
-                    customer_account_number = '', 
-                    customer_type = null, 
-                    customer_group = null, ),
+                    customer_id = '',
+                    display_name = '',
+                    customer_account_number = '',
+                    customer_type = 'person',
+                    customer_group = billing_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
+                        id = '',
+                        name = '', ), ),
                 last_payment_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 oldest_open_debit_transaction_reference = '',
                 open_credits = 1.337,
@@ -64,9 +66,10 @@ class TestCustAgingHeaderDTO(unittest.TestCase):
                 flow_active = True,
                 property_groups = [
                     billing_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
-                        id = '', 
+                        id = '',
                         name = '', )
-                    ]
+                    ],
+                has_active_payment_plan = True
             )
         else:
             return CustAgingHeaderDTO(

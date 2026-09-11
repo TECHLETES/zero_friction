@@ -5,9 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**page_identifier** | [**PortalPageIdentifier**](PortalPageIdentifier.md) |  | [optional] 
-**notification_type** | [**PortalNotificationType**](PortalNotificationType.md) |  | [optional] 
-**translated_content** | **Dict[str, Optional[str]]** |  | [optional] 
+**page_identifier** | [**PortalPageIdentifier**](PortalPageIdentifier.md) |  |
+**notification_type** | [**PortalNotificationType**](PortalNotificationType.md) |  |
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**translated_content** | **Dict[str, str]** |  |
 
 ## Example
 
@@ -27,5 +29,3 @@ upsert_portal_page_notification_request_dict = upsert_portal_page_notification_r
 upsert_portal_page_notification_request_from_dict = UpsertPortalPageNotificationRequest.from_dict(upsert_portal_page_notification_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

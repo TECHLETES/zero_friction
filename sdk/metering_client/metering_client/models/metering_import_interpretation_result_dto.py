@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
 from metering_client.models.metering_import_interpretation_issue_dto import MeteringImportInterpretationIssueDTO
 from typing import Optional, Set
@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class MeteringImportInterpretationResultDTO(BaseModel):
     """
-    Used to give an overview of the issues that were discovered during the metering import interpretation phase.
+    MeteringImportInterpretationResultDTO
     """ # noqa: E501
-    issues: Optional[List[MeteringImportInterpretationIssueDTO]] = Field(default=None, description="List of all the found interpretation issues.")
+    issues: Optional[List[MeteringImportInterpretationIssueDTO]] = None
     __properties: ClassVar[List[str]] = ["issues"]
 
     model_config = ConfigDict(
@@ -96,5 +96,3 @@ class MeteringImportInterpretationResultDTO(BaseModel):
             "issues": [MeteringImportInterpretationIssueDTO.from_dict(_item) for _item in obj["issues"]] if obj.get("issues") is not None else None
         })
         return _obj
-
-

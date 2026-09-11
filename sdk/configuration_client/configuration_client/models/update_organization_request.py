@@ -28,22 +28,16 @@ class UpdateOrganizationRequest(BaseModel):
     """
     UpdateOrganizationRequest
     """ # noqa: E501
-    automatic_processing_enabled: Optional[StrictBool] = Field(default=None, alias="automaticProcessingEnabled")
-    migration_mode: Optional[StrictBool] = Field(default=None, alias="migrationMode")
-    vat_account_number: Optional[StrictStr] = Field(default=None, alias="vatAccountNumber")
-    time_zone: Optional[StrictStr] = Field(default=None, alias="timeZone")
-    culture: Optional[StrictStr] = None
-    company_account_number: Optional[StrictStr] = Field(default=None, alias="companyAccountNumber")
-    logo: Optional[StrictStr] = None
-    primary_color: Optional[StrictStr] = Field(default=None, alias="primaryColor")
-    secondary_color: Optional[StrictStr] = Field(default=None, alias="secondaryColor")
-    persist_logo_in_portal: Optional[StrictBool] = Field(default=None, alias="persistLogoInPortal")
-    persist_color_in_portal: Optional[StrictBool] = Field(default=None, alias="persistColorInPortal")
-    address: Optional[AddressDTO] = None
-    contact_details: Optional[UpdateOrganizationContactDetailsRequest] = Field(default=None, alias="contactDetails")
+    vat_account_number: Optional[StrictStr] = Field(alias="vatAccountNumber")
+    company_account_number: Optional[StrictStr] = Field(alias="companyAccountNumber")
+    logo: Optional[StrictStr]
+    primary_color: Optional[StrictStr] = Field(alias="primaryColor")
+    secondary_color: Optional[StrictStr] = Field(alias="secondaryColor")
+    address: Optional[AddressDTO]
+    contact_details: Optional[UpdateOrganizationContactDetailsRequest] = Field(alias="contactDetails")
     manually_set_customer_number: Optional[StrictBool] = Field(default=None, alias="manuallySetCustomerNumber")
     manually_set_contract_number: Optional[StrictBool] = Field(default=None, alias="manuallySetContractNumber")
-    __properties: ClassVar[List[str]] = ["automaticProcessingEnabled", "migrationMode", "vatAccountNumber", "timeZone", "culture", "companyAccountNumber", "logo", "primaryColor", "secondaryColor", "persistLogoInPortal", "persistColorInPortal", "address", "contactDetails", "manuallySetCustomerNumber", "manuallySetContractNumber"]
+    __properties: ClassVar[List[str]] = ["vatAccountNumber", "companyAccountNumber", "logo", "primaryColor", "secondaryColor", "address", "contactDetails", "manuallySetCustomerNumber", "manuallySetContractNumber"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,16 +89,6 @@ class UpdateOrganizationRequest(BaseModel):
         if self.vat_account_number is None and "vat_account_number" in self.model_fields_set:
             _dict['vatAccountNumber'] = None
 
-        # set to None if time_zone (nullable) is None
-        # and model_fields_set contains the field
-        if self.time_zone is None and "time_zone" in self.model_fields_set:
-            _dict['timeZone'] = None
-
-        # set to None if culture (nullable) is None
-        # and model_fields_set contains the field
-        if self.culture is None and "culture" in self.model_fields_set:
-            _dict['culture'] = None
-
         # set to None if company_account_number (nullable) is None
         # and model_fields_set contains the field
         if self.company_account_number is None and "company_account_number" in self.model_fields_set:
@@ -147,22 +131,14 @@ class UpdateOrganizationRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "automaticProcessingEnabled": obj.get("automaticProcessingEnabled"),
-            "migrationMode": obj.get("migrationMode"),
             "vatAccountNumber": obj.get("vatAccountNumber"),
-            "timeZone": obj.get("timeZone"),
-            "culture": obj.get("culture"),
             "companyAccountNumber": obj.get("companyAccountNumber"),
             "logo": obj.get("logo"),
             "primaryColor": obj.get("primaryColor"),
             "secondaryColor": obj.get("secondaryColor"),
-            "persistLogoInPortal": obj.get("persistLogoInPortal"),
-            "persistColorInPortal": obj.get("persistColorInPortal"),
             "address": AddressDTO.from_dict(obj["address"]) if obj.get("address") is not None else None,
             "contactDetails": UpdateOrganizationContactDetailsRequest.from_dict(obj["contactDetails"]) if obj.get("contactDetails") is not None else None,
             "manuallySetCustomerNumber": obj.get("manuallySetCustomerNumber"),
             "manuallySetContractNumber": obj.get("manuallySetContractNumber")
         })
         return _obj
-
-

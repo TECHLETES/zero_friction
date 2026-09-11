@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**start_date** | **datetime** |  | [optional] 
-**product_id** | **str** |  | [optional] 
-**parameter** | [**UpdateContractProductParameter**](UpdateContractProductParameter.md) |  | [optional] 
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetContractsQueryParams**](GetContractsQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetContractsQueryParams**](GetContractsQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
+**start_date** | **datetime** |  | [optional]
+**product_id** | **str** |  | [optional]
+**parameter** | [**UpdateContractProductParameter**](UpdateContractProductParameter.md) |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ bulk_update_contract_product_request_dict = bulk_update_contract_product_request
 bulk_update_contract_product_request_from_dict = BulkUpdateContractProductRequest.from_dict(bulk_update_contract_product_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

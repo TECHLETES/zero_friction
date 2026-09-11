@@ -83,5 +83,3 @@ class EntityAttachmentGroupOverviewCountDTO(BaseModel):
             "all": obj.get("all")
         })
         return _obj
-
-

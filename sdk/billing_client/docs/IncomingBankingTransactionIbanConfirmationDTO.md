@@ -1,13 +1,12 @@
 # IncomingBankingTransactionIbanConfirmationDTO
 
-Represents an IBAN confirmation associated with an incoming banking transaction.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** | The unique identifier of the customer. | [optional] 
-**iban** | **str** | The International Bank Account Number (IBAN) being confirmed. | [optional] 
+**customer_id** | **str** |  | [optional]
+**iban** | **str** |  | [optional]
 
 ## Example
 
@@ -27,5 +26,3 @@ incoming_banking_transaction_iban_confirmation_dto_dict = incoming_banking_trans
 incoming_banking_transaction_iban_confirmation_dto_from_dict = IncomingBankingTransactionIbanConfirmationDTO.from_dict(incoming_banking_transaction_iban_confirmation_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

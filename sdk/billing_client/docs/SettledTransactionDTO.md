@@ -1,17 +1,16 @@
 # SettledTransactionDTO
 
-Represents a transaction that has been settled
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transaction_id** | **str** | Identifier of the transaction | [optional] 
-**settled_amount** | **float** | Amount that has been settled | [optional] 
-**transaction_reference_type** | [**TransactionReferenceType**](TransactionReferenceType.md) | Type of transaction reference | [optional] 
-**transaction_reference_id** | **str** | Identifier of the transaction reference | [optional] 
-**transaction_reference_display_name** | **str** | Display name of the transaction reference | [optional] 
-**transaction_date_time** | **datetime** | Date and time when the transaction occurred | [optional] 
+**transaction_id** | **str** |  |
+**settled_amount** | **float** |  | [optional]
+**transaction_reference_type** | [**TransactionReferenceType**](TransactionReferenceType.md) |  |
+**transaction_reference_id** | **str** |  |
+**transaction_reference_display_name** | **str** |  |
+**transaction_date_time** | **datetime** |  | [optional]
 
 ## Example
 
@@ -31,5 +30,3 @@ settled_transaction_dto_dict = settled_transaction_dto_instance.to_dict()
 settled_transaction_dto_from_dict = SettledTransactionDTO.from_dict(settled_transaction_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

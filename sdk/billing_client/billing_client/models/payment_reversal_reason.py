@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PaymentReversalReason(str, Enum):
     """
-    PaymentReversalReason
+    Possible values: 'manualreverse', 'unpaiddirectdebit', 'reversalsepadirectdebit', 'rejectdomesticdirectdebit', 'unknownbankaccount', 'terminatedbankaccount', 'blockedbankaccount', 'unsupportedbankaccount', 'invalidsequencetype', 'insufficientfunds', 'invalidmandate', 'debtordeceased', 'refusalbydebtor', 'refusalotherreason', 'maximumamountperiodreached'
     """
 
     """
@@ -46,5 +46,3 @@ class PaymentReversalReason(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of PaymentReversalReason from a JSON string"""
         return cls(json.loads(json_str))
-
-

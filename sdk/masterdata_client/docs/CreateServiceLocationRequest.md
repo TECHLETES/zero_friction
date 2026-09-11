@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
-**external_id** | **str** |  | [optional] 
-**product_id** | **str** |  | [optional] 
-**services** | [**List[CreateServiceRequest]**](CreateServiceRequest.md) |  | [optional] 
-**management_relations** | [**List[ManagementRelationRequest]**](ManagementRelationRequest.md) |  | [optional] 
+**address** | [**AddressDTO**](AddressDTO.md) |  |
+**external_id** | **str** |  | [optional]
+**product_id** | **str** |  | [optional]
+**services** | [**List[CreateServiceRequest]**](CreateServiceRequest.md) |  |
+**management_relations** | [**List[ManagementRelationRequest]**](ManagementRelationRequest.md) |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ create_service_location_request_dict = create_service_location_request_instance.
 create_service_location_request_from_dict = CreateServiceLocationRequest.from_dict(create_service_location_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -95,5 +95,3 @@ class BillingItemReference(BaseModel):
             "billingItemName": obj.get("billingItemName")
         })
         return _obj
-
-

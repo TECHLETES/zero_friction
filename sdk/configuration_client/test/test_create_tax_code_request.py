@@ -36,15 +36,18 @@ class TestCreateTaxCodeRequest(unittest.TestCase):
         if include_optional:
             return CreateTaxCodeRequest(
                 name = '',
+                accounting_code_id = '',
                 rates = [
                     configuration_client.models.create_tax_code_rate_request.CreateTaxCodeRateRequest(
-                        rate = 1.337, 
-                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                        rate = 1.337,
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        date_range = configuration_client.models.date_range.dateRange(), )
                     ]
             )
         else:
             return CreateTaxCodeRequest(
+                name = '',
         )
         """
 

@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data_type** | [**DataType**](DataType.md) |  | [optional] 
-**value** | **str** |  | [optional] 
-**capitalize** | **bool** |  | [optional] 
+**data_type** | [**DataType**](DataType.md) |  | [optional]
+**value** | **str** |  | [optional]
+**capitalize** | **bool** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ localised_error_dto_message_value_dict = localised_error_dto_message_value_insta
 localised_error_dto_message_value_from_dict = LocalisedErrorDTOMessageValue.from_dict(localised_error_dto_message_value_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

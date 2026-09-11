@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PortalPageIdentifier(str, Enum):
     """
-    PortalPageIdentifier
+    Possible values: 'startpage', 'login', 'register', 'movein', 'moveout', 'consumptions', 'invoices', 'mydetails', 'overview', 'forgotpassword', 'transactions'
     """
 
     """
@@ -36,10 +36,9 @@ class PortalPageIdentifier(str, Enum):
     MYDETAILS = 'mydetails'
     OVERVIEW = 'overview'
     FORGOTPASSWORD = 'forgotpassword'
+    TRANSACTIONS = 'transactions'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of PortalPageIdentifier from a JSON string"""
         return cls(json.loads(json_str))
-
-

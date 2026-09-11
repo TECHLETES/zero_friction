@@ -5,15 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**external_channel_identifier** | **str** |  | [optional] 
-**complete** | **bool** |  | [optional] 
-**user_id** | **str** |  | [optional] 
-**production_day** | **int** |  | [optional] 
-**production_day_start_utc** | **datetime** |  | [optional] 
-**production_day_end_utc** | **datetime** |  | [optional] 
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
-**value** | **float** |  | [optional] 
+**external_channel_identifier** | **str** |  | [optional]
+**complete** | **bool** |  | [optional]
+**user_id** | **str** |  | [optional]
+**production_day** | **int** |  | [optional]
+**production_day_start_utc** | **datetime** |  | [optional]
+**production_day_end_utc** | **datetime** |  | [optional]
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**value** | **float** |  | [optional]
+**time_of_use** | **str** |  | [optional]
 
 ## Example
 
@@ -33,5 +34,3 @@ flat_paged_consumption_dto_dict = flat_paged_consumption_dto_instance.to_dict()
 flat_paged_consumption_dto_from_dict = FlatPagedConsumptionDTO.from_dict(flat_paged_consumption_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

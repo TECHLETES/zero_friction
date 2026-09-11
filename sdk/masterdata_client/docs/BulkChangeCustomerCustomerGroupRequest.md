@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_group_id** | **str** |  | [optional] 
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetCustomersQueryParams**](GetCustomersQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetCustomersQueryParams**](GetCustomersQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
+**customer_group_id** | **str** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ bulk_change_customer_customer_group_request_dict = bulk_change_customer_customer
 bulk_change_customer_customer_group_request_from_dict = BulkChangeCustomerCustomerGroupRequest.from_dict(bulk_change_customer_customer_group_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

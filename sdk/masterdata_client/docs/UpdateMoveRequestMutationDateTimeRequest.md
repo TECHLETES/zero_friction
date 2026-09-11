@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mutation_date_time** | **datetime** |  | [optional] 
+**mutation_date_time** | **datetime** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ update_move_request_mutation_date_time_request_dict = update_move_request_mutati
 update_move_request_mutation_date_time_request_from_dict = UpdateMoveRequestMutationDateTimeRequest.from_dict(update_move_request_mutation_date_time_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

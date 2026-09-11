@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pdf_template** | [**CollectionPdfTemplateRequest**](CollectionPdfTemplateRequest.md) |  | [optional] 
-**email_template** | [**CollectionEmailTemplateRequest**](CollectionEmailTemplateRequest.md) |  | [optional] 
+**pdf_template** | [**CollectionPdfTemplateRequest**](CollectionPdfTemplateRequest.md) |  |
+**email_template** | [**CollectionEmailTemplateRequest**](CollectionEmailTemplateRequest.md) |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ change_collection_scenario_request_dict = change_collection_scenario_request_ins
 change_collection_scenario_request_from_dict = ChangeCollectionScenarioRequest.from_dict(change_collection_scenario_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

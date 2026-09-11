@@ -5,11 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**type** | [**PropertyGroupType**](PropertyGroupType.md) |  | [optional] 
-**address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
-**management_relations** | [**List[ManagementRelationRequest]**](ManagementRelationRequest.md) |  | [optional] 
-**service_locations** | **List[str]** |  | [optional] 
+**name** | **str** |  |
+**type** | [**PropertyGroupType**](PropertyGroupType.md) |  |
+**address** | [**AddressDTO**](AddressDTO.md) |  |
+**management_relations** | [**List[ManagementRelationRequest]**](ManagementRelationRequest.md) |  | [optional]
+**service_locations** | **List[str]** |  | [optional]
+**cost_center_id** | **str** |  | [optional]
+**property_group_billing_configuration** | [**CreatePropertyGroupBillingConfigurationRequest**](CreatePropertyGroupBillingConfigurationRequest.md) |  | [optional]
+**property_group_prepayment_configuration** | [**CreatePropertyGroupPrepaymentConfigurationRequest**](CreatePropertyGroupPrepaymentConfigurationRequest.md) |  | [optional]
 
 ## Example
 
@@ -29,5 +32,3 @@ create_property_group_request_dict = create_property_group_request_instance.to_d
 create_property_group_request_from_dict = CreatePropertyGroupRequest.from_dict(create_property_group_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

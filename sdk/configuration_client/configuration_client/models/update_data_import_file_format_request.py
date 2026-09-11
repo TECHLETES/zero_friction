@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from configuration_client.models.base_data_import_settings_dto import BaseDataImportSettingsDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,10 +27,10 @@ class UpdateDataImportFileFormatRequest(BaseModel):
     """
     UpdateDataImportFileFormatRequest
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    description: Optional[StrictStr] = None
+    name: Optional[StrictStr]
+    description: Optional[StrictStr]
     is_built_in: Optional[StrictBool] = Field(default=None, alias="isBuiltIn")
-    settings: Optional[Dict[str, Any]] = None
+    settings: Optional[BaseDataImportSettingsDTO]
     __properties: ClassVar[List[str]] = ["name", "description", "isBuiltIn", "settings"]
 
     model_config = ConfigDict(
@@ -71,6 +72,9 @@ class UpdateDataImportFileFormatRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of settings
+        if self.settings:
+            _dict['settings'] = self.settings.to_dict()
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -101,8 +105,6 @@ class UpdateDataImportFileFormatRequest(BaseModel):
             "name": obj.get("name"),
             "description": obj.get("description"),
             "isBuiltIn": obj.get("isBuiltIn"),
-            "settings": obj.get("settings")
+            "settings": BaseDataImportSettingsDTO.from_dict(obj["settings"]) if obj.get("settings") is not None else None
         })
         return _obj
-
-

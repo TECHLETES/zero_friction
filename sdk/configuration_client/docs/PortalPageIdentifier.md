@@ -1,5 +1,6 @@
 # PortalPageIdentifier
 
+Possible values: 'startpage', 'login', 'register', 'movein', 'moveout', 'consumptions', 'invoices', 'mydetails', 'overview', 'forgotpassword', 'transactions'
 
 ## Enum
 
@@ -23,6 +24,6 @@
 
 * `FORGOTPASSWORD` (value: `'forgotpassword'`)
 
+* `TRANSACTIONS` (value: `'transactions'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

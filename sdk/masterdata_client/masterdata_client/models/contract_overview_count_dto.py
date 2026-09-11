@@ -89,5 +89,3 @@ class ContractOverviewCountDTO(BaseModel):
             "blocked": obj.get("blocked")
         })
         return _obj
-
-

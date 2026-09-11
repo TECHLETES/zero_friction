@@ -37,16 +37,17 @@ class TestBulkDeleteOutgoingMutationRequest(unittest.TestCase):
             return BulkDeleteOutgoingMutationRequest(
                 only_validate = True,
                 var_query_params = billing_client.models.get_outgoing_mutations_query_params.GetOutgoingMutationsQueryParams(
-                    flex_search = '', 
+                    outgoing_banking_transaction_id = '',
+                    status = '',
+                    reference_type = '',
+                    flex_search = '',
                     include_only_ids = [
                         ''
-                        ], 
+                        ],
                     exclude_ids = [
                         ''
-                        ], 
-                    outgoing_banking_transaction_id = '', 
-                    status = '', 
-                    reference_type = '', ),
+                        ],
+                    page_size = 56, ),
                 quick_filter = ''
             )
         else:

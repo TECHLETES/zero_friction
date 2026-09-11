@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class IncomingMutationType(str, Enum):
     """
-    IncomingMutationType
+    Possible values: 'incomingtransfer', 'outgoingtransfer', 'paymentrequestreversal', 'refundreversal', 'unknown', 'paymentrequesttransactionconfirmation', 'paymentrequestmutationconfirmation', 'refundtransactionconfirmation', 'refundmutationconfirmation', 'requestconfirmation', 'refundconfirmation'
     """
 
     """
@@ -42,5 +42,3 @@ class IncomingMutationType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of IncomingMutationType from a JSON string"""
         return cls(json.loads(json_str))
-
-

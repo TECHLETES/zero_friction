@@ -35,49 +35,74 @@ class TestPortalSettingsDTO(unittest.TestCase):
         model = PortalSettingsDTO()
         if include_optional:
             return PortalSettingsDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
                 tenant_id = '',
                 primary_color = '',
                 secondary_color = '',
                 fav_icon = '',
                 logo = '',
+                pwa_install_icon192_cdn_url = '',
+                pwa_install_icon512_cdn_url = '',
+                pwa_apple_touch_icon180_cdn_url = '',
+                persist_logo_from_organization = True,
+                persist_color_from_organization = True,
                 contact = configuration_client.models.portal_organisation_contact_settings_dto.PortalOrganisationContactSettingsDTO(
-                    email_address = '', 
-                    contact_url = '', 
-                    telephone_number = '', 
+                    email_address = '',
+                    contact_url = '',
+                    telephone_number = '',
                     sepa_mandate_terms_and_conditions_urls = {
                         'key' : ''
-                        }, 
+                        },
                     terms_and_conditions_urls = {
                         'key' : ''
                         }, ),
                 portal_public_urls = [
                     ''
                     ],
+                portal_host_names = [
+                    configuration_client.models.portal_host_name_settings_dto.PortalHostNameSettingsDTO(
+                        domain_name = '',
+                        is_active = True,
+                        c_name_status = 'validating',
+                        c_name_value = '',
+                        txt_record_value = '',
+                        txt_record_status = 'validating',
+                        txt_record_host_name = '', )
+                    ],
                 billing_settings = configuration_client.models.portal_billing_settings_dto.PortalBillingSettingsDTO(
-                    allow_customer_to_change_advance_amount = True, 
-                    hide_invoice_section = True, ),
+                    allow_customer_to_change_advance_amount = True,
+                    allow_customer_to_change_invoice_address = True,
+                    hide_invoice_section = True,
+                    hide_payment_reference = True,
+                    require_birth_date_for_persons = True, ),
+                move_in_move_out_settings = configuration_client.models.portal_move_in_move_out_settings_dto.PortalMoveInMoveOutSettingsDTO(
+                    is_disabled = True, ),
+                self_service_options = configuration_client.models.portal_self_service_options_dto.PortalSelfServiceOptionsDTO(
+                    allow_edit_communication_details = True,
+                    allow_edit_personal_information = True, ),
                 advance_change_limit = configuration_client.models.portal_advance_change_limit_dto.PortalAdvanceChangeLimitDTO(
-                    range_min = 1.337, 
-                    range_max = 1.337, 
-                    type = null, ),
+                    range_min = 1.337,
+                    range_max = 1.337,
+                    type = 'fixed', ),
+                show_vko = True,
                 is_enabled = True,
                 page_notifications = [
                     configuration_client.models.portal_page_notification_dto.PortalPageNotificationDTO(
-                        page_identifier = null, 
-                        notification_type = null, 
+                        page_identifier = 'startpage',
+                        notification_type = 'neutral',
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                         translated_content = {
                             'key' : ''
                             }, )
-                    ]
+                    ],
+                pwa_enabled = True,
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return PortalSettingsDTO(

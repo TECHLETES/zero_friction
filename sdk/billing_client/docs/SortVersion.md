@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**full_version** | **int** |  | [optional] 
-**sort_id** | **str** |  | [optional] 
+**full_version** | **int** |  |
+**sort_id** | **str** |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ sort_version_dict = sort_version_instance.to_dict()
 sort_version_from_dict = SortVersion.from_dict(sort_version_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

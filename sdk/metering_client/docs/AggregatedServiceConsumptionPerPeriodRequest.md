@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_location_ids** | **List[str]** |  | [optional] 
-**group_by_period** | [**AggregationFrequency**](AggregationFrequency.md) |  | [optional] 
+**service_location_ids** | **List[str]** |  |
+**group_by_period** | [**AggregationFrequency**](AggregationFrequency.md) |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ aggregated_service_consumption_per_period_request_dict = aggregated_service_cons
 aggregated_service_consumption_per_period_request_from_dict = AggregatedServiceConsumptionPerPeriodRequest.from_dict(aggregated_service_consumption_per_period_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

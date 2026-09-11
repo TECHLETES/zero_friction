@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ProductItemPeriodicityType(str, Enum):
     """
-    ProductItemPeriodicityType
+    Possible values: 'regular', 'onmovein', 'onmoveout', 'fixedamount', 'fixedduration'
     """
 
     """
@@ -36,5 +36,3 @@ class ProductItemPeriodicityType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ProductItemPeriodicityType from a JSON string"""
         return cls(json.loads(json_str))
-
-

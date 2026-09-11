@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**product_id** | **str** |  | [optional] 
-**billing_tariff_ids** | **List[str]** |  | [optional] 
+**product_id** | **str** |  | [optional]
+**billing_tariff_ids** | **List[str]** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ delete_billing_tariff_tree_request_dict = delete_billing_tariff_tree_request_ins
 delete_billing_tariff_tree_request_from_dict = DeleteBillingTariffTreeRequest.from_dict(delete_billing_tariff_tree_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

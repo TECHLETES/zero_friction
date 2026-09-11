@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] [readonly] 
-**billing_item_id** | **str** |  | [optional] 
-**product_id** | **str** |  | [optional] 
-**activity_period** | [**DateRange**](DateRange.md) |  | [optional] 
-**currently_active** | **bool** |  | [optional] 
-**nodes** | [**List[BillingTariffNodeDTO]**](BillingTariffNodeDTO.md) |  | [optional] 
+**id** | **str** |  | [optional]
+**billing_item_id** | **str** |  | [optional]
+**product_id** | **str** |  | [optional]
+**activity_period** | [**DateRange**](DateRange.md) |  | [optional]
+**currently_active** | **bool** |  | [optional]
+**nodes** | [**List[BillingTariffNodeDTO]**](BillingTariffNodeDTO.md) |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ billing_tariff_tree_dto_dict = billing_tariff_tree_dto_instance.to_dict()
 billing_tariff_tree_dto_from_dict = BillingTariffTreeDTO.from_dict(billing_tariff_tree_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

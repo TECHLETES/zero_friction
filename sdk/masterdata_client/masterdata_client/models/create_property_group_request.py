@@ -20,6 +20,8 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from masterdata_client.models.address_dto import AddressDTO
+from masterdata_client.models.create_property_group_billing_configuration_request import CreatePropertyGroupBillingConfigurationRequest
+from masterdata_client.models.create_property_group_prepayment_configuration_request import CreatePropertyGroupPrepaymentConfigurationRequest
 from masterdata_client.models.management_relation_request import ManagementRelationRequest
 from masterdata_client.models.property_group_type import PropertyGroupType
 from typing import Optional, Set
@@ -29,12 +31,15 @@ class CreatePropertyGroupRequest(BaseModel):
     """
     CreatePropertyGroupRequest
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    type: Optional[PropertyGroupType] = None
-    address: Optional[AddressDTO] = None
+    name: Optional[StrictStr]
+    type: PropertyGroupType
+    address: Optional[AddressDTO]
     management_relations: Optional[List[ManagementRelationRequest]] = Field(default=None, alias="managementRelations")
     service_locations: Optional[List[StrictStr]] = Field(default=None, alias="serviceLocations")
-    __properties: ClassVar[List[str]] = ["name", "type", "address", "managementRelations", "serviceLocations"]
+    cost_center_id: Optional[StrictStr] = Field(default=None, alias="costCenterId")
+    property_group_billing_configuration: Optional[CreatePropertyGroupBillingConfigurationRequest] = Field(default=None, alias="propertyGroupBillingConfiguration")
+    property_group_prepayment_configuration: Optional[CreatePropertyGroupPrepaymentConfigurationRequest] = Field(default=None, alias="propertyGroupPrepaymentConfiguration")
+    __properties: ClassVar[List[str]] = ["name", "type", "address", "managementRelations", "serviceLocations", "costCenterId", "propertyGroupBillingConfiguration", "propertyGroupPrepaymentConfiguration"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,15 +90,16 @@ class CreatePropertyGroupRequest(BaseModel):
                 if _item_management_relations:
                     _items.append(_item_management_relations.to_dict())
             _dict['managementRelations'] = _items
+        # override the default output from pydantic by calling `to_dict()` of property_group_billing_configuration
+        if self.property_group_billing_configuration:
+            _dict['propertyGroupBillingConfiguration'] = self.property_group_billing_configuration.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of property_group_prepayment_configuration
+        if self.property_group_prepayment_configuration:
+            _dict['propertyGroupPrepaymentConfiguration'] = self.property_group_prepayment_configuration.to_dict()
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
-
-        # set to None if type (nullable) is None
-        # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
 
         # set to None if address (nullable) is None
         # and model_fields_set contains the field
@@ -109,6 +115,21 @@ class CreatePropertyGroupRequest(BaseModel):
         # and model_fields_set contains the field
         if self.service_locations is None and "service_locations" in self.model_fields_set:
             _dict['serviceLocations'] = None
+
+        # set to None if cost_center_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.cost_center_id is None and "cost_center_id" in self.model_fields_set:
+            _dict['costCenterId'] = None
+
+        # set to None if property_group_billing_configuration (nullable) is None
+        # and model_fields_set contains the field
+        if self.property_group_billing_configuration is None and "property_group_billing_configuration" in self.model_fields_set:
+            _dict['propertyGroupBillingConfiguration'] = None
+
+        # set to None if property_group_prepayment_configuration (nullable) is None
+        # and model_fields_set contains the field
+        if self.property_group_prepayment_configuration is None and "property_group_prepayment_configuration" in self.model_fields_set:
+            _dict['propertyGroupPrepaymentConfiguration'] = None
 
         return _dict
 
@@ -126,8 +147,9 @@ class CreatePropertyGroupRequest(BaseModel):
             "type": obj.get("type"),
             "address": AddressDTO.from_dict(obj["address"]) if obj.get("address") is not None else None,
             "managementRelations": [ManagementRelationRequest.from_dict(_item) for _item in obj["managementRelations"]] if obj.get("managementRelations") is not None else None,
-            "serviceLocations": obj.get("serviceLocations")
+            "serviceLocations": obj.get("serviceLocations"),
+            "costCenterId": obj.get("costCenterId"),
+            "propertyGroupBillingConfiguration": CreatePropertyGroupBillingConfigurationRequest.from_dict(obj["propertyGroupBillingConfiguration"]) if obj.get("propertyGroupBillingConfiguration") is not None else None,
+            "propertyGroupPrepaymentConfiguration": CreatePropertyGroupPrepaymentConfigurationRequest.from_dict(obj["propertyGroupPrepaymentConfiguration"]) if obj.get("propertyGroupPrepaymentConfiguration") is not None else None
         })
         return _obj
-
-

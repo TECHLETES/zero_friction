@@ -19,16 +19,15 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from billing_client.models.culture_info import CultureInfo
 from typing import Optional, Set
 from typing_extensions import Self
 
 class GetPropertyGroupBillingConfigurationConsolidatedNotesToCustomerRequest(BaseModel):
     """
-    Represents a request to get consolidated notes to customer for property group billing configurations.  This DTO is used to retrieve combined notes that will be displayed to customers for multiple property groups.
+    GetPropertyGroupBillingConfigurationConsolidatedNotesToCustomerRequest
     """ # noqa: E501
-    property_group_ids: Optional[List[StrictStr]] = Field(default=None, description="List of property group IDs for which to retrieve consolidated notes.", alias="propertyGroupIds")
-    culture: Optional[CultureInfo] = Field(default=None, description="The culture to use for formatting the notes. If null, the system will use the default culture.")
+    property_group_ids: Optional[List[StrictStr]] = Field(default=None, alias="propertyGroupIds")
+    culture: Optional[StrictStr] = Field(default=None, description="Culture identifier (e.g., 'en-US', 'nl-NL')")
     __properties: ClassVar[List[str]] = ["propertyGroupIds", "culture"]
 
     model_config = ConfigDict(
@@ -75,11 +74,6 @@ class GetPropertyGroupBillingConfigurationConsolidatedNotesToCustomerRequest(Bas
         if self.property_group_ids is None and "property_group_ids" in self.model_fields_set:
             _dict['propertyGroupIds'] = None
 
-        # set to None if culture (nullable) is None
-        # and model_fields_set contains the field
-        if self.culture is None and "culture" in self.model_fields_set:
-            _dict['culture'] = None
-
         return _dict
 
     @classmethod
@@ -96,5 +90,3 @@ class GetPropertyGroupBillingConfigurationConsolidatedNotesToCustomerRequest(Bas
             "culture": obj.get("culture")
         })
         return _obj
-
-

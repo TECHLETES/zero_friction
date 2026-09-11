@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**min_supported_date_time** | **datetime** |  | [optional] [readonly] 
-**max_supported_date_time** | **datetime** |  | [optional] [readonly] 
-**algorithm_type** | [**CalendarAlgorithmType**](CalendarAlgorithmType.md) |  | [optional] [readonly] 
-**is_read_only** | **bool** |  | [optional] [readonly] 
-**eras** | **List[int]** |  | [optional] [readonly] 
-**two_digit_year_max** | **int** |  | [optional] 
+**min_supported_date_time** | **datetime** |  | [optional]
+**max_supported_date_time** | **datetime** |  | [optional]
+**algorithm_type** | **int** |  | [optional]
+**is_read_only** | **bool** |  | [optional]
+**eras** | **List[int]** |  | [optional] [readonly]
+**two_digit_year_max** | **int** |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ calendar_dict = calendar_instance.to_dict()
 calendar_from_dict = Calendar.from_dict(calendar_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

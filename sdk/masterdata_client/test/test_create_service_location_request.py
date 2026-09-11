@@ -36,32 +36,47 @@ class TestCreateServiceLocationRequest(unittest.TestCase):
         if include_optional:
             return CreateServiceLocationRequest(
                 address = masterdata_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 external_id = '',
                 product_id = '',
                 services = [
                     masterdata_client.models.create_service_request.CreateServiceRequest(
-                        utility_type = null, 
-                        external_identifier = '', )
+                        utility_type = 'none', )
                     ],
                 management_relations = [
                     masterdata_client.models.management_relation_request.ManagementRelationRequest(
-                        customer_id = '', 
-                        management_relation_type = null, )
+                        customer_id = '',
+                        management_relation_type = 'owner', )
                     ]
             )
         else:
             return CreateServiceLocationRequest(
+                address = masterdata_client.models.address_dto.AddressDTO(
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
+                    line_two = '', ),
+                services = [
+                    masterdata_client.models.create_service_request.CreateServiceRequest(
+                        utility_type = 'none', )
+                    ],
         )
         """
 

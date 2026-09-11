@@ -1,13 +1,13 @@
 # AddCustomerBankAccountActiveMandateRequest
 
-Represents the mandate information for a customer's bank account.  This DTO contains details about the mandate that authorizes direct debit transactions.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**MandateType**](MandateType.md) | The type of mandate (e.g., CORE, B2B).  Currently only CORE mandates are supported. | [optional] 
-**signed_date_time** | **datetime** | The date and time when the mandate was signed by the customer. | [optional] 
+**type** | [**MandateType**](MandateType.md) |  |
+**signed_date_time** | **datetime** |  | [optional]
+**company_bank_account_id** | **str** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ add_customer_bank_account_active_mandate_request_dict = add_customer_bank_accoun
 add_customer_bank_account_active_mandate_request_from_dict = AddCustomerBankAccountActiveMandateRequest.from_dict(add_customer_bank_account_active_mandate_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

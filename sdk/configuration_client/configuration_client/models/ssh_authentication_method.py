@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class SshAuthenticationMethod(str, Enum):
     """
-    SshAuthenticationMethod
+    Possible values: 'password', 'privatekey'
     """
 
     """
@@ -33,5 +33,3 @@ class SshAuthenticationMethod(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SshAuthenticationMethod from a JSON string"""
         return cls(json.loads(json_str))
-
-

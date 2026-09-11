@@ -235,8 +235,9 @@ class ApiClient:
             # use server/host defined in path or operation instead
             url = _host + resource_path
 
-        if ('api-version', '1.0') not in query_params:
-            query_params.append(('api-version', '1.0'))
+        # Always target the documented API version.
+        if ("api-version", "1.0") not in query_params:
+            query_params.append(("api-version", "1.0"))
 
         # query parameters
         if query_params:

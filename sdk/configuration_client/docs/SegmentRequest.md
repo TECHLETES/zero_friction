@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**segment_type** | [**NumberSequenceSegmentType**](NumberSequenceSegmentType.md) |  | [optional] 
-**segment_lookup_values** | **Dict[str, Optional[str]]** |  | [optional] 
+**segment_type** | [**NumberSequenceSegmentType**](NumberSequenceSegmentType.md) |  |
+**segment_lookup_values** | **Dict[str, str]** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ segment_request_dict = segment_request_instance.to_dict()
 segment_request_from_dict = SegmentRequest.from_dict(segment_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

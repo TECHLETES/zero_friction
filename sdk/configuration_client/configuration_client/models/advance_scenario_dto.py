@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.advance_email_template_dto import AdvanceEmailTemplateDTO
 from configuration_client.models.advance_pdf_template_dto import AdvancePdfTemplateDTO
@@ -33,7 +33,10 @@ class AdvanceScenarioDTO(BaseModel):
     """
     AdvanceScenarioDTO
     """ # noqa: E501
+    pdf_template: Optional[AdvancePdfTemplateDTO] = Field(default=None, alias="pdfTemplate")
+    email_template: Optional[AdvanceEmailTemplateDTO] = Field(default=None, alias="emailTemplate")
     default_communication_type: Optional[CommunicationType] = Field(default=None, alias="defaultCommunicationType")
+    auto_fallback_to_postal: Optional[StrictBool] = Field(default=None, alias="autoFallbackToPostal")
     translation_list_id: Optional[StrictStr] = Field(default=None, alias="translationListId")
     translation_list_history_id: Optional[StrictStr] = Field(default=None, alias="translationListHistoryId")
     data_type: Optional[TemplateObjectType] = Field(default=None, alias="dataType")
@@ -42,9 +45,7 @@ class AdvanceScenarioDTO(BaseModel):
     grouping_type: Optional[ScenarioGroupingType] = Field(default=None, alias="groupingType")
     entity_type: Optional[EntityTypeDTO] = Field(default=None, alias="entityType")
     available_communication_types: Optional[List[CommunicationType]] = Field(default=None, alias="availableCommunicationTypes")
-    pdf_template: Optional[AdvancePdfTemplateDTO] = Field(default=None, alias="pdfTemplate")
-    email_template: Optional[AdvanceEmailTemplateDTO] = Field(default=None, alias="emailTemplate")
-    __properties: ClassVar[List[str]] = ["defaultCommunicationType", "translationListId", "translationListHistoryId", "dataType", "entitySubjectType", "entitySubjectSubType", "groupingType", "entityType", "availableCommunicationTypes", "pdfTemplate", "emailTemplate"]
+    __properties: ClassVar[List[str]] = ["pdfTemplate", "emailTemplate", "defaultCommunicationType", "autoFallbackToPostal", "translationListId", "translationListHistoryId", "dataType", "entitySubjectType", "entitySubjectSubType", "groupingType", "entityType", "availableCommunicationTypes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,19 +86,24 @@ class AdvanceScenarioDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of entity_type
-        if self.entity_type:
-            _dict['entityType'] = self.entity_type.to_dict()
         # override the default output from pydantic by calling `to_dict()` of pdf_template
         if self.pdf_template:
             _dict['pdfTemplate'] = self.pdf_template.to_dict()
         # override the default output from pydantic by calling `to_dict()` of email_template
         if self.email_template:
             _dict['emailTemplate'] = self.email_template.to_dict()
-        # set to None if default_communication_type (nullable) is None
+        # override the default output from pydantic by calling `to_dict()` of entity_type
+        if self.entity_type:
+            _dict['entityType'] = self.entity_type.to_dict()
+        # set to None if pdf_template (nullable) is None
         # and model_fields_set contains the field
-        if self.default_communication_type is None and "default_communication_type" in self.model_fields_set:
-            _dict['defaultCommunicationType'] = None
+        if self.pdf_template is None and "pdf_template" in self.model_fields_set:
+            _dict['pdfTemplate'] = None
+
+        # set to None if email_template (nullable) is None
+        # and model_fields_set contains the field
+        if self.email_template is None and "email_template" in self.model_fields_set:
+            _dict['emailTemplate'] = None
 
         # set to None if translation_list_id (nullable) is None
         # and model_fields_set contains the field
@@ -109,25 +115,10 @@ class AdvanceScenarioDTO(BaseModel):
         if self.translation_list_history_id is None and "translation_list_history_id" in self.model_fields_set:
             _dict['translationListHistoryId'] = None
 
-        # set to None if data_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.data_type is None and "data_type" in self.model_fields_set:
-            _dict['dataType'] = None
-
-        # set to None if entity_subject_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_subject_type is None and "entity_subject_type" in self.model_fields_set:
-            _dict['entitySubjectType'] = None
-
         # set to None if entity_subject_sub_type (nullable) is None
         # and model_fields_set contains the field
         if self.entity_subject_sub_type is None and "entity_subject_sub_type" in self.model_fields_set:
             _dict['entitySubjectSubType'] = None
-
-        # set to None if grouping_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.grouping_type is None and "grouping_type" in self.model_fields_set:
-            _dict['groupingType'] = None
 
         # set to None if entity_type (nullable) is None
         # and model_fields_set contains the field
@@ -138,16 +129,6 @@ class AdvanceScenarioDTO(BaseModel):
         # and model_fields_set contains the field
         if self.available_communication_types is None and "available_communication_types" in self.model_fields_set:
             _dict['availableCommunicationTypes'] = None
-
-        # set to None if pdf_template (nullable) is None
-        # and model_fields_set contains the field
-        if self.pdf_template is None and "pdf_template" in self.model_fields_set:
-            _dict['pdfTemplate'] = None
-
-        # set to None if email_template (nullable) is None
-        # and model_fields_set contains the field
-        if self.email_template is None and "email_template" in self.model_fields_set:
-            _dict['emailTemplate'] = None
 
         return _dict
 
@@ -161,7 +142,10 @@ class AdvanceScenarioDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "pdfTemplate": AdvancePdfTemplateDTO.from_dict(obj["pdfTemplate"]) if obj.get("pdfTemplate") is not None else None,
+            "emailTemplate": AdvanceEmailTemplateDTO.from_dict(obj["emailTemplate"]) if obj.get("emailTemplate") is not None else None,
             "defaultCommunicationType": obj.get("defaultCommunicationType"),
+            "autoFallbackToPostal": obj.get("autoFallbackToPostal"),
             "translationListId": obj.get("translationListId"),
             "translationListHistoryId": obj.get("translationListHistoryId"),
             "dataType": obj.get("dataType"),
@@ -169,10 +153,6 @@ class AdvanceScenarioDTO(BaseModel):
             "entitySubjectSubType": obj.get("entitySubjectSubType"),
             "groupingType": obj.get("groupingType"),
             "entityType": EntityTypeDTO.from_dict(obj["entityType"]) if obj.get("entityType") is not None else None,
-            "availableCommunicationTypes": obj.get("availableCommunicationTypes"),
-            "pdfTemplate": AdvancePdfTemplateDTO.from_dict(obj["pdfTemplate"]) if obj.get("pdfTemplate") is not None else None,
-            "emailTemplate": AdvanceEmailTemplateDTO.from_dict(obj["emailTemplate"]) if obj.get("emailTemplate") is not None else None
+            "availableCommunicationTypes": obj.get("availableCommunicationTypes")
         })
         return _obj
-
-

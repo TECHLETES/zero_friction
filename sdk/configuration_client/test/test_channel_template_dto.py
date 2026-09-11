@@ -42,7 +42,10 @@ class TestChannelTemplateDTO(unittest.TestCase):
                 direction = 'offtake',
                 unit_of_measure = 'none',
                 time_of_use = '',
-                description = ''
+                description = '',
+                reset_day = 56,
+                reset_month = 56,
+                reset_hour = 56
             )
         else:
             return ChannelTemplateDTO(

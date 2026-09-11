@@ -18,11 +18,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from communication_client.models.communication_entry_status import CommunicationEntryStatus
 from communication_client.models.communication_type import CommunicationType
 from communication_client.models.entity_subject_type import EntitySubjectType
-from communication_client.models.error_code import ErrorCode
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,16 +30,22 @@ class GetCommunicationEntriesQueryParams(BaseModel):
     """
     GetCommunicationEntriesQueryParams
     """ # noqa: E501
+    communication_type: Optional[CommunicationType] = Field(default=None, alias="communicationType")
+    exclude_communication_type: Optional[CommunicationType] = Field(default=None, alias="excludeCommunicationType")
+    exclude_communication_entry_status: Optional[CommunicationEntryStatus] = Field(default=None, alias="excludeCommunicationEntryStatus")
+    communication_entry_status: Optional[CommunicationEntryStatus] = Field(default=None, alias="communicationEntryStatus")
+    entity_subject_type: Optional[EntitySubjectType] = Field(default=None, alias="entitySubjectType")
+    subject_sub_type: Optional[StrictStr] = Field(default=None, alias="subjectSubType")
+    entity_subject_id: Optional[StrictStr] = Field(default=None, alias="entitySubjectId")
+    failure_reason_code: Optional[StrictInt] = Field(default=None, alias="failureReasonCode")
+    sent_start_date_time_offset: Optional[datetime] = Field(default=None, alias="sentStartDateTimeOffset")
+    sent_end_date_time_offset: Optional[datetime] = Field(default=None, alias="sentEndDateTimeOffset")
+    customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
     flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
     include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
     exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
-    communication_type: Optional[CommunicationType] = Field(default=None, alias="communicationType")
-    entity_subject_type: Optional[EntitySubjectType] = Field(default=None, alias="entitySubjectType")
-    entity_subject_id: Optional[StrictStr] = Field(default=None, alias="entitySubjectId")
-    failure_reason_code: Optional[ErrorCode] = Field(default=None, alias="failureReasonCode")
-    sent_start_date_time_offset: Optional[datetime] = Field(default=None, alias="sentStartDateTimeOffset")
-    sent_end_date_time_offset: Optional[datetime] = Field(default=None, alias="sentEndDateTimeOffset")
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "communicationType", "entitySubjectType", "entitySubjectId", "failureReasonCode", "sentStartDateTimeOffset", "sentEndDateTimeOffset"]
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["communicationType", "excludeCommunicationType", "excludeCommunicationEntryStatus", "communicationEntryStatus", "entitySubjectType", "subjectSubType", "entitySubjectId", "failureReasonCode", "sentStartDateTimeOffset", "sentEndDateTimeOffset", "customerId", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,40 +86,40 @@ class GetCommunicationEntriesQueryParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if flex_search (nullable) is None
-        # and model_fields_set contains the field
-        if self.flex_search is None and "flex_search" in self.model_fields_set:
-            _dict['flexSearch'] = None
-
-        # set to None if include_only_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
         # set to None if communication_type (nullable) is None
         # and model_fields_set contains the field
         if self.communication_type is None and "communication_type" in self.model_fields_set:
             _dict['communicationType'] = None
+
+        # set to None if exclude_communication_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.exclude_communication_type is None and "exclude_communication_type" in self.model_fields_set:
+            _dict['excludeCommunicationType'] = None
+
+        # set to None if exclude_communication_entry_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.exclude_communication_entry_status is None and "exclude_communication_entry_status" in self.model_fields_set:
+            _dict['excludeCommunicationEntryStatus'] = None
+
+        # set to None if communication_entry_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.communication_entry_status is None and "communication_entry_status" in self.model_fields_set:
+            _dict['communicationEntryStatus'] = None
 
         # set to None if entity_subject_type (nullable) is None
         # and model_fields_set contains the field
         if self.entity_subject_type is None and "entity_subject_type" in self.model_fields_set:
             _dict['entitySubjectType'] = None
 
+        # set to None if subject_sub_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.subject_sub_type is None and "subject_sub_type" in self.model_fields_set:
+            _dict['subjectSubType'] = None
+
         # set to None if entity_subject_id (nullable) is None
         # and model_fields_set contains the field
         if self.entity_subject_id is None and "entity_subject_id" in self.model_fields_set:
             _dict['entitySubjectId'] = None
-
-        # set to None if failure_reason_code (nullable) is None
-        # and model_fields_set contains the field
-        if self.failure_reason_code is None and "failure_reason_code" in self.model_fields_set:
-            _dict['failureReasonCode'] = None
 
         # set to None if sent_start_date_time_offset (nullable) is None
         # and model_fields_set contains the field
@@ -124,6 +130,21 @@ class GetCommunicationEntriesQueryParams(BaseModel):
         # and model_fields_set contains the field
         if self.sent_end_date_time_offset is None and "sent_end_date_time_offset" in self.model_fields_set:
             _dict['sentEndDateTimeOffset'] = None
+
+        # set to None if customer_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.customer_id is None and "customer_id" in self.model_fields_set:
+            _dict['customerId'] = None
+
+        # set to None if flex_search (nullable) is None
+        # and model_fields_set contains the field
+        if self.flex_search is None and "flex_search" in self.model_fields_set:
+            _dict['flexSearch'] = None
+
+        # set to None if page_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
 
         return _dict
 
@@ -137,16 +158,20 @@ class GetCommunicationEntriesQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
             "communicationType": obj.get("communicationType"),
+            "excludeCommunicationType": obj.get("excludeCommunicationType"),
+            "excludeCommunicationEntryStatus": obj.get("excludeCommunicationEntryStatus"),
+            "communicationEntryStatus": obj.get("communicationEntryStatus"),
             "entitySubjectType": obj.get("entitySubjectType"),
+            "subjectSubType": obj.get("subjectSubType"),
             "entitySubjectId": obj.get("entitySubjectId"),
             "failureReasonCode": obj.get("failureReasonCode"),
             "sentStartDateTimeOffset": obj.get("sentStartDateTimeOffset"),
-            "sentEndDateTimeOffset": obj.get("sentEndDateTimeOffset")
+            "sentEndDateTimeOffset": obj.get("sentEndDateTimeOffset"),
+            "customerId": obj.get("customerId"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
-
-

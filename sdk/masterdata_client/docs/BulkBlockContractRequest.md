@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**comment** | **str** |  | [optional] 
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetContractsQueryParams**](GetContractsQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetContractsQueryParams**](GetContractsQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
+**comment** | **str** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ bulk_block_contract_request_dict = bulk_block_contract_request_instance.to_dict(
 bulk_block_contract_request_from_dict = BulkBlockContractRequest.from_dict(bulk_block_contract_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

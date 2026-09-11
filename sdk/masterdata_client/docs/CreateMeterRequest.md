@@ -5,16 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**serial_number** | **str** |  | [optional] 
-**meter_type** | [**MeterType**](MeterType.md) |  | [optional] 
-**meter_tag** | **str** |  | [optional] 
-**model_id** | **str** |  | [optional] 
-**mutation_date_time** | **datetime** |  | [optional] 
-**channels** | [**List[ExternalChannelRequest]**](ExternalChannelRequest.md) |  | [optional] 
-**reading_frequency** | [**MeterReadingFrequency**](MeterReadingFrequency.md) |  | [optional] 
-**next_expected_reading_date** | **datetime** |  | [optional] 
-**properties** | **object** |  | [optional] 
-**parent_relation** | [**CreateMeterParentRelationRequest**](CreateMeterParentRelationRequest.md) |  | [optional] 
+**serial_number** | **str** |  |
+**meter_type** | [**MeterType**](MeterType.md) |  |
+**meter_tag** | **str** |  | [optional]
+**model_id** | **str** |  | [optional]
+**mutation_date_time** | **datetime** |  |
+**channels** | [**List[ExternalChannelRequest]**](ExternalChannelRequest.md) |  |
+**reading_frequency** | [**MeterReadingFrequency**](MeterReadingFrequency.md) |  | [optional]
+**next_expected_reading_date** | **datetime** |  | [optional]
+**parent_relation** | [**CreateMeterParentRelationRequest**](CreateMeterParentRelationRequest.md) |  | [optional]
 
 ## Example
 
@@ -34,5 +33,3 @@ create_meter_request_dict = create_meter_request_instance.to_dict()
 create_meter_request_from_dict = CreateMeterRequest.from_dict(create_meter_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

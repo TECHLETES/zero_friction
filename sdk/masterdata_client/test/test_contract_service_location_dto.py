@@ -37,33 +37,47 @@ class TestContractServiceLocationDTO(unittest.TestCase):
             return ContractServiceLocationDTO(
                 id = '',
                 address = masterdata_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 property_group_id = '',
                 services = [
                     masterdata_client.models.contracted_service_dto.ContractedServiceDTO(
-                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        utility_type = null, 
-                        external_identifier = '', 
-                        is_consumption_based = True, 
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        utility_type = 'none',
+                        external_identifier = '',
+                        is_consumption_based = True,
                         estimated_consumptions = [
                             masterdata_client.models.contracted_service_estimated_consumption_dto.ContractedServiceEstimatedConsumptionDTO(
-                                consumer_group_id = '', 
-                                value = 1.337, 
-                                unit_of_measure = null, 
-                                metering_type = null, 
-                                is_manual_entry = True, )
+                                consumer_group_id = '',
+                                consumption_quantity = 1.337,
+                                unit_of_measure = 'none',
+                                metering_type = 'none',
+                                direction = 'offtake', )
                             ], )
+                    ],
+                prepayment_device_coverage_references = [
+                    masterdata_client.models.prepayment_device_coverage_reference_dto.PrepaymentDeviceCoverageReferenceDTO(
+                        prepayment_account = masterdata_client.models.prepayment_account_reference_dto.PrepaymentAccountReferenceDTO(
+                            id = '',
+                            number = '', ),
+                        prepayment_device = masterdata_client.models.prepayment_device_reference_dto.PrepaymentDeviceReferenceDTO(
+                            id = '',
+                            serial_number = '', ),
+                        services = [
+                            'none'
+                            ],
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ]
             )
         else:

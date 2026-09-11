@@ -85,5 +85,3 @@ class MeteringIssueOverviewCountDTO(BaseModel):
             "unresolved": obj.get("unresolved")
         })
         return _obj
-
-

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**attachment_ids** | **List[str]** |  | [optional] 
-**resulting_file_name** | **str** |  | [optional] 
+**attachment_ids** | **List[str]** |  |
+**resulting_file_name** | **str** |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ merge_pdf_request_dict = merge_pdf_request_instance.to_dict()
 merge_pdf_request_from_dict = MergePdfRequest.from_dict(merge_pdf_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

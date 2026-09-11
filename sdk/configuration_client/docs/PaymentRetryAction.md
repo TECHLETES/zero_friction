@@ -1,5 +1,6 @@
 # PaymentRetryAction
 
+Possible values: 'retryonfixedday', 'daysafterreversal'
 
 ## Enum
 
@@ -8,5 +9,3 @@
 * `DAYSAFTERREVERSAL` (value: `'daysafterreversal'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

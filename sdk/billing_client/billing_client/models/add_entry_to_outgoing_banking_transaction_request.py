@@ -24,14 +24,14 @@ from typing_extensions import Self
 
 class AddEntryToOutgoingBankingTransactionRequest(BaseModel):
     """
-    Represents a request to add a new entry to an outgoing banking transaction.  This DTO supports two types of entries: invoice-based or manual entries with custom details.
+    AddEntryToOutgoingBankingTransactionRequest
     """ # noqa: E501
-    invoice_id: Optional[StrictStr] = Field(default=None, description="The ID of the invoice to be included in the transaction.  This field is required if no manual entry details are provided.", alias="invoiceId")
-    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount for the manual entry.  Required when no invoice ID is provided.")
-    payment_reference: Optional[StrictStr] = Field(default=None, description="The payment reference text for the manual entry.  Required when no invoice ID is provided.", alias="paymentReference")
-    iban: Optional[StrictStr] = Field(default=None, description="The IBAN (International Bank Account Number) for the manual entry.  Required when no invoice ID is provided.")
-    customer_id: Optional[StrictStr] = Field(default=None, description="The ID of the customer associated with the manual entry.  Required when no invoice ID is provided.", alias="customerId")
-    transaction_id: Optional[StrictStr] = Field(default=None, description="The ID of the transaction to add the entry to.", alias="transactionId")
+    invoice_id: Optional[StrictStr] = Field(alias="invoiceId")
+    amount: Union[StrictFloat, StrictInt]
+    payment_reference: Optional[StrictStr] = Field(alias="paymentReference")
+    iban: Optional[StrictStr] = None
+    customer_id: Optional[StrictStr] = Field(alias="customerId")
+    transaction_id: Optional[StrictStr] = Field(default=None, alias="transactionId")
     __properties: ClassVar[List[str]] = ["invoiceId", "amount", "paymentReference", "iban", "customerId", "transactionId"]
 
     model_config = ConfigDict(
@@ -118,5 +118,3 @@ class AddEntryToOutgoingBankingTransactionRequest(BaseModel):
             "transactionId": obj.get("transactionId")
         })
         return _obj
-
-

@@ -1,13 +1,12 @@
 # InputMissingDetailsDTO
 
-Represents details about missing input data
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reason** | [**InputMissingReason**](InputMissingReason.md) | Reason why input data is missing | [optional] 
-**extra_info** | **str** | Additional information about the missing input | [optional] 
+**reason** | [**InputMissingReason**](InputMissingReason.md) |  | [optional]
+**extra_info** | **str** |  | [optional]
 
 ## Example
 
@@ -27,5 +26,3 @@ input_missing_details_dto_dict = input_missing_details_dto_instance.to_dict()
 input_missing_details_dto_from_dict = InputMissingDetailsDTO.from_dict(input_missing_details_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

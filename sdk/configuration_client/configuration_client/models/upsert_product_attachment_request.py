@@ -31,11 +31,11 @@ class UpsertProductAttachmentRequest(BaseModel):
     """ # noqa: E501
     product_attachment_id: Optional[StrictStr] = Field(default=None, alias="productAttachmentId")
     include_in_welcome_email: Optional[StrictBool] = Field(default=None, alias="includeInWelcomeEmail")
-    visibility: Optional[AttachmentVisibility] = None
+    visibility: AttachmentVisibility
     approval_required: Optional[StrictBool] = Field(default=None, alias="approvalRequired")
     valid_from: Optional[datetime] = Field(default=None, alias="validFrom")
-    valid_until: Optional[datetime] = Field(default=None, alias="validUntil")
-    attachment_files: Optional[List[UpsertProductAttachmentFileRequest]] = Field(default=None, alias="attachmentFiles")
+    valid_until: datetime = Field(alias="validUntil")
+    attachment_files: Optional[List[UpsertProductAttachmentFileRequest]] = Field(alias="attachmentFiles")
     __properties: ClassVar[List[str]] = ["productAttachmentId", "includeInWelcomeEmail", "visibility", "approvalRequired", "validFrom", "validUntil", "attachmentFiles"]
 
     model_config = ConfigDict(
@@ -89,11 +89,6 @@ class UpsertProductAttachmentRequest(BaseModel):
         if self.product_attachment_id is None and "product_attachment_id" in self.model_fields_set:
             _dict['productAttachmentId'] = None
 
-        # set to None if visibility (nullable) is None
-        # and model_fields_set contains the field
-        if self.visibility is None and "visibility" in self.model_fields_set:
-            _dict['visibility'] = None
-
         # set to None if attachment_files (nullable) is None
         # and model_fields_set contains the field
         if self.attachment_files is None and "attachment_files" in self.model_fields_set:
@@ -120,5 +115,3 @@ class UpsertProductAttachmentRequest(BaseModel):
             "attachmentFiles": [UpsertProductAttachmentFileRequest.from_dict(_item) for _item in obj["attachmentFiles"]] if obj.get("attachmentFiles") is not None else None
         })
         return _obj
-
-

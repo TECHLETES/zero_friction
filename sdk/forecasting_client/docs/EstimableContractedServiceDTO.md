@@ -5,18 +5,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_location_id** | **str** |  | [optional] 
-**property_group_id** | **str** |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
-**external_identifier** | **str** |  | [optional] 
-**consumer_group_id** | **str** |  | [optional] 
-**supply_start_date_time** | **datetime** |  | [optional] 
-**supply_end_date_time** | **datetime** |  | [optional] 
-**supply_start_year** | **int** |  | [optional] 
-**supply_end_year** | **int** |  | [optional] 
-**estimated_annual_volumes** | [**List[EstimatedAnnualVolumeDTO]**](EstimatedAnnualVolumeDTO.md) |  | [optional] 
+**service_location_id** | **str** |  | [optional]
+**property_group_id** | **str** |  | [optional]
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional]
+**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional]
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional]
+**external_identifier** | **str** |  | [optional]
+**consumer_group_id** | **str** |  | [optional]
+**supply_start_date_time** | **datetime** |  | [optional]
+**supply_end_date_time** | **datetime** |  | [optional]
+**supply_start_year** | **int** |  | [optional]
+**supply_end_year** | **int** |  | [optional]
+**estimated_annual_volumes** | [**List[EstimatedAnnualVolumeDTO]**](EstimatedAnnualVolumeDTO.md) |  | [optional]
 
 ## Example
 
@@ -36,5 +36,3 @@ estimable_contracted_service_dto_dict = estimable_contracted_service_dto_instanc
 estimable_contracted_service_dto_from_dict = EstimableContractedServiceDTO.from_dict(estimable_contracted_service_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

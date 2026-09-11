@@ -40,19 +40,19 @@ class TestMeterStatusHistoryDTO(unittest.TestCase):
                 meter_status = 'requested',
                 service_location_id = '',
                 installed_at_address = masterdata_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 property_group = masterdata_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
-                    id = '', 
+                    id = '',
                     name = '', )
             )
         else:

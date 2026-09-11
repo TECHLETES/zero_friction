@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**meter_id** | **str** |  | [optional] 
-**serial_number** | **str** |  | [optional] 
-**external_reference** | **str** |  | [optional] 
+**meter_id** | **str** |  |
+**serial_number** | **str** |  |
+**external_reference** | **str** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ meter_relation_dto_dict = meter_relation_dto_instance.to_dict()
 meter_relation_dto_from_dict = MeterRelationDTO.from_dict(meter_relation_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

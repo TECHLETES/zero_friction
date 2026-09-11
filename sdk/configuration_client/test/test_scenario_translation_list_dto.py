@@ -40,12 +40,12 @@ class TestScenarioTranslationListDTO(unittest.TestCase):
                 template_entity_sub_type = '',
                 scenario_translations = [
                     configuration_client.models.scenario_translation_dto.ScenarioTranslationDTO(
-                        name = '', 
-                        status = null, 
-                        has_default_translation = True, 
+                        name = '',
+                        status = 'defaulttranslation',
+                        has_default_translation = True,
                         translations = {
                             'key' : ''
-                            }, 
+                            },
                         use_cases = [
                             'pdf'
                             ], )

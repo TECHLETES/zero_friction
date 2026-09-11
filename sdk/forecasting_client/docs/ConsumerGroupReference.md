@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
-**code** | **str** |  | [optional] 
+**id** | **str** |  | [optional]
+**code** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ consumer_group_reference_dict = consumer_group_reference_instance.to_dict()
 consumer_group_reference_from_dict = ConsumerGroupReference.from_dict(consumer_group_reference_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

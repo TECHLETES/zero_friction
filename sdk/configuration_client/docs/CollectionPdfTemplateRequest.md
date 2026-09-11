@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**envelope_settings** | [**EnvelopeSettingsRequest**](EnvelopeSettingsRequest.md) |  | [optional] 
-**show_country** | **bool** |  | [optional] 
+**show_country** | **bool** |  | [optional]
+**envelope_settings** | [**EnvelopeSettingsRequest**](EnvelopeSettingsRequest.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ collection_pdf_template_request_dict = collection_pdf_template_request_instance.
 collection_pdf_template_request_from_dict = CollectionPdfTemplateRequest.from_dict(collection_pdf_template_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

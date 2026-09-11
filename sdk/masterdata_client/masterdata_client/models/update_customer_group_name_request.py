@@ -26,7 +26,7 @@ class UpdateCustomerGroupNameRequest(BaseModel):
     """
     UpdateCustomerGroupNameRequest
     """ # noqa: E501
-    name: Optional[StrictStr] = None
+    name: Optional[StrictStr]
     __properties: ClassVar[List[str]] = ["name"]
 
     model_config = ConfigDict(
@@ -88,5 +88,3 @@ class UpdateCustomerGroupNameRequest(BaseModel):
             "name": obj.get("name")
         })
         return _obj
-
-

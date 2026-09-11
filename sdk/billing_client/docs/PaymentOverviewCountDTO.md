@@ -1,13 +1,12 @@
 # PaymentOverviewCountDTO
 
-Provides an overview of payment counts by their status.  This DTO contains aggregated counts of payments in different states.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** | The total number of payments. | [optional] 
-**reversed** | **int** | The number of reversed payments. | [optional] 
+**all** | **int** |  | [optional]
+**reversed** | **int** |  | [optional]
 
 ## Example
 
@@ -27,5 +26,3 @@ payment_overview_count_dto_dict = payment_overview_count_dto_instance.to_dict()
 payment_overview_count_dto_from_dict = PaymentOverviewCountDTO.from_dict(payment_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

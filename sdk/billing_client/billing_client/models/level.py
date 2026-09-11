@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class Level(str, Enum):
     """
-    Level
+    Possible values: 'low', 'moderate', 'high'
     """
 
     """
@@ -34,5 +34,3 @@ class Level(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of Level from a JSON string"""
         return cls(json.loads(json_str))
-
-

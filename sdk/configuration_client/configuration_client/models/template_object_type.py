@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class TemplateObjectType(str, Enum):
     """
-    TemplateObjectType
+    Possible values: 'invoice', 'collectioncase', 'moverequest', 'contract', 'billingrelation', 'invoiceubl', 'portalcustomer', 'annualstatement', 'paymentplan', 'prepayment'
     """
 
     """
@@ -34,10 +34,10 @@ class TemplateObjectType(str, Enum):
     INVOICEUBL = 'invoiceubl'
     PORTALCUSTOMER = 'portalcustomer'
     ANNUALSTATEMENT = 'annualstatement'
+    PAYMENTPLAN = 'paymentplan'
+    PREPAYMENT = 'prepayment'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of TemplateObjectType from a JSON string"""
         return cls(json.loads(json_str))
-
-

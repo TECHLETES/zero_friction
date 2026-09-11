@@ -20,7 +20,6 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from billing_client.models.culture_info import CultureInfo
 from billing_client.models.customer_billing_settings_dto import CustomerBillingSettingsDTO
 from billing_client.models.customer_group_reference_dto import CustomerGroupReferenceDTO
 from billing_client.models.customer_type import CustomerType
@@ -32,31 +31,29 @@ from typing_extensions import Self
 
 class BillingCustomerDTO(BaseModel):
     """
-    Represents a billing customer with their associated settings and information.  This DTO contains all the necessary information about a customer's billing configuration,  including payment terms, property groups, and billing settings.
+    BillingCustomerDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
-    account_number: Optional[StrictStr] = Field(default=None, description="The unique account number assigned to the customer.", alias="accountNumber")
-    short_display_name: Optional[StrictStr] = Field(default=None, description="A shortened display name for the customer.", alias="shortDisplayName")
-    payment_terms_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the payment terms associated with the customer.", alias="paymentTermsId")
-    default_payment_method: Optional[PaymentMethod] = Field(default=None, description="The default payment method for the customer.", alias="defaultPaymentMethod")
-    customer_type: Optional[CustomerType] = Field(default=None, description="The type of customer.", alias="customerType")
-    customer_group: Optional[CustomerGroupReferenceDTO] = Field(default=None, description="Reference to the customer group this customer belongs to.", alias="customerGroup")
-    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, description="List of property groups associated with this customer.", alias="propertyGroups")
-    culture: Optional[CultureInfo] = Field(default=None, description="The culture settings for the customer.")
-    collection_flow_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the collection flow associated with the customer.", alias="collectionFlowId")
-    billing_settings: Optional[CustomerBillingSettingsDTO] = Field(default=None, description="The billing settings specific to this customer.", alias="billingSettings")
-    organization_number: Optional[StrictStr] = Field(default=None, description="The organization number of the customer.", alias="organizationNumber")
-    vat_number: Optional[StrictStr] = Field(default=None, description="The VAT number of the customer.", alias="vatNumber")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "accountNumber", "shortDisplayName", "paymentTermsId", "defaultPaymentMethod", "customerType", "customerGroup", "propertyGroups", "culture", "collectionFlowId", "billingSettings", "organizationNumber", "vatNumber"]
+    account_number: Optional[StrictStr] = Field(default=None, alias="accountNumber")
+    short_display_name: Optional[StrictStr] = Field(default=None, alias="shortDisplayName")
+    payment_terms_id: Optional[StrictStr] = Field(default=None, alias="paymentTermsId")
+    default_payment_method: Optional[PaymentMethod] = Field(default=None, alias="defaultPaymentMethod")
+    customer_type: Optional[CustomerType] = Field(default=None, alias="customerType")
+    customer_group: Optional[CustomerGroupReferenceDTO] = Field(default=None, alias="customerGroup")
+    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, alias="propertyGroups")
+    culture: Optional[StrictStr] = Field(default=None, description="Culture identifier (e.g., 'en-US', 'nl-NL')")
+    collection_flow_id: Optional[StrictStr] = Field(default=None, alias="collectionFlowId")
+    billing_settings: Optional[CustomerBillingSettingsDTO] = Field(default=None, alias="billingSettings")
+    organization_number: Optional[StrictStr] = Field(default=None, alias="organizationNumber")
+    vat_number: Optional[StrictStr] = Field(default=None, alias="vatNumber")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["accountNumber", "shortDisplayName", "paymentTermsId", "defaultPaymentMethod", "customerType", "customerGroup", "propertyGroups", "culture", "collectionFlowId", "billingSettings", "organizationNumber", "vatNumber", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,10 +85,8 @@ class BillingCustomerDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -112,31 +107,6 @@ class BillingCustomerDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of billing_settings
         if self.billing_settings:
             _dict['billingSettings'] = self.billing_settings.to_dict()
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
         # set to None if account_number (nullable) is None
         # and model_fields_set contains the field
         if self.account_number is None and "account_number" in self.model_fields_set:
@@ -152,16 +122,6 @@ class BillingCustomerDTO(BaseModel):
         if self.payment_terms_id is None and "payment_terms_id" in self.model_fields_set:
             _dict['paymentTermsId'] = None
 
-        # set to None if default_payment_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.default_payment_method is None and "default_payment_method" in self.model_fields_set:
-            _dict['defaultPaymentMethod'] = None
-
-        # set to None if customer_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_type is None and "customer_type" in self.model_fields_set:
-            _dict['customerType'] = None
-
         # set to None if customer_group (nullable) is None
         # and model_fields_set contains the field
         if self.customer_group is None and "customer_group" in self.model_fields_set:
@@ -171,11 +131,6 @@ class BillingCustomerDTO(BaseModel):
         # and model_fields_set contains the field
         if self.property_groups is None and "property_groups" in self.model_fields_set:
             _dict['propertyGroups'] = None
-
-        # set to None if culture (nullable) is None
-        # and model_fields_set contains the field
-        if self.culture is None and "culture" in self.model_fields_set:
-            _dict['culture'] = None
 
         # set to None if collection_flow_id (nullable) is None
         # and model_fields_set contains the field
@@ -209,16 +164,6 @@ class BillingCustomerDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "accountNumber": obj.get("accountNumber"),
             "shortDisplayName": obj.get("shortDisplayName"),
             "paymentTermsId": obj.get("paymentTermsId"),
@@ -230,8 +175,14 @@ class BillingCustomerDTO(BaseModel):
             "collectionFlowId": obj.get("collectionFlowId"),
             "billingSettings": CustomerBillingSettingsDTO.from_dict(obj["billingSettings"]) if obj.get("billingSettings") is not None else None,
             "organizationNumber": obj.get("organizationNumber"),
-            "vatNumber": obj.get("vatNumber")
+            "vatNumber": obj.get("vatNumber"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
-
-

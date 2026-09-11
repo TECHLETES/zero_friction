@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ConsumptionOrigin(str, Enum):
     """
-    ConsumptionOrigin
+    Possible values: 'actual', 'manual', 'frompreviousyear', 'fromconsumergroup', 'forecast', 'estimatedmeasurement'
     """
 
     """
@@ -31,10 +31,9 @@ class ConsumptionOrigin(str, Enum):
     FROMPREVIOUSYEAR = 'frompreviousyear'
     FROMCONSUMERGROUP = 'fromconsumergroup'
     FORECAST = 'forecast'
+    ESTIMATEDMEASUREMENT = 'estimatedmeasurement'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ConsumptionOrigin from a JSON string"""
         return cls(json.loads(json_str))
-
-

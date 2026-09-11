@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MutingRuleTimePeriod(str, Enum):
     """
-    MutingRuleTimePeriod
+    Possible values: 'day', 'week', 'month'
     """
 
     """
@@ -34,5 +34,3 @@ class MutingRuleTimePeriod(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of MutingRuleTimePeriod from a JSON string"""
         return cls(json.loads(json_str))
-
-

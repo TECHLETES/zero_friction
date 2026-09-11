@@ -41,6 +41,9 @@ class TestUpdatePropertyGroupForecastingConfigConsumerGroupsRequest(unittest.Tes
             )
         else:
             return UpdatePropertyGroupForecastingConfigConsumerGroupsRequest(
+                consumer_groups = {
+                    'key' : ''
+                    },
         )
         """
 

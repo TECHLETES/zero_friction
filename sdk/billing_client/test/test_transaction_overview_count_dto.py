@@ -39,7 +39,9 @@ class TestTransactionOverviewCountDTO(unittest.TestCase):
                 to_pay = 56,
                 to_refund = 56,
                 only_open = 56,
-                only_closed = 56
+                only_closed = 56,
+                exported = 56,
+                failed_exporting = 56
             )
         else:
             return TransactionOverviewCountDTO(

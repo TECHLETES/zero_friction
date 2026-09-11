@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_type** | [**InvoiceType**](InvoiceType.md) |  | [optional] 
-**communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
+**invoice_type** | [**InvoiceType**](InvoiceType.md) |  | [optional]
+**communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ customer_invoice_communication_preferences_request_dict = customer_invoice_commu
 customer_invoice_communication_preferences_request_from_dict = CustomerInvoiceCommunicationPreferencesRequest.from_dict(customer_invoice_communication_preferences_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -26,8 +26,8 @@ class ErrorCodeCount(BaseModel):
     """
     ErrorCodeCount
     """ # noqa: E501
-    error_code: Optional[StrictStr] = Field(default=None, alias="errorCode")
-    count: Optional[StrictInt] = None
+    error_code: Optional[StrictStr] = Field(alias="errorCode")
+    count: StrictInt
     __properties: ClassVar[List[str]] = ["errorCode", "count"]
 
     model_config = ConfigDict(
@@ -90,5 +90,3 @@ class ErrorCodeCount(BaseModel):
             "count": obj.get("count")
         })
         return _obj
-
-

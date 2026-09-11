@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
-**name** | **str** |  | [optional] 
+**id** | **str** |  | [optional]
+**name** | **str** |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ property_group_reference_dto_dict = property_group_reference_dto_instance.to_dic
 property_group_reference_dto_from_dict = PropertyGroupReferenceDTO.from_dict(property_group_reference_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

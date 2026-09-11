@@ -27,7 +27,7 @@ class UpdatePaymentDelayRequest(BaseModel):
     """
     UpdatePaymentDelayRequest
     """ # noqa: E501
-    payment_delay: Optional[PaymentDelay] = Field(default=None, alias="paymentDelay")
+    payment_delay: PaymentDelay = Field(alias="paymentDelay")
     value: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["paymentDelay", "value"]
 
@@ -70,11 +70,6 @@ class UpdatePaymentDelayRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if payment_delay (nullable) is None
-        # and model_fields_set contains the field
-        if self.payment_delay is None and "payment_delay" in self.model_fields_set:
-            _dict['paymentDelay'] = None
-
         return _dict
 
     @classmethod
@@ -91,5 +86,3 @@ class UpdatePaymentDelayRequest(BaseModel):
             "value": obj.get("value")
         })
         return _obj
-
-

@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entity_attachment_ids** | **List[str]** |  | [optional] 
-**customer_id** | **str** |  | [optional] 
-**culture** | [**CultureInfo**](CultureInfo.md) |  | [optional] 
+**entity_attachment_ids** | **List[str]** |  |
+**customer_id** | **str** |  | [optional]
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ download_entity_attachments_request_dict = download_entity_attachments_request_i
 download_entity_attachments_request_from_dict = DownloadEntityAttachmentsRequest.from_dict(download_entity_attachments_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

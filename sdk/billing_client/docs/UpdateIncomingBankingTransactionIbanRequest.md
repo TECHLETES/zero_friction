@@ -1,14 +1,13 @@
 # UpdateIncomingBankingTransactionIbanRequest
 
-Represents a request to update the IBAN associated with an incoming banking transaction.  This DTO is used to correct or update the bank account information for a transaction.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** | The ID of the customer associated with the transaction. | [optional] 
-**iban** | **str** | The new IBAN (International Bank Account Number) to be associated with the transaction. | [optional] 
-**confirm** | **bool** | Indicates whether the user confirms the IBAN update. | [optional] 
+**customer_id** | **str** |  |
+**iban** | **str** |  |
+**confirm** | **bool** |  | [optional]
 
 ## Example
 
@@ -28,5 +27,3 @@ update_incoming_banking_transaction_iban_request_dict = update_incoming_banking_
 update_incoming_banking_transaction_iban_request_from_dict = UpdateIncomingBankingTransactionIbanRequest.from_dict(update_incoming_banking_transaction_iban_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

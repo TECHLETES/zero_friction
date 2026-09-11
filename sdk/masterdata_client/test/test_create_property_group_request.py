@@ -38,28 +38,56 @@ class TestCreatePropertyGroupRequest(unittest.TestCase):
                 name = '',
                 type = 'building',
                 address = masterdata_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 management_relations = [
                     masterdata_client.models.management_relation_request.ManagementRelationRequest(
-                        customer_id = '', 
-                        management_relation_type = null, )
+                        customer_id = '',
+                        management_relation_type = 'owner', )
                     ],
                 service_locations = [
                     ''
-                    ]
+                    ],
+                cost_center_id = '',
+                property_group_billing_configuration = masterdata_client.models.create_property_group_billing_configuration_request.CreatePropertyGroupBillingConfigurationRequest(
+                    company_bank_account_id = '',
+                    advance_frequency = 'none',
+                    invoice_frequency = 'monthly',
+                    invoice_day = 56,
+                    invoice_month = 56,
+                    product_id = '',
+                    payment_terms_id = '',
+                    time_of_use_calendar_ids = {
+                        'key' : ''
+                        }, ),
+                property_group_prepayment_configuration = masterdata_client.models.create_property_group_prepayment_configuration_request.CreatePropertyGroupPrepaymentConfigurationRequest(
+                    prepayment_profile_id = '', )
             )
         else:
             return CreatePropertyGroupRequest(
+                name = '',
+                type = 'building',
+                address = masterdata_client.models.address_dto.AddressDTO(
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
+                    line_two = '', ),
         )
         """
 

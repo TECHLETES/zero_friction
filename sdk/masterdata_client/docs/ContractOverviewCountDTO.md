@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** |  | [optional] 
-**draft** | **int** |  | [optional] 
-**ongoing** | **int** |  | [optional] 
-**blocked** | **int** |  | [optional] 
+**all** | **int** |  | [optional]
+**draft** | **int** |  | [optional]
+**ongoing** | **int** |  | [optional]
+**blocked** | **int** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ contract_overview_count_dto_dict = contract_overview_count_dto_instance.to_dict(
 contract_overview_count_dto_from_dict = ContractOverviewCountDTO.from_dict(contract_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

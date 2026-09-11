@@ -121,5 +121,3 @@ class MoveRequestContractDetailsDTO(BaseModel):
             "customerAccountNumber": obj.get("customerAccountNumber")
         })
         return _obj
-
-

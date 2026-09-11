@@ -43,6 +43,9 @@ class TestCreateConsumerGroupRequest(unittest.TestCase):
             )
         else:
             return CreateConsumerGroupRequest(
+                code = '',
+                utility_type = 'none',
+                unit_of_measure = 'none',
         )
         """
 

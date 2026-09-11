@@ -24,9 +24,9 @@ from typing_extensions import Self
 
 class ExportUblValidateRequest(BaseModel):
     """
-    Represents a request to validate invoices in UBL format.  This DTO is used to validate multiple invoices against UBL (Universal Business Language) format specifications.
+    ExportUblValidateRequest
     """ # noqa: E501
-    invoice_ids: Optional[List[StrictStr]] = Field(default=None, description="List of invoice IDs to be validated against UBL format specifications.", alias="invoiceIds")
+    invoice_ids: Optional[List[StrictStr]] = Field(alias="invoiceIds")
     __properties: ClassVar[List[str]] = ["invoiceIds"]
 
     model_config = ConfigDict(
@@ -88,5 +88,3 @@ class ExportUblValidateRequest(BaseModel):
             "invoiceIds": obj.get("invoiceIds")
         })
         return _obj
-
-

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**meter_id** | **str** |  | [optional] 
-**serial_number** | **str** |  | [optional] 
+**meter_id** | **str** |  | [optional]
+**serial_number** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ meter_reference_dict = meter_reference_instance.to_dict()
 meter_reference_from_dict = MeterReference.from_dict(meter_reference_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

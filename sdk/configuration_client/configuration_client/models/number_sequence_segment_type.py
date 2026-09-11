@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class NumberSequenceSegmentType(str, Enum):
     """
-    NumberSequenceSegmentType
+    Possible values: 'constant', 'year', 'invoicetype', 'date'
     """
 
     """
@@ -35,5 +35,3 @@ class NumberSequenceSegmentType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of NumberSequenceSegmentType from a JSON string"""
         return cls(json.loads(json_str))
-
-

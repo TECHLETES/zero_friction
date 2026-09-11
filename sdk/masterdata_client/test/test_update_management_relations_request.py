@@ -37,8 +37,8 @@ class TestUpdateManagementRelationsRequest(unittest.TestCase):
             return UpdateManagementRelationsRequest(
                 management_relations = [
                     masterdata_client.models.management_relation_request.ManagementRelationRequest(
-                        customer_id = '', 
-                        management_relation_type = null, )
+                        customer_id = '',
+                        management_relation_type = 'owner', )
                     ]
             )
         else:

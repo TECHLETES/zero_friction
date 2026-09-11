@@ -1,13 +1,12 @@
 # InvoiceCommunicationPreferenceDTO
 
-Represents invoice communication preferences
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_type** | [**InvoiceType**](InvoiceType.md) | Type of invoice | [optional] 
-**communication_type** | [**CommunicationType**](CommunicationType.md) | Preferred communication type for invoices | [optional] 
+**invoice_type** | [**InvoiceType**](InvoiceType.md) |  | [optional]
+**communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional]
 
 ## Example
 
@@ -27,5 +26,3 @@ invoice_communication_preference_dto_dict = invoice_communication_preference_dto
 invoice_communication_preference_dto_from_dict = InvoiceCommunicationPreferenceDTO.from_dict(invoice_communication_preference_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

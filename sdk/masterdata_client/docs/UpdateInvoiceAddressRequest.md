@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
+**invoice_address** | [**AddressDTO**](AddressDTO.md) |  |
+**changed_by_portal** | **bool** |  | [optional]
 
 ## Example
 
@@ -25,5 +26,3 @@ update_invoice_address_request_dict = update_invoice_address_request_instance.to
 update_invoice_address_request_from_dict = UpdateInvoiceAddressRequest.from_dict(update_invoice_address_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

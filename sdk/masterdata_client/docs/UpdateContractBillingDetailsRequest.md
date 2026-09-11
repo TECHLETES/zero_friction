@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payment_terms_id** | **str** |  | [optional] 
+**payment_terms_id** | **str** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ update_contract_billing_details_request_dict = update_contract_billing_details_r
 update_contract_billing_details_request_from_dict = UpdateContractBillingDetailsRequest.from_dict(update_contract_billing_details_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

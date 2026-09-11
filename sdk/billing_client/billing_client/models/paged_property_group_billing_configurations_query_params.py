@@ -68,11 +68,6 @@ class PagedPropertyGroupBillingConfigurationsQueryParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if property_group_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.property_group_ids is None and "property_group_ids" in self.model_fields_set:
-            _dict['propertyGroupIds'] = None
-
         return _dict
 
     @classmethod
@@ -88,5 +83,3 @@ class PagedPropertyGroupBillingConfigurationsQueryParams(BaseModel):
             "propertyGroupIds": obj.get("propertyGroupIds")
         })
         return _obj
-
-

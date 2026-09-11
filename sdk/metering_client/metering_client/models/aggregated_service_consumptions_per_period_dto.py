@@ -73,16 +73,6 @@ class AggregatedServiceConsumptionsPerPeriodDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
-
         return _dict
 
     @classmethod
@@ -101,5 +91,3 @@ class AggregatedServiceConsumptionsPerPeriodDTO(BaseModel):
             "period": obj.get("period")
         })
         return _obj
-
-

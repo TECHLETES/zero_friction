@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class DataImportCommunicationType(str, Enum):
     """
-    DataImportCommunicationType
+    Possible values: 'sftp', 'ftp', 'ftps', 'inboundemail', 'manualupload', 'configuredplugin', 'inboundapi'
     """
 
     """
@@ -38,5 +38,3 @@ class DataImportCommunicationType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of DataImportCommunicationType from a JSON string"""
         return cls(json.loads(json_str))
-
-

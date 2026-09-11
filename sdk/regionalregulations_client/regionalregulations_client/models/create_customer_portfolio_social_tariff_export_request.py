@@ -88,5 +88,3 @@ class CreateCustomerPortfolioSocialTariffExportRequest(BaseModel):
             "onlyMutations": obj.get("onlyMutations")
         })
         return _obj
-
-

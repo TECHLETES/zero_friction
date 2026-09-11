@@ -1,5 +1,6 @@
 # OutgoingBankingTransactionStatus
 
+Possible values: 'created', 'closed', 'toconfirmbybank', 'cancelled', 'readytosend', 'resolveissues', 'dateexpired', 'partiallyclosed', 'sending'
 
 ## Enum
 
@@ -19,6 +20,6 @@
 
 * `PARTIALLYCLOSED` (value: `'partiallyclosed'`)
 
+* `SENDING` (value: `'sending'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -1,16 +1,15 @@
 # IncomingBankingTransactionOverviewCountDTO
 
-Provides an overview of incoming banking transaction counts by their status.  This DTO contains aggregated counts of transactions in different states.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** | The total number of incoming banking transactions. | [optional] 
-**ready** | **int** | The number of transactions that are ready for processing. | [optional] 
-**resolve_issues** | **int** | The number of transactions that have issues requiring resolution. | [optional] 
-**closed** | **int** | The number of closed transactions. | [optional] 
-**attention** | **int** | The number of transactions that require attention. | [optional] 
+**all** | **int** |  | [optional]
+**ready** | **int** |  | [optional]
+**resolve_issues** | **int** |  | [optional]
+**closed** | **int** |  | [optional]
+**attention** | **int** |  | [optional]
 
 ## Example
 
@@ -30,5 +29,3 @@ incoming_banking_transaction_overview_count_dto_dict = incoming_banking_transact
 incoming_banking_transaction_overview_count_dto_from_dict = IncomingBankingTransactionOverviewCountDTO.from_dict(incoming_banking_transaction_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

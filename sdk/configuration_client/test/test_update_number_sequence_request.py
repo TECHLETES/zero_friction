@@ -38,7 +38,7 @@ class TestUpdateNumberSequenceRequest(unittest.TestCase):
                 last_value = 56,
                 segments = [
                     configuration_client.models.segment_request.SegmentRequest(
-                        segment_type = null, 
+                        segment_type = 'constant',
                         segment_lookup_values = {
                             'key' : ''
                             }, )
@@ -48,6 +48,9 @@ class TestUpdateNumberSequenceRequest(unittest.TestCase):
             )
         else:
             return UpdateNumberSequenceRequest(
+                last_value = 56,
+                format_string = '',
+                reference_entity = 'customer',
         )
         """
 

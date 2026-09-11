@@ -1,5 +1,6 @@
 # MoveRequestStatus
 
+Possible values: 'new', 'pendingatcustomer', 'pendingatsupplier', 'processed', 'rejected', 'gatheringdata'
 
 ## Enum
 
@@ -16,5 +17,3 @@
 * `GATHERINGDATA` (value: `'gatheringdata'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

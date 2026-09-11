@@ -1,30 +1,34 @@
 # EstimatedInvoiceLineDTO
 
-Base class for estimated invoice line items.  This abstract class defines the common properties for all types of estimated invoice lines.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**calculation_type** | [**BillingCalculationType**](BillingCalculationType.md) | The type of calculation used for this line item. | [optional] 
-**billing_item_reference** | [**BillingItemReference**](BillingItemReference.md) | Reference to the billing item associated with this line. | [optional] 
-**start_date_time** | **datetime** | The start date and time of the billing period. | [optional] 
-**end_date_time** | **datetime** | The end date and time of the billing period. | [optional] 
-**amount_excl_vat** | **float** | The amount excluding VAT. | [optional] 
-**vat** | **float** | The VAT amount. | [optional] 
-**amount_incl_vat** | **float** | The amount including VAT. | [optional] 
-**quantity** | **float** | The quantity being billed. | [optional] 
-**raw_quantity** | **float** | The raw quantity before any adjustments. | [optional] 
-**unit_price** | **float** | The unit price for this line item. | [optional] 
-**vat_rate** | **float** | The VAT rate applied to this line item. | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) | The unit of measure for the quantity. | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) | The type of utility being billed. | [optional] 
-**service_location_id** | **str** | The unique identifier of the service location. | [optional] 
-**billing_tariff_accuracy** | [**PeriodForEntityDTO**](PeriodForEntityDTO.md) | The accuracy period information for the billing tariff. | [optional] 
-**cost_component_accuracies** | [**List[PeriodForEntityDTO]**](PeriodForEntityDTO.md) | List of accuracy periods for cost components. | [optional] 
-**tax_accuracy** | [**PeriodForEntityDTO**](PeriodForEntityDTO.md) | The accuracy period information for tax calculations. | [optional] 
-**accuracy** | [**Level**](Level.md) | The overall accuracy level of this line item. | [optional] 
-**quantity_accuracy** | [**Level**](Level.md) | The accuracy level of the quantity calculation. | [optional] 
+**type** | **str** |  |
+**consumption_origin_shares** | [**List[ConsumptionOriginShareDTO]**](ConsumptionOriginShareDTO.md) |  | [optional]
+**calculation_type** | [**BillingCalculationType**](BillingCalculationType.md) |  | [optional]
+**billing_item_reference** | [**BillingItemReference**](BillingItemReference.md) |  | [optional]
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**amount_excl_vat** | **float** |  | [optional]
+**vat** | **float** |  | [optional]
+**amount_incl_vat** | **float** |  | [optional]
+**quantity** | **float** |  | [optional]
+**raw_quantity** | **float** |  | [optional]
+**unit_price** | **float** |  | [optional]
+**vat_rate** | **float** |  | [optional]
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional]
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional]
+**service_location_id** | **str** |  | [optional]
+**billing_tariff_accuracy** | [**PeriodForEntityDTO**](PeriodForEntityDTO.md) |  | [optional]
+**cost_component_accuracies** | [**List[PeriodForEntityDTO]**](PeriodForEntityDTO.md) |  | [optional]
+**tax_accuracy** | [**PeriodForEntityDTO**](PeriodForEntityDTO.md) |  | [optional]
+**accuracy** | [**Level**](Level.md) |  | [optional]
+**quantity_accuracy** | [**Level**](Level.md) |  | [optional]
+**custom_entity_property_entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional]
+**custom_entity_property_entity_subject_id** | **str** |  | [optional]
+**custom_entity_property_accuracy** | [**PeriodForEntityDTO**](PeriodForEntityDTO.md) |  | [optional]
 
 ## Example
 
@@ -44,5 +48,3 @@ estimated_invoice_line_dto_dict = estimated_invoice_line_dto_instance.to_dict()
 estimated_invoice_line_dto_from_dict = EstimatedInvoiceLineDTO.from_dict(estimated_invoice_line_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

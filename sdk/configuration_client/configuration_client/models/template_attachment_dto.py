@@ -102,5 +102,3 @@ class TemplateAttachmentDTO(BaseModel):
             "fileName": obj.get("fileName")
         })
         return _obj
-
-

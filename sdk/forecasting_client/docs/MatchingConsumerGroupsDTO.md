@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**suggestion** | [**ConsumerGroupSuggestion**](ConsumerGroupSuggestion.md) |  | [optional] 
-**consumer_group** | [**ConsumerGroupDTO**](ConsumerGroupDTO.md) |  | [optional] 
+**suggestion** | [**ConsumerGroupSuggestion**](ConsumerGroupSuggestion.md) |  | [optional]
+**consumer_group** | [**ConsumerGroupDTO**](ConsumerGroupDTO.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ matching_consumer_groups_dto_dict = matching_consumer_groups_dto_instance.to_dic
 matching_consumer_groups_dto_from_dict = MatchingConsumerGroupsDTO.from_dict(matching_consumer_groups_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

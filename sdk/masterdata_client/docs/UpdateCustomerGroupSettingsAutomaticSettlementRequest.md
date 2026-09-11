@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**automatic_settlement** | **bool** |  | [optional] 
+**automatic_settlement** | **bool** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ update_customer_group_settings_automatic_settlement_request_dict = update_custom
 update_customer_group_settings_automatic_settlement_request_from_dict = UpdateCustomerGroupSettingsAutomaticSettlementRequest.from_dict(update_customer_group_settings_automatic_settlement_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

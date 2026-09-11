@@ -5,10 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bic** | **str** |  | [optional] 
-**account_holder** | **str** |  | [optional] 
-**sepa_creditor_id** | **str** |  | [optional] 
-**is_default** | **bool** |  | [optional] 
+**account_holder** | **str** |  |
+**sepa_creditor_id** | **str** |  |
+**accounting_code_id_for_processed_transactions** | **str** |  | [optional]
+**accounting_code_id_for_ignored_transactions** | **str** |  | [optional]
+**is_default** | **bool** |  | [optional]
+**iban** | **str** |  | [optional]
+**bic** | **str** |  |
 
 ## Example
 
@@ -28,5 +31,3 @@ update_bank_account_request_dict = update_bank_account_request_instance.to_dict(
 update_bank_account_request_from_dict = UpdateBankAccountRequest.from_dict(update_bank_account_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

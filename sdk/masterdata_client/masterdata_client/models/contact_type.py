@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ContactType(str, Enum):
     """
-    ContactType
+    Possible values: 'email', 'telephone', 'mobiletelephone', 'website'
     """
 
     """
@@ -35,5 +35,3 @@ class ContactType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ContactType from a JSON string"""
         return cls(json.loads(json_str))
-
-

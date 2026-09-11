@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **str** |  | [optional] 
+**message** | **str** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ ignore_metering_issue_request_dict = ignore_metering_issue_request_instance.to_d
 ignore_metering_issue_request_from_dict = IgnoreMeteringIssueRequest.from_dict(ignore_metering_issue_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

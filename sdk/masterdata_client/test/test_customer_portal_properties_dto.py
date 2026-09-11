@@ -38,7 +38,8 @@ class TestCustomerPortalPropertiesDTO(unittest.TestCase):
                 application_user_id = '',
                 confirm_account_token = '',
                 reset_password_token = '',
-                email = ''
+                email = '',
+                email_confirmed = True
             )
         else:
             return CustomerPortalPropertiesDTO(

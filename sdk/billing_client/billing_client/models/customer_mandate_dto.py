@@ -27,14 +27,15 @@ from typing_extensions import Self
 
 class CustomerMandateDTO(BaseModel):
     """
-    Represents a mandate associated with a customer's bank account.  This DTO contains information about the mandate's status, type, and relevant dates.
+    CustomerMandateDTO
     """ # noqa: E501
-    number: Optional[StrictStr] = Field(default=None, description="The unique mandate number.")
-    signed_date_time: Optional[datetime] = Field(default=None, description="The date and time when the mandate was signed.", alias="signedDateTime")
-    cancelled_date_time: Optional[datetime] = Field(default=None, description="The date and time when the mandate was cancelled, if applicable.", alias="cancelledDateTime")
-    type: Optional[MandateType] = Field(default=None, description="The type of mandate (e.g., SEPA, B2B).")
-    status: Optional[MandateStatus] = Field(default=None, description="The current status of the mandate.")
-    __properties: ClassVar[List[str]] = ["number", "signedDateTime", "cancelledDateTime", "type", "status"]
+    number: Optional[StrictStr] = None
+    signed_date_time: Optional[datetime] = Field(default=None, alias="signedDateTime")
+    cancelled_date_time: Optional[datetime] = Field(default=None, alias="cancelledDateTime")
+    type: Optional[MandateType] = None
+    status: Optional[MandateStatus] = None
+    company_bank_account_id: Optional[StrictStr] = Field(default=None, alias="companyBankAccountId")
+    __properties: ClassVar[List[str]] = ["number", "signedDateTime", "cancelledDateTime", "type", "status", "companyBankAccountId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,15 +81,10 @@ class CustomerMandateDTO(BaseModel):
         if self.number is None and "number" in self.model_fields_set:
             _dict['number'] = None
 
-        # set to None if type (nullable) is None
+        # set to None if company_bank_account_id (nullable) is None
         # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
-
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
+        if self.company_bank_account_id is None and "company_bank_account_id" in self.model_fields_set:
+            _dict['companyBankAccountId'] = None
 
         return _dict
 
@@ -106,8 +102,7 @@ class CustomerMandateDTO(BaseModel):
             "signedDateTime": obj.get("signedDateTime"),
             "cancelledDateTime": obj.get("cancelledDateTime"),
             "type": obj.get("type"),
-            "status": obj.get("status")
+            "status": obj.get("status"),
+            "companyBankAccountId": obj.get("companyBankAccountId")
         })
         return _obj
-
-

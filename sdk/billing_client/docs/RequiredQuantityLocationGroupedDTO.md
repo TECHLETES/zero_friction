@@ -1,13 +1,12 @@
 # RequiredQuantityLocationGroupedDTO
 
-Represents required quantities grouped by location
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_location_id** | **str** | Unique identifier of the service location | [optional] 
-**required_quantities** | [**List[RequiredQuantityDTO]**](RequiredQuantityDTO.md) | List of required quantities for this location | [optional] 
+**service_location_id** | **str** |  | [optional]
+**required_quantities** | [**List[RequiredQuantityDTO]**](RequiredQuantityDTO.md) |  | [optional]
 
 ## Example
 
@@ -27,5 +26,3 @@ required_quantity_location_grouped_dto_dict = required_quantity_location_grouped
 required_quantity_location_grouped_dto_from_dict = RequiredQuantityLocationGroupedDTO.from_dict(required_quantity_location_grouped_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -62,14 +62,8 @@ class CompareInfo(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "name",
-            "version",
-            "lcid",
         ])
 
         _dict = self.model_dump(
@@ -84,11 +78,6 @@ class CompareInfo(BaseModel):
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
-
-        # set to None if version (nullable) is None
-        # and model_fields_set contains the field
-        if self.version is None and "version" in self.model_fields_set:
-            _dict['version'] = None
 
         return _dict
 
@@ -107,5 +96,3 @@ class CompareInfo(BaseModel):
             "lcid": obj.get("lcid")
         })
         return _obj
-
-

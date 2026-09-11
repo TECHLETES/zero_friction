@@ -5,18 +5,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_location_id** | **str** |  | [optional] 
-**external_channel_identifier** | **str** |  | [optional] 
-**utility_type** | **str** |  | [optional] 
-**unit_of_measure** | **str** |  | [optional] 
-**direction** | **str** |  | [optional] 
-**production_day** | **int** |  | [optional] 
-**time_zone** | **str** |  | [optional] 
-**production_day_start_utc** | **datetime** |  | [optional] 
-**production_day_end_utc** | **datetime** |  | [optional] 
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
-**value** | **float** |  | [optional] 
+**service_location_id** | **str** |  | [optional]
+**external_channel_identifier** | **str** |  | [optional]
+**utility_type** | **str** |  | [optional]
+**unit_of_measure** | **str** |  | [optional]
+**direction** | **str** |  | [optional]
+**production_day** | **int** |  | [optional]
+**time_zone** | **str** |  | [optional]
+**production_day_start_utc** | **datetime** |  | [optional]
+**production_day_end_utc** | **datetime** |  | [optional]
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**value** | **float** |  | [optional]
 
 ## Example
 
@@ -36,5 +36,3 @@ flat_paged_service_consumption_dto_dict = flat_paged_service_consumption_dto_ins
 flat_paged_service_consumption_dto_from_dict = FlatPagedServiceConsumptionDTO.from_dict(flat_paged_service_consumption_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

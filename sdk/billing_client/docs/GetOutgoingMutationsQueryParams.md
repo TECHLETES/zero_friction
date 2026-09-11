@@ -5,12 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
-**outgoing_banking_transaction_id** | **str** |  | [optional] 
-**status** | **str** |  | [optional] 
-**reference_type** | **str** |  | [optional] 
+**outgoing_banking_transaction_id** | **str** |  | [optional]
+**status** | **str** |  | [optional]
+**reference_type** | **str** |  | [optional]
+**flex_search** | **str** |  | [optional]
+**include_only_ids** | **List[str]** |  | [optional]
+**exclude_ids** | **List[str]** |  | [optional]
+**page_size** | **int** |  | [optional]
 
 ## Example
 
@@ -30,5 +31,3 @@ get_outgoing_mutations_query_params_dict = get_outgoing_mutations_query_params_i
 get_outgoing_mutations_query_params_from_dict = GetOutgoingMutationsQueryParams.from_dict(get_outgoing_mutations_query_params_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

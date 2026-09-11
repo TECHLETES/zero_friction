@@ -20,22 +20,22 @@ from typing_extensions import Self
 
 class InvoiceStatus(str, Enum):
     """
-    InvoiceStatus
+    Possible values: 'created', 'approvalfailed', 'approvalinprogress', 'approved', 'settled', 'generated', 'generationfailed', 'regenerating'
     """
 
     """
     allowed enum values
     """
     CREATED = 'created'
+    APPROVALFAILED = 'approvalfailed'
     APPROVALINPROGRESS = 'approvalinprogress'
     APPROVED = 'approved'
     SETTLED = 'settled'
     GENERATED = 'generated'
     GENERATIONFAILED = 'generationfailed'
+    REGENERATING = 'regenerating'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of InvoiceStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

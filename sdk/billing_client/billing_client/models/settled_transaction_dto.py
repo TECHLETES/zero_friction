@@ -26,14 +26,14 @@ from typing_extensions import Self
 
 class SettledTransactionDTO(BaseModel):
     """
-    Represents a transaction that has been settled
+    SettledTransactionDTO
     """ # noqa: E501
-    transaction_id: Optional[StrictStr] = Field(default=None, description="Identifier of the transaction", alias="transactionId")
-    settled_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount that has been settled", alias="settledAmount")
-    transaction_reference_type: Optional[TransactionReferenceType] = Field(default=None, description="Type of transaction reference", alias="transactionReferenceType")
-    transaction_reference_id: Optional[StrictStr] = Field(default=None, description="Identifier of the transaction reference", alias="transactionReferenceId")
-    transaction_reference_display_name: Optional[StrictStr] = Field(default=None, description="Display name of the transaction reference", alias="transactionReferenceDisplayName")
-    transaction_date_time: Optional[datetime] = Field(default=None, description="Date and time when the transaction occurred", alias="transactionDateTime")
+    transaction_id: StrictStr = Field(alias="transactionId")
+    settled_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="settledAmount")
+    transaction_reference_type: TransactionReferenceType = Field(alias="transactionReferenceType")
+    transaction_reference_id: StrictStr = Field(alias="transactionReferenceId")
+    transaction_reference_display_name: StrictStr = Field(alias="transactionReferenceDisplayName")
+    transaction_date_time: Optional[datetime] = Field(default=None, alias="transactionDateTime")
     __properties: ClassVar[List[str]] = ["transactionId", "settledAmount", "transactionReferenceType", "transactionReferenceId", "transactionReferenceDisplayName", "transactionDateTime"]
 
     model_config = ConfigDict(
@@ -75,26 +75,6 @@ class SettledTransactionDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if transaction_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.transaction_id is None and "transaction_id" in self.model_fields_set:
-            _dict['transactionId'] = None
-
-        # set to None if transaction_reference_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.transaction_reference_type is None and "transaction_reference_type" in self.model_fields_set:
-            _dict['transactionReferenceType'] = None
-
-        # set to None if transaction_reference_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.transaction_reference_id is None and "transaction_reference_id" in self.model_fields_set:
-            _dict['transactionReferenceId'] = None
-
-        # set to None if transaction_reference_display_name (nullable) is None
-        # and model_fields_set contains the field
-        if self.transaction_reference_display_name is None and "transaction_reference_display_name" in self.model_fields_set:
-            _dict['transactionReferenceDisplayName'] = None
-
         return _dict
 
     @classmethod
@@ -115,5 +95,3 @@ class SettledTransactionDTO(BaseModel):
             "transactionDateTime": obj.get("transactionDateTime")
         })
         return _obj
-
-

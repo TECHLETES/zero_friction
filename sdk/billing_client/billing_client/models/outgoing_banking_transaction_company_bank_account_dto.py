@@ -19,19 +19,21 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from billing_client.models.address_dto import AddressDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
 class OutgoingBankingTransactionCompanyBankAccountDTO(BaseModel):
     """
-    Contains information about a company bank account associated with an outgoing banking transaction.
+    OutgoingBankingTransactionCompanyBankAccountDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the company bank account.")
-    iban: Optional[StrictStr] = Field(default=None, description="The International Bank Account Number (IBAN) of the account.")
-    bic: Optional[StrictStr] = Field(default=None, description="The Bank Identifier Code (BIC) of the account.")
-    account_holder: Optional[StrictStr] = Field(default=None, description="The name of the account holder.", alias="accountHolder")
-    sepa_creditor_id: Optional[StrictStr] = Field(default=None, description="The SEPA creditor identifier associated with the account.", alias="sepaCreditorId")
-    __properties: ClassVar[List[str]] = ["id", "iban", "bic", "accountHolder", "sepaCreditorId"]
+    id: Optional[StrictStr] = None
+    iban: Optional[StrictStr] = None
+    bic: Optional[StrictStr] = None
+    account_holder: Optional[StrictStr] = Field(default=None, alias="accountHolder")
+    sepa_creditor_id: Optional[StrictStr] = Field(default=None, alias="sepaCreditorId")
+    address: Optional[AddressDTO] = None
+    __properties: ClassVar[List[str]] = ["id", "iban", "bic", "accountHolder", "sepaCreditorId", "address"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +74,9 @@ class OutgoingBankingTransactionCompanyBankAccountDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of address
+        if self.address:
+            _dict['address'] = self.address.to_dict()
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
         if self.id is None and "id" in self.model_fields_set:
@@ -97,6 +102,11 @@ class OutgoingBankingTransactionCompanyBankAccountDTO(BaseModel):
         if self.sepa_creditor_id is None and "sepa_creditor_id" in self.model_fields_set:
             _dict['sepaCreditorId'] = None
 
+        # set to None if address (nullable) is None
+        # and model_fields_set contains the field
+        if self.address is None and "address" in self.model_fields_set:
+            _dict['address'] = None
+
         return _dict
 
     @classmethod
@@ -113,8 +123,7 @@ class OutgoingBankingTransactionCompanyBankAccountDTO(BaseModel):
             "iban": obj.get("iban"),
             "bic": obj.get("bic"),
             "accountHolder": obj.get("accountHolder"),
-            "sepaCreditorId": obj.get("sepaCreditorId")
+            "sepaCreditorId": obj.get("sepaCreditorId"),
+            "address": AddressDTO.from_dict(obj["address"]) if obj.get("address") is not None else None
         })
         return _obj
-
-

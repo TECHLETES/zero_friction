@@ -38,13 +38,15 @@ class TestAdvancePeriodDTO(unittest.TestCase):
                 start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 advance_amount_excl_vat = 1.337,
+                advance_amount_incl_vat = 1.337,
                 invoice_id = '',
                 invoice_num = '',
                 invoice_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 sent_status = 'notsent',
                 paid = True,
                 automatically_deleted = True,
-                manually_deleted = True
+                manually_deleted = True,
+                blocked_reason = 'estimatedinvoicemissing'
             )
         else:
             return AdvancePeriodDTO(

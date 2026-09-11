@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
-**pdf_template** | [**IncidentalNotePdfTemplateRequest**](IncidentalNotePdfTemplateRequest.md) |  | [optional] 
-**email_template** | [**IncidentalNoteEmailTemplateRequest**](IncidentalNoteEmailTemplateRequest.md) |  | [optional] 
+**pdf_template** | [**IncidentalNotePdfTemplateRequest**](IncidentalNotePdfTemplateRequest.md) |  |
+**email_template** | [**IncidentalNoteEmailTemplateRequest**](IncidentalNoteEmailTemplateRequest.md) |  |
+**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  |
+**auto_fallback_to_postal** | **bool** |  | [optional]
 
 ## Example
 
@@ -27,5 +28,3 @@ change_incidental_note_scenario_request_dict = change_incidental_note_scenario_r
 change_incidental_note_scenario_request_from_dict = ChangeIncidentalNoteScenarioRequest.from_dict(change_incidental_note_scenario_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

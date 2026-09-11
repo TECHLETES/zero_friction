@@ -25,12 +25,13 @@ from typing_extensions import Self
 
 class TriggerBillingCompletenessRequest(BaseModel):
     """
-    Represents a request to trigger billing completeness calculation
+    TriggerBillingCompletenessRequest
     """ # noqa: E501
-    only_advances: Optional[StrictBool] = Field(default=None, description="Indicates if only advance payments should be calculated", alias="onlyAdvances")
-    recalculate_if_needed: Optional[StrictBool] = Field(default=None, description="Indicates if recalculation should be performed if needed", alias="recalculateIfNeeded")
-    advance_until_date_time: Optional[datetime] = Field(default=None, description="Date and time until which advance payments should be calculated", alias="advanceUntilDateTime")
-    __properties: ClassVar[List[str]] = ["onlyAdvances", "recalculateIfNeeded", "advanceUntilDateTime"]
+    only_advances: Optional[StrictBool] = Field(default=None, alias="onlyAdvances")
+    recalculate_if_needed: Optional[StrictBool] = Field(default=None, alias="recalculateIfNeeded")
+    advance_until_date_time: datetime = Field(alias="advanceUntilDateTime")
+    override_estimated_measurement_creation: Optional[StrictBool] = Field(default=None, alias="overrideEstimatedMeasurementCreation")
+    __properties: ClassVar[List[str]] = ["onlyAdvances", "recalculateIfNeeded", "advanceUntilDateTime", "overrideEstimatedMeasurementCreation"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,8 +86,7 @@ class TriggerBillingCompletenessRequest(BaseModel):
         _obj = cls.model_validate({
             "onlyAdvances": obj.get("onlyAdvances"),
             "recalculateIfNeeded": obj.get("recalculateIfNeeded"),
-            "advanceUntilDateTime": obj.get("advanceUntilDateTime")
+            "advanceUntilDateTime": obj.get("advanceUntilDateTime"),
+            "overrideEstimatedMeasurementCreation": obj.get("overrideEstimatedMeasurementCreation")
         })
         return _obj
-
-

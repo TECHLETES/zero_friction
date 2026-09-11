@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**culture** | [**CultureInfo**](CultureInfo.md) |  | [optional] 
-**file_name** | **str** |  | [optional] 
-**internal_file_name** | **str** |  | [optional] 
-**attachment_id** | **str** |  | [optional] 
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) |
+**file_name** | **str** |  |
+**internal_file_name** | **str** |  | [optional]
+**attachment_id** | **str** |  |
 
 ## Example
 
@@ -28,5 +28,3 @@ upsert_product_attachment_file_request_dict = upsert_product_attachment_file_req
 upsert_product_attachment_file_request_from_dict = UpsertProductAttachmentFileRequest.from_dict(upsert_product_attachment_file_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

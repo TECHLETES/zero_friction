@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class UnitOfMeasure(str, Enum):
     """
-    UnitOfMeasure
+    Possible values: 'none', 'wh', 'kwh', 'mwh', 'gwh', 'j', 'kj', 'mj', 'gj', 'day', 'month', 'quarter', 'year', 'litre', 'm3', 'units', 'm3_h', 'celcius', 'k', 'kw'
     """
 
     """
@@ -37,6 +37,7 @@ class UnitOfMeasure(str, Enum):
     GJ = 'gj'
     DAY = 'day'
     MONTH = 'month'
+    QUARTER = 'quarter'
     YEAR = 'year'
     LITRE = 'litre'
     M3 = 'm3'
@@ -50,5 +51,3 @@ class UnitOfMeasure(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of UnitOfMeasure from a JSON string"""
         return cls(json.loads(json_str))
-
-

@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** |  | [optional] 
-**short_display_name** | **str** |  | [optional] 
-**account_number** | **str** |  | [optional] 
-**management_relation_type** | [**ManagementRelationType**](ManagementRelationType.md) |  | [optional] 
+**customer_id** | **str** |  | [optional]
+**short_display_name** | **str** |  | [optional]
+**account_number** | **str** |  | [optional]
+**management_relation_type** | [**ManagementRelationType**](ManagementRelationType.md) |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ management_relation_dto_dict = management_relation_dto_instance.to_dict()
 management_relation_dto_from_dict = ManagementRelationDTO.from_dict(management_relation_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

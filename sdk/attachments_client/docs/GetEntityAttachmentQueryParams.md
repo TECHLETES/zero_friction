@@ -5,15 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
-**customer_id** | **str** |  | [optional] 
-**contract_id** | **str** |  | [optional] 
-**viewed** | **bool** |  | [optional] 
-**visibilities** | **List[str]** |  | [optional] 
-**created_start_date_time** | **datetime** |  | [optional] 
-**created_end_date_time** | **datetime** |  | [optional] 
+**customer_id** | **str** |  | [optional]
+**contract_id** | **str** |  | [optional]
+**viewed** | **bool** |  | [optional]
+**visibilities** | **List[str]** |  | [optional]
+**created_start_date_time** | **datetime** |  | [optional]
+**created_end_date_time** | **datetime** |  | [optional]
+**flex_search** | **str** |  | [optional]
+**include_only_ids** | **List[str]** |  | [optional]
+**exclude_ids** | **List[str]** |  | [optional]
+**page_size** | **int** |  | [optional]
 
 ## Example
 
@@ -33,5 +34,3 @@ get_entity_attachment_query_params_dict = get_entity_attachment_query_params_ins
 get_entity_attachment_query_params_from_dict = GetEntityAttachmentQueryParams.from_dict(get_entity_attachment_query_params_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

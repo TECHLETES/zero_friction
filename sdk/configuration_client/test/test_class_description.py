@@ -39,20 +39,11 @@ class TestClassDescription(unittest.TestCase):
                 class_type = '',
                 properties = [
                     configuration_client.models.class_property.ClassProperty(
-                        name = '', 
-                        property_type = '', 
-                        properties = [
-                            configuration_client.models.class_property.ClassProperty(
-                                name = '', 
-                                property_type = '', 
-                                required = True, 
-                                default_value = null, 
-                                read_only = True, 
-                                secret = True, )
-                            ], 
-                        required = True, 
-                        default_value = null, 
-                        read_only = True, 
+                        name = '',
+                        property_type = '',
+                        required = True,
+                        default_value = null,
+                        read_only = True,
                         secret = True, )
                     ]
             )

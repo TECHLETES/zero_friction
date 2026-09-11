@@ -27,8 +27,8 @@ class CancelMutingRuleRequest(BaseModel):
     """
     CancelMutingRuleRequest
     """ # noqa: E501
-    error_type: Optional[MeteringIssueError] = Field(default=None, alias="errorType")
-    meter_ids: Optional[List[StrictStr]] = Field(default=None, alias="meterIds")
+    error_type: MeteringIssueError = Field(alias="errorType")
+    meter_ids: Optional[List[StrictStr]] = Field(alias="meterIds")
     __properties: ClassVar[List[str]] = ["errorType", "meterIds"]
 
     model_config = ConfigDict(
@@ -70,11 +70,6 @@ class CancelMutingRuleRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if error_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.error_type is None and "error_type" in self.model_fields_set:
-            _dict['errorType'] = None
-
         # set to None if meter_ids (nullable) is None
         # and model_fields_set contains the field
         if self.meter_ids is None and "meter_ids" in self.model_fields_set:
@@ -96,5 +91,3 @@ class CancelMutingRuleRequest(BaseModel):
             "meterIds": obj.get("meterIds")
         })
         return _obj
-
-

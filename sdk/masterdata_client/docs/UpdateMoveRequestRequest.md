@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**product_id** | **str** |  | [optional] 
-**use_property_group_product** | **bool** |  | [optional] 
-**contract_number** | **str** |  | [optional] 
-**estimations** | [**List[MoveRequestContractEstimationRequest]**](MoveRequestContractEstimationRequest.md) |  | [optional] 
-**billing_properties** | [**ContractDetailsBillingPropertiesBaseDTO**](ContractDetailsBillingPropertiesBaseDTO.md) |  | [optional] 
+**product_id** | **str** |  | [optional]
+**use_property_group_product** | **bool** |  | [optional]
+**contract_number** | **str** |  | [optional]
+**estimations** | [**List[MoveRequestContractEstimationRequest]**](MoveRequestContractEstimationRequest.md) |  |
+**billing_properties** | [**ContractDetailsBillingPropertiesBaseDTO**](ContractDetailsBillingPropertiesBaseDTO.md) |  |
 
 ## Example
 
@@ -29,5 +29,3 @@ update_move_request_request_dict = update_move_request_request_instance.to_dict(
 update_move_request_request_from_dict = UpdateMoveRequestRequest.from_dict(update_move_request_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

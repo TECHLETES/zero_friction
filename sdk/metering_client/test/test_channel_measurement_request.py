@@ -43,12 +43,20 @@ class TestChannelMeasurementRequest(unittest.TestCase):
                 external_channel_identifier = '',
                 measurements = [
                     metering_client.models.measurement_request.MeasurementRequest(
-                        reading_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        reading_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                         value = 1.337, )
                     ]
             )
         else:
             return ChannelMeasurementRequest(
+                meter_serial_number = '',
+                measurements = [
+                    metering_client.models.measurement_request.MeasurementRequest(
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        reading_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        value = 1.337, )
+                    ],
         )
         """
 

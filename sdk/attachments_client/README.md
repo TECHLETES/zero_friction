@@ -82,20 +82,17 @@ configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
 # Enter a context with an instance of the API client
 with attachments_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = attachments_client.AttachmentsApi(api_client)
-    subject_type = 'subject_type_example' # str | The type of subject entity from which the attachment will be deleted.
-    subject_id = 'subject_id_example' # str | The unique identifier of the subject entity.
-    auuid = 'auuid_example' # str | The attachment unique identifier to be deleted.
-    zf_tuuid = '{{zf-tuuid}}' # str | Format - uuid. Tenant ID
-    zf_ouuid = '{{zf-ouuid}}' # str | Format - uuid. Organisation ID
+    api_instance = attachments_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
 
     try:
-        # Deletes a specific attachment associated with a specific subject entity.
-        api_response = api_instance.delete_attachments_subjecttype_subjectid_auuid(subject_type, subject_id, auuid, zf_tuuid, zf_ouuid)
-        print("The response of AttachmentsApi->delete_attachments_subjecttype_subjectid_auuid:\n")
+        # Adds a new contract entity attachment.
+        api_response = api_instance.add_contract_entity_attachment(zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->add_contract_entity_attachment:\n")
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AttachmentsApi->delete_attachments_subjecttype_subjectid_auuid: %s\n" % e)
+        print("Exception when calling DefaultApi->add_contract_entity_attachment: %s\n" % e)
 
 ```
 
@@ -105,321 +102,98 @@ All URIs are relative to *https://api.zerofriction.co/api/att*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AttachmentsApi* | [**delete_attachments_subjecttype_subjectid_auuid**](docs/AttachmentsApi.md#delete_attachments_subjecttype_subjectid_auuid) | **DELETE** /Attachments/{subjectType}/{subjectId}/{auuid} | Deletes a specific attachment associated with a specific subject entity.
-*AttachmentsApi* | [**get_attachments_subjecttype_subjectid**](docs/AttachmentsApi.md#get_attachments_subjecttype_subjectid) | **GET** /Attachments/{subjectType}/{subjectId} | Retrieves attachments for a specific subject entity.
-*AttachmentsApi* | [**post_attachments_auuid**](docs/AttachmentsApi.md#post_attachments_auuid) | **POST** /Attachments/{auuid} | Downloads an attachment file by its unique identifier.
-*AttachmentsApi* | [**post_attachments_downloadmergedpdf**](docs/AttachmentsApi.md#post_attachments_downloadmergedpdf) | **POST** /Attachments/downloadmergedpdf | Downloads a merged PDF file from multiple PDF sources.
-*AttachmentsApi* | [**post_attachments_downloadzip**](docs/AttachmentsApi.md#post_attachments_downloadzip) | **POST** /Attachments/downloadzip | Downloads multiple attachments as a ZIP archive.
-*AttachmentsApi* | [**post_attachments_subjecttype_subjectid**](docs/AttachmentsApi.md#post_attachments_subjecttype_subjectid) | **POST** /Attachments/{subjectType}/{subjectId} | Uploads and attaches a file to a specific subject entity.
-*EntityAttachmentGroupsApi* | [**add_entity_attachment_group**](docs/EntityAttachmentGroupsApi.md#add_entity_attachment_group) | **POST** /EntityAttachmentGroups/{subjectType}/{subjectId} | Adds a new entity attachment group.
-*EntityAttachmentGroupsApi* | [**delete_entity_attachment_group**](docs/EntityAttachmentGroupsApi.md#delete_entity_attachment_group) | **DELETE** /EntityAttachmentGroups/{subjectType}/{subjectId}/{eauuid} | Deletes a specific entity attachment group.
-*EntityAttachmentGroupsApi* | [**download_entity_attachment_groups**](docs/EntityAttachmentGroupsApi.md#download_entity_attachment_groups) | **POST** /EntityAttachmentGroups/{subjectType}/{subjectId}/download | Downloads attachments for a specific entity.
-*EntityAttachmentGroupsApi* | [**download_entity_attachment_groups_only_by_id**](docs/EntityAttachmentGroupsApi.md#download_entity_attachment_groups_only_by_id) | **POST** /EntityAttachmentGroups/download | Downloads attachments by request only.
-*EntityAttachmentGroupsApi* | [**get_entity_attachment_group**](docs/EntityAttachmentGroupsApi.md#get_entity_attachment_group) | **GET** /EntityAttachmentGroups/{subjectType}/{subjectId}/{eauuid} | Gets a specific entity attachment group.
-*EntityAttachmentGroupsApi* | [**get_entity_attachment_group_only_by_id**](docs/EntityAttachmentGroupsApi.md#get_entity_attachment_group_only_by_id) | **GET** /EntityAttachmentGroups/{eauuid} | Gets a specific entity attachment group by ID only.
-*EntityAttachmentGroupsApi* | [**get_entity_attachment_groups**](docs/EntityAttachmentGroupsApi.md#get_entity_attachment_groups) | **GET** /EntityAttachmentGroups/{subjectType}/{subjectId} | Gets all entity attachment groups for a specific subject.
-*EntityAttachmentGroupsApi* | [**get_entity_attachment_groups_overview_count**](docs/EntityAttachmentGroupsApi.md#get_entity_attachment_groups_overview_count) | **GET** /EntityAttachmentGroups/{subjectType}/{subjectId}/overviewcount | Gets an overview count of entity attachment groups for a specific subject.
-*EntityAttachmentGroupsApi* | [**post_entityattachmentgroups_bulk_delete**](docs/EntityAttachmentGroupsApi.md#post_entityattachmentgroups_bulk_delete) | **POST** /EntityAttachmentGroups/bulk/delete | Bulk deletes entity attachment groups.
-*EntityAttachmentGroupsApi* | [**update_entity_attachment_group**](docs/EntityAttachmentGroupsApi.md#update_entity_attachment_group) | **PATCH** /EntityAttachmentGroups/{subjectType}/{subjectId}/{eauuid} | Updates an existing entity attachment group.
-*EntityAttachmentsApi* | [**add_contract_entity_attachment**](docs/EntityAttachmentsApi.md#add_contract_entity_attachment) | **POST** /EntityAttachments/contract | Adds a new contract entity attachment.
-*EntityAttachmentsApi* | [**add_customer_entity_attachment**](docs/EntityAttachmentsApi.md#add_customer_entity_attachment) | **POST** /EntityAttachments/customer | Adds a new customer entity attachment.
-*EntityAttachmentsApi* | [**delete_entity_attachment**](docs/EntityAttachmentsApi.md#delete_entity_attachment) | **DELETE** /EntityAttachments/{eauuid} | Deletes a specific entity attachment.
-*EntityAttachmentsApi* | [**download_entity_attachments**](docs/EntityAttachmentsApi.md#download_entity_attachments) | **POST** /EntityAttachments/download | Downloads attachments for a specific entity.
-*EntityAttachmentsApi* | [**get_entity_attachment**](docs/EntityAttachmentsApi.md#get_entity_attachment) | **GET** /EntityAttachments/{eauuid} | Gets a specific entity attachment.
-*EntityAttachmentsApi* | [**get_entity_attachments**](docs/EntityAttachmentsApi.md#get_entity_attachments) | **GET** /EntityAttachments | Gets all entity attachments.
-*EntityAttachmentsApi* | [**get_entity_attachments_overview_count**](docs/EntityAttachmentsApi.md#get_entity_attachments_overview_count) | **GET** /EntityAttachments/overviewcount | Gets an overview count of entity attachments.
-*EntityAttachmentsApi* | [**post_entityattachments_bulk_delete**](docs/EntityAttachmentsApi.md#post_entityattachments_bulk_delete) | **POST** /EntityAttachments/bulk/delete | Bulk deletes entity attachments.
-*EntityAttachmentsApi* | [**update_entity_attachment_signed_date**](docs/EntityAttachmentsApi.md#update_entity_attachment_signed_date) | **PATCH** /EntityAttachments/{eauuid}/sign | Updates the signed date of a specific entity attachment.
-*EntityAttachmentsApi* | [**update_entity_attachment_view_date**](docs/EntityAttachmentsApi.md#update_entity_attachment_view_date) | **PATCH** /EntityAttachments/{eauuid}/view | Updates the viewed date of a specific entity attachment.
-*EntityAttachmentsApi* | [**update_entity_attachment_visibility**](docs/EntityAttachmentsApi.md#update_entity_attachment_visibility) | **PATCH** /EntityAttachments/{eauuid}/visibility | Updates the visibility of a specific entity attachment.
-*TemplateDataContainersApi* | [**get_template_data_container_by_id**](docs/TemplateDataContainersApi.md#get_template_data_container_by_id) | **GET** /TemplateDataContainers/{id} | Retrieves a TemplateDataContainer by its ID.
-*TemplateDataContainersApi* | [**update_payment_link**](docs/TemplateDataContainersApi.md#update_payment_link) | **PUT** /TemplateDataContainers/{id}/paymentlink | Updates the payment link of a TemplateDataContainer.
+*DefaultApi* | [**add_contract_entity_attachment**](docs/DefaultApi.md#add_contract_entity_attachment) | **POST** /EntityAttachments/contract | Adds a new contract entity attachment.
+*DefaultApi* | [**add_customer_entity_attachment**](docs/DefaultApi.md#add_customer_entity_attachment) | **POST** /EntityAttachments/customer | Adds a new customer entity attachment.
+*DefaultApi* | [**add_entity_attachment_group**](docs/DefaultApi.md#add_entity_attachment_group) | **POST** /EntityAttachmentGroups/{subjectType}/{subjectId} | Adds a new entity attachment group.
+*DefaultApi* | [**delete_attachments_subjecttype_subjectid_auuid**](docs/DefaultApi.md#delete_attachments_subjecttype_subjectid_auuid) | **DELETE** /Attachments/{subjectType}/{subjectId}/{auuid} | Deletes a specific attachment associated with a specific subject entity.
+*DefaultApi* | [**delete_entity_attachment**](docs/DefaultApi.md#delete_entity_attachment) | **DELETE** /EntityAttachments/{eauuid} | Deletes a specific entity attachment.
+*DefaultApi* | [**delete_entity_attachment_group**](docs/DefaultApi.md#delete_entity_attachment_group) | **DELETE** /EntityAttachmentGroups/{subjectType}/{subjectId}/{eauuid} | Deletes a specific entity attachment group.
+*DefaultApi* | [**download_entity_attachment_groups**](docs/DefaultApi.md#download_entity_attachment_groups) | **POST** /EntityAttachmentGroups/{subjectType}/{subjectId}/download | Downloads attachments for a specific entity.
+*DefaultApi* | [**download_entity_attachment_groups_only_by_id**](docs/DefaultApi.md#download_entity_attachment_groups_only_by_id) | **POST** /EntityAttachmentGroups/download | Downloads attachments by request only.
+*DefaultApi* | [**download_entity_attachments**](docs/DefaultApi.md#download_entity_attachments) | **POST** /EntityAttachments/download | Downloads attachments for a specific entity.
+*DefaultApi* | [**filter_entity_attachments**](docs/DefaultApi.md#filter_entity_attachments) | **POST** /EntityAttachments/filter | Gets all entity attachments. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**filter_overview_count_entity_attachments**](docs/DefaultApi.md#filter_overview_count_entity_attachments) | **POST** /EntityAttachments/filter/overviewcount | Gets an overview count of entity attachments. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**get_attachments_subjecttype_subjectid**](docs/DefaultApi.md#get_attachments_subjecttype_subjectid) | **GET** /Attachments/{subjectType}/{subjectId} | Retrieves attachments for a specific subject entity.
+*DefaultApi* | [**get_entity_attachment**](docs/DefaultApi.md#get_entity_attachment) | **GET** /EntityAttachments/{eauuid} | Gets a specific entity attachment.
+*DefaultApi* | [**get_entity_attachment_group**](docs/DefaultApi.md#get_entity_attachment_group) | **GET** /EntityAttachmentGroups/{subjectType}/{subjectId}/{eauuid} | Gets a specific entity attachment group.
+*DefaultApi* | [**get_entity_attachment_group_only_by_id**](docs/DefaultApi.md#get_entity_attachment_group_only_by_id) | **GET** /EntityAttachmentGroups/{eauuid} | Gets a specific entity attachment group by ID only.
+*DefaultApi* | [**get_entity_attachment_groups**](docs/DefaultApi.md#get_entity_attachment_groups) | **GET** /EntityAttachmentGroups/{subjectType}/{subjectId} | Gets all entity attachment groups for a specific subject.
+*DefaultApi* | [**get_entity_attachment_groups_overview_count**](docs/DefaultApi.md#get_entity_attachment_groups_overview_count) | **GET** /EntityAttachmentGroups/{subjectType}/{subjectId}/overviewcount | Gets an overview count of entity attachment groups for a specific subject.
+*DefaultApi* | [**get_entity_attachments**](docs/DefaultApi.md#get_entity_attachments) | **GET** /EntityAttachments | Gets all entity attachments.
+*DefaultApi* | [**get_entity_attachments_overview_count**](docs/DefaultApi.md#get_entity_attachments_overview_count) | **GET** /EntityAttachments/overviewcount | Gets an overview count of entity attachments.
+*DefaultApi* | [**post_attachments_auuid**](docs/DefaultApi.md#post_attachments_auuid) | **POST** /Attachments/{auuid} | Downloads an attachment file by its unique identifier.
+*DefaultApi* | [**post_attachments_downloadmergedpdf**](docs/DefaultApi.md#post_attachments_downloadmergedpdf) | **POST** /Attachments/downloadmergedpdf | Downloads a merged PDF file from multiple PDF sources.
+*DefaultApi* | [**post_attachments_downloadzip**](docs/DefaultApi.md#post_attachments_downloadzip) | **POST** /Attachments/downloadzip | Downloads multiple attachments as a ZIP archive.
+*DefaultApi* | [**post_attachments_subjecttype_subjectid**](docs/DefaultApi.md#post_attachments_subjecttype_subjectid) | **POST** /Attachments/{subjectType}/{subjectId} | Uploads and attaches a file to a specific subject entity.
+*DefaultApi* | [**post_entityattachmentgroups_bulk_delete**](docs/DefaultApi.md#post_entityattachmentgroups_bulk_delete) | **POST** /EntityAttachmentGroups/bulk/delete | Bulk deletes entity attachment groups.
+*DefaultApi* | [**post_entityattachments_bulk_delete**](docs/DefaultApi.md#post_entityattachments_bulk_delete) | **POST** /EntityAttachments/bulk/delete | Bulk deletes entity attachments.
+*DefaultApi* | [**update_entity_attachment_group**](docs/DefaultApi.md#update_entity_attachment_group) | **PATCH** /EntityAttachmentGroups/{subjectType}/{subjectId}/{eauuid} | Updates an existing entity attachment group.
+*DefaultApi* | [**update_entity_attachment_signed_date**](docs/DefaultApi.md#update_entity_attachment_signed_date) | **PATCH** /EntityAttachments/{eauuid}/sign | Updates the signed date of a specific entity attachment.
+*DefaultApi* | [**update_entity_attachment_view_date**](docs/DefaultApi.md#update_entity_attachment_view_date) | **PATCH** /EntityAttachments/{eauuid}/view | Updates the viewed date of a specific entity attachment.
+*DefaultApi* | [**update_entity_attachment_visibility**](docs/DefaultApi.md#update_entity_attachment_visibility) | **PATCH** /EntityAttachments/{eauuid}/visibility | Updates the visibility of a specific entity attachment.
 
 
 ## Documentation For Models
 
- - [AddressDataObject](docs/AddressDataObject.md)
- - [AdvanceAmountChangedBy](docs/AdvanceAmountChangedBy.md)
- - [AdvanceAmountLimitType](docs/AdvanceAmountLimitType.md)
- - [AdvanceCalculationFallbackReason](docs/AdvanceCalculationFallbackReason.md)
- - [AdvanceFrequency](docs/AdvanceFrequency.md)
- - [AdvanceRecalculationType](docs/AdvanceRecalculationType.md)
  - [AggregateDetailsDTO](docs/AggregateDetailsDTO.md)
- - [AggregationFrequency](docs/AggregationFrequency.md)
- - [AggregationType](docs/AggregationType.md)
- - [AnnualStatementOrigin](docs/AnnualStatementOrigin.md)
- - [AnnualStatementStatus](docs/AnnualStatementStatus.md)
  - [ApiResponseDTO](docs/ApiResponseDTO.md)
- - [AppEnvironment](docs/AppEnvironment.md)
+ - [ApiResponseDTOOfAttachmentDTO](docs/ApiResponseDTOOfAttachmentDTO.md)
+ - [ApiResponseDTOOfEntityAttachmentDTO](docs/ApiResponseDTOOfEntityAttachmentDTO.md)
+ - [ApiResponseDTOOfEntityAttachmentGroupDTO](docs/ApiResponseDTOOfEntityAttachmentGroupDTO.md)
+ - [ApiResponseDTOOfEntityAttachmentGroupOverviewCountDTO](docs/ApiResponseDTOOfEntityAttachmentGroupOverviewCountDTO.md)
+ - [ApiResponseDTOOfEntityAttachmentOverviewCountDTO](docs/ApiResponseDTOOfEntityAttachmentOverviewCountDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfAttachmentDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfAttachmentDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfEntityAttachmentDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfEntityAttachmentDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfEntityAttachmentGroupDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfEntityAttachmentGroupDTO.md)
+ - [ApiResponseDTOOfboolean](docs/ApiResponseDTOOfboolean.md)
  - [AttachmentDTO](docs/AttachmentDTO.md)
- - [AttachmentDTOApiResponseDTO](docs/AttachmentDTOApiResponseDTO.md)
- - [AttachmentDTOPagedResponseModelDTO](docs/AttachmentDTOPagedResponseModelDTO.md)
- - [AttachmentDTOPagedResponseModelDTOApiResponseDTO](docs/AttachmentDTOPagedResponseModelDTOApiResponseDTO.md)
  - [AttachmentVisibility](docs/AttachmentVisibility.md)
- - [AttributeType](docs/AttributeType.md)
- - [BankStatementCreditDebit](docs/BankStatementCreditDebit.md)
- - [BankTransactionType](docs/BankTransactionType.md)
- - [BillingCalculationStreamStatus](docs/BillingCalculationStreamStatus.md)
- - [BillingCalculationType](docs/BillingCalculationType.md)
- - [BillingCompletenessQuickFilter](docs/BillingCompletenessQuickFilter.md)
- - [BillingCompletenessStatus](docs/BillingCompletenessStatus.md)
- - [BillingCompletenessTariffInputType](docs/BillingCompletenessTariffInputType.md)
- - [BillingItemLevel](docs/BillingItemLevel.md)
- - [BillingItemTariffCalculationType](docs/BillingItemTariffCalculationType.md)
- - [BillingItemTariffConditionType](docs/BillingItemTariffConditionType.md)
- - [BillingParametersDataObject](docs/BillingParametersDataObject.md)
- - [BillingRelationScenarioType](docs/BillingRelationScenarioType.md)
- - [BillingScope](docs/BillingScope.md)
- - [BillingTariffInputType](docs/BillingTariffInputType.md)
- - [BooleanApiResponseDTO](docs/BooleanApiResponseDTO.md)
+ - [BaseEntityReferenceParametersDTO](docs/BaseEntityReferenceParametersDTO.md)
+ - [BaseEntityReferenceParametersDTOContractReferenceParametersDTO](docs/BaseEntityReferenceParametersDTOContractReferenceParametersDTO.md)
+ - [BaseEntityReferenceParametersDTOCustomerReferenceParametersDTO](docs/BaseEntityReferenceParametersDTOCustomerReferenceParametersDTO.md)
+ - [BaseEntityReferenceParametersDTOEntityAttachmentGroupReferenceParametersDTO](docs/BaseEntityReferenceParametersDTOEntityAttachmentGroupReferenceParametersDTO.md)
+ - [BaseEntityReferenceParametersDTOProductReferenceParametersDTO](docs/BaseEntityReferenceParametersDTOProductReferenceParametersDTO.md)
  - [BulkDeleteEntityAttachmentGroupRequest](docs/BulkDeleteEntityAttachmentGroupRequest.md)
  - [BulkDeleteEntityAttachmentRequest](docs/BulkDeleteEntityAttachmentRequest.md)
- - [CalculatedLineStatus](docs/CalculatedLineStatus.md)
  - [Calendar](docs/Calendar.md)
- - [CalendarAlgorithmType](docs/CalendarAlgorithmType.md)
- - [CalendarWeekRule](docs/CalendarWeekRule.md)
- - [CollectionCaseQuickFilter](docs/CollectionCaseQuickFilter.md)
- - [CollectionChargeType](docs/CollectionChargeType.md)
- - [CollectionFlowStatus](docs/CollectionFlowStatus.md)
- - [CollectionStepLevel](docs/CollectionStepLevel.md)
- - [CollectionStepStatus](docs/CollectionStepStatus.md)
- - [CollectionStepType](docs/CollectionStepType.md)
- - [CommunicationDocumentType](docs/CommunicationDocumentType.md)
- - [CommunicationEntryQuickFilter](docs/CommunicationEntryQuickFilter.md)
- - [CommunicationEntryStatus](docs/CommunicationEntryStatus.md)
- - [CommunicationType](docs/CommunicationType.md)
  - [CompareInfo](docs/CompareInfo.md)
- - [ConsumerGroupOrigin](docs/ConsumerGroupOrigin.md)
- - [ConsumerGroupSuggestion](docs/ConsumerGroupSuggestion.md)
- - [ConsumptionOrigin](docs/ConsumptionOrigin.md)
- - [ContactType](docs/ContactType.md)
- - [ContractBillingMethod](docs/ContractBillingMethod.md)
- - [ContractQuickFilter](docs/ContractQuickFilter.md)
- - [ContractScenarioType](docs/ContractScenarioType.md)
- - [ContractServicesUpdatedAction](docs/ContractServicesUpdatedAction.md)
- - [ContractStatus](docs/ContractStatus.md)
- - [CountryCode](docs/CountryCode.md)
- - [CultureInfo](docs/CultureInfo.md)
- - [CultureTypes](docs/CultureTypes.md)
- - [CustAgingBucketType](docs/CustAgingBucketType.md)
- - [CustomEntityPropertyTypeTagColor](docs/CustomEntityPropertyTypeTagColor.md)
- - [CustomEntityPropertyValueType](docs/CustomEntityPropertyValueType.md)
- - [CustomerBalance](docs/CustomerBalance.md)
- - [CustomerGroupQuickFilter](docs/CustomerGroupQuickFilter.md)
- - [CustomerQuickFilter](docs/CustomerQuickFilter.md)
- - [CustomerScenarioType](docs/CustomerScenarioType.md)
- - [CustomerType](docs/CustomerType.md)
- - [DataExportCommunicationType](docs/DataExportCommunicationType.md)
- - [DataExportInvoiceFormatType](docs/DataExportInvoiceFormatType.md)
- - [DataFrequency](docs/DataFrequency.md)
- - [DataImportCommunicationType](docs/DataImportCommunicationType.md)
- - [DataImportMeteringFormatType](docs/DataImportMeteringFormatType.md)
- - [DataImportMigrationFormatType](docs/DataImportMigrationFormatType.md)
+ - [ContractReference](docs/ContractReference.md)
  - [DataType](docs/DataType.md)
  - [DateRange](docs/DateRange.md)
  - [DateTimeFormatInfo](docs/DateTimeFormatInfo.md)
- - [DayOfWeek](docs/DayOfWeek.md)
  - [DeleteEntityAttachmentRequest](docs/DeleteEntityAttachmentRequest.md)
- - [DigitShapes](docs/DigitShapes.md)
- - [Direction](docs/Direction.md)
- - [DnsRecordMeaning](docs/DnsRecordMeaning.md)
- - [DnsRecordStatus](docs/DnsRecordStatus.md)
- - [DocumentOutputFormat](docs/DocumentOutputFormat.md)
- - [DomainProblemDataType](docs/DomainProblemDataType.md)
  - [DownloadAttachmentsRequest](docs/DownloadAttachmentsRequest.md)
  - [DownloadEntityAttachmentGroupsRequest](docs/DownloadEntityAttachmentGroupsRequest.md)
  - [DownloadEntityAttachmentsRequest](docs/DownloadEntityAttachmentsRequest.md)
- - [EavEstimationRunStatus](docs/EavEstimationRunStatus.md)
- - [EmailConfirmationType](docs/EmailConfirmationType.md)
  - [EntityAttachmentDTO](docs/EntityAttachmentDTO.md)
- - [EntityAttachmentDTOApiResponseDTO](docs/EntityAttachmentDTOApiResponseDTO.md)
- - [EntityAttachmentDTOPagedResponseModelDTO](docs/EntityAttachmentDTOPagedResponseModelDTO.md)
- - [EntityAttachmentDTOPagedResponseModelDTOApiResponseDTO](docs/EntityAttachmentDTOPagedResponseModelDTOApiResponseDTO.md)
  - [EntityAttachmentFileDTO](docs/EntityAttachmentFileDTO.md)
  - [EntityAttachmentGroupDTO](docs/EntityAttachmentGroupDTO.md)
- - [EntityAttachmentGroupDTOApiResponseDTO](docs/EntityAttachmentGroupDTOApiResponseDTO.md)
- - [EntityAttachmentGroupDTOPagedResponseModelDTO](docs/EntityAttachmentGroupDTOPagedResponseModelDTO.md)
- - [EntityAttachmentGroupDTOPagedResponseModelDTOApiResponseDTO](docs/EntityAttachmentGroupDTOPagedResponseModelDTOApiResponseDTO.md)
  - [EntityAttachmentGroupOverviewCountDTO](docs/EntityAttachmentGroupOverviewCountDTO.md)
- - [EntityAttachmentGroupOverviewCountDTOApiResponseDTO](docs/EntityAttachmentGroupOverviewCountDTOApiResponseDTO.md)
- - [EntityAttachmentGroupQuickFilter](docs/EntityAttachmentGroupQuickFilter.md)
  - [EntityAttachmentOrigin](docs/EntityAttachmentOrigin.md)
  - [EntityAttachmentOverviewCountDTO](docs/EntityAttachmentOverviewCountDTO.md)
- - [EntityAttachmentOverviewCountDTOApiResponseDTO](docs/EntityAttachmentOverviewCountDTOApiResponseDTO.md)
- - [EntityAttachmentQuickFilter](docs/EntityAttachmentQuickFilter.md)
- - [EntityAttributeType](docs/EntityAttributeType.md)
  - [EntitySubjectType](docs/EntitySubjectType.md)
- - [EnvelopePosition](docs/EnvelopePosition.md)
- - [ErrorCode](docs/ErrorCode.md)
- - [ErrorCodeMessage](docs/ErrorCodeMessage.md)
- - [ErrorCodeMessageValue](docs/ErrorCodeMessageValue.md)
- - [EstimatedAnnualVolumeOrigin](docs/EstimatedAnnualVolumeOrigin.md)
- - [ExecutionStatus](docs/ExecutionStatus.md)
- - [ExportJobLineStatus](docs/ExportJobLineStatus.md)
- - [ExportJobStatus](docs/ExportJobStatus.md)
- - [ExportJobsQuickFilter](docs/ExportJobsQuickFilter.md)
- - [ExportOutgoingBankingTransactionPaymentRefundFormatType](docs/ExportOutgoingBankingTransactionPaymentRefundFormatType.md)
- - [ExportOutgoingBankingTransactionPaymentRequestFormatType](docs/ExportOutgoingBankingTransactionPaymentRequestFormatType.md)
- - [ExportSettingsCategoryType](docs/ExportSettingsCategoryType.md)
- - [ExportStatus](docs/ExportStatus.md)
- - [ExternalMeasurementsQuickFilter](docs/ExternalMeasurementsQuickFilter.md)
- - [FileSizeType](docs/FileSizeType.md)
- - [FlatConsumptionAggregates](docs/FlatConsumptionAggregates.md)
- - [FormulaFunctionCategory](docs/FormulaFunctionCategory.md)
- - [FormulaFunctionInputParameterReferenceType](docs/FormulaFunctionInputParameterReferenceType.md)
- - [FormulaFunctionType](docs/FormulaFunctionType.md)
- - [FormulaType](docs/FormulaType.md)
- - [FractionFrequency](docs/FractionFrequency.md)
- - [FtpProtocol](docs/FtpProtocol.md)
- - [GeneralLedgerCategory](docs/GeneralLedgerCategory.md)
- - [GeneralLedgerMappingStatus](docs/GeneralLedgerMappingStatus.md)
+ - [EntityTagHeaderValue](docs/EntityTagHeaderValue.md)
+ - [FileStreamResult](docs/FileStreamResult.md)
  - [GetEntityAttachmentGroupQueryParams](docs/GetEntityAttachmentGroupQueryParams.md)
  - [GetEntityAttachmentQueryParams](docs/GetEntityAttachmentQueryParams.md)
- - [IbanConfirmationStatus](docs/IbanConfirmationStatus.md)
- - [ImportCategoryType](docs/ImportCategoryType.md)
- - [ImportContractInvoiceDateHandling](docs/ImportContractInvoiceDateHandling.md)
- - [ImportJobEntityIssueStage](docs/ImportJobEntityIssueStage.md)
- - [ImportJobEntityType](docs/ImportJobEntityType.md)
- - [ImportJobStatus](docs/ImportJobStatus.md)
- - [ImportJobsQuickFilter](docs/ImportJobsQuickFilter.md)
- - [ImportStatus](docs/ImportStatus.md)
- - [ImportType](docs/ImportType.md)
- - [IncomingBankingTransactionFormatType](docs/IncomingBankingTransactionFormatType.md)
- - [IncomingBankingTransactionQuickFilter](docs/IncomingBankingTransactionQuickFilter.md)
- - [IncomingBankingTransactionStatus](docs/IncomingBankingTransactionStatus.md)
- - [IncomingMutationPaymentMethod](docs/IncomingMutationPaymentMethod.md)
- - [IncomingMutationQuickFilter](docs/IncomingMutationQuickFilter.md)
- - [IncomingMutationStatus](docs/IncomingMutationStatus.md)
- - [IncomingMutationType](docs/IncomingMutationType.md)
- - [IncrementationType](docs/IncrementationType.md)
- - [InputMissingReason](docs/InputMissingReason.md)
- - [InvoiceAmount](docs/InvoiceAmount.md)
- - [InvoiceExportType](docs/InvoiceExportType.md)
- - [InvoiceFrequency](docs/InvoiceFrequency.md)
- - [InvoiceLineType](docs/InvoiceLineType.md)
- - [InvoiceQuickFilter](docs/InvoiceQuickFilter.md)
- - [InvoiceScenarioType](docs/InvoiceScenarioType.md)
- - [InvoiceStatus](docs/InvoiceStatus.md)
- - [InvoiceType](docs/InvoiceType.md)
- - [Level](docs/Level.md)
- - [LocalisationLevel](docs/LocalisationLevel.md)
  - [LocalisedErrorDTO](docs/LocalisedErrorDTO.md)
  - [LocalisedErrorDTOMessageValue](docs/LocalisedErrorDTOMessageValue.md)
- - [ManagementRelationType](docs/ManagementRelationType.md)
- - [MandateStatus](docs/MandateStatus.md)
- - [MandateType](docs/MandateType.md)
- - [MeasurementSource](docs/MeasurementSource.md)
  - [MergePdfRequest](docs/MergePdfRequest.md)
- - [MessageType](docs/MessageType.md)
- - [MeterQuickFilter](docs/MeterQuickFilter.md)
- - [MeterReadingFrequency](docs/MeterReadingFrequency.md)
- - [MeterStatus](docs/MeterStatus.md)
- - [MeterType](docs/MeterType.md)
- - [MeteringImportMeasurementsQuickFilter](docs/MeteringImportMeasurementsQuickFilter.md)
- - [MeteringImportQuickFilter](docs/MeteringImportQuickFilter.md)
- - [MeteringImportStatus](docs/MeteringImportStatus.md)
- - [MeteringImportType](docs/MeteringImportType.md)
- - [MeteringIssueError](docs/MeteringIssueError.md)
- - [MeteringIssueErrorGroup](docs/MeteringIssueErrorGroup.md)
- - [MeteringIssueQuickFilter](docs/MeteringIssueQuickFilter.md)
- - [MeteringIssueResolutionReason](docs/MeteringIssueResolutionReason.md)
- - [MeteringIssueResolutionType](docs/MeteringIssueResolutionType.md)
- - [MeteringIssueStatus](docs/MeteringIssueStatus.md)
- - [MeteringIssuesGroupBy](docs/MeteringIssuesGroupBy.md)
- - [MeteringType](docs/MeteringType.md)
- - [Month](docs/Month.md)
- - [MoveRequestQuickFilter](docs/MoveRequestQuickFilter.md)
- - [MoveRequestScenarioType](docs/MoveRequestScenarioType.md)
- - [MoveRequestStatus](docs/MoveRequestStatus.md)
- - [MoveRequestType](docs/MoveRequestType.md)
- - [MutingRuleQuickFilter](docs/MutingRuleQuickFilter.md)
- - [MutingRuleTimePeriod](docs/MutingRuleTimePeriod.md)
- - [NullQuickFilter](docs/NullQuickFilter.md)
  - [NumberFormatInfo](docs/NumberFormatInfo.md)
- - [NumberOfAddresses](docs/NumberOfAddresses.md)
- - [NumberSequenceReferenceEntity](docs/NumberSequenceReferenceEntity.md)
- - [NumberSequenceSegmentType](docs/NumberSequenceSegmentType.md)
- - [NumberSign](docs/NumberSign.md)
- - [OrganizationDataObject](docs/OrganizationDataObject.md)
- - [OrganizationParametersDataObject](docs/OrganizationParametersDataObject.md)
- - [OutgoingBankingTransactionQuickFilter](docs/OutgoingBankingTransactionQuickFilter.md)
- - [OutgoingBankingTransactionStatus](docs/OutgoingBankingTransactionStatus.md)
- - [OutgoingBankingTransactionType](docs/OutgoingBankingTransactionType.md)
- - [OutgoingMutationQuickFilter](docs/OutgoingMutationQuickFilter.md)
- - [OutgoingMutationStatus](docs/OutgoingMutationStatus.md)
- - [OutgoingMutationType](docs/OutgoingMutationType.md)
- - [PaymentDelay](docs/PaymentDelay.md)
- - [PaymentMethod](docs/PaymentMethod.md)
- - [PaymentProcessStatus](docs/PaymentProcessStatus.md)
- - [PaymentQuickFilter](docs/PaymentQuickFilter.md)
- - [PaymentRetryAction](docs/PaymentRetryAction.md)
- - [PaymentReversalReason](docs/PaymentReversalReason.md)
- - [PaymentReversalReasonCode](docs/PaymentReversalReasonCode.md)
- - [PaymentTermsFrequency](docs/PaymentTermsFrequency.md)
- - [PaymentType](docs/PaymentType.md)
- - [PingenCulture](docs/PingenCulture.md)
- - [PluginFeedActivityType](docs/PluginFeedActivityType.md)
- - [PluginFeedStatus](docs/PluginFeedStatus.md)
- - [PluginFeedTopic](docs/PluginFeedTopic.md)
- - [PluginTriggerDataType](docs/PluginTriggerDataType.md)
- - [PluginTriggerPriority](docs/PluginTriggerPriority.md)
- - [PluginType](docs/PluginType.md)
- - [PortalEmailType](docs/PortalEmailType.md)
- - [PortalNotificationType](docs/PortalNotificationType.md)
- - [PortalPageIdentifier](docs/PortalPageIdentifier.md)
- - [PrepaymentAccountStatus](docs/PrepaymentAccountStatus.md)
- - [PrepaymentTransactionOrigin](docs/PrepaymentTransactionOrigin.md)
- - [PrepaymentTransactionStatus](docs/PrepaymentTransactionStatus.md)
- - [PrepaymentTransactionType](docs/PrepaymentTransactionType.md)
+ - [PagedResponseModelDTOOfAttachmentDTO](docs/PagedResponseModelDTOOfAttachmentDTO.md)
+ - [PagedResponseModelDTOOfEntityAttachmentDTO](docs/PagedResponseModelDTOOfEntityAttachmentDTO.md)
+ - [PagedResponseModelDTOOfEntityAttachmentGroupDTO](docs/PagedResponseModelDTOOfEntityAttachmentGroupDTO.md)
  - [ProblemDetails](docs/ProblemDetails.md)
- - [ProblemLevel](docs/ProblemLevel.md)
- - [ProblemResolutionStatus](docs/ProblemResolutionStatus.md)
- - [ProductExportStatus](docs/ProductExportStatus.md)
- - [ProductItemPeriodicityType](docs/ProductItemPeriodicityType.md)
- - [PropertyGroupBillingPeriodTariffStatus](docs/PropertyGroupBillingPeriodTariffStatus.md)
- - [PropertyGroupQuickFilter](docs/PropertyGroupQuickFilter.md)
- - [PropertyGroupType](docs/PropertyGroupType.md)
- - [PropertyType](docs/PropertyType.md)
- - [ScenarioGroupingType](docs/ScenarioGroupingType.md)
- - [ScheduledJobRecurrence](docs/ScheduledJobRecurrence.md)
- - [ScheduledJobType](docs/ScheduledJobType.md)
- - [SentStatus](docs/SentStatus.md)
- - [ServiceLocationQuickFilter](docs/ServiceLocationQuickFilter.md)
- - [ServiceStatus](docs/ServiceStatus.md)
- - [SocialTariffExportType](docs/SocialTariffExportType.md)
+ - [ProductReferenceDTO](docs/ProductReferenceDTO.md)
+ - [SignableContractReferenceDTO](docs/SignableContractReferenceDTO.md)
+ - [SignedEntityAttachmentFileReferenceDTO](docs/SignedEntityAttachmentFileReferenceDTO.md)
  - [SortVersion](docs/SortVersion.md)
- - [SshAuthenticationMethod](docs/SshAuthenticationMethod.md)
- - [StatusCode](docs/StatusCode.md)
- - [SyntheticLoadProfileOrigin](docs/SyntheticLoadProfileOrigin.md)
- - [SystemUsageRecordType](docs/SystemUsageRecordType.md)
- - [TariffOrigin](docs/TariffOrigin.md)
- - [TemplateAssetType](docs/TemplateAssetType.md)
- - [TemplateDataContainer](docs/TemplateDataContainer.md)
- - [TemplateDataContainerApiResponseDTO](docs/TemplateDataContainerApiResponseDTO.md)
- - [TemplateDataObject](docs/TemplateDataObject.md)
- - [TemplateObjectType](docs/TemplateObjectType.md)
- - [TemplateUsecase](docs/TemplateUsecase.md)
- - [TemplateValidationErrorDetails](docs/TemplateValidationErrorDetails.md)
+ - [StringSegment](docs/StringSegment.md)
  - [TextInfo](docs/TextInfo.md)
- - [TierCalculationMethod](docs/TierCalculationMethod.md)
- - [TransactionQuickFilter](docs/TransactionQuickFilter.md)
- - [TransactionReferenceType](docs/TransactionReferenceType.md)
- - [TransactionStatus](docs/TransactionStatus.md)
- - [TransactionSubType](docs/TransactionSubType.md)
- - [TransactionType](docs/TransactionType.md)
- - [TranslationStatus](docs/TranslationStatus.md)
- - [UblTranslations](docs/UblTranslations.md)
- - [UnitOfMeasure](docs/UnitOfMeasure.md)
- - [UpdateContractProductParameter](docs/UpdateContractProductParameter.md)
  - [UpdateEntityAttachmentGroupRequest](docs/UpdateEntityAttachmentGroupRequest.md)
  - [UpdateEntityAttachmentSignedDateRequest](docs/UpdateEntityAttachmentSignedDateRequest.md)
  - [UpdateEntityAttachmentViewedDateRequest](docs/UpdateEntityAttachmentViewedDateRequest.md)
  - [UpdateEntityAttachmentVisibilityRequest](docs/UpdateEntityAttachmentVisibilityRequest.md)
- - [UpdatePaymentLinkRequest](docs/UpdatePaymentLinkRequest.md)
- - [UserQuickFilter](docs/UserQuickFilter.md)
- - [UtilityType](docs/UtilityType.md)
- - [ValueProviderType](docs/ValueProviderType.md)
- - [WriteOffHandlingType](docs/WriteOffHandlingType.md)
 
 
 <a id="documentation-for-authorization"></a>
@@ -443,7 +217,3 @@ Authentication schemes defined for the API:
 
 
 ## Author
-
-
-
-

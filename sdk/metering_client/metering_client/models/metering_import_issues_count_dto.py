@@ -27,8 +27,8 @@ class MeteringImportIssuesCountDTO(BaseModel):
     """
     MeteringImportIssuesCountDTO
     """ # noqa: E501
-    invalid_format_errors: Optional[List[ErrorCodeCount]] = Field(default=None, alias="invalidFormatErrors")
-    invalid_data_errors: Optional[List[ErrorCodeCount]] = Field(default=None, alias="invalidDataErrors")
+    invalid_format_errors: Optional[List[ErrorCodeCount]] = Field(alias="invalidFormatErrors")
+    invalid_data_errors: Optional[List[ErrorCodeCount]] = Field(alias="invalidDataErrors")
     __properties: ClassVar[List[str]] = ["invalidFormatErrors", "invalidDataErrors"]
 
     model_config = ConfigDict(
@@ -110,5 +110,3 @@ class MeteringImportIssuesCountDTO(BaseModel):
             "invalidDataErrors": [ErrorCodeCount.from_dict(_item) for _item in obj["invalidDataErrors"]] if obj.get("invalidDataErrors") is not None else None
         })
         return _obj
-
-

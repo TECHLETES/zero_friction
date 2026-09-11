@@ -23,7 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from masterdata_client.models.address_dto import AddressDTO
 from masterdata_client.models.custom_entity_property_dto import CustomEntityPropertyDTO
 from masterdata_client.models.entity_subject_type import EntitySubjectType
-from masterdata_client.models.management_relation_dto2 import ManagementRelationDTO2
+from masterdata_client.models.management_relation_dto import ManagementRelationDTO
 from masterdata_client.models.product_reference_dto import ProductReferenceDTO
 from masterdata_client.models.property_group_reference_dto import PropertyGroupReferenceDTO
 from masterdata_client.models.service_dto import ServiceDTO
@@ -35,28 +35,30 @@ class ServiceLocationDTO(BaseModel):
     """
     ServiceLocationDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
     address: Optional[AddressDTO] = None
     display_address: Optional[StrictStr] = Field(default=None, alias="displayAddress")
     property_group: Optional[PropertyGroupReferenceDTO] = Field(default=None, alias="propertyGroup")
     product: Optional[ProductReferenceDTO] = None
-    management_relations: Optional[List[ManagementRelationDTO2]] = Field(default=None, alias="managementRelations")
+    management_relations: Optional[List[ManagementRelationDTO]] = Field(default=None, alias="managementRelations")
     services: Optional[List[ServiceDTO]] = None
     has_meters: Optional[StrictBool] = Field(default=None, alias="hasMeters")
     external_id: Optional[StrictStr] = Field(default=None, alias="externalId")
     time_zone: Optional[StrictStr] = Field(default=None, alias="timeZone")
     custom_properties: Optional[List[CustomEntityPropertyDTO]] = Field(default=None, alias="customProperties")
+    archived_at: Optional[datetime] = Field(default=None, alias="archivedAt")
+    last_time_received_data: Optional[datetime] = Field(default=None, alias="lastTimeReceivedData")
+    has_recent_measurements: Optional[StrictBool] = Field(default=None, alias="hasRecentMeasurements")
+    is_auto_restored: Optional[StrictBool] = Field(default=None, alias="isAutoRestored")
     current_status: Optional[ServiceStatus] = Field(default=None, alias="currentStatus")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "address", "displayAddress", "propertyGroup", "product", "managementRelations", "services", "hasMeters", "externalId", "timeZone", "customProperties", "currentStatus"]
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["address", "displayAddress", "propertyGroup", "product", "managementRelations", "services", "hasMeters", "externalId", "timeZone", "customProperties", "archivedAt", "lastTimeReceivedData", "hasRecentMeasurements", "isAutoRestored", "currentStatus", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,12 +90,8 @@ class ServiceLocationDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
-            "current_status",
         ])
 
         _dict = self.model_dump(
@@ -131,31 +129,6 @@ class ServiceLocationDTO(BaseModel):
                 if _item_custom_properties:
                     _items.append(_item_custom_properties.to_dict())
             _dict['customProperties'] = _items
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
         # set to None if address (nullable) is None
         # and model_fields_set contains the field
         if self.address is None and "address" in self.model_fields_set:
@@ -176,16 +149,6 @@ class ServiceLocationDTO(BaseModel):
         if self.product is None and "product" in self.model_fields_set:
             _dict['product'] = None
 
-        # set to None if management_relations (nullable) is None
-        # and model_fields_set contains the field
-        if self.management_relations is None and "management_relations" in self.model_fields_set:
-            _dict['managementRelations'] = None
-
-        # set to None if services (nullable) is None
-        # and model_fields_set contains the field
-        if self.services is None and "services" in self.model_fields_set:
-            _dict['services'] = None
-
         # set to None if external_id (nullable) is None
         # and model_fields_set contains the field
         if self.external_id is None and "external_id" in self.model_fields_set:
@@ -196,15 +159,15 @@ class ServiceLocationDTO(BaseModel):
         if self.time_zone is None and "time_zone" in self.model_fields_set:
             _dict['timeZone'] = None
 
-        # set to None if custom_properties (nullable) is None
+        # set to None if archived_at (nullable) is None
         # and model_fields_set contains the field
-        if self.custom_properties is None and "custom_properties" in self.model_fields_set:
-            _dict['customProperties'] = None
+        if self.archived_at is None and "archived_at" in self.model_fields_set:
+            _dict['archivedAt'] = None
 
-        # set to None if current_status (nullable) is None
+        # set to None if last_time_received_data (nullable) is None
         # and model_fields_set contains the field
-        if self.current_status is None and "current_status" in self.model_fields_set:
-            _dict['currentStatus'] = None
+        if self.last_time_received_data is None and "last_time_received_data" in self.model_fields_set:
+            _dict['lastTimeReceivedData'] = None
 
         return _dict
 
@@ -218,28 +181,28 @@ class ServiceLocationDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "address": AddressDTO.from_dict(obj["address"]) if obj.get("address") is not None else None,
             "displayAddress": obj.get("displayAddress"),
             "propertyGroup": PropertyGroupReferenceDTO.from_dict(obj["propertyGroup"]) if obj.get("propertyGroup") is not None else None,
             "product": ProductReferenceDTO.from_dict(obj["product"]) if obj.get("product") is not None else None,
-            "managementRelations": [ManagementRelationDTO2.from_dict(_item) for _item in obj["managementRelations"]] if obj.get("managementRelations") is not None else None,
+            "managementRelations": [ManagementRelationDTO.from_dict(_item) for _item in obj["managementRelations"]] if obj.get("managementRelations") is not None else None,
             "services": [ServiceDTO.from_dict(_item) for _item in obj["services"]] if obj.get("services") is not None else None,
             "hasMeters": obj.get("hasMeters"),
             "externalId": obj.get("externalId"),
             "timeZone": obj.get("timeZone"),
             "customProperties": [CustomEntityPropertyDTO.from_dict(_item) for _item in obj["customProperties"]] if obj.get("customProperties") is not None else None,
-            "currentStatus": obj.get("currentStatus")
+            "archivedAt": obj.get("archivedAt"),
+            "lastTimeReceivedData": obj.get("lastTimeReceivedData"),
+            "hasRecentMeasurements": obj.get("hasRecentMeasurements"),
+            "isAutoRestored": obj.get("isAutoRestored"),
+            "currentStatus": obj.get("currentStatus"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
-
-

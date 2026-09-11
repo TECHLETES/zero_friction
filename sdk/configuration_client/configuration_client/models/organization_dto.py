@@ -21,9 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.address_dto import AddressDTO
-from configuration_client.models.culture_info import CultureInfo
 from configuration_client.models.entity_subject_type import EntitySubjectType
-from configuration_client.models.feature_settings_dto import FeatureSettingsDTO
 from configuration_client.models.organization_contact_details_dto import OrganizationContactDetailsDTO
 from typing import Optional, Set
 from typing_extensions import Self
@@ -32,19 +30,6 @@ class OrganizationDTO(BaseModel):
     """
     OrganizationDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    automatic_processing_enabled: Optional[StrictBool] = Field(default=None, alias="automaticProcessingEnabled")
-    migration_mode: Optional[StrictBool] = Field(default=None, alias="migrationMode")
-    code: Optional[StrictStr] = None
-    description: Optional[StrictStr] = None
     vat_account_number: Optional[StrictStr] = Field(default=None, alias="vatAccountNumber")
     company_account_number: Optional[StrictStr] = Field(default=None, alias="companyAccountNumber")
     logo: Optional[StrictStr] = None
@@ -55,14 +40,16 @@ class OrganizationDTO(BaseModel):
     persist_color_in_portal: Optional[StrictBool] = Field(default=None, alias="persistColorInPortal")
     address: Optional[AddressDTO] = None
     contact_details: Optional[OrganizationContactDetailsDTO] = Field(default=None, alias="contactDetails")
-    time_zone: Optional[StrictStr] = Field(default=None, alias="timeZone")
-    culture: Optional[CultureInfo] = Field(default=None, description="We add culture here, and not the default culture of the language table, as this one is used  for currencies and number formats etc")
     manually_set_customer_number: Optional[StrictBool] = Field(default=None, alias="manuallySetCustomerNumber")
     manually_set_contract_number: Optional[StrictBool] = Field(default=None, alias="manuallySetContractNumber")
-    marked_for_deletion: Optional[StrictBool] = Field(default=None, alias="markedForDeletion")
-    originally_enabled: Optional[StrictBool] = Field(default=None, alias="originallyEnabled")
-    features: Optional[FeatureSettingsDTO] = None
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "automaticProcessingEnabled", "migrationMode", "code", "description", "vatAccountNumber", "companyAccountNumber", "logo", "logoCdnUrl", "primaryColor", "secondaryColor", "persistLogoInPortal", "persistColorInPortal", "address", "contactDetails", "timeZone", "culture", "manuallySetCustomerNumber", "manuallySetContractNumber", "markedForDeletion", "originallyEnabled", "features"]
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["vatAccountNumber", "companyAccountNumber", "logo", "logoCdnUrl", "primaryColor", "secondaryColor", "persistLogoInPortal", "persistColorInPortal", "address", "contactDetails", "manuallySetCustomerNumber", "manuallySetContractNumber", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,10 +81,8 @@ class OrganizationDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -111,39 +96,6 @@ class OrganizationDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of contact_details
         if self.contact_details:
             _dict['contactDetails'] = self.contact_details.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of features
-        if self.features:
-            _dict['features'] = self.features.to_dict()
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if code (nullable) is None
-        # and model_fields_set contains the field
-        if self.code is None and "code" in self.model_fields_set:
-            _dict['code'] = None
-
-        # set to None if description (nullable) is None
-        # and model_fields_set contains the field
-        if self.description is None and "description" in self.model_fields_set:
-            _dict['description'] = None
-
         # set to None if vat_account_number (nullable) is None
         # and model_fields_set contains the field
         if self.vat_account_number is None and "vat_account_number" in self.model_fields_set:
@@ -184,21 +136,6 @@ class OrganizationDTO(BaseModel):
         if self.contact_details is None and "contact_details" in self.model_fields_set:
             _dict['contactDetails'] = None
 
-        # set to None if time_zone (nullable) is None
-        # and model_fields_set contains the field
-        if self.time_zone is None and "time_zone" in self.model_fields_set:
-            _dict['timeZone'] = None
-
-        # set to None if culture (nullable) is None
-        # and model_fields_set contains the field
-        if self.culture is None and "culture" in self.model_fields_set:
-            _dict['culture'] = None
-
-        # set to None if features (nullable) is None
-        # and model_fields_set contains the field
-        if self.features is None and "features" in self.model_fields_set:
-            _dict['features'] = None
-
         return _dict
 
     @classmethod
@@ -211,19 +148,6 @@ class OrganizationDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "automaticProcessingEnabled": obj.get("automaticProcessingEnabled"),
-            "migrationMode": obj.get("migrationMode"),
-            "code": obj.get("code"),
-            "description": obj.get("description"),
             "vatAccountNumber": obj.get("vatAccountNumber"),
             "companyAccountNumber": obj.get("companyAccountNumber"),
             "logo": obj.get("logo"),
@@ -234,14 +158,14 @@ class OrganizationDTO(BaseModel):
             "persistColorInPortal": obj.get("persistColorInPortal"),
             "address": AddressDTO.from_dict(obj["address"]) if obj.get("address") is not None else None,
             "contactDetails": OrganizationContactDetailsDTO.from_dict(obj["contactDetails"]) if obj.get("contactDetails") is not None else None,
-            "timeZone": obj.get("timeZone"),
-            "culture": obj.get("culture"),
             "manuallySetCustomerNumber": obj.get("manuallySetCustomerNumber"),
             "manuallySetContractNumber": obj.get("manuallySetContractNumber"),
-            "markedForDeletion": obj.get("markedForDeletion"),
-            "originallyEnabled": obj.get("originallyEnabled"),
-            "features": FeatureSettingsDTO.from_dict(obj["features"]) if obj.get("features") is not None else None
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
-
-

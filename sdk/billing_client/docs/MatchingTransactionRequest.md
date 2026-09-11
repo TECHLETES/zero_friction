@@ -1,13 +1,12 @@
 # MatchingTransactionRequest
 
-Represents a single transaction to be matched with its settlement amount.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**matching_transaction_id** | **str** | The ID of the transaction to be matched. | [optional] 
-**amount_to_settle** | **float** | The amount to be settled for this transaction. | [optional] 
+**matching_transaction_id** | **str** |  |
+**amount_to_settle** | **float** |  |
 
 ## Example
 
@@ -27,5 +26,3 @@ matching_transaction_request_dict = matching_transaction_request_instance.to_dic
 matching_transaction_request_from_dict = MatchingTransactionRequest.from_dict(matching_transaction_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

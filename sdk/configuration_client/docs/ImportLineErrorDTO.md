@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**line_number** | **int** |  | [optional] 
-**error_messages** | [**List[ErrorCode]**](ErrorCode.md) |  | [optional] 
-**is_valid** | **bool** |  | [optional] 
+**line_number** | **int** |  | [optional]
+**error_messages** | **List[int]** |  | [optional]
+**is_valid** | **bool** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ import_line_error_dto_dict = import_line_error_dto_instance.to_dict()
 import_line_error_dto_from_dict = ImportLineErrorDTO.from_dict(import_line_error_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

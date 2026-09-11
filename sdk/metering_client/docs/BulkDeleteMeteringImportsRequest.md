@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetMeteringImportsQueryParams**](GetMeteringImportsQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetMeteringImportsQueryParams**](GetMeteringImportsQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ bulk_delete_metering_imports_request_dict = bulk_delete_metering_imports_request
 bulk_delete_metering_imports_request_from_dict = BulkDeleteMeteringImportsRequest.from_dict(bulk_delete_metering_imports_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

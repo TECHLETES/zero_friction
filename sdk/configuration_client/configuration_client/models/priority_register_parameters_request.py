@@ -26,8 +26,8 @@ class PriorityRegisterParametersRequest(BaseModel):
     """
     PriorityRegisterParametersRequest
     """ # noqa: E501
-    psr_codes_custom_entity_property_type_id: Optional[StrictStr] = Field(default=None, alias="psrCodesCustomEntityPropertyTypeId")
-    vr_codes_custom_entity_property_type_id: Optional[StrictStr] = Field(default=None, alias="vrCodesCustomEntityPropertyTypeId")
+    psr_codes_custom_entity_property_type_id: Optional[StrictStr] = Field(alias="psrCodesCustomEntityPropertyTypeId")
+    vr_codes_custom_entity_property_type_id: Optional[StrictStr] = Field(alias="vrCodesCustomEntityPropertyTypeId")
     __properties: ClassVar[List[str]] = ["psrCodesCustomEntityPropertyTypeId", "vrCodesCustomEntityPropertyTypeId"]
 
     model_config = ConfigDict(
@@ -95,5 +95,3 @@ class PriorityRegisterParametersRequest(BaseModel):
             "vrCodesCustomEntityPropertyTypeId": obj.get("vrCodesCustomEntityPropertyTypeId")
         })
         return _obj
-
-

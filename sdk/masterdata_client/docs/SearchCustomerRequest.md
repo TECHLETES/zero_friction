@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
+**name** | **str** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ search_customer_request_dict = search_customer_request_instance.to_dict()
 search_customer_request_from_dict = SearchCustomerRequest.from_dict(search_customer_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -37,18 +37,51 @@ class TestUpdatePortalSettingsRequest(unittest.TestCase):
             return UpdatePortalSettingsRequest(
                 fav_icon = '',
                 logo = '',
+                pwa_install_icon512 = '',
+                pwa_install_icon192 = '',
+                pwa_apple_touch_icon180 = '',
                 primary_color = '',
                 secondary_color = '',
+                persist_logo_from_organization = True,
+                persist_color_from_organization = True,
+                show_vko = True,
+                pwa_enabled = True,
                 advance_change_limit = configuration_client.models.portal_advance_change_limit_request.PortalAdvanceChangeLimitRequest(
-                    range_min = 1.337, 
-                    range_max = 1.337, 
-                    type = null, ),
+                    range_min = 1.337,
+                    range_max = 1.337,
+                    type = 'fixed', ),
                 billing_settings = configuration_client.models.portal_billing_settings_request.PortalBillingSettingsRequest(
-                    allow_customer_to_change_advance_amount = True, 
-                    hide_invoice_section = True, )
+                    allow_customer_to_change_advance_amount = True,
+                    allow_customer_to_change_invoice_address = True,
+                    hide_invoice_section = True,
+                    hide_payment_reference = True,
+                    require_birth_date_for_persons = True, ),
+                move_in_move_out_settings = configuration_client.models.portal_move_in_move_out_settings_request.PortalMoveInMoveOutSettingsRequest(
+                    is_disabled = True, ),
+                self_service_options = configuration_client.models.portal_self_service_options_request.PortalSelfServiceOptionsRequest(
+                    allow_edit_communication_details = True,
+                    allow_edit_personal_information = True, )
             )
         else:
             return UpdatePortalSettingsRequest(
+                pwa_install_icon512 = '',
+                pwa_install_icon192 = '',
+                pwa_apple_touch_icon180 = '',
+                primary_color = '',
+                secondary_color = '',
+                advance_change_limit = configuration_client.models.portal_advance_change_limit_request.PortalAdvanceChangeLimitRequest(
+                    range_min = 1.337,
+                    range_max = 1.337,
+                    type = 'fixed', ),
+                billing_settings = configuration_client.models.portal_billing_settings_request.PortalBillingSettingsRequest(
+                    allow_customer_to_change_advance_amount = True,
+                    allow_customer_to_change_invoice_address = True,
+                    hide_invoice_section = True,
+                    hide_payment_reference = True,
+                    require_birth_date_for_persons = True, ),
+                self_service_options = configuration_client.models.portal_self_service_options_request.PortalSelfServiceOptionsRequest(
+                    allow_edit_communication_details = True,
+                    allow_edit_personal_information = True, ),
         )
         """
 

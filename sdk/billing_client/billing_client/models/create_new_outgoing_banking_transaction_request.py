@@ -27,12 +27,12 @@ from typing_extensions import Self
 
 class CreateNewOutgoingBankingTransactionRequest(BaseModel):
     """
-    Represents a request to create a new outgoing banking transaction.  This DTO is used to create a new transaction with multiple entries and associated details.
+    CreateNewOutgoingBankingTransactionRequest
     """ # noqa: E501
-    outgoing_banking_transaction_type: Optional[OutgoingBankingTransactionType] = Field(default=None, description="The type of outgoing banking transaction to create.", alias="outgoingBankingTransactionType")
-    collection_date: Optional[datetime] = Field(default=None, description="The date and time when the transaction should be collected.", alias="collectionDate")
-    company_bank_account_id: Optional[StrictStr] = Field(default=None, description="The ID of the company bank account to be used for the transaction.", alias="companyBankAccountId")
-    entries: Optional[List[AddEntryToOutgoingBankingTransactionRequest]] = Field(default=None, description="A list of entries to be included in the transaction.  Each entry can be either invoice-based or a manual entry.")
+    outgoing_banking_transaction_type: OutgoingBankingTransactionType = Field(alias="outgoingBankingTransactionType")
+    collection_date: datetime = Field(alias="collectionDate")
+    company_bank_account_id: Optional[StrictStr] = Field(alias="companyBankAccountId")
+    entries: List[AddEntryToOutgoingBankingTransactionRequest]
     __properties: ClassVar[List[str]] = ["outgoingBankingTransactionType", "collectionDate", "companyBankAccountId", "entries"]
 
     model_config = ConfigDict(
@@ -81,20 +81,10 @@ class CreateNewOutgoingBankingTransactionRequest(BaseModel):
                 if _item_entries:
                     _items.append(_item_entries.to_dict())
             _dict['entries'] = _items
-        # set to None if outgoing_banking_transaction_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.outgoing_banking_transaction_type is None and "outgoing_banking_transaction_type" in self.model_fields_set:
-            _dict['outgoingBankingTransactionType'] = None
-
         # set to None if company_bank_account_id (nullable) is None
         # and model_fields_set contains the field
         if self.company_bank_account_id is None and "company_bank_account_id" in self.model_fields_set:
             _dict['companyBankAccountId'] = None
-
-        # set to None if entries (nullable) is None
-        # and model_fields_set contains the field
-        if self.entries is None and "entries" in self.model_fields_set:
-            _dict['entries'] = None
 
         return _dict
 
@@ -114,5 +104,3 @@ class CreateNewOutgoingBankingTransactionRequest(BaseModel):
             "entries": [AddEntryToOutgoingBankingTransactionRequest.from_dict(_item) for _item in obj["entries"]] if obj.get("entries") is not None else None
         })
         return _obj
-
-

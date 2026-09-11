@@ -24,14 +24,14 @@ from typing_extensions import Self
 
 class MeteringImportOverviewCountDTO(BaseModel):
     """
-    Represents an overview of metering import counts, providing information about the  total records and their respective processing statuses.  Counts take the current filter into account
+    MeteringImportOverviewCountDTO
     """ # noqa: E501
-    all: Optional[StrictInt] = Field(default=None, description="Total amount of metering imports.")
-    to_process: Optional[StrictInt] = Field(default=None, description="The total count of metering imports that still need processing.", alias="toProcess")
-    processed: Optional[StrictInt] = Field(default=None, description="The total count of processed metering imports, without any issue.")
-    format_issues: Optional[StrictInt] = Field(default=None, description="Total count of metering imports that have issues related to formatting", alias="formatIssues")
-    issues: Optional[StrictInt] = Field(default=None, description="Total count of metering imports that have critical issues")
-    invalid: Optional[StrictInt] = Field(default=None, description="Total count of metering imports that have one or more invalid measurements.")
+    all: Optional[StrictInt] = None
+    to_process: Optional[StrictInt] = Field(default=None, alias="toProcess")
+    processed: Optional[StrictInt] = None
+    format_issues: Optional[StrictInt] = Field(default=None, alias="formatIssues")
+    issues: Optional[StrictInt] = None
+    invalid: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["all", "toProcess", "processed", "formatIssues", "issues", "invalid"]
 
     model_config = ConfigDict(
@@ -93,5 +93,3 @@ class MeteringImportOverviewCountDTO(BaseModel):
             "invalid": obj.get("invalid")
         })
         return _obj
-
-

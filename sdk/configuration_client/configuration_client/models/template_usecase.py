@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class TemplateUsecase(str, Enum):
     """
-    TemplateUsecase
+    Possible values: 'pdf', 'email'
     """
 
     """
@@ -33,5 +33,3 @@ class TemplateUsecase(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of TemplateUsecase from a JSON string"""
         return cls(json.loads(json_str))
-
-

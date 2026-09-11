@@ -5,10 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**billing_items** | [**List[UpsertProductBillingItemsRequest]**](UpsertProductBillingItemsRequest.md) |  | [optional] 
-**attachments** | [**List[UpsertProductAttachmentRequest]**](UpsertProductAttachmentRequest.md) |  | [optional] 
-**invoice_upfront** | **bool** |  | [optional] 
+**name** | **str** |  |
+**billing_items** | [**List[UpsertProductBillingItemsRequest]**](UpsertProductBillingItemsRequest.md) |  |
+**attachments** | [**List[UpsertProductAttachmentRequest]**](UpsertProductAttachmentRequest.md) |  |
+**invoice_upfront** | **bool** |  | [optional]
+**is_prepayment_eligible** | **bool** |  | [optional]
+**accounting_code_id** | **str** |  | [optional]
 
 ## Example
 
@@ -28,5 +30,3 @@ upsert_product_request_dict = upsert_product_request_instance.to_dict()
 upsert_product_request_from_dict = UpsertProductRequest.from_dict(upsert_product_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

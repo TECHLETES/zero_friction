@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
-**service_status** | [**ServiceStatus**](ServiceStatus.md) |  | [optional] 
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**service_status** | [**ServiceStatus**](ServiceStatus.md) |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ service_status_history_dto_dict = service_status_history_dto_instance.to_dict()
 service_status_history_dto_from_dict = ServiceStatusHistoryDTO.from_dict(service_status_history_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

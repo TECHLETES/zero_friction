@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mutation_date_time** | **datetime** |  | [optional] 
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetPropertyGroupsQueryParams**](GetPropertyGroupsQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetPropertyGroupsQueryParams**](GetPropertyGroupsQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
+**mutation_date_time** | **datetime** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ bulk_delete_property_group_request_dict = bulk_delete_property_group_request_ins
 bulk_delete_property_group_request_from_dict = BulkDeletePropertyGroupRequest.from_dict(bulk_delete_property_group_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

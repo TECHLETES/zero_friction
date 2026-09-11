@@ -5,10 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**end_date_time** | **datetime** |  | [optional] 
-**value** | **float** |  | [optional] 
-**meter_id** | **str** |  | [optional] 
-**external_channel_id** | **str** |  | [optional] 
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  |
+**value** | **float** |  | [optional]
+**reading_origin** | [**MeasurementReadingOrigin**](MeasurementReadingOrigin.md) |  | [optional]
+**meter_id** | **str** |  |
+**external_channel_id** | **str** |  |
 
 ## Example
 
@@ -28,5 +30,3 @@ validate_measurement_request_dict = validate_measurement_request_instance.to_dic
 validate_measurement_request_from_dict = ValidateMeasurementRequest.from_dict(validate_measurement_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

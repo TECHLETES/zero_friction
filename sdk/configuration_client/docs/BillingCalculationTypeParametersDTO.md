@@ -5,8 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | 
-**billing_calculation_type** | [**BillingCalculationType**](BillingCalculationType.md) |  | [optional] [readonly] 
+**type** | **str** |  |
+**utility_type** | [**UtilityType**](UtilityType.md) |  |
+**metering_type** | [**MeteringType**](MeteringType.md) |  |
+**direction** | [**Direction**](Direction.md) |  | [optional]
+**billing_calculation_type** | [**BillingCalculationType**](BillingCalculationType.md) |  | [optional]
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  |
+**scope** | [**BillingScope**](BillingScope.md) |  |
+**custom_entity_property_type_id** | **str** |  |
 
 ## Example
 
@@ -26,5 +32,3 @@ billing_calculation_type_parameters_dto_dict = billing_calculation_type_paramete
 billing_calculation_type_parameters_dto_from_dict = BillingCalculationTypeParametersDTO.from_dict(billing_calculation_type_parameters_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -35,14 +35,14 @@ class TestLocalisedSystemMessageDTO(unittest.TestCase):
         model = LocalisedSystemMessageDTO()
         if include_optional:
             return LocalisedSystemMessageDTO(
-                key = 'BILLING_SETTINGS_COPIED_FROM_PROPERTY_GROUP',
+                key = 56,
                 message = '',
                 message_values = [
                     billing_client.models.localised_system_message_dto_value.LocalisedSystemMessageDtoValue(
-                        data_type = null, 
+                        data_type = 'text',
                         value = '', )
                     ],
-                level = 'Information'
+                level = 56
             )
         else:
             return LocalisedSystemMessageDTO(

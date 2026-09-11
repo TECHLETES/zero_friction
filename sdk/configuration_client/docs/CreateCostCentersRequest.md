@@ -1,12 +1,11 @@
 # CreateCostCentersRequest
 
-Request model for creating new cost centers.  Cost centers should correspond to entries in an external accounting system  to enable proper data synchronization during billing operations.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cost_centers** | [**List[CreateCostCenterRequest]**](CreateCostCenterRequest.md) | List of cost centers to create. | [optional] 
+**cost_centers** | [**List[CreateCostCenterRequest]**](CreateCostCenterRequest.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +25,3 @@ create_cost_centers_request_dict = create_cost_centers_request_instance.to_dict(
 create_cost_centers_request_from_dict = CreateCostCentersRequest.from_dict(create_cost_centers_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

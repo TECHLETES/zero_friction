@@ -91,5 +91,3 @@ class BankAccountRequest(BaseModel):
             "signDate": obj.get("signDate")
         })
         return _obj
-
-

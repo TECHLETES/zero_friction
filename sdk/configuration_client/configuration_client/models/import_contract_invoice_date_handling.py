@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ImportContractInvoiceDateHandling(str, Enum):
     """
-    ImportContractInvoiceDateHandling
+    Possible values: 'donothing', 'recalculateinvoicedates', 'nextinvoicedateminusfrequency'
     """
 
     """
@@ -34,5 +34,3 @@ class ImportContractInvoiceDateHandling(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ImportContractInvoiceDateHandling from a JSON string"""
         return cls(json.loads(json_str))
-
-

@@ -1,14 +1,13 @@
 # PeriodForEntityDTO
 
-Represents a period associated with an entity in the estimated invoice.  This DTO contains information about the entity's validity period and its current status.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entity_id** | **str** | The unique identifier of the entity. | [optional] 
-**entity_period** | [**DateRange**](DateRange.md) | The date range during which the entity is valid. | [optional] 
-**out_dated** | **bool** | Indicates whether the entity&#39;s period is outdated. | [optional] 
+**entity_id** | **str** |  | [optional]
+**entity_period** | [**DateRange**](DateRange.md) |  | [optional]
+**out_dated** | **bool** |  | [optional]
 
 ## Example
 
@@ -28,5 +27,3 @@ period_for_entity_dto_dict = period_for_entity_dto_instance.to_dict()
 period_for_entity_dto_from_dict = PeriodForEntityDTO.from_dict(period_for_entity_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -46,10 +46,20 @@ class TestChangeCustomerDetailsRequest(unittest.TestCase):
                 company_name = '',
                 organization_number = '',
                 vat_number = '',
-                customer_type = 'person'
+                country_code = 'aut',
+                customer_type = 'person',
+                changed_by_portal = True
             )
         else:
             return ChangeCustomerDetailsRequest(
+                account_number = '',
+                salutation = '',
+                initials = '',
+                first_name = '',
+                last_name = '',
+                ssin = '',
+                ssin_country = 'aut',
+                company_name = '',
         )
         """
 

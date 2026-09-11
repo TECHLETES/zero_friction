@@ -1,14 +1,13 @@
 # TransactionReferenceDetailsDTO
 
-Represents reference details for a transaction
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transaction_reference_type** | [**TransactionReferenceType**](TransactionReferenceType.md) | Type of transaction reference | [optional] 
-**transaction_reference_id** | **str** | Identifier of the transaction reference | [optional] 
-**parameters** | **object** | Parameters for the transaction reference | [optional] 
+**transaction_reference_type** | [**TransactionReferenceType**](TransactionReferenceType.md) |  |
+**transaction_reference_id** | **str** |  |
+**parameters** | [**TransactionReferenceParametersDTO**](TransactionReferenceParametersDTO.md) |  |
 
 ## Example
 
@@ -28,5 +27,3 @@ transaction_reference_details_dto_dict = transaction_reference_details_dto_insta
 transaction_reference_details_dto_from_dict = TransactionReferenceDetailsDTO.from_dict(transaction_reference_details_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

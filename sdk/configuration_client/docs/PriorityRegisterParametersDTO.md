@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**psr_codes_custom_entity_property_type_id** | **str** |  | [optional] 
-**vr_codes_custom_entity_property_type_id** | **str** |  | [optional] 
+**psr_codes_custom_entity_property_type_id** | **str** |  | [optional]
+**vr_codes_custom_entity_property_type_id** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ priority_register_parameters_dto_dict = priority_register_parameters_dto_instanc
 priority_register_parameters_dto_from_dict = PriorityRegisterParametersDTO.from_dict(priority_register_parameters_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

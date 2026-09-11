@@ -35,18 +35,28 @@ class TestChangeContractLocationsAddedScenarioRequest(unittest.TestCase):
         model = ChangeContractLocationsAddedScenarioRequest()
         if include_optional:
             return ChangeContractLocationsAddedScenarioRequest(
-                default_communication_type = 'postal',
                 email_template = configuration_client.models.contract_locations_added_email_template_request.ContractLocationsAddedEmailTemplateRequest(
-                    subject = '', 
+                    subject = '',
                     attachments = [
                         configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
-                            id = '', 
-                            internal_file_path = '', 
+                            id = '',
+                            internal_file_path = '',
                             file_name = '', )
-                        ], )
+                        ], ),
+                default_communication_type = 'none',
+                auto_fallback_to_postal = True
             )
         else:
             return ChangeContractLocationsAddedScenarioRequest(
+                email_template = configuration_client.models.contract_locations_added_email_template_request.ContractLocationsAddedEmailTemplateRequest(
+                    subject = '',
+                    attachments = [
+                        configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
+                            id = '',
+                            internal_file_path = '',
+                            file_name = '', )
+                        ], ),
+                default_communication_type = 'none',
         )
         """
 

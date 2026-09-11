@@ -35,13 +35,6 @@ class TestGetMetersQueryParams(unittest.TestCase):
         model = GetMetersQueryParams()
         if include_optional:
             return GetMetersQueryParams(
-                flex_search = '',
-                include_only_ids = [
-                    ''
-                    ],
-                exclude_ids = [
-                    ''
-                    ],
                 servicelocation_ids = [
                     ''
                     ],
@@ -58,7 +51,22 @@ class TestGetMetersQueryParams(unittest.TestCase):
                 reading_frequency = 'hourly',
                 customer_id = '',
                 meter_type_group = '',
-                meter_serial_number = ''
+                meter_serial_numbers = [
+                    ''
+                    ],
+                model_ids = [
+                    ''
+                    ],
+                meter_name = '',
+                show_deleted = True,
+                flex_search = '',
+                include_only_ids = [
+                    ''
+                    ],
+                exclude_ids = [
+                    ''
+                    ],
+                page_size = 56
             )
         else:
             return GetMetersQueryParams(

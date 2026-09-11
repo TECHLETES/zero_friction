@@ -32,13 +32,14 @@ class AggregatedServiceConsumptionsByServiceLocationDTO(BaseModel):
     """ # noqa: E501
     service_location: Optional[StrictStr] = Field(default=None, alias="serviceLocation")
     service_location_address: Optional[AddressDTO] = Field(default=None, alias="serviceLocationAddress")
+    location_group: Optional[StrictStr] = Field(default=None, alias="locationGroup")
     utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
     unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, alias="unitOfMeasure")
     time_of_use: Optional[StrictStr] = Field(default=None, alias="timeOfUse")
     period_start_date: Optional[datetime] = Field(default=None, alias="periodStartDate")
     period_end_date: Optional[datetime] = Field(default=None, alias="periodEndDate")
     total: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties: ClassVar[List[str]] = ["serviceLocation", "serviceLocationAddress", "utilityType", "unitOfMeasure", "timeOfUse", "periodStartDate", "periodEndDate", "total"]
+    __properties: ClassVar[List[str]] = ["serviceLocation", "serviceLocationAddress", "locationGroup", "utilityType", "unitOfMeasure", "timeOfUse", "periodStartDate", "periodEndDate", "total"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,15 +93,10 @@ class AggregatedServiceConsumptionsByServiceLocationDTO(BaseModel):
         if self.service_location_address is None and "service_location_address" in self.model_fields_set:
             _dict['serviceLocationAddress'] = None
 
-        # set to None if utility_type (nullable) is None
+        # set to None if location_group (nullable) is None
         # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
+        if self.location_group is None and "location_group" in self.model_fields_set:
+            _dict['locationGroup'] = None
 
         # set to None if time_of_use (nullable) is None
         # and model_fields_set contains the field
@@ -131,6 +127,7 @@ class AggregatedServiceConsumptionsByServiceLocationDTO(BaseModel):
         _obj = cls.model_validate({
             "serviceLocation": obj.get("serviceLocation"),
             "serviceLocationAddress": AddressDTO.from_dict(obj["serviceLocationAddress"]) if obj.get("serviceLocationAddress") is not None else None,
+            "locationGroup": obj.get("locationGroup"),
             "utilityType": obj.get("utilityType"),
             "unitOfMeasure": obj.get("unitOfMeasure"),
             "timeOfUse": obj.get("timeOfUse"),
@@ -139,5 +136,3 @@ class AggregatedServiceConsumptionsByServiceLocationDTO(BaseModel):
             "total": obj.get("total")
         })
         return _obj
-
-

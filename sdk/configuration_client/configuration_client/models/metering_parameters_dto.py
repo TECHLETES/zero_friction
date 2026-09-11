@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.base_metering_validation_rule_dto import BaseMeteringValidationRuleDTO
 from typing import Optional, Set
@@ -27,8 +27,10 @@ class MeteringParametersDTO(BaseModel):
     """
     MeteringParametersDTO
     """ # noqa: E501
+    metering_validation_enabled: Optional[StrictBool] = Field(default=None, alias="meteringValidationEnabled")
+    measurement_origin_enabled: Optional[StrictBool] = Field(default=None, alias="measurementOriginEnabled")
     validation_rules: Optional[List[BaseMeteringValidationRuleDTO]] = Field(default=None, alias="validationRules")
-    __properties: ClassVar[List[str]] = ["validationRules"]
+    __properties: ClassVar[List[str]] = ["meteringValidationEnabled", "measurementOriginEnabled", "validationRules"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,8 +95,8 @@ class MeteringParametersDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "meteringValidationEnabled": obj.get("meteringValidationEnabled"),
+            "measurementOriginEnabled": obj.get("measurementOriginEnabled"),
             "validationRules": [BaseMeteringValidationRuleDTO.from_dict(_item) for _item in obj["validationRules"]] if obj.get("validationRules") is not None else None
         })
         return _obj
-
-

@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**enum_type** | **str** |  | [optional] 
-**symbol** | **str** |  | [optional] 
-**translations** | **Dict[str, Optional[str]]** |  | [optional] 
-**translation_status** | [**TranslationStatus**](TranslationStatus.md) |  | [optional] 
+**enum_type** | **str** |  | [optional]
+**symbol** | **str** |  | [optional]
+**translations** | **Dict[str, str]** |  | [optional]
+**translation_status** | [**TranslationStatus**](TranslationStatus.md) |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ enum_symbol_translations_dto_dict = enum_symbol_translations_dto_instance.to_dic
 enum_symbol_translations_dto_from_dict = EnumSymbolTranslationsDTO.from_dict(enum_symbol_translations_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

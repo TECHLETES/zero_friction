@@ -50,26 +50,32 @@ class TestMoveRequestCustomerDetails(unittest.TestCase):
                 vat_number = '',
                 default_payment_method = 'sct',
                 invoice_address = masterdata_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 bank_account = '',
                 email_address = '',
                 telephone_number = '',
                 mobile_telephone_number = '',
                 website = '',
-                culture = 
+                culture = ''
             )
         else:
             return MoveRequestCustomerDetails(
+                last_name = '',
+                ssin = '',
+                ssin_country = 'aut',
+                customer_type = 'person',
+                company_name = '',
+                default_payment_method = 'sct',
         )
         """
 

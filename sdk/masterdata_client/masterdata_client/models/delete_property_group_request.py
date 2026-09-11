@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class DeletePropertyGroupRequest(BaseModel):
     """
     DeletePropertyGroupRequest
     """ # noqa: E501
-    mutation_date_time: Optional[datetime] = Field(default=None, alias="mutationDateTime")
+    mutation_date_time: datetime = Field(alias="mutationDateTime")
     __properties: ClassVar[List[str]] = ["mutationDateTime"]
 
     model_config = ConfigDict(
@@ -84,5 +84,3 @@ class DeletePropertyGroupRequest(BaseModel):
             "mutationDateTime": obj.get("mutationDateTime")
         })
         return _obj
-
-

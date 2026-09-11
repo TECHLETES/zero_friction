@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data_type** | [**DataType**](DataType.md) |  | [optional] 
-**value** | **str** |  | [optional] 
-**capitalize** | **bool** |  | [optional] 
+**data_type** | [**DataType**](DataType.md) |  |
+**value** | **str** |  |
+**capitalize** | **bool** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ error_code_message_value_dict = error_code_message_value_instance.to_dict()
 error_code_message_value_from_dict = ErrorCodeMessageValue.from_dict(error_code_message_value_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

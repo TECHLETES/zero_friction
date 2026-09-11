@@ -35,70 +35,108 @@ class TestContractDTO(unittest.TestCase):
         model = ContractDTO()
         if include_optional:
             return ContractDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 contract_number = '',
                 contractor = masterdata_client.models.contractor_dto.ContractorDTO(
-                    customer_id = '', 
-                    account_number = '', 
-                    short_display_name = '', 
-                    payment_method = null, 
-                    customer_type = null, 
-                    customer_group = null, ),
+                    customer_id = '',
+                    account_number = '',
+                    short_display_name = '',
+                    payment_method = 'sct',
+                    customer_type = 'person',
+                    customer_group = masterdata_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
+                        id = '',
+                        name = '', ), ),
                 supply_start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 supply_end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 service_locations = [
                     masterdata_client.models.contract_service_location_dto.ContractServiceLocationDTO(
-                        id = '', 
-                        address = null, 
-                        property_group_id = '', 
+                        id = '',
+                        address = masterdata_client.models.address_dto.AddressDTO(
+                            street_name = '',
+                            street_number = '',
+                            street_number_addition = '',
+                            postal_code = '',
+                            building_name = '',
+                            locality = '',
+                            city = '',
+                            country = 'aut',
+                            localized_display = '',
+                            line_one = '',
+                            line_two = '', ),
+                        property_group_id = '',
                         services = [
                             masterdata_client.models.contracted_service_dto.ContractedServiceDTO(
-                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                utility_type = null, 
-                                external_identifier = '', 
-                                is_consumption_based = True, 
+                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                                utility_type = 'none',
+                                external_identifier = '',
+                                is_consumption_based = True,
                                 estimated_consumptions = [
                                     masterdata_client.models.contracted_service_estimated_consumption_dto.ContractedServiceEstimatedConsumptionDTO(
-                                        consumer_group_id = '', 
-                                        value = 1.337, 
-                                        unit_of_measure = null, 
-                                        metering_type = null, 
-                                        is_manual_entry = True, )
+                                        consumer_group_id = '',
+                                        consumption_quantity = 1.337,
+                                        unit_of_measure = 'none',
+                                        metering_type = 'none',
+                                        direction = 'offtake', )
                                     ], )
+                            ],
+                        prepayment_device_coverage_references = [
+                            masterdata_client.models.prepayment_device_coverage_reference_dto.PrepaymentDeviceCoverageReferenceDTO(
+                                prepayment_account = masterdata_client.models.prepayment_account_reference_dto.PrepaymentAccountReferenceDTO(
+                                    id = '',
+                                    number = '', ),
+                                prepayment_device = masterdata_client.models.prepayment_device_reference_dto.PrepaymentDeviceReferenceDTO(
+                                    id = '',
+                                    serial_number = '', ),
+                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                             ], )
                     ],
                 status_history = [
                     masterdata_client.models.contract_status_history_dto.ContractStatusHistoryDTO(
-                        contract_status = null, 
+                        contract_status = 'draft',
                         mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ],
                 current_contract_status = 'draft',
                 billing_details = masterdata_client.models.billing_details_dto.BillingDetailsDTO(
-                    billing_method = null, 
-                    invoice_frequency = null, 
-                    advance_frequency = null, 
-                    contractual_advance_amount = 1.337, 
+                    billing_methods = [
+                        masterdata_client.models.billing_method_period_reference_dto.BillingMethodPeriodReferenceDTO(
+                            billing_method = 'credit',
+                            start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                            end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                        ],
+                    current_billing_method = 'credit',
+                    billing_method = 'credit',
+                    invoice_frequency = 'monthly',
+                    advance_frequency = 'none',
+                    contractual_advance_amount = 1.337,
                     products = [
                         masterdata_client.models.product_period_reference_dto.ProductPeriodReferenceDTO(
-                            product_id = '', 
-                            product_name = '', 
-                            start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            product_id = '',
+                            product_name = '',
+                            start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                             end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                        ], 
-                    invoice_address = null, 
-                    first_invoice_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    first_invoice_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    blocked = True, ),
+                        ],
+                    invoice_address = masterdata_client.models.address_dto.AddressDTO(
+                        street_name = '',
+                        street_number = '',
+                        street_number_addition = '',
+                        postal_code = '',
+                        building_name = '',
+                        locality = '',
+                        city = '',
+                        country = 'aut',
+                        localized_display = '',
+                        line_one = '',
+                        line_two = '', ),
+                    first_invoice_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    first_invoice_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    blocked = True,
+                    advance_calculation_type = 'fixed',
+                    advance_period_percentages = [
+                        masterdata_client.models.advance_period_percentage.AdvancePeriodPercentage(
+                            period_index = 56,
+                            percentage = 1.337, )
+                        ], ),
                 external_contract_reference = '',
                 payment_terms_id = '',
                 blocked_for_deletion = True,
@@ -106,38 +144,46 @@ class TestContractDTO(unittest.TestCase):
                 use_property_group_product = True,
                 property_groups = [
                     masterdata_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
-                        id = '', 
+                        id = '',
                         name = '', )
                     ],
                 attachment_signatures = [
                     masterdata_client.models.attachment_signature.AttachmentSignature(
-                        culture = null, 
-                        attachment_file_name = '', 
-                        error_code = null, 
-                        origin = null, 
-                        product_attachment_id = '', 
-                        attachment_file_id = '', 
-                        entity_attachment_group_id = '', 
-                        sign_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        culture = '',
+                        attachment_file_name = '',
+                        error_code = 56,
+                        origin = 'customer',
+                        product_attachment_id = '',
+                        attachment_file_id = '',
+                        entity_attachment_group_id = '',
+                        sign_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                         viewed_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ],
                 custom_properties = [
                     masterdata_client.models.custom_entity_property_dto.CustomEntityPropertyDTO(
-                        custom_entity_property_type_id = '', 
+                        custom_entity_property_type_id = '',
                         values = [
                             masterdata_client.models.custom_entity_property_value_dto.CustomEntityPropertyValueDTO(
-                                value_decimal = 1.337, 
-                                value_string = '', 
-                                value_boolean = True, 
-                                value_number = 56, 
-                                value_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                value_decimal = 1.337,
+                                value_string = '',
+                                value_boolean = True,
+                                value_number = 56,
+                                value_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                                 value_dropdown = [
                                     ''
-                                    ], 
-                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                    ],
+                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                             ], )
-                    ]
+                    ],
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return ContractDTO(

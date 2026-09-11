@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sub_meter_id** | **str** |  | [optional] 
-**external_reference** | **str** |  | [optional] 
+**sub_meter_id** | **str** |  | [optional]
+**external_reference** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ add_sub_meter_request_dict = add_sub_meter_request_instance.to_dict()
 add_sub_meter_request_from_dict = AddSubMeterRequest.from_dict(add_sub_meter_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

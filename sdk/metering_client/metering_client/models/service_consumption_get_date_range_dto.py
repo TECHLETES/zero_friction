@@ -86,5 +86,3 @@ class ServiceConsumptionGetDateRangeDTO(BaseModel):
             "maxProductionDayEndUtc": obj.get("maxProductionDayEndUtc")
         })
         return _obj
-
-

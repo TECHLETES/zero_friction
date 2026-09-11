@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annual_statement_id** | **str** |  | [optional] 
-**annual_statement_number** | **str** |  | [optional] 
-**year** | **int** |  | [optional] 
-**version** | **int** |  | [optional] 
-**status** | [**AnnualStatementStatus**](AnnualStatementStatus.md) |  | [optional] 
+**annual_statement_id** | **str** |  | [optional]
+**annual_statement_number** | **str** |  | [optional]
+**year** | **int** |  | [optional]
+**version** | **int** |  | [optional]
+**status** | [**AnnualStatementStatus**](AnnualStatementStatus.md) |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ annual_statement_reference_dict = annual_statement_reference_instance.to_dict()
 annual_statement_reference_from_dict = AnnualStatementReference.from_dict(annual_statement_reference_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -1,5 +1,6 @@
 # UnitOfMeasure
 
+Possible values: 'none', 'wh', 'kwh', 'mwh', 'gwh', 'j', 'kj', 'mj', 'gj', 'day', 'month', 'quarter', 'year', 'litre', 'm3', 'units', 'm3_h', 'celcius', 'k', 'kw'
 
 ## Enum
 
@@ -25,6 +26,8 @@
 
 * `MONTH` (value: `'month'`)
 
+* `QUARTER` (value: `'quarter'`)
+
 * `YEAR` (value: `'year'`)
 
 * `LITRE` (value: `'litre'`)
@@ -42,5 +45,3 @@
 * `KW` (value: `'kw'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

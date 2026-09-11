@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invalid_format_errors** | [**List[ErrorCodeCount]**](ErrorCodeCount.md) |  | [optional] 
-**invalid_data_errors** | [**List[ErrorCodeCount]**](ErrorCodeCount.md) |  | [optional] 
+**invalid_format_errors** | [**List[ErrorCodeCount]**](ErrorCodeCount.md) |  |
+**invalid_data_errors** | [**List[ErrorCodeCount]**](ErrorCodeCount.md) |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ metering_import_issues_count_dto_dict = metering_import_issues_count_dto_instanc
 metering_import_issues_count_dto_from_dict = MeteringImportIssuesCountDTO.from_dict(metering_import_issues_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

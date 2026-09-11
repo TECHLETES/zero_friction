@@ -102,5 +102,3 @@ class ContentResult(BaseModel):
             "statusCode": obj.get("statusCode")
         })
         return _obj
-
-

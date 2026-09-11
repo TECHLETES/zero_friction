@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**custom_entity_property_type_id** | **str** |  | [optional] 
-**values** | [**List[CustomEntityPropertyValueDTO]**](CustomEntityPropertyValueDTO.md) |  | [optional] 
+**custom_entity_property_type_id** | **str** |  | [optional]
+**values** | [**List[CustomEntityPropertyValueDTO]**](CustomEntityPropertyValueDTO.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ custom_entity_property_dto_dict = custom_entity_property_dto_instance.to_dict()
 custom_entity_property_dto_from_dict = CustomEntityPropertyDTO.from_dict(custom_entity_property_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

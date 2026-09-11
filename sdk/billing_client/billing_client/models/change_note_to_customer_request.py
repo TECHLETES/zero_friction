@@ -24,9 +24,9 @@ from typing_extensions import Self
 
 class ChangeNoteToCustomerRequest(BaseModel):
     """
-    Represents a request to change the note to customer on an invoice.  This DTO is used to update the customer-facing notes or comments on an invoice.
+    ChangeNoteToCustomerRequest
     """ # noqa: E501
-    note_to_customer: Optional[StrictStr] = Field(default=None, description="The new note or comment to be displayed to the customer on the invoice.", alias="noteToCustomer")
+    note_to_customer: Optional[StrictStr] = Field(default=None, alias="noteToCustomer")
     __properties: ClassVar[List[str]] = ["noteToCustomer"]
 
     model_config = ConfigDict(
@@ -88,5 +88,3 @@ class ChangeNoteToCustomerRequest(BaseModel):
             "noteToCustomer": obj.get("noteToCustomer")
         })
         return _obj
-
-

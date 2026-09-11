@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class CollectionStepStatus(str, Enum):
     """
-    CollectionStepStatus
+    Possible values: 'pending', 'waitingformanualsend', 'closed', 'inprogress', 'skipped', 'generatingdocuments', 'failed', 'printing'
     """
 
     """
@@ -39,5 +39,3 @@ class CollectionStepStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of CollectionStepStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

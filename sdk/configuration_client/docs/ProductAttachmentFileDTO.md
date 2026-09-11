@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**culture** | [**CultureInfo**](CultureInfo.md) |  | [optional] 
-**file_name** | **str** |  | [optional] 
-**internal_file_name** | **str** |  | [optional] 
-**attachment_id** | **str** |  | [optional] 
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | [optional]
+**file_name** | **str** |  | [optional]
+**internal_file_name** | **str** |  | [optional]
+**attachment_id** | **str** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ product_attachment_file_dto_dict = product_attachment_file_dto_instance.to_dict(
 product_attachment_file_dto_from_dict = ProductAttachmentFileDTO.from_dict(product_attachment_file_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -25,10 +25,10 @@ from typing_extensions import Self
 
 class DownloadOriginalMeteringImportsRequest(BaseModel):
     """
-    Represents a request to download the original metering imports.
+    DownloadOriginalMeteringImportsRequest
     """ # noqa: E501
-    var_query_params: Optional[GetMeteringImportsQueryParams] = Field(default=None, description="Represents query parameters used to filter metering imports when downloading the original files of the metering  imports.", alias="queryParams")
-    quick_filter: Optional[StrictStr] = Field(default=None, description="Represents a quick filtering criterion used to refine the selection of metering imports  when processing a download request.", alias="quickFilter")
+    var_query_params: Optional[GetMeteringImportsQueryParams] = Field(default=None, alias="queryParams")
+    quick_filter: Optional[StrictStr] = Field(default=None, alias="quickFilter")
     __properties: ClassVar[List[str]] = ["queryParams", "quickFilter"]
 
     model_config = ConfigDict(
@@ -73,11 +73,6 @@ class DownloadOriginalMeteringImportsRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
         # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
         if self.quick_filter is None and "quick_filter" in self.model_fields_set:
@@ -99,5 +94,3 @@ class DownloadOriginalMeteringImportsRequest(BaseModel):
             "quickFilter": obj.get("quickFilter")
         })
         return _obj
-
-

@@ -27,8 +27,8 @@ class PropertyGroupServiceLocationsRequest(BaseModel):
     """
     PropertyGroupServiceLocationsRequest
     """ # noqa: E501
-    service_locations: Optional[List[StrictStr]] = Field(default=None, description="Ids of the service locations that need to be added to or removed from the location group", alias="serviceLocations")
-    reference_date: Optional[date] = Field(default=None, description="Reference date for keeping invoices and transactions at the current location group  Only applicable when adding a location to the current location group that is already in another location group", alias="referenceDate")
+    service_locations: Optional[List[StrictStr]] = Field(alias="serviceLocations")
+    reference_date: Optional[date] = Field(default=None, alias="referenceDate")
     __properties: ClassVar[List[str]] = ["serviceLocations", "referenceDate"]
 
     model_config = ConfigDict(
@@ -91,5 +91,3 @@ class PropertyGroupServiceLocationsRequest(BaseModel):
             "referenceDate": obj.get("referenceDate")
         })
         return _obj
-
-

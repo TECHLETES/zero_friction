@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**matching_consumer_groups** | **Dict[str, Optional[List[MatchingConsumerGroupsDTO]]]** |  | [optional] 
+**matching_consumer_groups** | **Dict[str, List[MatchingConsumerGroupsDTO]]** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ get_service_location_matching_consumer_groups_dto_dict = get_service_location_ma
 get_service_location_matching_consumer_groups_dto_from_dict = GetServiceLocationMatchingConsumerGroupsDTO.from_dict(get_service_location_matching_consumer_groups_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

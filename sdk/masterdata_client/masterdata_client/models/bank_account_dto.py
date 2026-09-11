@@ -24,10 +24,10 @@ from typing_extensions import Self
 
 class BankAccountDTO(BaseModel):
     """
-    Represents a bank account associated with a customer
+    BankAccountDTO
     """ # noqa: E501
-    iban: Optional[StrictStr] = Field(default=None, description="International Bank Account Number (IBAN)")
-    is_default: Optional[StrictBool] = Field(default=None, description="Indicates whether this is the default bank account", alias="isDefault")
+    iban: Optional[StrictStr] = None
+    is_default: Optional[StrictBool] = Field(default=None, alias="isDefault")
     __properties: ClassVar[List[str]] = ["iban", "isDefault"]
 
     model_config = ConfigDict(
@@ -90,5 +90,3 @@ class BankAccountDTO(BaseModel):
             "isDefault": obj.get("isDefault")
         })
         return _obj
-
-

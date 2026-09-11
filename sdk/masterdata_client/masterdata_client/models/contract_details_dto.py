@@ -156,5 +156,3 @@ class ContractDetailsDTO(BaseModel):
             "billingProperties": ContractDetailsBillingPropertiesBaseDTO.from_dict(obj["billingProperties"]) if obj.get("billingProperties") is not None else None
         })
         return _obj
-
-

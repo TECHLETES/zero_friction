@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,8 +26,8 @@ class SortVersion(BaseModel):
     """
     SortVersion
     """ # noqa: E501
-    full_version: Optional[StrictInt] = Field(default=None, alias="fullVersion")
-    sort_id: Optional[StrictStr] = Field(default=None, alias="sortId")
+    full_version: StrictInt = Field(alias="fullVersion")
+    sort_id: StrictStr = Field(alias="sortId")
     __properties: ClassVar[List[str]] = ["fullVersion", "sortId"]
 
     model_config = ConfigDict(
@@ -85,5 +85,3 @@ class SortVersion(BaseModel):
             "sortId": obj.get("sortId")
         })
         return _obj
-
-

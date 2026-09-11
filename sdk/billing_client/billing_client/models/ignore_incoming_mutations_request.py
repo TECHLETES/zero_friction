@@ -24,9 +24,9 @@ from typing_extensions import Self
 
 class IgnoreIncomingMutationsRequest(BaseModel):
     """
-    Represents a request to ignore specific incoming banking transactions.  This DTO is used when certain incoming transactions should be marked as ignored and not processed further.
+    IgnoreIncomingMutationsRequest
     """ # noqa: E501
-    incoming_mutation_ids: Optional[List[StrictStr]] = Field(default=None, description="A list of IDs for the incoming mutations that should be ignored.", alias="incomingMutationIds")
+    incoming_mutation_ids: Optional[List[StrictStr]] = Field(alias="incomingMutationIds")
     __properties: ClassVar[List[str]] = ["incomingMutationIds"]
 
     model_config = ConfigDict(
@@ -88,5 +88,3 @@ class IgnoreIncomingMutationsRequest(BaseModel):
             "incomingMutationIds": obj.get("incomingMutationIds")
         })
         return _obj
-
-

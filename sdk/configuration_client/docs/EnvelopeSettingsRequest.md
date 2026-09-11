@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**margin_position** | [**EnvelopePosition**](EnvelopePosition.md) |  | [optional] 
-**margin** | **int** |  | [optional] 
-**margin_top** | **int** |  | [optional] 
+**margin_position** | [**EnvelopePosition**](EnvelopePosition.md) |  |
+**margin** | **int** |  | [optional]
+**margin_top** | **int** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ envelope_settings_request_dict = envelope_settings_request_instance.to_dict()
 envelope_settings_request_from_dict = EnvelopeSettingsRequest.from_dict(envelope_settings_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

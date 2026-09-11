@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**envelope_settings** | [**EnvelopeSettingsRequest**](EnvelopeSettingsRequest.md) |  | [optional] 
-**show_country** | **bool** |  | [optional] 
-**show_balance** | **bool** |  | [optional] 
-**show_vat_specs** | **bool** |  | [optional] 
-**show_custom_information** | **bool** |  | [optional] 
+**show_country** | **bool** |  | [optional]
+**show_balance** | **bool** |  | [optional]
+**show_vat_specs** | **bool** |  | [optional]
+**show_custom_information** | **bool** |  | [optional]
+**envelope_settings** | [**EnvelopeSettingsRequest**](EnvelopeSettingsRequest.md) |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ credit_note_pdf_template_request_dict = credit_note_pdf_template_request_instanc
 credit_note_pdf_template_request_from_dict = CreditNotePdfTemplateRequest.from_dict(credit_note_pdf_template_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

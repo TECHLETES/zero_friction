@@ -109,5 +109,3 @@ class PropertyGroupContactDetailsRequest(BaseModel):
             "telephoneInterruptions": obj.get("telephoneInterruptions")
         })
         return _obj
-
-

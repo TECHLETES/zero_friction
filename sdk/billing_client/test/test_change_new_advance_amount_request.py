@@ -39,6 +39,7 @@ class TestChangeNewAdvanceAmountRequest(unittest.TestCase):
             )
         else:
             return ChangeNewAdvanceAmountRequest(
+                new_advance_amount_incl_vat = 1.337,
         )
         """
 

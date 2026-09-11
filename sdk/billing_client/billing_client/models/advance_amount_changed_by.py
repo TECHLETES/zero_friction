@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AdvanceAmountChangedBy(str, Enum):
     """
-    AdvanceAmountChangedBy
+    Possible values: 'systeminvoicecalculation', 'customer', 'customerservicerepresentative'
     """
 
     """
@@ -34,5 +34,3 @@ class AdvanceAmountChangedBy(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of AdvanceAmountChangedBy from a JSON string"""
         return cls(json.loads(json_str))
-
-

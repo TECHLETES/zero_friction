@@ -25,12 +25,12 @@ from typing_extensions import Self
 
 class MeteringImportInterpretationIssueDTO(BaseModel):
     """
-    Contains the information about the interpretation issue that was discovered during importing.
+    MeteringImportInterpretationIssueDTO
     """ # noqa: E501
-    error_code: Optional[LocalisedErrorDTO] = Field(default=None, description="The error that occured.", alias="errorCode")
-    error_code_info: Optional[LocalisedErrorDTO] = Field(default=None, description="A more descriptive message about the error that occured.", alias="errorCodeInfo")
-    line_number: Optional[StrictInt] = Field(default=None, description="The LineNumber where the error occured in the original file.", alias="lineNumber")
-    message: Optional[StrictStr] = Field(default=None, description="The raw, untranslateable error message.")
+    error_code: Optional[LocalisedErrorDTO] = Field(default=None, alias="errorCode")
+    error_code_info: Optional[LocalisedErrorDTO] = Field(default=None, alias="errorCodeInfo")
+    line_number: Optional[StrictInt] = Field(default=None, alias="lineNumber")
+    message: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["errorCode", "errorCodeInfo", "lineNumber", "message"]
 
     model_config = ConfigDict(
@@ -116,5 +116,3 @@ class MeteringImportInterpretationIssueDTO(BaseModel):
             "message": obj.get("message")
         })
         return _obj
-
-

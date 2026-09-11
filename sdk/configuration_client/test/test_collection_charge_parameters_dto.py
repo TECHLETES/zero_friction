@@ -35,10 +35,31 @@ class TestCollectionChargeParametersDTO(unittest.TestCase):
         model = CollectionChargeParametersDTO()
         if include_optional:
             return CollectionChargeParametersDTO(
-                tax_code_id = ''
+                type = 'FixedCollectionChargeParametersRequestDTO',
+                amount_excl_vat = 1.337,
+                tax_code_id = '',
+                percentage = 1.337,
+                tiers = [
+                    configuration_client.models.tier_request.TierRequest(
+                        from = 1.337,
+                        min_amount = 1.337,
+                        max_amount = 1.337,
+                        percentage = 1.337, )
+                    ]
             )
         else:
             return CollectionChargeParametersDTO(
+                type = 'FixedCollectionChargeParametersRequestDTO',
+                amount_excl_vat = 1.337,
+                tax_code_id = '',
+                percentage = 1.337,
+                tiers = [
+                    configuration_client.models.tier_request.TierRequest(
+                        from = 1.337,
+                        min_amount = 1.337,
+                        max_amount = 1.337,
+                        percentage = 1.337, )
+                    ],
         )
         """
 

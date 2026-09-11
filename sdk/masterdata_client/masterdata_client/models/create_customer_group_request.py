@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from masterdata_client.models.create_customer_group_settings_request import CreateCustomerGroupSettingsRequest
 from typing import Optional, Set
@@ -27,9 +27,10 @@ class CreateCustomerGroupRequest(BaseModel):
     """
     CreateCustomerGroupRequest
     """ # noqa: E501
-    name: Optional[StrictStr] = None
+    name: Optional[StrictStr]
     settings: Optional[CreateCustomerGroupSettingsRequest] = None
-    __properties: ClassVar[List[str]] = ["name", "settings"]
+    cost_unit_id: Optional[StrictStr] = Field(default=None, alias="costUnitId")
+    __properties: ClassVar[List[str]] = ["name", "settings", "costUnitId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,6 +84,11 @@ class CreateCustomerGroupRequest(BaseModel):
         if self.settings is None and "settings" in self.model_fields_set:
             _dict['settings'] = None
 
+        # set to None if cost_unit_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.cost_unit_id is None and "cost_unit_id" in self.model_fields_set:
+            _dict['costUnitId'] = None
+
         return _dict
 
     @classmethod
@@ -96,8 +102,7 @@ class CreateCustomerGroupRequest(BaseModel):
 
         _obj = cls.model_validate({
             "name": obj.get("name"),
-            "settings": CreateCustomerGroupSettingsRequest.from_dict(obj["settings"]) if obj.get("settings") is not None else None
+            "settings": CreateCustomerGroupSettingsRequest.from_dict(obj["settings"]) if obj.get("settings") is not None else None,
+            "costUnitId": obj.get("costUnitId")
         })
         return _obj
-
-

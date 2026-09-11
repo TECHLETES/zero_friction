@@ -20,13 +20,14 @@ from typing_extensions import Self
 
 class CollectionFlowStatus(str, Enum):
     """
-    CollectionFlowStatus
+    Possible values: 'active', 'paused', 'manuallyclosed', 'automaticallyclosed'
     """
 
     """
     allowed enum values
     """
     ACTIVE = 'active'
+    PAUSED = 'paused'
     MANUALLYCLOSED = 'manuallyclosed'
     AUTOMATICALLYCLOSED = 'automaticallyclosed'
 
@@ -34,5 +35,3 @@ class CollectionFlowStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of CollectionFlowStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

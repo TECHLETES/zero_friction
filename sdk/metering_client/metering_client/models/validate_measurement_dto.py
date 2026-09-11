@@ -30,7 +30,9 @@ class ValidateMeasurementDTO(BaseModel):
     error: Optional[MeteringIssueError] = None
     is_valid: Optional[StrictBool] = Field(default=None, alias="isValid")
     is_error_muted: Optional[StrictBool] = Field(default=None, alias="isErrorMuted")
-    __properties: ClassVar[List[str]] = ["error", "isValid", "isErrorMuted"]
+    is_pending_async_validation: Optional[StrictBool] = Field(default=None, alias="isPendingAsyncValidation")
+    auto_solve_warning: Optional[MeteringIssueError] = Field(default=None, alias="autoSolveWarning")
+    __properties: ClassVar[List[str]] = ["error", "isValid", "isErrorMuted", "isPendingAsyncValidation", "autoSolveWarning"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -62,10 +64,8 @@ class ValidateMeasurementDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "is_valid",
         ])
 
         _dict = self.model_dump(
@@ -73,10 +73,10 @@ class ValidateMeasurementDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if error (nullable) is None
+        # set to None if auto_solve_warning (nullable) is None
         # and model_fields_set contains the field
-        if self.error is None and "error" in self.model_fields_set:
-            _dict['error'] = None
+        if self.auto_solve_warning is None and "auto_solve_warning" in self.model_fields_set:
+            _dict['autoSolveWarning'] = None
 
         return _dict
 
@@ -92,8 +92,8 @@ class ValidateMeasurementDTO(BaseModel):
         _obj = cls.model_validate({
             "error": obj.get("error"),
             "isValid": obj.get("isValid"),
-            "isErrorMuted": obj.get("isErrorMuted")
+            "isErrorMuted": obj.get("isErrorMuted"),
+            "isPendingAsyncValidation": obj.get("isPendingAsyncValidation"),
+            "autoSolveWarning": obj.get("autoSolveWarning")
         })
         return _obj
-
-

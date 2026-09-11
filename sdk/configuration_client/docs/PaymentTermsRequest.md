@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**amount** | **int** |  | [optional] 
-**payment_terms_frequency** | [**PaymentTermsFrequency**](PaymentTermsFrequency.md) |  | [optional] 
+**name** | **str** |  |
+**amount** | **int** |  |
+**payment_terms_frequency** | [**PaymentTermsFrequency**](PaymentTermsFrequency.md) |  |
 
 ## Example
 
@@ -27,5 +27,3 @@ payment_terms_request_dict = payment_terms_request_instance.to_dict()
 payment_terms_request_from_dict = PaymentTermsRequest.from_dict(payment_terms_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -39,23 +39,39 @@ class TestPaymentDetailsDTO(unittest.TestCase):
                 current_payment_status = 'readyforpaymentcollection',
                 payment_reference = '',
                 payment_method = 'sct',
+                collection_details = billing_client.models.payment_collection_details_dto.PaymentCollectionDetailsDTO(),
                 direct_debit_collection_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 amount_of_times_retried = 56,
                 status_history = [
                     billing_client.models.payment_status_history_dto.PaymentStatusHistoryDTO(
-                        payment_status = null, 
-                        outgoing_banking_transaction_id = '', 
-                        outgoing_banking_transaction_identification = '', 
-                        outgoing_mutation_id = '', 
-                        outgoing_mutation_description = '', 
-                        incoming_banking_transaction_id = '', 
-                        incoming_banking_transaction_identification = '', 
-                        incoming_mutation_id = '', 
-                        incoming_mutation_description = '', 
-                        reversal_reason = null, 
-                        reversal_additional_information = '', 
-                        mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                    ]
+                        payment_status = 'readyforpaymentcollection',
+                        outgoing_banking_transaction_id = '',
+                        outgoing_banking_transaction_identification = '',
+                        outgoing_mutation_id = '',
+                        outgoing_mutation_description = '',
+                        incoming_banking_transaction_id = '',
+                        incoming_banking_transaction_identification = '',
+                        incoming_mutation_id = '',
+                        incoming_mutation_description = '',
+                        reversal_reason = 'manualreverse',
+                        reversal_additional_information = '',
+                        mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        payment_intent_id = '', )
+                    ],
+                payment_intent = billing_client.models.payment_intent_state_dto.PaymentIntentStateDTO(
+                    status = 'none',
+                    requested_rail = 'card',
+                    hosted_checkout_available = True,
+                    continuation = billing_client.models.payment_intent_communication_continuation_dto.PaymentIntentCommunicationContinuationDTO(
+                        type = 'none',
+                        bypass_idempotency = True, ),
+                    failure_reason_code = 56, ),
+                psp_instrument = billing_client.models.psp_instrument_snapshot_dto.PspInstrumentSnapshotDTO(
+                    payment_method_id = '',
+                    category = 'unknown',
+                    last4 = '',
+                    bank_code = '',
+                    provider_estimated_collection_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
             )
         else:
             return PaymentDetailsDTO(

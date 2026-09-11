@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class BillingTariffInputType(str, Enum):
     """
-    BillingTariffInputType
+    Possible values: 'none', 'fixed', 'costcomponent'
     """
 
     """
@@ -34,5 +34,3 @@ class BillingTariffInputType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of BillingTariffInputType from a JSON string"""
         return cls(json.loads(json_str))
-
-

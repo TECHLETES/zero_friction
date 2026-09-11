@@ -97,5 +97,3 @@ class CustomEntityPropertyTypeDropdownOptionDTO(BaseModel):
             "deleted": obj.get("deleted")
         })
         return _obj
-
-

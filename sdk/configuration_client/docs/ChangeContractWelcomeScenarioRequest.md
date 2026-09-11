@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
-**email_template** | [**ContractWelcomeEmailTemplateRequest**](ContractWelcomeEmailTemplateRequest.md) |  | [optional] 
+**email_template** | [**ContractWelcomeEmailTemplateRequest**](ContractWelcomeEmailTemplateRequest.md) |  |
+**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  |
+**auto_fallback_to_postal** | **bool** |  | [optional]
 
 ## Example
 
@@ -26,5 +27,3 @@ change_contract_welcome_scenario_request_dict = change_contract_welcome_scenario
 change_contract_welcome_scenario_request_from_dict = ChangeContractWelcomeScenarioRequest.from_dict(change_contract_welcome_scenario_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

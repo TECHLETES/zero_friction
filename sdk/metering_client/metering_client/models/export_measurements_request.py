@@ -100,5 +100,3 @@ class ExportMeasurementsRequest(BaseModel):
             "orderBy": obj.get("orderBy")
         })
         return _obj
-
-

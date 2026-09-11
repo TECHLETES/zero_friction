@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** |  | [optional] 
-**unresolved** | **int** |  | [optional] 
+**all** | **int** |  | [optional]
+**unresolved** | **int** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ metering_issue_overview_count_dto_dict = metering_issue_overview_count_dto_insta
 metering_issue_overview_count_dto_from_dict = MeteringIssueOverviewCountDTO.from_dict(metering_issue_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

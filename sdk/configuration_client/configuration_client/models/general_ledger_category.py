@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class GeneralLedgerCategory(str, Enum):
     """
-    GeneralLedgerCategory
+    Possible values: 'product', 'billingitem', 'collectionflow', 'bankaccount', 'waitingaccount', 'advance', 'paymentintentwaitingaccount', 'vatroundingdifference', 'prepaymentcost', 'prepaymenttopup', 'prepaymentcorrection', 'prepaymentgift', 'payg'
     """
 
     """
@@ -28,14 +28,19 @@ class GeneralLedgerCategory(str, Enum):
     """
     PRODUCT = 'product'
     BILLINGITEM = 'billingitem'
-    TAXCODE = 'taxcode'
     COLLECTIONFLOW = 'collectionflow'
     BANKACCOUNT = 'bankaccount'
     WAITINGACCOUNT = 'waitingaccount'
+    ADVANCE = 'advance'
+    PAYMENTINTENTWAITINGACCOUNT = 'paymentintentwaitingaccount'
+    VATROUNDINGDIFFERENCE = 'vatroundingdifference'
+    PREPAYMENTCOST = 'prepaymentcost'
+    PREPAYMENTTOPUP = 'prepaymenttopup'
+    PREPAYMENTCORRECTION = 'prepaymentcorrection'
+    PREPAYMENTGIFT = 'prepaymentgift'
+    PAYG = 'payg'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of GeneralLedgerCategory from a JSON string"""
         return cls(json.loads(json_str))
-
-

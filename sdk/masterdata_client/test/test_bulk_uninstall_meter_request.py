@@ -35,34 +35,42 @@ class TestBulkUninstallMeterRequest(unittest.TestCase):
         model = BulkUninstallMeterRequest()
         if include_optional:
             return BulkUninstallMeterRequest(
-                remove_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 only_validate = True,
                 var_query_params = masterdata_client.models.get_meters_query_params.GetMetersQueryParams(
-                    flex_search = '', 
-                    include_only_ids = [
-                        ''
-                        ], 
-                    exclude_ids = [
-                        ''
-                        ], 
                     servicelocation_ids = [
                         ''
-                        ], 
+                        ],
                     property_group_ids = [
                         ''
-                        ], 
-                    meter_type = null, 
-                    received_metering_data_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    received_metering_data_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    next_expected_reading_date_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    next_expected_reading_date_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    parent_serial_number = '', 
-                    filter_by_reading_frequency = True, 
-                    reading_frequency = null, 
-                    customer_id = '', 
-                    meter_type_group = '', 
-                    meter_serial_number = '', ),
-                quick_filter = ''
+                        ],
+                    meter_type = 'individual',
+                    received_metering_data_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    received_metering_data_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    next_expected_reading_date_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    next_expected_reading_date_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    parent_serial_number = '',
+                    filter_by_reading_frequency = True,
+                    reading_frequency = 'hourly',
+                    customer_id = '',
+                    meter_type_group = '',
+                    meter_serial_numbers = [
+                        ''
+                        ],
+                    model_ids = [
+                        ''
+                        ],
+                    meter_name = '',
+                    show_deleted = True,
+                    flex_search = '',
+                    include_only_ids = [
+                        ''
+                        ],
+                    exclude_ids = [
+                        ''
+                        ],
+                    page_size = 56, ),
+                quick_filter = '',
+                remove_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
         else:
             return BulkUninstallMeterRequest(

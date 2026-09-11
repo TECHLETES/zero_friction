@@ -35,16 +35,6 @@ class TestBillingParametersDTO(unittest.TestCase):
         model = BillingParametersDTO()
         if include_optional:
             return BillingParametersDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 skip_approval = True,
                 skip_payment = True,
                 enable_ubl = True,
@@ -58,17 +48,37 @@ class TestBillingParametersDTO(unittest.TestCase):
                 days_before_advance_start_date_to_create_advance = 56,
                 advance_amount_lower_threshold = 1.337,
                 advance_calculation_parameters = configuration_client.models.advance_calculation_parameters_dto.AdvanceCalculationParametersDTO(
-                    recalculation_type = null, 
-                    advance_limit_type = null, 
-                    advance_limit_lower_threshold = 1.337, 
-                    advance_limit_upper_threshold = 1.337, 
-                    minimum_accuracy = null, ),
+                    recalculation_type = 'none',
+                    advance_limit_type = 'fixed',
+                    advance_limit_lower_threshold = 1.337,
+                    advance_limit_upper_threshold = 1.337,
+                    minimum_accuracy = 'low', ),
+                advance_percentage_parameters = configuration_client.models.advance_percentage_parameters_dto.AdvancePercentageParametersDTO(
+                    monthly = configuration_client.models.advance_frequency_percentages_dto.AdvanceFrequencyPercentagesDTO(
+                        percentages = [
+                            1.337
+                            ], ),
+                    quarterly = configuration_client.models.advance_frequency_percentages_dto.AdvanceFrequencyPercentagesDTO(),
+                    half_yearly = , ),
                 default_tax_code_for_person_advances = '',
                 default_tax_code_for_organisation_advances = '',
-                prepayment_parameters = configuration_client.models.prepayment_parameters_dto.PrepaymentParametersDTO(
-                    emergency_credit = 1.337, 
-                    enable_deduction = True, 
-                    deduction_rate = 1.337, )
+                estimated_measurements_enabled = True,
+                enable_automatic_estimated_measurement = True,
+                days_after_checkpoint_automatic_estimated_measurement = 56,
+                allow_consumption_invoice_end_date_deviation_window = True,
+                consumption_invoice_end_date_deviation_local_days = 56,
+                ai_invoice_validation_integration_enabled = True,
+                ai_invoice_validation_auto_approve_min_score_invoice = 56,
+                ai_invoice_validation_auto_approve_min_score_end_note = 56,
+                ai_invoice_validation_auto_approve_min_score_advance = 56,
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return BillingParametersDTO(

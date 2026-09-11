@@ -1,19 +1,20 @@
 # InvoiceBillingConfigurationSuggestionsResponseDTO
 
-Represents suggested billing configuration settings for an invoice
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**advance_frequency** | [**AdvanceFrequency**](AdvanceFrequency.md) | Suggested frequency for advance payments | [optional] 
-**invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) | Suggested frequency for invoice generation | [optional] 
-**payment_terms_id** | **str** | Identifier of the suggested payment terms | [optional] 
-**message** | [**LocalisedSystemMessageDTO**](LocalisedSystemMessageDTO.md) | Localized system message with additional information | [optional] 
-**invoice_month** | **int** | Suggested month for invoice generation (1-12) | [optional] 
-**invoice_day** | **int** | Suggested day of the month for invoice generation (1-31) | [optional] 
-**iban** | **str** | Suggested IBAN for payments | [optional] 
-**company_bank_account_id** | **str** | Identifier of the suggested company bank account | [optional] 
+**advance_frequency** | [**AdvanceFrequency**](AdvanceFrequency.md) |  | [optional]
+**invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) |  | [optional]
+**payment_terms_id** | **str** |  | [optional]
+**message** | [**LocalisedSystemMessageDTO**](LocalisedSystemMessageDTO.md) |  | [optional]
+**invoice_month** | **int** |  | [optional]
+**invoice_day** | **int** |  | [optional]
+**iban** | **str** |  | [optional]
+**company_bank_account_id** | **str** |  | [optional]
+**default_billing_method** | [**ContractBillingMethod**](ContractBillingMethod.md) |  | [optional]
+**property_group_id** | **str** |  | [optional]
 
 ## Example
 
@@ -33,5 +34,3 @@ invoice_billing_configuration_suggestions_response_dto_dict = invoice_billing_co
 invoice_billing_configuration_suggestions_response_dto_from_dict = InvoiceBillingConfigurationSuggestionsResponseDTO.from_dict(invoice_billing_configuration_suggestions_response_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

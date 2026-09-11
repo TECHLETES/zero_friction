@@ -17,10 +17,12 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.portal_advance_change_limit_request import PortalAdvanceChangeLimitRequest
 from configuration_client.models.portal_billing_settings_request import PortalBillingSettingsRequest
+from configuration_client.models.portal_move_in_move_out_settings_request import PortalMoveInMoveOutSettingsRequest
+from configuration_client.models.portal_self_service_options_request import PortalSelfServiceOptionsRequest
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,11 +32,20 @@ class UpdatePortalSettingsRequest(BaseModel):
     """ # noqa: E501
     fav_icon: Optional[StrictStr] = Field(default=None, alias="favIcon")
     logo: Optional[StrictStr] = None
-    primary_color: Optional[StrictStr] = Field(default=None, alias="primaryColor")
-    secondary_color: Optional[StrictStr] = Field(default=None, alias="secondaryColor")
-    advance_change_limit: Optional[PortalAdvanceChangeLimitRequest] = Field(default=None, alias="advanceChangeLimit")
-    billing_settings: Optional[PortalBillingSettingsRequest] = Field(default=None, alias="billingSettings")
-    __properties: ClassVar[List[str]] = ["favIcon", "logo", "primaryColor", "secondaryColor", "advanceChangeLimit", "billingSettings"]
+    pwa_install_icon512: Optional[StrictStr] = Field(alias="pwaInstallIcon512")
+    pwa_install_icon192: Optional[StrictStr] = Field(alias="pwaInstallIcon192")
+    pwa_apple_touch_icon180: Optional[StrictStr] = Field(alias="pwaAppleTouchIcon180")
+    primary_color: Optional[StrictStr] = Field(alias="primaryColor")
+    secondary_color: Optional[StrictStr] = Field(alias="secondaryColor")
+    persist_logo_from_organization: Optional[StrictBool] = Field(default=None, alias="persistLogoFromOrganization")
+    persist_color_from_organization: Optional[StrictBool] = Field(default=None, alias="persistColorFromOrganization")
+    show_vko: Optional[StrictBool] = Field(default=None, alias="showVko")
+    pwa_enabled: Optional[StrictBool] = Field(default=None, alias="pwaEnabled")
+    advance_change_limit: Optional[PortalAdvanceChangeLimitRequest] = Field(alias="advanceChangeLimit")
+    billing_settings: Optional[PortalBillingSettingsRequest] = Field(alias="billingSettings")
+    move_in_move_out_settings: Optional[PortalMoveInMoveOutSettingsRequest] = Field(default=None, alias="moveInMoveOutSettings")
+    self_service_options: PortalSelfServiceOptionsRequest = Field(alias="selfServiceOptions")
+    __properties: ClassVar[List[str]] = ["favIcon", "logo", "pwaInstallIcon512", "pwaInstallIcon192", "pwaAppleTouchIcon180", "primaryColor", "secondaryColor", "persistLogoFromOrganization", "persistColorFromOrganization", "showVko", "pwaEnabled", "advanceChangeLimit", "billingSettings", "moveInMoveOutSettings", "selfServiceOptions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,6 +92,12 @@ class UpdatePortalSettingsRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of billing_settings
         if self.billing_settings:
             _dict['billingSettings'] = self.billing_settings.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of move_in_move_out_settings
+        if self.move_in_move_out_settings:
+            _dict['moveInMoveOutSettings'] = self.move_in_move_out_settings.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of self_service_options
+        if self.self_service_options:
+            _dict['selfServiceOptions'] = self.self_service_options.to_dict()
         # set to None if fav_icon (nullable) is None
         # and model_fields_set contains the field
         if self.fav_icon is None and "fav_icon" in self.model_fields_set:
@@ -90,6 +107,21 @@ class UpdatePortalSettingsRequest(BaseModel):
         # and model_fields_set contains the field
         if self.logo is None and "logo" in self.model_fields_set:
             _dict['logo'] = None
+
+        # set to None if pwa_install_icon512 (nullable) is None
+        # and model_fields_set contains the field
+        if self.pwa_install_icon512 is None and "pwa_install_icon512" in self.model_fields_set:
+            _dict['pwaInstallIcon512'] = None
+
+        # set to None if pwa_install_icon192 (nullable) is None
+        # and model_fields_set contains the field
+        if self.pwa_install_icon192 is None and "pwa_install_icon192" in self.model_fields_set:
+            _dict['pwaInstallIcon192'] = None
+
+        # set to None if pwa_apple_touch_icon180 (nullable) is None
+        # and model_fields_set contains the field
+        if self.pwa_apple_touch_icon180 is None and "pwa_apple_touch_icon180" in self.model_fields_set:
+            _dict['pwaAppleTouchIcon180'] = None
 
         # set to None if primary_color (nullable) is None
         # and model_fields_set contains the field
@@ -125,11 +157,18 @@ class UpdatePortalSettingsRequest(BaseModel):
         _obj = cls.model_validate({
             "favIcon": obj.get("favIcon"),
             "logo": obj.get("logo"),
+            "pwaInstallIcon512": obj.get("pwaInstallIcon512"),
+            "pwaInstallIcon192": obj.get("pwaInstallIcon192"),
+            "pwaAppleTouchIcon180": obj.get("pwaAppleTouchIcon180"),
             "primaryColor": obj.get("primaryColor"),
             "secondaryColor": obj.get("secondaryColor"),
+            "persistLogoFromOrganization": obj.get("persistLogoFromOrganization"),
+            "persistColorFromOrganization": obj.get("persistColorFromOrganization"),
+            "showVko": obj.get("showVko"),
+            "pwaEnabled": obj.get("pwaEnabled"),
             "advanceChangeLimit": PortalAdvanceChangeLimitRequest.from_dict(obj["advanceChangeLimit"]) if obj.get("advanceChangeLimit") is not None else None,
-            "billingSettings": PortalBillingSettingsRequest.from_dict(obj["billingSettings"]) if obj.get("billingSettings") is not None else None
+            "billingSettings": PortalBillingSettingsRequest.from_dict(obj["billingSettings"]) if obj.get("billingSettings") is not None else None,
+            "moveInMoveOutSettings": PortalMoveInMoveOutSettingsRequest.from_dict(obj["moveInMoveOutSettings"]) if obj.get("moveInMoveOutSettings") is not None else None,
+            "selfServiceOptions": PortalSelfServiceOptionsRequest.from_dict(obj["selfServiceOptions"]) if obj.get("selfServiceOptions") is not None else None
         })
         return _obj
-
-

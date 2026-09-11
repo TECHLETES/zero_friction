@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**external_identifier** | **str** |  | [optional] 
-**is_consumption_based** | **bool** |  | [optional] 
-**estimated_consumptions** | [**List[ContractedServiceEstimatedConsumptionDTO]**](ContractedServiceEstimatedConsumptionDTO.md) |  | [optional] 
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional]
+**external_identifier** | **str** |  | [optional]
+**is_consumption_based** | **bool** |  | [optional]
+**estimated_consumptions** | [**List[ContractedServiceEstimatedConsumptionDTO]**](ContractedServiceEstimatedConsumptionDTO.md) |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ contracted_service_dto_dict = contracted_service_dto_instance.to_dict()
 contracted_service_dto_from_dict = ContractedServiceDTO.from_dict(contracted_service_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

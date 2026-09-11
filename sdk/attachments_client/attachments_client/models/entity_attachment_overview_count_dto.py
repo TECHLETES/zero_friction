@@ -85,5 +85,3 @@ class EntityAttachmentOverviewCountDTO(BaseModel):
             "visibleForCustomer": obj.get("visibleForCustomer")
         })
         return _obj
-
-

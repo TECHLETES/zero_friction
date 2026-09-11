@@ -37,16 +37,14 @@ class TestInvoiceProductConfigurationSuggestionsResponseDTO(unittest.TestCase):
             return InvoiceProductConfigurationSuggestionsResponseDTO(
                 product_id = '',
                 product_name = '',
-                cost_allocation_enabled = True,
                 message = billing_client.models.localised_system_message_dto.LocalisedSystemMessageDTO(
-                    key = null, 
-                    message = '', 
+                    key = 56,
                     message_values = [
                         billing_client.models.localised_system_message_dto_value.LocalisedSystemMessageDtoValue(
-                            data_type = null, 
+                            data_type = 'text',
                             value = '', )
-                        ], 
-                    level = null, )
+                        ],
+                    level = 56, )
             )
         else:
             return InvoiceProductConfigurationSuggestionsResponseDTO(

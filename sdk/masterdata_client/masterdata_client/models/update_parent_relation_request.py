@@ -95,5 +95,3 @@ class UpdateParentRelationRequest(BaseModel):
             "externalReference": obj.get("externalReference")
         })
         return _obj
-
-

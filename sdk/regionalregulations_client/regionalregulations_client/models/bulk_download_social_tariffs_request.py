@@ -75,20 +75,10 @@ class BulkDownloadSocialTariffsRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
         # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
         if self.quick_filter is None and "quick_filter" in self.model_fields_set:
             _dict['quickFilter'] = None
-
-        # set to None if social_tariff_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.social_tariff_ids is None and "social_tariff_ids" in self.model_fields_set:
-            _dict['socialTariffIds'] = None
 
         return _dict
 
@@ -108,5 +98,3 @@ class BulkDownloadSocialTariffsRequest(BaseModel):
             "socialTariffIds": obj.get("socialTariffIds")
         })
         return _obj
-
-

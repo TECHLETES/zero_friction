@@ -37,25 +37,23 @@ class TestMatchingConsumerGroupsDTO(unittest.TestCase):
             return MatchingConsumerGroupsDTO(
                 suggestion = 'frompropertygroup',
                 consumer_group = forecasting_client.models.consumer_group_dto.ConsumerGroupDTO(
-                    id = '', 
-                    entity_type = null, 
-                    created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    discriminator = '', 
-                    _etag = '', 
-                    require_attention = True, 
-                    has_errors = True, 
-                    has_warnings = True, 
-                    is_read_only = True, 
-                    organisation_id = '', 
-                    code = '', 
-                    description = '', 
-                    utility_type = null, 
-                    unit_of_measure = null, 
-                    estimated_annual_volume = 1.337, 
-                    load_profile_id = '', 
-                    origin = null, 
-                    last_recalculated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    deleted = True, )
+                    code = '',
+                    description = '',
+                    utility_type = 'none',
+                    unit_of_measure = 'none',
+                    estimated_annual_volume = 1.337,
+                    load_profile_id = '',
+                    origin = 'manual',
+                    last_recalculated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    deleted = True,
+                    organisation_id = '',
+                    id = '',
+                    entity_type = 'none',
+                    created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    discriminator = '',
+                    _etag = '',
+                    has_errors = True,
+                    is_read_only = True, )
             )
         else:
             return MatchingConsumerGroupsDTO(

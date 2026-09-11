@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **str** |  | [optional] 
-**translation** | **str** |  | [optional] 
-**value** | **float** |  | [optional] 
-**value_date** | **datetime** |  | [optional] 
+**code** | **str** |  | [optional]
+**translation** | **str** |  | [optional]
+**value** | **float** |  | [optional]
+**value_date** | **datetime** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ aggregate_details_dto_dict = aggregate_details_dto_instance.to_dict()
 aggregate_details_dto_from_dict = AggregateDetailsDTO.from_dict(aggregate_details_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

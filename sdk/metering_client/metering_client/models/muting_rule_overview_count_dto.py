@@ -85,5 +85,3 @@ class MutingRuleOverviewCountDTO(BaseModel):
             "expired": obj.get("expired")
         })
         return _obj
-
-

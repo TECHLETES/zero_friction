@@ -26,11 +26,11 @@ from typing_extensions import Self
 
 class InvoiceDetailsDTO(BaseModel):
     """
-    Represents details about invoice generation for a billing relation.  This DTO contains information about invoice frequencies and periods.
+    InvoiceDetailsDTO
     """ # noqa: E501
-    invoice_frequency: Optional[InvoiceFrequency] = Field(default=None, description="The frequency at which invoices are generated.", alias="invoiceFrequency")
-    first_invoice_start_date_time: Optional[datetime] = Field(default=None, description="The start date and time of the first invoice period.", alias="firstInvoiceStartDateTime")
-    first_invoice_end_date_time: Optional[datetime] = Field(default=None, description="The end date and time of the first invoice period.", alias="firstInvoiceEndDateTime")
+    invoice_frequency: Optional[InvoiceFrequency] = Field(default=None, alias="invoiceFrequency")
+    first_invoice_start_date_time: Optional[datetime] = Field(default=None, alias="firstInvoiceStartDateTime")
+    first_invoice_end_date_time: Optional[datetime] = Field(default=None, alias="firstInvoiceEndDateTime")
     __properties: ClassVar[List[str]] = ["invoiceFrequency", "firstInvoiceStartDateTime", "firstInvoiceEndDateTime"]
 
     model_config = ConfigDict(
@@ -72,11 +72,6 @@ class InvoiceDetailsDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if invoice_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_frequency is None and "invoice_frequency" in self.model_fields_set:
-            _dict['invoiceFrequency'] = None
-
         return _dict
 
     @classmethod
@@ -94,5 +89,3 @@ class InvoiceDetailsDTO(BaseModel):
             "firstInvoiceEndDateTime": obj.get("firstInvoiceEndDateTime")
         })
         return _obj
-
-

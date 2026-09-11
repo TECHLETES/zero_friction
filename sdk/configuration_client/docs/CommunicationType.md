@@ -1,13 +1,14 @@
 # CommunicationType
 
+Possible values: 'none', 'email', 'postal', 'manual', 'skipifsdd', 'sms', 'einvoicing'
 
 ## Enum
-
-* `POSTAL` (value: `'postal'`)
 
 * `NONE` (value: `'none'`)
 
 * `EMAIL` (value: `'email'`)
+
+* `POSTAL` (value: `'postal'`)
 
 * `MANUAL` (value: `'manual'`)
 
@@ -15,6 +16,6 @@
 
 * `SMS` (value: `'sms'`)
 
+* `EINVOICING` (value: `'einvoicing'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

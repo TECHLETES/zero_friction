@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class UtilityType(str, Enum):
     """
-    UtilityType
+    Possible values: 'none', 'heat', 'cooling', 'hottapwater', 'water', 'electricity', 'gas', 'rainwater', 'services', 'evcharging', 'greywater', 'wastewater', 'solarproduction', 'rent', 'softenedwater'
     """
 
     """
@@ -35,10 +35,14 @@ class UtilityType(str, Enum):
     GAS = 'gas'
     RAINWATER = 'rainwater'
     SERVICES = 'services'
+    EVCHARGING = 'evcharging'
+    GREYWATER = 'greywater'
+    WASTEWATER = 'wastewater'
+    SOLARPRODUCTION = 'solarproduction'
+    RENT = 'rent'
+    SOFTENEDWATER = 'softenedwater'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of UtilityType from a JSON string"""
         return cls(json.loads(json_str))
-
-

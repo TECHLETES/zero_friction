@@ -5,20 +5,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**meter_serial_number** | **str** |  | [optional] 
-**external_channel_identifier** | **str** |  | [optional] 
-**external_reference** | **str** |  | [optional] 
-**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**direction** | [**Direction**](Direction.md) |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
-**reading_date_time** | **datetime** |  | [optional] 
-**time_of_use** | **str** |  | [optional] 
-**reading_value** | **float** |  | [optional] 
-**error_code** | **str** |  | [optional] 
-**line_number** | **int** |  | [optional] 
-**processed_on** | **datetime** |  | [optional] 
-**was_ignored** | **bool** |  | [optional] 
+**meter_serial_number** | **str** |  | [optional]
+**external_channel_identifier** | **str** |  | [optional]
+**external_reference** | **str** |  | [optional]
+**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional]
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional]
+**direction** | [**Direction**](Direction.md) |  | [optional]
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional]
+**reading_date_time** | **datetime** |  | [optional]
+**measurement_start_date_time** | **datetime** |  | [optional]
+**time_of_use** | **str** |  | [optional]
+**reading_value** | **float** |  | [optional]
+**error_code** | **str** |  | [optional]
+**line_number** | **int** |  | [optional]
+**processed_on** | **datetime** |  | [optional]
+**was_ignored** | **bool** |  | [optional]
+**reading_origin** | [**MeasurementReadingOrigin**](MeasurementReadingOrigin.md) |  | [optional]
+**reading_method** | [**MeasurementReadingMethod**](MeasurementReadingMethod.md) |  | [optional]
 
 ## Example
 
@@ -38,5 +41,3 @@ imported_measurement_processing_result_dto_dict = imported_measurement_processin
 imported_measurement_processing_result_dto_from_dict = ImportedMeasurementProcessingResultDTO.from_dict(imported_measurement_processing_result_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

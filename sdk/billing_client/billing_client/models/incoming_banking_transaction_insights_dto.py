@@ -26,18 +26,18 @@ from typing_extensions import Self
 
 class IncomingBankingTransactionInsightsDTO(BaseModel):
     """
-    Provides detailed insights and analytics about an incoming banking transaction.  This DTO contains aggregated information about mutations grouped by status, type, and payment method.
+    IncomingBankingTransactionInsightsDTO
     """ # noqa: E501
-    incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the incoming banking transaction.", alias="incomingBankingTransactionId")
-    identification: Optional[StrictStr] = Field(default=None, description="The identification number of the transaction file.")
-    opening_balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The opening balance of the account at the start of the transaction period.", alias="openingBalance")
-    closing_balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The closing balance of the account at the end of the transaction period.", alias="closingBalance")
-    balance_difference: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The difference between the closing and opening balances.", alias="balanceDifference")
-    opening_balance_date: Optional[datetime] = Field(default=None, description="The date and time of the opening balance.", alias="openingBalanceDate")
-    closing_balance_date: Optional[datetime] = Field(default=None, description="The date and time of the closing balance.", alias="closingBalanceDate")
-    status_details: Optional[Dict[str, IncomingMutationGroupedDetailsDTO]] = Field(default=None, description="Details of mutations grouped by their status.", alias="statusDetails")
-    mutation_type_details: Optional[Dict[str, IncomingMutationGroupedDetailsDTO]] = Field(default=None, description="Details of mutations grouped by their type.", alias="mutationTypeDetails")
-    payment_method_details: Optional[Dict[str, IncomingMutationGroupedDetailsDTO]] = Field(default=None, description="Details of mutations grouped by their payment method.", alias="paymentMethodDetails")
+    incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="incomingBankingTransactionId")
+    identification: Optional[StrictStr] = None
+    opening_balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="openingBalance")
+    closing_balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="closingBalance")
+    balance_difference: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="balanceDifference")
+    opening_balance_date: Optional[datetime] = Field(default=None, alias="openingBalanceDate")
+    closing_balance_date: Optional[datetime] = Field(default=None, alias="closingBalanceDate")
+    status_details: Optional[Dict[str, IncomingMutationGroupedDetailsDTO]] = Field(default=None, alias="statusDetails")
+    mutation_type_details: Optional[Dict[str, IncomingMutationGroupedDetailsDTO]] = Field(default=None, alias="mutationTypeDetails")
+    payment_method_details: Optional[Dict[str, IncomingMutationGroupedDetailsDTO]] = Field(default=None, alias="paymentMethodDetails")
     __properties: ClassVar[List[str]] = ["incomingBankingTransactionId", "identification", "openingBalance", "closingBalance", "balanceDifference", "openingBalanceDate", "closingBalanceDate", "statusDetails", "mutationTypeDetails", "paymentMethodDetails"]
 
     model_config = ConfigDict(
@@ -179,5 +179,3 @@ class IncomingBankingTransactionInsightsDTO(BaseModel):
             else None
         })
         return _obj
-
-

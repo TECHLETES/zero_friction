@@ -26,9 +26,9 @@ class TemplateAttachmentRequest(BaseModel):
     """
     TemplateAttachmentRequest
     """ # noqa: E501
-    id: Optional[StrictStr] = None
-    internal_file_path: Optional[StrictStr] = Field(default=None, alias="internalFilePath")
-    file_name: Optional[StrictStr] = Field(default=None, alias="fileName")
+    id: Optional[StrictStr]
+    internal_file_path: Optional[StrictStr] = Field(alias="internalFilePath")
+    file_name: Optional[StrictStr] = Field(alias="fileName")
     __properties: ClassVar[List[str]] = ["id", "internalFilePath", "fileName"]
 
     model_config = ConfigDict(
@@ -102,5 +102,3 @@ class TemplateAttachmentRequest(BaseModel):
             "fileName": obj.get("fileName")
         })
         return _obj
-
-

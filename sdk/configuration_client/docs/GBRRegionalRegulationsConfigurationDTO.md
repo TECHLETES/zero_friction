@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**country_code** | [**CountryCode**](CountryCode.md) |  | [optional] 
-**priority_register_parameters** | [**PriorityRegisterParametersDTO**](PriorityRegisterParametersDTO.md) |  | [optional] 
+**country_code** | [**CountryCode**](CountryCode.md) |  | [optional]
+**priority_register_parameters** | [**PriorityRegisterParametersDTO**](PriorityRegisterParametersDTO.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ gbr_regional_regulations_configuration_dto_dict = gbr_regional_regulations_confi
 gbr_regional_regulations_configuration_dto_from_dict = GBRRegionalRegulationsConfigurationDTO.from_dict(gbr_regional_regulations_configuration_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -93,5 +93,3 @@ class BillingCompletenessOverviewCountDTO(BaseModel):
             "missingAdvances": obj.get("missingAdvances")
         })
         return _obj
-
-

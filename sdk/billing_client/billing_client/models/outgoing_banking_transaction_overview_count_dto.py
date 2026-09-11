@@ -24,14 +24,14 @@ from typing_extensions import Self
 
 class OutgoingBankingTransactionOverviewCountDTO(BaseModel):
     """
-    Provides an overview of outgoing banking transaction counts by their status.  This DTO contains aggregated counts of transactions in different states.
+    OutgoingBankingTransactionOverviewCountDTO
     """ # noqa: E501
-    all: Optional[StrictInt] = Field(default=None, description="The total number of outgoing banking transactions.")
-    ready_to_send: Optional[StrictInt] = Field(default=None, description="The number of transactions that are ready to be sent.", alias="readyToSend")
-    to_confirm: Optional[StrictInt] = Field(default=None, description="The number of transactions waiting for confirmation.", alias="toConfirm")
-    closed: Optional[StrictInt] = Field(default=None, description="The number of closed transactions.")
-    date_expired: Optional[StrictInt] = Field(default=None, description="The number of transactions that have expired due to date constraints.", alias="dateExpired")
-    resolve_issues: Optional[StrictInt] = Field(default=None, description="The number of transactions that have issues requiring resolution.", alias="resolveIssues")
+    all: Optional[StrictInt] = None
+    ready_to_send: Optional[StrictInt] = Field(default=None, alias="readyToSend")
+    to_confirm: Optional[StrictInt] = Field(default=None, alias="toConfirm")
+    closed: Optional[StrictInt] = None
+    date_expired: Optional[StrictInt] = Field(default=None, alias="dateExpired")
+    resolve_issues: Optional[StrictInt] = Field(default=None, alias="resolveIssues")
     __properties: ClassVar[List[str]] = ["all", "readyToSend", "toConfirm", "closed", "dateExpired", "resolveIssues"]
 
     model_config = ConfigDict(
@@ -93,5 +93,3 @@ class OutgoingBankingTransactionOverviewCountDTO(BaseModel):
             "resolveIssues": obj.get("resolveIssues")
         })
         return _obj
-
-

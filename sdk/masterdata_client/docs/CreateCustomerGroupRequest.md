@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**settings** | [**CreateCustomerGroupSettingsRequest**](CreateCustomerGroupSettingsRequest.md) |  | [optional] 
+**name** | **str** |  |
+**settings** | [**CreateCustomerGroupSettingsRequest**](CreateCustomerGroupSettingsRequest.md) |  | [optional]
+**cost_unit_id** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +27,3 @@ create_customer_group_request_dict = create_customer_group_request_instance.to_d
 create_customer_group_request_from_dict = CreateCustomerGroupRequest.from_dict(create_customer_group_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -27,9 +27,10 @@ class TerminateContractRequest(BaseModel):
     """
     TerminateContractRequest
     """ # noqa: E501
-    mutation_date_time: Optional[datetime] = Field(default=None, alias="mutationDateTime")
-    keep_existing_invoice_on_end_date: Optional[StrictBool] = Field(default=None, description="When this flag is set, if an invoice exists with the end date equal to the move-out date,  no credit note shall be created.", alias="keepExistingInvoiceOnEndDate")
-    __properties: ClassVar[List[str]] = ["mutationDateTime", "keepExistingInvoiceOnEndDate"]
+    mutation_date_time: datetime = Field(alias="mutationDateTime")
+    keep_existing_invoice_on_end_date: Optional[StrictBool] = Field(default=None, alias="keepExistingInvoiceOnEndDate")
+    create_prepayment_correction_for_charged_costs: Optional[StrictBool] = Field(default=None, alias="createPrepaymentCorrectionForChargedCosts")
+    __properties: ClassVar[List[str]] = ["mutationDateTime", "keepExistingInvoiceOnEndDate", "createPrepaymentCorrectionForChargedCosts"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,8 +84,7 @@ class TerminateContractRequest(BaseModel):
 
         _obj = cls.model_validate({
             "mutationDateTime": obj.get("mutationDateTime"),
-            "keepExistingInvoiceOnEndDate": obj.get("keepExistingInvoiceOnEndDate")
+            "keepExistingInvoiceOnEndDate": obj.get("keepExistingInvoiceOnEndDate"),
+            "createPrepaymentCorrectionForChargedCosts": obj.get("createPrepaymentCorrectionForChargedCosts")
         })
         return _obj
-
-

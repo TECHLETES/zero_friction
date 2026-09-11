@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] [readonly] 
-**product_id** | **str** |  | [optional] 
-**activity_period** | [**DateRange**](DateRange.md) |  | [optional] 
-**nodes** | [**List[CreateBillingTariffNodeRequest]**](CreateBillingTariffNodeRequest.md) |  | [optional] 
+**id** | **str** |  | [optional]
+**product_id** | **str** |  | [optional]
+**activity_period** | [**DateRange**](DateRange.md) |  |
+**nodes** | [**List[CreateBillingTariffNodeRequest]**](CreateBillingTariffNodeRequest.md) |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ create_billing_tariff_tree_request_dict = create_billing_tariff_tree_request_ins
 create_billing_tariff_tree_request_from_dict = CreateBillingTariffTreeRequest.from_dict(create_billing_tariff_tree_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

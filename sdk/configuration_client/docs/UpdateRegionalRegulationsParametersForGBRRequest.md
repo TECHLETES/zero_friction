@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**priority_register_parameters** | [**PriorityRegisterParametersRequest**](PriorityRegisterParametersRequest.md) |  | [optional] 
+**priority_register_parameters** | [**PriorityRegisterParametersRequest**](PriorityRegisterParametersRequest.md) |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ update_regional_regulations_parameters_for_gbr_request_dict = update_regional_re
 update_regional_regulations_parameters_for_gbr_request_from_dict = UpdateRegionalRegulationsParametersForGBRRequest.from_dict(update_regional_regulations_parameters_for_gbr_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

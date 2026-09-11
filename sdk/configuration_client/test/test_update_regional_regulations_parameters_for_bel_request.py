@@ -36,16 +36,27 @@ class TestUpdateRegionalRegulationsParametersForBELRequest(unittest.TestCase):
         if include_optional:
             return UpdateRegionalRegulationsParametersForBELRequest(
                 social_tariff_parameters = configuration_client.models.social_tariff_parameters_request.SocialTariffParametersRequest(
-                    kbo_number = '', 
-                    gln_id = '', 
-                    supplier_address = null, 
-                    contact_email_address = '', 
-                    contact_telephone_number = '', 
-                    contact_fax_number = '', 
-                    contact_last_name = '', 
-                    contact_first_name = '', 
-                    social_tariff_custom_entity_property_id = '', 
-                    share_props_with_government_custom_entity_property_id = '', 
+                    kbo_number = '',
+                    gln_id = '',
+                    supplier_address = configuration_client.models.address_dto.AddressDTO(
+                        street_name = '',
+                        street_number = '',
+                        street_number_addition = '',
+                        postal_code = '',
+                        building_name = '',
+                        locality = '',
+                        city = '',
+                        country = 'aut',
+                        localized_display = '',
+                        line_one = '',
+                        line_two = '', ),
+                    contact_email_address = '',
+                    contact_telephone_number = '',
+                    contact_fax_number = '',
+                    contact_last_name = '',
+                    contact_first_name = '',
+                    social_tariff_custom_entity_property_id = '',
+                    share_props_with_government_custom_entity_property_id = '',
                     bim_custom_entity_property_id = '', )
             )
         else:

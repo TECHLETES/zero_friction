@@ -1,5 +1,6 @@
 # MeteringImportStatus
 
+Possible values: 'uploading', 'uploadfailed', 'invalidformat', 'validating', 'toprocess', 'processing', 'processed', 'processedwithissues'
 
 ## Enum
 
@@ -11,10 +12,6 @@
 
 * `VALIDATING` (value: `'validating'`)
 
-* `VALID` (value: `'valid'`)
-
-* `VALIDATIONFAILED` (value: `'validationfailed'`)
-
 * `TOPROCESS` (value: `'toprocess'`)
 
 * `PROCESSING` (value: `'processing'`)
@@ -24,5 +21,3 @@
 * `PROCESSEDWITHISSUES` (value: `'processedwithissues'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

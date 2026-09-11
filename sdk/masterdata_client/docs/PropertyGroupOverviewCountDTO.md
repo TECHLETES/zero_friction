@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** |  | [optional] 
+**all** | **int** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ property_group_overview_count_dto_dict = property_group_overview_count_dto_insta
 property_group_overview_count_dto_from_dict = PropertyGroupOverviewCountDTO.from_dict(property_group_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

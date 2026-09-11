@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_group_id** | **str** |  | [optional] 
+**customer_group_id** | **str** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ change_customer_customer_group_request_dict = change_customer_customer_group_req
 change_customer_customer_group_request_from_dict = ChangeCustomerCustomerGroupRequest.from_dict(change_customer_customer_group_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

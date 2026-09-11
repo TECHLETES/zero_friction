@@ -88,5 +88,3 @@ class UpdateServiceLocationProductRequest(BaseModel):
             "productId": obj.get("productId")
         })
         return _obj
-
-

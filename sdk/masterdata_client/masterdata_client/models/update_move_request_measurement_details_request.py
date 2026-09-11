@@ -96,5 +96,3 @@ class UpdateMoveRequestMeasurementDetailsRequest(BaseModel):
             "measurements": [MoveRequestMeasurementDetails.from_dict(_item) for _item in obj["measurements"]] if obj.get("measurements") is not None else None
         })
         return _obj
-
-

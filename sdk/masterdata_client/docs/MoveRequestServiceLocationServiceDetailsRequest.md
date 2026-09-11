@@ -5,8 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**external_identifier** | **str** |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
+**utility_type** | [**UtilityType**](UtilityType.md) |  |
 
 ## Example
 
@@ -26,5 +25,3 @@ move_request_service_location_service_details_request_dict = move_request_servic
 move_request_service_location_service_details_request_from_dict = MoveRequestServiceLocationServiceDetailsRequest.from_dict(move_request_service_location_service_details_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

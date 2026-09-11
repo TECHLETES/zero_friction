@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**envelope_settings** | [**EnvelopeSettingsRequest**](EnvelopeSettingsRequest.md) |  | [optional] 
-**show_country** | **bool** |  | [optional] 
+**show_country** | **bool** |  | [optional]
+**envelope_settings** | [**EnvelopeSettingsRequest**](EnvelopeSettingsRequest.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ reminder_pdf_template_request_dict = reminder_pdf_template_request_instance.to_d
 reminder_pdf_template_request_from_dict = ReminderPdfTemplateRequest.from_dict(reminder_pdf_template_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

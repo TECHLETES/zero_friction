@@ -88,5 +88,3 @@ class DownloadAttachmentsRequest(BaseModel):
             "attachmentIds": obj.get("attachmentIds")
         })
         return _obj
-
-

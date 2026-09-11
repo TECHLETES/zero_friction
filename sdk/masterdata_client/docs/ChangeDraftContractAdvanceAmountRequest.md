@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**new_advance_amount** | **float** |  | [optional] 
+**new_advance_amount** | **float** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ change_draft_contract_advance_amount_request_dict = change_draft_contract_advanc
 change_draft_contract_advance_amount_request_from_dict = ChangeDraftContractAdvanceAmountRequest.from_dict(change_draft_contract_advance_amount_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

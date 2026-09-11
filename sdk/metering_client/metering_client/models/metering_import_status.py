@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MeteringImportStatus(str, Enum):
     """
-    MeteringImportStatus
+    Possible values: 'uploading', 'uploadfailed', 'invalidformat', 'validating', 'toprocess', 'processing', 'processed', 'processedwithissues'
     """
 
     """
@@ -30,8 +30,6 @@ class MeteringImportStatus(str, Enum):
     UPLOADFAILED = 'uploadfailed'
     INVALIDFORMAT = 'invalidformat'
     VALIDATING = 'validating'
-    VALID = 'valid'
-    VALIDATIONFAILED = 'validationfailed'
     TOPROCESS = 'toprocess'
     PROCESSING = 'processing'
     PROCESSED = 'processed'
@@ -41,5 +39,3 @@ class MeteringImportStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of MeteringImportStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

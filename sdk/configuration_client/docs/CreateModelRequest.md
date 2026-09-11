@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
-**brand_name** | **str** |  | [optional] 
-**channel_templates** | [**List[ChannelTemplateRequest]**](ChannelTemplateRequest.md) |  | [optional] 
+**name** | **str** |  |
+**description** | **str** |  | [optional]
+**brand_name** | **str** |  |
+**channel_templates** | [**List[ChannelTemplateRequest]**](ChannelTemplateRequest.md) |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ create_model_request_dict = create_model_request_instance.to_dict()
 create_model_request_from_dict = CreateModelRequest.from_dict(create_model_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

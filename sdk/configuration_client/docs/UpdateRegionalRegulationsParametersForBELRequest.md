@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**social_tariff_parameters** | [**SocialTariffParametersRequest**](SocialTariffParametersRequest.md) |  | [optional] 
+**social_tariff_parameters** | [**SocialTariffParametersRequest**](SocialTariffParametersRequest.md) |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ update_regional_regulations_parameters_for_bel_request_dict = update_regional_re
 update_regional_regulations_parameters_for_bel_request_from_dict = UpdateRegionalRegulationsParametersForBELRequest.from_dict(update_regional_regulations_parameters_for_bel_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

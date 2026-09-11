@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
-**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional] 
-**value** | **float** |  | [optional] 
-**consumer_group_id** | **str** |  | [optional] 
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional]
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  |
+**metering_type** | [**MeteringType**](MeteringType.md) |  |
+**value** | **float** |  | [optional]
+**consumer_group_id** | **str** |  |
 
 ## Example
 
@@ -29,5 +29,3 @@ move_request_contract_estimation_request_dict = move_request_contract_estimation
 move_request_contract_estimation_request_from_dict = MoveRequestContractEstimationRequest.from_dict(move_request_contract_estimation_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

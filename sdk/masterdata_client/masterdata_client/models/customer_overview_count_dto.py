@@ -87,5 +87,3 @@ class CustomerOverviewCountDTO(BaseModel):
             "unsupplied": obj.get("unsupplied")
         })
         return _obj
-
-

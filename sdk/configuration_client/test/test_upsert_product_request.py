@@ -38,32 +38,59 @@ class TestUpsertProductRequest(unittest.TestCase):
                 name = '',
                 billing_items = [
                     configuration_client.models.upsert_product_billing_items_request.UpsertProductBillingItemsRequest(
-                        billing_item_id = '', 
-                        order = 56, 
-                        periodicity_parameters = null, 
-                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        billing_item_id = '',
+                        order = 56,
+                        periodicity_parameters = configuration_client.models.product_item_periodicity_parameters_dto.ProductItemPeriodicityParametersDTO(),
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                         end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ],
                 attachments = [
                     configuration_client.models.upsert_product_attachment_request.UpsertProductAttachmentRequest(
-                        product_attachment_id = '', 
-                        include_in_welcome_email = True, 
-                        visibility = null, 
-                        approval_required = True, 
-                        valid_from = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        valid_until = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        product_attachment_id = '',
+                        include_in_welcome_email = True,
+                        visibility = 'internal',
+                        approval_required = True,
+                        valid_from = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        valid_until = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                         attachment_files = [
                             configuration_client.models.upsert_product_attachment_file_request.UpsertProductAttachmentFileRequest(
-                                culture = null, 
-                                file_name = '', 
-                                internal_file_name = '', 
+                                culture = '',
+                                file_name = '',
+                                internal_file_name = '',
                                 attachment_id = '', )
                             ], )
                     ],
-                invoice_upfront = True
+                invoice_upfront = True,
+                is_prepayment_eligible = True,
+                accounting_code_id = ''
             )
         else:
             return UpsertProductRequest(
+                name = '',
+                billing_items = [
+                    configuration_client.models.upsert_product_billing_items_request.UpsertProductBillingItemsRequest(
+                        billing_item_id = '',
+                        order = 56,
+                        periodicity_parameters = configuration_client.models.product_item_periodicity_parameters_dto.ProductItemPeriodicityParametersDTO(),
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                    ],
+                attachments = [
+                    configuration_client.models.upsert_product_attachment_request.UpsertProductAttachmentRequest(
+                        product_attachment_id = '',
+                        include_in_welcome_email = True,
+                        visibility = 'internal',
+                        approval_required = True,
+                        valid_from = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        valid_until = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        attachment_files = [
+                            configuration_client.models.upsert_product_attachment_file_request.UpsertProductAttachmentFileRequest(
+                                culture = '',
+                                file_name = '',
+                                internal_file_name = '',
+                                attachment_id = '', )
+                            ], )
+                    ],
         )
         """
 

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PaymentMethod(str, Enum):
     """
-    PaymentMethod
+    Possible values: 'sct', 'sdd', 'hostedcheckout', 'offsession'
     """
 
     """
@@ -28,10 +28,10 @@ class PaymentMethod(str, Enum):
     """
     SCT = 'sct'
     SDD = 'sdd'
+    HOSTEDCHECKOUT = 'hostedcheckout'
+    OFFSESSION = 'offsession'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of PaymentMethod from a JSON string"""
         return cls(json.loads(json_str))
-
-

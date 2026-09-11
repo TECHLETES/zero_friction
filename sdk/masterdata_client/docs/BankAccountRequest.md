@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iban** | **str** |  | [optional] 
-**sign_date** | **datetime** |  | [optional] 
+**iban** | **str** |  | [optional]
+**sign_date** | **datetime** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ bank_account_request_dict = bank_account_request_instance.to_dict()
 bank_account_request_from_dict = BankAccountRequest.from_dict(bank_account_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

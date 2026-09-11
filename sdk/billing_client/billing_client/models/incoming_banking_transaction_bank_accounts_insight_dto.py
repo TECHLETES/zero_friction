@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class IncomingBankingTransactionBankAccountsInsightDTO(BaseModel):
     """
-    Provides insights about company bank accounts associated with incoming banking transactions.  This DTO contains a collection of bank account insights.
+    IncomingBankingTransactionBankAccountsInsightDTO
     """ # noqa: E501
-    company_bank_accounts: Optional[List[IncomingBankingTransactionBankAccountInsightDTO]] = Field(default=None, description="List of insights for individual company bank accounts.", alias="companyBankAccounts")
+    company_bank_accounts: Optional[List[IncomingBankingTransactionBankAccountInsightDTO]] = Field(default=None, alias="companyBankAccounts")
     __properties: ClassVar[List[str]] = ["companyBankAccounts"]
 
     model_config = ConfigDict(
@@ -96,5 +96,3 @@ class IncomingBankingTransactionBankAccountsInsightDTO(BaseModel):
             "companyBankAccounts": [IncomingBankingTransactionBankAccountInsightDTO.from_dict(_item) for _item in obj["companyBankAccounts"]] if obj.get("companyBankAccounts") is not None else None
         })
         return _obj
-
-

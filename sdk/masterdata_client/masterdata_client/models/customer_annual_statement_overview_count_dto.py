@@ -89,5 +89,3 @@ class CustomerAnnualStatementOverviewCountDTO(BaseModel):
             "latestAnnualStatementFailed": obj.get("latestAnnualStatementFailed")
         })
         return _obj
-
-

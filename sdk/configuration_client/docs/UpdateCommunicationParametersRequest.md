@@ -5,14 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**enabled** | **bool** |  | [optional] 
-**sender_email_address** | **str** |  | [optional] 
-**sender_name** | **str** |  | [optional] 
-**reply_to_email_address** | **str** |  | [optional] 
-**reply_to_name** | **str** |  | [optional] 
-**is_sandboxed** | **bool** |  | [optional] 
-**sandbox_recipient_email** | **str** |  | [optional] 
-**sandbox_recipient_phone_number** | **str** |  | [optional] 
+**enabled** | **bool** |  | [optional]
+**sender_email_address** | **str** |  | [optional]
+**sender_name** | **str** |  | [optional]
+**reply_to_email_address** | **str** |  | [optional]
+**reply_to_name** | **str** |  | [optional]
+**is_sandboxed** | **bool** |  | [optional]
+**sandbox_recipient_email** | **str** |  |
+**sandbox_recipient_phone_number** | **str** |  |
 
 ## Example
 
@@ -32,5 +32,3 @@ update_communication_parameters_request_dict = update_communication_parameters_r
 update_communication_parameters_request_from_dict = UpdateCommunicationParametersRequest.from_dict(update_communication_parameters_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**origin** | [**EntityAttachmentOrigin**](EntityAttachmentOrigin.md) |  | [optional] 
-**culture** | **str** |  | [optional] 
-**product_attachment_id** | **str** |  | [optional] 
-**entity_attachment_group_id** | **str** |  | [optional] 
-**sign_date** | **datetime** |  | [optional] 
-**viewed_date** | **datetime** |  | [optional] 
+**origin** | [**EntityAttachmentOrigin**](EntityAttachmentOrigin.md) |  |
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) |
+**product_attachment_id** | **str** |  |
+**entity_attachment_group_id** | **str** |  |
+**sign_date** | **datetime** |  | [optional]
+**viewed_date** | **datetime** |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ move_request_attachment_signature_request_dict = move_request_attachment_signatu
 move_request_attachment_signature_request_from_dict = MoveRequestAttachmentSignatureRequest.from_dict(move_request_attachment_signature_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -1,13 +1,12 @@
 # MeteringImportDataImportDto
 
-If the metering import was created via a data provider (mail, FTP, ...), it will contain the data  of that data provider.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The ID of the data provider. | [optional] 
-**name** | **str** | The name of the data provider. | [optional] 
+**id** | **str** |  | [optional]
+**name** | **str** |  | [optional]
 
 ## Example
 
@@ -27,5 +26,3 @@ metering_import_data_import_dto_dict = metering_import_data_import_dto_instance.
 metering_import_data_import_dto_from_dict = MeteringImportDataImportDto.from_dict(metering_import_data_import_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

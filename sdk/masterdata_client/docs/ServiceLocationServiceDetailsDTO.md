@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**external_identifier** | **str** |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
+**external_identifier** | **str** |  | [optional]
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ service_location_service_details_dto_dict = service_location_service_details_dto
 service_location_service_details_dto_from_dict = ServiceLocationServiceDetailsDTO.from_dict(service_location_service_details_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

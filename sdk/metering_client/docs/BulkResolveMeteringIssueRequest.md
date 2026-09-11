@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **str** |  | [optional] 
-**resolution_value** | **object** |  | [optional] 
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetMeteringIssuesQueryParams**](GetMeteringIssuesQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetMeteringIssuesQueryParams**](GetMeteringIssuesQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
+**message** | **str** |  | [optional]
+**resolution_value** | [**BaseMeteringIssueResolutionValueDTO**](BaseMeteringIssueResolutionValueDTO.md) |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ bulk_resolve_metering_issue_request_dict = bulk_resolve_metering_issue_request_i
 bulk_resolve_metering_issue_request_from_dict = BulkResolveMeteringIssueRequest.from_dict(bulk_resolve_metering_issue_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

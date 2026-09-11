@@ -43,9 +43,9 @@ class TestProductAttachmentDTO(unittest.TestCase):
                 valid_until = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 attachment_files = [
                     configuration_client.models.product_attachment_file_dto.ProductAttachmentFileDTO(
-                        culture = null, 
-                        file_name = '', 
-                        internal_file_name = '', 
+                        culture = '',
+                        file_name = '',
+                        internal_file_name = '',
                         attachment_id = '', )
                     ]
             )

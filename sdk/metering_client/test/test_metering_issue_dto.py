@@ -35,30 +35,28 @@ class TestMeteringIssueDTO(unittest.TestCase):
         model = MeteringIssueDTO()
         if include_optional:
             return MeteringIssueDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
                 meter = metering_client.models.meter_reference.MeterReference(
-                    meter_id = '', 
+                    meter_id = '',
                     serial_number = '', ),
                 property_group = metering_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
-                    id = '', 
+                    id = '',
                     name = '', ),
                 meter_model_id = '',
                 noticed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 error = 'consumptionnegative',
                 status = 'unresolved',
-                details = None,
+                details = metering_client.models.base_metering_issue_details_dto.BaseMeteringIssueDetailsDTO(),
                 resolution = metering_client.models.metering_issue_resolution_dto.MeteringIssueResolutionDTO(
-                    resolved_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    type = null, 
-                    details = null, )
+                    resolved_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    type = 'manual',
+                    details = metering_client.models.base_metering_issue_resolution_details_dto.BaseMeteringIssueResolutionDetailsDTO(), ),
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return MeteringIssueDTO(

@@ -35,82 +35,88 @@ class TestMeterDTO(unittest.TestCase):
         model = MeterDTO()
         if include_optional:
             return MeterDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 serial_number = '',
                 meter_tag = '',
                 meter_type = 'individual',
                 model_id = '',
                 status_history = [
                     masterdata_client.models.meter_status_history_dto.MeterStatusHistoryDTO(
-                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        meter_status = null, 
-                        service_location_id = '', 
-                        installed_at_address = null, 
-                        property_group = null, )
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        meter_status = 'requested',
+                        service_location_id = '',
+                        installed_at_address = masterdata_client.models.address_dto.AddressDTO(
+                            street_name = '',
+                            street_number = '',
+                            street_number_addition = '',
+                            postal_code = '',
+                            building_name = '',
+                            locality = '',
+                            city = '',
+                            country = 'aut',
+                            localized_display = '',
+                            line_one = '',
+                            line_two = '', ),
+                        property_group = masterdata_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
+                            id = '',
+                            name = '', ), )
                     ],
                 channels = [
                     masterdata_client.models.external_channel_dto.ExternalChannelDTO(
-                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        data_frequency = null, 
-                        incrementation_type = null, 
-                        metering_type = null, 
-                        utility_type = null, 
-                        direction = null, 
-                        unit_of_measure = null, 
-                        time_of_use = '', 
-                        description = '', 
-                        external_identifier = '', 
-                        last_time_received_data = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        measurements_until = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        relation_external_reference = '', 
-                        issues_count = 56, 
-                        has_issue = True, 
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        data_frequency = 'pt1m',
+                        incrementation_type = 'delta',
+                        metering_type = 'none',
+                        utility_type = 'none',
+                        direction = 'offtake',
+                        unit_of_measure = 'none',
+                        time_of_use = '',
+                        description = '',
+                        external_identifier = '',
+                        last_time_received_data = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        measurements_until = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        relation_external_reference = '',
+                        issues_count = 56,
+                        has_issue = True,
                         issues = [
                             masterdata_client.models.metering_issue_reference.MeteringIssueReference(
-                                metering_issue_id = '', 
-                                error = null, 
-                                status = null, 
+                                metering_issue_id = '',
+                                error = 'consumptionnegative',
+                                status = 'unresolved',
                                 noticed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                            ], 
-                        built_in = True, 
-                        hidden = True, )
+                            ],
+                        built_in = True,
+                        hidden = True,
+                        reset_day = 56,
+                        reset_month = 56,
+                        reset_hour = 56,
+                        reset_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ],
                 last_time_received_data = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 measurements_until = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 parent_meter_relation = masterdata_client.models.meter_relation_dto.MeterRelationDTO(
-                    meter_id = '', 
-                    serial_number = '', 
+                    meter_id = '',
+                    serial_number = '',
                     external_reference = '', ),
                 property_group = masterdata_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
-                    id = '', 
+                    id = '',
                     name = '', ),
                 time_zone = '',
-                meter_properties = None,
                 custom_properties = [
                     masterdata_client.models.custom_entity_property_dto.CustomEntityPropertyDTO(
-                        custom_entity_property_type_id = '', 
+                        custom_entity_property_type_id = '',
                         values = [
                             masterdata_client.models.custom_entity_property_value_dto.CustomEntityPropertyValueDTO(
-                                value_decimal = 1.337, 
-                                value_string = '', 
-                                value_boolean = True, 
-                                value_number = 56, 
-                                value_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                value_decimal = 1.337,
+                                value_string = '',
+                                value_boolean = True,
+                                value_number = 56,
+                                value_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                                 value_dropdown = [
                                     ''
-                                    ], 
-                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                    ],
+                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                             ], )
                     ],
@@ -120,13 +126,22 @@ class TestMeterDTO(unittest.TestCase):
                 has_issue = True,
                 issues = [
                     masterdata_client.models.metering_issue_reference.MeteringIssueReference(
-                        metering_issue_id = '', 
-                        error = null, 
-                        status = null, 
+                        metering_issue_id = '',
+                        error = 'consumptionnegative',
+                        status = 'unresolved',
                         noticed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ],
                 reading_frequency = 'hourly',
-                next_expected_reading_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                next_expected_reading_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                deleted = True,
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return MeterDTO(

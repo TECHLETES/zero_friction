@@ -5,8 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**external_identifier** | **str** |  | [optional] 
+**utility_type** | [**UtilityType**](UtilityType.md) |  |
 
 ## Example
 
@@ -26,5 +25,3 @@ create_service_request_dict = create_service_request_instance.to_dict()
 create_service_request_from_dict = CreateServiceRequest.from_dict(create_service_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**ReadExportsQueryParams**](ReadExportsQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**ReadExportsQueryParams**](ReadExportsQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ bulk_delete_social_tariffs_request_dict = bulk_delete_social_tariffs_request_ins
 bulk_delete_social_tariffs_request_from_dict = BulkDeleteSocialTariffsRequest.from_dict(bulk_delete_social_tariffs_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
-**email_template** | [**ContractLocationsRemovedEmailTemplateRequest**](ContractLocationsRemovedEmailTemplateRequest.md) |  | [optional] 
+**email_template** | [**ContractLocationsRemovedEmailTemplateRequest**](ContractLocationsRemovedEmailTemplateRequest.md) |  |
+**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  |
+**auto_fallback_to_postal** | **bool** |  | [optional]
 
 ## Example
 
@@ -26,5 +27,3 @@ change_contract_locations_removed_scenario_request_dict = change_contract_locati
 change_contract_locations_removed_scenario_request_from_dict = ChangeContractLocationsRemovedScenarioRequest.from_dict(change_contract_locations_removed_scenario_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

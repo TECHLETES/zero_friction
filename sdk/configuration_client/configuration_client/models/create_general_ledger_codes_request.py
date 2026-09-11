@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class CreateGeneralLedgerCodesRequest(BaseModel):
     """
-    Request model for creating new general ledger codes.  General codes should correspond to entries in an external accounting system  to enable proper data synchronization during billing operations.
+    CreateGeneralLedgerCodesRequest
     """ # noqa: E501
-    general_ledger_codes: Optional[List[CreateGeneralLedgerCodeRequest]] = Field(default=None, description="List of general ledger codes to create.", alias="generalLedgerCodes")
+    general_ledger_codes: Optional[List[CreateGeneralLedgerCodeRequest]] = Field(default=None, alias="generalLedgerCodes")
     __properties: ClassVar[List[str]] = ["generalLedgerCodes"]
 
     model_config = ConfigDict(
@@ -96,5 +96,3 @@ class CreateGeneralLedgerCodesRequest(BaseModel):
             "generalLedgerCodes": [CreateGeneralLedgerCodeRequest.from_dict(_item) for _item in obj["generalLedgerCodes"]] if obj.get("generalLedgerCodes") is not None else None
         })
         return _obj
-
-

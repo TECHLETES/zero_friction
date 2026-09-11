@@ -41,7 +41,7 @@ from zero_friction.core.sdk_client import SDKClient
 config = ZeroFrictionConfig()
 sdk = SDKClient(config=config)
 
-contract = sdk.masterdata_client.contracts_api.get_contracts_contractuuid(
+contract = sdk.masterdata_client.default_api.get_contracts_contractuuid(
     contractuuid="fc77b9c6-42bc-4fe7-b0a2-0f0309449a98",
     **config.as_kwargs(),
 )
@@ -76,3 +76,6 @@ from root-package lint/type-check coverage settings.
 
 See `docs/quickstart.md` and the documents under `docs/` for the development,
 secret-management, dependency, quality, and devcontainer workflows.
+
+See `docs/sdk-regeneration.md` when refreshing the bundled OpenAPI
+specifications or regenerating the clients under `sdk/`.

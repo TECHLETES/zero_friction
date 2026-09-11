@@ -1,5 +1,6 @@
 # FtpProtocol
 
+Possible values: 'none', 'ssl2', 'ssl3', 'tls', 'default', 'tls11', 'tls12'
 
 ## Enum
 
@@ -18,5 +19,3 @@
 * `TLS12` (value: `'tls12'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

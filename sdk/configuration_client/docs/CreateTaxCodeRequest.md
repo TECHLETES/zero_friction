@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**rates** | [**List[CreateTaxCodeRateRequest]**](CreateTaxCodeRateRequest.md) |  | [optional] 
+**name** | **str** |  |
+**accounting_code_id** | **str** |  | [optional]
+**rates** | [**List[CreateTaxCodeRateRequest]**](CreateTaxCodeRateRequest.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +27,3 @@ create_tax_code_request_dict = create_tax_code_request_instance.to_dict()
 create_tax_code_request_from_dict = CreateTaxCodeRequest.from_dict(create_tax_code_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

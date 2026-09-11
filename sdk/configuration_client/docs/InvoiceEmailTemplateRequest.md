@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**subject** | **str** |  | [optional] 
-**attachments** | [**List[TemplateAttachmentRequest]**](TemplateAttachmentRequest.md) |  | [optional] 
+**subject** | **str** |  | [optional]
+**attachments** | [**List[TemplateAttachmentRequest]**](TemplateAttachmentRequest.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ invoice_email_template_request_dict = invoice_email_template_request_instance.to
 invoice_email_template_request_from_dict = InvoiceEmailTemplateRequest.from_dict(invoice_email_template_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** |  | [optional] 
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetEntityAttachmentQueryParams**](GetEntityAttachmentQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetEntityAttachmentQueryParams**](GetEntityAttachmentQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
+**customer_id** | **str** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ bulk_delete_entity_attachment_request_dict = bulk_delete_entity_attachment_reque
 bulk_delete_entity_attachment_request_from_dict = BulkDeleteEntityAttachmentRequest.from_dict(bulk_delete_entity_attachment_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

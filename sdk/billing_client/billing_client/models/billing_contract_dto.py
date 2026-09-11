@@ -17,9 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from billing_client.models.billed_service_dto import BilledServiceDTO
+from billing_client.models.billing_method_period_reference_dto import BillingMethodPeriodReferenceDTO
 from billing_client.models.contract_billing_method import ContractBillingMethod
 from billing_client.models.product_period_reference_dto import ProductPeriodReferenceDTO
 from billing_client.models.property_group_reference_dto import PropertyGroupReferenceDTO
@@ -28,16 +29,17 @@ from typing_extensions import Self
 
 class BillingContractDTO(BaseModel):
     """
-    Represents a billing contract with its associated products and services.  This DTO contains information about the contract, its products, and billing method.
+    BillingContractDTO
     """ # noqa: E501
-    contract_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the contract.", alias="contractId")
-    contract_number: Optional[StrictStr] = Field(default=None, description="The contract number.", alias="contractNumber")
-    products: Optional[List[ProductPeriodReferenceDTO]] = Field(default=None, description="List of products associated with this contract.")
-    services: Optional[List[BilledServiceDTO]] = Field(default=None, description="List of services being billed under this contract.")
-    use_property_group_product: Optional[StrictBool] = Field(default=None, description="Indicates whether to use the property group product.", alias="usePropertyGroupProduct")
-    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, description="List of property groups associated with this contract.", alias="propertyGroups")
-    billing_method: Optional[ContractBillingMethod] = Field(default=None, description="The billing method used for this contract.", alias="billingMethod")
-    __properties: ClassVar[List[str]] = ["contractId", "contractNumber", "products", "services", "usePropertyGroupProduct", "propertyGroups", "billingMethod"]
+    contract_id: Optional[StrictStr] = Field(default=None, alias="contractId")
+    contract_number: Optional[StrictStr] = Field(default=None, alias="contractNumber")
+    products: Optional[List[ProductPeriodReferenceDTO]] = None
+    services: Optional[List[BilledServiceDTO]] = None
+    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, alias="propertyGroups")
+    billing_methods: Optional[List[BillingMethodPeriodReferenceDTO]] = Field(default=None, alias="billingMethods")
+    current_billing_method: Optional[ContractBillingMethod] = Field(default=None, alias="currentBillingMethod")
+    billing_method: Optional[ContractBillingMethod] = Field(default=None, alias="billingMethod")
+    __properties: ClassVar[List[str]] = ["contractId", "contractNumber", "products", "services", "propertyGroups", "billingMethods", "currentBillingMethod", "billingMethod"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,6 +101,13 @@ class BillingContractDTO(BaseModel):
                 if _item_property_groups:
                     _items.append(_item_property_groups.to_dict())
             _dict['propertyGroups'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in billing_methods (list)
+        _items = []
+        if self.billing_methods:
+            for _item_billing_methods in self.billing_methods:
+                if _item_billing_methods:
+                    _items.append(_item_billing_methods.to_dict())
+            _dict['billingMethods'] = _items
         # set to None if contract_id (nullable) is None
         # and model_fields_set contains the field
         if self.contract_id is None and "contract_id" in self.model_fields_set:
@@ -124,10 +133,10 @@ class BillingContractDTO(BaseModel):
         if self.property_groups is None and "property_groups" in self.model_fields_set:
             _dict['propertyGroups'] = None
 
-        # set to None if billing_method (nullable) is None
+        # set to None if billing_methods (nullable) is None
         # and model_fields_set contains the field
-        if self.billing_method is None and "billing_method" in self.model_fields_set:
-            _dict['billingMethod'] = None
+        if self.billing_methods is None and "billing_methods" in self.model_fields_set:
+            _dict['billingMethods'] = None
 
         return _dict
 
@@ -145,10 +154,9 @@ class BillingContractDTO(BaseModel):
             "contractNumber": obj.get("contractNumber"),
             "products": [ProductPeriodReferenceDTO.from_dict(_item) for _item in obj["products"]] if obj.get("products") is not None else None,
             "services": [BilledServiceDTO.from_dict(_item) for _item in obj["services"]] if obj.get("services") is not None else None,
-            "usePropertyGroupProduct": obj.get("usePropertyGroupProduct"),
             "propertyGroups": [PropertyGroupReferenceDTO.from_dict(_item) for _item in obj["propertyGroups"]] if obj.get("propertyGroups") is not None else None,
+            "billingMethods": [BillingMethodPeriodReferenceDTO.from_dict(_item) for _item in obj["billingMethods"]] if obj.get("billingMethods") is not None else None,
+            "currentBillingMethod": obj.get("currentBillingMethod"),
             "billingMethod": obj.get("billingMethod")
         })
         return _obj
-
-

@@ -1,5 +1,6 @@
 # IncomingMutationType
 
+Possible values: 'incomingtransfer', 'outgoingtransfer', 'paymentrequestreversal', 'refundreversal', 'unknown', 'paymentrequesttransactionconfirmation', 'paymentrequestmutationconfirmation', 'refundtransactionconfirmation', 'refundmutationconfirmation', 'requestconfirmation', 'refundconfirmation'
 
 ## Enum
 
@@ -26,5 +27,3 @@
 * `REFUNDCONFIRMATION` (value: `'refundconfirmation'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

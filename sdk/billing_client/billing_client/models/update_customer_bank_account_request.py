@@ -25,13 +25,13 @@ from typing_extensions import Self
 
 class UpdateCustomerBankAccountRequest(BaseModel):
     """
-    Represents a request to update an existing customer bank account.  This DTO is used to modify the details of a customer's bank account and its associated mandate information.
+    UpdateCustomerBankAccountRequest
     """ # noqa: E501
-    iban: Optional[StrictStr] = Field(default=None, description="The International Bank Account Number (IBAN) of the bank account.")
-    bic: Optional[StrictStr] = Field(default=None, description="The Bank Identifier Code (BIC) of the bank.")
-    is_default: Optional[StrictBool] = Field(default=None, description="Indicates whether this bank account should be set as the default account for the customer.", alias="isDefault")
-    active_mandate: Optional[UpdateCustomerBankAccountActiveMandateRequest] = Field(default=None, description="Information about the active mandate associated with this bank account.", alias="activeMandate")
-    __properties: ClassVar[List[str]] = ["iban", "bic", "isDefault", "activeMandate"]
+    is_default: Optional[StrictBool] = Field(default=None, alias="isDefault")
+    active_mandate: Optional[UpdateCustomerBankAccountActiveMandateRequest] = Field(default=None, alias="activeMandate")
+    iban: Optional[StrictStr] = None
+    bic: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["isDefault", "activeMandate", "iban", "bic"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,6 +75,11 @@ class UpdateCustomerBankAccountRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of active_mandate
         if self.active_mandate:
             _dict['activeMandate'] = self.active_mandate.to_dict()
+        # set to None if active_mandate (nullable) is None
+        # and model_fields_set contains the field
+        if self.active_mandate is None and "active_mandate" in self.model_fields_set:
+            _dict['activeMandate'] = None
+
         # set to None if iban (nullable) is None
         # and model_fields_set contains the field
         if self.iban is None and "iban" in self.model_fields_set:
@@ -84,11 +89,6 @@ class UpdateCustomerBankAccountRequest(BaseModel):
         # and model_fields_set contains the field
         if self.bic is None and "bic" in self.model_fields_set:
             _dict['bic'] = None
-
-        # set to None if active_mandate (nullable) is None
-        # and model_fields_set contains the field
-        if self.active_mandate is None and "active_mandate" in self.model_fields_set:
-            _dict['activeMandate'] = None
 
         return _dict
 
@@ -102,11 +102,9 @@ class UpdateCustomerBankAccountRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "iban": obj.get("iban"),
-            "bic": obj.get("bic"),
             "isDefault": obj.get("isDefault"),
-            "activeMandate": UpdateCustomerBankAccountActiveMandateRequest.from_dict(obj["activeMandate"]) if obj.get("activeMandate") is not None else None
+            "activeMandate": UpdateCustomerBankAccountActiveMandateRequest.from_dict(obj["activeMandate"]) if obj.get("activeMandate") is not None else None,
+            "iban": obj.get("iban"),
+            "bic": obj.get("bic")
         })
         return _obj
-
-

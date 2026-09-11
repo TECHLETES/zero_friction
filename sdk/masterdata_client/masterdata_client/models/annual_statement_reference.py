@@ -83,6 +83,16 @@ class AnnualStatementReference(BaseModel):
         if self.annual_statement_number is None and "annual_statement_number" in self.model_fields_set:
             _dict['annualStatementNumber'] = None
 
+        # set to None if year (nullable) is None
+        # and model_fields_set contains the field
+        if self.year is None and "year" in self.model_fields_set:
+            _dict['year'] = None
+
+        # set to None if version (nullable) is None
+        # and model_fields_set contains the field
+        if self.version is None and "version" in self.model_fields_set:
+            _dict['version'] = None
+
         # set to None if status (nullable) is None
         # and model_fields_set contains the field
         if self.status is None and "status" in self.model_fields_set:
@@ -107,5 +117,3 @@ class AnnualStatementReference(BaseModel):
             "status": obj.get("status")
         })
         return _obj
-
-

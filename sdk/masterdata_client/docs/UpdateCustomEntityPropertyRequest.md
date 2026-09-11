@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**custom_entity_property_type_id** | **str** |  | [optional] 
-**values** | [**List[UpdateCustomEntityPropertyValueRequest]**](UpdateCustomEntityPropertyValueRequest.md) |  | [optional] 
+**custom_entity_property_type_id** | **str** |  |
+**values** | [**List[UpdateCustomEntityPropertyValueRequest]**](UpdateCustomEntityPropertyValueRequest.md) |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ update_custom_entity_property_request_dict = update_custom_entity_property_reque
 update_custom_entity_property_request_from_dict = UpdateCustomEntityPropertyRequest.from_dict(update_custom_entity_property_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

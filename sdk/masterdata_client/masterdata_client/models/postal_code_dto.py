@@ -95,5 +95,3 @@ class PostalCodeDTO(BaseModel):
             "city": obj.get("city")
         })
         return _obj
-
-

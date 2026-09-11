@@ -76,11 +76,6 @@ class EstimatedConsumptionDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if origin (nullable) is None
-        # and model_fields_set contains the field
-        if self.origin is None and "origin" in self.model_fields_set:
-            _dict['origin'] = None
-
         # set to None if consumer_group_id (nullable) is None
         # and model_fields_set contains the field
         if self.consumer_group_id is None and "consumer_group_id" in self.model_fields_set:
@@ -112,5 +107,3 @@ class EstimatedConsumptionDTO(BaseModel):
             "value": obj.get("value")
         })
         return _obj
-
-

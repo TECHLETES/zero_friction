@@ -72,16 +72,6 @@ class AggregateDetailsDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if code (nullable) is None
-        # and model_fields_set contains the field
-        if self.code is None and "code" in self.model_fields_set:
-            _dict['code'] = None
-
-        # set to None if translation (nullable) is None
-        # and model_fields_set contains the field
-        if self.translation is None and "translation" in self.model_fields_set:
-            _dict['translation'] = None
-
         # set to None if value (nullable) is None
         # and model_fields_set contains the field
         if self.value is None and "value" in self.model_fields_set:
@@ -110,5 +100,3 @@ class AggregateDetailsDTO(BaseModel):
             "valueDate": obj.get("valueDate")
         })
         return _obj
-
-

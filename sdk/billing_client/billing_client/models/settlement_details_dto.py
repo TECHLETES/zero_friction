@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class SettlementDetailsDTO(BaseModel):
     """
-    Represents settlement details for a transaction
+    SettlementDetailsDTO
     """ # noqa: E501
-    settled_transactions_with_amounts: Optional[List[SettledTransactionDTO]] = Field(default=None, description="List of transactions that have been settled with their amounts", alias="settledTransactionsWithAmounts")
+    settled_transactions_with_amounts: Optional[List[SettledTransactionDTO]] = Field(default=None, alias="settledTransactionsWithAmounts")
     __properties: ClassVar[List[str]] = ["settledTransactionsWithAmounts"]
 
     model_config = ConfigDict(
@@ -96,5 +96,3 @@ class SettlementDetailsDTO(BaseModel):
             "settledTransactionsWithAmounts": [SettledTransactionDTO.from_dict(_item) for _item in obj["settledTransactionsWithAmounts"]] if obj.get("settledTransactionsWithAmounts") is not None else None
         })
         return _obj
-
-

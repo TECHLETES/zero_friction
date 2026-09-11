@@ -35,40 +35,57 @@ class TestUpdateOrganizationRequest(unittest.TestCase):
         model = UpdateOrganizationRequest()
         if include_optional:
             return UpdateOrganizationRequest(
-                automatic_processing_enabled = True,
-                migration_mode = True,
                 vat_account_number = '',
-                time_zone = '',
-                culture = '',
                 company_account_number = '',
                 logo = '',
                 primary_color = '',
                 secondary_color = '',
-                persist_logo_in_portal = True,
-                persist_color_in_portal = True,
                 address = configuration_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 contact_details = configuration_client.models.update_organization_contact_details_request.UpdateOrganizationContactDetailsRequest(
-                    email_address = '', 
-                    telephone = '', 
-                    website = '', 
-                    telephone_interruptions = '', 
+                    email_address = '',
+                    telephone = '',
+                    website = '',
+                    telephone_interruptions = '',
                     support = '', ),
                 manually_set_customer_number = True,
                 manually_set_contract_number = True
             )
         else:
             return UpdateOrganizationRequest(
+                vat_account_number = '',
+                company_account_number = '',
+                logo = '',
+                primary_color = '',
+                secondary_color = '',
+                address = configuration_client.models.address_dto.AddressDTO(
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
+                    line_two = '', ),
+                contact_details = configuration_client.models.update_organization_contact_details_request.UpdateOrganizationContactDetailsRequest(
+                    email_address = '',
+                    telephone = '',
+                    website = '',
+                    telephone_interruptions = '',
+                    support = '', ),
         )
         """
 

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entity_attachment_group_ids** | **List[str]** |  | [optional] 
-**culture** | [**CultureInfo**](CultureInfo.md) |  | [optional] 
+**entity_attachment_group_ids** | **List[str]** |  |
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) |
 
 ## Example
 
@@ -26,5 +26,3 @@ download_entity_attachment_groups_request_dict = download_entity_attachment_grou
 download_entity_attachment_groups_request_from_dict = DownloadEntityAttachmentGroupsRequest.from_dict(download_entity_attachment_groups_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -27,7 +27,7 @@ class ChangeCustomerCommunicationPreferencesRequest(BaseModel):
     """
     ChangeCustomerCommunicationPreferencesRequest
     """ # noqa: E501
-    communication_preferences: Optional[CustomerCommunicationPreferencesRequest] = Field(default=None, alias="communicationPreferences")
+    communication_preferences: Optional[CustomerCommunicationPreferencesRequest] = Field(alias="communicationPreferences")
     __properties: ClassVar[List[str]] = ["communicationPreferences"]
 
     model_config = ConfigDict(
@@ -92,5 +92,3 @@ class ChangeCustomerCommunicationPreferencesRequest(BaseModel):
             "communicationPreferences": CustomerCommunicationPreferencesRequest.from_dict(obj["communicationPreferences"]) if obj.get("communicationPreferences") is not None else None
         })
         return _obj
-
-

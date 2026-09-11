@@ -13,87 +13,123 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
+import json
 import pprint
 import re  # noqa: F401
-import json
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+from typing import Optional
+from metering_client.models.base_metering_issue_resolution_details_dto_automatic_metering_issue_resolution_details_dto import BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO
+from metering_client.models.base_metering_issue_resolution_details_dto_manual_metering_issue_resolution_details_dto import BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO
+from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
+from typing_extensions import Literal, Self
+from pydantic import Field
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
-from typing import Optional, Set
-from typing_extensions import Self
+BASEMETERINGISSUERESOLUTIONDETAILSDTO_ANY_OF_SCHEMAS = ["BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO", "BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO"]
 
 class BaseMeteringIssueResolutionDetailsDTO(BaseModel):
     """
     BaseMeteringIssueResolutionDetailsDTO
-    """ # noqa: E501
-    resolved_by_user_id: Optional[StrictStr] = Field(default=None, alias="resolvedByUserId")
-    new_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="newValue")
-    __properties: ClassVar[List[str]] = ["resolvedByUserId", "newValue"]
+    """
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    # data type: BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO
+    anyof_schema_1_validator: Optional[BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO] = None
+    # data type: BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO
+    anyof_schema_2_validator: Optional[BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO] = None
+    if TYPE_CHECKING:
+        actual_instance: Optional[Union[BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO, BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO]] = None
+    else:
+        actual_instance: Any = None
+    any_of_schemas: Set[str] = { "BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO", "BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO" }
 
+    model_config = {
+        "validate_assignment": True,
+        "protected_namespaces": (),
+    }
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+    discriminator_value_class_map: Dict[str, str] = {
+    }
+
+    def __init__(self, *args, **kwargs) -> None:
+        if args:
+            if len(args) > 1:
+                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+            if kwargs:
+                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+            super().__init__(actual_instance=args[0])
+        else:
+            super().__init__(**kwargs)
+
+    @field_validator('actual_instance')
+    def actual_instance_must_validate_anyof(cls, v):
+        instance = BaseMeteringIssueResolutionDetailsDTO.model_construct()
+        error_messages = []
+        # validate data type: BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO
+        if not isinstance(v, BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO`")
+        else:
+            return v
+
+        # validate data type: BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO
+        if not isinstance(v, BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO`")
+        else:
+            return v
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when setting the actual_instance in BaseMeteringIssueResolutionDetailsDTO with anyOf schemas: BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO, BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO. Details: " + ", ".join(error_messages))
+        else:
+            return v
+
+    @classmethod
+    def from_dict(cls, obj: Dict[str, Any]) -> Self:
+        return cls.from_json(json.dumps(obj))
+
+    @classmethod
+    def from_json(cls, json_str: str) -> Self:
+        """Returns the object represented by the json string"""
+        instance = cls.model_construct()
+        error_messages = []
+        # anyof_schema_1_validator: Optional[BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO] = None
+        try:
+            instance.actual_instance = BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_2_validator: Optional[BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO] = None
+        try:
+            instance.actual_instance = BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into BaseMeteringIssueResolutionDetailsDTO with anyOf schemas: BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO, BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO. Details: " + ", ".join(error_messages))
+        else:
+            return instance
 
     def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
 
-    @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BaseMeteringIssueResolutionDetailsDTO from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+            return self.actual_instance.to_json()
+        else:
+            return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
-        # set to None if resolved_by_user_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.resolved_by_user_id is None and "resolved_by_user_id" in self.model_fields_set:
-            _dict['resolvedByUserId'] = None
-
-        # set to None if new_value (nullable) is None
-        # and model_fields_set contains the field
-        if self.new_value is None and "new_value" in self.model_fields_set:
-            _dict['newValue'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BaseMeteringIssueResolutionDetailsDTO from a dict"""
-        if obj is None:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO, BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO]]:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is None:
             return None
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+            return self.actual_instance.to_dict()
+        else:
+            return self.actual_instance
 
-        _obj = cls.model_validate({
-            "resolvedByUserId": obj.get("resolvedByUserId"),
-            "newValue": obj.get("newValue")
-        })
-        return _obj
-
-
+    def to_str(self) -> str:
+        """Returns the string representation of the actual instance"""
+        return pprint.pformat(self.model_dump())

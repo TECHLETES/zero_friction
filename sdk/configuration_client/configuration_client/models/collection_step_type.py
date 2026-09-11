@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class CollectionStepType(str, Enum):
     """
-    CollectionStepType
+    Possible values: 'communication', 'manualintervention'
     """
 
     """
@@ -33,5 +33,3 @@ class CollectionStepType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of CollectionStepType from a JSON string"""
         return cls(json.loads(json_str))
-
-

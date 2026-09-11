@@ -5,8 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**allow_customer_to_change_advance_amount** | **bool** |  | [optional] 
-**hide_invoice_section** | **bool** |  | [optional] 
+**allow_customer_to_change_advance_amount** | **bool** |  | [optional]
+**allow_customer_to_change_invoice_address** | **bool** |  | [optional]
+**hide_invoice_section** | **bool** |  | [optional]
+**hide_payment_reference** | **bool** |  | [optional]
+**require_birth_date_for_persons** | **bool** |  | [optional]
 
 ## Example
 
@@ -26,5 +29,3 @@ portal_billing_settings_request_dict = portal_billing_settings_request_instance.
 portal_billing_settings_request_from_dict = PortalBillingSettingsRequest.from_dict(portal_billing_settings_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

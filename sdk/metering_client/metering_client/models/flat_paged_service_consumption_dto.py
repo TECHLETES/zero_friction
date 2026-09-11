@@ -136,5 +136,3 @@ class FlatPagedServiceConsumptionDTO(BaseModel):
             "value": obj.get("value")
         })
         return _obj
-
-

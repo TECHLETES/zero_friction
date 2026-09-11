@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class WriteOffHandlingType(str, Enum):
     """
-    WriteOffHandlingType
+    Possible values: 'nowriteoff', 'openamount', 'chargeamount'
     """
 
     """
@@ -34,5 +34,3 @@ class WriteOffHandlingType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of WriteOffHandlingType from a JSON string"""
         return cls(json.loads(json_str))
-
-

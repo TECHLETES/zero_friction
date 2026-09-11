@@ -49,19 +49,46 @@ class TestUpdateBillingParametersRequest(unittest.TestCase):
                 advance_amount_lower_threshold = 1.337,
                 default_tax_code_for_person_advances = '',
                 default_tax_code_for_organisation_advances = '',
-                prepayment_parameters = configuration_client.models.update_prepayment_parameters_request.UpdatePrepaymentParametersRequest(
-                    emergency_credit = 1.337, 
-                    enable_deduction = True, 
-                    deduction_rate = 1.337, ),
+                estimated_measurements_enabled = True,
+                enable_automatic_estimated_measurement = True,
+                days_after_checkpoint_automatic_estimated_measurement = 56,
+                consumption_invoice_end_date_deviation_local_days = 56,
+                ai_invoice_validation_integration_enabled = True,
+                ai_invoice_validation_auto_approve_min_score_invoice = 56,
+                ai_invoice_validation_auto_approve_min_score_end_note = 56,
+                ai_invoice_validation_auto_approve_min_score_advance = 56,
                 advance_calculation_parameters = configuration_client.models.update_advance_calculation_parameters_request.UpdateAdvanceCalculationParametersRequest(
-                    recalculation_type = null, 
-                    advance_limit_type = null, 
-                    advance_limit_lower_threshold = 1.337, 
-                    advance_limit_upper_threshold = 1.337, 
-                    minimum_accuracy = null, )
+                    recalculation_type = 'none',
+                    advance_limit_type = 'fixed',
+                    advance_limit_lower_threshold = 1.337,
+                    advance_limit_upper_threshold = 1.337,
+                    minimum_accuracy = 'low', ),
+                advance_percentage_parameters = configuration_client.models.update_advance_percentage_parameters_request.UpdateAdvancePercentageParametersRequest(
+                    monthly = configuration_client.models.update_advance_frequency_percentages_request.UpdateAdvanceFrequencyPercentagesRequest(
+                        percentages = [
+                            1.337
+                            ], ),
+                    quarterly = configuration_client.models.update_advance_frequency_percentages_request.UpdateAdvanceFrequencyPercentagesRequest(
+                        percentages = [
+                            1.337
+                            ], ),
+                    half_yearly = , )
             )
         else:
             return UpdateBillingParametersRequest(
+                collection_write_off_handling = 'nowriteoff',
+                default_tax_code_for_person_advances = '',
+                default_tax_code_for_organisation_advances = '',
+                advance_percentage_parameters = configuration_client.models.update_advance_percentage_parameters_request.UpdateAdvancePercentageParametersRequest(
+                    monthly = configuration_client.models.update_advance_frequency_percentages_request.UpdateAdvanceFrequencyPercentagesRequest(
+                        percentages = [
+                            1.337
+                            ], ),
+                    quarterly = configuration_client.models.update_advance_frequency_percentages_request.UpdateAdvanceFrequencyPercentagesRequest(
+                        percentages = [
+                            1.337
+                            ], ),
+                    half_yearly = , ),
         )
         """
 

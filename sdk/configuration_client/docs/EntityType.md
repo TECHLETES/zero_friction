@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
-**entity_subject_sub_type** | **str** |  | [optional] 
+**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional]
+**entity_subject_sub_type** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ entity_type_dict = entity_type_instance.to_dict()
 entity_type_from_dict = EntityType.from_dict(entity_type_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

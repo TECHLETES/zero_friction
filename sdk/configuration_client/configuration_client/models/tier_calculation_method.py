@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class TierCalculationMethod(str, Enum):
     """
-    TierCalculationMethod
+    Possible values: 'invoiceperiod', 'tariffperiod'
     """
 
     """
@@ -33,5 +33,3 @@ class TierCalculationMethod(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of TierCalculationMethod from a JSON string"""
         return cls(json.loads(json_str))
-
-

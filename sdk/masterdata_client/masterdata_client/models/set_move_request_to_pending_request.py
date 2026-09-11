@@ -69,11 +69,6 @@ class SetMoveRequestToPendingRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if new_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.new_status is None and "new_status" in self.model_fields_set:
-            _dict['newStatus'] = None
-
         return _dict
 
     @classmethod
@@ -89,5 +84,3 @@ class SetMoveRequestToPendingRequest(BaseModel):
             "newStatus": obj.get("newStatus")
         })
         return _obj
-
-

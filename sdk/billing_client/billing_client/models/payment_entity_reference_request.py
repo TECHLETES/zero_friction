@@ -25,11 +25,11 @@ from typing_extensions import Self
 
 class PaymentEntityReferenceRequest(BaseModel):
     """
-    Represents a reference linking a payment to another entity in the system.  This DTO is used to establish relationships between payments and other transactions.
+    PaymentEntityReferenceRequest
     """ # noqa: E501
-    transaction_id: Optional[StrictStr] = Field(default=None, description="The ID of the transaction being referenced.", alias="transactionId")
-    reference_id: Optional[StrictStr] = Field(default=None, description="The ID of the reference entity.", alias="referenceId")
-    reference_type: Optional[TransactionReferenceType] = Field(default=None, description="The type of reference relationship.", alias="referenceType")
+    transaction_id: Optional[StrictStr] = Field(alias="transactionId")
+    reference_id: Optional[StrictStr] = Field(alias="referenceId")
+    reference_type: TransactionReferenceType = Field(alias="referenceType")
     __properties: ClassVar[List[str]] = ["transactionId", "referenceId", "referenceType"]
 
     model_config = ConfigDict(
@@ -81,11 +81,6 @@ class PaymentEntityReferenceRequest(BaseModel):
         if self.reference_id is None and "reference_id" in self.model_fields_set:
             _dict['referenceId'] = None
 
-        # set to None if reference_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.reference_type is None and "reference_type" in self.model_fields_set:
-            _dict['referenceType'] = None
-
         return _dict
 
     @classmethod
@@ -103,5 +98,3 @@ class PaymentEntityReferenceRequest(BaseModel):
             "referenceType": obj.get("referenceType")
         })
         return _obj
-
-

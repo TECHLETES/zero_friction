@@ -42,6 +42,7 @@ class TestCreateInvoiceRequest(unittest.TestCase):
                 remaining_invoice_amount = 1.337,
                 total_invoice_amount_excl_vat = 1.337,
                 total_invoice_amount_incl_vat = 1.337,
+                billing_completeness_id = '',
                 contract_id = '',
                 credited_invoice_id = '',
                 contract_number = '',
@@ -49,7 +50,7 @@ class TestCreateInvoiceRequest(unittest.TestCase):
                 company_bank_account_id = '',
                 property_groups = [
                     billing_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
-                        id = '', 
+                        id = '',
                         name = '', )
                     ],
                 payment_method = 'sct',
@@ -62,22 +63,34 @@ class TestCreateInvoiceRequest(unittest.TestCase):
                 sent = 'notsent',
                 lines = [
                     billing_client.models.create_invoice_lines_request.CreateInvoiceLinesRequest(
-                        quantity = 1.337, 
-                        unit_of_measure = null, 
-                        billing_item_id = '', 
-                        unit_price = 1.337, 
-                        amount_incl_vat = 1.337, 
-                        amount_excl_vat = 1.337, 
-                        line_type = null, 
-                        service_location_id = '', 
-                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        tax_code_id = '', 
+                        quantity = 1.337,
+                        unit_of_measure = 'none',
+                        billing_item_id = '',
+                        unit_price = 1.337,
+                        amount_incl_vat = 1.337,
+                        amount_excl_vat = 1.337,
+                        line_type = 'advance',
+                        service_location_id = '',
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        tax_code_id = '',
                         description = '', )
-                    ]
+                    ],
+                disable_vat_calculation = True
             )
         else:
             return CreateInvoiceRequest(
+                invoice_num = '',
+                status = 'created',
+                invoice_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                invoice_type = 'advance',
+                total_invoice_amount_excl_vat = 1.337,
+                total_invoice_amount_incl_vat = 1.337,
+                company_bank_account_id = '',
+                payment_method = 'sct',
+                period_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                period_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                sent = 'notsent',
         )
         """
 

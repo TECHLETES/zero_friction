@@ -1,12 +1,11 @@
 # ChangeNewAdvanceAmountRequest
 
-Represents a request to change the advance amount for an invoice.  This DTO is used to update the advance payment amount that will be charged to the customer.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**new_advance_amount_incl_vat** | **float** | The new advance amount including VAT to be charged to the customer. | [optional] 
+**new_advance_amount_incl_vat** | **float** |  |
 
 ## Example
 
@@ -26,5 +25,3 @@ change_new_advance_amount_request_dict = change_new_advance_amount_request_insta
 change_new_advance_amount_request_from_dict = ChangeNewAdvanceAmountRequest.from_dict(change_new_advance_amount_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

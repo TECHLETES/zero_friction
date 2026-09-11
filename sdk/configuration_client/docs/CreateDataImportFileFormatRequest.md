@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
-**settings** | **object** |  | [optional] 
+**name** | **str** |  |
+**description** | **str** |  |
+**settings** | [**BaseDataImportSettingsDTO**](BaseDataImportSettingsDTO.md) |  |
 
 ## Example
 
@@ -27,5 +27,3 @@ create_data_import_file_format_request_dict = create_data_import_file_format_req
 create_data_import_file_format_request_from_dict = CreateDataImportFileFormatRequest.from_dict(create_data_import_file_format_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

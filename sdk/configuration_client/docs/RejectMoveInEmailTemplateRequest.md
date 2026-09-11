@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**subject** | **str** |  | [optional] 
-**attachments** | [**List[TemplateAttachmentRequest]**](TemplateAttachmentRequest.md) |  | [optional] 
+**subject** | **str** |  | [optional]
+**attachments** | [**List[TemplateAttachmentRequest]**](TemplateAttachmentRequest.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ reject_move_in_email_template_request_dict = reject_move_in_email_template_reque
 reject_move_in_email_template_request_from_dict = RejectMoveInEmailTemplateRequest.from_dict(reject_move_in_email_template_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

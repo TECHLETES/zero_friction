@@ -88,5 +88,3 @@ class ChangeCustomerCustomerGroupRequest(BaseModel):
             "customerGroupId": obj.get("customerGroupId")
         })
         return _obj
-
-

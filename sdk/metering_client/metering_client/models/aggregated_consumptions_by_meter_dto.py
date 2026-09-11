@@ -90,16 +90,6 @@ class AggregatedConsumptionsByMeterDTO(BaseModel):
         if self.meter_tag is None and "meter_tag" in self.model_fields_set:
             _dict['meterTag'] = None
 
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
-
         # set to None if time_of_use (nullable) is None
         # and model_fields_set contains the field
         if self.time_of_use is None and "time_of_use" in self.model_fields_set:
@@ -149,5 +139,3 @@ class AggregatedConsumptionsByMeterDTO(BaseModel):
             "total": obj.get("total")
         })
         return _obj
-
-

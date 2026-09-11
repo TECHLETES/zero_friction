@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**new_status** | [**MoveRequestStatus**](MoveRequestStatus.md) |  | [optional] 
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetMoveRequestsQueryParams**](GetMoveRequestsQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetMoveRequestsQueryParams**](GetMoveRequestsQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
+**new_status** | [**MoveRequestStatus**](MoveRequestStatus.md) |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ bulk_set_move_request_to_pending_request_dict = bulk_set_move_request_to_pending
 bulk_set_move_request_to_pending_request_from_dict = BulkSetMoveRequestToPendingRequest.from_dict(bulk_set_move_request_to_pending_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from billing_client.models.banking_transaction_provider_type import BankingTransactionProviderType
 from billing_client.models.entity_subject_type import EntitySubjectType
 from billing_client.models.incoming_banking_transaction_company_bank_account_dto import IncomingBankingTransactionCompanyBankAccountDTO
 from billing_client.models.incoming_banking_transaction_entity_counts_dto import IncomingBankingTransactionEntityCountsDTO
@@ -31,35 +32,34 @@ from typing_extensions import Self
 
 class IncomingBankingTransactionDTO(BaseModel):
     """
-    Represents an incoming banking transaction file and its associated data.  This DTO contains information about the transaction file, balances, and processing status.
+    IncomingBankingTransactionDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
-    identification: Optional[StrictStr] = Field(default=None, description="The unique identifier of the transaction file.")
-    sequence_num: Optional[StrictInt] = Field(default=None, description="The sequence number of the transaction file.", alias="sequenceNum")
-    status: Optional[IncomingBankingTransactionStatus] = Field(default=None, description="The current status of the transaction file.")
-    file_creation_date_time: Optional[datetime] = Field(default=None, description="The date and time when the file was created.", alias="fileCreationDateTime")
-    opening_balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The opening balance of the account at the start of the transaction period.", alias="openingBalance")
-    closing_balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The closing balance of the account at the end of the transaction period.", alias="closingBalance")
-    opening_balance_date: Optional[datetime] = Field(default=None, description="The date and time of the opening balance.", alias="openingBalanceDate")
-    closing_balance_date: Optional[datetime] = Field(default=None, description="The date and time of the closing balance.", alias="closingBalanceDate")
-    company_bank_account: Optional[IncomingBankingTransactionCompanyBankAccountDTO] = Field(default=None, description="Information about the company bank account associated with this transaction.", alias="companyBankAccount")
-    file_name: Optional[StrictStr] = Field(default=None, description="The name of the transaction file.", alias="fileName")
-    internal_file_path: Optional[StrictStr] = Field(default=None, description="The internal file path where the transaction file is stored.", alias="internalFilePath")
-    entity_counts: Optional[IncomingBankingTransactionEntityCountsDTO] = Field(default=None, description="Statistics about the entities processed in this transaction file.", alias="entityCounts")
-    locked: Optional[StrictBool] = Field(default=None, description="Indicates whether the transaction file is locked for processing.")
-    errors: Optional[List[LocalisedErrorDTO]] = Field(default=None, description="List of localized errors that occurred during processing.")
-    automatically_created: Optional[StrictBool] = Field(default=None, description="Indicates whether this transaction was automatically created.", alias="automaticallyCreated")
-    iban_confirmations: Optional[List[IncomingBankingTransactionIbanConfirmationDTO]] = Field(default=None, description="List of IBAN confirmations associated with this transaction.", alias="ibanConfirmations")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "identification", "sequenceNum", "status", "fileCreationDateTime", "openingBalance", "closingBalance", "openingBalanceDate", "closingBalanceDate", "companyBankAccount", "fileName", "internalFilePath", "entityCounts", "locked", "errors", "automaticallyCreated", "ibanConfirmations"]
+    identification: Optional[StrictStr] = None
+    sequence_num: Optional[StrictInt] = Field(default=None, alias="sequenceNum")
+    status: Optional[IncomingBankingTransactionStatus] = None
+    provider_type: Optional[BankingTransactionProviderType] = Field(default=None, alias="providerType")
+    file_creation_date_time: Optional[datetime] = Field(default=None, alias="fileCreationDateTime")
+    opening_balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="openingBalance")
+    closing_balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="closingBalance")
+    opening_balance_date: Optional[datetime] = Field(default=None, alias="openingBalanceDate")
+    closing_balance_date: Optional[datetime] = Field(default=None, alias="closingBalanceDate")
+    company_bank_account: Optional[IncomingBankingTransactionCompanyBankAccountDTO] = Field(default=None, alias="companyBankAccount")
+    file_name: Optional[StrictStr] = Field(default=None, alias="fileName")
+    internal_file_path: Optional[StrictStr] = Field(default=None, alias="internalFilePath")
+    entity_counts: Optional[IncomingBankingTransactionEntityCountsDTO] = Field(default=None, alias="entityCounts")
+    locked: Optional[StrictBool] = None
+    errors: Optional[List[LocalisedErrorDTO]] = None
+    automatically_created: Optional[StrictBool] = Field(default=None, alias="automaticallyCreated")
+    iban_confirmations: Optional[List[IncomingBankingTransactionIbanConfirmationDTO]] = Field(default=None, alias="ibanConfirmations")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["identification", "sequenceNum", "status", "providerType", "fileCreationDateTime", "openingBalance", "closingBalance", "openingBalanceDate", "closingBalanceDate", "companyBankAccount", "fileName", "internalFilePath", "entityCounts", "locked", "errors", "automaticallyCreated", "ibanConfirmations", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,10 +91,8 @@ class IncomingBankingTransactionDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -122,40 +120,10 @@ class IncomingBankingTransactionDTO(BaseModel):
                 if _item_iban_confirmations:
                     _items.append(_item_iban_confirmations.to_dict())
             _dict['ibanConfirmations'] = _items
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
         # set to None if identification (nullable) is None
         # and model_fields_set contains the field
         if self.identification is None and "identification" in self.model_fields_set:
             _dict['identification'] = None
-
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
 
         # set to None if opening_balance (nullable) is None
         # and model_fields_set contains the field
@@ -209,19 +177,10 @@ class IncomingBankingTransactionDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "identification": obj.get("identification"),
             "sequenceNum": obj.get("sequenceNum"),
             "status": obj.get("status"),
+            "providerType": obj.get("providerType"),
             "fileCreationDateTime": obj.get("fileCreationDateTime"),
             "openingBalance": obj.get("openingBalance"),
             "closingBalance": obj.get("closingBalance"),
@@ -234,8 +193,14 @@ class IncomingBankingTransactionDTO(BaseModel):
             "locked": obj.get("locked"),
             "errors": [LocalisedErrorDTO.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None,
             "automaticallyCreated": obj.get("automaticallyCreated"),
-            "ibanConfirmations": [IncomingBankingTransactionIbanConfirmationDTO.from_dict(_item) for _item in obj["ibanConfirmations"]] if obj.get("ibanConfirmations") is not None else None
+            "ibanConfirmations": [IncomingBankingTransactionIbanConfirmationDTO.from_dict(_item) for _item in obj["ibanConfirmations"]] if obj.get("ibanConfirmations") is not None else None,
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
-
-

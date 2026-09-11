@@ -17,17 +17,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
 class PaymentOverviewCountDTO(BaseModel):
     """
-    Provides an overview of payment counts by their status.  This DTO contains aggregated counts of payments in different states.
+    PaymentOverviewCountDTO
     """ # noqa: E501
-    all: Optional[StrictInt] = Field(default=None, description="The total number of payments.")
-    reversed: Optional[StrictInt] = Field(default=None, description="The number of reversed payments.")
+    all: Optional[StrictInt] = None
+    reversed: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["all", "reversed"]
 
     model_config = ConfigDict(
@@ -85,5 +85,3 @@ class PaymentOverviewCountDTO(BaseModel):
             "reversed": obj.get("reversed")
         })
         return _obj
-
-

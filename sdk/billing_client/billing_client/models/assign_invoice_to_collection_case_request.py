@@ -17,18 +17,24 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from billing_client.models.collection_flow_status import CollectionFlowStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
 class AssignInvoiceToCollectionCaseRequest(BaseModel):
     """
-    Represents a request to assign an invoice to a collection case.  This DTO is used to link an invoice to a specific collection case for debt recovery purposes.
+    AssignInvoiceToCollectionCaseRequest
     """ # noqa: E501
-    collection_flow_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the collection flow to be used for this case.", alias="collectionFlowId")
-    collection_case_number: Optional[StrictStr] = Field(default=None, description="The unique case number assigned to this collection case.", alias="collectionCaseNumber")
-    __properties: ClassVar[List[str]] = ["collectionFlowId", "collectionCaseNumber"]
+    collection_flow_id: Optional[StrictStr] = Field(default=None, alias="collectionFlowId")
+    collection_case_number: Optional[StrictStr] = Field(default=None, alias="collectionCaseNumber")
+    last_executed_step: Optional[StrictInt] = Field(default=None, alias="lastExecutedStep")
+    last_step_executed_at: Optional[datetime] = Field(default=None, alias="lastStepExecutedAt")
+    status: Optional[CollectionFlowStatus] = None
+    induce_charge: Optional[StrictBool] = Field(default=None, alias="induceCharge")
+    __properties: ClassVar[List[str]] = ["collectionFlowId", "collectionCaseNumber", "lastExecutedStep", "lastStepExecutedAt", "status", "induceCharge"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,6 +85,21 @@ class AssignInvoiceToCollectionCaseRequest(BaseModel):
         if self.collection_case_number is None and "collection_case_number" in self.model_fields_set:
             _dict['collectionCaseNumber'] = None
 
+        # set to None if last_executed_step (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_executed_step is None and "last_executed_step" in self.model_fields_set:
+            _dict['lastExecutedStep'] = None
+
+        # set to None if last_step_executed_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_step_executed_at is None and "last_step_executed_at" in self.model_fields_set:
+            _dict['lastStepExecutedAt'] = None
+
+        # set to None if status (nullable) is None
+        # and model_fields_set contains the field
+        if self.status is None and "status" in self.model_fields_set:
+            _dict['status'] = None
+
         return _dict
 
     @classmethod
@@ -92,8 +113,10 @@ class AssignInvoiceToCollectionCaseRequest(BaseModel):
 
         _obj = cls.model_validate({
             "collectionFlowId": obj.get("collectionFlowId"),
-            "collectionCaseNumber": obj.get("collectionCaseNumber")
+            "collectionCaseNumber": obj.get("collectionCaseNumber"),
+            "lastExecutedStep": obj.get("lastExecutedStep"),
+            "lastStepExecutedAt": obj.get("lastStepExecutedAt"),
+            "status": obj.get("status"),
+            "induceCharge": obj.get("induceCharge")
         })
         return _obj
-
-

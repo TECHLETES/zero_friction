@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**property_type** | **str** |  | [optional] 
-**properties** | [**List[ClassProperty]**](ClassProperty.md) |  | [optional] 
-**required** | **bool** |  | [optional] 
-**default_value** | **object** |  | [optional] 
-**read_only** | **bool** |  | [optional] 
-**secret** | **bool** |  | [optional] 
+**name** | **str** |  | [optional]
+**property_type** | **str** |  | [optional]
+**properties** | [**List[ClassProperty]**](ClassProperty.md) |  | [optional]
+**required** | **bool** |  | [optional]
+**default_value** | **object** |  | [optional]
+**read_only** | **bool** |  | [optional]
+**secret** | **bool** |  | [optional]
 
 ## Example
 
@@ -31,5 +31,3 @@ class_property_dict = class_property_instance.to_dict()
 class_property_from_dict = ClassProperty.from_dict(class_property_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

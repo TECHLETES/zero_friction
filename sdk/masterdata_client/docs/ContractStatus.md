@@ -1,5 +1,6 @@
 # ContractStatus
 
+Possible values: 'draft', 'sent', 'signed', 'cancelled', 'terminated'
 
 ## Enum
 
@@ -14,5 +15,3 @@
 * `TERMINATED` (value: `'terminated'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

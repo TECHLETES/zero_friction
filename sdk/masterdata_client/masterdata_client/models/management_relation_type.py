@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ManagementRelationType(str, Enum):
     """
-    ManagementRelationType
+    Possible values: 'owner', 'propertymanager'
     """
 
     """
@@ -33,5 +33,3 @@ class ManagementRelationType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ManagementRelationType from a JSON string"""
         return cls(json.loads(json_str))
-
-

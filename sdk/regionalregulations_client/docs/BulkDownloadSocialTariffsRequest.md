@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**BaseQueryParams**](BaseQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
-**social_tariff_ids** | **List[str]** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**BaseQueryParams**](BaseQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
+**social_tariff_ids** | **List[str]** |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ bulk_download_social_tariffs_request_dict = bulk_download_social_tariffs_request
 bulk_download_social_tariffs_request_from_dict = BulkDownloadSocialTariffsRequest.from_dict(bulk_download_social_tariffs_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

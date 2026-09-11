@@ -113,5 +113,3 @@ class CustomEntityPropertyValueDTO(BaseModel):
             "endDateTime": obj.get("endDateTime")
         })
         return _obj
-
-

@@ -1,13 +1,12 @@
 # RequiredQuantityGroupedDTO
 
-Represents grouped required quantities for billing
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**contract_required_quantities** | [**List[RequiredQuantityContractGroupedDTO]**](RequiredQuantityContractGroupedDTO.md) | Required quantities grouped by contract | [optional] 
-**location_required_quantities** | [**List[RequiredQuantityLocationGroupedDTO]**](RequiredQuantityLocationGroupedDTO.md) | Required quantities grouped by location | [optional] 
+**contract_required_quantities** | [**List[RequiredQuantityContractGroupedDTO]**](RequiredQuantityContractGroupedDTO.md) |  | [optional]
+**location_required_quantities** | [**List[RequiredQuantityLocationGroupedDTO]**](RequiredQuantityLocationGroupedDTO.md) |  | [optional]
 
 ## Example
 
@@ -27,5 +26,3 @@ required_quantity_grouped_dto_dict = required_quantity_grouped_dto_instance.to_d
 required_quantity_grouped_dto_from_dict = RequiredQuantityGroupedDTO.from_dict(required_quantity_grouped_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

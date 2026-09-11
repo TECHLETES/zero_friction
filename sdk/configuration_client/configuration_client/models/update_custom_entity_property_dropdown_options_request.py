@@ -103,5 +103,3 @@ class UpdateCustomEntityPropertyDropdownOptionsRequest(BaseModel):
             "options": [CustomEntityPropertyTypeDropdownOptionDTO.from_dict(_item) for _item in obj["options"]] if obj.get("options") is not None else None
         })
         return _obj
-
-

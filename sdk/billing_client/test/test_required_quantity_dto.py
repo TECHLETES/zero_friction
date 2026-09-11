@@ -35,37 +35,104 @@ class TestRequiredQuantityDTO(unittest.TestCase):
         model = RequiredQuantityDTO()
         if include_optional:
             return RequiredQuantityDTO(
+                type = 'RequiredCustomEntityPropertyQuantityDTO',
+                custom_entity_property_type_id = '',
+                receiving_periods = [
+                    billing_client.models.prepayment_receiving_period_dto.PrepaymentReceivingPeriodDTO(
+                        coverage_complete = True,
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        receiving_period_type = 56, )
+                    ],
+                asking_periods = [
+                    billing_client.models.prepayment_asking_period_dto.PrepaymentAskingPeriodDTO(
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        complete = True,
+                        input_missing_reason = 'unknown',
+                        validation_errors = [
+                            billing_client.models.required_quantity_validation_error_dto.RequiredQuantityValidationErrorDTO(
+                                reason = 'unknown',
+                                error = 56,
+                                problem_entity = billing_client.models.reason_entity_dto.ReasonEntityDTO(
+                                    entity_subject_type = 'none',
+                                    entity_subject_id = '', ),
+                                impacted_entity = billing_client.models.impacted_entity_dto.ImpactedEntityDTO(
+                                    entity_subject_id = '', ),
+                                related_entities = [
+                                    billing_client.models.related_entity_dto.RelatedEntityDTO(
+                                        entity_subject_id = '', )
+                                    ], )
+                            ], )
+                    ],
+                tariff_reference_asking_periods = [
+                    billing_client.models.subscription_asking_period_dto.SubscriptionAskingPeriodDTO(
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        complete = True,
+                        input_missing_reason = 'unknown',
+                        validation_errors = [
+                            billing_client.models.required_quantity_validation_error_dto.RequiredQuantityValidationErrorDTO(
+                                reason = 'unknown',
+                                error = 56,
+                                problem_entity = billing_client.models.reason_entity_dto.ReasonEntityDTO(
+                                    entity_subject_type = 'none',
+                                    entity_subject_id = '', ),
+                                impacted_entity = billing_client.models.impacted_entity_dto.ImpactedEntityDTO(
+                                    entity_subject_id = '', ),
+                                related_entities = [
+                                    billing_client.models.related_entity_dto.RelatedEntityDTO(
+                                        entity_subject_id = '', )
+                                    ], )
+                            ], )
+                    ],
+                tariff_reference_receiving_periods = [
+                    billing_client.models.subscription_receiving_period_dto.SubscriptionReceivingPeriodDTO(
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        receiving_period_type = 56, )
+                    ],
                 billing_item_id = '',
                 service_location_id = '',
-                calculation_group_id = '',
                 complete = True,
                 errors = [
                     billing_client.models.localised_error_dto.LocalisedErrorDTO(
-                        key = null, 
-                        correlation_id = '', 
-                        message = '', 
+                        key = 56,
+                        correlation_id = '',
+                        message = '',
                         message_values = [
                             billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                data_type = null, 
-                                value = '', 
+                                data_type = 'text',
+                                value = '',
                                 capitalize = True, )
                             ], )
                     ],
                 validation_errors = [
                     billing_client.models.required_quantity_validation_error_dto.RequiredQuantityValidationErrorDTO(
-                        reason = null, 
-                        error = null, 
-                        problem_entity = null, 
-                        impacted_entity = null, 
+                        reason = 'unknown',
+                        error = 56,
+                        problem_entity = billing_client.models.reason_entity_dto.ReasonEntityDTO(
+                            entity_subject_type = 'none',
+                            entity_subject_id = '', ),
+                        impacted_entity = billing_client.models.impacted_entity_dto.ImpactedEntityDTO(
+                            entity_subject_id = '', ),
                         related_entities = [
                             billing_client.models.related_entity_dto.RelatedEntityDTO(
-                                entity_subject_type = null, 
                                 entity_subject_id = '', )
                             ], )
-                    ]
+                    ],
+                utility_type = 'none',
+                unit_of_measure = 'none',
+                metering_type = 'none',
+                direction = 'offtake',
+                prepayment_account_id = '',
+                prepayment_device_id = '',
+                account_number = '',
+                device_serial_number = ''
             )
         else:
             return RequiredQuantityDTO(
+                type = 'RequiredCustomEntityPropertyQuantityDTO',
         )
         """
 

@@ -37,18 +37,19 @@ class TestBulkIgnoreIncomingMutationsRequest(unittest.TestCase):
             return BulkIgnoreIncomingMutationsRequest(
                 only_validate = True,
                 var_query_params = billing_client.models.get_incoming_mutations_query_params.GetIncomingMutationsQueryParams(
-                    flex_search = '', 
+                    status = '',
+                    incoming_mutation_type = '',
+                    incoming_banking_transaction_id = '',
+                    transaction_date_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    transaction_date_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    flex_search = '',
                     include_only_ids = [
                         ''
-                        ], 
+                        ],
                     exclude_ids = [
                         ''
-                        ], 
-                    status = '', 
-                    incoming_mutation_type = '', 
-                    incoming_banking_transaction_id = '', 
-                    transaction_date_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    transaction_date_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
+                        ],
+                    page_size = 56, ),
                 quick_filter = ''
             )
         else:

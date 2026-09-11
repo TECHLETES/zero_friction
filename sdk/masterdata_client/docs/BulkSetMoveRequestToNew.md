@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**only_validate** | **bool** |  | [optional] 
-**var_query_params** | [**GetMoveRequestsQueryParams**](GetMoveRequestsQueryParams.md) |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetMoveRequestsQueryParams**](GetMoveRequestsQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ bulk_set_move_request_to_new_dict = bulk_set_move_request_to_new_instance.to_dic
 bulk_set_move_request_to_new_from_dict = BulkSetMoveRequestToNew.from_dict(bulk_set_move_request_to_new_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

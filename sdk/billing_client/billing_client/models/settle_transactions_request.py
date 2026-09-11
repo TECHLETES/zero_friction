@@ -24,9 +24,9 @@ from typing_extensions import Self
 
 class SettleTransactionsRequest(BaseModel):
     """
-    Represents a request to settle multiple transactions.  This DTO is used to mark multiple transactions as settled, indicating they have been processed and completed.
+    SettleTransactionsRequest
     """ # noqa: E501
-    transaction_ids: Optional[List[StrictStr]] = Field(default=None, description="List of transaction IDs to be marked as settled.", alias="transactionIds")
+    transaction_ids: Optional[List[StrictStr]] = Field(alias="transactionIds")
     __properties: ClassVar[List[str]] = ["transactionIds"]
 
     model_config = ConfigDict(
@@ -88,5 +88,3 @@ class SettleTransactionsRequest(BaseModel):
             "transactionIds": obj.get("transactionIds")
         })
         return _obj
-
-

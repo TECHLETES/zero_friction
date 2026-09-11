@@ -1,33 +1,30 @@
 # BillingCustomerDTO
 
-Represents a billing customer with their associated settings and information.  This DTO contains all the necessary information about a customer's billing configuration,  including payment terms, property groups, and billing settings.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | Gets or sets the unique identifier. | [optional] 
-**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) | Gets or sets the type of the entity. | [optional] 
-**created_date_time** | **datetime** | Gets or sets the date and time when the entity was created. | [optional] 
-**discriminator** | **str** | Gets or sets the discriminator value. | [optional] 
-**etag** | **str** | Gets or sets the ETag value. | [optional] 
-**require_attention** | **bool** | Gets a value indicating whether the entity requires attention. | [optional] [readonly] 
-**has_errors** | **bool** | Gets or sets a value indicating whether the entity has errors. | [optional] 
-**has_warnings** | **bool** | Gets or sets a value indicating whether the entity has warnings. | [optional] 
-**is_read_only** | **bool** | Gets or sets a value indicating whether the entity is read-only. | [optional] 
-**organisation_id** | **str** | Gets or sets the organization identifier. | [optional] 
-**account_number** | **str** | The unique account number assigned to the customer. | [optional] 
-**short_display_name** | **str** | A shortened display name for the customer. | [optional] 
-**payment_terms_id** | **str** | The unique identifier of the payment terms associated with the customer. | [optional] 
-**default_payment_method** | [**PaymentMethod**](PaymentMethod.md) | The default payment method for the customer. | [optional] 
-**customer_type** | [**CustomerType**](CustomerType.md) | The type of customer. | [optional] 
-**customer_group** | [**CustomerGroupReferenceDTO**](CustomerGroupReferenceDTO.md) | Reference to the customer group this customer belongs to. | [optional] 
-**property_groups** | [**List[PropertyGroupReferenceDTO]**](PropertyGroupReferenceDTO.md) | List of property groups associated with this customer. | [optional] 
-**culture** | [**CultureInfo**](CultureInfo.md) | The culture settings for the customer. | [optional] 
-**collection_flow_id** | **str** | The unique identifier of the collection flow associated with the customer. | [optional] 
-**billing_settings** | [**CustomerBillingSettingsDTO**](CustomerBillingSettingsDTO.md) | The billing settings specific to this customer. | [optional] 
-**organization_number** | **str** | The organization number of the customer. | [optional] 
-**vat_number** | **str** | The VAT number of the customer. | [optional] 
+**account_number** | **str** |  | [optional]
+**short_display_name** | **str** |  | [optional]
+**payment_terms_id** | **str** |  | [optional]
+**default_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | [optional]
+**customer_type** | [**CustomerType**](CustomerType.md) |  | [optional]
+**customer_group** | [**CustomerGroupReferenceDTO**](CustomerGroupReferenceDTO.md) |  | [optional]
+**property_groups** | [**List[PropertyGroupReferenceDTO]**](PropertyGroupReferenceDTO.md) |  | [optional]
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | [optional]
+**collection_flow_id** | **str** |  | [optional]
+**billing_settings** | [**CustomerBillingSettingsDTO**](CustomerBillingSettingsDTO.md) |  | [optional]
+**organization_number** | **str** |  | [optional]
+**vat_number** | **str** |  | [optional]
+**organisation_id** | **str** |  | [optional]
+**id** | **str** |  | [optional]
+**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional]
+**created_date_time** | **datetime** |  | [optional]
+**discriminator** | **str** |  | [optional]
+**etag** | **str** |  | [optional]
+**has_errors** | **bool** |  | [optional]
+**is_read_only** | **bool** |  | [optional]
 
 ## Example
 
@@ -47,5 +44,3 @@ billing_customer_dto_dict = billing_customer_dto_instance.to_dict()
 billing_customer_dto_from_dict = BillingCustomerDTO.from_dict(billing_customer_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

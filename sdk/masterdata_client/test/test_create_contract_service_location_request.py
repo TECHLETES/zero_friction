@@ -35,20 +35,23 @@ class TestCreateContractServiceLocationRequest(unittest.TestCase):
         model = CreateContractServiceLocationRequest()
         if include_optional:
             return CreateContractServiceLocationRequest(
+                type = 'MigrateContractServiceLocationRequest',
+                reference = '',
+                service_location_external_id = '',
                 service_location_id = '',
                 utility_type = 'none',
-                external_identifier = '',
                 estimated_consumptions = [
                     masterdata_client.models.create_contract_service_estimated_consumption_request.CreateContractServiceEstimatedConsumptionRequest(
-                        consumer_group_id = '', 
-                        value = 1.337, 
-                        unit_of_measure = null, 
-                        metering_type = null, 
-                        is_manual_entry = True, )
+                        consumer_group_id = '',
+                        unit_of_measure = 'none',
+                        metering_type = 'none',
+                        direction = 'offtake',
+                        consumption_quantity = 1.337, )
                     ]
             )
         else:
             return CreateContractServiceLocationRequest(
+                type = 'MigrateContractServiceLocationRequest',
         )
         """
 

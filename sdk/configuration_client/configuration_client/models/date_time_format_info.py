@@ -17,11 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.calendar import Calendar
-from configuration_client.models.calendar_week_rule import CalendarWeekRule
-from configuration_client.models.day_of_week import DayOfWeek
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,8 +30,8 @@ class DateTimeFormatInfo(BaseModel):
     am_designator: Optional[StrictStr] = Field(default=None, alias="amDesignator")
     calendar: Optional[Calendar] = None
     date_separator: Optional[StrictStr] = Field(default=None, alias="dateSeparator")
-    first_day_of_week: Optional[DayOfWeek] = Field(default=None, alias="firstDayOfWeek")
-    calendar_week_rule: Optional[CalendarWeekRule] = Field(default=None, alias="calendarWeekRule")
+    first_day_of_week: Optional[StrictInt] = Field(default=None, alias="firstDayOfWeek")
+    calendar_week_rule: Optional[StrictInt] = Field(default=None, alias="calendarWeekRule")
     full_date_time_pattern: Optional[StrictStr] = Field(default=None, alias="fullDateTimePattern")
     long_date_pattern: Optional[StrictStr] = Field(default=None, alias="longDatePattern")
     long_time_pattern: Optional[StrictStr] = Field(default=None, alias="longTimePattern")
@@ -87,18 +85,8 @@ class DateTimeFormatInfo(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "rf_c1123_pattern",
-            "sortable_date_time_pattern",
-            "universal_sortable_date_time_pattern",
-            "is_read_only",
-            "native_calendar_name",
         ])
 
         _dict = self.model_dump(
@@ -109,120 +97,25 @@ class DateTimeFormatInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of calendar
         if self.calendar:
             _dict['calendar'] = self.calendar.to_dict()
-        # set to None if am_designator (nullable) is None
-        # and model_fields_set contains the field
-        if self.am_designator is None and "am_designator" in self.model_fields_set:
-            _dict['amDesignator'] = None
-
-        # set to None if calendar (nullable) is None
-        # and model_fields_set contains the field
-        if self.calendar is None and "calendar" in self.model_fields_set:
-            _dict['calendar'] = None
-
-        # set to None if date_separator (nullable) is None
-        # and model_fields_set contains the field
-        if self.date_separator is None and "date_separator" in self.model_fields_set:
-            _dict['dateSeparator'] = None
-
-        # set to None if full_date_time_pattern (nullable) is None
-        # and model_fields_set contains the field
-        if self.full_date_time_pattern is None and "full_date_time_pattern" in self.model_fields_set:
-            _dict['fullDateTimePattern'] = None
-
-        # set to None if long_date_pattern (nullable) is None
-        # and model_fields_set contains the field
-        if self.long_date_pattern is None and "long_date_pattern" in self.model_fields_set:
-            _dict['longDatePattern'] = None
-
-        # set to None if long_time_pattern (nullable) is None
-        # and model_fields_set contains the field
-        if self.long_time_pattern is None and "long_time_pattern" in self.model_fields_set:
-            _dict['longTimePattern'] = None
-
-        # set to None if month_day_pattern (nullable) is None
-        # and model_fields_set contains the field
-        if self.month_day_pattern is None and "month_day_pattern" in self.model_fields_set:
-            _dict['monthDayPattern'] = None
-
-        # set to None if pm_designator (nullable) is None
-        # and model_fields_set contains the field
-        if self.pm_designator is None and "pm_designator" in self.model_fields_set:
-            _dict['pmDesignator'] = None
-
         # set to None if rf_c1123_pattern (nullable) is None
         # and model_fields_set contains the field
         if self.rf_c1123_pattern is None and "rf_c1123_pattern" in self.model_fields_set:
             _dict['rfC1123Pattern'] = None
-
-        # set to None if short_date_pattern (nullable) is None
-        # and model_fields_set contains the field
-        if self.short_date_pattern is None and "short_date_pattern" in self.model_fields_set:
-            _dict['shortDatePattern'] = None
-
-        # set to None if short_time_pattern (nullable) is None
-        # and model_fields_set contains the field
-        if self.short_time_pattern is None and "short_time_pattern" in self.model_fields_set:
-            _dict['shortTimePattern'] = None
 
         # set to None if sortable_date_time_pattern (nullable) is None
         # and model_fields_set contains the field
         if self.sortable_date_time_pattern is None and "sortable_date_time_pattern" in self.model_fields_set:
             _dict['sortableDateTimePattern'] = None
 
-        # set to None if time_separator (nullable) is None
-        # and model_fields_set contains the field
-        if self.time_separator is None and "time_separator" in self.model_fields_set:
-            _dict['timeSeparator'] = None
-
         # set to None if universal_sortable_date_time_pattern (nullable) is None
         # and model_fields_set contains the field
         if self.universal_sortable_date_time_pattern is None and "universal_sortable_date_time_pattern" in self.model_fields_set:
             _dict['universalSortableDateTimePattern'] = None
 
-        # set to None if year_month_pattern (nullable) is None
-        # and model_fields_set contains the field
-        if self.year_month_pattern is None and "year_month_pattern" in self.model_fields_set:
-            _dict['yearMonthPattern'] = None
-
-        # set to None if abbreviated_day_names (nullable) is None
-        # and model_fields_set contains the field
-        if self.abbreviated_day_names is None and "abbreviated_day_names" in self.model_fields_set:
-            _dict['abbreviatedDayNames'] = None
-
-        # set to None if shortest_day_names (nullable) is None
-        # and model_fields_set contains the field
-        if self.shortest_day_names is None and "shortest_day_names" in self.model_fields_set:
-            _dict['shortestDayNames'] = None
-
-        # set to None if day_names (nullable) is None
-        # and model_fields_set contains the field
-        if self.day_names is None and "day_names" in self.model_fields_set:
-            _dict['dayNames'] = None
-
-        # set to None if abbreviated_month_names (nullable) is None
-        # and model_fields_set contains the field
-        if self.abbreviated_month_names is None and "abbreviated_month_names" in self.model_fields_set:
-            _dict['abbreviatedMonthNames'] = None
-
-        # set to None if month_names (nullable) is None
-        # and model_fields_set contains the field
-        if self.month_names is None and "month_names" in self.model_fields_set:
-            _dict['monthNames'] = None
-
         # set to None if native_calendar_name (nullable) is None
         # and model_fields_set contains the field
         if self.native_calendar_name is None and "native_calendar_name" in self.model_fields_set:
             _dict['nativeCalendarName'] = None
-
-        # set to None if abbreviated_month_genitive_names (nullable) is None
-        # and model_fields_set contains the field
-        if self.abbreviated_month_genitive_names is None and "abbreviated_month_genitive_names" in self.model_fields_set:
-            _dict['abbreviatedMonthGenitiveNames'] = None
-
-        # set to None if month_genitive_names (nullable) is None
-        # and model_fields_set contains the field
-        if self.month_genitive_names is None and "month_genitive_names" in self.model_fields_set:
-            _dict['monthGenitiveNames'] = None
 
         return _dict
 
@@ -264,5 +157,3 @@ class DateTimeFormatInfo(BaseModel):
             "monthGenitiveNames": obj.get("monthGenitiveNames")
         })
         return _obj
-
-

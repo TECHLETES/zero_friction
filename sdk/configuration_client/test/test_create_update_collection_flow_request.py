@@ -43,6 +43,7 @@ class TestCreateUpdateCollectionFlowRequest(unittest.TestCase):
             )
         else:
             return CreateUpdateCollectionFlowRequest(
+                name = '',
         )
         """
 

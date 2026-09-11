@@ -1,5 +1,6 @@
 # MeterReadingFrequency
 
+Possible values: 'hourly', 'daily', 'weekly', 'monthly', 'bimonthly', 'quarterly', 'halfyearly', 'yearly'
 
 ## Enum
 
@@ -20,5 +21,3 @@
 * `YEARLY` (value: `'yearly'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

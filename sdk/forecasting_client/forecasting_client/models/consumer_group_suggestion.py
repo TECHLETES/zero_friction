@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ConsumerGroupSuggestion(str, Enum):
     """
-    ConsumerGroupSuggestion
+    Possible values: 'frompropertygroup', 'originmanual', 'originsystemgenerated'
     """
 
     """
@@ -34,5 +34,3 @@ class ConsumerGroupSuggestion(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ConsumerGroupSuggestion from a JSON string"""
         return cls(json.loads(json_str))
-
-

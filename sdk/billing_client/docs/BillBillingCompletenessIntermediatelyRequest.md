@@ -1,12 +1,11 @@
 # BillBillingCompletenessIntermediatelyRequest
 
-Represents a request to perform intermediate billing for billing completeness
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**end_date_time** | **datetime** | Date and time when the intermediate billing period ends | [optional] 
+**end_date_time** | **datetime** |  |
 
 ## Example
 
@@ -26,5 +25,3 @@ bill_billing_completeness_intermediately_request_dict = bill_billing_completenes
 bill_billing_completeness_intermediately_request_from_dict = BillBillingCompletenessIntermediatelyRequest.from_dict(bill_billing_completeness_intermediately_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

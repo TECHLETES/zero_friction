@@ -35,21 +35,12 @@ class TestCustomerDTO(unittest.TestCase):
         model = CustomerDTO()
         if include_optional:
             return CustomerDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 account_number = '',
                 salutation = '',
                 initials = '',
                 first_name = '',
                 last_name = '',
+                full_name = '',
                 birth_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 ssin = '',
                 ssin_country = 'aut',
@@ -61,88 +52,107 @@ class TestCustomerDTO(unittest.TestCase):
                 payment_terms_id = '',
                 default_payment_method = 'sct',
                 invoice_address = masterdata_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 bank_account_ibans = [
                     masterdata_client.models.bank_account_dto.BankAccountDTO(
-                        iban = '', 
+                        iban = '',
                         is_default = True, )
                     ],
                 contact_details = [
                     masterdata_client.models.contact_entry_dto.ContactEntryDTO(
-                        contact_type = null, 
-                        value = '', 
-                        description = '', 
+                        contact_type = 'email',
+                        value = '',
+                        description = '',
                         primary_for_type = True, )
                     ],
                 contracts = [
                     masterdata_client.models.customer_contract_dto.CustomerContractDTO(
-                        contract_id = '', 
-                        contract_number = '', 
-                        supply_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        supply_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        current_contract_status = null, 
-                        contract_billing_method = null, )
+                        contract_id = '',
+                        contract_number = '',
+                        supply_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        supply_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        current_contract_status = 'draft',
+                        contract_billing_method = 'credit', )
                     ],
                 communication_preferences = masterdata_client.models.customer_communication_preferences_dto.CustomerCommunicationPreferencesDTO(
-                    culture = null, 
+                    culture = '',
                     invoice_communication_preferences = [
                         masterdata_client.models.invoice_communication_preference_dto.InvoiceCommunicationPreferenceDTO(
-                            invoice_type = null, 
-                            communication_type = null, )
-                        ], 
-                    annual_statement_communication_preference = null, 
+                            invoice_type = 'advance',
+                            communication_type = 'none', )
+                        ],
+                    annual_statement_communication_preference = 'none',
+                    prepayment_statement_communication_preference = 'none',
                     collection_flow_id = '', ),
                 property_groups = [
                     masterdata_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
-                        id = '', 
+                        id = '',
                         name = '', )
                     ],
                 customer_group = masterdata_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
-                    id = '', 
+                    id = '',
                     name = '', ),
                 billing_settings = masterdata_client.models.customer_billing_settings_dto.CustomerBillingSettingsDTO(
-                    automatic_settlement_setting = null, ),
+                    automatic_settlement_setting = masterdata_client.models.customer_billing_settings_automatic_settlement_dto.CustomerBillingSettingsAutomaticSettlementDTO(
+                        automatic_settlement = True,
+                        originator_type = 'none',
+                        originator_id = '', ),
+                    collection_day_of_month = 56, ),
                 custom_properties = [
                     masterdata_client.models.custom_entity_property_dto.CustomEntityPropertyDTO(
-                        custom_entity_property_type_id = '', 
+                        custom_entity_property_type_id = '',
                         values = [
                             masterdata_client.models.custom_entity_property_value_dto.CustomEntityPropertyValueDTO(
-                                value_decimal = 1.337, 
-                                value_string = '', 
-                                value_boolean = True, 
-                                value_number = 56, 
-                                value_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                value_decimal = 1.337,
+                                value_string = '',
+                                value_boolean = True,
+                                value_number = 56,
+                                value_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                                 value_dropdown = [
                                     ''
-                                    ], 
-                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                    ],
+                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                             ], )
                     ],
                 activation_code = '',
                 portal_properties = masterdata_client.models.customer_portal_properties_dto.CustomerPortalPropertiesDTO(
-                    application_user_id = '', 
-                    confirm_account_token = '', 
-                    reset_password_token = '', 
-                    email = '', ),
+                    application_user_id = '',
+                    confirm_account_token = '',
+                    reset_password_token = '',
+                    email = '',
+                    email_confirmed = True, ),
                 generated_annual_statements = [
                     masterdata_client.models.annual_statement_reference.AnnualStatementReference(
-                        annual_statement_id = '', 
-                        annual_statement_number = '', 
-                        year = 56, 
-                        version = 56, 
-                        status = null, )
-                    ]
+                        annual_statement_id = '',
+                        annual_statement_number = '',
+                        year = 56,
+                        version = 56,
+                        status = 'created', )
+                    ],
+                blocked_for_deletion_reason = 'none',
+                deleted = True,
+                service_number = '',
+                preferred_peppol_scheme = 'belgium_enterprisenumber',
+                custom_peppol_identifier = '',
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return CustomerDTO(

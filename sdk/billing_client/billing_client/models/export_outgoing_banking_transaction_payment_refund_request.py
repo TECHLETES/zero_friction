@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class ExportOutgoingBankingTransactionPaymentRefundRequest(BaseModel):
     """
-    Represents a request to export outgoing banking transaction payment refunds.  This DTO is used to export payment refund transactions in a specified format.
+    ExportOutgoingBankingTransactionPaymentRefundRequest
     """ # noqa: E501
-    format_type: Optional[ExportOutgoingBankingTransactionPaymentRefundFormatType] = Field(default=None, description="The format type to be used for exporting the payment refund transactions.", alias="formatType")
+    format_type: Optional[ExportOutgoingBankingTransactionPaymentRefundFormatType] = Field(default=None, alias="formatType")
     __properties: ClassVar[List[str]] = ["formatType"]
 
     model_config = ConfigDict(
@@ -69,11 +69,6 @@ class ExportOutgoingBankingTransactionPaymentRefundRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if format_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.format_type is None and "format_type" in self.model_fields_set:
-            _dict['formatType'] = None
-
         return _dict
 
     @classmethod
@@ -89,5 +84,3 @@ class ExportOutgoingBankingTransactionPaymentRefundRequest(BaseModel):
             "formatType": obj.get("formatType")
         })
         return _obj
-
-

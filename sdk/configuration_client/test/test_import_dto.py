@@ -35,16 +35,6 @@ class TestImportDTO(unittest.TestCase):
         model = ImportDTO()
         if include_optional:
             return ImportDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 import_type = 'billingtariff',
                 status = 'created',
                 locked = True,
@@ -54,12 +44,20 @@ class TestImportDTO(unittest.TestCase):
                 finished_on = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 import_line_errors = [
                     configuration_client.models.import_line_error_dto.ImportLineErrorDTO(
-                        line_number = 56, 
+                        line_number = 56,
                         error_messages = [
-                            'ASSET_ALREADY_EXISTS'
-                            ], 
+                            56
+                            ],
                         is_valid = True, )
-                    ]
+                    ],
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return ImportDTO(

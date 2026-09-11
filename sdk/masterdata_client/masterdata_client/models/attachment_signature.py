@@ -18,10 +18,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from masterdata_client.models.entity_attachment_origin import EntityAttachmentOrigin
-from masterdata_client.models.error_code import ErrorCode
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,13 +28,13 @@ class AttachmentSignature(BaseModel):
     """
     AttachmentSignature
     """ # noqa: E501
-    culture: Optional[str] = None
-    attachment_file_name: Optional[StrictStr] = Field(default=None, alias="attachmentFileName")
-    error_code: Optional[ErrorCode] = Field(default=None, alias="errorCode")
-    origin: Optional[EntityAttachmentOrigin] = None
+    culture: StrictStr = Field(description="Culture identifier (e.g., 'en-US', 'nl-NL')")
+    attachment_file_name: StrictStr = Field(alias="attachmentFileName")
+    error_code: Optional[StrictInt] = Field(default=None, alias="errorCode")
+    origin: EntityAttachmentOrigin
     product_attachment_id: Optional[StrictStr] = Field(default=None, alias="productAttachmentId")
-    attachment_file_id: Optional[StrictStr] = Field(default=None, alias="attachmentFileId")
-    entity_attachment_group_id: Optional[StrictStr] = Field(default=None, alias="entityAttachmentGroupId")
+    attachment_file_id: StrictStr = Field(alias="attachmentFileId")
+    entity_attachment_group_id: StrictStr = Field(alias="entityAttachmentGroupId")
     sign_date: Optional[datetime] = Field(default=None, alias="signDate")
     viewed_date: Optional[datetime] = Field(default=None, alias="viewedDate")
     __properties: ClassVar[List[str]] = ["culture", "attachmentFileName", "errorCode", "origin", "productAttachmentId", "attachmentFileId", "entityAttachmentGroupId", "signDate", "viewedDate"]
@@ -79,36 +78,6 @@ class AttachmentSignature(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if attachment_file_name (nullable) is None
-        # and model_fields_set contains the field
-        if self.attachment_file_name is None and "attachment_file_name" in self.model_fields_set:
-            _dict['attachmentFileName'] = None
-
-        # set to None if error_code (nullable) is None
-        # and model_fields_set contains the field
-        if self.error_code is None and "error_code" in self.model_fields_set:
-            _dict['errorCode'] = None
-
-        # set to None if origin (nullable) is None
-        # and model_fields_set contains the field
-        if self.origin is None and "origin" in self.model_fields_set:
-            _dict['origin'] = None
-
-        # set to None if product_attachment_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.product_attachment_id is None and "product_attachment_id" in self.model_fields_set:
-            _dict['productAttachmentId'] = None
-
-        # set to None if attachment_file_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.attachment_file_id is None and "attachment_file_id" in self.model_fields_set:
-            _dict['attachmentFileId'] = None
-
-        # set to None if entity_attachment_group_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_attachment_group_id is None and "entity_attachment_group_id" in self.model_fields_set:
-            _dict['entityAttachmentGroupId'] = None
-
         # set to None if sign_date (nullable) is None
         # and model_fields_set contains the field
         if self.sign_date is None and "sign_date" in self.model_fields_set:
@@ -142,5 +111,3 @@ class AttachmentSignature(BaseModel):
             "viewedDate": obj.get("viewedDate")
         })
         return _obj
-
-

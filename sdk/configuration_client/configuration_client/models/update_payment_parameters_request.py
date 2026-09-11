@@ -19,6 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from configuration_client.models.base_bank_statement_matching_rule_dto import BaseBankStatementMatchingRuleDTO
+from configuration_client.models.payment_delay import PaymentDelay
 from configuration_client.models.payment_retry_parameter_request import PaymentRetryParameterRequest
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,10 +31,17 @@ class UpdatePaymentParametersRequest(BaseModel):
     """ # noqa: E501
     retry_parameters: Optional[List[PaymentRetryParameterRequest]] = Field(default=None, alias="retryParameters")
     refund_payment_delay_in_days: Optional[StrictInt] = Field(default=None, alias="refundPaymentDelayInDays")
-    payment_terms_id: Optional[StrictStr] = Field(default=None, alias="paymentTermsId")
+    payment_terms_id: Optional[StrictStr] = Field(alias="paymentTermsId")
     default_collection_flow_id: Optional[StrictStr] = Field(default=None, alias="defaultCollectionFlowId")
     only_use_invoice_number_in_payment_references: Optional[StrictBool] = Field(default=None, alias="onlyUseInvoiceNumberInPaymentReferences")
-    __properties: ClassVar[List[str]] = ["retryParameters", "refundPaymentDelayInDays", "paymentTermsId", "defaultCollectionFlowId", "onlyUseInvoiceNumberInPaymentReferences"]
+    block_automatic_refunding: Optional[StrictBool] = Field(default=None, alias="blockAutomaticRefunding")
+    default_collection_delay: PaymentDelay = Field(alias="defaultCollectionDelay")
+    default_collection_delay_value: Optional[StrictInt] = Field(default=None, alias="defaultCollectionDelayValue")
+    allow_resident_to_choose_collection_day: Optional[StrictBool] = Field(default=None, alias="allowResidentToChooseCollectionDay")
+    allow_customer_collection_day_override: Optional[StrictBool] = Field(default=None, alias="allowCustomerCollectionDayOverride")
+    selectable_collection_days: List[StrictInt] = Field(alias="selectableCollectionDays")
+    matching_rules: Optional[List[BaseBankStatementMatchingRuleDTO]] = Field(default=None, alias="matchingRules")
+    __properties: ClassVar[List[str]] = ["retryParameters", "refundPaymentDelayInDays", "paymentTermsId", "defaultCollectionFlowId", "onlyUseInvoiceNumberInPaymentReferences", "blockAutomaticRefunding", "defaultCollectionDelay", "defaultCollectionDelayValue", "allowResidentToChooseCollectionDay", "allowCustomerCollectionDayOverride", "selectableCollectionDays", "matchingRules"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +89,13 @@ class UpdatePaymentParametersRequest(BaseModel):
                 if _item_retry_parameters:
                     _items.append(_item_retry_parameters.to_dict())
             _dict['retryParameters'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in matching_rules (list)
+        _items = []
+        if self.matching_rules:
+            for _item_matching_rules in self.matching_rules:
+                if _item_matching_rules:
+                    _items.append(_item_matching_rules.to_dict())
+            _dict['matchingRules'] = _items
         # set to None if retry_parameters (nullable) is None
         # and model_fields_set contains the field
         if self.retry_parameters is None and "retry_parameters" in self.model_fields_set:
@@ -94,6 +110,11 @@ class UpdatePaymentParametersRequest(BaseModel):
         # and model_fields_set contains the field
         if self.default_collection_flow_id is None and "default_collection_flow_id" in self.model_fields_set:
             _dict['defaultCollectionFlowId'] = None
+
+        # set to None if matching_rules (nullable) is None
+        # and model_fields_set contains the field
+        if self.matching_rules is None and "matching_rules" in self.model_fields_set:
+            _dict['matchingRules'] = None
 
         return _dict
 
@@ -111,8 +132,13 @@ class UpdatePaymentParametersRequest(BaseModel):
             "refundPaymentDelayInDays": obj.get("refundPaymentDelayInDays"),
             "paymentTermsId": obj.get("paymentTermsId"),
             "defaultCollectionFlowId": obj.get("defaultCollectionFlowId"),
-            "onlyUseInvoiceNumberInPaymentReferences": obj.get("onlyUseInvoiceNumberInPaymentReferences")
+            "onlyUseInvoiceNumberInPaymentReferences": obj.get("onlyUseInvoiceNumberInPaymentReferences"),
+            "blockAutomaticRefunding": obj.get("blockAutomaticRefunding"),
+            "defaultCollectionDelay": obj.get("defaultCollectionDelay"),
+            "defaultCollectionDelayValue": obj.get("defaultCollectionDelayValue"),
+            "allowResidentToChooseCollectionDay": obj.get("allowResidentToChooseCollectionDay"),
+            "allowCustomerCollectionDayOverride": obj.get("allowCustomerCollectionDayOverride"),
+            "selectableCollectionDays": obj.get("selectableCollectionDays"),
+            "matchingRules": [BaseBankStatementMatchingRuleDTO.from_dict(_item) for _item in obj["matchingRules"]] if obj.get("matchingRules") is not None else None
         })
         return _obj
-
-

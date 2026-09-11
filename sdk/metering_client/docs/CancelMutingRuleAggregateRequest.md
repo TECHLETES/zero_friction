@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error_type** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional] 
-**message** | **str** |  | [optional] 
-**time_period** | [**MutingRuleTimePeriod**](MutingRuleTimePeriod.md) |  | [optional] 
-**mute_from_with_numeric_value** | **int** |  | [optional] 
-**mute_until_with_numeric_value** | **int** |  | [optional] 
-**user_id** | **str** |  | [optional] 
+**error_type** | [**MeteringIssueError**](MeteringIssueError.md) |  |
+**message** | **str** |  | [optional]
+**time_period** | [**MutingRuleTimePeriod**](MutingRuleTimePeriod.md) |  |
+**mute_from_with_numeric_value** | **int** |  | [optional]
+**mute_until_with_numeric_value** | **int** |  | [optional]
+**user_id** | **str** |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ cancel_muting_rule_aggregate_request_dict = cancel_muting_rule_aggregate_request
 cancel_muting_rule_aggregate_request_from_dict = CancelMutingRuleAggregateRequest.from_dict(cancel_muting_rule_aggregate_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

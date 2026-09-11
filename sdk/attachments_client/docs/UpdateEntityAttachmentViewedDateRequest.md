@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** |  | [optional] 
-**viewed_date_time** | **datetime** |  | [optional] 
+**customer_id** | **str** |  |
+**viewed_date_time** | **datetime** |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ update_entity_attachment_viewed_date_request_dict = update_entity_attachment_vie
 update_entity_attachment_viewed_date_request_from_dict = UpdateEntityAttachmentViewedDateRequest.from_dict(update_entity_attachment_viewed_date_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

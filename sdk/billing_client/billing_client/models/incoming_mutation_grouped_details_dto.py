@@ -17,17 +17,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
+from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
 class IncomingMutationGroupedDetailsDTO(BaseModel):
     """
-    Contains aggregated details about a group of mutations.
+    IncomingMutationGroupedDetailsDTO
     """ # noqa: E501
-    count: Optional[StrictInt] = Field(default=None, description="The number of mutations in the group.")
-    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount of all mutations in the group.")
+    count: Optional[StrictInt] = None
+    amount: Optional[Union[StrictFloat, StrictInt]] = None
     __properties: ClassVar[List[str]] = ["count", "amount"]
 
     model_config = ConfigDict(
@@ -85,5 +85,3 @@ class IncomingMutationGroupedDetailsDTO(BaseModel):
             "amount": obj.get("amount")
         })
         return _obj
-
-

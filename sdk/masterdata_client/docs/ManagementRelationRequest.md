@@ -1,13 +1,12 @@
 # ManagementRelationRequest
 
-Represents a request to create or update a management relation between entities
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** | The unique identifier of the customer for whom the management relation is being created | [optional] 
-**management_relation_type** | [**ManagementRelationType**](ManagementRelationType.md) | The type of management relation being established between the entities | [optional] 
+**customer_id** | **str** |  |
+**management_relation_type** | [**ManagementRelationType**](ManagementRelationType.md) |  |
 
 ## Example
 
@@ -27,5 +26,3 @@ management_relation_request_dict = management_relation_request_instance.to_dict(
 management_relation_request_from_dict = ManagementRelationRequest.from_dict(management_relation_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

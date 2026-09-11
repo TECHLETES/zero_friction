@@ -42,12 +42,12 @@ class TestCollectionCaseStepDTO(unittest.TestCase):
                 trigger_days = 56,
                 execute_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 step_type = 'communication',
-                communication_type = 'postal',
+                communication_type = 'none',
                 communication_level = 'collection',
                 charge_type = 'none',
                 charges = billing_client.models.step_charge_dto.StepChargeDTO(
-                    step_charge_amount_incl_vat = 1.337, 
-                    step_vat_amount = 1.337, 
+                    step_charge_amount_incl_vat = 1.337,
+                    step_vat_amount = 1.337,
                     transaction_id = '', ),
                 executed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 documents_sent_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
@@ -55,16 +55,15 @@ class TestCollectionCaseStepDTO(unittest.TestCase):
                 email_id = '',
                 status = 'pending',
                 failure_reason_code = billing_client.models.localised_error_dto.LocalisedErrorDTO(
-                    key = null, 
-                    correlation_id = '', 
-                    message = '', 
+                    key = 56,
+                    correlation_id = '',
+                    message = '',
                     message_values = [
                         billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                            data_type = null, 
-                            value = '', 
+                            data_type = 'text',
+                            value = '',
                             capitalize = True, )
                         ], ),
-                failure_details = '',
                 supports_external_printing = True,
                 retry_count = 56
             )

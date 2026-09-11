@@ -24,11 +24,11 @@ from typing_extensions import Self
 
 class OutgoingBankingTransactionEntityCountsDTO(BaseModel):
     """
-    Contains counts of various entities associated with an outgoing banking transaction.
+    OutgoingBankingTransactionEntityCountsDTO
     """ # noqa: E501
-    number_of_mutations: Optional[StrictInt] = Field(default=None, description="The total number of mutations in the transaction.", alias="numberOfMutations")
-    confirmed_mutations: Optional[StrictInt] = Field(default=None, description="The number of mutations that have been confirmed.", alias="confirmedMutations")
-    reversed_mutations: Optional[StrictInt] = Field(default=None, description="The number of mutations that have been reversed.", alias="reversedMutations")
+    number_of_mutations: Optional[StrictInt] = Field(default=None, alias="numberOfMutations")
+    confirmed_mutations: Optional[StrictInt] = Field(default=None, alias="confirmedMutations")
+    reversed_mutations: Optional[StrictInt] = Field(default=None, alias="reversedMutations")
     __properties: ClassVar[List[str]] = ["numberOfMutations", "confirmedMutations", "reversedMutations"]
 
     model_config = ConfigDict(
@@ -87,5 +87,3 @@ class OutgoingBankingTransactionEntityCountsDTO(BaseModel):
             "reversedMutations": obj.get("reversedMutations")
         })
         return _obj
-
-

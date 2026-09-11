@@ -46,7 +46,8 @@ class TestPaymentStatusHistoryDTO(unittest.TestCase):
                 incoming_mutation_description = '',
                 reversal_reason = 'manualreverse',
                 reversal_additional_information = '',
-                mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                payment_intent_id = ''
             )
         else:
             return PaymentStatusHistoryDTO(

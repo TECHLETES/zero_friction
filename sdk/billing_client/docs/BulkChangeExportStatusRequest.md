@@ -1,15 +1,14 @@
 # BulkChangeExportStatusRequest
 
-Represents a bulk request to change the export status of multiple invoices.  This DTO allows updating the export status of multiple invoices in a single operation.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**export_status** | [**ExportStatus**](ExportStatus.md) | The new export status to set for the invoice. | [optional] 
-**only_validate** | **bool** | Indicates if only validation should be performed without actually changing the export status.  When true, the system will only validate if the export status can be changed without making any changes. | [optional] 
-**var_query_params** | [**GetInvoicesQueryParams**](GetInvoicesQueryParams.md) | Query parameters to filter the invoices to be updated. | [optional] 
-**quick_filter** | **str** | Quick filter string to filter invoices without using complex query parameters. | [optional] 
+**only_validate** | **bool** |  | [optional]
+**var_query_params** | [**GetInvoicesQueryParams**](GetInvoicesQueryParams.md) |  | [optional]
+**quick_filter** | **str** |  | [optional]
+**export_status** | [**ExportStatus**](ExportStatus.md) |  | [optional]
 
 ## Example
 
@@ -29,5 +28,3 @@ bulk_change_export_status_request_dict = bulk_change_export_status_request_insta
 bulk_change_export_status_request_from_dict = BulkChangeExportStatusRequest.from_dict(bulk_change_export_status_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

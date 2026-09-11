@@ -35,35 +35,25 @@ class TestPropertyGroupDTO(unittest.TestCase):
         model = PropertyGroupDTO()
         if include_optional:
             return PropertyGroupDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 name = '',
                 address = masterdata_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 default_management_relations = [
                     masterdata_client.models.management_relation_dto.ManagementRelationDTO(
-                        customer_id = '', 
-                        short_display_name = '', 
-                        account_number = '', 
-                        management_relation_type = null, )
+                        customer_id = '',
+                        short_display_name = '',
+                        account_number = '',
+                        management_relation_type = 'owner', )
                     ],
                 service_location_ids = [
                     ''
@@ -71,33 +61,56 @@ class TestPropertyGroupDTO(unittest.TestCase):
                 type = 'building',
                 cost_allocation_enabled = True,
                 communication_configuration = masterdata_client.models.communication_configuration_dto.CommunicationConfigurationDTO(
-                    company_name = '', 
-                    vat_account_number = '', 
-                    company_account_number = '', 
-                    logo = '', 
-                    logo_cdn_url = '', 
-                    primary_color = '', 
-                    secondary_color = '', 
-                    address = null, 
-                    contact_details = null, ),
+                    company_name = '',
+                    vat_account_number = '',
+                    company_account_number = '',
+                    logo = '',
+                    logo_cdn_url = '',
+                    primary_color = '',
+                    secondary_color = '',
+                    address = masterdata_client.models.address_dto.AddressDTO(
+                        street_name = '',
+                        street_number = '',
+                        street_number_addition = '',
+                        postal_code = '',
+                        building_name = '',
+                        locality = '',
+                        city = '',
+                        country = 'aut',
+                        localized_display = '',
+                        line_one = '',
+                        line_two = '', ),
+                    contact_details = masterdata_client.models.property_group_contact_details_dto.PropertyGroupContactDetailsDTO(
+                        email_address = '',
+                        telephone = '',
+                        website = '',
+                        telephone_interruptions = '', ), ),
                 custom_properties = [
                     masterdata_client.models.custom_entity_property_dto.CustomEntityPropertyDTO(
-                        custom_entity_property_type_id = '', 
+                        custom_entity_property_type_id = '',
                         values = [
                             masterdata_client.models.custom_entity_property_value_dto.CustomEntityPropertyValueDTO(
-                                value_decimal = 1.337, 
-                                value_string = '', 
-                                value_boolean = True, 
-                                value_number = 56, 
-                                value_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                value_decimal = 1.337,
+                                value_string = '',
+                                value_boolean = True,
+                                value_number = 56,
+                                value_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                                 value_dropdown = [
                                     ''
-                                    ], 
-                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                    ],
+                                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                             ], )
                     ],
-                deleted = True
+                deleted = True,
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return PropertyGroupDTO(

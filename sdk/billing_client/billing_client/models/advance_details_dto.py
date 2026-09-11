@@ -21,22 +21,26 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from billing_client.models.advance_amount_changed_by import AdvanceAmountChangedBy
+from billing_client.models.advance_calculation_type import AdvanceCalculationType
 from billing_client.models.advance_frequency import AdvanceFrequency
+from billing_client.models.advance_period_percentage import AdvancePeriodPercentage
 from typing import Optional, Set
 from typing_extensions import Self
 
 class AdvanceDetailsDTO(BaseModel):
     """
-    Represents details about advance payments for a billing relation.  This DTO contains information about advance amounts, frequencies, and change history.
+    AdvanceDetailsDTO
     """ # noqa: E501
-    advance_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The current advance payment amount.", alias="advanceAmount")
-    original_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The original advance amount used to calculate min and max ranges.", alias="originalAmount")
-    changed_by: Optional[AdvanceAmountChangedBy] = Field(default=None, description="Identifies who has last changed the advance amount.", alias="changedBy")
-    changed_by_user_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the user who last changed the advance amount.", alias="changedByUserId")
-    changed_date: Optional[datetime] = Field(default=None, description="The date and time when the advance amount was last changed.", alias="changedDate")
-    advance_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The advance payment amount excluding VAT.", alias="advanceAmountExclVAT")
-    advance_frequency: Optional[AdvanceFrequency] = Field(default=None, description="The frequency at which advance payments are collected.", alias="advanceFrequency")
-    __properties: ClassVar[List[str]] = ["advanceAmount", "originalAmount", "changedBy", "changedByUserId", "changedDate", "advanceAmountExclVAT", "advanceFrequency"]
+    advance_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="advanceAmount")
+    original_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="originalAmount")
+    changed_by: Optional[AdvanceAmountChangedBy] = Field(default=None, alias="changedBy")
+    changed_by_user_id: Optional[StrictStr] = Field(default=None, alias="changedByUserId")
+    changed_date: Optional[datetime] = Field(default=None, alias="changedDate")
+    advance_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="advanceAmountExclVAT")
+    advance_frequency: Optional[AdvanceFrequency] = Field(default=None, alias="advanceFrequency")
+    advance_calculation_type: Optional[AdvanceCalculationType] = Field(default=None, alias="advanceCalculationType")
+    advance_period_percentages: Optional[List[AdvancePeriodPercentage]] = Field(default=None, alias="advancePeriodPercentages")
+    __properties: ClassVar[List[str]] = ["advanceAmount", "originalAmount", "changedBy", "changedByUserId", "changedDate", "advanceAmountExclVAT", "advanceFrequency", "advanceCalculationType", "advancePeriodPercentages"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,20 +81,27 @@ class AdvanceDetailsDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if changed_by (nullable) is None
-        # and model_fields_set contains the field
-        if self.changed_by is None and "changed_by" in self.model_fields_set:
-            _dict['changedBy'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of each item in advance_period_percentages (list)
+        _items = []
+        if self.advance_period_percentages:
+            for _item_advance_period_percentages in self.advance_period_percentages:
+                if _item_advance_period_percentages:
+                    _items.append(_item_advance_period_percentages.to_dict())
+            _dict['advancePeriodPercentages'] = _items
         # set to None if changed_by_user_id (nullable) is None
         # and model_fields_set contains the field
         if self.changed_by_user_id is None and "changed_by_user_id" in self.model_fields_set:
             _dict['changedByUserId'] = None
 
-        # set to None if advance_frequency (nullable) is None
+        # set to None if advance_calculation_type (nullable) is None
         # and model_fields_set contains the field
-        if self.advance_frequency is None and "advance_frequency" in self.model_fields_set:
-            _dict['advanceFrequency'] = None
+        if self.advance_calculation_type is None and "advance_calculation_type" in self.model_fields_set:
+            _dict['advanceCalculationType'] = None
+
+        # set to None if advance_period_percentages (nullable) is None
+        # and model_fields_set contains the field
+        if self.advance_period_percentages is None and "advance_period_percentages" in self.model_fields_set:
+            _dict['advancePeriodPercentages'] = None
 
         return _dict
 
@@ -110,8 +121,8 @@ class AdvanceDetailsDTO(BaseModel):
             "changedByUserId": obj.get("changedByUserId"),
             "changedDate": obj.get("changedDate"),
             "advanceAmountExclVAT": obj.get("advanceAmountExclVAT"),
-            "advanceFrequency": obj.get("advanceFrequency")
+            "advanceFrequency": obj.get("advanceFrequency"),
+            "advanceCalculationType": obj.get("advanceCalculationType"),
+            "advancePeriodPercentages": [AdvancePeriodPercentage.from_dict(_item) for _item in obj["advancePeriodPercentages"]] if obj.get("advancePeriodPercentages") is not None else None
         })
         return _obj
-
-

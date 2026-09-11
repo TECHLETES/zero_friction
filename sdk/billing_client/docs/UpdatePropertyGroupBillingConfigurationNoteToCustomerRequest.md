@@ -1,12 +1,11 @@
 # UpdatePropertyGroupBillingConfigurationNoteToCustomerRequest
 
-Represents a request to update the note to customer for a property group billing configuration.  This DTO is used to modify the note that will be displayed to customers on invoices.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**note_to_customer** | **str** | The new note text to be displayed to customers on invoices. | [optional] 
+**note_to_customer** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +25,3 @@ update_property_group_billing_configuration_note_to_customer_request_dict = upda
 update_property_group_billing_configuration_note_to_customer_request_from_dict = UpdatePropertyGroupBillingConfigurationNoteToCustomerRequest.from_dict(update_property_group_billing_configuration_note_to_customer_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

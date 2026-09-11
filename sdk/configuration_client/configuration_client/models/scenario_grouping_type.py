@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ScenarioGroupingType(str, Enum):
     """
-    ScenarioGroupingType
+    Possible values: 'invoice', 'collectioncase', 'contract', 'moverequest', 'personalinformation', 'paymentplan', 'prepayment'
     """
 
     """
@@ -31,10 +31,10 @@ class ScenarioGroupingType(str, Enum):
     CONTRACT = 'contract'
     MOVEREQUEST = 'moverequest'
     PERSONALINFORMATION = 'personalinformation'
+    PAYMENTPLAN = 'paymentplan'
+    PREPAYMENT = 'prepayment'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ScenarioGroupingType from a JSON string"""
         return cls(json.loads(json_str))
-
-

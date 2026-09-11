@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class IncomingMutationStatus(str, Enum):
     """
-    IncomingMutationStatus
+    Possible values: 'created', 'ignored', 'resolveissues', 'readytoprocess', 'processing', 'processed', 'failed', 'matched'
     """
 
     """
@@ -39,5 +39,3 @@ class IncomingMutationStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of IncomingMutationStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

@@ -22,19 +22,21 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from billing_client.models.get_invoices_query_params import GetInvoicesQueryParams
 from billing_client.models.payment_method import PaymentMethod
+from billing_client.models.psp_instrument_snapshot_request import PspInstrumentSnapshotRequest
 from typing import Optional, Set
 from typing_extensions import Self
 
 class BulkChangePaymentDetailsRequest(BaseModel):
     """
-    Represents a bulk request to change payment details for multiple invoices.  This DTO allows updating payment details for multiple invoices in a single operation.
+    BulkChangePaymentDetailsRequest
     """ # noqa: E501
-    new_payment_method: Optional[PaymentMethod] = Field(default=None, description="The new payment method to be used for the invoice.", alias="newPaymentMethod")
-    collection_date: Optional[datetime] = Field(default=None, description="The new date when the payment should be collected.", alias="collectionDate")
-    only_validate: Optional[StrictBool] = Field(default=None, description="Indicates if only validation should be performed without actually changing the payment details.  When true, the system will only validate if the changes can be made without making any updates.", alias="onlyValidate")
-    var_query_params: Optional[GetInvoicesQueryParams] = Field(default=None, description="Query parameters to filter the invoices to be updated.", alias="queryParams")
-    quick_filter: Optional[StrictStr] = Field(default=None, description="Quick filter string to filter invoices without using complex query parameters.", alias="quickFilter")
-    __properties: ClassVar[List[str]] = ["newPaymentMethod", "collectionDate", "onlyValidate", "queryParams", "quickFilter"]
+    only_validate: Optional[StrictBool] = Field(default=None, alias="onlyValidate")
+    var_query_params: Optional[GetInvoicesQueryParams] = Field(default=None, alias="queryParams")
+    quick_filter: Optional[StrictStr] = Field(default=None, alias="quickFilter")
+    new_payment_method: Optional[PaymentMethod] = Field(default=None, alias="newPaymentMethod")
+    collection_date: Optional[datetime] = Field(default=None, alias="collectionDate")
+    psp_instrument: Optional[PspInstrumentSnapshotRequest] = Field(default=None, alias="pspInstrument")
+    __properties: ClassVar[List[str]] = ["onlyValidate", "queryParams", "quickFilter", "newPaymentMethod", "collectionDate", "pspInstrument"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,20 +80,18 @@ class BulkChangePaymentDetailsRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if new_payment_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.new_payment_method is None and "new_payment_method" in self.model_fields_set:
-            _dict['newPaymentMethod'] = None
-
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of psp_instrument
+        if self.psp_instrument:
+            _dict['pspInstrument'] = self.psp_instrument.to_dict()
         # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
         if self.quick_filter is None and "quick_filter" in self.model_fields_set:
             _dict['quickFilter'] = None
+
+        # set to None if psp_instrument (nullable) is None
+        # and model_fields_set contains the field
+        if self.psp_instrument is None and "psp_instrument" in self.model_fields_set:
+            _dict['pspInstrument'] = None
 
         return _dict
 
@@ -105,12 +105,11 @@ class BulkChangePaymentDetailsRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "newPaymentMethod": obj.get("newPaymentMethod"),
-            "collectionDate": obj.get("collectionDate"),
             "onlyValidate": obj.get("onlyValidate"),
             "queryParams": GetInvoicesQueryParams.from_dict(obj["queryParams"]) if obj.get("queryParams") is not None else None,
-            "quickFilter": obj.get("quickFilter")
+            "quickFilter": obj.get("quickFilter"),
+            "newPaymentMethod": obj.get("newPaymentMethod"),
+            "collectionDate": obj.get("collectionDate"),
+            "pspInstrument": PspInstrumentSnapshotRequest.from_dict(obj["pspInstrument"]) if obj.get("pspInstrument") is not None else None
         })
         return _obj
-
-

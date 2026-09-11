@@ -25,12 +25,12 @@ from typing_extensions import Self
 
 class BlockDetailsDTO(BaseModel):
     """
-    Represents details about the blocking status of a billing relation.  This DTO contains information about when and why a billing relation was blocked.
+    BlockDetailsDTO
     """ # noqa: E501
-    blocked: Optional[StrictBool] = Field(default=None, description="Indicates whether the billing relation is currently blocked.")
-    blocked_on: Optional[datetime] = Field(default=None, description="The date and time when the billing relation was blocked.", alias="blockedOn")
-    blocked_by: Optional[StrictStr] = Field(default=None, description="The identifier of the user who blocked the billing relation.", alias="blockedBy")
-    blocked_comment: Optional[StrictStr] = Field(default=None, description="Comments explaining why the billing relation was blocked.", alias="blockedComment")
+    blocked: Optional[StrictBool] = None
+    blocked_on: Optional[datetime] = Field(default=None, alias="blockedOn")
+    blocked_by: Optional[StrictStr] = Field(default=None, alias="blockedBy")
+    blocked_comment: Optional[StrictStr] = Field(default=None, alias="blockedComment")
     __properties: ClassVar[List[str]] = ["blocked", "blockedOn", "blockedBy", "blockedComment"]
 
     model_config = ConfigDict(
@@ -100,5 +100,3 @@ class BlockDetailsDTO(BaseModel):
             "blockedComment": obj.get("blockedComment")
         })
         return _obj
-
-

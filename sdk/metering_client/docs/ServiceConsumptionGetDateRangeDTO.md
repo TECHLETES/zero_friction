@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**min_production_day_start_utc** | **datetime** |  | [optional] 
-**max_production_day_end_utc** | **datetime** |  | [optional] 
+**min_production_day_start_utc** | **datetime** |  | [optional]
+**max_production_day_end_utc** | **datetime** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ service_consumption_get_date_range_dto_dict = service_consumption_get_date_range
 service_consumption_get_date_range_dto_from_dict = ServiceConsumptionGetDateRangeDTO.from_dict(service_consumption_get_date_range_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

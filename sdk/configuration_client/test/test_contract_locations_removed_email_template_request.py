@@ -38,8 +38,8 @@ class TestContractLocationsRemovedEmailTemplateRequest(unittest.TestCase):
                 subject = '',
                 attachments = [
                     configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
-                        id = '', 
-                        internal_file_path = '', 
+                        id = '',
+                        internal_file_path = '',
                         file_name = '', )
                     ]
             )

@@ -1,14 +1,13 @@
 # InvoiceUBLValidationErrorDTO
 
-Represents a UBL validation error
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**originator_type** | [**EntitySubjectType**](EntitySubjectType.md) | Type of the originator of the error | [optional] 
-**originator_id** | **str** | Identifier of the originator | [optional] 
-**message** | [**LocalisedErrorDTO**](LocalisedErrorDTO.md) | Localized error message | [optional] 
+**originator_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional]
+**originator_id** | **str** |  | [optional]
+**message** | [**LocalisedErrorDTO**](LocalisedErrorDTO.md) |  | [optional]
 
 ## Example
 
@@ -28,5 +27,3 @@ invoice_ubl_validation_error_dto_dict = invoice_ubl_validation_error_dto_instanc
 invoice_ubl_validation_error_dto_from_dict = InvoiceUBLValidationErrorDTO.from_dict(invoice_ubl_validation_error_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

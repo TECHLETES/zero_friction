@@ -152,5 +152,3 @@ class CommunicationConfigurationDTO(BaseModel):
             "contactDetails": PropertyGroupContactDetailsDTO.from_dict(obj["contactDetails"]) if obj.get("contactDetails") is not None else None
         })
         return _obj
-
-

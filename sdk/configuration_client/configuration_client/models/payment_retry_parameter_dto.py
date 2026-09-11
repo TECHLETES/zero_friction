@@ -71,11 +71,6 @@ class PaymentRetryParameterDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if retry_action (nullable) is None
-        # and model_fields_set contains the field
-        if self.retry_action is None and "retry_action" in self.model_fields_set:
-            _dict['retryAction'] = None
-
         return _dict
 
     @classmethod
@@ -93,5 +88,3 @@ class PaymentRetryParameterDTO(BaseModel):
             "value": obj.get("value")
         })
         return _obj
-
-

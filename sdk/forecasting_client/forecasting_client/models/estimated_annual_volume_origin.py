@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class EstimatedAnnualVolumeOrigin(str, Enum):
     """
-    EstimatedAnnualVolumeOrigin
+    Possible values: 'manual', 'frompreviousyear', 'fromconsumergroup', 'forecast'
     """
 
     """
@@ -35,5 +35,3 @@ class EstimatedAnnualVolumeOrigin(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of EstimatedAnnualVolumeOrigin from a JSON string"""
         return cls(json.loads(json_str))
-
-

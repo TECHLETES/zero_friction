@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**meter_tag** | **str** |  | [optional] 
+**meter_tag** | **str** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ update_meter_tag_request_dict = update_meter_tag_request_instance.to_dict()
 update_meter_tag_request_from_dict = UpdateMeterTagRequest.from_dict(update_meter_tag_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

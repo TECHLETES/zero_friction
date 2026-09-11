@@ -25,10 +25,10 @@ from typing_extensions import Self
 
 class ImpactedEntityDTO(BaseModel):
     """
-    Represents the entity that is impacted by the validation error
+    ImpactedEntityDTO
     """ # noqa: E501
-    entity_subject_type: Optional[EntitySubjectType] = Field(default=None, description="Type of the entity subject", alias="entitySubjectType")
-    entity_subject_id: Optional[StrictStr] = Field(default=None, description="Identifier of the entity subject", alias="entitySubjectId")
+    entity_subject_type: Optional[EntitySubjectType] = Field(default=None, alias="entitySubjectType")
+    entity_subject_id: Optional[StrictStr] = Field(default=None, alias="entitySubjectId")
     __properties: ClassVar[List[str]] = ["entitySubjectType", "entitySubjectId"]
 
     model_config = ConfigDict(
@@ -70,11 +70,6 @@ class ImpactedEntityDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if entity_subject_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_subject_type is None and "entity_subject_type" in self.model_fields_set:
-            _dict['entitySubjectType'] = None
-
         # set to None if entity_subject_id (nullable) is None
         # and model_fields_set contains the field
         if self.entity_subject_id is None and "entity_subject_id" in self.model_fields_set:
@@ -96,5 +91,3 @@ class ImpactedEntityDTO(BaseModel):
             "entitySubjectId": obj.get("entitySubjectId")
         })
         return _obj
-
-

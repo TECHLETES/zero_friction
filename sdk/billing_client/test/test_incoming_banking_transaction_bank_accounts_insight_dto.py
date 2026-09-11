@@ -37,9 +37,9 @@ class TestIncomingBankingTransactionBankAccountsInsightDTO(unittest.TestCase):
             return IncomingBankingTransactionBankAccountsInsightDTO(
                 company_bank_accounts = [
                     billing_client.models.incoming_banking_transaction_bank_account_insight_dto.IncomingBankingTransactionBankAccountInsightDTO(
-                        iban = '', 
-                        last_fetched_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        plugin_run_status = null, )
+                        iban = '',
+                        last_fetched_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        plugin_run_status = 'active', )
                     ]
             )
         else:

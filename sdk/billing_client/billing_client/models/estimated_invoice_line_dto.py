@@ -13,189 +13,138 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
+import json
 import pprint
 import re  # noqa: F401
-import json
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+from typing import Optional
+from billing_client.models.estimated_invoice_line_dto_consumption_estimated_invoice_line_dto import EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO
+from billing_client.models.estimated_invoice_line_dto_custom_entity_property_estimated_invoice_line_dto import EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO
+from billing_client.models.estimated_invoice_line_dto_subscription_estimated_invoice_line_dto import EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO
+from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
+from typing_extensions import Literal, Self
+from pydantic import Field
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
-from billing_client.models.billing_calculation_type import BillingCalculationType
-from billing_client.models.billing_item_reference import BillingItemReference
-from billing_client.models.level import Level
-from billing_client.models.period_for_entity_dto import PeriodForEntityDTO
-from billing_client.models.unit_of_measure import UnitOfMeasure
-from billing_client.models.utility_type import UtilityType
-from typing import Optional, Set
-from typing_extensions import Self
+ESTIMATEDINVOICELINEDTO_ANY_OF_SCHEMAS = ["EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO", "EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO", "EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO"]
 
 class EstimatedInvoiceLineDTO(BaseModel):
     """
-    Base class for estimated invoice line items.  This abstract class defines the common properties for all types of estimated invoice lines.
-    """ # noqa: E501
-    calculation_type: Optional[BillingCalculationType] = Field(default=None, description="The type of calculation used for this line item.", alias="calculationType")
-    billing_item_reference: Optional[BillingItemReference] = Field(default=None, description="Reference to the billing item associated with this line.", alias="billingItemReference")
-    start_date_time: Optional[datetime] = Field(default=None, description="The start date and time of the billing period.", alias="startDateTime")
-    end_date_time: Optional[datetime] = Field(default=None, description="The end date and time of the billing period.", alias="endDateTime")
-    amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount excluding VAT.", alias="amountExclVAT")
-    vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The VAT amount.")
-    amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount including VAT.", alias="amountInclVAT")
-    quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The quantity being billed.")
-    raw_quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The raw quantity before any adjustments.", alias="rawQuantity")
-    unit_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The unit price for this line item.", alias="unitPrice")
-    vat_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The VAT rate applied to this line item.", alias="vatRate")
-    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, description="The unit of measure for the quantity.", alias="unitOfMeasure")
-    utility_type: Optional[UtilityType] = Field(default=None, description="The type of utility being billed.", alias="utilityType")
-    service_location_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the service location.", alias="serviceLocationId")
-    billing_tariff_accuracy: Optional[PeriodForEntityDTO] = Field(default=None, description="The accuracy period information for the billing tariff.", alias="billingTariffAccuracy")
-    cost_component_accuracies: Optional[List[PeriodForEntityDTO]] = Field(default=None, description="List of accuracy periods for cost components.", alias="costComponentAccuracies")
-    tax_accuracy: Optional[PeriodForEntityDTO] = Field(default=None, description="The accuracy period information for tax calculations.", alias="taxAccuracy")
-    accuracy: Optional[Level] = Field(default=None, description="The overall accuracy level of this line item.")
-    quantity_accuracy: Optional[Level] = Field(default=None, description="The accuracy level of the quantity calculation.", alias="quantityAccuracy")
-    __properties: ClassVar[List[str]] = ["calculationType", "billingItemReference", "startDateTime", "endDateTime", "amountExclVAT", "vat", "amountInclVAT", "quantity", "rawQuantity", "unitPrice", "vatRate", "unitOfMeasure", "utilityType", "serviceLocationId", "billingTariffAccuracy", "costComponentAccuracies", "taxAccuracy", "accuracy", "quantityAccuracy"]
+    EstimatedInvoiceLineDTO
+    """
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    # data type: EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO
+    anyof_schema_1_validator: Optional[EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO] = None
+    # data type: EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO
+    anyof_schema_2_validator: Optional[EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO] = None
+    # data type: EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO
+    anyof_schema_3_validator: Optional[EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO] = None
+    if TYPE_CHECKING:
+        actual_instance: Optional[Union[EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO, EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO, EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO]] = None
+    else:
+        actual_instance: Any = None
+    any_of_schemas: Set[str] = { "EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO", "EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO", "EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO" }
 
+    model_config = {
+        "validate_assignment": True,
+        "protected_namespaces": (),
+    }
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+    discriminator_value_class_map: Dict[str, str] = {
+    }
+
+    def __init__(self, *args, **kwargs) -> None:
+        if args:
+            if len(args) > 1:
+                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+            if kwargs:
+                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+            super().__init__(actual_instance=args[0])
+        else:
+            super().__init__(**kwargs)
+
+    @field_validator('actual_instance')
+    def actual_instance_must_validate_anyof(cls, v):
+        instance = EstimatedInvoiceLineDTO.model_construct()
+        error_messages = []
+        # validate data type: EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO
+        if not isinstance(v, EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO`")
+        else:
+            return v
+
+        # validate data type: EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO
+        if not isinstance(v, EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO`")
+        else:
+            return v
+
+        # validate data type: EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO
+        if not isinstance(v, EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO`")
+        else:
+            return v
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when setting the actual_instance in EstimatedInvoiceLineDTO with anyOf schemas: EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO, EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO, EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO. Details: " + ", ".join(error_messages))
+        else:
+            return v
+
+    @classmethod
+    def from_dict(cls, obj: Dict[str, Any]) -> Self:
+        return cls.from_json(json.dumps(obj))
+
+    @classmethod
+    def from_json(cls, json_str: str) -> Self:
+        """Returns the object represented by the json string"""
+        instance = cls.model_construct()
+        error_messages = []
+        # anyof_schema_1_validator: Optional[EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO] = None
+        try:
+            instance.actual_instance = EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_2_validator: Optional[EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO] = None
+        try:
+            instance.actual_instance = EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_3_validator: Optional[EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO] = None
+        try:
+            instance.actual_instance = EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into EstimatedInvoiceLineDTO with anyOf schemas: EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO, EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO, EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO. Details: " + ", ".join(error_messages))
+        else:
+            return instance
 
     def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
 
-    @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of EstimatedInvoiceLineDTO from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+            return self.actual_instance.to_json()
+        else:
+            return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
-        # override the default output from pydantic by calling `to_dict()` of billing_item_reference
-        if self.billing_item_reference:
-            _dict['billingItemReference'] = self.billing_item_reference.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of billing_tariff_accuracy
-        if self.billing_tariff_accuracy:
-            _dict['billingTariffAccuracy'] = self.billing_tariff_accuracy.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in cost_component_accuracies (list)
-        _items = []
-        if self.cost_component_accuracies:
-            for _item_cost_component_accuracies in self.cost_component_accuracies:
-                if _item_cost_component_accuracies:
-                    _items.append(_item_cost_component_accuracies.to_dict())
-            _dict['costComponentAccuracies'] = _items
-        # override the default output from pydantic by calling `to_dict()` of tax_accuracy
-        if self.tax_accuracy:
-            _dict['taxAccuracy'] = self.tax_accuracy.to_dict()
-        # set to None if calculation_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.calculation_type is None and "calculation_type" in self.model_fields_set:
-            _dict['calculationType'] = None
-
-        # set to None if billing_item_reference (nullable) is None
-        # and model_fields_set contains the field
-        if self.billing_item_reference is None and "billing_item_reference" in self.model_fields_set:
-            _dict['billingItemReference'] = None
-
-        # set to None if raw_quantity (nullable) is None
-        # and model_fields_set contains the field
-        if self.raw_quantity is None and "raw_quantity" in self.model_fields_set:
-            _dict['rawQuantity'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
-
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if service_location_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.service_location_id is None and "service_location_id" in self.model_fields_set:
-            _dict['serviceLocationId'] = None
-
-        # set to None if billing_tariff_accuracy (nullable) is None
-        # and model_fields_set contains the field
-        if self.billing_tariff_accuracy is None and "billing_tariff_accuracy" in self.model_fields_set:
-            _dict['billingTariffAccuracy'] = None
-
-        # set to None if cost_component_accuracies (nullable) is None
-        # and model_fields_set contains the field
-        if self.cost_component_accuracies is None and "cost_component_accuracies" in self.model_fields_set:
-            _dict['costComponentAccuracies'] = None
-
-        # set to None if tax_accuracy (nullable) is None
-        # and model_fields_set contains the field
-        if self.tax_accuracy is None and "tax_accuracy" in self.model_fields_set:
-            _dict['taxAccuracy'] = None
-
-        # set to None if accuracy (nullable) is None
-        # and model_fields_set contains the field
-        if self.accuracy is None and "accuracy" in self.model_fields_set:
-            _dict['accuracy'] = None
-
-        # set to None if quantity_accuracy (nullable) is None
-        # and model_fields_set contains the field
-        if self.quantity_accuracy is None and "quantity_accuracy" in self.model_fields_set:
-            _dict['quantityAccuracy'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of EstimatedInvoiceLineDTO from a dict"""
-        if obj is None:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], EstimatedInvoiceLineDTOConsumptionEstimatedInvoiceLineDTO, EstimatedInvoiceLineDTOCustomEntityPropertyEstimatedInvoiceLineDTO, EstimatedInvoiceLineDTOSubscriptionEstimatedInvoiceLineDTO]]:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is None:
             return None
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+            return self.actual_instance.to_dict()
+        else:
+            return self.actual_instance
 
-        _obj = cls.model_validate({
-            "calculationType": obj.get("calculationType"),
-            "billingItemReference": BillingItemReference.from_dict(obj["billingItemReference"]) if obj.get("billingItemReference") is not None else None,
-            "startDateTime": obj.get("startDateTime"),
-            "endDateTime": obj.get("endDateTime"),
-            "amountExclVAT": obj.get("amountExclVAT"),
-            "vat": obj.get("vat"),
-            "amountInclVAT": obj.get("amountInclVAT"),
-            "quantity": obj.get("quantity"),
-            "rawQuantity": obj.get("rawQuantity"),
-            "unitPrice": obj.get("unitPrice"),
-            "vatRate": obj.get("vatRate"),
-            "unitOfMeasure": obj.get("unitOfMeasure"),
-            "utilityType": obj.get("utilityType"),
-            "serviceLocationId": obj.get("serviceLocationId"),
-            "billingTariffAccuracy": PeriodForEntityDTO.from_dict(obj["billingTariffAccuracy"]) if obj.get("billingTariffAccuracy") is not None else None,
-            "costComponentAccuracies": [PeriodForEntityDTO.from_dict(_item) for _item in obj["costComponentAccuracies"]] if obj.get("costComponentAccuracies") is not None else None,
-            "taxAccuracy": PeriodForEntityDTO.from_dict(obj["taxAccuracy"]) if obj.get("taxAccuracy") is not None else None,
-            "accuracy": obj.get("accuracy"),
-            "quantityAccuracy": obj.get("quantityAccuracy")
-        })
-        return _obj
-
-
+    def to_str(self) -> str:
+        """Returns the string representation of the actual instance"""
+        return pprint.pformat(self.model_dump())

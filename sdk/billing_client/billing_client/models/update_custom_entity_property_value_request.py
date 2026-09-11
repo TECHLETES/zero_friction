@@ -76,11 +76,6 @@ class UpdateCustomEntityPropertyValueRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if value_string (nullable) is None
-        # and model_fields_set contains the field
-        if self.value_string is None and "value_string" in self.model_fields_set:
-            _dict['valueString'] = None
-
         # set to None if value_date_time (nullable) is None
         # and model_fields_set contains the field
         if self.value_date_time is None and "value_date_time" in self.model_fields_set:
@@ -113,5 +108,3 @@ class UpdateCustomEntityPropertyValueRequest(BaseModel):
             "valueDropdown": obj.get("valueDropdown")
         })
         return _obj
-
-

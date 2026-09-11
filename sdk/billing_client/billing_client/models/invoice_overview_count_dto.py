@@ -24,16 +24,16 @@ from typing_extensions import Self
 
 class InvoiceOverviewCountDTO(BaseModel):
     """
-    Represents counts of invoices in different states for overview purposes
+    InvoiceOverviewCountDTO
     """ # noqa: E501
-    require_attention: Optional[StrictInt] = Field(default=None, description="Number of invoices requiring attention", alias="requireAttention")
-    all: Optional[StrictInt] = Field(default=None, description="Total number of all invoices")
-    to_approve: Optional[StrictInt] = Field(default=None, description="Number of invoices pending approval", alias="toApprove")
-    to_send: Optional[StrictInt] = Field(default=None, description="Number of invoices pending sending", alias="toSend")
-    unpaid: Optional[StrictInt] = Field(default=None, description="Number of unpaid invoices")
-    overdue: Optional[StrictInt] = Field(default=None, description="Number of overdue invoices")
-    ready_for_payment_collection: Optional[StrictInt] = Field(default=None, description="Number of invoices ready for payment collection", alias="readyForPaymentCollection")
-    to_export: Optional[StrictInt] = Field(default=None, description="Number of invoices pending export", alias="toExport")
+    require_attention: Optional[StrictInt] = Field(default=None, alias="requireAttention")
+    all: Optional[StrictInt] = None
+    to_approve: Optional[StrictInt] = Field(default=None, alias="toApprove")
+    to_send: Optional[StrictInt] = Field(default=None, alias="toSend")
+    unpaid: Optional[StrictInt] = None
+    overdue: Optional[StrictInt] = None
+    ready_for_payment_collection: Optional[StrictInt] = Field(default=None, alias="readyForPaymentCollection")
+    to_export: Optional[StrictInt] = Field(default=None, alias="toExport")
     __properties: ClassVar[List[str]] = ["requireAttention", "all", "toApprove", "toSend", "unpaid", "overdue", "readyForPaymentCollection", "toExport"]
 
     model_config = ConfigDict(
@@ -97,5 +97,3 @@ class InvoiceOverviewCountDTO(BaseModel):
             "toExport": obj.get("toExport")
         })
         return _obj
-
-

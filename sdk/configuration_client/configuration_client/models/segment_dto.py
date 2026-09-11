@@ -28,7 +28,7 @@ class SegmentDTO(BaseModel):
     SegmentDTO
     """ # noqa: E501
     segment_type: Optional[NumberSequenceSegmentType] = Field(default=None, alias="segmentType")
-    segment_lookup_values: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, alias="segmentLookupValues")
+    segment_lookup_values: Optional[Dict[str, StrictStr]] = Field(default=None, alias="segmentLookupValues")
     __properties: ClassVar[List[str]] = ["segmentType", "segmentLookupValues"]
 
     model_config = ConfigDict(
@@ -70,11 +70,6 @@ class SegmentDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if segment_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.segment_type is None and "segment_type" in self.model_fields_set:
-            _dict['segmentType'] = None
-
         # set to None if segment_lookup_values (nullable) is None
         # and model_fields_set contains the field
         if self.segment_lookup_values is None and "segment_lookup_values" in self.model_fields_set:
@@ -96,5 +91,3 @@ class SegmentDTO(BaseModel):
             "segmentLookupValues": obj.get("segmentLookupValues")
         })
         return _obj
-
-

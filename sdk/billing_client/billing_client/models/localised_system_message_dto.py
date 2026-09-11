@@ -17,11 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from billing_client.models.localised_system_message_dto_value import LocalisedSystemMessageDtoValue
-from billing_client.models.system_message_code import SystemMessageCode
-from billing_client.models.system_message_level import SystemMessageLevel
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,10 +27,10 @@ class LocalisedSystemMessageDTO(BaseModel):
     """
     LocalisedSystemMessageDTO
     """ # noqa: E501
-    key: Optional[SystemMessageCode] = None
+    key: Optional[StrictInt] = None
     message: Optional[StrictStr] = None
     message_values: Optional[List[LocalisedSystemMessageDtoValue]] = Field(default=None, alias="messageValues")
-    level: Optional[SystemMessageLevel] = None
+    level: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["key", "message", "messageValues", "level"]
 
     model_config = ConfigDict(
@@ -81,16 +79,6 @@ class LocalisedSystemMessageDTO(BaseModel):
                 if _item_message_values:
                     _items.append(_item_message_values.to_dict())
             _dict['messageValues'] = _items
-        # set to None if message (nullable) is None
-        # and model_fields_set contains the field
-        if self.message is None and "message" in self.model_fields_set:
-            _dict['message'] = None
-
-        # set to None if message_values (nullable) is None
-        # and model_fields_set contains the field
-        if self.message_values is None and "message_values" in self.model_fields_set:
-            _dict['messageValues'] = None
-
         return _dict
 
     @classmethod
@@ -109,5 +97,3 @@ class LocalisedSystemMessageDTO(BaseModel):
             "level": obj.get("level")
         })
         return _obj
-
-

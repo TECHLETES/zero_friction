@@ -41,6 +41,7 @@ class TestPaymentRetryParameterRequest(unittest.TestCase):
             )
         else:
             return PaymentRetryParameterRequest(
+                retry_action = 'retryonfixedday',
         )
         """
 

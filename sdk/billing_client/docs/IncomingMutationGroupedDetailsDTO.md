@@ -1,13 +1,12 @@
 # IncomingMutationGroupedDetailsDTO
 
-Contains aggregated details about a group of mutations.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | **int** | The number of mutations in the group. | [optional] 
-**amount** | **float** | The total amount of all mutations in the group. | [optional] 
+**count** | **int** |  | [optional]
+**amount** | **float** |  | [optional]
 
 ## Example
 
@@ -27,5 +26,3 @@ incoming_mutation_grouped_details_dto_dict = incoming_mutation_grouped_details_d
 incoming_mutation_grouped_details_dto_from_dict = IncomingMutationGroupedDetailsDTO.from_dict(incoming_mutation_grouped_details_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -5,16 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
-**subject_type** | **str** |  | [optional] 
-**subject_id** | **str** |  | [optional] 
-**viewed** | **bool** |  | [optional] 
-**visibilities** | **List[str]** |  | [optional] 
-**created_start_date_time** | **datetime** |  | [optional] 
-**created_end_date_time** | **datetime** |  | [optional] 
-**validity_date** | **datetime** |  | [optional] 
+**subject_type** | **str** |  | [optional]
+**subject_id** | **str** |  | [optional]
+**viewed** | **bool** |  | [optional]
+**visibilities** | **List[str]** |  | [optional]
+**created_start_date_time** | **datetime** |  | [optional]
+**created_end_date_time** | **datetime** |  | [optional]
+**validity_date** | **datetime** |  | [optional]
+**flex_search** | **str** |  | [optional]
+**include_only_ids** | **List[str]** |  | [optional]
+**exclude_ids** | **List[str]** |  | [optional]
+**page_size** | **int** |  | [optional]
 
 ## Example
 
@@ -34,5 +35,3 @@ get_entity_attachment_group_query_params_dict = get_entity_attachment_group_quer
 get_entity_attachment_group_query_params_from_dict = GetEntityAttachmentGroupQueryParams.from_dict(get_entity_attachment_group_query_params_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

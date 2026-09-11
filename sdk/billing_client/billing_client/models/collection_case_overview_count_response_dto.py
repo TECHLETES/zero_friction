@@ -24,14 +24,15 @@ from typing_extensions import Self
 
 class CollectionCaseOverviewCountResponseDTO(BaseModel):
     """
-    Represents a summary of collection case counts for different statuses.  This DTO provides an overview of collection cases based on their current state.
+    CollectionCaseOverviewCountResponseDTO
     """ # noqa: E501
-    all: Optional[StrictInt] = Field(default=None, description="The total number of collection cases.")
-    active: Optional[StrictInt] = Field(default=None, description="The number of currently active collection cases.")
-    closed: Optional[StrictInt] = Field(default=None, description="The number of closed collection cases.")
-    requires_manual_intervention: Optional[StrictInt] = Field(default=None, description="The number of collection cases that require manual intervention.", alias="requiresManualIntervention")
-    require_attention: Optional[StrictInt] = Field(default=None, description="The number of collection cases that require immediate attention.", alias="requireAttention")
-    __properties: ClassVar[List[str]] = ["all", "active", "closed", "requiresManualIntervention", "requireAttention"]
+    all: Optional[StrictInt] = None
+    active: Optional[StrictInt] = None
+    paused: Optional[StrictInt] = None
+    closed: Optional[StrictInt] = None
+    requires_manual_intervention: Optional[StrictInt] = Field(default=None, alias="requiresManualIntervention")
+    require_attention: Optional[StrictInt] = Field(default=None, alias="requireAttention")
+    __properties: ClassVar[List[str]] = ["all", "active", "paused", "closed", "requiresManualIntervention", "requireAttention"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,10 +87,9 @@ class CollectionCaseOverviewCountResponseDTO(BaseModel):
         _obj = cls.model_validate({
             "all": obj.get("all"),
             "active": obj.get("active"),
+            "paused": obj.get("paused"),
             "closed": obj.get("closed"),
             "requiresManualIntervention": obj.get("requiresManualIntervention"),
             "requireAttention": obj.get("requireAttention")
         })
         return _obj
-
-

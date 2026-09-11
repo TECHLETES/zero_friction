@@ -38,8 +38,8 @@ class TestUpdateCustomEntityPropertyDropdownOptionsRequest(unittest.TestCase):
                 custom_entity_property_type_id = '',
                 options = [
                     configuration_client.models.custom_entity_property_type_dropdown_option_dto.CustomEntityPropertyTypeDropdownOptionDTO(
-                        id = '', 
-                        option = '', 
+                        id = '',
+                        option = '',
                         deleted = True, )
                     ]
             )

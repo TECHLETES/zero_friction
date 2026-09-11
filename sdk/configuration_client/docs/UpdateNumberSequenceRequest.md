@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**last_value** | **int** |  | [optional] 
-**segments** | [**List[SegmentRequest]**](SegmentRequest.md) |  | [optional] 
-**format_string** | **str** |  | [optional] 
-**reference_entity** | [**NumberSequenceReferenceEntity**](NumberSequenceReferenceEntity.md) |  | [optional] 
+**last_value** | **int** |  |
+**segments** | [**List[SegmentRequest]**](SegmentRequest.md) |  | [optional]
+**format_string** | **str** |  |
+**reference_entity** | [**NumberSequenceReferenceEntity**](NumberSequenceReferenceEntity.md) |  |
 
 ## Example
 
@@ -28,5 +28,3 @@ update_number_sequence_request_dict = update_number_sequence_request_instance.to
 update_number_sequence_request_from_dict = UpdateNumberSequenceRequest.from_dict(update_number_sequence_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

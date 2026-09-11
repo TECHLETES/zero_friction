@@ -5,8 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mutation_date_time** | **datetime** |  | [optional] 
-**channel_templates** | [**List[ExternalChannelRequest]**](ExternalChannelRequest.md) |  | [optional] 
+**mutation_date_time** | **datetime** |  |
+**model_id** | **str** |  | [optional]
+**channel_templates** | [**List[ExternalChannelRequest]**](ExternalChannelRequest.md) |  | [optional]
+**use_beginning_of_meter** | **bool** |  | [optional]
 
 ## Example
 
@@ -26,5 +28,3 @@ update_meter_channels_request_dict = update_meter_channels_request_instance.to_d
 update_meter_channels_request_from_dict = UpdateMeterChannelsRequest.from_dict(update_meter_channels_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

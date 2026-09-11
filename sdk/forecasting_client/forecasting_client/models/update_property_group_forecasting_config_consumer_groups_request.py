@@ -26,7 +26,7 @@ class UpdatePropertyGroupForecastingConfigConsumerGroupsRequest(BaseModel):
     """
     UpdatePropertyGroupForecastingConfigConsumerGroupsRequest
     """ # noqa: E501
-    consumer_groups: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, alias="consumerGroups")
+    consumer_groups: Optional[Dict[str, StrictStr]] = Field(alias="consumerGroups")
     __properties: ClassVar[List[str]] = ["consumerGroups"]
 
     model_config = ConfigDict(
@@ -88,5 +88,3 @@ class UpdatePropertyGroupForecastingConfigConsumerGroupsRequest(BaseModel):
             "consumerGroups": obj.get("consumerGroups")
         })
         return _obj
-
-

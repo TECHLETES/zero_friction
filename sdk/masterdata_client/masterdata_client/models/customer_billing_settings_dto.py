@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from masterdata_client.models.customer_billing_settings_automatic_settlement_dto import CustomerBillingSettingsAutomaticSettlementDTO
 from typing import Optional, Set
@@ -25,10 +25,11 @@ from typing_extensions import Self
 
 class CustomerBillingSettingsDTO(BaseModel):
     """
-    Represents billing settings for a customer
+    CustomerBillingSettingsDTO
     """ # noqa: E501
-    automatic_settlement_setting: Optional[CustomerBillingSettingsAutomaticSettlementDTO] = Field(default=None, description="Automatic settlement settings for the customer", alias="automaticSettlementSetting")
-    __properties: ClassVar[List[str]] = ["automaticSettlementSetting"]
+    automatic_settlement_setting: Optional[CustomerBillingSettingsAutomaticSettlementDTO] = Field(default=None, alias="automaticSettlementSetting")
+    collection_day_of_month: Optional[StrictInt] = Field(default=None, alias="collectionDayOfMonth")
+    __properties: ClassVar[List[str]] = ["automaticSettlementSetting", "collectionDayOfMonth"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +78,11 @@ class CustomerBillingSettingsDTO(BaseModel):
         if self.automatic_settlement_setting is None and "automatic_settlement_setting" in self.model_fields_set:
             _dict['automaticSettlementSetting'] = None
 
+        # set to None if collection_day_of_month (nullable) is None
+        # and model_fields_set contains the field
+        if self.collection_day_of_month is None and "collection_day_of_month" in self.model_fields_set:
+            _dict['collectionDayOfMonth'] = None
+
         return _dict
 
     @classmethod
@@ -89,8 +95,7 @@ class CustomerBillingSettingsDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "automaticSettlementSetting": CustomerBillingSettingsAutomaticSettlementDTO.from_dict(obj["automaticSettlementSetting"]) if obj.get("automaticSettlementSetting") is not None else None
+            "automaticSettlementSetting": CustomerBillingSettingsAutomaticSettlementDTO.from_dict(obj["automaticSettlementSetting"]) if obj.get("automaticSettlementSetting") is not None else None,
+            "collectionDayOfMonth": obj.get("collectionDayOfMonth")
         })
         return _obj
-
-

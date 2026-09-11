@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**property_group_id** | **str** |  | [optional] 
-**product_id** | **str** |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
+**property_group_id** | **str** |  | [optional]
+**product_id** | **str** |  |
+**utility_type** | [**UtilityType**](UtilityType.md) |  |
 
 ## Example
 
@@ -27,5 +27,3 @@ get_service_location_matching_consumer_groups_request_dict = get_service_locatio
 get_service_location_matching_consumer_groups_request_from_dict = GetServiceLocationMatchingConsumerGroupsRequest.from_dict(get_service_location_matching_consumer_groups_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

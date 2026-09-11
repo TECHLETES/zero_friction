@@ -25,11 +25,11 @@ from typing_extensions import Self
 
 class BulkDeleteIncomingBankingTransactionRequest(BaseModel):
     """
-    Represents a bulk request to delete multiple incoming banking transactions.  This DTO allows for batch deletion of transactions based on query parameters and filters.
+    BulkDeleteIncomingBankingTransactionRequest
     """ # noqa: E501
-    only_validate: Optional[StrictBool] = Field(default=None, description="Indicates whether this is a validation-only request without actual deletion.", alias="onlyValidate")
-    var_query_params: Optional[GetIncomingBankingTransactionsQueryParams] = Field(default=None, description="Query parameters to filter the transactions to be deleted.", alias="queryParams")
-    quick_filter: Optional[StrictStr] = Field(default=None, description="A quick filter string to further refine the selection of transactions to be deleted.", alias="quickFilter")
+    only_validate: Optional[StrictBool] = Field(default=None, alias="onlyValidate")
+    var_query_params: Optional[GetIncomingBankingTransactionsQueryParams] = Field(default=None, alias="queryParams")
+    quick_filter: Optional[StrictStr] = Field(default=None, alias="quickFilter")
     __properties: ClassVar[List[str]] = ["onlyValidate", "queryParams", "quickFilter"]
 
     model_config = ConfigDict(
@@ -74,11 +74,6 @@ class BulkDeleteIncomingBankingTransactionRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
         # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
         if self.quick_filter is None and "quick_filter" in self.model_fields_set:
@@ -101,5 +96,3 @@ class BulkDeleteIncomingBankingTransactionRequest(BaseModel):
             "quickFilter": obj.get("quickFilter")
         })
         return _obj
-
-

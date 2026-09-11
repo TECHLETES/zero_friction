@@ -1,23 +1,22 @@
 # BillingRelationDTO
 
-Represents a billing relation between a customer and their billing configuration.  This DTO contains all the necessary information about how a customer should be billed,  including payment terms, advance details, invoice details, and contract information.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The unique identifier of the billing relation. | [optional] 
-**debtor** | [**DebtorDTO**](DebtorDTO.md) | Information about the debtor associated with this billing relation. | [optional] 
-**payment_terms_id** | **str** | The unique identifier of the payment terms. | [optional] 
-**payment_method** | [**PaymentMethod**](PaymentMethod.md) | The payment method to be used for this billing relation. | [optional] 
-**advance_details** | [**AdvanceDetailsDTO**](AdvanceDetailsDTO.md) | Details about advance payments for this billing relation. | [optional] 
-**invoice_details** | [**InvoiceDetailsDTO**](InvoiceDetailsDTO.md) | Details about invoice generation for this billing relation. | [optional] 
-**contract** | [**BillingContractDTO**](BillingContractDTO.md) | Information about the contract associated with this billing relation. | [optional] 
-**contract_start_date_time** | **datetime** | The start date and time of the contract. | [optional] 
-**contract_end_date_time** | **datetime** | The end date and time of the contract. | [optional] 
-**block_details** | [**BlockDetailsDTO**](BlockDetailsDTO.md) | Details about any blocking status for this billing relation. | [optional] 
-**expect_advances_to_be_imported_periodically** | **bool** | Indicates whether advances are expected to be imported periodically. | [optional] 
-**time_zone** | **str** | The time zone for this billing relation. | [optional] 
+**id** | **str** |  | [optional]
+**debtor** | [**DebtorDTO**](DebtorDTO.md) |  | [optional]
+**payment_terms_id** | **str** |  | [optional]
+**payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | [optional]
+**advance_details** | [**AdvanceDetailsDTO**](AdvanceDetailsDTO.md) |  | [optional]
+**invoice_details** | [**InvoiceDetailsDTO**](InvoiceDetailsDTO.md) |  | [optional]
+**contract** | [**BillingContractDTO**](BillingContractDTO.md) |  | [optional]
+**contract_start_date_time** | **datetime** |  | [optional]
+**contract_end_date_time** | **datetime** |  | [optional]
+**block_details** | [**BlockDetailsDTO**](BlockDetailsDTO.md) |  | [optional]
+**expect_advances_to_be_imported_periodically** | **bool** |  | [optional]
+**time_zone** | **str** |  | [optional]
 
 ## Example
 
@@ -37,5 +36,3 @@ billing_relation_dto_dict = billing_relation_dto_instance.to_dict()
 billing_relation_dto_from_dict = BillingRelationDTO.from_dict(billing_relation_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -71,16 +71,6 @@ class LocalisedErrorDTOMessageValue(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if data_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.data_type is None and "data_type" in self.model_fields_set:
-            _dict['dataType'] = None
-
-        # set to None if value (nullable) is None
-        # and model_fields_set contains the field
-        if self.value is None and "value" in self.model_fields_set:
-            _dict['value'] = None
-
         return _dict
 
     @classmethod
@@ -98,5 +88,3 @@ class LocalisedErrorDTOMessageValue(BaseModel):
             "capitalize": obj.get("capitalize")
         })
         return _obj
-
-

@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
-**is_built_in** | **bool** |  | [optional] 
-**settings** | **object** |  | [optional] 
+**name** | **str** |  |
+**description** | **str** |  |
+**is_built_in** | **bool** |  | [optional]
+**settings** | [**BaseDataImportSettingsDTO**](BaseDataImportSettingsDTO.md) |  |
 
 ## Example
 
@@ -28,5 +28,3 @@ update_data_import_file_format_request_dict = update_data_import_file_format_req
 update_data_import_file_format_request_from_dict = UpdateDataImportFileFormatRequest.from_dict(update_data_import_file_format_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

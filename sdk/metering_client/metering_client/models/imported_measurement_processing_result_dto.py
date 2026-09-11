@@ -21,6 +21,8 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from metering_client.models.direction import Direction
+from metering_client.models.measurement_reading_method import MeasurementReadingMethod
+from metering_client.models.measurement_reading_origin import MeasurementReadingOrigin
 from metering_client.models.metering_type import MeteringType
 from metering_client.models.unit_of_measure import UnitOfMeasure
 from metering_client.models.utility_type import UtilityType
@@ -39,13 +41,16 @@ class ImportedMeasurementProcessingResultDTO(BaseModel):
     direction: Optional[Direction] = None
     unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, alias="unitOfMeasure")
     reading_date_time: Optional[datetime] = Field(default=None, alias="readingDateTime")
+    measurement_start_date_time: Optional[datetime] = Field(default=None, alias="measurementStartDateTime")
     time_of_use: Optional[StrictStr] = Field(default=None, alias="timeOfUse")
     reading_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="readingValue")
     error_code: Optional[StrictStr] = Field(default=None, alias="errorCode")
     line_number: Optional[StrictInt] = Field(default=None, alias="lineNumber")
     processed_on: Optional[datetime] = Field(default=None, alias="processedOn")
     was_ignored: Optional[StrictBool] = Field(default=None, alias="wasIgnored")
-    __properties: ClassVar[List[str]] = ["meterSerialNumber", "externalChannelIdentifier", "externalReference", "meteringType", "utilityType", "direction", "unitOfMeasure", "readingDateTime", "timeOfUse", "readingValue", "errorCode", "lineNumber", "processedOn", "wasIgnored"]
+    reading_origin: Optional[MeasurementReadingOrigin] = Field(default=None, alias="readingOrigin")
+    reading_method: Optional[MeasurementReadingMethod] = Field(default=None, alias="readingMethod")
+    __properties: ClassVar[List[str]] = ["meterSerialNumber", "externalChannelIdentifier", "externalReference", "meteringType", "utilityType", "direction", "unitOfMeasure", "readingDateTime", "measurementStartDateTime", "timeOfUse", "readingValue", "errorCode", "lineNumber", "processedOn", "wasIgnored", "readingOrigin", "readingMethod"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -121,6 +126,11 @@ class ImportedMeasurementProcessingResultDTO(BaseModel):
         if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
             _dict['unitOfMeasure'] = None
 
+        # set to None if measurement_start_date_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.measurement_start_date_time is None and "measurement_start_date_time" in self.model_fields_set:
+            _dict['measurementStartDateTime'] = None
+
         # set to None if time_of_use (nullable) is None
         # and model_fields_set contains the field
         if self.time_of_use is None and "time_of_use" in self.model_fields_set:
@@ -151,6 +161,16 @@ class ImportedMeasurementProcessingResultDTO(BaseModel):
         if self.was_ignored is None and "was_ignored" in self.model_fields_set:
             _dict['wasIgnored'] = None
 
+        # set to None if reading_origin (nullable) is None
+        # and model_fields_set contains the field
+        if self.reading_origin is None and "reading_origin" in self.model_fields_set:
+            _dict['readingOrigin'] = None
+
+        # set to None if reading_method (nullable) is None
+        # and model_fields_set contains the field
+        if self.reading_method is None and "reading_method" in self.model_fields_set:
+            _dict['readingMethod'] = None
+
         return _dict
 
     @classmethod
@@ -171,13 +191,14 @@ class ImportedMeasurementProcessingResultDTO(BaseModel):
             "direction": obj.get("direction"),
             "unitOfMeasure": obj.get("unitOfMeasure"),
             "readingDateTime": obj.get("readingDateTime"),
+            "measurementStartDateTime": obj.get("measurementStartDateTime"),
             "timeOfUse": obj.get("timeOfUse"),
             "readingValue": obj.get("readingValue"),
             "errorCode": obj.get("errorCode"),
             "lineNumber": obj.get("lineNumber"),
             "processedOn": obj.get("processedOn"),
-            "wasIgnored": obj.get("wasIgnored")
+            "wasIgnored": obj.get("wasIgnored"),
+            "readingOrigin": obj.get("readingOrigin"),
+            "readingMethod": obj.get("readingMethod")
         })
         return _obj
-
-

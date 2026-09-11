@@ -13,83 +13,243 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
+import json
 import pprint
 import re  # noqa: F401
-import json
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+from typing import Optional
+from configuration_client.models.base_metering_validation_rule_dto_consumption_gap_validation_rule_dto import BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO
+from configuration_client.models.base_metering_validation_rule_dto_consumption_out_of_bounds_validation_rule_dto import BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO
+from configuration_client.models.base_metering_validation_rule_dto_consumption_positive_for_injection_validation_rule_dto import BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO
+from configuration_client.models.base_metering_validation_rule_dto_consumption_zero_too_long_validation_rule_dto import BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO
+from configuration_client.models.base_metering_validation_rule_dto_incorrect_meter_reset_measurement_value_validation_rule_dto import BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO
+from configuration_client.models.base_metering_validation_rule_dto_measurement_frequency_too_low_validation_rule_dto import BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO
+from configuration_client.models.base_metering_validation_rule_dto_missing_meter_reset_validation_rule_dto import BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO
+from configuration_client.models.base_metering_validation_rule_dto_negative_consumption_validation_rule_dto import BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO
+from configuration_client.models.base_metering_validation_rule_dto_overlapping_consumption_validation_rule_dto import BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO
+from configuration_client.models.base_metering_validation_rule_dto_uncontracted_consumption_validation_rule_dto import BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO
+from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
+from typing_extensions import Literal, Self
+from pydantic import Field
 
-from pydantic import BaseModel, ConfigDict, StrictBool
-from typing import Any, ClassVar, Dict, List, Optional
-from configuration_client.models.metering_issue_error import MeteringIssueError
-from typing import Optional, Set
-from typing_extensions import Self
+BASEMETERINGVALIDATIONRULEDTO_ANY_OF_SCHEMAS = ["BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO", "BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO", "BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO", "BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO", "BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO", "BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO", "BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO", "BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO", "BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO", "BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO"]
 
 class BaseMeteringValidationRuleDTO(BaseModel):
     """
     BaseMeteringValidationRuleDTO
-    """ # noqa: E501
-    error: Optional[MeteringIssueError] = None
-    enabled: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["error", "enabled"]
+    """
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    # data type: BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO
+    anyof_schema_1_validator: Optional[BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO] = None
+    # data type: BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO
+    anyof_schema_2_validator: Optional[BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO] = None
+    # data type: BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO
+    anyof_schema_3_validator: Optional[BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO] = None
+    # data type: BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO
+    anyof_schema_4_validator: Optional[BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO] = None
+    # data type: BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO
+    anyof_schema_5_validator: Optional[BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO] = None
+    # data type: BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO
+    anyof_schema_6_validator: Optional[BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO] = None
+    # data type: BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO
+    anyof_schema_7_validator: Optional[BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO] = None
+    # data type: BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO
+    anyof_schema_8_validator: Optional[BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO] = None
+    # data type: BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO
+    anyof_schema_9_validator: Optional[BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO] = None
+    # data type: BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO
+    anyof_schema_10_validator: Optional[BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO] = None
+    if TYPE_CHECKING:
+        actual_instance: Optional[Union[BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO, BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO, BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO, BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO, BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO, BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO, BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO, BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO, BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO, BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO]] = None
+    else:
+        actual_instance: Any = None
+    any_of_schemas: Set[str] = { "BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO", "BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO", "BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO", "BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO", "BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO", "BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO", "BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO", "BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO", "BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO", "BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO" }
 
+    model_config = {
+        "validate_assignment": True,
+        "protected_namespaces": (),
+    }
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+    discriminator_value_class_map: Dict[str, str] = {
+    }
+
+    def __init__(self, *args, **kwargs) -> None:
+        if args:
+            if len(args) > 1:
+                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+            if kwargs:
+                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+            super().__init__(actual_instance=args[0])
+        else:
+            super().__init__(**kwargs)
+
+    @field_validator('actual_instance')
+    def actual_instance_must_validate_anyof(cls, v):
+        instance = BaseMeteringValidationRuleDTO.model_construct()
+        error_messages = []
+        # validate data type: BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO
+        if not isinstance(v, BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO`")
+        else:
+            return v
+
+        # validate data type: BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO
+        if not isinstance(v, BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO`")
+        else:
+            return v
+
+        # validate data type: BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO
+        if not isinstance(v, BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO`")
+        else:
+            return v
+
+        # validate data type: BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO
+        if not isinstance(v, BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO`")
+        else:
+            return v
+
+        # validate data type: BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO
+        if not isinstance(v, BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO`")
+        else:
+            return v
+
+        # validate data type: BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO
+        if not isinstance(v, BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO`")
+        else:
+            return v
+
+        # validate data type: BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO
+        if not isinstance(v, BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO`")
+        else:
+            return v
+
+        # validate data type: BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO
+        if not isinstance(v, BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO`")
+        else:
+            return v
+
+        # validate data type: BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO
+        if not isinstance(v, BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO`")
+        else:
+            return v
+
+        # validate data type: BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO
+        if not isinstance(v, BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO`")
+        else:
+            return v
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when setting the actual_instance in BaseMeteringValidationRuleDTO with anyOf schemas: BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO, BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO, BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO, BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO, BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO, BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO, BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO, BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO, BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO, BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO. Details: " + ", ".join(error_messages))
+        else:
+            return v
+
+    @classmethod
+    def from_dict(cls, obj: Dict[str, Any]) -> Self:
+        return cls.from_json(json.dumps(obj))
+
+    @classmethod
+    def from_json(cls, json_str: str) -> Self:
+        """Returns the object represented by the json string"""
+        instance = cls.model_construct()
+        error_messages = []
+        # anyof_schema_1_validator: Optional[BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO] = None
+        try:
+            instance.actual_instance = BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_2_validator: Optional[BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO] = None
+        try:
+            instance.actual_instance = BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_3_validator: Optional[BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO] = None
+        try:
+            instance.actual_instance = BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_4_validator: Optional[BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO] = None
+        try:
+            instance.actual_instance = BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_5_validator: Optional[BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO] = None
+        try:
+            instance.actual_instance = BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_6_validator: Optional[BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO] = None
+        try:
+            instance.actual_instance = BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_7_validator: Optional[BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO] = None
+        try:
+            instance.actual_instance = BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_8_validator: Optional[BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO] = None
+        try:
+            instance.actual_instance = BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_9_validator: Optional[BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO] = None
+        try:
+            instance.actual_instance = BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_10_validator: Optional[BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO] = None
+        try:
+            instance.actual_instance = BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into BaseMeteringValidationRuleDTO with anyOf schemas: BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO, BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO, BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO, BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO, BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO, BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO, BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO, BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO, BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO, BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO. Details: " + ", ".join(error_messages))
+        else:
+            return instance
 
     def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
 
-    @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BaseMeteringValidationRuleDTO from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+            return self.actual_instance.to_json()
+        else:
+            return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
-        # set to None if error (nullable) is None
-        # and model_fields_set contains the field
-        if self.error is None and "error" in self.model_fields_set:
-            _dict['error'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BaseMeteringValidationRuleDTO from a dict"""
-        if obj is None:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], BaseMeteringValidationRuleDTOConsumptionGapValidationRuleDTO, BaseMeteringValidationRuleDTOConsumptionOutOfBoundsValidationRuleDTO, BaseMeteringValidationRuleDTOConsumptionPositiveForInjectionValidationRuleDTO, BaseMeteringValidationRuleDTOConsumptionZeroTooLongValidationRuleDTO, BaseMeteringValidationRuleDTOIncorrectMeterResetMeasurementValueValidationRuleDTO, BaseMeteringValidationRuleDTOMeasurementFrequencyTooLowValidationRuleDTO, BaseMeteringValidationRuleDTOMissingMeterResetValidationRuleDTO, BaseMeteringValidationRuleDTONegativeConsumptionValidationRuleDTO, BaseMeteringValidationRuleDTOOverlappingConsumptionValidationRuleDTO, BaseMeteringValidationRuleDTOUncontractedConsumptionValidationRuleDTO]]:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is None:
             return None
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+            return self.actual_instance.to_dict()
+        else:
+            return self.actual_instance
 
-        _obj = cls.model_validate({
-            "error": obj.get("error"),
-            "enabled": obj.get("enabled")
-        })
-        return _obj
-
-
+    def to_str(self) -> str:
+        """Returns the string representation of the actual instance"""
+        return pprint.pformat(self.model_dump())

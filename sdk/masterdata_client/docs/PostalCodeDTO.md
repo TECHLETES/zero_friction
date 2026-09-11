@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**postal_code** | **str** |  | [optional] 
-**city** | **str** |  | [optional] 
+**postal_code** | **str** |  | [optional]
+**city** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ postal_code_dto_dict = postal_code_dto_instance.to_dict()
 postal_code_dto_from_dict = PostalCodeDTO.from_dict(postal_code_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

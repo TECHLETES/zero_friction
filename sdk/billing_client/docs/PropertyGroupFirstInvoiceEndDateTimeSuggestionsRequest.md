@@ -1,14 +1,13 @@
 # PropertyGroupFirstInvoiceEndDateTimeSuggestionsRequest
 
-Represents a request to get suggested end dates for the first invoice of a property group.  This DTO is used to determine appropriate billing period end dates based on service locations and invoice frequency.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_location_ids** | **List[str]** | List of service location IDs for which to generate invoice end date suggestions. | [optional] 
-**invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) | The frequency at which invoices will be generated. | [optional] 
-**invoice_start_date_time_utc** | **datetime** | The start date and time (in UTC) from which the first invoice period will begin. | [optional] 
+**service_location_ids** | **List[str]** |  |
+**invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) |  | [optional]
+**invoice_start_date_time_utc** | **datetime** |  | [optional]
 
 ## Example
 
@@ -28,5 +27,3 @@ property_group_first_invoice_end_date_time_suggestions_request_dict = property_g
 property_group_first_invoice_end_date_time_suggestions_request_from_dict = PropertyGroupFirstInvoiceEndDateTimeSuggestionsRequest.from_dict(property_group_first_invoice_end_date_time_suggestions_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

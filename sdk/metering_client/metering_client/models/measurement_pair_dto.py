@@ -33,8 +33,8 @@ class MeasurementPairDTO(BaseModel):
     end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
     previous_measurements: Optional[List[MeasurementDTO]] = Field(default=None, alias="previousMeasurements")
     next_measurements: Optional[List[MeasurementDTO]] = Field(default=None, alias="nextMeasurements")
-    previous_measurement: Optional[MeasurementDTO] = Field(default=None, description="Represents a measurement reading from a meter with associated metadata", alias="previousMeasurement")
-    next_measurement: Optional[MeasurementDTO] = Field(default=None, description="Represents a measurement reading from a meter with associated metadata", alias="nextMeasurement")
+    previous_measurement: Optional[MeasurementDTO] = Field(default=None, alias="previousMeasurement")
+    next_measurement: Optional[MeasurementDTO] = Field(default=None, alias="nextMeasurement")
     __properties: ClassVar[List[str]] = ["externalChannelId", "startDateTime", "endDateTime", "previousMeasurements", "nextMeasurements", "previousMeasurement", "nextMeasurement"]
 
     model_config = ConfigDict(
@@ -142,5 +142,3 @@ class MeasurementPairDTO(BaseModel):
             "nextMeasurement": MeasurementDTO.from_dict(obj["nextMeasurement"]) if obj.get("nextMeasurement") is not None else None
         })
         return _obj
-
-

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **str** |  | [optional] 
-**resolution_value** | **object** |  | [optional] 
+**message** | **str** |  | [optional]
+**resolution_value** | [**BaseMeteringIssueResolutionValueDTO**](BaseMeteringIssueResolutionValueDTO.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ resolve_metering_issue_request_dict = resolve_metering_issue_request_instance.to
 resolve_metering_issue_request_from_dict = ResolveMeteringIssueRequest.from_dict(resolve_metering_issue_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

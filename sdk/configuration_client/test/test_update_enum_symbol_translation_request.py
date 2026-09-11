@@ -41,6 +41,9 @@ class TestUpdateEnumSymbolTranslationRequest(unittest.TestCase):
             )
         else:
             return UpdateEnumSymbolTranslationRequest(
+                translations = {
+                    'key' : ''
+                    },
         )
         """
 

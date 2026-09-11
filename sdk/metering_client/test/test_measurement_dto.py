@@ -35,20 +35,11 @@ class TestMeasurementDTO(unittest.TestCase):
         model = MeasurementDTO()
         if include_optional:
             return MeasurementDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 external_channel_identifier = '',
                 meter_serial_number = '',
                 operation_id = '',
                 value = 1.337,
+                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 deleted = True,
                 data_frequency = 'pt1m',
@@ -59,11 +50,27 @@ class TestMeasurementDTO(unittest.TestCase):
                 unit_of_measure = 'none',
                 time_of_use = '',
                 issue = metering_client.models.metering_issue_reference.MeteringIssueReference(
-                    metering_issue_id = '', 
-                    error = null, 
-                    status = null, 
+                    metering_issue_id = '',
+                    error = 'consumptionnegative',
+                    status = 'unresolved',
                     noticed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
-                has_issue = True
+                has_issue = True,
+                reading_origin = 'device',
+                reading_method = 'automatic',
+                origin_details = metering_client.models.measurement_origin_details_dto_metering_import_job_origin_details_dto.MeasurementOriginDetailsDTOMeteringImportJobOriginDetailsDTO(
+                    type = 'MeteringImportJob',
+                    import_job_id = '',
+                    data_provider_id = '',
+                    data_provider_name = '',
+                    display_name = '', ),
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return MeasurementDTO(

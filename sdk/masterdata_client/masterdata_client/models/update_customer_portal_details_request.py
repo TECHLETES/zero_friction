@@ -111,5 +111,3 @@ class UpdateCustomerPortalDetailsRequest(BaseModel):
             "sendCommunication": obj.get("sendCommunication")
         })
         return _obj
-
-

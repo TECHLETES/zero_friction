@@ -35,24 +35,23 @@ class TestServiceDTO(unittest.TestCase):
         model = ServiceDTO()
         if include_optional:
             return ServiceDTO(
-                external_identifier = '',
                 utility_type = 'none',
                 status_history = [
                     masterdata_client.models.service_status_history_dto.ServiceStatusHistoryDTO(
-                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        service_status = null, )
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        service_status = 'supplied', )
                     ],
                 contracts = [
                     masterdata_client.models.service_contract_dto.ServiceContractDTO(
-                        contract_id = '', 
-                        contract_number = '', 
-                        contractor_id = '', 
-                        contractor_acount_number = '', 
-                        contractor_display_name = '', 
-                        supply_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        supply_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        current_contract_status = null, )
+                        contract_id = '',
+                        contract_number = '',
+                        contractor_id = '',
+                        contractor_acount_number = '',
+                        contractor_display_name = '',
+                        supply_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        supply_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                        current_contract_status = 'draft', )
                     ]
             )
         else:

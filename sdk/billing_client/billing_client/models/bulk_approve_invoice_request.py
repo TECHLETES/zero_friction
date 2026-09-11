@@ -26,13 +26,13 @@ from typing_extensions import Self
 
 class BulkApproveInvoiceRequest(BaseModel):
     """
-    Represents a bulk request to approve multiple invoices.  This DTO allows approving multiple invoices in a single operation.
+    BulkApproveInvoiceRequest
     """ # noqa: E501
-    invoice_date: Optional[datetime] = Field(default=None, description="The date when the invoice should be approved.", alias="invoiceDate")
-    only_validate: Optional[StrictBool] = Field(default=None, description="Indicates if only validation should be performed without actually approving the invoices.  When true, the system will only validate if the invoices can be approved without making any changes.", alias="onlyValidate")
-    var_query_params: Optional[GetInvoicesQueryParams] = Field(default=None, description="Query parameters to filter the invoices to be approved.", alias="queryParams")
-    quick_filter: Optional[StrictStr] = Field(default=None, description="Quick filter string to filter invoices without using complex query parameters.", alias="quickFilter")
-    __properties: ClassVar[List[str]] = ["invoiceDate", "onlyValidate", "queryParams", "quickFilter"]
+    only_validate: Optional[StrictBool] = Field(default=None, alias="onlyValidate")
+    var_query_params: Optional[GetInvoicesQueryParams] = Field(default=None, alias="queryParams")
+    quick_filter: Optional[StrictStr] = Field(default=None, alias="quickFilter")
+    invoice_date: Optional[datetime] = Field(default=None, alias="invoiceDate")
+    __properties: ClassVar[List[str]] = ["onlyValidate", "queryParams", "quickFilter", "invoiceDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,11 +76,6 @@ class BulkApproveInvoiceRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
         # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
         if self.quick_filter is None and "quick_filter" in self.model_fields_set:
@@ -98,11 +93,9 @@ class BulkApproveInvoiceRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "invoiceDate": obj.get("invoiceDate"),
             "onlyValidate": obj.get("onlyValidate"),
             "queryParams": GetInvoicesQueryParams.from_dict(obj["queryParams"]) if obj.get("queryParams") is not None else None,
-            "quickFilter": obj.get("quickFilter")
+            "quickFilter": obj.get("quickFilter"),
+            "invoiceDate": obj.get("invoiceDate")
         })
         return _obj
-
-

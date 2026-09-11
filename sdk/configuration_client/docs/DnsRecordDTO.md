@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**meaning** | [**DnsRecordMeaning**](DnsRecordMeaning.md) |  | [optional] 
-**type** | **str** |  | [optional] 
-**key** | **str** |  | [optional] 
-**value** | **str** |  | [optional] 
-**status** | [**DnsRecordStatus**](DnsRecordStatus.md) |  | [optional] 
-**errors** | **List[str]** |  | [optional] 
+**meaning** | [**DnsRecordMeaning**](DnsRecordMeaning.md) |  | [optional]
+**type** | **str** |  | [optional]
+**key** | **str** |  | [optional]
+**value** | **str** |  | [optional]
+**status** | [**DnsRecordStatus**](DnsRecordStatus.md) |  | [optional]
+**errors** | **List[str]** |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ dns_record_dto_dict = dns_record_dto_instance.to_dict()
 dns_record_dto_from_dict = DnsRecordDTO.from_dict(dns_record_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

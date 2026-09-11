@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
-**template_entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
-**template_entity_sub_type** | **str** |  | [optional] 
-**scenario_translations** | [**List[ScenarioTranslationDTO]**](ScenarioTranslationDTO.md) |  | [optional] 
+**id** | **str** |  | [optional]
+**template_entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional]
+**template_entity_sub_type** | **str** |  | [optional]
+**scenario_translations** | [**List[ScenarioTranslationDTO]**](ScenarioTranslationDTO.md) |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ scenario_translation_list_dto_dict = scenario_translation_list_dto_instance.to_d
 scenario_translation_list_dto_from_dict = ScenarioTranslationListDTO.from_dict(scenario_translation_list_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

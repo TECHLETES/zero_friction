@@ -25,10 +25,10 @@ from typing_extensions import Self
 
 class RequiredQuantityContractGroupedDTO(BaseModel):
     """
-    Represents required quantities grouped by contract
+    RequiredQuantityContractGroupedDTO
     """ # noqa: E501
-    billing_item_id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the billing item", alias="billingItemId")
-    required_quantities: Optional[List[RequiredQuantityDTO]] = Field(default=None, description="List of required quantities for this contract", alias="requiredQuantities")
+    billing_item_id: Optional[StrictStr] = Field(default=None, alias="billingItemId")
+    required_quantities: Optional[List[RequiredQuantityDTO]] = Field(default=None, alias="requiredQuantities")
     __properties: ClassVar[List[str]] = ["billingItemId", "requiredQuantities"]
 
     model_config = ConfigDict(
@@ -103,5 +103,3 @@ class RequiredQuantityContractGroupedDTO(BaseModel):
             "requiredQuantities": [RequiredQuantityDTO.from_dict(_item) for _item in obj["requiredQuantities"]] if obj.get("requiredQuantities") is not None else None
         })
         return _obj
-
-

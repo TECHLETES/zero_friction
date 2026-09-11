@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** |  | [optional] 
-**visible_for_customer** | **int** |  | [optional] 
+**all** | **int** |  | [optional]
+**visible_for_customer** | **int** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ entity_attachment_overview_count_dto_dict = entity_attachment_overview_count_dto
 entity_attachment_overview_count_dto_from_dict = EntityAttachmentOverviewCountDTO.from_dict(entity_attachment_overview_count_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

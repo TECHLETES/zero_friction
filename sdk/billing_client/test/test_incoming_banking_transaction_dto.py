@@ -35,61 +35,60 @@ class TestIncomingBankingTransactionDTO(unittest.TestCase):
         model = IncomingBankingTransactionDTO()
         if include_optional:
             return IncomingBankingTransactionDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 identification = '',
                 sequence_num = 56,
                 status = 'created',
+                provider_type = 'twikey',
                 file_creation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 opening_balance = 1.337,
                 closing_balance = 1.337,
                 opening_balance_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 closing_balance_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 company_bank_account = billing_client.models.incoming_banking_transaction_company_bank_account_dto.IncomingBankingTransactionCompanyBankAccountDTO(
-                    id = '', 
-                    iban = '', 
-                    bic = '', 
-                    account_holder = '', 
+                    id = '',
+                    iban = '',
+                    bic = '',
+                    account_holder = '',
                     sepa_creditor_id = '', ),
                 file_name = '',
                 internal_file_path = '',
                 entity_counts = billing_client.models.incoming_banking_transaction_entity_counts_dto.IncomingBankingTransactionEntityCountsDTO(
-                    number_of_bank_transfers = 56, 
-                    number_of_reversals = 56, 
-                    number_of_confirmations = 56, 
-                    processed_bank_transfers = 56, 
-                    processed_reversals = 56, 
-                    processed_confirmations = 56, 
-                    failed_bank_transfers = 56, 
-                    failed_reversals = 56, 
+                    number_of_bank_transfers = 56,
+                    number_of_reversals = 56,
+                    number_of_confirmations = 56,
+                    processed_bank_transfers = 56,
+                    processed_reversals = 56,
+                    processed_confirmations = 56,
+                    failed_bank_transfers = 56,
+                    failed_reversals = 56,
                     failed_confirmations = 56, ),
                 locked = True,
                 errors = [
                     billing_client.models.localised_error_dto.LocalisedErrorDTO(
-                        key = null, 
-                        correlation_id = '', 
-                        message = '', 
+                        key = 56,
+                        correlation_id = '',
+                        message = '',
                         message_values = [
                             billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                data_type = null, 
-                                value = '', 
+                                data_type = 'text',
+                                value = '',
                                 capitalize = True, )
                             ], )
                     ],
                 automatically_created = True,
                 iban_confirmations = [
                     billing_client.models.incoming_banking_transaction_iban_confirmation_dto.IncomingBankingTransactionIbanConfirmationDTO(
-                        customer_id = '', 
+                        customer_id = '',
                         iban = '', )
-                    ]
+                    ],
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return IncomingBankingTransactionDTO(

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,14 +27,13 @@ class GetBillingCompletenessQueryParams(BaseModel):
     """
     GetBillingCompletenessQueryParams
     """ # noqa: E501
-    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
-    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
-    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
     billing_relation_id: Optional[StrictStr] = Field(default=None, alias="billingRelationId")
     customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
     property_group_ids: Optional[List[StrictStr]] = Field(default=None, alias="propertyGroupIds")
     contract_id: Optional[StrictStr] = Field(default=None, alias="contractId")
     invoice_type: Optional[StrictStr] = Field(default=None, alias="invoiceType")
+    billing_method: Optional[StrictStr] = Field(default=None, alias="billingMethod")
+    statement_type: Optional[StrictStr] = Field(default=None, alias="statementType")
     status: Optional[StrictStr] = None
     only_open: Optional[StrictBool] = Field(default=None, alias="onlyOpen")
     skip_blocked: Optional[StrictBool] = Field(default=None, alias="skipBlocked")
@@ -42,7 +41,12 @@ class GetBillingCompletenessQueryParams(BaseModel):
     period_end_date_time: Optional[datetime] = Field(default=None, alias="periodEndDateTime")
     invoicing_checkpoint_start_date_time: Optional[datetime] = Field(default=None, alias="invoicingCheckpointStartDateTime")
     invoicing_checkpoint_end_date_time: Optional[datetime] = Field(default=None, alias="invoicingCheckpointEndDateTime")
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "billingRelationId", "customerId", "propertyGroupIds", "contractId", "invoiceType", "status", "onlyOpen", "skipBlocked", "periodStartDateTime", "periodEndDateTime", "invoicingCheckpointStartDateTime", "invoicingCheckpointEndDateTime"]
+    customer_type: Optional[StrictStr] = Field(default=None, alias="customerType")
+    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
+    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
+    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["billingRelationId", "customerId", "propertyGroupIds", "contractId", "invoiceType", "billingMethod", "statementType", "status", "onlyOpen", "skipBlocked", "periodStartDateTime", "periodEndDateTime", "invoicingCheckpointStartDateTime", "invoicingCheckpointEndDateTime", "customerType", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,51 +87,6 @@ class GetBillingCompletenessQueryParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if flex_search (nullable) is None
-        # and model_fields_set contains the field
-        if self.flex_search is None and "flex_search" in self.model_fields_set:
-            _dict['flexSearch'] = None
-
-        # set to None if include_only_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
-        # set to None if billing_relation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.billing_relation_id is None and "billing_relation_id" in self.model_fields_set:
-            _dict['billingRelationId'] = None
-
-        # set to None if customer_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_id is None and "customer_id" in self.model_fields_set:
-            _dict['customerId'] = None
-
-        # set to None if property_group_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.property_group_ids is None and "property_group_ids" in self.model_fields_set:
-            _dict['propertyGroupIds'] = None
-
-        # set to None if contract_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.contract_id is None and "contract_id" in self.model_fields_set:
-            _dict['contractId'] = None
-
-        # set to None if invoice_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_type is None and "invoice_type" in self.model_fields_set:
-            _dict['invoiceType'] = None
-
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
-
         # set to None if period_start_date_time (nullable) is None
         # and model_fields_set contains the field
         if self.period_start_date_time is None and "period_start_date_time" in self.model_fields_set:
@@ -148,6 +107,16 @@ class GetBillingCompletenessQueryParams(BaseModel):
         if self.invoicing_checkpoint_end_date_time is None and "invoicing_checkpoint_end_date_time" in self.model_fields_set:
             _dict['invoicingCheckpointEndDateTime'] = None
 
+        # set to None if flex_search (nullable) is None
+        # and model_fields_set contains the field
+        if self.flex_search is None and "flex_search" in self.model_fields_set:
+            _dict['flexSearch'] = None
+
+        # set to None if page_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
+
         return _dict
 
     @classmethod
@@ -160,22 +129,24 @@ class GetBillingCompletenessQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
             "billingRelationId": obj.get("billingRelationId"),
             "customerId": obj.get("customerId"),
             "propertyGroupIds": obj.get("propertyGroupIds"),
             "contractId": obj.get("contractId"),
             "invoiceType": obj.get("invoiceType"),
+            "billingMethod": obj.get("billingMethod"),
+            "statementType": obj.get("statementType"),
             "status": obj.get("status"),
             "onlyOpen": obj.get("onlyOpen"),
             "skipBlocked": obj.get("skipBlocked"),
             "periodStartDateTime": obj.get("periodStartDateTime"),
             "periodEndDateTime": obj.get("periodEndDateTime"),
             "invoicingCheckpointStartDateTime": obj.get("invoicingCheckpointStartDateTime"),
-            "invoicingCheckpointEndDateTime": obj.get("invoicingCheckpointEndDateTime")
+            "invoicingCheckpointEndDateTime": obj.get("invoicingCheckpointEndDateTime"),
+            "customerType": obj.get("customerType"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
-
-

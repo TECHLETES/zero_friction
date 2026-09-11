@@ -88,5 +88,3 @@ class TaxRateDTO(BaseModel):
             "rate": obj.get("rate")
         })
         return _obj
-
-

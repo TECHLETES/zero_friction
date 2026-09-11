@@ -37,10 +37,14 @@ class TestCreateTaxCodeRateRequest(unittest.TestCase):
             return CreateTaxCodeRateRequest(
                 rate = 1.337,
                 start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                date_range = configuration_client.models.date_range.dateRange()
             )
         else:
             return CreateTaxCodeRateRequest(
+                rate = 1.337,
+                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

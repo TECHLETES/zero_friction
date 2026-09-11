@@ -1,5 +1,6 @@
 # CollectionStepStatus
 
+Possible values: 'pending', 'waitingformanualsend', 'closed', 'inprogress', 'skipped', 'generatingdocuments', 'failed', 'printing'
 
 ## Enum
 
@@ -20,5 +21,3 @@
 * `PRINTING` (value: `'printing'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_locations** | **List[str]** | Ids of the service locations that need to be added to or removed from the location group | [optional] 
-**reference_date** | **date** | Reference date for keeping invoices and transactions at the current location group  Only applicable when adding a location to the current location group that is already in another location group | [optional] 
+**service_locations** | **List[str]** |  |
+**reference_date** | **date** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ property_group_service_locations_request_dict = property_group_service_locations
 property_group_service_locations_request_from_dict = PropertyGroupServiceLocationsRequest.from_dict(property_group_service_locations_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

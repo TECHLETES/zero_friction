@@ -5,14 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**previous_contract_details** | [**MoveRequestContractDetailsDTO**](MoveRequestContractDetailsDTO.md) |  | [optional] 
-**current_contract_details** | [**MoveRequestContractDetailsDTO**](MoveRequestContractDetailsDTO.md) |  | [optional] 
-**owner** | [**ManagementRelationDTO**](ManagementRelationDTO.md) |  | [optional] 
-**address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
-**services** | [**List[ServiceLocationServiceDetailsDTO]**](ServiceLocationServiceDetailsDTO.md) |  | [optional] 
-**linked** | **bool** |  | [optional] 
-**internal_id** | **str** |  | [optional] 
-**errors** | [**List[LocalisedErrorDTO]**](LocalisedErrorDTO.md) |  | [optional] 
+**previous_contract_details** | [**MoveRequestContractDetailsDTO**](MoveRequestContractDetailsDTO.md) |  | [optional]
+**current_contract_details** | [**MoveRequestContractDetailsDTO**](MoveRequestContractDetailsDTO.md) |  | [optional]
+**owner** | [**ManagementRelationDTO**](ManagementRelationDTO.md) |  | [optional]
+**address** | [**AddressDTO**](AddressDTO.md) |  | [optional]
+**services** | [**List[ServiceLocationServiceDetailsDTO]**](ServiceLocationServiceDetailsDTO.md) |  | [optional]
+**linked** | **bool** |  | [optional]
+**internal_id** | **str** |  | [optional]
+**errors** | [**List[LocalisedErrorDTO]**](LocalisedErrorDTO.md) |  | [optional]
 
 ## Example
 
@@ -32,5 +32,3 @@ service_location_details_dto_dict = service_location_details_dto_instance.to_dic
 service_location_details_dto_from_dict = ServiceLocationDetailsDTO.from_dict(service_location_details_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -28,30 +28,31 @@ from typing_extensions import Self
 
 class InvoiceLineDTO(BaseModel):
     """
-    Represents a line item on an invoice
+    InvoiceLineDTO
     """ # noqa: E501
-    billing_item_id: Optional[StrictStr] = Field(default=None, description="Identifier of the billing item", alias="billingItemId")
-    billing_tariff_id: Optional[StrictStr] = Field(default=None, description="Identifier of the billing tariff", alias="billingTariffId")
-    description: Optional[StrictStr] = Field(default=None, description="Description of the line item")
-    amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount excluding VAT", alias="amountExclVAT")
-    amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Amount including VAT", alias="amountInclVAT")
-    vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="VAT amount")
-    quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Quantity of items")
-    raw_quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Raw quantity before any adjustments", alias="rawQuantity")
-    unit_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Price per unit", alias="unitPrice")
-    start_date_time: Optional[datetime] = Field(default=None, description="Start date and time of the line item", alias="startDateTime")
-    end_date_time: Optional[datetime] = Field(default=None, description="End date and time of the line item", alias="endDateTime")
-    tax_code_id: Optional[StrictStr] = Field(default=None, description="Identifier of the tax code", alias="taxCodeId")
-    tax_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Tax rate applied", alias="taxRate")
-    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, description="Unit of measure for the quantity", alias="unitOfMeasure")
-    utility_type: Optional[UtilityType] = Field(default=None, description="Type of utility being billed", alias="utilityType")
-    line_type: Optional[InvoiceLineType] = Field(default=None, description="Type of the line item", alias="lineType")
-    consumption_based: Optional[StrictBool] = Field(default=None, description="Indicates if the line item is based on consumption", alias="consumptionBased")
-    service_location_id: Optional[StrictStr] = Field(default=None, description="Identifier of the service location", alias="serviceLocationId")
-    original_invoice_id: Optional[StrictStr] = Field(default=None, description="Identifier of the original invoice", alias="originalInvoiceId")
-    sort_order: Optional[StrictInt] = Field(default=None, description="Sort order of the line item", alias="sortOrder")
-    id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the line item")
-    __properties: ClassVar[List[str]] = ["billingItemId", "billingTariffId", "description", "amountExclVAT", "amountInclVAT", "vat", "quantity", "rawQuantity", "unitPrice", "startDateTime", "endDateTime", "taxCodeId", "taxRate", "unitOfMeasure", "utilityType", "lineType", "consumptionBased", "serviceLocationId", "originalInvoiceId", "sortOrder", "id"]
+    billing_item_id: Optional[StrictStr] = Field(default=None, alias="billingItemId")
+    billing_tariff_id: Optional[StrictStr] = Field(default=None, alias="billingTariffId")
+    time_of_use: Optional[StrictStr] = Field(default=None, alias="timeOfUse")
+    description: Optional[StrictStr] = None
+    amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="amountExclVAT")
+    amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="amountInclVAT")
+    vat: Optional[Union[StrictFloat, StrictInt]] = None
+    quantity: Optional[Union[StrictFloat, StrictInt]] = None
+    raw_quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="rawQuantity")
+    unit_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="unitPrice")
+    start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
+    end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
+    tax_code_id: Optional[StrictStr] = Field(default=None, alias="taxCodeId")
+    tax_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="taxRate")
+    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, alias="unitOfMeasure")
+    utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
+    line_type: Optional[InvoiceLineType] = Field(default=None, alias="lineType")
+    consumption_based: Optional[StrictBool] = Field(default=None, alias="consumptionBased")
+    service_location_id: Optional[StrictStr] = Field(default=None, alias="serviceLocationId")
+    original_invoice_id: Optional[StrictStr] = Field(default=None, alias="originalInvoiceId")
+    sort_order: Optional[StrictInt] = Field(default=None, alias="sortOrder")
+    id: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["billingItemId", "billingTariffId", "timeOfUse", "description", "amountExclVAT", "amountInclVAT", "vat", "quantity", "rawQuantity", "unitPrice", "startDateTime", "endDateTime", "taxCodeId", "taxRate", "unitOfMeasure", "utilityType", "lineType", "consumptionBased", "serviceLocationId", "originalInvoiceId", "sortOrder", "id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,6 +103,11 @@ class InvoiceLineDTO(BaseModel):
         if self.billing_tariff_id is None and "billing_tariff_id" in self.model_fields_set:
             _dict['billingTariffId'] = None
 
+        # set to None if time_of_use (nullable) is None
+        # and model_fields_set contains the field
+        if self.time_of_use is None and "time_of_use" in self.model_fields_set:
+            _dict['timeOfUse'] = None
+
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -116,21 +122,6 @@ class InvoiceLineDTO(BaseModel):
         # and model_fields_set contains the field
         if self.tax_code_id is None and "tax_code_id" in self.model_fields_set:
             _dict['taxCodeId'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
-
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if line_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.line_type is None and "line_type" in self.model_fields_set:
-            _dict['lineType'] = None
 
         # set to None if service_location_id (nullable) is None
         # and model_fields_set contains the field
@@ -166,6 +157,7 @@ class InvoiceLineDTO(BaseModel):
         _obj = cls.model_validate({
             "billingItemId": obj.get("billingItemId"),
             "billingTariffId": obj.get("billingTariffId"),
+            "timeOfUse": obj.get("timeOfUse"),
             "description": obj.get("description"),
             "amountExclVAT": obj.get("amountExclVAT"),
             "amountInclVAT": obj.get("amountInclVAT"),
@@ -187,5 +179,3 @@ class InvoiceLineDTO(BaseModel):
             "id": obj.get("id")
         })
         return _obj
-
-

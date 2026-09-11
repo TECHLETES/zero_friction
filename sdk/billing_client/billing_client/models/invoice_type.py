@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class InvoiceType(str, Enum):
     """
-    InvoiceType
+    Possible values: 'advance', 'invoice', 'endnote', 'creditnote', 'incidentalnote', 'correctionnote'
     """
 
     """
@@ -37,5 +37,3 @@ class InvoiceType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of InvoiceType from a JSON string"""
         return cls(json.loads(json_str))
-
-

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class SyntheticLoadProfileOrigin(str, Enum):
     """
-    SyntheticLoadProfileOrigin
+    Possible values: 'manual', 'systemgenerated'
     """
 
     """
@@ -33,5 +33,3 @@ class SyntheticLoadProfileOrigin(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SyntheticLoadProfileOrigin from a JSON string"""
         return cls(json.loads(json_str))
-
-

@@ -1,14 +1,13 @@
 # UpdateOutgoingMutationEntryRequest
 
-Represents a request to update an existing outgoing mutation entry.  This DTO is used to modify the details of a specific entry within an outgoing banking transaction.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **float** | The new amount for the mutation entry. | [optional] 
-**payment_reference** | **str** | The new payment reference text for the mutation entry. | [optional] 
-**iban** | **str** | The new IBAN (International Bank Account Number) for the mutation entry.  This field is optional and can be null. | [optional] 
+**amount** | **float** |  |
+**payment_reference** | **str** |  |
+**iban** | **str** |  | [optional]
 
 ## Example
 
@@ -28,5 +27,3 @@ update_outgoing_mutation_entry_request_dict = update_outgoing_mutation_entry_req
 update_outgoing_mutation_entry_request_from_dict = UpdateOutgoingMutationEntryRequest.from_dict(update_outgoing_mutation_entry_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
-**email_template** | [**ContractTerminationEmailTemplateRequest**](ContractTerminationEmailTemplateRequest.md) |  | [optional] 
+**email_template** | [**ContractTerminationEmailTemplateRequest**](ContractTerminationEmailTemplateRequest.md) |  |
+**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  |
+**auto_fallback_to_postal** | **bool** |  | [optional]
 
 ## Example
 
@@ -26,5 +27,3 @@ change_contract_termination_scenario_request_dict = change_contract_termination_
 change_contract_termination_scenario_request_from_dict = ChangeContractTerminationScenarioRequest.from_dict(change_contract_termination_scenario_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

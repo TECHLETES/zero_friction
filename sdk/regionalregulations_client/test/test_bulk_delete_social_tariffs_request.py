@@ -37,13 +37,14 @@ class TestBulkDeleteSocialTariffsRequest(unittest.TestCase):
             return BulkDeleteSocialTariffsRequest(
                 only_validate = True,
                 var_query_params = regionalregulations_client.models.read_exports_query_params.ReadExportsQueryParams(
-                    flex_search = '', 
+                    flex_search = '',
                     include_only_ids = [
                         ''
-                        ], 
+                        ],
                     exclude_ids = [
                         ''
-                        ], ),
+                        ],
+                    page_size = 56, ),
                 quick_filter = ''
             )
         else:

@@ -1,12 +1,11 @@
 # ChangeNoteToCustomerRequest
 
-Represents a request to change the note to customer on an invoice.  This DTO is used to update the customer-facing notes or comments on an invoice.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**note_to_customer** | **str** | The new note or comment to be displayed to the customer on the invoice. | [optional] 
+**note_to_customer** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +25,3 @@ change_note_to_customer_request_dict = change_note_to_customer_request_instance.
 change_note_to_customer_request_from_dict = ChangeNoteToCustomerRequest.from_dict(change_note_to_customer_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

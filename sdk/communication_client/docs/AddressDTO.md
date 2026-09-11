@@ -5,17 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**street_name** | **str** |  | [optional] 
-**street_number** | **str** |  | [optional] 
-**street_number_addition** | **str** |  | [optional] 
-**postal_code** | **str** |  | [optional] 
-**building_name** | **str** |  | [optional] 
-**locality** | **str** |  | [optional] 
-**city** | **str** |  | [optional] 
-**country** | [**CountryCode**](CountryCode.md) |  | [optional] 
-**localized_display** | **str** |  | [optional] 
-**line_one** | **str** |  | [optional] 
-**line_two** | **str** |  | [optional] 
+**street_name** | **str** |  | [optional]
+**street_number** | **str** |  | [optional]
+**street_number_addition** | **str** |  | [optional]
+**postal_code** | **str** |  | [optional]
+**building_name** | **str** |  | [optional]
+**locality** | **str** |  | [optional]
+**city** | **str** |  | [optional]
+**country** | [**CountryCode**](CountryCode.md) |  | [optional]
+**localized_display** | **str** |  | [optional]
+**line_one** | **str** |  | [optional]
+**line_two** | **str** |  | [optional]
 
 ## Example
 
@@ -35,5 +35,3 @@ address_dto_dict = address_dto_instance.to_dict()
 address_dto_from_dict = AddressDTO.from_dict(address_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

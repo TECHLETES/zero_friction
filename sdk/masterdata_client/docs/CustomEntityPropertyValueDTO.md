@@ -5,14 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value_decimal** | **float** |  | [optional] 
-**value_string** | **str** |  | [optional] 
-**value_boolean** | **bool** |  | [optional] 
-**value_number** | **int** |  | [optional] 
-**value_date_time** | **datetime** |  | [optional] 
-**value_dropdown** | **List[str]** |  | [optional] 
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
+**value_decimal** | **float** |  | [optional]
+**value_string** | **str** |  | [optional]
+**value_boolean** | **bool** |  | [optional]
+**value_number** | **int** |  | [optional]
+**value_date_time** | **datetime** |  | [optional]
+**value_dropdown** | **List[str]** |  | [optional]
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
 
 ## Example
 
@@ -32,5 +32,3 @@ custom_entity_property_value_dto_dict = custom_entity_property_value_dto_instanc
 custom_entity_property_value_dto_from_dict = CustomEntityPropertyValueDTO.from_dict(custom_entity_property_value_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

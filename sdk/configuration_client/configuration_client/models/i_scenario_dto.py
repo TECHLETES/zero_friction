@@ -13,144 +13,483 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
+import json
 import pprint
 import re  # noqa: F401
-import json
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+from typing import Optional
+from configuration_client.models.i_scenario_dto_acknowledge_move_in_scenario_dto import IScenarioDTOAcknowledgeMoveInScenarioDTO
+from configuration_client.models.i_scenario_dto_acknowledge_move_out_scenario_dto import IScenarioDTOAcknowledgeMoveOutScenarioDTO
+from configuration_client.models.i_scenario_dto_advance_amount_changed_scenario_dto import IScenarioDTOAdvanceAmountChangedScenarioDTO
+from configuration_client.models.i_scenario_dto_advance_scenario_dto import IScenarioDTOAdvanceScenarioDTO
+from configuration_client.models.i_scenario_dto_collection_scenario_dto import IScenarioDTOCollectionScenarioDTO
+from configuration_client.models.i_scenario_dto_contract_locations_added_scenario_dto import IScenarioDTOContractLocationsAddedScenarioDTO
+from configuration_client.models.i_scenario_dto_contract_locations_removed_scenario_dto import IScenarioDTOContractLocationsRemovedScenarioDTO
+from configuration_client.models.i_scenario_dto_contract_termination_scenario_dto import IScenarioDTOContractTerminationScenarioDTO
+from configuration_client.models.i_scenario_dto_contract_welcome_scenario_dto import IScenarioDTOContractWelcomeScenarioDTO
+from configuration_client.models.i_scenario_dto_correction_note_scenario_dto import IScenarioDTOCorrectionNoteScenarioDTO
+from configuration_client.models.i_scenario_dto_credit_note_scenario_dto import IScenarioDTOCreditNoteScenarioDTO
+from configuration_client.models.i_scenario_dto_end_note_scenario_dto import IScenarioDTOEndNoteScenarioDTO
+from configuration_client.models.i_scenario_dto_incidental_note_scenario_dto import IScenarioDTOIncidentalNoteScenarioDTO
+from configuration_client.models.i_scenario_dto_invoice_scenario_dto import IScenarioDTOInvoiceScenarioDTO
+from configuration_client.models.i_scenario_dto_notice_of_default_scenario_dto import IScenarioDTONoticeOfDefaultScenarioDTO
+from configuration_client.models.i_scenario_dto_organization_scenario_dto import IScenarioDTOOrganizationScenarioDTO
+from configuration_client.models.i_scenario_dto_payment_plan_activated_scenario_dto import IScenarioDTOPaymentPlanActivatedScenarioDTO
+from configuration_client.models.i_scenario_dto_payment_plan_cancelled_scenario_dto import IScenarioDTOPaymentPlanCancelledScenarioDTO
+from configuration_client.models.i_scenario_dto_payment_plan_completed_scenario_dto import IScenarioDTOPaymentPlanCompletedScenarioDTO
+from configuration_client.models.i_scenario_dto_payment_plan_created_scenario_dto import IScenarioDTOPaymentPlanCreatedScenarioDTO
+from configuration_client.models.i_scenario_dto_payment_plan_recalculated_scenario_dto import IScenarioDTOPaymentPlanRecalculatedScenarioDTO
+from configuration_client.models.i_scenario_dto_payment_plan_reminder_scenario_dto import IScenarioDTOPaymentPlanReminderScenarioDTO
+from configuration_client.models.i_scenario_dto_payment_plan_requested_scenario_dto import IScenarioDTOPaymentPlanRequestedScenarioDTO
+from configuration_client.models.i_scenario_dto_reject_move_in_scenario_dto import IScenarioDTORejectMoveInScenarioDTO
+from configuration_client.models.i_scenario_dto_reject_move_out_scenario_dto import IScenarioDTORejectMoveOutScenarioDTO
+from configuration_client.models.i_scenario_dto_reminder_scenario_dto import IScenarioDTOReminderScenarioDTO
+from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
+from typing_extensions import Literal, Self
+from pydantic import Field
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from configuration_client.models.communication_type import CommunicationType
-from configuration_client.models.entity_subject_type import EntitySubjectType
-from configuration_client.models.entity_type_dto import EntityTypeDTO
-from configuration_client.models.scenario_grouping_type import ScenarioGroupingType
-from configuration_client.models.template_object_type import TemplateObjectType
-from typing import Optional, Set
-from typing_extensions import Self
+ISCENARIODTO_ANY_OF_SCHEMAS = ["IScenarioDTOAcknowledgeMoveInScenarioDTO", "IScenarioDTOAcknowledgeMoveOutScenarioDTO", "IScenarioDTOAdvanceAmountChangedScenarioDTO", "IScenarioDTOAdvanceScenarioDTO", "IScenarioDTOCollectionScenarioDTO", "IScenarioDTOContractLocationsAddedScenarioDTO", "IScenarioDTOContractLocationsRemovedScenarioDTO", "IScenarioDTOContractTerminationScenarioDTO", "IScenarioDTOContractWelcomeScenarioDTO", "IScenarioDTOCorrectionNoteScenarioDTO", "IScenarioDTOCreditNoteScenarioDTO", "IScenarioDTOEndNoteScenarioDTO", "IScenarioDTOIncidentalNoteScenarioDTO", "IScenarioDTOInvoiceScenarioDTO", "IScenarioDTONoticeOfDefaultScenarioDTO", "IScenarioDTOOrganizationScenarioDTO", "IScenarioDTOPaymentPlanActivatedScenarioDTO", "IScenarioDTOPaymentPlanCancelledScenarioDTO", "IScenarioDTOPaymentPlanCompletedScenarioDTO", "IScenarioDTOPaymentPlanCreatedScenarioDTO", "IScenarioDTOPaymentPlanRecalculatedScenarioDTO", "IScenarioDTOPaymentPlanReminderScenarioDTO", "IScenarioDTOPaymentPlanRequestedScenarioDTO", "IScenarioDTORejectMoveInScenarioDTO", "IScenarioDTORejectMoveOutScenarioDTO", "IScenarioDTOReminderScenarioDTO"]
 
 class IScenarioDTO(BaseModel):
     """
     IScenarioDTO
-    """ # noqa: E501
-    default_communication_type: Optional[CommunicationType] = Field(default=None, alias="defaultCommunicationType")
-    translation_list_id: Optional[StrictStr] = Field(default=None, alias="translationListId")
-    translation_list_history_id: Optional[StrictStr] = Field(default=None, alias="translationListHistoryId")
-    data_type: Optional[TemplateObjectType] = Field(default=None, alias="dataType")
-    entity_subject_type: Optional[EntitySubjectType] = Field(default=None, alias="entitySubjectType")
-    entity_subject_sub_type: Optional[StrictStr] = Field(default=None, alias="entitySubjectSubType")
-    grouping_type: Optional[ScenarioGroupingType] = Field(default=None, alias="groupingType")
-    entity_type: Optional[EntityTypeDTO] = Field(default=None, alias="entityType")
-    available_communication_types: Optional[List[CommunicationType]] = Field(default=None, alias="availableCommunicationTypes")
-    __properties: ClassVar[List[str]] = ["defaultCommunicationType", "translationListId", "translationListHistoryId", "dataType", "entitySubjectType", "entitySubjectSubType", "groupingType", "entityType", "availableCommunicationTypes"]
+    """
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    # data type: IScenarioDTOAcknowledgeMoveInScenarioDTO
+    anyof_schema_1_validator: Optional[IScenarioDTOAcknowledgeMoveInScenarioDTO] = None
+    # data type: IScenarioDTOAcknowledgeMoveOutScenarioDTO
+    anyof_schema_2_validator: Optional[IScenarioDTOAcknowledgeMoveOutScenarioDTO] = None
+    # data type: IScenarioDTOAdvanceAmountChangedScenarioDTO
+    anyof_schema_3_validator: Optional[IScenarioDTOAdvanceAmountChangedScenarioDTO] = None
+    # data type: IScenarioDTOAdvanceScenarioDTO
+    anyof_schema_4_validator: Optional[IScenarioDTOAdvanceScenarioDTO] = None
+    # data type: IScenarioDTOCollectionScenarioDTO
+    anyof_schema_5_validator: Optional[IScenarioDTOCollectionScenarioDTO] = None
+    # data type: IScenarioDTOContractLocationsAddedScenarioDTO
+    anyof_schema_6_validator: Optional[IScenarioDTOContractLocationsAddedScenarioDTO] = None
+    # data type: IScenarioDTOContractLocationsRemovedScenarioDTO
+    anyof_schema_7_validator: Optional[IScenarioDTOContractLocationsRemovedScenarioDTO] = None
+    # data type: IScenarioDTOContractTerminationScenarioDTO
+    anyof_schema_8_validator: Optional[IScenarioDTOContractTerminationScenarioDTO] = None
+    # data type: IScenarioDTOContractWelcomeScenarioDTO
+    anyof_schema_9_validator: Optional[IScenarioDTOContractWelcomeScenarioDTO] = None
+    # data type: IScenarioDTOCorrectionNoteScenarioDTO
+    anyof_schema_10_validator: Optional[IScenarioDTOCorrectionNoteScenarioDTO] = None
+    # data type: IScenarioDTOCreditNoteScenarioDTO
+    anyof_schema_11_validator: Optional[IScenarioDTOCreditNoteScenarioDTO] = None
+    # data type: IScenarioDTOEndNoteScenarioDTO
+    anyof_schema_12_validator: Optional[IScenarioDTOEndNoteScenarioDTO] = None
+    # data type: IScenarioDTOIncidentalNoteScenarioDTO
+    anyof_schema_13_validator: Optional[IScenarioDTOIncidentalNoteScenarioDTO] = None
+    # data type: IScenarioDTOInvoiceScenarioDTO
+    anyof_schema_14_validator: Optional[IScenarioDTOInvoiceScenarioDTO] = None
+    # data type: IScenarioDTONoticeOfDefaultScenarioDTO
+    anyof_schema_15_validator: Optional[IScenarioDTONoticeOfDefaultScenarioDTO] = None
+    # data type: IScenarioDTOPaymentPlanActivatedScenarioDTO
+    anyof_schema_16_validator: Optional[IScenarioDTOPaymentPlanActivatedScenarioDTO] = None
+    # data type: IScenarioDTOPaymentPlanCancelledScenarioDTO
+    anyof_schema_17_validator: Optional[IScenarioDTOPaymentPlanCancelledScenarioDTO] = None
+    # data type: IScenarioDTOPaymentPlanCompletedScenarioDTO
+    anyof_schema_18_validator: Optional[IScenarioDTOPaymentPlanCompletedScenarioDTO] = None
+    # data type: IScenarioDTOPaymentPlanCreatedScenarioDTO
+    anyof_schema_19_validator: Optional[IScenarioDTOPaymentPlanCreatedScenarioDTO] = None
+    # data type: IScenarioDTOPaymentPlanRecalculatedScenarioDTO
+    anyof_schema_20_validator: Optional[IScenarioDTOPaymentPlanRecalculatedScenarioDTO] = None
+    # data type: IScenarioDTOPaymentPlanReminderScenarioDTO
+    anyof_schema_21_validator: Optional[IScenarioDTOPaymentPlanReminderScenarioDTO] = None
+    # data type: IScenarioDTOPaymentPlanRequestedScenarioDTO
+    anyof_schema_22_validator: Optional[IScenarioDTOPaymentPlanRequestedScenarioDTO] = None
+    # data type: IScenarioDTORejectMoveInScenarioDTO
+    anyof_schema_23_validator: Optional[IScenarioDTORejectMoveInScenarioDTO] = None
+    # data type: IScenarioDTORejectMoveOutScenarioDTO
+    anyof_schema_24_validator: Optional[IScenarioDTORejectMoveOutScenarioDTO] = None
+    # data type: IScenarioDTOReminderScenarioDTO
+    anyof_schema_25_validator: Optional[IScenarioDTOReminderScenarioDTO] = None
+    # data type: IScenarioDTOOrganizationScenarioDTO
+    anyof_schema_26_validator: Optional[IScenarioDTOOrganizationScenarioDTO] = None
+    if TYPE_CHECKING:
+        actual_instance: Optional[Union[IScenarioDTOAcknowledgeMoveInScenarioDTO, IScenarioDTOAcknowledgeMoveOutScenarioDTO, IScenarioDTOAdvanceAmountChangedScenarioDTO, IScenarioDTOAdvanceScenarioDTO, IScenarioDTOCollectionScenarioDTO, IScenarioDTOContractLocationsAddedScenarioDTO, IScenarioDTOContractLocationsRemovedScenarioDTO, IScenarioDTOContractTerminationScenarioDTO, IScenarioDTOContractWelcomeScenarioDTO, IScenarioDTOCorrectionNoteScenarioDTO, IScenarioDTOCreditNoteScenarioDTO, IScenarioDTOEndNoteScenarioDTO, IScenarioDTOIncidentalNoteScenarioDTO, IScenarioDTOInvoiceScenarioDTO, IScenarioDTONoticeOfDefaultScenarioDTO, IScenarioDTOOrganizationScenarioDTO, IScenarioDTOPaymentPlanActivatedScenarioDTO, IScenarioDTOPaymentPlanCancelledScenarioDTO, IScenarioDTOPaymentPlanCompletedScenarioDTO, IScenarioDTOPaymentPlanCreatedScenarioDTO, IScenarioDTOPaymentPlanRecalculatedScenarioDTO, IScenarioDTOPaymentPlanReminderScenarioDTO, IScenarioDTOPaymentPlanRequestedScenarioDTO, IScenarioDTORejectMoveInScenarioDTO, IScenarioDTORejectMoveOutScenarioDTO, IScenarioDTOReminderScenarioDTO]] = None
+    else:
+        actual_instance: Any = None
+    any_of_schemas: Set[str] = { "IScenarioDTOAcknowledgeMoveInScenarioDTO", "IScenarioDTOAcknowledgeMoveOutScenarioDTO", "IScenarioDTOAdvanceAmountChangedScenarioDTO", "IScenarioDTOAdvanceScenarioDTO", "IScenarioDTOCollectionScenarioDTO", "IScenarioDTOContractLocationsAddedScenarioDTO", "IScenarioDTOContractLocationsRemovedScenarioDTO", "IScenarioDTOContractTerminationScenarioDTO", "IScenarioDTOContractWelcomeScenarioDTO", "IScenarioDTOCorrectionNoteScenarioDTO", "IScenarioDTOCreditNoteScenarioDTO", "IScenarioDTOEndNoteScenarioDTO", "IScenarioDTOIncidentalNoteScenarioDTO", "IScenarioDTOInvoiceScenarioDTO", "IScenarioDTONoticeOfDefaultScenarioDTO", "IScenarioDTOOrganizationScenarioDTO", "IScenarioDTOPaymentPlanActivatedScenarioDTO", "IScenarioDTOPaymentPlanCancelledScenarioDTO", "IScenarioDTOPaymentPlanCompletedScenarioDTO", "IScenarioDTOPaymentPlanCreatedScenarioDTO", "IScenarioDTOPaymentPlanRecalculatedScenarioDTO", "IScenarioDTOPaymentPlanReminderScenarioDTO", "IScenarioDTOPaymentPlanRequestedScenarioDTO", "IScenarioDTORejectMoveInScenarioDTO", "IScenarioDTORejectMoveOutScenarioDTO", "IScenarioDTOReminderScenarioDTO" }
 
+    model_config = {
+        "validate_assignment": True,
+        "protected_namespaces": (),
+    }
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+    discriminator_value_class_map: Dict[str, str] = {
+    }
+
+    def __init__(self, *args, **kwargs) -> None:
+        if args:
+            if len(args) > 1:
+                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+            if kwargs:
+                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+            super().__init__(actual_instance=args[0])
+        else:
+            super().__init__(**kwargs)
+
+    @field_validator('actual_instance')
+    def actual_instance_must_validate_anyof(cls, v):
+        instance = IScenarioDTO.model_construct()
+        error_messages = []
+        # validate data type: IScenarioDTOAcknowledgeMoveInScenarioDTO
+        if not isinstance(v, IScenarioDTOAcknowledgeMoveInScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOAcknowledgeMoveInScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOAcknowledgeMoveOutScenarioDTO
+        if not isinstance(v, IScenarioDTOAcknowledgeMoveOutScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOAcknowledgeMoveOutScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOAdvanceAmountChangedScenarioDTO
+        if not isinstance(v, IScenarioDTOAdvanceAmountChangedScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOAdvanceAmountChangedScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOAdvanceScenarioDTO
+        if not isinstance(v, IScenarioDTOAdvanceScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOAdvanceScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOCollectionScenarioDTO
+        if not isinstance(v, IScenarioDTOCollectionScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOCollectionScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOContractLocationsAddedScenarioDTO
+        if not isinstance(v, IScenarioDTOContractLocationsAddedScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOContractLocationsAddedScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOContractLocationsRemovedScenarioDTO
+        if not isinstance(v, IScenarioDTOContractLocationsRemovedScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOContractLocationsRemovedScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOContractTerminationScenarioDTO
+        if not isinstance(v, IScenarioDTOContractTerminationScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOContractTerminationScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOContractWelcomeScenarioDTO
+        if not isinstance(v, IScenarioDTOContractWelcomeScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOContractWelcomeScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOCorrectionNoteScenarioDTO
+        if not isinstance(v, IScenarioDTOCorrectionNoteScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOCorrectionNoteScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOCreditNoteScenarioDTO
+        if not isinstance(v, IScenarioDTOCreditNoteScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOCreditNoteScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOEndNoteScenarioDTO
+        if not isinstance(v, IScenarioDTOEndNoteScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOEndNoteScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOIncidentalNoteScenarioDTO
+        if not isinstance(v, IScenarioDTOIncidentalNoteScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOIncidentalNoteScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOInvoiceScenarioDTO
+        if not isinstance(v, IScenarioDTOInvoiceScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOInvoiceScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTONoticeOfDefaultScenarioDTO
+        if not isinstance(v, IScenarioDTONoticeOfDefaultScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTONoticeOfDefaultScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOPaymentPlanActivatedScenarioDTO
+        if not isinstance(v, IScenarioDTOPaymentPlanActivatedScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOPaymentPlanActivatedScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOPaymentPlanCancelledScenarioDTO
+        if not isinstance(v, IScenarioDTOPaymentPlanCancelledScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOPaymentPlanCancelledScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOPaymentPlanCompletedScenarioDTO
+        if not isinstance(v, IScenarioDTOPaymentPlanCompletedScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOPaymentPlanCompletedScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOPaymentPlanCreatedScenarioDTO
+        if not isinstance(v, IScenarioDTOPaymentPlanCreatedScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOPaymentPlanCreatedScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOPaymentPlanRecalculatedScenarioDTO
+        if not isinstance(v, IScenarioDTOPaymentPlanRecalculatedScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOPaymentPlanRecalculatedScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOPaymentPlanReminderScenarioDTO
+        if not isinstance(v, IScenarioDTOPaymentPlanReminderScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOPaymentPlanReminderScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOPaymentPlanRequestedScenarioDTO
+        if not isinstance(v, IScenarioDTOPaymentPlanRequestedScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOPaymentPlanRequestedScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTORejectMoveInScenarioDTO
+        if not isinstance(v, IScenarioDTORejectMoveInScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTORejectMoveInScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTORejectMoveOutScenarioDTO
+        if not isinstance(v, IScenarioDTORejectMoveOutScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTORejectMoveOutScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOReminderScenarioDTO
+        if not isinstance(v, IScenarioDTOReminderScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOReminderScenarioDTO`")
+        else:
+            return v
+
+        # validate data type: IScenarioDTOOrganizationScenarioDTO
+        if not isinstance(v, IScenarioDTOOrganizationScenarioDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IScenarioDTOOrganizationScenarioDTO`")
+        else:
+            return v
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when setting the actual_instance in IScenarioDTO with anyOf schemas: IScenarioDTOAcknowledgeMoveInScenarioDTO, IScenarioDTOAcknowledgeMoveOutScenarioDTO, IScenarioDTOAdvanceAmountChangedScenarioDTO, IScenarioDTOAdvanceScenarioDTO, IScenarioDTOCollectionScenarioDTO, IScenarioDTOContractLocationsAddedScenarioDTO, IScenarioDTOContractLocationsRemovedScenarioDTO, IScenarioDTOContractTerminationScenarioDTO, IScenarioDTOContractWelcomeScenarioDTO, IScenarioDTOCorrectionNoteScenarioDTO, IScenarioDTOCreditNoteScenarioDTO, IScenarioDTOEndNoteScenarioDTO, IScenarioDTOIncidentalNoteScenarioDTO, IScenarioDTOInvoiceScenarioDTO, IScenarioDTONoticeOfDefaultScenarioDTO, IScenarioDTOOrganizationScenarioDTO, IScenarioDTOPaymentPlanActivatedScenarioDTO, IScenarioDTOPaymentPlanCancelledScenarioDTO, IScenarioDTOPaymentPlanCompletedScenarioDTO, IScenarioDTOPaymentPlanCreatedScenarioDTO, IScenarioDTOPaymentPlanRecalculatedScenarioDTO, IScenarioDTOPaymentPlanReminderScenarioDTO, IScenarioDTOPaymentPlanRequestedScenarioDTO, IScenarioDTORejectMoveInScenarioDTO, IScenarioDTORejectMoveOutScenarioDTO, IScenarioDTOReminderScenarioDTO. Details: " + ", ".join(error_messages))
+        else:
+            return v
+
+    @classmethod
+    def from_dict(cls, obj: Dict[str, Any]) -> Self:
+        return cls.from_json(json.dumps(obj))
+
+    @classmethod
+    def from_json(cls, json_str: str) -> Self:
+        """Returns the object represented by the json string"""
+        instance = cls.model_construct()
+        error_messages = []
+        # anyof_schema_1_validator: Optional[IScenarioDTOAcknowledgeMoveInScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOAcknowledgeMoveInScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_2_validator: Optional[IScenarioDTOAcknowledgeMoveOutScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOAcknowledgeMoveOutScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_3_validator: Optional[IScenarioDTOAdvanceAmountChangedScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOAdvanceAmountChangedScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_4_validator: Optional[IScenarioDTOAdvanceScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOAdvanceScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_5_validator: Optional[IScenarioDTOCollectionScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOCollectionScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_6_validator: Optional[IScenarioDTOContractLocationsAddedScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOContractLocationsAddedScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_7_validator: Optional[IScenarioDTOContractLocationsRemovedScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOContractLocationsRemovedScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_8_validator: Optional[IScenarioDTOContractTerminationScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOContractTerminationScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_9_validator: Optional[IScenarioDTOContractWelcomeScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOContractWelcomeScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_10_validator: Optional[IScenarioDTOCorrectionNoteScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOCorrectionNoteScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_11_validator: Optional[IScenarioDTOCreditNoteScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOCreditNoteScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_12_validator: Optional[IScenarioDTOEndNoteScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOEndNoteScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_13_validator: Optional[IScenarioDTOIncidentalNoteScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOIncidentalNoteScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_14_validator: Optional[IScenarioDTOInvoiceScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOInvoiceScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_15_validator: Optional[IScenarioDTONoticeOfDefaultScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTONoticeOfDefaultScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_16_validator: Optional[IScenarioDTOPaymentPlanActivatedScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOPaymentPlanActivatedScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_17_validator: Optional[IScenarioDTOPaymentPlanCancelledScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOPaymentPlanCancelledScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_18_validator: Optional[IScenarioDTOPaymentPlanCompletedScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOPaymentPlanCompletedScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_19_validator: Optional[IScenarioDTOPaymentPlanCreatedScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOPaymentPlanCreatedScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_20_validator: Optional[IScenarioDTOPaymentPlanRecalculatedScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOPaymentPlanRecalculatedScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_21_validator: Optional[IScenarioDTOPaymentPlanReminderScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOPaymentPlanReminderScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_22_validator: Optional[IScenarioDTOPaymentPlanRequestedScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOPaymentPlanRequestedScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_23_validator: Optional[IScenarioDTORejectMoveInScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTORejectMoveInScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_24_validator: Optional[IScenarioDTORejectMoveOutScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTORejectMoveOutScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_25_validator: Optional[IScenarioDTOReminderScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOReminderScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_26_validator: Optional[IScenarioDTOOrganizationScenarioDTO] = None
+        try:
+            instance.actual_instance = IScenarioDTOOrganizationScenarioDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into IScenarioDTO with anyOf schemas: IScenarioDTOAcknowledgeMoveInScenarioDTO, IScenarioDTOAcknowledgeMoveOutScenarioDTO, IScenarioDTOAdvanceAmountChangedScenarioDTO, IScenarioDTOAdvanceScenarioDTO, IScenarioDTOCollectionScenarioDTO, IScenarioDTOContractLocationsAddedScenarioDTO, IScenarioDTOContractLocationsRemovedScenarioDTO, IScenarioDTOContractTerminationScenarioDTO, IScenarioDTOContractWelcomeScenarioDTO, IScenarioDTOCorrectionNoteScenarioDTO, IScenarioDTOCreditNoteScenarioDTO, IScenarioDTOEndNoteScenarioDTO, IScenarioDTOIncidentalNoteScenarioDTO, IScenarioDTOInvoiceScenarioDTO, IScenarioDTONoticeOfDefaultScenarioDTO, IScenarioDTOOrganizationScenarioDTO, IScenarioDTOPaymentPlanActivatedScenarioDTO, IScenarioDTOPaymentPlanCancelledScenarioDTO, IScenarioDTOPaymentPlanCompletedScenarioDTO, IScenarioDTOPaymentPlanCreatedScenarioDTO, IScenarioDTOPaymentPlanRecalculatedScenarioDTO, IScenarioDTOPaymentPlanReminderScenarioDTO, IScenarioDTOPaymentPlanRequestedScenarioDTO, IScenarioDTORejectMoveInScenarioDTO, IScenarioDTORejectMoveOutScenarioDTO, IScenarioDTOReminderScenarioDTO. Details: " + ", ".join(error_messages))
+        else:
+            return instance
 
     def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
 
-    @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of IScenarioDTO from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+            return self.actual_instance.to_json()
+        else:
+            return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
-        # override the default output from pydantic by calling `to_dict()` of entity_type
-        if self.entity_type:
-            _dict['entityType'] = self.entity_type.to_dict()
-        # set to None if default_communication_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.default_communication_type is None and "default_communication_type" in self.model_fields_set:
-            _dict['defaultCommunicationType'] = None
-
-        # set to None if translation_list_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.translation_list_id is None and "translation_list_id" in self.model_fields_set:
-            _dict['translationListId'] = None
-
-        # set to None if translation_list_history_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.translation_list_history_id is None and "translation_list_history_id" in self.model_fields_set:
-            _dict['translationListHistoryId'] = None
-
-        # set to None if data_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.data_type is None and "data_type" in self.model_fields_set:
-            _dict['dataType'] = None
-
-        # set to None if entity_subject_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_subject_type is None and "entity_subject_type" in self.model_fields_set:
-            _dict['entitySubjectType'] = None
-
-        # set to None if entity_subject_sub_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_subject_sub_type is None and "entity_subject_sub_type" in self.model_fields_set:
-            _dict['entitySubjectSubType'] = None
-
-        # set to None if grouping_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.grouping_type is None and "grouping_type" in self.model_fields_set:
-            _dict['groupingType'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if available_communication_types (nullable) is None
-        # and model_fields_set contains the field
-        if self.available_communication_types is None and "available_communication_types" in self.model_fields_set:
-            _dict['availableCommunicationTypes'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of IScenarioDTO from a dict"""
-        if obj is None:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], IScenarioDTOAcknowledgeMoveInScenarioDTO, IScenarioDTOAcknowledgeMoveOutScenarioDTO, IScenarioDTOAdvanceAmountChangedScenarioDTO, IScenarioDTOAdvanceScenarioDTO, IScenarioDTOCollectionScenarioDTO, IScenarioDTOContractLocationsAddedScenarioDTO, IScenarioDTOContractLocationsRemovedScenarioDTO, IScenarioDTOContractTerminationScenarioDTO, IScenarioDTOContractWelcomeScenarioDTO, IScenarioDTOCorrectionNoteScenarioDTO, IScenarioDTOCreditNoteScenarioDTO, IScenarioDTOEndNoteScenarioDTO, IScenarioDTOIncidentalNoteScenarioDTO, IScenarioDTOInvoiceScenarioDTO, IScenarioDTONoticeOfDefaultScenarioDTO, IScenarioDTOOrganizationScenarioDTO, IScenarioDTOPaymentPlanActivatedScenarioDTO, IScenarioDTOPaymentPlanCancelledScenarioDTO, IScenarioDTOPaymentPlanCompletedScenarioDTO, IScenarioDTOPaymentPlanCreatedScenarioDTO, IScenarioDTOPaymentPlanRecalculatedScenarioDTO, IScenarioDTOPaymentPlanReminderScenarioDTO, IScenarioDTOPaymentPlanRequestedScenarioDTO, IScenarioDTORejectMoveInScenarioDTO, IScenarioDTORejectMoveOutScenarioDTO, IScenarioDTOReminderScenarioDTO]]:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is None:
             return None
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+            return self.actual_instance.to_dict()
+        else:
+            return self.actual_instance
 
-        _obj = cls.model_validate({
-            "defaultCommunicationType": obj.get("defaultCommunicationType"),
-            "translationListId": obj.get("translationListId"),
-            "translationListHistoryId": obj.get("translationListHistoryId"),
-            "dataType": obj.get("dataType"),
-            "entitySubjectType": obj.get("entitySubjectType"),
-            "entitySubjectSubType": obj.get("entitySubjectSubType"),
-            "groupingType": obj.get("groupingType"),
-            "entityType": EntityTypeDTO.from_dict(obj["entityType"]) if obj.get("entityType") is not None else None,
-            "availableCommunicationTypes": obj.get("availableCommunicationTypes")
-        })
-        return _obj
-
-
+    def to_str(self) -> str:
+        """Returns the string representation of the actual instance"""
+        return pprint.pformat(self.model_dump())

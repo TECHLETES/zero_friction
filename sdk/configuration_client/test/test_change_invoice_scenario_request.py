@@ -35,25 +35,52 @@ class TestChangeInvoiceScenarioRequest(unittest.TestCase):
         model = ChangeInvoiceScenarioRequest()
         if include_optional:
             return ChangeInvoiceScenarioRequest(
-                default_communication_type = 'postal',
                 pdf_template = configuration_client.models.invoice_pdf_template_request.InvoicePdfTemplateRequest(
-                    envelope_settings = null, 
-                    cost_allocation = True, 
-                    show_country = True, 
-                    show_balance = True, 
-                    show_vat_specs = True, 
-                    show_custom_information = True, ),
+                    cost_allocation = True,
+                    show_country = True,
+                    show_price_formulae = True,
+                    show_balance = True,
+                    show_vat_specs = True,
+                    show_custom_information = True,
+                    unit_price_excl_vat_for_persons = True,
+                    envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                        margin_position = 'left',
+                        margin = 56,
+                        margin_top = 56, ), ),
                 email_template = configuration_client.models.invoice_email_template_request.InvoiceEmailTemplateRequest(
-                    subject = '', 
+                    subject = '',
                     attachments = [
                         configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
-                            id = '', 
-                            internal_file_path = '', 
+                            id = '',
+                            internal_file_path = '',
                             file_name = '', )
-                        ], )
+                        ], ),
+                default_communication_type = 'none',
+                auto_fallback_to_postal = True
             )
         else:
             return ChangeInvoiceScenarioRequest(
+                pdf_template = configuration_client.models.invoice_pdf_template_request.InvoicePdfTemplateRequest(
+                    cost_allocation = True,
+                    show_country = True,
+                    show_price_formulae = True,
+                    show_balance = True,
+                    show_vat_specs = True,
+                    show_custom_information = True,
+                    unit_price_excl_vat_for_persons = True,
+                    envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                        margin_position = 'left',
+                        margin = 56,
+                        margin_top = 56, ), ),
+                email_template = configuration_client.models.invoice_email_template_request.InvoiceEmailTemplateRequest(
+                    subject = '',
+                    attachments = [
+                        configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
+                            id = '',
+                            internal_file_path = '',
+                            file_name = '', )
+                        ], ),
+                default_communication_type = 'none',
         )
         """
 

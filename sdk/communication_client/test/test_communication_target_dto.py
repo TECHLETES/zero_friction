@@ -36,20 +36,22 @@ class TestCommunicationTargetDTO(unittest.TestCase):
         if include_optional:
             return CommunicationTargetDTO(
                 customer_id = '',
+                customer_display_name = '',
+                customer_account_number = '',
                 address = communication_client.models.address_dto.AddressDTO(
-                    street_name = '', 
-                    street_number = '', 
-                    street_number_addition = '', 
-                    postal_code = '', 
-                    building_name = '', 
-                    locality = '', 
-                    city = '', 
-                    country = null, 
-                    localized_display = '', 
-                    line_one = '', 
+                    street_name = '',
+                    street_number = '',
+                    street_number_addition = '',
+                    postal_code = '',
+                    building_name = '',
+                    locality = '',
+                    city = '',
+                    country = 'aut',
+                    localized_display = '',
+                    line_one = '',
                     line_two = '', ),
                 email = '',
-                preferred_communication_type = 'postal',
+                preferred_communication_type = 'none',
                 mobile_phone_number = ''
             )
         else:

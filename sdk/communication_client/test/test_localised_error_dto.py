@@ -35,13 +35,13 @@ class TestLocalisedErrorDTO(unittest.TestCase):
         model = LocalisedErrorDTO()
         if include_optional:
             return LocalisedErrorDTO(
-                key = 'ASSET_ALREADY_EXISTS',
+                key = 56,
                 correlation_id = '',
                 message = '',
                 message_values = [
                     communication_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                        data_type = null, 
-                        value = '', 
+                        data_type = 'text',
+                        value = '',
                         capitalize = True, )
                     ]
             )

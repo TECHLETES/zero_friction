@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class DataFrequency(str, Enum):
     """
-    DataFrequency
+    Possible values: 'pt1m', 'pt5m', 'pt15m', 'pt30m', 'pt1h', 'p1d', 'na'
     """
 
     """
@@ -38,5 +38,3 @@ class DataFrequency(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of DataFrequency from a JSON string"""
         return cls(json.loads(json_str))
-
-

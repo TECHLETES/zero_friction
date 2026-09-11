@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class DnsRecordStatus(str, Enum):
     """
-    DnsRecordStatus
+    Possible values: 'unverified', 'valid', 'error'
     """
 
     """
@@ -34,5 +34,3 @@ class DnsRecordStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of DnsRecordStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

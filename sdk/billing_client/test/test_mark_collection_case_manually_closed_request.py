@@ -40,6 +40,7 @@ class TestMarkCollectionCaseManuallyClosedRequest(unittest.TestCase):
             )
         else:
             return MarkCollectionCaseManuallyClosedRequest(
+                write_off_handling_type = 'nowriteoff',
         )
         """
 

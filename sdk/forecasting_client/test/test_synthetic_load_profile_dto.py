@@ -35,20 +35,18 @@ class TestSyntheticLoadProfileDTO(unittest.TestCase):
         model = SyntheticLoadProfileDTO()
         if include_optional:
             return SyntheticLoadProfileDTO(
+                code = '',
+                description = '',
+                origin = 'manual',
+                deleted = True,
+                organisation_id = '',
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
-                code = '',
-                description = '',
-                origin = 'manual',
-                deleted = True
+                is_read_only = True
             )
         else:
             return SyntheticLoadProfileDTO(

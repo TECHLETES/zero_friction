@@ -20,7 +20,6 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from billing_client.models.calendar_algorithm_type import CalendarAlgorithmType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,7 +29,7 @@ class Calendar(BaseModel):
     """ # noqa: E501
     min_supported_date_time: Optional[datetime] = Field(default=None, alias="minSupportedDateTime")
     max_supported_date_time: Optional[datetime] = Field(default=None, alias="maxSupportedDateTime")
-    algorithm_type: Optional[CalendarAlgorithmType] = Field(default=None, alias="algorithmType")
+    algorithm_type: Optional[StrictInt] = Field(default=None, alias="algorithmType")
     is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
     eras: Optional[List[StrictInt]] = None
     two_digit_year_max: Optional[StrictInt] = Field(default=None, alias="twoDigitYearMax")
@@ -67,16 +66,8 @@ class Calendar(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "min_supported_date_time",
-            "max_supported_date_time",
-            "algorithm_type",
-            "is_read_only",
             "eras",
         ])
 
@@ -85,11 +76,6 @@ class Calendar(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if eras (nullable) is None
-        # and model_fields_set contains the field
-        if self.eras is None and "eras" in self.model_fields_set:
-            _dict['eras'] = None
-
         return _dict
 
     @classmethod
@@ -110,5 +96,3 @@ class Calendar(BaseModel):
             "twoDigitYearMax": obj.get("twoDigitYearMax")
         })
         return _obj
-
-

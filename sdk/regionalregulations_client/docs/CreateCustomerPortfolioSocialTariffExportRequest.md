@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
-**only_mutations** | **bool** |  | [optional] 
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**only_mutations** | **bool** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ create_customer_portfolio_social_tariff_export_request_dict = create_customer_po
 create_customer_portfolio_social_tariff_export_request_from_dict = CreateCustomerPortfolioSocialTariffExportRequest.from_dict(create_customer_portfolio_social_tariff_export_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

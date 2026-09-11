@@ -31,20 +31,20 @@ from typing_extensions import Self
 
 class BillingRelationDTO(BaseModel):
     """
-    Represents a billing relation between a customer and their billing configuration.  This DTO contains all the necessary information about how a customer should be billed,  including payment terms, advance details, invoice details, and contract information.
+    BillingRelationDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the billing relation.")
-    debtor: Optional[DebtorDTO] = Field(default=None, description="Information about the debtor associated with this billing relation.")
-    payment_terms_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the payment terms.", alias="paymentTermsId")
-    payment_method: Optional[PaymentMethod] = Field(default=None, description="The payment method to be used for this billing relation.", alias="paymentMethod")
-    advance_details: Optional[AdvanceDetailsDTO] = Field(default=None, description="Details about advance payments for this billing relation.", alias="advanceDetails")
-    invoice_details: Optional[InvoiceDetailsDTO] = Field(default=None, description="Details about invoice generation for this billing relation.", alias="invoiceDetails")
-    contract: Optional[BillingContractDTO] = Field(default=None, description="Information about the contract associated with this billing relation.")
-    contract_start_date_time: Optional[datetime] = Field(default=None, description="The start date and time of the contract.", alias="contractStartDateTime")
-    contract_end_date_time: Optional[datetime] = Field(default=None, description="The end date and time of the contract.", alias="contractEndDateTime")
-    block_details: Optional[BlockDetailsDTO] = Field(default=None, description="Details about any blocking status for this billing relation.", alias="blockDetails")
-    expect_advances_to_be_imported_periodically: Optional[StrictBool] = Field(default=None, description="Indicates whether advances are expected to be imported periodically.", alias="expectAdvancesToBeImportedPeriodically")
-    time_zone: Optional[StrictStr] = Field(default=None, description="The time zone for this billing relation.", alias="timeZone")
+    id: Optional[StrictStr] = None
+    debtor: Optional[DebtorDTO] = None
+    payment_terms_id: Optional[StrictStr] = Field(default=None, alias="paymentTermsId")
+    payment_method: Optional[PaymentMethod] = Field(default=None, alias="paymentMethod")
+    advance_details: Optional[AdvanceDetailsDTO] = Field(default=None, alias="advanceDetails")
+    invoice_details: Optional[InvoiceDetailsDTO] = Field(default=None, alias="invoiceDetails")
+    contract: Optional[BillingContractDTO] = None
+    contract_start_date_time: Optional[datetime] = Field(default=None, alias="contractStartDateTime")
+    contract_end_date_time: Optional[datetime] = Field(default=None, alias="contractEndDateTime")
+    block_details: Optional[BlockDetailsDTO] = Field(default=None, alias="blockDetails")
+    expect_advances_to_be_imported_periodically: Optional[StrictBool] = Field(default=None, alias="expectAdvancesToBeImportedPeriodically")
+    time_zone: Optional[StrictStr] = Field(default=None, alias="timeZone")
     __properties: ClassVar[List[str]] = ["id", "debtor", "paymentTermsId", "paymentMethod", "advanceDetails", "invoiceDetails", "contract", "contractStartDateTime", "contractEndDateTime", "blockDetails", "expectAdvancesToBeImportedPeriodically", "timeZone"]
 
     model_config = ConfigDict(
@@ -116,11 +116,6 @@ class BillingRelationDTO(BaseModel):
         if self.payment_terms_id is None and "payment_terms_id" in self.model_fields_set:
             _dict['paymentTermsId'] = None
 
-        # set to None if payment_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.payment_method is None and "payment_method" in self.model_fields_set:
-            _dict['paymentMethod'] = None
-
         # set to None if advance_details (nullable) is None
         # and model_fields_set contains the field
         if self.advance_details is None and "advance_details" in self.model_fields_set:
@@ -172,5 +167,3 @@ class BillingRelationDTO(BaseModel):
             "timeZone": obj.get("timeZone")
         })
         return _obj
-
-

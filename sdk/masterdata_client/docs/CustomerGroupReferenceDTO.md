@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
-**name** | **str** |  | [optional] 
+**id** | **str** |  | [optional]
+**name** | **str** |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ customer_group_reference_dto_dict = customer_group_reference_dto_instance.to_dic
 customer_group_reference_dto_from_dict = CustomerGroupReferenceDTO.from_dict(customer_group_reference_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

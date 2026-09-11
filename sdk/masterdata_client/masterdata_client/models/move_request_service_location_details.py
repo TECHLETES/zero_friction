@@ -29,7 +29,7 @@ class MoveRequestServiceLocationDetails(BaseModel):
     MoveRequestServiceLocationDetails
     """ # noqa: E501
     address: Optional[AddressDTO] = None
-    services: Optional[List[MoveRequestServiceLocationServiceDetailsRequest]] = None
+    services: Optional[List[MoveRequestServiceLocationServiceDetailsRequest]]
     internal_id: Optional[StrictStr] = Field(default=None, alias="internalId")
     __properties: ClassVar[List[str]] = ["address", "services", "internalId"]
 
@@ -114,5 +114,3 @@ class MoveRequestServiceLocationDetails(BaseModel):
             "internalId": obj.get("internalId")
         })
         return _obj
-
-

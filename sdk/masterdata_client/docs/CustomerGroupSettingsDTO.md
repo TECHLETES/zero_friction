@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**automatic_settlement** | **bool** |  | [optional] 
+**automatic_settlement** | **bool** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ customer_group_settings_dto_dict = customer_group_settings_dto_instance.to_dict(
 customer_group_settings_dto_from_dict = CustomerGroupSettingsDTO.from_dict(customer_group_settings_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

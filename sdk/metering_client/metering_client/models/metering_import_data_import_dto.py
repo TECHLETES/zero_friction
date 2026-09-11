@@ -17,17 +17,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
 class MeteringImportDataImportDto(BaseModel):
     """
-    If the metering import was created via a data provider (mail, FTP, ...), it will contain the data  of that data provider.
+    MeteringImportDataImportDto
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="The ID of the data provider.")
-    name: Optional[StrictStr] = Field(default=None, description="The name of the data provider.")
+    id: Optional[StrictStr] = None
+    name: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["id", "name"]
 
     model_config = ConfigDict(
@@ -95,5 +95,3 @@ class MeteringImportDataImportDto(BaseModel):
             "name": obj.get("name")
         })
         return _obj
-
-

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**translations** | **Dict[str, Optional[str]]** |  | [optional] 
+**translations** | **Dict[str, str]** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ update_enum_symbol_translation_request_dict = update_enum_symbol_translation_req
 update_enum_symbol_translation_request_from_dict = UpdateEnumSymbolTranslationRequest.from_dict(update_enum_symbol_translation_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

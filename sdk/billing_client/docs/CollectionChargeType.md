@@ -1,5 +1,6 @@
 # CollectionChargeType
 
+Possible values: 'none', 'fixed', 'percentageofopenamount', 'tieredpercentageofopenamount'
 
 ## Enum
 
@@ -12,5 +13,3 @@
 * `TIEREDPERCENTAGEOFOPENAMOUNT` (value: `'tieredpercentageofopenamount'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

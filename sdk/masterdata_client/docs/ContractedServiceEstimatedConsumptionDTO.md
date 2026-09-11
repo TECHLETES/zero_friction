@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**consumer_group_id** | **str** |  | [optional] 
-**value** | **float** |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
-**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional] 
-**is_manual_entry** | **bool** |  | [optional] 
+**consumer_group_id** | **str** |  | [optional]
+**consumption_quantity** | **float** |  | [optional]
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional]
+**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional]
+**direction** | [**Direction**](Direction.md) |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ contracted_service_estimated_consumption_dto_dict = contracted_service_estimated
 contracted_service_estimated_consumption_dto_from_dict = ContractedServiceEstimatedConsumptionDTO.from_dict(contracted_service_estimated_consumption_dto_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**product_id** | **str** |  | [optional] 
+**product_id** | **str** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ update_service_location_product_request_dict = update_service_location_product_r
 update_service_location_product_request_from_dict = UpdateServiceLocationProductRequest.from_dict(update_service_location_product_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

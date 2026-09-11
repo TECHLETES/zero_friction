@@ -35,12 +35,13 @@ class TestAddCustomerBankAccountRequest(unittest.TestCase):
         model = AddCustomerBankAccountRequest()
         if include_optional:
             return AddCustomerBankAccountRequest(
-                iban = '',
-                bic = '',
                 is_default = True,
                 active_mandate = billing_client.models.add_customer_bank_account_active_mandate_request.AddCustomerBankAccountActiveMandateRequest(
-                    type = null, 
-                    signed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                    type = 'core',
+                    signed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    company_bank_account_id = '', ),
+                iban = '',
+                bic = ''
             )
         else:
             return AddCustomerBankAccountRequest(

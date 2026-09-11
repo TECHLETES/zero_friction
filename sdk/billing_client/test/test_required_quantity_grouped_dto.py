@@ -37,72 +37,16 @@ class TestRequiredQuantityGroupedDTO(unittest.TestCase):
             return RequiredQuantityGroupedDTO(
                 contract_required_quantities = [
                     billing_client.models.required_quantity_contract_grouped_dto.RequiredQuantityContractGroupedDTO(
-                        billing_item_id = '', 
+                        billing_item_id = '',
                         required_quantities = [
-                            billing_client.models.required_quantity_dto.RequiredQuantityDTO(
-                                billing_item_id = '', 
-                                service_location_id = '', 
-                                calculation_group_id = '', 
-                                complete = True, 
-                                errors = [
-                                    billing_client.models.localised_error_dto.LocalisedErrorDTO(
-                                        key = null, 
-                                        correlation_id = '', 
-                                        message = '', 
-                                        message_values = [
-                                            billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                                data_type = null, 
-                                                value = '', 
-                                                capitalize = True, )
-                                            ], )
-                                    ], 
-                                validation_errors = [
-                                    billing_client.models.required_quantity_validation_error_dto.RequiredQuantityValidationErrorDTO(
-                                        reason = null, 
-                                        error = null, 
-                                        problem_entity = null, 
-                                        impacted_entity = null, 
-                                        related_entities = [
-                                            billing_client.models.related_entity_dto.RelatedEntityDTO(
-                                                entity_subject_type = null, 
-                                                entity_subject_id = '', )
-                                            ], )
-                                    ], )
+                            billing_client.models.required_quantity_dto.RequiredQuantityDTO()
                             ], )
                     ],
                 location_required_quantities = [
                     billing_client.models.required_quantity_location_grouped_dto.RequiredQuantityLocationGroupedDTO(
-                        service_location_id = '', 
+                        service_location_id = '',
                         required_quantities = [
-                            billing_client.models.required_quantity_dto.RequiredQuantityDTO(
-                                billing_item_id = '', 
-                                service_location_id = '', 
-                                calculation_group_id = '', 
-                                complete = True, 
-                                errors = [
-                                    billing_client.models.localised_error_dto.LocalisedErrorDTO(
-                                        key = null, 
-                                        correlation_id = '', 
-                                        message = '', 
-                                        message_values = [
-                                            billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                                data_type = null, 
-                                                value = '', 
-                                                capitalize = True, )
-                                            ], )
-                                    ], 
-                                validation_errors = [
-                                    billing_client.models.required_quantity_validation_error_dto.RequiredQuantityValidationErrorDTO(
-                                        reason = null, 
-                                        error = null, 
-                                        problem_entity = null, 
-                                        impacted_entity = null, 
-                                        related_entities = [
-                                            billing_client.models.related_entity_dto.RelatedEntityDTO(
-                                                entity_subject_type = null, 
-                                                entity_subject_id = '', )
-                                            ], )
-                                    ], )
+                            billing_client.models.required_quantity_dto.RequiredQuantityDTO()
                             ], )
                     ]
             )

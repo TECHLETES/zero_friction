@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ContractStatus(str, Enum):
     """
-    ContractStatus
+    Possible values: 'draft', 'sent', 'signed', 'cancelled', 'terminated'
     """
 
     """
@@ -36,5 +36,3 @@ class ContractStatus(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of ContractStatus from a JSON string"""
         return cls(json.loads(json_str))
-
-

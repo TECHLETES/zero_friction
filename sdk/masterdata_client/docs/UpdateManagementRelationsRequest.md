@@ -1,12 +1,11 @@
 # UpdateManagementRelationsRequest
 
-Represents a request to update multiple management relations in a single operation
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**management_relations** | [**List[ManagementRelationRequest]**](ManagementRelationRequest.md) | Collection of management relations to be updated | [optional] 
+**management_relations** | [**List[ManagementRelationRequest]**](ManagementRelationRequest.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +25,3 @@ update_management_relations_request_dict = update_management_relations_request_i
 update_management_relations_request_from_dict = UpdateManagementRelationsRequest.from_dict(update_management_relations_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

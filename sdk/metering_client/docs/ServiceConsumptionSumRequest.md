@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**location_ids** | **List[str]** |  | [optional] 
-**quick_filter** | **str** |  | [optional] 
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
-**sum_by_utility_type** | **bool** |  | [optional] 
+**location_ids** | **List[str]** |  | [optional]
+**quick_filter** | **str** |  | [optional]
+**start_date_time** | **datetime** |  | [optional]
+**end_date_time** | **datetime** |  | [optional]
+**sum_by_utility_type** | **bool** |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ service_consumption_sum_request_dict = service_consumption_sum_request_instance.
 service_consumption_sum_request_from_dict = ServiceConsumptionSumRequest.from_dict(service_consumption_sum_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

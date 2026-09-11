@@ -35,27 +35,36 @@ class TestBulkUpdateServiceLocationProductRequest(unittest.TestCase):
         model = BulkUpdateServiceLocationProductRequest()
         if include_optional:
             return BulkUpdateServiceLocationProductRequest(
-                product_id = '',
                 only_validate = True,
                 var_query_params = masterdata_client.models.get_service_locations_query_params.GetServiceLocationsQueryParams(
-                    flex_search = '', 
-                    include_only_ids = [
+                    has_utility_types = [
                         ''
-                        ], 
-                    exclude_ids = [
+                        ],
+                    has_not_utility_types = [
                         ''
-                        ], 
-                    customer_id = '', 
+                        ],
+                    customer_id = '',
                     property_group_ids = [
                         ''
-                        ], 
-                    exclude_service_locations_supplied_in_contract_id = '', 
-                    exclude_service_locations_in_property_group_id = '', 
-                    reference_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    postal_code = '', 
-                    city = '', 
-                    street_number = '', ),
-                quick_filter = ''
+                        ],
+                    exclude_service_locations_supplied_in_contract_id = '',
+                    exclude_service_locations_in_property_group_id = '',
+                    reference_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    exclude_archived = True,
+                    is_auto_restored = True,
+                    postal_code = '',
+                    city = '',
+                    street_number = '',
+                    flex_search = '',
+                    include_only_ids = [
+                        ''
+                        ],
+                    exclude_ids = [
+                        ''
+                        ],
+                    page_size = 56, ),
+                quick_filter = '',
+                product_id = ''
             )
         else:
             return BulkUpdateServiceLocationProductRequest(

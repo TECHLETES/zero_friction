@@ -24,13 +24,13 @@ from typing_extensions import Self
 
 class IncomingBankingTransactionCompanyBankAccountDTO(BaseModel):
     """
-    Represents the company bank account information associated with an incoming banking transaction.
+    IncomingBankingTransactionCompanyBankAccountDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the company bank account.")
-    iban: Optional[StrictStr] = Field(default=None, description="The International Bank Account Number (IBAN) of the account.")
-    bic: Optional[StrictStr] = Field(default=None, description="The Bank Identifier Code (BIC) of the bank.")
-    account_holder: Optional[StrictStr] = Field(default=None, description="The name of the account holder.", alias="accountHolder")
-    sepa_creditor_id: Optional[StrictStr] = Field(default=None, description="The SEPA creditor identifier.", alias="sepaCreditorId")
+    id: Optional[StrictStr] = None
+    iban: Optional[StrictStr] = None
+    bic: Optional[StrictStr] = None
+    account_holder: Optional[StrictStr] = Field(default=None, alias="accountHolder")
+    sepa_creditor_id: Optional[StrictStr] = Field(default=None, alias="sepaCreditorId")
     __properties: ClassVar[List[str]] = ["id", "iban", "bic", "accountHolder", "sepaCreditorId"]
 
     model_config = ConfigDict(
@@ -116,5 +116,3 @@ class IncomingBankingTransactionCompanyBankAccountDTO(BaseModel):
             "sepaCreditorId": obj.get("sepaCreditorId")
         })
         return _obj
-
-

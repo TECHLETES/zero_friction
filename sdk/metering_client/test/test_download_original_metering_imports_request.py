@@ -36,20 +36,21 @@ class TestDownloadOriginalMeteringImportsRequest(unittest.TestCase):
         if include_optional:
             return DownloadOriginalMeteringImportsRequest(
                 var_query_params = metering_client.models.get_metering_imports_query_params.GetMeteringImportsQueryParams(
-                    flex_search = '', 
-                    include_only_ids = [
-                        ''
-                        ], 
-                    exclude_ids = [
-                        ''
-                        ], 
                     status = [
                         ''
-                        ], 
-                    communication_type = '', 
-                    metering_format = '', 
-                    created_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    created_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
+                        ],
+                    communication_type = '',
+                    metering_format = '',
+                    created_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    created_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                    flex_search = '',
+                    include_only_ids = [
+                        ''
+                        ],
+                    exclude_ids = [
+                        ''
+                        ],
+                    page_size = 56, ),
                 quick_filter = ''
             )
         else:

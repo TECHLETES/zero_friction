@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**custom_entity_property_type_id** | **str** |  | [optional] 
-**options** | [**List[CustomEntityPropertyTypeDropdownOptionDTO]**](CustomEntityPropertyTypeDropdownOptionDTO.md) |  | [optional] 
+**custom_entity_property_type_id** | **str** |  | [optional]
+**options** | [**List[CustomEntityPropertyTypeDropdownOptionDTO]**](CustomEntityPropertyTypeDropdownOptionDTO.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ update_custom_entity_property_dropdown_options_request_dict = update_custom_enti
 update_custom_entity_property_dropdown_options_request_from_dict = UpdateCustomEntityPropertyDropdownOptionsRequest.from_dict(update_custom_entity_property_dropdown_options_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class DnsRecordMeaning(str, Enum):
     """
-    DnsRecordMeaning
+    Possible values: 'mailcname', 'mx', 'spf', 'dkim1', 'dkim2'
     """
 
     """
@@ -36,5 +36,3 @@ class DnsRecordMeaning(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of DnsRecordMeaning from a JSON string"""
         return cls(json.loads(json_str))
-
-

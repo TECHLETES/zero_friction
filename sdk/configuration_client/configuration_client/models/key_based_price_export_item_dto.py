@@ -99,5 +99,3 @@ class KeyBasedPriceExportItemDTO(BaseModel):
             "formulaExpression": obj.get("formulaExpression")
         })
         return _obj
-
-

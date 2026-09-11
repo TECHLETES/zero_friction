@@ -26,11 +26,11 @@ from typing_extensions import Self
 
 class InvoiceUBLValidationErrorDTO(BaseModel):
     """
-    Represents a UBL validation error
+    InvoiceUBLValidationErrorDTO
     """ # noqa: E501
-    originator_type: Optional[EntitySubjectType] = Field(default=None, description="Type of the originator of the error", alias="originatorType")
-    originator_id: Optional[StrictStr] = Field(default=None, description="Identifier of the originator", alias="originatorId")
-    message: Optional[LocalisedErrorDTO] = Field(default=None, description="Localized error message")
+    originator_type: Optional[EntitySubjectType] = Field(default=None, alias="originatorType")
+    originator_id: Optional[StrictStr] = Field(default=None, alias="originatorId")
+    message: Optional[LocalisedErrorDTO] = None
     __properties: ClassVar[List[str]] = ["originatorType", "originatorId", "message"]
 
     model_config = ConfigDict(
@@ -75,11 +75,6 @@ class InvoiceUBLValidationErrorDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of message
         if self.message:
             _dict['message'] = self.message.to_dict()
-        # set to None if originator_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.originator_type is None and "originator_type" in self.model_fields_set:
-            _dict['originatorType'] = None
-
         # set to None if originator_id (nullable) is None
         # and model_fields_set contains the field
         if self.originator_id is None and "originator_id" in self.model_fields_set:
@@ -107,5 +102,3 @@ class InvoiceUBLValidationErrorDTO(BaseModel):
             "message": LocalisedErrorDTO.from_dict(obj["message"]) if obj.get("message") is not None else None
         })
         return _obj
-
-

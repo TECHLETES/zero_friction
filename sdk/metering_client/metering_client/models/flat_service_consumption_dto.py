@@ -92,5 +92,3 @@ class FlatServiceConsumptionDTO(BaseModel):
             "value": obj.get("value")
         })
         return _obj
-
-

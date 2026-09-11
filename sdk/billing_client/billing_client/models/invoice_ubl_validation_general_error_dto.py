@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class InvoiceUBLValidationGeneralErrorDTO(BaseModel):
     """
-    Represents a general UBL validation error that applies to multiple invoices
+    InvoiceUBLValidationGeneralErrorDTO
     """ # noqa: E501
-    error_message: Optional[LocalisedErrorDTO] = Field(default=None, description="Localized error message", alias="errorMessage")
+    error_message: Optional[LocalisedErrorDTO] = Field(default=None, alias="errorMessage")
     __properties: ClassVar[List[str]] = ["errorMessage"]
 
     model_config = ConfigDict(
@@ -92,5 +92,3 @@ class InvoiceUBLValidationGeneralErrorDTO(BaseModel):
             "errorMessage": LocalisedErrorDTO.from_dict(obj["errorMessage"]) if obj.get("errorMessage") is not None else None
         })
         return _obj
-
-

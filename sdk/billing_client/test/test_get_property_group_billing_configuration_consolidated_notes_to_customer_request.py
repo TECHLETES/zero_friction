@@ -38,7 +38,7 @@ class TestGetPropertyGroupBillingConfigurationConsolidatedNotesToCustomerRequest
                 property_group_ids = [
                     ''
                     ],
-                culture = 
+                culture = ''
             )
         else:
             return GetPropertyGroupBillingConfigurationConsolidatedNotesToCustomerRequest(

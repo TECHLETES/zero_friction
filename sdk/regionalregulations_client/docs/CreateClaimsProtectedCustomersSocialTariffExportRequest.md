@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**year** | **int** |  | [optional] 
+**year** | **int** |  | [optional]
 
 ## Example
 
@@ -25,5 +25,3 @@ create_claims_protected_customers_social_tariff_export_request_dict = create_cla
 create_claims_protected_customers_social_tariff_export_request_from_dict = CreateClaimsProtectedCustomersSocialTariffExportRequest.from_dict(create_claims_protected_customers_social_tariff_export_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

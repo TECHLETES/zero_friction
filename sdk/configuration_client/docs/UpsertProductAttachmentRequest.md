@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**product_attachment_id** | **str** |  | [optional] 
-**include_in_welcome_email** | **bool** |  | [optional] 
-**visibility** | [**AttachmentVisibility**](AttachmentVisibility.md) |  | [optional] 
-**approval_required** | **bool** |  | [optional] 
-**valid_from** | **datetime** |  | [optional] 
-**valid_until** | **datetime** |  | [optional] 
-**attachment_files** | [**List[UpsertProductAttachmentFileRequest]**](UpsertProductAttachmentFileRequest.md) |  | [optional] 
+**product_attachment_id** | **str** |  | [optional]
+**include_in_welcome_email** | **bool** |  | [optional]
+**visibility** | [**AttachmentVisibility**](AttachmentVisibility.md) |  |
+**approval_required** | **bool** |  | [optional]
+**valid_from** | **datetime** |  | [optional]
+**valid_until** | **datetime** |  |
+**attachment_files** | [**List[UpsertProductAttachmentFileRequest]**](UpsertProductAttachmentFileRequest.md) |  |
 
 ## Example
 
@@ -31,5 +31,3 @@ upsert_product_attachment_request_dict = upsert_product_attachment_request_insta
 upsert_product_attachment_request_from_dict = UpsertProductAttachmentRequest.from_dict(upsert_product_attachment_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

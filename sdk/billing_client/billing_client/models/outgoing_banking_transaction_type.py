@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class OutgoingBankingTransactionType(str, Enum):
     """
-    OutgoingBankingTransactionType
+    Possible values: 'paymentrequests', 'paymentrefunds'
     """
 
     """
@@ -33,5 +33,3 @@ class OutgoingBankingTransactionType(str, Enum):
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of OutgoingBankingTransactionType from a JSON string"""
         return cls(json.loads(json_str))
-
-

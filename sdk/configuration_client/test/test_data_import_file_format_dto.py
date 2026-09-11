@@ -35,20 +35,18 @@ class TestDataImportFileFormatDTO(unittest.TestCase):
         model = DataImportFileFormatDTO()
         if include_optional:
             return DataImportFileFormatDTO(
+                name = '',
+                description = '',
+                deleted = True,
+                is_built_in = True,
+                settings = configuration_client.models.base_data_import_settings_dto.BaseDataImportSettingsDTO(),
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                name = '',
-                description = '',
-                deleted = True,
-                is_built_in = True,
-                settings = None
+                is_read_only = True
             )
         else:
             return DataImportFileFormatDTO(
