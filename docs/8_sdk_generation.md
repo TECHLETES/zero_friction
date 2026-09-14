@@ -129,7 +129,7 @@ uv run pre-commit run --all-files
 uv run pytest
 ```
 
-Generated clients are part of the product even when root lint/type-check settings exclude some generated files. A successful generation is not enough: the unified `zero_friction/` package and repository tests must still work.
+Generated clients are part of the product even when root lint/type-check settings exclude some generated files. They are bundled into the root `zero-friction` distribution so a branch or tag always installs matching generated code. A successful generation is not enough: the unified `zero_friction/` package, wheel contents and repository tests must still work. Do not install the standalone generated client distributions alongside `zero-friction`.
 
 ## Test dependent projects before merge
 
@@ -183,6 +183,9 @@ Stable consumers should prefer a release tag instead of tracking `main`:
 ```bash
 pip install "git+https://github.com/TECHLETES/zero_friction.git@v1"
 ```
+
+Projects that are satisfied with the v1 SDK should pin `v1`; this keeps the
+bundled generated clients on v1 even after newer commits land on `main`.
 
 After the regenerated SDK is merged and tagged:
 

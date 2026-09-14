@@ -55,18 +55,6 @@ wheels = [
 ]
 
 [[package]]
-name = "attachments-client"
-version = "1.0.0"
-source = { git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fattachments_client&rev=main#206efc031b760cd2af3d9ad085a9e82db718159a" }
-dependencies = [
-    { name = "pydantic" },
-    { name = "python-dateutil" },
-    { name = "typing-extensions" },
-    { name = "urllib3", version = "2.6.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "urllib3", version = "2.7.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
-]
-
-[[package]]
 name = "attrs"
 version = "26.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -140,18 +128,6 @@ resolution-markers = [
 sdist = { url = "https://files.pythonhosted.org/packages/c7/94/1009e248bbfbab11397abca7193bea6626806be9a327d399810d523a07cb/beartype-0.22.9.tar.gz", hash = "sha256:8f82b54aa723a2848a56008d18875f91c1db02c32ef6a62319a002e3e25a975f", size = 1608866, upload-time = "2025-12-13T06:50:30.72Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/71/cc/18245721fa7747065ab478316c7fea7c74777d07f37ae60db2e84f8172e8/beartype-0.22.9-py3-none-any.whl", hash = "sha256:d16c9bbc61ea14637596c5f6fbff2ee99cbe3573e46a716401734ef50c3060c2", size = 1333658, upload-time = "2025-12-13T06:50:28.266Z" },
-]
-
-[[package]]
-name = "billing-client"
-version = "1.0.0"
-source = { git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fbilling_client&rev=main#206efc031b760cd2af3d9ad085a9e82db718159a" }
-dependencies = [
-    { name = "pydantic" },
-    { name = "python-dateutil" },
-    { name = "typing-extensions" },
-    { name = "urllib3", version = "2.6.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "urllib3", version = "2.7.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
 ]
 
 [[package]]
@@ -551,30 +527,6 @@ wheels = [
 ]
 
 [[package]]
-name = "communication-client"
-version = "1.0.0"
-source = { git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fcommunication_client&rev=main#206efc031b760cd2af3d9ad085a9e82db718159a" }
-dependencies = [
-    { name = "pydantic" },
-    { name = "python-dateutil" },
-    { name = "typing-extensions" },
-    { name = "urllib3", version = "2.6.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "urllib3", version = "2.7.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
-]
-
-[[package]]
-name = "configuration-client"
-version = "1.0.0"
-source = { git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fconfiguration_client&rev=main#206efc031b760cd2af3d9ad085a9e82db718159a" }
-dependencies = [
-    { name = "pydantic" },
-    { name = "python-dateutil" },
-    { name = "typing-extensions" },
-    { name = "urllib3", version = "2.6.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "urllib3", version = "2.7.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
-]
-
-[[package]]
 name = "coverage"
 version = "7.10.7"
 source = { registry = "https://pypi.org/simple" }
@@ -929,18 +881,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/e3/ee/29c668c50888588c432a702f7c2e8ee8a0c9e5286028d91f170308d6b2e9/filelock-3.29.5.tar.gz", hash = "sha256:6e6034c57a00a020e767f2614a5539863f056de7e7991d6d1473aef7ff73f156", size = 68927, upload-time = "2026-07-03T03:50:31.818Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/4a/e3/f1fae3647d170919c2cf2a898e77e7d1a4e5c7cae0aed7bb4bd3f5ebff6f/filelock-3.29.5-py3-none-any.whl", hash = "sha256:8af830889ba3a0ffcefbd6c7d2af8a54012058103771f2e10848222f476a1693", size = 45073, upload-time = "2026-07-03T03:50:30.445Z" },
-]
-
-[[package]]
-name = "forecasting-client"
-version = "1.0.0"
-source = { git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fforecasting_client&rev=main#206efc031b760cd2af3d9ad085a9e82db718159a" }
-dependencies = [
-    { name = "pydantic" },
-    { name = "python-dateutil" },
-    { name = "typing-extensions" },
-    { name = "urllib3", version = "2.6.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "urllib3", version = "2.7.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
 ]
 
 [[package]]
@@ -1452,18 +1392,6 @@ wheels = [
 ]
 
 [[package]]
-name = "masterdata-client"
-version = "1.0.0"
-source = { git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fmasterdata_client&rev=main#206efc031b760cd2af3d9ad085a9e82db718159a" }
-dependencies = [
-    { name = "pydantic" },
-    { name = "python-dateutil" },
-    { name = "typing-extensions" },
-    { name = "urllib3", version = "2.6.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "urllib3", version = "2.7.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
-]
-
-[[package]]
 name = "matplotlib-inline"
 version = "0.2.2"
 source = { registry = "https://pypi.org/simple" }
@@ -1482,18 +1410,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/d6/54/cfe61301667036ec958cb99bd3efefba235e65cdeb9c84d24a8293ba1d90/mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba", size = 8729, upload-time = "2022-08-14T12:40:10.846Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8", size = 9979, upload-time = "2022-08-14T12:40:09.779Z" },
-]
-
-[[package]]
-name = "metering-client"
-version = "1.0.0"
-source = { git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fmetering_client&rev=main#206efc031b760cd2af3d9ad085a9e82db718159a" }
-dependencies = [
-    { name = "pydantic" },
-    { name = "python-dateutil" },
-    { name = "typing-extensions" },
-    { name = "urllib3", version = "2.6.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "urllib3", version = "2.7.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
 ]
 
 [[package]]
@@ -3185,18 +3101,6 @@ wheels = [
 ]
 
 [[package]]
-name = "regionalregulations-client"
-version = "1.0.0"
-source = { git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fregionalregulations_client&rev=main#206efc031b760cd2af3d9ad085a9e82db718159a" }
-dependencies = [
-    { name = "pydantic" },
-    { name = "python-dateutil" },
-    { name = "typing-extensions" },
-    { name = "urllib3", version = "2.6.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "urllib3", version = "2.7.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
-]
-
-[[package]]
 name = "requests"
 version = "2.32.5"
 source = { registry = "https://pypi.org/simple" }
@@ -3983,20 +3887,15 @@ name = "zero-friction"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
-    { name = "attachments-client" },
-    { name = "billing-client" },
-    { name = "communication-client" },
-    { name = "configuration-client" },
-    { name = "forecasting-client" },
-    { name = "masterdata-client" },
-    { name = "metering-client" },
     { name = "pandas" },
+    { name = "pydantic" },
+    { name = "python-dateutil" },
     { name = "python-dotenv", version = "1.2.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
     { name = "python-dotenv", version = "1.2.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "ratelimit" },
-    { name = "regionalregulations-client" },
     { name = "requests", version = "2.32.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
     { name = "requests", version = "2.34.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
+    { name = "typing-extensions" },
     { name = "urllib3", version = "2.6.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
     { name = "urllib3", version = "2.7.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
 ]
@@ -4031,18 +3930,13 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "attachments-client", git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fattachments_client&rev=main" },
-    { name = "billing-client", git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fbilling_client&rev=main" },
-    { name = "communication-client", git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fcommunication_client&rev=main" },
-    { name = "configuration-client", git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fconfiguration_client&rev=main" },
-    { name = "forecasting-client", git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fforecasting_client&rev=main" },
-    { name = "masterdata-client", git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fmasterdata_client&rev=main" },
-    { name = "metering-client", git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fmetering_client&rev=main" },
     { name = "pandas", specifier = ">=2.2.0,<3.0.0" },
+    { name = "pydantic", specifier = ">=2" },
+    { name = "python-dateutil", specifier = ">=2.8.2" },
     { name = "python-dotenv", specifier = ">=1.0.0,<2.0.0" },
     { name = "ratelimit", specifier = ">=2.2.1,<3.0.0" },
-    { name = "regionalregulations-client", git = "https://github.com/TECHLETES/zero_friction.git?subdirectory=sdk%2Fregionalregulations_client&rev=main" },
     { name = "requests", specifier = ">=2.32.4,<3.0.0" },
+    { name = "typing-extensions", specifier = ">=4.7.1" },
     { name = "urllib3", specifier = ">=2.6.0,<3.0.0" },
 ]
 
