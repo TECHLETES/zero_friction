@@ -181,7 +181,7 @@ exclude_files = [
   "^coverage.svg$",
   "^tests/",
   "^sdk/",
-
+  "openapi_specs/"
 ]
 
 [tool.uv]
