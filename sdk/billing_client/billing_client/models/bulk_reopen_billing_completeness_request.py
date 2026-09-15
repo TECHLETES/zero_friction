@@ -25,11 +25,11 @@ from typing_extensions import Self
 
 class BulkReopenBillingCompletenessRequest(BaseModel):
     """
-    Represents a bulk request to reopen multiple billing completeness records.  This request allows reopening multiple billing completeness records in a single operation.
+    BulkReopenBillingCompletenessRequest
     """ # noqa: E501
-    only_validate: Optional[StrictBool] = Field(default=None, description="Indicates if only validation should be performed without actually reopening the records.  When true, the system will only validate if the records can be reopened without making any changes.", alias="onlyValidate")
-    var_query_params: Optional[GetBillingCompletenessQueryParams] = Field(default=None, description="Query parameters to filter the billing completeness records to process.  This allows specifying which records should be included in the bulk operation.", alias="queryParams")
-    quick_filter: Optional[StrictStr] = Field(default=None, description="Quick filter string to filter billing completeness records.  This provides a simple way to filter records without using complex query parameters.", alias="quickFilter")
+    only_validate: Optional[StrictBool] = Field(default=None, alias="onlyValidate")
+    var_query_params: Optional[GetBillingCompletenessQueryParams] = Field(default=None, alias="queryParams")
+    quick_filter: Optional[StrictStr] = Field(default=None, alias="quickFilter")
     __properties: ClassVar[List[str]] = ["onlyValidate", "queryParams", "quickFilter"]
 
     model_config = ConfigDict(
@@ -74,11 +74,6 @@ class BulkReopenBillingCompletenessRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
         # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
         if self.quick_filter is None and "quick_filter" in self.model_fields_set:

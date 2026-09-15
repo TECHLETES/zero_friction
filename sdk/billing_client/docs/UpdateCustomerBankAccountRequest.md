@@ -1,15 +1,14 @@
 # UpdateCustomerBankAccountRequest
 
-Represents a request to update an existing customer bank account.  This DTO is used to modify the details of a customer's bank account and its associated mandate information.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iban** | **str** | The International Bank Account Number (IBAN) of the bank account. | [optional] 
-**bic** | **str** | The Bank Identifier Code (BIC) of the bank. | [optional] 
-**is_default** | **bool** | Indicates whether this bank account should be set as the default account for the customer. | [optional] 
-**active_mandate** | [**UpdateCustomerBankAccountActiveMandateRequest**](UpdateCustomerBankAccountActiveMandateRequest.md) | Information about the active mandate associated with this bank account. | [optional] 
+**is_default** | **bool** |  | [optional] 
+**active_mandate** | [**UpdateCustomerBankAccountActiveMandateRequest**](UpdateCustomerBankAccountActiveMandateRequest.md) |  | [optional] 
+**iban** | **str** |  | [optional] 
+**bic** | **str** |  | [optional] 
 
 ## Example
 

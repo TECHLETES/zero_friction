@@ -129,9 +129,72 @@ uv run pre-commit run --all-files
 uv run pytest
 ```
 
-Generated clients are part of the product even when root lint/type-check settings exclude some generated files. A successful generation is not enough: the unified `zero_friction/` package and repository tests must still work.
+Generated clients are part of the product even when root lint/type-check settings exclude some generated files. They are bundled into the root `zero-friction` distribution so a branch or tag always installs matching generated code. A successful generation is not enough: the unified `zero_friction/` package, wheel contents and repository tests must still work. Do not install the standalone generated client distributions alongside `zero-friction`.
 
 ## Test dependent projects before merge
+
+## Migrate a dependent project from v1 to v1.1
+
+Projects that do not want to migrate yet should pin the existing SDK explicitly:
+
+```text
+zero-friction @ git+https://github.com/TECHLETES/zero_friction.git@v1
+```
+
+To migrate to v1.1, update the dependency to the v1.1 tag after it is created:
+
+```text
+zero-friction @ git+https://github.com/TECHLETES/zero_friction.git@v1.1
+```
+
+During candidate testing, use the regeneration branch instead:
+
+```text
+zero-friction @ git+https://github.com/TECHLETES/zero_friction.git@chore/regenerate-sdk-v1.1
+```
+
+The generated clients are bundled in `zero-friction` as of this regeneration.
+Remove direct dependencies on the standalone `attachments_client`,
+`billing_client`, `communication_client`, `configuration_client`,
+`forecasting_client`, `masterdata_client`, `metering_client`, and
+`regionalregulations_client` packages. Refresh the dependent project's lockfile
+after changing the SDK reference, for example:
+
+```bash
+uv lock
+uv sync
+```
+
+Then search the project for the following compatibility-sensitive usage:
+
+1. Generated API classes and attributes. Resource-specific classes such as
+   `BillingTariffsApi`, `ContractsApi`, and `CustomersApi` were replaced by
+   `DefaultApi` in the regenerated clients. Update direct generated-client
+   usage to the relevant client's `default_api`.
+2. Generated imports. Check imports under `<client>_client.api` and
+   `<client>_client.models` for removed or renamed modules and classes.
+3. Method calls. Compare calls with the regenerated method signatures and
+   update renamed operations, newly required arguments, headers, and changed
+   response types.
+4. Models and enums. Update removed or renamed model classes, handle newly
+   added fields, and review enum handling for values that were added or
+   removed.
+5. Unified wrapper usage. Run the project's `zero_friction` wrapper tests;
+   the compatibility layer retains selected wrapper behavior, but it does not
+   make every old generated symbol or method signature available.
+
+Validate the migration in this order:
+
+```bash
+uv lock --check
+uv sync
+uv run pytest
+```
+
+Also run the dependent project's integration or API smoke tests. Do not assume
+that a successful dependency installation proves compatibility; specifically
+exercise imports, API attributes, method signatures, model construction, and
+authentication/header behavior used by the project.
 
 The regeneration branch is the integration target until all known consumers have been checked.
 
@@ -183,6 +246,9 @@ Stable consumers should prefer a release tag instead of tracking `main`:
 ```bash
 pip install "git+https://github.com/TECHLETES/zero_friction.git@v1"
 ```
+
+Projects that are satisfied with the v1 SDK should pin `v1`; this keeps the
+bundled generated clients on v1 even after newer commits land on `main`.
 
 After the regenerated SDK is merged and tagged:
 

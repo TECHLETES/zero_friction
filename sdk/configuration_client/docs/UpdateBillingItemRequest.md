@@ -5,12 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
+**name** | **str** |  | 
+**description** | **str** |  | 
 **person_tax_code_id** | **str** |  | [optional] 
 **organisation_tax_code_id** | **str** |  | [optional] 
+**accounting_code_id** | **str** |  | [optional] 
+**hide_when_zero** | **bool** |  | [optional] 
+**is_prepayment_eligible** | **bool** |  | [optional] 
 **tier_calculation_method** | [**TierCalculationMethod**](TierCalculationMethod.md) |  | [optional] 
-**calculation_parameters** | [**BillingCalculationTypeParametersDTO**](BillingCalculationTypeParametersDTO.md) |  | [optional] 
+**calculation_parameters** | [**BillingCalculationTypeParametersDTO**](BillingCalculationTypeParametersDTO.md) |  | 
 
 ## Example
 

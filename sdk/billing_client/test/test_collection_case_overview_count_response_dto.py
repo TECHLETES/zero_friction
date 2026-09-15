@@ -37,6 +37,7 @@ class TestCollectionCaseOverviewCountResponseDTO(unittest.TestCase):
             return CollectionCaseOverviewCountResponseDTO(
                 all = 56,
                 active = 56,
+                paused = 56,
                 closed = 56,
                 requires_manual_intervention = 56,
                 require_attention = 56

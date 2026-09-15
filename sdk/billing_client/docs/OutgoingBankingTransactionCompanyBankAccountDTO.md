@@ -1,16 +1,16 @@
 # OutgoingBankingTransactionCompanyBankAccountDTO
 
-Contains information about a company bank account associated with an outgoing banking transaction.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The unique identifier of the company bank account. | [optional] 
-**iban** | **str** | The International Bank Account Number (IBAN) of the account. | [optional] 
-**bic** | **str** | The Bank Identifier Code (BIC) of the account. | [optional] 
-**account_holder** | **str** | The name of the account holder. | [optional] 
-**sepa_creditor_id** | **str** | The SEPA creditor identifier associated with the account. | [optional] 
+**id** | **str** |  | [optional] 
+**iban** | **str** |  | [optional] 
+**bic** | **str** |  | [optional] 
+**account_holder** | **str** |  | [optional] 
+**sepa_creditor_id** | **str** |  | [optional] 
+**address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
 
 ## Example
 

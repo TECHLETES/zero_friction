@@ -27,17 +27,17 @@ class SocialTariffParametersRequest(BaseModel):
     """
     SocialTariffParametersRequest
     """ # noqa: E501
-    kbo_number: Optional[StrictStr] = Field(default=None, alias="kboNumber")
-    gln_id: Optional[StrictStr] = Field(default=None, alias="glnId")
-    supplier_address: Optional[AddressDTO] = Field(default=None, alias="supplierAddress")
-    contact_email_address: Optional[StrictStr] = Field(default=None, alias="contactEmailAddress")
-    contact_telephone_number: Optional[StrictStr] = Field(default=None, alias="contactTelephoneNumber")
+    kbo_number: Optional[StrictStr] = Field(alias="kboNumber")
+    gln_id: Optional[StrictStr] = Field(alias="glnId")
+    supplier_address: Optional[AddressDTO] = Field(alias="supplierAddress")
+    contact_email_address: Optional[StrictStr] = Field(alias="contactEmailAddress")
+    contact_telephone_number: Optional[StrictStr] = Field(alias="contactTelephoneNumber")
     contact_fax_number: Optional[StrictStr] = Field(default=None, alias="contactFaxNumber")
-    contact_last_name: Optional[StrictStr] = Field(default=None, alias="contactLastName")
-    contact_first_name: Optional[StrictStr] = Field(default=None, alias="contactFirstName")
-    social_tariff_custom_entity_property_id: Optional[StrictStr] = Field(default=None, alias="socialTariffCustomEntityPropertyId")
-    share_props_with_government_custom_entity_property_id: Optional[StrictStr] = Field(default=None, alias="sharePropsWithGovernmentCustomEntityPropertyId")
-    bim_custom_entity_property_id: Optional[StrictStr] = Field(default=None, alias="bimCustomEntityPropertyId")
+    contact_last_name: Optional[StrictStr] = Field(alias="contactLastName")
+    contact_first_name: Optional[StrictStr] = Field(alias="contactFirstName")
+    social_tariff_custom_entity_property_id: Optional[StrictStr] = Field(alias="socialTariffCustomEntityPropertyId")
+    share_props_with_government_custom_entity_property_id: Optional[StrictStr] = Field(alias="sharePropsWithGovernmentCustomEntityPropertyId")
+    bim_custom_entity_property_id: Optional[StrictStr] = Field(alias="bimCustomEntityPropertyId")
     __properties: ClassVar[List[str]] = ["kboNumber", "glnId", "supplierAddress", "contactEmailAddress", "contactTelephoneNumber", "contactFaxNumber", "contactLastName", "contactFirstName", "socialTariffCustomEntityPropertyId", "sharePropsWithGovernmentCustomEntityPropertyId", "bimCustomEntityPropertyId"]
 
     model_config = ConfigDict(

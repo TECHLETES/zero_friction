@@ -5,7 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**calculation_type** | [**BillingItemTariffCalculationType**](BillingItemTariffCalculationType.md) |  | [optional] [readonly] 
+**type** | **str** |  | 
+**calculation_type** | [**BillingItemTariffCalculationType**](BillingItemTariffCalculationType.md) |  | [optional] 
+**slices** | [**List[TieredSliceDTO]**](TieredSliceDTO.md) |  | [optional] 
+**formula_based** | **bool** |  | [optional] 
+**input_parameters** | [**List[BillingTariffInputDTO]**](BillingTariffInputDTO.md) |  | [optional] 
+**unit_tariff** | **float** |  | [optional] 
+**expression** | **str** |  | [optional] 
 
 ## Example
 

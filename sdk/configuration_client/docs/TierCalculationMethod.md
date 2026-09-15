@@ -1,5 +1,6 @@
 # TierCalculationMethod
 
+Possible values: 'invoiceperiod', 'tariffperiod'
 
 ## Enum
 

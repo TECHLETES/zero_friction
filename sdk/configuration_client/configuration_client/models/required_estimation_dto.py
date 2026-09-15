@@ -79,21 +79,6 @@ class RequiredEstimationDTO(BaseModel):
         if self.billing_item_ids is None and "billing_item_ids" in self.model_fields_set:
             _dict['billingItemIds'] = None
 
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
-
-        # set to None if metering_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.metering_type is None and "metering_type" in self.model_fields_set:
-            _dict['meteringType'] = None
-
         return _dict
 
     @classmethod

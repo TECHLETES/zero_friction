@@ -20,18 +20,19 @@ from typing_extensions import Self
 
 class CommunicationType(str, Enum):
     """
-    CommunicationType
+    Possible values: 'none', 'email', 'postal', 'manual', 'skipifsdd', 'sms', 'einvoicing'
     """
 
     """
     allowed enum values
     """
-    POSTAL = 'postal'
     NONE = 'none'
     EMAIL = 'email'
+    POSTAL = 'postal'
     MANUAL = 'manual'
     SKIPIFSDD = 'skipifsdd'
     SMS = 'sms'
+    EINVOICING = 'einvoicing'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

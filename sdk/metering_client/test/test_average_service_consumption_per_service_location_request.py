@@ -41,6 +41,9 @@ class TestAverageServiceConsumptionPerServiceLocationRequest(unittest.TestCase):
             )
         else:
             return AverageServiceConsumptionPerServiceLocationRequest(
+                service_location_ids = [
+                    ''
+                    ],
         )
         """
 

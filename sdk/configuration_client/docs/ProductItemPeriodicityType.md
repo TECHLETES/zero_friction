@@ -1,5 +1,6 @@
 # ProductItemPeriodicityType
 
+Possible values: 'regular', 'onmovein', 'onmoveout', 'fixedamount', 'fixedduration'
 
 ## Enum
 

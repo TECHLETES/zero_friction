@@ -20,18 +20,20 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from billing_client.models.address_dto import AddressDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
 class OutgoingMutationCustomerBankAccountDTO(BaseModel):
     """
-    Contains information about a customer's bank account for an outgoing mutation.  This DTO includes details about the account and associated mandate information.
+    OutgoingMutationCustomerBankAccountDTO
     """ # noqa: E501
-    iban: Optional[StrictStr] = Field(default=None, description="The International Bank Account Number (IBAN) of the customer's account.")
-    account_holder: Optional[StrictStr] = Field(default=None, description="The name of the account holder.", alias="accountHolder")
-    mandate_number: Optional[StrictStr] = Field(default=None, description="The mandate number associated with this account.", alias="mandateNumber")
-    mandate_signed_date: Optional[datetime] = Field(default=None, description="The date when the mandate was signed.", alias="mandateSignedDate")
-    __properties: ClassVar[List[str]] = ["iban", "accountHolder", "mandateNumber", "mandateSignedDate"]
+    iban: Optional[StrictStr] = None
+    account_holder: Optional[StrictStr] = Field(default=None, alias="accountHolder")
+    mandate_number: Optional[StrictStr] = Field(default=None, alias="mandateNumber")
+    mandate_signed_date: Optional[datetime] = Field(default=None, alias="mandateSignedDate")
+    address: Optional[AddressDTO] = None
+    __properties: ClassVar[List[str]] = ["iban", "accountHolder", "mandateNumber", "mandateSignedDate", "address"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +74,9 @@ class OutgoingMutationCustomerBankAccountDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of address
+        if self.address:
+            _dict['address'] = self.address.to_dict()
         # set to None if iban (nullable) is None
         # and model_fields_set contains the field
         if self.iban is None and "iban" in self.model_fields_set:
@@ -86,6 +91,11 @@ class OutgoingMutationCustomerBankAccountDTO(BaseModel):
         # and model_fields_set contains the field
         if self.mandate_number is None and "mandate_number" in self.model_fields_set:
             _dict['mandateNumber'] = None
+
+        # set to None if address (nullable) is None
+        # and model_fields_set contains the field
+        if self.address is None and "address" in self.model_fields_set:
+            _dict['address'] = None
 
         return _dict
 
@@ -102,7 +112,8 @@ class OutgoingMutationCustomerBankAccountDTO(BaseModel):
             "iban": obj.get("iban"),
             "accountHolder": obj.get("accountHolder"),
             "mandateNumber": obj.get("mandateNumber"),
-            "mandateSignedDate": obj.get("mandateSignedDate")
+            "mandateSignedDate": obj.get("mandateSignedDate"),
+            "address": AddressDTO.from_dict(obj["address"]) if obj.get("address") is not None else None
         })
         return _obj
 

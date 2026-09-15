@@ -46,7 +46,8 @@ class TestServiceConsumptionDTO(unittest.TestCase):
                     metering_client.models.service_consumption_value_dto.ServiceConsumptionValueDTO(
                         value = 1.337, 
                         start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        time_of_use = '', )
                     ],
                 data_frequency = 'pt1m',
                 metering_type = 'none',

@@ -29,7 +29,7 @@ class ProductReferenceDTO(BaseModel):
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     product_id: Optional[StrictStr] = Field(default=None, alias="productId")
-    product_name: Optional[StrictStr] = Field(default=None, alias="productName")
+    product_name: StrictStr = Field(alias="productName")
     __properties: ClassVar[List[str]] = ["id", "name", "productId", "productName"]
 
     model_config = ConfigDict(
@@ -62,12 +62,8 @@ class ProductReferenceDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "name",
-            "product_id",
         ])
 
         _dict = self.model_dump(
@@ -75,11 +71,6 @@ class ProductReferenceDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -89,11 +80,6 @@ class ProductReferenceDTO(BaseModel):
         # and model_fields_set contains the field
         if self.product_id is None and "product_id" in self.model_fields_set:
             _dict['productId'] = None
-
-        # set to None if product_name (nullable) is None
-        # and model_fields_set contains the field
-        if self.product_name is None and "product_name" in self.model_fields_set:
-            _dict['productName'] = None
 
         return _dict
 

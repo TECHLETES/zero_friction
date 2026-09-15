@@ -5,7 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**pdf_template** | [**NoticeOfDefaultPdfTemplateDTO**](NoticeOfDefaultPdfTemplateDTO.md) |  | [optional] 
+**email_template** | [**NoticeOfDefaultEmailTemplateDTO**](NoticeOfDefaultEmailTemplateDTO.md) |  | [optional] 
 **default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
+**auto_fallback_to_postal** | **bool** |  | [optional] 
 **translation_list_id** | **str** |  | [optional] 
 **translation_list_history_id** | **str** |  | [optional] 
 **data_type** | [**TemplateObjectType**](TemplateObjectType.md) |  | [optional] 
@@ -14,8 +17,6 @@ Name | Type | Description | Notes
 **grouping_type** | [**ScenarioGroupingType**](ScenarioGroupingType.md) |  | [optional] 
 **entity_type** | [**EntityTypeDTO**](EntityTypeDTO.md) |  | [optional] 
 **available_communication_types** | [**List[CommunicationType]**](CommunicationType.md) |  | [optional] 
-**pdf_template** | [**NoticeOfDefaultPdfTemplateDTO**](NoticeOfDefaultPdfTemplateDTO.md) |  | [optional] 
-**email_template** | [**NoticeOfDefaultEmailTemplateDTO**](NoticeOfDefaultEmailTemplateDTO.md) |  | [optional] 
 
 ## Example
 

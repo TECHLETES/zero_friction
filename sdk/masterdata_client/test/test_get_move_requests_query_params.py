@@ -35,6 +35,8 @@ class TestGetMoveRequestsQueryParams(unittest.TestCase):
         model = GetMoveRequestsQueryParams()
         if include_optional:
             return GetMoveRequestsQueryParams(
+                location_id = '',
+                move_request_type_id = '',
                 flex_search = '',
                 include_only_ids = [
                     ''
@@ -42,8 +44,7 @@ class TestGetMoveRequestsQueryParams(unittest.TestCase):
                 exclude_ids = [
                     ''
                     ],
-                location_id = '',
-                move_request_type_id = ''
+                page_size = 56
             )
         else:
             return GetMoveRequestsQueryParams(

@@ -1,37 +1,32 @@
 # PropertyGroupBillingConfigurationDTO
 
-Represents a billing configuration for a property group.  This DTO contains comprehensive information about billing settings, including frequencies, components, and localization.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | Gets or sets the unique identifier. | [optional] 
-**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) | Gets or sets the type of the entity. | [optional] 
-**created_date_time** | **datetime** | Gets or sets the date and time when the entity was created. | [optional] 
-**discriminator** | **str** | Gets or sets the discriminator value. | [optional] 
-**etag** | **str** | Gets or sets the ETag value. | [optional] 
-**require_attention** | **bool** | Gets a value indicating whether the entity requires attention. | [optional] [readonly] 
-**has_errors** | **bool** | Gets or sets a value indicating whether the entity has errors. | [optional] 
-**has_warnings** | **bool** | Gets or sets a value indicating whether the entity has warnings. | [optional] 
-**is_read_only** | **bool** | Gets or sets a value indicating whether the entity is read-only. | [optional] 
-**organisation_id** | **str** | Gets or sets the organization identifier. | [optional] 
-**property_group** | [**PropertyGroupReferenceDTO**](PropertyGroupReferenceDTO.md) | Reference to the property group associated with this configuration. | [optional] 
-**company_bank_account_id** | **str** | The unique identifier of the company bank account. | [optional] 
-**advance_frequency** | [**AdvanceFrequency**](AdvanceFrequency.md) | The frequency at which advance payments are made. | [optional] 
-**invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) | The frequency at which invoices are generated. | [optional] 
-**invoice_day** | **int** | The day of the month when invoices are generated. | [optional] 
-**invoice_month** | **int** | The month when invoices are generated (for yearly frequency). | [optional] 
-**product_id** | **str** | The unique identifier of the product. | [optional] 
-**payment_terms_id** | **str** | The unique identifier of the payment terms. | [optional] 
-**required_incoming_invoice_components** | [**List[IncomingInvoiceComponentDTO]**](IncomingInvoiceComponentDTO.md) | List of required incoming invoice components. | [optional] 
-**calculation_configurations** | [**List[PropertyGroupCalculationConfigurationDTO]**](PropertyGroupCalculationConfigurationDTO.md) | List of calculation configurations for this property group. | [optional] 
-**cost_allocation_enabled** | **bool** | Indicates whether cost allocation is enabled for this configuration. | [optional] 
-**cost_allocation_validated** | **bool** | Indicates whether the cost allocation has been validated. | [optional] 
-**note_to_customer** | **str** | A note to be included for the customer. | [optional] 
-**localisation_level** | [**LocalisationLevel**](LocalisationLevel.md) | The level of localization for this configuration. | [optional] 
-**localised_fields** | **List[str]** | List of fields that have been localized. | [optional] 
-**translated_fields** | **Dict[str, Optional[Dict[str, str]]]** | Dictionary of translated fields by culture. | [optional] 
+**property_group** | [**PropertyGroupReferenceDTO**](PropertyGroupReferenceDTO.md) |  | [optional] 
+**company_bank_account_id** | **str** |  | [optional] 
+**advance_frequency** | [**AdvanceFrequency**](AdvanceFrequency.md) |  | [optional] 
+**invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) |  | [optional] 
+**invoice_day** | **int** |  | [optional] 
+**invoice_month** | **int** |  | [optional] 
+**product_id** | **str** |  | [optional] 
+**payment_terms_id** | **str** |  | [optional] 
+**time_of_use_calendar_ids** | **Dict[str, str]** |  | [optional] 
+**default_billing_method** | [**ContractBillingMethod**](ContractBillingMethod.md) |  | [optional] 
+**note_to_customer** | **str** |  | [optional] 
+**localisation_level** | [**LocalisationLevel**](LocalisationLevel.md) |  | [optional] 
+**localised_fields** | **List[str]** |  | [optional] 
+**translated_fields** | **Dict[str, Dict[str, str]]** |  | [optional] 
+**organisation_id** | **str** |  | [optional] 
+**id** | **str** |  | [optional] 
+**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**created_date_time** | **datetime** |  | [optional] 
+**discriminator** | **str** |  | [optional] 
+**etag** | **str** |  | [optional] 
+**has_errors** | **bool** |  | [optional] 
+**is_read_only** | **bool** |  | [optional] 
 
 ## Example
 

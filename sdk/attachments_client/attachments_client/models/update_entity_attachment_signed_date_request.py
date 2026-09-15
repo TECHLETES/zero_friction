@@ -20,7 +20,6 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from attachments_client.models.culture_info import CultureInfo
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,10 +27,10 @@ class UpdateEntityAttachmentSignedDateRequest(BaseModel):
     """
     UpdateEntityAttachmentSignedDateRequest
     """ # noqa: E501
-    customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
-    signed_date_time: Optional[datetime] = Field(default=None, alias="signedDateTime")
-    signed_culture: Optional[CultureInfo] = Field(default=None, alias="signedCulture")
-    signed_localised_file_name: Optional[StrictStr] = Field(default=None, alias="signedLocalisedFileName")
+    customer_id: Optional[StrictStr] = Field(alias="customerId")
+    signed_date_time: datetime = Field(alias="signedDateTime")
+    signed_culture: StrictStr = Field(description="Culture identifier (e.g., 'en-US', 'nl-NL')", alias="signedCulture")
+    signed_localised_file_name: Optional[StrictStr] = Field(alias="signedLocalisedFileName")
     __properties: ClassVar[List[str]] = ["customerId", "signedDateTime", "signedCulture", "signedLocalisedFileName"]
 
     model_config = ConfigDict(
@@ -77,11 +76,6 @@ class UpdateEntityAttachmentSignedDateRequest(BaseModel):
         # and model_fields_set contains the field
         if self.customer_id is None and "customer_id" in self.model_fields_set:
             _dict['customerId'] = None
-
-        # set to None if signed_culture (nullable) is None
-        # and model_fields_set contains the field
-        if self.signed_culture is None and "signed_culture" in self.model_fields_set:
-            _dict['signedCulture'] = None
 
         # set to None if signed_localised_file_name (nullable) is None
         # and model_fields_set contains the field

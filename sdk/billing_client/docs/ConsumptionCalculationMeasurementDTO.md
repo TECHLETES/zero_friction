@@ -1,14 +1,15 @@
 # ConsumptionCalculationMeasurementDTO
 
-Represents a measurement used in consumption calculations
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | **float** | Value of the measurement | [optional] 
-**reading_date_time** | **datetime** | Date and time when the reading was taken | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) | Unit of measure for the reading | [optional] 
+**value** | **float** |  | [optional] 
+**reading_date_time** | **datetime** |  | [optional] 
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
+**reading_origin** | [**MeasurementReadingOrigin**](MeasurementReadingOrigin.md) |  | [optional] 
+**reading_method** | [**MeasurementReadingMethod**](MeasurementReadingMethod.md) |  | [optional] 
 
 ## Example
 

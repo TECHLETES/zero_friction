@@ -35,13 +35,15 @@ class TestChangeCreditNoteScenarioRequest(unittest.TestCase):
         model = ChangeCreditNoteScenarioRequest()
         if include_optional:
             return ChangeCreditNoteScenarioRequest(
-                default_communication_type = 'postal',
                 pdf_template = configuration_client.models.credit_note_pdf_template_request.CreditNotePdfTemplateRequest(
-                    envelope_settings = null, 
                     show_country = True, 
                     show_balance = True, 
                     show_vat_specs = True, 
-                    show_custom_information = True, ),
+                    show_custom_information = True, 
+                    envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                        margin_position = 'left', 
+                        margin = 56, 
+                        margin_top = 56, ), ),
                 email_template = configuration_client.models.credit_note_email_template_request.CreditNoteEmailTemplateRequest(
                     subject = '', 
                     attachments = [
@@ -49,10 +51,30 @@ class TestChangeCreditNoteScenarioRequest(unittest.TestCase):
                             id = '', 
                             internal_file_path = '', 
                             file_name = '', )
-                        ], )
+                        ], ),
+                default_communication_type = 'none',
+                auto_fallback_to_postal = True
             )
         else:
             return ChangeCreditNoteScenarioRequest(
+                pdf_template = configuration_client.models.credit_note_pdf_template_request.CreditNotePdfTemplateRequest(
+                    show_country = True, 
+                    show_balance = True, 
+                    show_vat_specs = True, 
+                    show_custom_information = True, 
+                    envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                        margin_position = 'left', 
+                        margin = 56, 
+                        margin_top = 56, ), ),
+                email_template = configuration_client.models.credit_note_email_template_request.CreditNoteEmailTemplateRequest(
+                    subject = '', 
+                    attachments = [
+                        configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
+                            id = '', 
+                            internal_file_path = '', 
+                            file_name = '', )
+                        ], ),
+                default_communication_type = 'none',
         )
         """
 

@@ -1,14 +1,13 @@
 # UpdateOutgoingMutationEntryRequest
 
-Represents a request to update an existing outgoing mutation entry.  This DTO is used to modify the details of a specific entry within an outgoing banking transaction.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **float** | The new amount for the mutation entry. | [optional] 
-**payment_reference** | **str** | The new payment reference text for the mutation entry. | [optional] 
-**iban** | **str** | The new IBAN (International Bank Account Number) for the mutation entry.  This field is optional and can be null. | [optional] 
+**amount** | **float** |  | 
+**payment_reference** | **str** |  | 
+**iban** | **str** |  | [optional] 
 
 ## Example
 

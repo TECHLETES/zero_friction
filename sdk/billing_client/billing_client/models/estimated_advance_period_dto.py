@@ -25,18 +25,18 @@ from typing_extensions import Self
 
 class EstimatedAdvancePeriodDTO(BaseModel):
     """
-    Represents an advance period in an estimated invoice.  This DTO contains information about advance payments, including amounts, periods, and payment status.
+    EstimatedAdvancePeriodDTO
     """ # noqa: E501
-    period_start_date_time: Optional[datetime] = Field(default=None, description="The start date and time of the advance period.", alias="periodStartDateTime")
-    period_end_date_time: Optional[datetime] = Field(default=None, description="The end date and time of the advance period.", alias="periodEndDateTime")
-    amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The advance amount excluding VAT.", alias="amountExclVAT")
-    vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The VAT amount for this advance.")
-    amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The advance amount including VAT.", alias="amountInclVAT")
-    quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The quantity associated with this advance.")
-    unit_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The unit price for this advance.", alias="unitPrice")
-    vat_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The VAT rate applied to this advance.", alias="vatRate")
-    paid: Optional[StrictBool] = Field(default=None, description="Indicates whether this advance has been paid.")
-    invoice_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the invoice associated with this advance.", alias="invoiceId")
+    period_start_date_time: Optional[datetime] = Field(default=None, alias="periodStartDateTime")
+    period_end_date_time: Optional[datetime] = Field(default=None, alias="periodEndDateTime")
+    amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="amountExclVAT")
+    vat: Optional[Union[StrictFloat, StrictInt]] = None
+    amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="amountInclVAT")
+    quantity: Optional[Union[StrictFloat, StrictInt]] = None
+    unit_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="unitPrice")
+    vat_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="vatRate")
+    paid: Optional[StrictBool] = None
+    invoice_id: Optional[StrictStr] = Field(default=None, alias="invoiceId")
     __properties: ClassVar[List[str]] = ["periodStartDateTime", "periodEndDateTime", "amountExclVAT", "vat", "amountInclVAT", "quantity", "unitPrice", "vatRate", "paid", "invoiceId"]
 
     model_config = ConfigDict(

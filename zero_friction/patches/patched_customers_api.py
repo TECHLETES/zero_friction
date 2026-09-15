@@ -2,7 +2,7 @@
 
 from typing import Any
 
-from masterdata_client.api.customers_api import CustomersApi
+from masterdata_client.api.default_api import DefaultApi
 
 # If your generated model class has a different name, adjust the string in _RESPONSE_TYPE below
 # and optionally import the class for type hints:
@@ -22,12 +22,12 @@ class PatchedCustomersApi:
     _AUTH = [
         "BearerAuth"
     ]  # adjust if your generated client uses a different auth scheme name
-    _RESPONSE_TYPE = "CustomerDTOApiResponseDTO"  # exact string used by the generator for the success model
+    _RESPONSE_TYPE = "ApiResponseDTOOfCustomerDTO"  # exact generated response model
 
-    def __init__(self, customers_api: CustomersApi):
+    def __init__(self, customers_api: DefaultApi):
         """Wrap a generated customers API instance."""
         self.api_client = customers_api.api_client
-        self._orig = CustomersApi(self.api_client)  # for passthrough of other methods
+        self._orig = DefaultApi(self.api_client)  # for passthrough of other methods
 
     # Keep the same signature your generated method exposes
     def get_customer_by_account_number(

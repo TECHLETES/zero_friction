@@ -1,14 +1,13 @@
 # OutgoingBankingTransactionEntityCountsDTO
 
-Contains counts of various entities associated with an outgoing banking transaction.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**number_of_mutations** | **int** | The total number of mutations in the transaction. | [optional] 
-**confirmed_mutations** | **int** | The number of mutations that have been confirmed. | [optional] 
-**reversed_mutations** | **int** | The number of mutations that have been reversed. | [optional] 
+**number_of_mutations** | **int** |  | [optional] 
+**confirmed_mutations** | **int** |  | [optional] 
+**reversed_mutations** | **int** |  | [optional] 
 
 ## Example
 

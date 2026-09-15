@@ -1,5 +1,6 @@
 # PaymentTermsFrequency
 
+Possible values: 'day', 'week', 'month'
 
 ## Enum
 

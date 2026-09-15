@@ -26,7 +26,7 @@ class CreateUpdateCollectionFlowRequest(BaseModel):
     """
     CreateUpdateCollectionFlowRequest
     """ # noqa: E501
-    name: Optional[StrictStr] = None
+    name: Optional[StrictStr]
     days_after_invoice_due: Optional[StrictInt] = Field(default=None, alias="daysAfterInvoiceDue")
     step_ids: Optional[List[StrictStr]] = Field(default=None, alias="stepIds")
     __properties: ClassVar[List[str]] = ["name", "daysAfterInvoiceDue", "stepIds"]

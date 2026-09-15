@@ -6,10 +6,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **consumer_group_id** | **str** |  | [optional] 
-**value** | **float** |  | [optional] 
+**consumption_quantity** | **float** |  | [optional] 
 **unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
 **metering_type** | [**MeteringType**](MeteringType.md) |  | [optional] 
-**is_manual_entry** | **bool** |  | [optional] 
+**direction** | [**Direction**](Direction.md) |  | [optional] 
 
 ## Example
 

@@ -1,12 +1,11 @@
 # BillBillingCompletenessIntermediatelyRequest
 
-Represents a request to perform intermediate billing for billing completeness
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**end_date_time** | **datetime** | Date and time when the intermediate billing period ends | [optional] 
+**end_date_time** | **datetime** |  | 
 
 ## Example
 

@@ -56,21 +56,29 @@ class TestUpdateMoveRequestCustomerDetailsRequest(unittest.TestCase):
                     building_name = '', 
                     locality = '', 
                     city = '', 
-                    country = null, 
+                    country = 'aut', 
                     localized_display = '', 
                     line_one = '', 
                     line_two = '', ),
+                country_code = 'aut',
                 bank_account = '',
                 email_address = '',
                 telephone_number = '',
                 mobile_telephone_number = '',
                 website = '',
-                culture = ,
+                culture = '',
                 internal_id = '',
                 customer_group_id = ''
             )
         else:
             return UpdateMoveRequestCustomerDetailsRequest(
+                last_name = '',
+                ssin = '',
+                ssin_country = 'aut',
+                customer_type = 'person',
+                company_name = '',
+                default_payment_method = 'sct',
+                bank_account = '',
         )
         """
 

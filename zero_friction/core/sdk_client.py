@@ -119,8 +119,13 @@ class SDKClient:
             create_api_classes_for_client(module, client_instance)
 
         # Patch specific methods
+        masterdata_customer_api = (
+            self.masterdata_client.default_api
+            if hasattr(self.masterdata_client, "default_api")
+            else self.masterdata_client.customers_api
+        )
         self.masterdata_client.customers_api = PatchedCustomersApi(
-            self.masterdata_client.customers_api
+            masterdata_customer_api
         )
 
         # Now wrap call_api of every client for retry/rate-limit handling.

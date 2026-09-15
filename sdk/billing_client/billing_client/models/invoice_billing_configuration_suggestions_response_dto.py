@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from billing_client.models.advance_frequency import AdvanceFrequency
+from billing_client.models.contract_billing_method import ContractBillingMethod
 from billing_client.models.invoice_frequency import InvoiceFrequency
 from billing_client.models.localised_system_message_dto import LocalisedSystemMessageDTO
 from typing import Optional, Set
@@ -27,17 +28,19 @@ from typing_extensions import Self
 
 class InvoiceBillingConfigurationSuggestionsResponseDTO(BaseModel):
     """
-    Represents suggested billing configuration settings for an invoice
+    InvoiceBillingConfigurationSuggestionsResponseDTO
     """ # noqa: E501
-    advance_frequency: Optional[AdvanceFrequency] = Field(default=None, description="Suggested frequency for advance payments", alias="advanceFrequency")
-    invoice_frequency: Optional[InvoiceFrequency] = Field(default=None, description="Suggested frequency for invoice generation", alias="invoiceFrequency")
-    payment_terms_id: Optional[StrictStr] = Field(default=None, description="Identifier of the suggested payment terms", alias="paymentTermsId")
-    message: Optional[LocalisedSystemMessageDTO] = Field(default=None, description="Localized system message with additional information")
-    invoice_month: Optional[StrictInt] = Field(default=None, description="Suggested month for invoice generation (1-12)", alias="invoiceMonth")
-    invoice_day: Optional[StrictInt] = Field(default=None, description="Suggested day of the month for invoice generation (1-31)", alias="invoiceDay")
-    iban: Optional[StrictStr] = Field(default=None, description="Suggested IBAN for payments")
-    company_bank_account_id: Optional[StrictStr] = Field(default=None, description="Identifier of the suggested company bank account", alias="companyBankAccountId")
-    __properties: ClassVar[List[str]] = ["advanceFrequency", "invoiceFrequency", "paymentTermsId", "message", "invoiceMonth", "invoiceDay", "iban", "companyBankAccountId"]
+    advance_frequency: Optional[AdvanceFrequency] = Field(default=None, alias="advanceFrequency")
+    invoice_frequency: Optional[InvoiceFrequency] = Field(default=None, alias="invoiceFrequency")
+    payment_terms_id: Optional[StrictStr] = Field(default=None, alias="paymentTermsId")
+    message: Optional[LocalisedSystemMessageDTO] = None
+    invoice_month: Optional[StrictInt] = Field(default=None, alias="invoiceMonth")
+    invoice_day: Optional[StrictInt] = Field(default=None, alias="invoiceDay")
+    iban: Optional[StrictStr] = None
+    company_bank_account_id: Optional[StrictStr] = Field(default=None, alias="companyBankAccountId")
+    default_billing_method: Optional[ContractBillingMethod] = Field(default=None, alias="defaultBillingMethod")
+    property_group_id: Optional[StrictStr] = Field(default=None, alias="propertyGroupId")
+    __properties: ClassVar[List[str]] = ["advanceFrequency", "invoiceFrequency", "paymentTermsId", "message", "invoiceMonth", "invoiceDay", "iban", "companyBankAccountId", "defaultBillingMethod", "propertyGroupId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,16 +84,6 @@ class InvoiceBillingConfigurationSuggestionsResponseDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of message
         if self.message:
             _dict['message'] = self.message.to_dict()
-        # set to None if advance_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.advance_frequency is None and "advance_frequency" in self.model_fields_set:
-            _dict['advanceFrequency'] = None
-
-        # set to None if invoice_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_frequency is None and "invoice_frequency" in self.model_fields_set:
-            _dict['invoiceFrequency'] = None
-
         # set to None if payment_terms_id (nullable) is None
         # and model_fields_set contains the field
         if self.payment_terms_id is None and "payment_terms_id" in self.model_fields_set:
@@ -121,6 +114,16 @@ class InvoiceBillingConfigurationSuggestionsResponseDTO(BaseModel):
         if self.company_bank_account_id is None and "company_bank_account_id" in self.model_fields_set:
             _dict['companyBankAccountId'] = None
 
+        # set to None if default_billing_method (nullable) is None
+        # and model_fields_set contains the field
+        if self.default_billing_method is None and "default_billing_method" in self.model_fields_set:
+            _dict['defaultBillingMethod'] = None
+
+        # set to None if property_group_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.property_group_id is None and "property_group_id" in self.model_fields_set:
+            _dict['propertyGroupId'] = None
+
         return _dict
 
     @classmethod
@@ -140,7 +143,9 @@ class InvoiceBillingConfigurationSuggestionsResponseDTO(BaseModel):
             "invoiceMonth": obj.get("invoiceMonth"),
             "invoiceDay": obj.get("invoiceDay"),
             "iban": obj.get("iban"),
-            "companyBankAccountId": obj.get("companyBankAccountId")
+            "companyBankAccountId": obj.get("companyBankAccountId"),
+            "defaultBillingMethod": obj.get("defaultBillingMethod"),
+            "propertyGroupId": obj.get("propertyGroupId")
         })
         return _obj
 

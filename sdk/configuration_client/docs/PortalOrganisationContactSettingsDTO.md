@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **email_address** | **str** |  | [optional] 
 **contact_url** | **str** |  | [optional] 
 **telephone_number** | **str** |  | [optional] 
-**sepa_mandate_terms_and_conditions_urls** | **Dict[str, Optional[str]]** |  | [optional] 
-**terms_and_conditions_urls** | **Dict[str, Optional[str]]** |  | [optional] 
+**sepa_mandate_terms_and_conditions_urls** | **Dict[str, str]** |  | [optional] 
+**terms_and_conditions_urls** | **Dict[str, str]** |  | [optional] 
 
 ## Example
 

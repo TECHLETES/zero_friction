@@ -35,6 +35,21 @@ class TestGetContractsQueryParams(unittest.TestCase):
         model = GetContractsQueryParams()
         if include_optional:
             return GetContractsQueryParams(
+                service_location_id = '',
+                property_group_ids = [
+                    ''
+                    ],
+                utility_types = [
+                    ''
+                    ],
+                customer_group_id = '',
+                customer_id = '',
+                customer_type = '',
+                product_id = '',
+                product_ids = [
+                    ''
+                    ],
+                exclude_terminated_contracts = True,
                 flex_search = '',
                 include_only_ids = [
                     ''
@@ -42,15 +57,7 @@ class TestGetContractsQueryParams(unittest.TestCase):
                 exclude_ids = [
                     ''
                     ],
-                service_location_id = '',
-                property_group_ids = [
-                    ''
-                    ],
-                customer_group_id = '',
-                customer_id = '',
-                customer_type = '',
-                product_id = '',
-                exclude_terminated_contracts = True
+                page_size = 56
             )
         else:
             return GetContractsQueryParams(

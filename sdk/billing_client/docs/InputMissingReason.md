@@ -1,5 +1,6 @@
 # InputMissingReason
 
+Possible values: 'unknown', 'missingadvances', 'missingreceivingperiods', 'missingtariffs', 'invoicecreationfailed', 'invoicelinecalculationfailed', 'missingreceivingperiodsfortieredtariffcalculation', 'missingbillingitems', 'missingcustomentityproperty', 'missingaskingperiods', 'askingperiodscontainsgap', 'missingtaxrate', 'missingpropertygrouponlocation', 'propertygroupnotfound', 'servicelocationnotfound', 'missingcep', 'missingmeter', 'prepaymentstatementnumbergenerationfailed', 'firstmeasurementonwrongdate', 'nomeasurementonstart', 'nomeasurementonend', 'nomeasurementsfound', 'lastmeasurementonwrongdate', 'measurementnotwithindeviationwindow', 'noproductfound'
 
 ## Enum
 
@@ -36,6 +37,8 @@
 * `MISSINGCEP` (value: `'missingcep'`)
 
 * `MISSINGMETER` (value: `'missingmeter'`)
+
+* `PREPAYMENTSTATEMENTNUMBERGENERATIONFAILED` (value: `'prepaymentstatementnumbergenerationfailed'`)
 
 * `FIRSTMEASUREMENTONWRONGDATE` (value: `'firstmeasurementonwrongdate'`)
 

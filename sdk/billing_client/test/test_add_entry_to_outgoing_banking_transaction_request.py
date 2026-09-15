@@ -44,6 +44,10 @@ class TestAddEntryToOutgoingBankingTransactionRequest(unittest.TestCase):
             )
         else:
             return AddEntryToOutgoingBankingTransactionRequest(
+                invoice_id = '',
+                amount = 1.337,
+                payment_reference = '',
+                customer_id = '',
         )
         """
 

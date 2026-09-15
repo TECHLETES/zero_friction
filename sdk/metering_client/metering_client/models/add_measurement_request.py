@@ -20,6 +20,8 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from metering_client.models.measurement_reading_method import MeasurementReadingMethod
+from metering_client.models.measurement_reading_origin import MeasurementReadingOrigin
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,13 +29,16 @@ class AddMeasurementRequest(BaseModel):
     """
     AddMeasurementRequest
     """ # noqa: E501
-    end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
+    start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
+    end_date_time: datetime = Field(alias="endDateTime")
     value: Optional[Union[StrictFloat, StrictInt]] = None
-    external_channel_identifier: Optional[StrictStr] = Field(default=None, alias="externalChannelIdentifier")
-    meter_id: Optional[StrictStr] = Field(default=None, alias="meterId")
+    external_channel_identifier: Optional[StrictStr] = Field(alias="externalChannelIdentifier")
+    meter_id: Optional[StrictStr] = Field(alias="meterId")
     skip_validation: Optional[StrictBool] = Field(default=None, alias="skipValidation")
     resolve_issues_manually: Optional[StrictBool] = Field(default=None, alias="resolveIssuesManually")
-    __properties: ClassVar[List[str]] = ["endDateTime", "value", "externalChannelIdentifier", "meterId", "skipValidation", "resolveIssuesManually"]
+    reading_origin: Optional[MeasurementReadingOrigin] = Field(default=None, alias="readingOrigin")
+    reading_method: Optional[MeasurementReadingMethod] = Field(default=None, alias="readingMethod")
+    __properties: ClassVar[List[str]] = ["startDateTime", "endDateTime", "value", "externalChannelIdentifier", "meterId", "skipValidation", "resolveIssuesManually", "readingOrigin", "readingMethod"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,6 +79,11 @@ class AddMeasurementRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if start_date_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_date_time is None and "start_date_time" in self.model_fields_set:
+            _dict['startDateTime'] = None
+
         # set to None if external_channel_identifier (nullable) is None
         # and model_fields_set contains the field
         if self.external_channel_identifier is None and "external_channel_identifier" in self.model_fields_set:
@@ -83,6 +93,16 @@ class AddMeasurementRequest(BaseModel):
         # and model_fields_set contains the field
         if self.meter_id is None and "meter_id" in self.model_fields_set:
             _dict['meterId'] = None
+
+        # set to None if reading_origin (nullable) is None
+        # and model_fields_set contains the field
+        if self.reading_origin is None and "reading_origin" in self.model_fields_set:
+            _dict['readingOrigin'] = None
+
+        # set to None if reading_method (nullable) is None
+        # and model_fields_set contains the field
+        if self.reading_method is None and "reading_method" in self.model_fields_set:
+            _dict['readingMethod'] = None
 
         return _dict
 
@@ -96,12 +116,15 @@ class AddMeasurementRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "startDateTime": obj.get("startDateTime"),
             "endDateTime": obj.get("endDateTime"),
             "value": obj.get("value"),
             "externalChannelIdentifier": obj.get("externalChannelIdentifier"),
             "meterId": obj.get("meterId"),
             "skipValidation": obj.get("skipValidation"),
-            "resolveIssuesManually": obj.get("resolveIssuesManually")
+            "resolveIssuesManually": obj.get("resolveIssuesManually"),
+            "readingOrigin": obj.get("readingOrigin"),
+            "readingMethod": obj.get("readingMethod")
         })
         return _obj
 

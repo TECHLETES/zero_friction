@@ -41,6 +41,7 @@ class TestExportMeasurementDTO(unittest.TestCase):
                 meter_tag = '',
                 operation_id = '',
                 value = 1.337,
+                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 deleted = True,
                 data_frequency = 'pt1m',
@@ -51,7 +52,15 @@ class TestExportMeasurementDTO(unittest.TestCase):
                 unit_of_measure = 'none',
                 time_of_use = '',
                 property_group_name = '',
-                property_group_id = ''
+                property_group_id = '',
+                reading_origin = 'device',
+                reading_method = 'automatic',
+                origin_details = metering_client.models.measurement_origin_details_dto_metering_import_job_origin_details_dto.MeasurementOriginDetailsDTOMeteringImportJobOriginDetailsDTO(
+                    type = 'MeteringImportJob', 
+                    import_job_id = '', 
+                    data_provider_id = '', 
+                    data_provider_name = '', 
+                    display_name = '', )
             )
         else:
             return ExportMeasurementDTO(

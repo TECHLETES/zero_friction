@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
-**email_template** | [**ContractLocationsAddedEmailTemplateRequest**](ContractLocationsAddedEmailTemplateRequest.md) |  | [optional] 
+**email_template** | [**ContractLocationsAddedEmailTemplateRequest**](ContractLocationsAddedEmailTemplateRequest.md) |  | 
+**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | 
+**auto_fallback_to_postal** | **bool** |  | [optional] 
 
 ## Example
 

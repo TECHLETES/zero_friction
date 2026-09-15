@@ -41,6 +41,8 @@ class TestCreatePaymentDelayRequest(unittest.TestCase):
             )
         else:
             return CreatePaymentDelayRequest(
+                invoice_type = 'advance',
+                payment_delay = 'delayuntilfixeddayofmonth',
         )
         """
 

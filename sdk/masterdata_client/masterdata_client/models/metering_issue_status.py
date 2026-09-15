@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MeteringIssueStatus(str, Enum):
     """
-    MeteringIssueStatus
+    Possible values: 'unresolved', 'ignored', 'resolved', 'muted'
     """
 
     """

@@ -1,12 +1,11 @@
 # UpdatePropertyGroupBillingConfigurationNoteToCustomerRequest
 
-Represents a request to update the note to customer for a property group billing configuration.  This DTO is used to modify the note that will be displayed to customers on invoices.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**note_to_customer** | **str** | The new note text to be displayed to customers on invoices. | [optional] 
+**note_to_customer** | **str** |  | [optional] 
 
 ## Example
 

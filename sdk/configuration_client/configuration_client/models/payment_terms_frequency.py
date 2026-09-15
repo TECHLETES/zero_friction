@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PaymentTermsFrequency(str, Enum):
     """
-    PaymentTermsFrequency
+    Possible values: 'day', 'week', 'month'
     """
 
     """

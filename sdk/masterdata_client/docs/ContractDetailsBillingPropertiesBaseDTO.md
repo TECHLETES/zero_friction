@@ -5,7 +5,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billing_method** | [**ContractBillingMethod**](ContractBillingMethod.md) |  | [optional] [readonly] 
+**type** | **str** |  | 
+**billing_method** | [**ContractBillingMethod**](ContractBillingMethod.md) |  | [optional] 
+**invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) |  | 
+**advance_frequency** | [**AdvanceFrequency**](AdvanceFrequency.md) |  | 
+**advance_amount** | **float** |  | 
+**payment_terms_id** | **str** |  | [optional] 
+**deviating_first_advance_start_date** | **datetime** |  | [optional] 
+**advance_calculation_type** | [**AdvanceCalculationType**](AdvanceCalculationType.md) |  | [optional] 
+**advance_period_percentages** | [**List[AdvancePeriodPercentage]**](AdvancePeriodPercentage.md) |  | [optional] 
+**statement_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) |  | 
+**back_charge_end_date_time** | **datetime** |  | [optional] 
+**gift_amount** | **float** |  | [optional] 
 
 ## Example
 

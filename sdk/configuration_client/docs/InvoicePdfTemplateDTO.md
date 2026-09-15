@@ -5,23 +5,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**file_name** | **str** |  | [optional] 
-**use_case** | [**TemplateUsecase**](TemplateUsecase.md) |  | [optional] 
-**use_build_in** | **bool** |  | [optional] [readonly] 
-**custom_template_internal_file_path** | **str** |  | [optional] 
-**custom_template_file_name** | **str** |  | [optional] 
-**translation_status** | [**TranslationStatus**](TranslationStatus.md) |  | [optional] 
+**cost_allocation** | **bool** |  | [optional] 
+**show_country** | **bool** |  | [optional] 
+**show_balance** | **bool** |  | [optional] 
+**show_vat_specs** | **bool** |  | [optional] 
+**show_custom_information** | **bool** |  | [optional] 
+**show_price_formulae** | **bool** |  | [optional] 
+**unit_price_excl_vat_for_persons** | **bool** |  | [optional] 
+**provider_managed_template_file_name** | **str** |  | [optional] 
 **envelope_settings** | [**EnvelopeSettingsDTO**](EnvelopeSettingsDTO.md) |  | [optional] 
 **render_header_footer** | **bool** |  | [optional] 
 **header_text** | **str** |  | [optional] 
 **footer_text** | **str** |  | [optional] 
 **override_external_printing_checks** | **bool** |  | [optional] 
 **supports_external_printing** | **bool** |  | [optional] 
-**cost_allocation** | **bool** |  | [optional] 
-**show_country** | **bool** |  | [optional] 
-**show_balance** | **bool** |  | [optional] 
-**show_vat_specs** | **bool** |  | [optional] 
-**show_custom_information** | **bool** |  | [optional] 
+**file_name** | **str** |  | [optional] 
+**use_case** | [**TemplateUsecase**](TemplateUsecase.md) |  | [optional] 
+**use_build_in** | **bool** |  | [optional] 
+**custom_template_internal_file_path** | **str** |  | [optional] 
+**custom_template_file_name** | **str** |  | [optional] 
+**translation_status** | [**TranslationStatus**](TranslationStatus.md) |  | [optional] 
 
 ## Example
 

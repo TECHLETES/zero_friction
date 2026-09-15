@@ -19,7 +19,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from configuration_client.models.error_code import ErrorCode
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +27,7 @@ class ImportLineErrorDTO(BaseModel):
     ImportLineErrorDTO
     """ # noqa: E501
     line_number: Optional[StrictInt] = Field(default=None, alias="lineNumber")
-    error_messages: Optional[List[ErrorCode]] = Field(default=None, alias="errorMessages")
+    error_messages: Optional[List[StrictInt]] = Field(default=None, alias="errorMessages")
     is_valid: Optional[StrictBool] = Field(default=None, alias="isValid")
     __properties: ClassVar[List[str]] = ["lineNumber", "errorMessages", "isValid"]
 

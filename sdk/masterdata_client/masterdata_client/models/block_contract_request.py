@@ -26,7 +26,7 @@ class BlockContractRequest(BaseModel):
     """
     BlockContractRequest
     """ # noqa: E501
-    comment: Optional[StrictStr] = None
+    comment: Optional[StrictStr]
     __properties: ClassVar[List[str]] = ["comment"]
 
     model_config = ConfigDict(

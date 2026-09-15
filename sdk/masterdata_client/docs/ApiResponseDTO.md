@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **success** | **bool** |  | [optional] 
 **applicable_entities_count** | **int** |  | [optional] 
 **requested_entities_count** | **int** |  | [optional] 
-**succeeded_entities_count** | **int** |  | [optional] [readonly] 
+**succeeded_entities_count** | **int** |  | [optional] 
 **is_synchronous** | **bool** |  | [optional] 
 
 ## Example

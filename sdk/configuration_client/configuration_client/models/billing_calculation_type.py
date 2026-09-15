@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class BillingCalculationType(str, Enum):
     """
-    BillingCalculationType
+    Possible values: 'consumption', 'subscription', 'customentityproperty', 'attribute'
     """
 
     """
@@ -28,9 +28,8 @@ class BillingCalculationType(str, Enum):
     """
     CONSUMPTION = 'consumption'
     SUBSCRIPTION = 'subscription'
-    ATTRIBUTE = 'attribute'
-    CONSUMPTIONUNIT = 'consumptionunit'
     CUSTOMENTITYPROPERTY = 'customentityproperty'
+    ATTRIBUTE = 'attribute'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

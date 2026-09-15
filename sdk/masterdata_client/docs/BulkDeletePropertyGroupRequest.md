@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mutation_date_time** | **datetime** |  | [optional] 
 **only_validate** | **bool** |  | [optional] 
 **var_query_params** | [**GetPropertyGroupsQueryParams**](GetPropertyGroupsQueryParams.md) |  | [optional] 
 **quick_filter** | **str** |  | [optional] 
+**mutation_date_time** | **datetime** |  | [optional] 
 
 ## Example
 

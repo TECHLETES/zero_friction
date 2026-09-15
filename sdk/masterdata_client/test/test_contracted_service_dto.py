@@ -43,10 +43,10 @@ class TestContractedServiceDTO(unittest.TestCase):
                 estimated_consumptions = [
                     masterdata_client.models.contracted_service_estimated_consumption_dto.ContractedServiceEstimatedConsumptionDTO(
                         consumer_group_id = '', 
-                        value = 1.337, 
-                        unit_of_measure = null, 
-                        metering_type = null, 
-                        is_manual_entry = True, )
+                        consumption_quantity = 1.337, 
+                        unit_of_measure = 'none', 
+                        metering_type = 'none', 
+                        direction = 'offtake', )
                     ]
             )
         else:

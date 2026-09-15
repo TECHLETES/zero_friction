@@ -5,9 +5,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
 **servicelocation_ids** | **List[str]** |  | [optional] 
 **property_group_ids** | **List[str]** |  | [optional] 
 **meter_type** | [**MeterType**](MeterType.md) |  | [optional] 
@@ -20,7 +17,14 @@ Name | Type | Description | Notes
 **reading_frequency** | [**MeterReadingFrequency**](MeterReadingFrequency.md) |  | [optional] 
 **customer_id** | **str** |  | [optional] 
 **meter_type_group** | **str** |  | [optional] 
-**meter_serial_number** | **str** |  | [optional] 
+**meter_serial_numbers** | **List[str]** |  | [optional] 
+**model_ids** | **List[str]** |  | [optional] 
+**meter_name** | **str** |  | [optional] 
+**show_deleted** | **bool** |  | [optional] 
+**flex_search** | **str** |  | [optional] 
+**include_only_ids** | **List[str]** |  | [optional] 
+**exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

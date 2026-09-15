@@ -23,8 +23,11 @@ from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.entity_subject_type import EntitySubjectType
 from configuration_client.models.portal_advance_change_limit_dto import PortalAdvanceChangeLimitDTO
 from configuration_client.models.portal_billing_settings_dto import PortalBillingSettingsDTO
+from configuration_client.models.portal_host_name_settings_dto import PortalHostNameSettingsDTO
+from configuration_client.models.portal_move_in_move_out_settings_dto import PortalMoveInMoveOutSettingsDTO
 from configuration_client.models.portal_organisation_contact_settings_dto import PortalOrganisationContactSettingsDTO
 from configuration_client.models.portal_page_notification_dto import PortalPageNotificationDTO
+from configuration_client.models.portal_self_service_options_dto import PortalSelfServiceOptionsDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,27 +35,35 @@ class PortalSettingsDTO(BaseModel):
     """
     PortalSettingsDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
     tenant_id: Optional[StrictStr] = Field(default=None, alias="tenantId")
     primary_color: Optional[StrictStr] = Field(default=None, alias="primaryColor")
     secondary_color: Optional[StrictStr] = Field(default=None, alias="secondaryColor")
     fav_icon: Optional[StrictStr] = Field(default=None, alias="favIcon")
     logo: Optional[StrictStr] = None
+    pwa_install_icon192_cdn_url: Optional[StrictStr] = Field(default=None, alias="pwaInstallIcon192CdnUrl")
+    pwa_install_icon512_cdn_url: Optional[StrictStr] = Field(default=None, alias="pwaInstallIcon512CdnUrl")
+    pwa_apple_touch_icon180_cdn_url: Optional[StrictStr] = Field(default=None, alias="pwaAppleTouchIcon180CdnUrl")
+    persist_logo_from_organization: Optional[StrictBool] = Field(default=None, alias="persistLogoFromOrganization")
+    persist_color_from_organization: Optional[StrictBool] = Field(default=None, alias="persistColorFromOrganization")
     contact: Optional[PortalOrganisationContactSettingsDTO] = None
     portal_public_urls: Optional[List[StrictStr]] = Field(default=None, alias="portalPublicUrls")
+    portal_host_names: Optional[List[PortalHostNameSettingsDTO]] = Field(default=None, alias="portalHostNames")
     billing_settings: Optional[PortalBillingSettingsDTO] = Field(default=None, alias="billingSettings")
+    move_in_move_out_settings: Optional[PortalMoveInMoveOutSettingsDTO] = Field(default=None, alias="moveInMoveOutSettings")
+    self_service_options: Optional[PortalSelfServiceOptionsDTO] = Field(default=None, alias="selfServiceOptions")
     advance_change_limit: Optional[PortalAdvanceChangeLimitDTO] = Field(default=None, alias="advanceChangeLimit")
+    show_vko: Optional[StrictBool] = Field(default=None, alias="showVko")
     is_enabled: Optional[StrictBool] = Field(default=None, alias="isEnabled")
     page_notifications: Optional[List[PortalPageNotificationDTO]] = Field(default=None, alias="pageNotifications")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "tenantId", "primaryColor", "secondaryColor", "favIcon", "logo", "contact", "portalPublicUrls", "billingSettings", "advanceChangeLimit", "isEnabled", "pageNotifications"]
+    pwa_enabled: Optional[StrictBool] = Field(default=None, alias="pwaEnabled")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["tenantId", "primaryColor", "secondaryColor", "favIcon", "logo", "pwaInstallIcon192CdnUrl", "pwaInstallIcon512CdnUrl", "pwaAppleTouchIcon180CdnUrl", "persistLogoFromOrganization", "persistColorFromOrganization", "contact", "portalPublicUrls", "portalHostNames", "billingSettings", "moveInMoveOutSettings", "selfServiceOptions", "advanceChangeLimit", "showVko", "isEnabled", "pageNotifications", "pwaEnabled", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,10 +95,8 @@ class PortalSettingsDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -98,9 +107,22 @@ class PortalSettingsDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of contact
         if self.contact:
             _dict['contact'] = self.contact.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in portal_host_names (list)
+        _items = []
+        if self.portal_host_names:
+            for _item_portal_host_names in self.portal_host_names:
+                if _item_portal_host_names:
+                    _items.append(_item_portal_host_names.to_dict())
+            _dict['portalHostNames'] = _items
         # override the default output from pydantic by calling `to_dict()` of billing_settings
         if self.billing_settings:
             _dict['billingSettings'] = self.billing_settings.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of move_in_move_out_settings
+        if self.move_in_move_out_settings:
+            _dict['moveInMoveOutSettings'] = self.move_in_move_out_settings.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of self_service_options
+        if self.self_service_options:
+            _dict['selfServiceOptions'] = self.self_service_options.to_dict()
         # override the default output from pydantic by calling `to_dict()` of advance_change_limit
         if self.advance_change_limit:
             _dict['advanceChangeLimit'] = self.advance_change_limit.to_dict()
@@ -111,26 +133,6 @@ class PortalSettingsDTO(BaseModel):
                 if _item_page_notifications:
                     _items.append(_item_page_notifications.to_dict())
             _dict['pageNotifications'] = _items
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
         # set to None if tenant_id (nullable) is None
         # and model_fields_set contains the field
         if self.tenant_id is None and "tenant_id" in self.model_fields_set:
@@ -156,6 +158,21 @@ class PortalSettingsDTO(BaseModel):
         if self.logo is None and "logo" in self.model_fields_set:
             _dict['logo'] = None
 
+        # set to None if pwa_install_icon192_cdn_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.pwa_install_icon192_cdn_url is None and "pwa_install_icon192_cdn_url" in self.model_fields_set:
+            _dict['pwaInstallIcon192CdnUrl'] = None
+
+        # set to None if pwa_install_icon512_cdn_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.pwa_install_icon512_cdn_url is None and "pwa_install_icon512_cdn_url" in self.model_fields_set:
+            _dict['pwaInstallIcon512CdnUrl'] = None
+
+        # set to None if pwa_apple_touch_icon180_cdn_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.pwa_apple_touch_icon180_cdn_url is None and "pwa_apple_touch_icon180_cdn_url" in self.model_fields_set:
+            _dict['pwaAppleTouchIcon180CdnUrl'] = None
+
         # set to None if contact (nullable) is None
         # and model_fields_set contains the field
         if self.contact is None and "contact" in self.model_fields_set:
@@ -166,10 +183,20 @@ class PortalSettingsDTO(BaseModel):
         if self.portal_public_urls is None and "portal_public_urls" in self.model_fields_set:
             _dict['portalPublicUrls'] = None
 
+        # set to None if portal_host_names (nullable) is None
+        # and model_fields_set contains the field
+        if self.portal_host_names is None and "portal_host_names" in self.model_fields_set:
+            _dict['portalHostNames'] = None
+
         # set to None if billing_settings (nullable) is None
         # and model_fields_set contains the field
         if self.billing_settings is None and "billing_settings" in self.model_fields_set:
             _dict['billingSettings'] = None
+
+        # set to None if move_in_move_out_settings (nullable) is None
+        # and model_fields_set contains the field
+        if self.move_in_move_out_settings is None and "move_in_move_out_settings" in self.model_fields_set:
+            _dict['moveInMoveOutSettings'] = None
 
         # set to None if advance_change_limit (nullable) is None
         # and model_fields_set contains the field
@@ -193,26 +220,34 @@ class PortalSettingsDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
             "tenantId": obj.get("tenantId"),
             "primaryColor": obj.get("primaryColor"),
             "secondaryColor": obj.get("secondaryColor"),
             "favIcon": obj.get("favIcon"),
             "logo": obj.get("logo"),
+            "pwaInstallIcon192CdnUrl": obj.get("pwaInstallIcon192CdnUrl"),
+            "pwaInstallIcon512CdnUrl": obj.get("pwaInstallIcon512CdnUrl"),
+            "pwaAppleTouchIcon180CdnUrl": obj.get("pwaAppleTouchIcon180CdnUrl"),
+            "persistLogoFromOrganization": obj.get("persistLogoFromOrganization"),
+            "persistColorFromOrganization": obj.get("persistColorFromOrganization"),
             "contact": PortalOrganisationContactSettingsDTO.from_dict(obj["contact"]) if obj.get("contact") is not None else None,
             "portalPublicUrls": obj.get("portalPublicUrls"),
+            "portalHostNames": [PortalHostNameSettingsDTO.from_dict(_item) for _item in obj["portalHostNames"]] if obj.get("portalHostNames") is not None else None,
             "billingSettings": PortalBillingSettingsDTO.from_dict(obj["billingSettings"]) if obj.get("billingSettings") is not None else None,
+            "moveInMoveOutSettings": PortalMoveInMoveOutSettingsDTO.from_dict(obj["moveInMoveOutSettings"]) if obj.get("moveInMoveOutSettings") is not None else None,
+            "selfServiceOptions": PortalSelfServiceOptionsDTO.from_dict(obj["selfServiceOptions"]) if obj.get("selfServiceOptions") is not None else None,
             "advanceChangeLimit": PortalAdvanceChangeLimitDTO.from_dict(obj["advanceChangeLimit"]) if obj.get("advanceChangeLimit") is not None else None,
+            "showVko": obj.get("showVko"),
             "isEnabled": obj.get("isEnabled"),
-            "pageNotifications": [PortalPageNotificationDTO.from_dict(_item) for _item in obj["pageNotifications"]] if obj.get("pageNotifications") is not None else None
+            "pageNotifications": [PortalPageNotificationDTO.from_dict(_item) for _item in obj["pageNotifications"]] if obj.get("pageNotifications") is not None else None,
+            "pwaEnabled": obj.get("pwaEnabled"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

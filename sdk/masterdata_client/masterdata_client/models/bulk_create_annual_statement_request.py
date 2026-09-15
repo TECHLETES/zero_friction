@@ -27,12 +27,12 @@ class BulkCreateAnnualStatementRequest(BaseModel):
     """
     BulkCreateAnnualStatementRequest
     """ # noqa: E501
-    year: Optional[StrictInt] = Field(default=None, description="The year for which the annual statement should be generated.")
     only_validate: Optional[StrictBool] = Field(default=None, alias="onlyValidate")
     var_query_params: Optional[GetCustomersQueryParams] = Field(default=None, alias="queryParams")
     quick_filter: Optional[StrictStr] = Field(default=None, alias="quickFilter")
     only_where_latest_not_generated: Optional[StrictBool] = Field(default=None, alias="onlyWhereLatestNotGenerated")
-    __properties: ClassVar[List[str]] = ["year", "onlyValidate", "queryParams", "quickFilter", "onlyWhereLatestNotGenerated"]
+    year: Optional[StrictInt] = None
+    __properties: ClassVar[List[str]] = ["onlyValidate", "queryParams", "quickFilter", "onlyWhereLatestNotGenerated", "year"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,11 +76,6 @@ class BulkCreateAnnualStatementRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
         # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
         if self.quick_filter is None and "quick_filter" in self.model_fields_set:
@@ -98,11 +93,11 @@ class BulkCreateAnnualStatementRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "year": obj.get("year"),
             "onlyValidate": obj.get("onlyValidate"),
             "queryParams": GetCustomersQueryParams.from_dict(obj["queryParams"]) if obj.get("queryParams") is not None else None,
             "quickFilter": obj.get("quickFilter"),
-            "onlyWhereLatestNotGenerated": obj.get("onlyWhereLatestNotGenerated")
+            "onlyWhereLatestNotGenerated": obj.get("onlyWhereLatestNotGenerated"),
+            "year": obj.get("year")
         })
         return _obj
 

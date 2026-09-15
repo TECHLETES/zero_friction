@@ -24,17 +24,17 @@ from typing_extensions import Self
 
 class IncomingBankingTransactionEntityCountsDTO(BaseModel):
     """
-    Contains statistics about the entities processed in an incoming banking transaction file.
+    IncomingBankingTransactionEntityCountsDTO
     """ # noqa: E501
-    number_of_bank_transfers: Optional[StrictInt] = Field(default=None, description="Total number of bank transfers in the file.", alias="numberOfBankTransfers")
-    number_of_reversals: Optional[StrictInt] = Field(default=None, description="Total number of reversals in the file.", alias="numberOfReversals")
-    number_of_confirmations: Optional[StrictInt] = Field(default=None, description="Total number of confirmations in the file.", alias="numberOfConfirmations")
-    processed_bank_transfers: Optional[StrictInt] = Field(default=None, description="Number of successfully processed bank transfers.", alias="processedBankTransfers")
-    processed_reversals: Optional[StrictInt] = Field(default=None, description="Number of successfully processed reversals.", alias="processedReversals")
-    processed_confirmations: Optional[StrictInt] = Field(default=None, description="Number of successfully processed confirmations.", alias="processedConfirmations")
-    failed_bank_transfers: Optional[StrictInt] = Field(default=None, description="Number of failed bank transfers.", alias="failedBankTransfers")
-    failed_reversals: Optional[StrictInt] = Field(default=None, description="Number of failed reversals.", alias="failedReversals")
-    failed_confirmations: Optional[StrictInt] = Field(default=None, description="Number of failed confirmations.", alias="failedConfirmations")
+    number_of_bank_transfers: Optional[StrictInt] = Field(default=None, alias="numberOfBankTransfers")
+    number_of_reversals: Optional[StrictInt] = Field(default=None, alias="numberOfReversals")
+    number_of_confirmations: Optional[StrictInt] = Field(default=None, alias="numberOfConfirmations")
+    processed_bank_transfers: Optional[StrictInt] = Field(default=None, alias="processedBankTransfers")
+    processed_reversals: Optional[StrictInt] = Field(default=None, alias="processedReversals")
+    processed_confirmations: Optional[StrictInt] = Field(default=None, alias="processedConfirmations")
+    failed_bank_transfers: Optional[StrictInt] = Field(default=None, alias="failedBankTransfers")
+    failed_reversals: Optional[StrictInt] = Field(default=None, alias="failedReversals")
+    failed_confirmations: Optional[StrictInt] = Field(default=None, alias="failedConfirmations")
     __properties: ClassVar[List[str]] = ["numberOfBankTransfers", "numberOfReversals", "numberOfConfirmations", "processedBankTransfers", "processedReversals", "processedConfirmations", "failedBankTransfers", "failedReversals", "failedConfirmations"]
 
     model_config = ConfigDict(

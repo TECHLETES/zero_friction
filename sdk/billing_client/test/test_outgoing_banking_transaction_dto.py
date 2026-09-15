@@ -35,27 +35,30 @@ class TestOutgoingBankingTransactionDTO(unittest.TestCase):
         model = OutgoingBankingTransactionDTO()
         if include_optional:
             return OutgoingBankingTransactionDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 identification = '',
                 sequence_num = 56,
                 type = 'paymentrequests',
                 status = 'created',
+                provider_type = 'twikey',
                 mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 company_bank_account = billing_client.models.outgoing_banking_transaction_company_bank_account_dto.OutgoingBankingTransactionCompanyBankAccountDTO(
                     id = '', 
                     iban = '', 
                     bic = '', 
                     account_holder = '', 
-                    sepa_creditor_id = '', ),
+                    sepa_creditor_id = '', 
+                    address = billing_client.models.address_dto.AddressDTO(
+                        street_name = '', 
+                        street_number = '', 
+                        street_number_addition = '', 
+                        postal_code = '', 
+                        building_name = '', 
+                        locality = '', 
+                        city = '', 
+                        country = 'aut', 
+                        localized_display = '', 
+                        line_one = '', 
+                        line_two = '', ), ),
                 file_name = '',
                 internal_file_path = '',
                 total_amount = 1.337,
@@ -67,7 +70,15 @@ class TestOutgoingBankingTransactionDTO(unittest.TestCase):
                 locked = True,
                 confirming_incoming_banking_transactions = {
                     'key' : ''
-                    }
+                    },
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return OutgoingBankingTransactionDTO(

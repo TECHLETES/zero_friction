@@ -5,16 +5,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**move_request_type** | [**MoveRequestType**](MoveRequestType.md) |  | [optional] 
-**mutation_date_time** | **datetime** |  | [optional] 
-**customer_details** | [**MoveRequestCustomerDetails**](MoveRequestCustomerDetails.md) |  | [optional] 
+**move_request_type** | [**MoveRequestType**](MoveRequestType.md) |  | 
+**mutation_date_time** | **datetime** |  | 
+**customer_details** | [**MoveRequestCustomerDetails**](MoveRequestCustomerDetails.md) |  | 
 **external_contract_id** | **str** |  | [optional] 
 **external_id** | **str** |  | [optional] 
-**service_location_details** | [**MoveRequestServiceLocationDetails**](MoveRequestServiceLocationDetails.md) |  | [optional] 
+**move_request_number** | **str** |  | [optional] 
+**service_location_details** | [**MoveRequestServiceLocationDetails**](MoveRequestServiceLocationDetails.md) |  | 
 **measurement_details** | [**List[MoveRequestMeasurementDetails]**](MoveRequestMeasurementDetails.md) |  | [optional] 
-**attachment_signatures** | [**List[MoveRequestAttachmentSignatureRequest]**](MoveRequestAttachmentSignatureRequest.md) |  | [optional] 
+**attachment_signatures** | [**List[MoveRequestAttachmentSignatureRequest]**](MoveRequestAttachmentSignatureRequest.md) |  | 
 **custom_message** | **str** |  | [optional] 
 **product_id** | **str** |  | [optional] 
+**billing_properties** | [**ContractDetailsBillingPropertiesBaseDTO**](ContractDetailsBillingPropertiesBaseDTO.md) |  | [optional] 
 
 ## Example
 

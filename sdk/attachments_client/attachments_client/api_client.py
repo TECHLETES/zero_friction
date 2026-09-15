@@ -235,10 +235,6 @@ class ApiClient:
             # use server/host defined in path or operation instead
             url = _host + resource_path
 
-        # Patch to include api-version in the URL
-        if ('api-version', '1.0') not in query_params:
-            query_params.append(('api-version', '1.0'))
-
         # query parameters
         if query_params:
             query_params = self.sanitize_for_serialization(query_params)

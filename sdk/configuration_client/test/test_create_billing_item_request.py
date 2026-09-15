@@ -39,13 +39,17 @@ class TestCreateBillingItemRequest(unittest.TestCase):
                 description = '',
                 person_tax_code_id = '',
                 organisation_tax_code_id = '',
+                hide_when_zero = True,
+                is_prepayment_eligible = True,
+                accounting_code_id = '',
                 tier_calculation_method = 'invoiceperiod',
-                calculation_parameters = configuration_client.models.billing_calculation_type_parameters_dto.BillingCalculationTypeParametersDTO(
-                    unit_of_measure = null, 
-                    billing_calculation_type = null, )
+                calculation_parameters = configuration_client.models.billing_calculation_type_parameters_dto.BillingCalculationTypeParametersDTO()
             )
         else:
             return CreateBillingItemRequest(
+                name = '',
+                description = '',
+                calculation_parameters = configuration_client.models.billing_calculation_type_parameters_dto.BillingCalculationTypeParametersDTO(),
         )
         """
 

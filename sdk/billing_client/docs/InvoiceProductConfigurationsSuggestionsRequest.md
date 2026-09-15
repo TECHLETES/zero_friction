@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_location_ids** | **List[str]** |  | [optional] 
+**service_location_ids** | **List[str]** |  | 
 **contract_id** | **str** |  | [optional] 
 
 ## Example

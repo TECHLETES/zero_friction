@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**type** | [**PropertyGroupType**](PropertyGroupType.md) |  | [optional] 
+**name** | **str** |  | 
+**type** | [**PropertyGroupType**](PropertyGroupType.md) |  | 
 **address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
 
 ## Example

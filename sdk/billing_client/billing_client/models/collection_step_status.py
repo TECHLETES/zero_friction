@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class CollectionStepStatus(str, Enum):
     """
-    CollectionStepStatus
+    Possible values: 'pending', 'waitingformanualsend', 'closed', 'inprogress', 'skipped', 'generatingdocuments', 'failed', 'printing'
     """
 
     """

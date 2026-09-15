@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**culture** | [**CultureInfo**](CultureInfo.md) |  | [optional] 
-**file_name** | **str** |  | [optional] 
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | 
+**file_name** | **str** |  | 
 **internal_file_name** | **str** |  | [optional] 
-**attachment_id** | **str** |  | [optional] 
+**attachment_id** | **str** |  | 
 
 ## Example
 

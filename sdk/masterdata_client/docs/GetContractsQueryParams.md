@@ -5,16 +5,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
 **service_location_id** | **str** |  | [optional] 
 **property_group_ids** | **List[str]** |  | [optional] 
+**utility_types** | **List[str]** |  | [optional] 
 **customer_group_id** | **str** |  | [optional] 
 **customer_id** | **str** |  | [optional] 
 **customer_type** | **str** |  | [optional] 
 **product_id** | **str** |  | [optional] 
+**product_ids** | **List[str]** |  | [optional] 
 **exclude_terminated_contracts** | **bool** |  | [optional] 
+**flex_search** | **str** |  | [optional] 
+**include_only_ids** | **List[str]** |  | [optional] 
+**exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

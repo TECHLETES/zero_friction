@@ -1,5 +1,6 @@
 # BillingItemTariffCalculationType
 
+Possible values: 'unitprice', 'tiered', 'volume', 'stairstep', 'condition'
 
 ## Enum
 

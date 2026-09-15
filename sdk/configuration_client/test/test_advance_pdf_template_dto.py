@@ -35,14 +35,13 @@ class TestAdvancePdfTemplateDTO(unittest.TestCase):
         model = AdvancePdfTemplateDTO()
         if include_optional:
             return AdvancePdfTemplateDTO(
-                file_name = '',
-                use_case = 'pdf',
-                use_build_in = True,
-                custom_template_internal_file_path = '',
-                custom_template_file_name = '',
-                translation_status = 'defaulttranslation',
+                show_country = True,
+                show_balance = True,
+                show_vat_specs = True,
+                show_custom_information = True,
+                provider_managed_template_file_name = '',
                 envelope_settings = configuration_client.models.envelope_settings_dto.EnvelopeSettingsDTO(
-                    margin_position = null, 
+                    margin_position = 'left', 
                     margin = 56, 
                     margin_top = 56, ),
                 render_header_footer = True,
@@ -50,10 +49,12 @@ class TestAdvancePdfTemplateDTO(unittest.TestCase):
                 footer_text = '',
                 override_external_printing_checks = True,
                 supports_external_printing = True,
-                show_country = True,
-                show_balance = True,
-                show_vat_specs = True,
-                show_custom_information = True
+                file_name = '',
+                use_case = 'pdf',
+                use_build_in = True,
+                custom_template_internal_file_path = '',
+                custom_template_file_name = '',
+                translation_status = 'defaulttranslation'
             )
         else:
             return AdvancePdfTemplateDTO(

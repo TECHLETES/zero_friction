@@ -18,16 +18,16 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from billing_client.models.export_status import ExportStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
 class ChangeExportStatusRequest(BaseModel):
     """
-    Represents a request to change the export status of an invoice.  This DTO is used to update the export status of a single invoice.
+    ChangeExportStatusRequest
     """ # noqa: E501
-    export_status: Optional[ExportStatus] = Field(default=None, description="The new export status to set for the invoice.", alias="exportStatus")
+    export_status: ExportStatus = Field(alias="exportStatus")
     __properties: ClassVar[List[str]] = ["exportStatus"]
 
     model_config = ConfigDict(
@@ -69,11 +69,6 @@ class ChangeExportStatusRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if export_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.export_status is None and "export_status" in self.model_fields_set:
-            _dict['exportStatus'] = None
-
         return _dict
 
     @classmethod

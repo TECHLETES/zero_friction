@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class DnsRecordMeaning(str, Enum):
     """
-    DnsRecordMeaning
+    Possible values: 'mailcname', 'mx', 'spf', 'dkim1', 'dkim2'
     """
 
     """

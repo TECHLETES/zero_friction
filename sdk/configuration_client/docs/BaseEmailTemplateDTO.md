@@ -5,14 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | **str** |  | 
+**subject** | **str** |  | [optional] 
+**attachments** | [**List[TemplateAttachmentDTO]**](TemplateAttachmentDTO.md) |  | [optional] 
 **file_name** | **str** |  | [optional] 
 **use_case** | [**TemplateUsecase**](TemplateUsecase.md) |  | [optional] 
-**use_build_in** | **bool** |  | [optional] [readonly] 
+**use_build_in** | **bool** |  | [optional] 
 **custom_template_internal_file_path** | **str** |  | [optional] 
 **custom_template_file_name** | **str** |  | [optional] 
 **translation_status** | [**TranslationStatus**](TranslationStatus.md) |  | [optional] 
-**subject** | **str** |  | [optional] 
-**attachments** | [**List[TemplateAttachmentDTO]**](TemplateAttachmentDTO.md) |  | [optional] 
 
 ## Example
 

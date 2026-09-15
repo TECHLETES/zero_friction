@@ -44,6 +44,7 @@ class TestIncomingBankingTransactionsExportDTO(unittest.TestCase):
                 mutation_type = 'incomingtransfer',
                 mutation_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 mutation_amount = 1.337,
+                mutation_display_amount = 1.337,
                 mutation_status = 'created',
                 mutation_reference = '',
                 account_holder = '',

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class NumberSequenceSegmentType(str, Enum):
     """
-    NumberSequenceSegmentType
+    Possible values: 'constant', 'year', 'invoicetype', 'date'
     """
 
     """

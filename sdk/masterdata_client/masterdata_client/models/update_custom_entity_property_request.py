@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from masterdata_client.models.update_custom_entity_property_value_request import UpdateCustomEntityPropertyValueRequest
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,8 +27,8 @@ class UpdateCustomEntityPropertyRequest(BaseModel):
     """
     UpdateCustomEntityPropertyRequest
     """ # noqa: E501
-    custom_entity_property_type_id: Optional[StrictStr] = Field(default=None, alias="customEntityPropertyTypeId")
-    values: Optional[List[UpdateCustomEntityPropertyValueRequest]] = None
+    custom_entity_property_type_id: StrictStr = Field(alias="customEntityPropertyTypeId")
+    values: List[UpdateCustomEntityPropertyValueRequest]
     __properties: ClassVar[List[str]] = ["customEntityPropertyTypeId", "values"]
 
     model_config = ConfigDict(
@@ -77,16 +77,6 @@ class UpdateCustomEntityPropertyRequest(BaseModel):
                 if _item_values:
                     _items.append(_item_values.to_dict())
             _dict['values'] = _items
-        # set to None if custom_entity_property_type_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.custom_entity_property_type_id is None and "custom_entity_property_type_id" in self.model_fields_set:
-            _dict['customEntityPropertyTypeId'] = None
-
-        # set to None if values (nullable) is None
-        # and model_fields_set contains the field
-        if self.values is None and "values" in self.model_fields_set:
-            _dict['values'] = None
-
         return _dict
 
     @classmethod

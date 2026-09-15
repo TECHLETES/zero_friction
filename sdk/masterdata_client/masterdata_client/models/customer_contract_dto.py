@@ -27,14 +27,14 @@ from typing_extensions import Self
 
 class CustomerContractDTO(BaseModel):
     """
-    Represents a contract associated with a customer
+    CustomerContractDTO
     """ # noqa: E501
-    contract_id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the contract", alias="contractId")
-    contract_number: Optional[StrictStr] = Field(default=None, description="Contract number for reference", alias="contractNumber")
-    supply_start_date_time: Optional[datetime] = Field(default=None, description="Start date and time of the contract", alias="supplyStartDateTime")
-    supply_end_date_time: Optional[datetime] = Field(default=None, description="End date and time of the contract", alias="supplyEndDateTime")
-    current_contract_status: Optional[ContractStatus] = Field(default=None, description="Current status of the contract", alias="currentContractStatus")
-    contract_billing_method: Optional[ContractBillingMethod] = Field(default=None, description="Billing method for the contract", alias="contractBillingMethod")
+    contract_id: Optional[StrictStr] = Field(default=None, alias="contractId")
+    contract_number: Optional[StrictStr] = Field(default=None, alias="contractNumber")
+    supply_start_date_time: Optional[datetime] = Field(default=None, alias="supplyStartDateTime")
+    supply_end_date_time: Optional[datetime] = Field(default=None, alias="supplyEndDateTime")
+    current_contract_status: Optional[ContractStatus] = Field(default=None, alias="currentContractStatus")
+    contract_billing_method: Optional[ContractBillingMethod] = Field(default=None, alias="contractBillingMethod")
     __properties: ClassVar[List[str]] = ["contractId", "contractNumber", "supplyStartDateTime", "supplyEndDateTime", "currentContractStatus", "contractBillingMethod"]
 
     model_config = ConfigDict(
@@ -85,16 +85,6 @@ class CustomerContractDTO(BaseModel):
         # and model_fields_set contains the field
         if self.contract_number is None and "contract_number" in self.model_fields_set:
             _dict['contractNumber'] = None
-
-        # set to None if current_contract_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.current_contract_status is None and "current_contract_status" in self.model_fields_set:
-            _dict['currentContractStatus'] = None
-
-        # set to None if contract_billing_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.contract_billing_method is None and "contract_billing_method" in self.model_fields_set:
-            _dict['contractBillingMethod'] = None
 
         return _dict
 

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pdf_template** | [**ReminderPdfTemplateRequest**](ReminderPdfTemplateRequest.md) |  | [optional] 
-**email_template** | [**ReminderEmailTemplateRequest**](ReminderEmailTemplateRequest.md) |  | [optional] 
+**pdf_template** | [**ReminderPdfTemplateRequest**](ReminderPdfTemplateRequest.md) |  | 
+**email_template** | [**ReminderEmailTemplateRequest**](ReminderEmailTemplateRequest.md) |  | 
 
 ## Example
 

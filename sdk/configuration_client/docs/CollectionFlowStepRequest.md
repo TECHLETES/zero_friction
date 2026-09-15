@@ -6,18 +6,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [optional] 
-**name** | **str** |  | [optional] 
+**name** | **str** |  | 
 **trigger_days** | **int** |  | [optional] 
-**step_type** | [**CollectionStepType**](CollectionStepType.md) |  | [optional] 
-**charge_type** | [**CollectionChargeType**](CollectionChargeType.md) |  | [optional] 
-**charge_parameters** | [**CollectionChargeParametersDTO**](CollectionChargeParametersDTO.md) |  | [optional] 
-**communication_type** | [**CommunicationType**](CommunicationType.md) | The different communication options that can be used in a collection flow step. | [optional] 
-**message_title** | **str** | If the property ZFH.DataTransfer.Configuration.DTO.v1.Requests.CollectionFlows.CollectionFlowStepRequest.CommunicationType is set to SMS, the length of this message is limited to  456 characters. | [optional] 
-**communication_level** | [**CollectionStepLevel**](CollectionStepLevel.md) |  | [optional] 
-**communication_attachments** | [**List[TemplateAttachmentRequest]**](TemplateAttachmentRequest.md) |  | [optional] 
+**step_type** | [**CollectionStepType**](CollectionStepType.md) |  | 
+**charge_type** | [**CollectionChargeType**](CollectionChargeType.md) |  | 
+**charge_parameters** | [**CollectionChargeParametersDTO**](CollectionChargeParametersDTO.md) |  | 
+**communication_type** | [**CommunicationType**](CommunicationType.md) |  | 
+**auto_fallback_to_postal** | **bool** |  | [optional] 
+**message_title** | **str** |  | 
+**communication_level** | [**CollectionStepLevel**](CollectionStepLevel.md) |  | 
+**communication_attachments** | [**List[TemplateAttachmentRequest]**](TemplateAttachmentRequest.md) |  | 
 **localisation_level** | [**LocalisationLevel**](LocalisationLevel.md) |  | [optional] 
 **localised_fields** | **List[str]** |  | [optional] 
-**translated_fields** | **Dict[str, Optional[Dict[str, str]]]** |  | [optional] 
+**translated_fields** | **Dict[str, Dict[str, str]]** |  | [optional] 
 
 ## Example
 

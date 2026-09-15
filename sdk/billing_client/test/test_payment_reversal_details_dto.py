@@ -40,7 +40,10 @@ class TestPaymentReversalDetailsDTO(unittest.TestCase):
                 reversal_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 reversal_incoming_banking_transaction_id = '',
                 reversal_incoming_banking_transaction_identification = '',
-                reversal_incoming_mutation_id = ''
+                reversal_incoming_mutation_id = '',
+                reversal_outgoing_banking_transaction_id = '',
+                reversal_outgoing_banking_transaction_identification = '',
+                reversal_outgoing_mutation_id = ''
             )
         else:
             return PaymentReversalDetailsDTO(

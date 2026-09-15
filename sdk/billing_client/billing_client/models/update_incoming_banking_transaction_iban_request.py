@@ -24,11 +24,11 @@ from typing_extensions import Self
 
 class UpdateIncomingBankingTransactionIbanRequest(BaseModel):
     """
-    Represents a request to update the IBAN associated with an incoming banking transaction.  This DTO is used to correct or update the bank account information for a transaction.
+    UpdateIncomingBankingTransactionIbanRequest
     """ # noqa: E501
-    customer_id: Optional[StrictStr] = Field(default=None, description="The ID of the customer associated with the transaction.", alias="customerId")
-    iban: Optional[StrictStr] = Field(default=None, description="The new IBAN (International Bank Account Number) to be associated with the transaction.")
-    confirm: Optional[StrictBool] = Field(default=None, description="Indicates whether the user confirms the IBAN update.")
+    customer_id: Optional[StrictStr] = Field(alias="customerId")
+    iban: Optional[StrictStr]
+    confirm: Optional[StrictBool] = None
     __properties: ClassVar[List[str]] = ["customerId", "iban", "confirm"]
 
     model_config = ConfigDict(

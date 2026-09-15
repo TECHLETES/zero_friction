@@ -5,10 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**name_contains** | **str** |  | [optional] 
 **flex_search** | **str** |  | [optional] 
 **include_only_ids** | **List[str]** |  | [optional] 
 **exclude_ids** | **List[str]** |  | [optional] 
-**name_contains** | **str** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

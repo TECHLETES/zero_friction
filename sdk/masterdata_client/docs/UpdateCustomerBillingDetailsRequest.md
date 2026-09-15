@@ -6,7 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **payment_terms_id** | **str** |  | [optional] 
-**default_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | [optional] 
+**default_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | 
+**collection_day_of_month** | **int** |  | [optional] 
 
 ## Example
 

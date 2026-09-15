@@ -46,18 +46,25 @@ class TestBillingContractDTO(unittest.TestCase):
                     ],
                 services = [
                     billing_client.models.billed_service_dto.BilledServiceDTO(
-                        utility_type = null, 
+                        utility_type = 'none', 
                         service_location_id = '', 
+                        property_group_id = '', 
                         supply_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         supply_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         external_identifier = '', )
                     ],
-                use_property_group_product = True,
                 property_groups = [
                     billing_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
                         id = '', 
                         name = '', )
                     ],
+                billing_methods = [
+                    billing_client.models.billing_method_period_reference_dto.BillingMethodPeriodReferenceDTO(
+                        billing_method = 'credit', 
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                    ],
+                current_billing_method = 'credit',
                 billing_method = 'credit'
             )
         else:

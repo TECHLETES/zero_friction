@@ -1,15 +1,14 @@
 # BulkBillBillingCompletenessIntermediatelyRequest
 
-Represents a bulk request to perform intermediate billing for multiple billing completeness items
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**end_date_time** | **datetime** | Date and time when the intermediate billing period ends | [optional] 
-**only_validate** | **bool** | Indicates if only validation should be performed without actual billing | [optional] 
-**var_query_params** | [**GetBillingCompletenessQueryParams**](GetBillingCompletenessQueryParams.md) | Query parameters to filter the items to process | [optional] 
-**quick_filter** | **str** | Quick filter string to filter items | [optional] 
+**only_validate** | **bool** |  | [optional] 
+**var_query_params** | [**GetBillingCompletenessQueryParams**](GetBillingCompletenessQueryParams.md) |  | [optional] 
+**quick_filter** | **str** |  | [optional] 
+**end_date_time** | **datetime** |  | [optional] 
 
 ## Example
 

@@ -1,18 +1,17 @@
 # LatestCustomerTransactionsResponseDTO
 
-Represents a response containing the latest transactions for a customer
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**latest_open_transactions** | [**List[TransactionDTO]**](TransactionDTO.md) | List of the most recent open transactions for the customer | [optional] 
-**latest_closed_transactions** | [**List[TransactionDTO]**](TransactionDTO.md) | List of the most recent closed transactions for the customer | [optional] 
-**has_more_open_transactions** | **bool** | Indicates if there are more open transactions beyond the ones returned | [optional] 
-**has_more_closed_transactions** | **bool** | Indicates if there are more closed transactions beyond the ones returned | [optional] 
-**cash_position** | **float** | Current cash position of the customer (net amount) | [optional] 
-**cash_position_debit** | **float** | Current debit cash position of the customer (amount owed) | [optional] 
-**cash_position_credit** | **float** | Current credit cash position of the customer (amount available) | [optional] 
+**latest_open_transactions** | [**List[TransactionDTO]**](TransactionDTO.md) |  | [optional] 
+**latest_closed_transactions** | [**List[TransactionDTO]**](TransactionDTO.md) |  | [optional] 
+**has_more_open_transactions** | **bool** |  | [optional] 
+**has_more_closed_transactions** | **bool** |  | [optional] 
+**cash_position** | **float** |  | [optional] 
+**cash_position_debit** | **float** |  | [optional] 
+**cash_position_credit** | **float** |  | [optional] 
 
 ## Example
 

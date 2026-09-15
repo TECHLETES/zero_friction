@@ -35,10 +35,10 @@ class TestUpdateMeteringParametersRequest(unittest.TestCase):
         model = UpdateMeteringParametersRequest()
         if include_optional:
             return UpdateMeteringParametersRequest(
+                metering_validation_enabled = True,
+                measurement_origin_enabled = True,
                 validation_rules = [
-                    configuration_client.models.base_metering_validation_rule_dto.BaseMeteringValidationRuleDTO(
-                        error = null, 
-                        enabled = True, )
+                    configuration_client.models.base_metering_validation_rule_dto.BaseMeteringValidationRuleDTO()
                     ]
             )
         else:

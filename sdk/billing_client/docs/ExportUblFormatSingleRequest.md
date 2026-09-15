@@ -1,13 +1,12 @@
 # ExportUblFormatSingleRequest
 
-Represents a request to export a single invoice in UBL format.  This DTO is used to export one invoice in UBL (Universal Business Language) format.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_id** | **str** | The ID of the invoice to be exported in UBL format. | [optional] 
-**mark_as_exported** | **bool** | Indicates whether the exported invoice should be marked as exported in the system. | [optional] 
+**invoice_id** | **str** |  | 
+**mark_as_exported** | **bool** |  | [optional] 
 
 ## Example
 

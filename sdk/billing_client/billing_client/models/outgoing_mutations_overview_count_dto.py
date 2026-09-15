@@ -24,12 +24,12 @@ from typing_extensions import Self
 
 class OutgoingMutationsOverviewCountDTO(BaseModel):
     """
-    Provides an overview of outgoing mutation counts by their type.  This DTO contains aggregated counts of different types of mutations.
+    OutgoingMutationsOverviewCountDTO
     """ # noqa: E501
-    all: Optional[StrictInt] = Field(default=None, description="The total number of outgoing mutations.")
-    invoices: Optional[StrictInt] = Field(default=None, description="The number of invoice-related mutations.")
-    manual_entries: Optional[StrictInt] = Field(default=None, description="The number of manually entered mutations.", alias="manualEntries")
-    resolve_issues: Optional[StrictInt] = Field(default=None, description="The number of mutations that have issues requiring resolution.", alias="resolveIssues")
+    all: Optional[StrictInt] = None
+    invoices: Optional[StrictInt] = None
+    manual_entries: Optional[StrictInt] = Field(default=None, alias="manualEntries")
+    resolve_issues: Optional[StrictInt] = Field(default=None, alias="resolveIssues")
     __properties: ClassVar[List[str]] = ["all", "invoices", "manualEntries", "resolveIssues"]
 
     model_config = ConfigDict(

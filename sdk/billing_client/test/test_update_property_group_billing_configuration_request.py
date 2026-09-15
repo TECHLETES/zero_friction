@@ -44,10 +44,14 @@ class TestUpdatePropertyGroupBillingConfigurationRequest(unittest.TestCase):
                 invoice_day = 56,
                 invoice_month = 56,
                 product_id = '',
-                payment_terms_id = ''
+                payment_terms_id = '',
+                default_billing_method = 'credit'
             )
         else:
             return UpdatePropertyGroupBillingConfigurationRequest(
+                property_group = billing_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
+                    id = '', 
+                    name = '', ),
         )
         """
 

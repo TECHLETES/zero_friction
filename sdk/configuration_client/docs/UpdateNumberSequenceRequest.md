@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**last_value** | **int** |  | [optional] 
+**last_value** | **int** |  | 
 **segments** | [**List[SegmentRequest]**](SegmentRequest.md) |  | [optional] 
-**format_string** | **str** |  | [optional] 
-**reference_entity** | [**NumberSequenceReferenceEntity**](NumberSequenceReferenceEntity.md) |  | [optional] 
+**format_string** | **str** |  | 
+**reference_entity** | [**NumberSequenceReferenceEntity**](NumberSequenceReferenceEntity.md) |  | 
 
 ## Example
 

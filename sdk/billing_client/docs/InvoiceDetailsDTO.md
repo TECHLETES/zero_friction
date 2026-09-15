@@ -1,14 +1,13 @@
 # InvoiceDetailsDTO
 
-Represents details about invoice generation for a billing relation.  This DTO contains information about invoice frequencies and periods.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) | The frequency at which invoices are generated. | [optional] 
-**first_invoice_start_date_time** | **datetime** | The start date and time of the first invoice period. | [optional] 
-**first_invoice_end_date_time** | **datetime** | The end date and time of the first invoice period. | [optional] 
+**invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) |  | [optional] 
+**first_invoice_start_date_time** | **datetime** |  | [optional] 
+**first_invoice_end_date_time** | **datetime** |  | [optional] 
 
 ## Example
 

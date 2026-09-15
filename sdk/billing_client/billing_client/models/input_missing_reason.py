@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class InputMissingReason(str, Enum):
     """
-    InputMissingReason
+    Possible values: 'unknown', 'missingadvances', 'missingreceivingperiods', 'missingtariffs', 'invoicecreationfailed', 'invoicelinecalculationfailed', 'missingreceivingperiodsfortieredtariffcalculation', 'missingbillingitems', 'missingcustomentityproperty', 'missingaskingperiods', 'askingperiodscontainsgap', 'missingtaxrate', 'missingpropertygrouponlocation', 'propertygroupnotfound', 'servicelocationnotfound', 'missingcep', 'missingmeter', 'prepaymentstatementnumbergenerationfailed', 'firstmeasurementonwrongdate', 'nomeasurementonstart', 'nomeasurementonend', 'nomeasurementsfound', 'lastmeasurementonwrongdate', 'measurementnotwithindeviationwindow', 'noproductfound'
     """
 
     """
@@ -43,6 +43,7 @@ class InputMissingReason(str, Enum):
     SERVICELOCATIONNOTFOUND = 'servicelocationnotfound'
     MISSINGCEP = 'missingcep'
     MISSINGMETER = 'missingmeter'
+    PREPAYMENTSTATEMENTNUMBERGENERATIONFAILED = 'prepaymentstatementnumbergenerationfailed'
     FIRSTMEASUREMENTONWRONGDATE = 'firstmeasurementonwrongdate'
     NOMEASUREMENTONSTART = 'nomeasurementonstart'
     NOMEASUREMENTONEND = 'nomeasurementonend'

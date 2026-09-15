@@ -82,21 +82,18 @@ configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
 # Enter a context with an instance of the API client
 with metering_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = metering_client.ConsumptionsApi(api_client)
-    extchuuid = 'extchuuid_example' # str | The external channel UUID to retrieve consumption data for.
-    zf_tuuid = '{{zf-tuuid}}' # str | Format - uuid. Tenant ID
-    zf_ouuid = '{{zf-ouuid}}' # str | Format - uuid. Organisation ID
-    start_date_time = '2013-10-20T19:20:30+01:00' # datetime | Format - date-time (as date-time in RFC3339). The start date and time for the consumption data range. (optional)
-    end_date_time = '2013-10-20T19:20:30+01:00' # datetime | Format - date-time (as date-time in RFC3339). The end date and time for the consumption data range. (optional)
-    continuation_token = 'continuation_token_example' # str | Token for pagination of large result sets. (optional)
+    api_instance = metering_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    cancel_muting_rule_aggregate_request = {"errorType":"consumptionnegative","message":"string","timePeriod":"day","muteFromWithNumericValue":0,"muteUntilWithNumericValue":0,"userId":"string"} # CancelMutingRuleAggregateRequest | Cancellation token (optional)
 
     try:
-        # Retrieves consumption values for a specific external channel within a date range.
-        api_response = api_instance.get_consumptions_extchuuid(extchuuid, zf_tuuid, zf_ouuid, start_date_time=start_date_time, end_date_time=end_date_time, continuation_token=continuation_token)
-        print("The response of ConsumptionsApi->get_consumptions_extchuuid:\n")
+        # Cancels a group of muting rules based on aggregate details
+        api_response = api_instance.cancel_muting_rule_by_aggregate_details(zf_tuuid, zf_ouuid, cancel_muting_rule_aggregate_request=cancel_muting_rule_aggregate_request)
+        print("The response of DefaultApi->cancel_muting_rule_by_aggregate_details:\n")
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling ConsumptionsApi->get_consumptions_extchuuid: %s\n" % e)
+        print("Exception when calling DefaultApi->cancel_muting_rule_by_aggregate_details: %s\n" % e)
 
 ```
 
@@ -106,73 +103,83 @@ All URIs are relative to *https://api.zerofriction.co/api/me*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ConsumptionsApi* | [**get_consumptions_extchuuid**](docs/ConsumptionsApi.md#get_consumptions_extchuuid) | **GET** /Consumptions/{extchuuid} | Retrieves consumption values for a specific external channel within a date range.
-*ConsumptionsApi* | [**get_consumptions_extchuuid_flat**](docs/ConsumptionsApi.md#get_consumptions_extchuuid_flat) | **GET** /Consumptions/{extchuuid}/flat | Retrieves flat consumption values for a specific external channel with optional grouping by period.
-*ConsumptionsApi* | [**post_consumptions_export_sum**](docs/ConsumptionsApi.md#post_consumptions_export_sum) | **POST** /Consumptions/export/sum | Calculates and exports the sum of consumption values for a list of meters.
-*ConsumptionsApi* | [**post_consumptions_extchuuid_recalculate**](docs/ConsumptionsApi.md#post_consumptions_extchuuid_recalculate) | **POST** /Consumptions/{extchuuid}/recalculate | Recalculates consumption values for a specific channel within a given date range.
-*IntegrationsApi* | [**delete_integrations_import**](docs/IntegrationsApi.md#delete_integrations_import) | **DELETE** /Integrations/import | Deletes imports based on provided id&#39;s. If there are too many id&#39;s, deletes are done asynchronously
-*IntegrationsApi* | [**delete_integrations_import_meteringimportid**](docs/IntegrationsApi.md#delete_integrations_import_meteringimportid) | **DELETE** /Integrations/import/{meteringImportId} | Delete an existing import by it&#39;s identifier
-*IntegrationsApi* | [**get_integrations_import**](docs/IntegrationsApi.md#get_integrations_import) | **GET** /Integrations/import | Gets a paged list of metering imports based on the specified filters.
-*IntegrationsApi* | [**get_integrations_import_meteringimportid_issues_interpretation**](docs/IntegrationsApi.md#get_integrations_import_meteringimportid_issues_interpretation) | **GET** /Integrations/import/{meteringImportId}/issues/interpretation | Get an overview of issues that were detected during the interpretation of a metering import.
-*IntegrationsApi* | [**get_integrations_import_meteringimportid_issuescount**](docs/IntegrationsApi.md#get_integrations_import_meteringimportid_issuescount) | **GET** /Integrations/import/{meteringImportId}/issuescount | Get a count of issues detected during import validation and processing.
-*IntegrationsApi* | [**get_integrations_import_meteringimportid_measurements**](docs/IntegrationsApi.md#get_integrations_import_meteringimportid_measurements) | **GET** /Integrations/import/{meteringImportId}/measurements | Get an overview of all the measurements for a metering import with their possible validation or processing issues.
-*IntegrationsApi* | [**get_integrations_import_overviewcount**](docs/IntegrationsApi.md#get_integrations_import_overviewcount) | **GET** /Integrations/import/overviewcount | Gets count information for metering import overview, grouped by their status.
-*IntegrationsApi* | [**get_integrations_import_uuid**](docs/IntegrationsApi.md#get_integrations_import_uuid) | **GET** /Integrations/import/{uuid} | Fetch the details of a metering import to know the status of the metering import and to known how many  values were successfully parsed, validated and processed.
-*IntegrationsApi* | [**patch_integrations_import_markprocessed**](docs/IntegrationsApi.md#patch_integrations_import_markprocessed) | **PATCH** /Integrations/import/markprocessed | Marks requested imports as processed, if the current status of the import allows it
-*IntegrationsApi* | [**patch_integrations_import_validate_meteringimportid**](docs/IntegrationsApi.md#patch_integrations_import_validate_meteringimportid) | **PATCH** /Integrations/import/validate/{meteringImportId} | Attempts to revalidate a specified import
-*IntegrationsApi* | [**post_integrations_import**](docs/IntegrationsApi.md#post_integrations_import) | **POST** /Integrations/import | Upload measurements for specific file formats.
-*IntegrationsApi* | [**post_integrations_import_download**](docs/IntegrationsApi.md#post_integrations_import_download) | **POST** /Integrations/import/download | Downloads the original files for all imports that are requested
-*IntegrationsApi* | [**post_integrations_import_measurements**](docs/IntegrationsApi.md#post_integrations_import_measurements) | **POST** /Integrations/import/measurements | Upload measurements for a collection of different meters.
-*IntegrationsApi* | [**post_integrations_import_process**](docs/IntegrationsApi.md#post_integrations_import_process) | **POST** /Integrations/import/process | Processes all selected imports if they have the status &#39;Validation failed&#39;, &#39;To process&#39;, or &#39;Processed with issues&#39;.  Before processing valid measurements, it revalidates any current invalid measurements.                For example, if a meter or channel did not exist when the import was created bu
-*IntegrationsApi* | [**post_integrations_import_process_meteringimportid**](docs/IntegrationsApi.md#post_integrations_import_process_meteringimportid) | **POST** /Integrations/import/process/{meteringImportId} | Processes the import if it has the status &#39;Validation failed&#39;, &#39;To process&#39;, or &#39;Processed with issues&#39;.  Before processing valid measurements, it revalidates any current invalid measurements.                For example, if a meter or channel did not exist when the import was created but has since b
-*IntegrationsApi* | [**post_integrations_import_processall**](docs/IntegrationsApi.md#post_integrations_import_processall) | **POST** /Integrations/import/processall | Processes all imports that have status &#39;To process&#39; and &#39;Processed with issues&#39;
-*MeasurementsApi* | [**delete_measurements_extchuuid_delete_measurementid**](docs/MeasurementsApi.md#delete_measurements_extchuuid_delete_measurementid) | **DELETE** /Measurements/{extchuuid}/delete/{measurementId} | Deletes a specific measurement from an external channel.
-*MeasurementsApi* | [**get_measurements_extchuuid**](docs/MeasurementsApi.md#get_measurements_extchuuid) | **GET** /Measurements/{extchuuid} | Gets measurement values for a specific external channel identifier within a date range.
-*MeasurementsApi* | [**get_measurements_extchuuid_flat**](docs/MeasurementsApi.md#get_measurements_extchuuid_flat) | **GET** /Measurements/{extchuuid}/flat | Gets flat (non-paged) measurement values for a specific external channel within a date range.
-*MeasurementsApi* | [**get_measurements_m_meteruuid**](docs/MeasurementsApi.md#get_measurements_m_meteruuid) | **GET** /Measurements/m/{meteruuid} | Gets adjacent measurement pairs for a meter at a specific measurement date.
-*MeasurementsApi* | [**post_measurements**](docs/MeasurementsApi.md#post_measurements) | **POST** /Measurements | Adds a new measurement for an external channel.
-*MeasurementsApi* | [**post_measurements_bulk_delete**](docs/MeasurementsApi.md#post_measurements_bulk_delete) | **POST** /Measurements/bulk/delete | Bulk deletes measurements based on specified criteria.
-*MeasurementsApi* | [**post_measurements_export_values**](docs/MeasurementsApi.md#post_measurements_export_values) | **POST** /Measurements/export/values | Exports measurement values for a list of meters within a date range.
-*MeasurementsApi* | [**post_measurements_validate**](docs/MeasurementsApi.md#post_measurements_validate) | **POST** /Measurements/validate | Validates measurements against business rules without persisting them.
-*MeteringIssuesApi* | [**get_meteringissues**](docs/MeteringIssuesApi.md#get_meteringissues) | **GET** /MeteringIssues | Retrieves a paged list of metering issues based on specified filter criteria.
-*MeteringIssuesApi* | [**get_meteringissues_getallbymeter**](docs/MeteringIssuesApi.md#get_meteringissues_getallbymeter) | **GET** /MeteringIssues/getAllByMeter | Retrieves a paged list of metering issues for a specific meter.
-*MeteringIssuesApi* | [**get_meteringissues_grouped**](docs/MeteringIssuesApi.md#get_meteringissues_grouped) | **GET** /MeteringIssues/grouped | Retrieves a paged list of metering issues grouped by a specified property.
-*MeteringIssuesApi* | [**get_meteringissues_meters**](docs/MeteringIssuesApi.md#get_meteringissues_meters) | **GET** /MeteringIssues/meters | Retrieves a paged list of meters that have metering issues.
-*MeteringIssuesApi* | [**get_meteringissues_overviewcount**](docs/MeteringIssuesApi.md#get_meteringissues_overviewcount) | **GET** /MeteringIssues/overviewcount | Retrieves count statistics for metering issues based on specified filter criteria.
-*MeteringIssuesApi* | [**get_meteringissues_propertygroups**](docs/MeteringIssuesApi.md#get_meteringissues_propertygroups) | **GET** /MeteringIssues/propertygroups | Retrieves a paged list of property groups that have metering issues.
-*MeteringIssuesApi* | [**post_meteringissues_bulk_ignore**](docs/MeteringIssuesApi.md#post_meteringissues_bulk_ignore) | **POST** /MeteringIssues/bulk/ignore | Ignores multiple metering issues in bulk.
-*MeteringIssuesApi* | [**post_meteringissues_bulk_resolve**](docs/MeteringIssuesApi.md#post_meteringissues_bulk_resolve) | **POST** /MeteringIssues/bulk/resolve | Resolves multiple metering issues in bulk.
-*MeteringIssuesApi* | [**post_meteringissues_issueid_ignore**](docs/MeteringIssuesApi.md#post_meteringissues_issueid_ignore) | **POST** /MeteringIssues/{issueId}/ignore | Ignores a specific metering issue.
-*MeteringIssuesApi* | [**post_meteringissues_issueid_resolve**](docs/MeteringIssuesApi.md#post_meteringissues_issueid_resolve) | **POST** /MeteringIssues/{issueId}/resolve | Resolves a specific metering issue.
-*MutingRulesApi* | [**cancel_muting_rule_by_aggregate_details**](docs/MutingRulesApi.md#cancel_muting_rule_by_aggregate_details) | **PUT** /MutingRules/cancelAggregate | Cancels a group of muting rules based on aggregate details
-*MutingRulesApi* | [**cancel_muting_rule_by_details**](docs/MutingRulesApi.md#cancel_muting_rule_by_details) | **PUT** /MutingRules/cancel | Cancels a muting rule based on provided details
-*MutingRulesApi* | [**cancel_muting_rule_by_id**](docs/MutingRulesApi.md#cancel_muting_rule_by_id) | **PUT** /MutingRules/cancel/{mutingRuleId} | Cancels a muting rule by its ID
-*MutingRulesApi* | [**create_muting_rule**](docs/MutingRulesApi.md#create_muting_rule) | **POST** /MutingRules | Creates multiple muting rules in bulk
-*MutingRulesApi* | [**get_all_muting_rules**](docs/MutingRulesApi.md#get_all_muting_rules) | **GET** /MutingRules/getall | Retrieves all muting rules with optional filtering
-*MutingRulesApi* | [**get_count**](docs/MutingRulesApi.md#get_count) | **GET** /MutingRules/GetCount | Gets the count of muting rules matching the specified criteria
-*MutingRulesApi* | [**get_meters**](docs/MutingRulesApi.md#get_meters) | **GET** /MutingRules/getmeters | Retrieves meters for which a muting rule with the specified parameters applies
-*MutingRulesApi* | [**get_muting_rule**](docs/MutingRulesApi.md#get_muting_rule) | **GET** /MutingRules/{mutingRuleId} | Retrieves a specific muting rule by its ID
-*MutingRulesApi* | [**get_muting_rules_by_meter**](docs/MutingRulesApi.md#get_muting_rules_by_meter) | **GET** /MutingRules/getall/{meterId} | Retrieves muting rules for a specific meter
-*MutingRulesApi* | [**get_overview_count**](docs/MutingRulesApi.md#get_overview_count) | **GET** /MutingRules/getall/{meterId}/overviewCount | Gets an overview count of muting rules for a specific meter
-*MutingRulesApi* | [**get_related_muting_rules**](docs/MutingRulesApi.md#get_related_muting_rules) | **GET** /MutingRules/getallrelated | Retrieves muting rules related to specific criteria
-*PrepaymentTransactionsApi* | [**create_prepayment_transaction**](docs/PrepaymentTransactionsApi.md#create_prepayment_transaction) | **POST** /PrepaymentTransactions | Creates a new prepayment transaction.
-*PrepaymentTransactionsApi* | [**get_all_prepayment_transactions**](docs/PrepaymentTransactionsApi.md#get_all_prepayment_transactions) | **POST** /PrepaymentTransactions/filter | Retrieves a paged list of prepayment transactions based on specified filter criteria.
-*PropertyGroupMeteringConfigurationApi* | [**get_propertygroupmeteringconfiguration_formulas**](docs/PropertyGroupMeteringConfigurationApi.md#get_propertygroupmeteringconfiguration_formulas) | **GET** /PropertyGroupMeteringConfiguration/formulas | Retrieves a list of all available formula functions for use in property group metering configurations
-*PropertyGroupMeteringConfigurationApi* | [**get_propertygroupmeteringconfiguration_propertyuuid**](docs/PropertyGroupMeteringConfigurationApi.md#get_propertygroupmeteringconfiguration_propertyuuid) | **GET** /PropertyGroupMeteringConfiguration/{propertyuuid} | Retrieves the metering configuration for a specific property
-*PropertyGroupMeteringConfigurationApi* | [**get_propertygroupmeteringconfiguration_propertyuuid_calculatedconsumptions**](docs/PropertyGroupMeteringConfigurationApi.md#get_propertygroupmeteringconfiguration_propertyuuid_calculatedconsumptions) | **GET** /PropertyGroupMeteringConfiguration/{propertyuuid}/calculatedconsumptions | Retrieves calculated consumptions for output channels within a specified time period
-*PropertyGroupMeteringConfigurationApi* | [**post_propertygroupmeteringconfiguration_propertyuuid**](docs/PropertyGroupMeteringConfigurationApi.md#post_propertygroupmeteringconfiguration_propertyuuid) | **POST** /PropertyGroupMeteringConfiguration/{propertyuuid} | Updates the output channels for a property group metering configuration
-*PropertyGroupMeteringConfigurationApi* | [**post_propertygroupmeteringconfiguration_propertyuuid_outputchanneluuid_calcu**](docs/PropertyGroupMeteringConfigurationApi.md#post_propertygroupmeteringconfiguration_propertyuuid_outputchanneluuid_calcu) | **POST** /PropertyGroupMeteringConfiguration/{propertyuuid}/{outputchanneluuid}/calculate | Calculates values for a specific output channel in a property group metering configuration
-*PropertyGroupMeteringConfigurationApi* | [**post_propertygroupmeteringconfiguration_propertyuuid_validate**](docs/PropertyGroupMeteringConfigurationApi.md#post_propertygroupmeteringconfiguration_propertyuuid_validate) | **POST** /PropertyGroupMeteringConfiguration/{propertyuuid}/validate | Validates a property group metering configuration
-*ServiceConsumptionsApi* | [**get_consumption_date_ranges_for_service_location**](docs/ServiceConsumptionsApi.md#get_consumption_date_ranges_for_service_location) | **GET** /ServiceConsumptions/{sluuid}/range/date-range-limit | Gets consumption date ranges available for a service location
-*ServiceConsumptionsApi* | [**get_consumptions_for_service_location_grouped_on_range**](docs/ServiceConsumptionsApi.md#get_consumptions_for_service_location_grouped_on_range) | **GET** /ServiceConsumptions/{sluuid}/range | Gets consumption data for a service location grouped by range
-*ServiceConsumptionsApi* | [**get_serviceconsumptions_sluuid**](docs/ServiceConsumptionsApi.md#get_serviceconsumptions_sluuid) | **GET** /ServiceConsumptions/{sluuid} | Gets paginated consumption data for a service location
-*ServiceConsumptionsApi* | [**get_serviceconsumptions_sluuid_flat**](docs/ServiceConsumptionsApi.md#get_serviceconsumptions_sluuid_flat) | **GET** /ServiceConsumptions/{sluuid}/flat | Gets flat consumption data for a service location with optional grouping by period
-*ServiceConsumptionsApi* | [**get_serviceconsumptions_sluuid_raw**](docs/ServiceConsumptionsApi.md#get_serviceconsumptions_sluuid_raw) | **GET** /ServiceConsumptions/{sluuid}/raw | Gets raw consumption data for a service location
-*ServiceConsumptionsApi* | [**get_serviceconsumptions_sluuid_types**](docs/ServiceConsumptionsApi.md#get_serviceconsumptions_sluuid_types) | **GET** /ServiceConsumptions/{sluuid}/types | Gets available consumption types for a service location
-*ServiceConsumptionsApi* | [**post_serviceconsumptions_aggregatedperperiod**](docs/ServiceConsumptionsApi.md#post_serviceconsumptions_aggregatedperperiod) | **POST** /ServiceConsumptions/aggregatedperperiod | Gets aggregated service consumptions per period for a list of service locations
-*ServiceConsumptionsApi* | [**post_serviceconsumptions_buckets**](docs/ServiceConsumptionsApi.md#post_serviceconsumptions_buckets) | **POST** /ServiceConsumptions/buckets | Gets consumption data for a service locations grouped by provided buckets
-*ServiceConsumptionsApi* | [**post_serviceconsumptions_export_sum**](docs/ServiceConsumptionsApi.md#post_serviceconsumptions_export_sum) | **POST** /ServiceConsumptions/export/sum | Gets sum of consumption values for a list of service locations
-*ServiceConsumptionsApi* | [**post_serviceconsumptions_yearlyaverage**](docs/ServiceConsumptionsApi.md#post_serviceconsumptions_yearlyaverage) | **POST** /ServiceConsumptions/yearlyaverage | Gets yearly average consumption per service location
+*DefaultApi* | [**cancel_muting_rule_by_aggregate_details**](docs/DefaultApi.md#cancel_muting_rule_by_aggregate_details) | **PUT** /MutingRules/cancelAggregate | Cancels a group of muting rules based on aggregate details
+*DefaultApi* | [**cancel_muting_rule_by_details**](docs/DefaultApi.md#cancel_muting_rule_by_details) | **PUT** /MutingRules/cancel | Cancels a muting rule based on provided details
+*DefaultApi* | [**cancel_muting_rule_by_id**](docs/DefaultApi.md#cancel_muting_rule_by_id) | **PUT** /MutingRules/cancel/{mutingRuleId} | Cancels a muting rule by its ID
+*DefaultApi* | [**create_muting_rule**](docs/DefaultApi.md#create_muting_rule) | **POST** /MutingRules | Creates multiple muting rules in bulk
+*DefaultApi* | [**delete_integrations_import**](docs/DefaultApi.md#delete_integrations_import) | **DELETE** /Integrations/import | Deletes imports based on provided id&#39;s. If there are too many id&#39;s, deletes are done asynchronously
+*DefaultApi* | [**delete_integrations_import_meteringimportid**](docs/DefaultApi.md#delete_integrations_import_meteringimportid) | **DELETE** /Integrations/import/{meteringImportId} | Delete an existing import by it&#39;s identifier
+*DefaultApi* | [**delete_measurements_extchuuid_delete_measurementid**](docs/DefaultApi.md#delete_measurements_extchuuid_delete_measurementid) | **DELETE** /Measurements/{extchuuid}/delete/{measurementId} | Deletes a specific measurement from an external channel.
+*DefaultApi* | [**delete_meteringprovideraccounts_id**](docs/DefaultApi.md#delete_meteringprovideraccounts_id) | **DELETE** /MeteringProviderAccounts/{id} | Deletes a metering provider account by id.
+*DefaultApi* | [**get_all_muting_rules**](docs/DefaultApi.md#get_all_muting_rules) | **GET** /MutingRules/getall | Retrieves all muting rules with optional filtering
+*DefaultApi* | [**get_consumption_date_ranges_for_service_location**](docs/DefaultApi.md#get_consumption_date_ranges_for_service_location) | **GET** /ServiceConsumptions/{sluuid}/range/date-range-limit | Gets consumption date ranges available for a service location
+*DefaultApi* | [**get_consumptions_extchuuid**](docs/DefaultApi.md#get_consumptions_extchuuid) | **GET** /Consumptions/{extchuuid} | Retrieves consumption values for a specific external channel within a date range.
+*DefaultApi* | [**get_consumptions_extchuuid_flat**](docs/DefaultApi.md#get_consumptions_extchuuid_flat) | **GET** /Consumptions/{extchuuid}/flat | Retrieves flat consumption values for a specific external channel with optional grouping by period.
+*DefaultApi* | [**get_consumptions_for_service_location_grouped_on_range**](docs/DefaultApi.md#get_consumptions_for_service_location_grouped_on_range) | **GET** /ServiceConsumptions/{sluuid}/range | Gets consumption data for a service location grouped by range
+*DefaultApi* | [**get_count**](docs/DefaultApi.md#get_count) | **GET** /MutingRules/GetCount | Gets the count of muting rules matching the specified criteria
+*DefaultApi* | [**get_integrations_import**](docs/DefaultApi.md#get_integrations_import) | **GET** /Integrations/import | Gets a paged list of metering imports based on the specified filters.
+*DefaultApi* | [**get_integrations_import_meteringimportid_issues_interpretation**](docs/DefaultApi.md#get_integrations_import_meteringimportid_issues_interpretation) | **GET** /Integrations/import/{meteringImportId}/issues/interpretation | Get an overview of issues that were detected during the interpretation of a metering import.
+*DefaultApi* | [**get_integrations_import_meteringimportid_issuescount**](docs/DefaultApi.md#get_integrations_import_meteringimportid_issuescount) | **GET** /Integrations/import/{meteringImportId}/issuescount | Get a count of issues detected during import validation and processing.
+*DefaultApi* | [**get_integrations_import_meteringimportid_measurements**](docs/DefaultApi.md#get_integrations_import_meteringimportid_measurements) | **GET** /Integrations/import/{meteringImportId}/measurements | Get an overview of all the measurements for a metering import with their possible validation or processing issues.
+*DefaultApi* | [**get_integrations_import_overviewcount**](docs/DefaultApi.md#get_integrations_import_overviewcount) | **GET** /Integrations/import/overviewcount | Gets count information for metering import overview, grouped by their status.
+*DefaultApi* | [**get_integrations_import_uuid**](docs/DefaultApi.md#get_integrations_import_uuid) | **GET** /Integrations/import/{uuid} | Fetch the details of a metering import to know the status of the metering import and to know how many values were successfully parsed, validated, and processed.
+*DefaultApi* | [**get_measurements_extchuuid**](docs/DefaultApi.md#get_measurements_extchuuid) | **GET** /Measurements/{extchuuid} | Gets measurement values for a specific external channel identifier within a date range.
+*DefaultApi* | [**get_measurements_extchuuid_flat**](docs/DefaultApi.md#get_measurements_extchuuid_flat) | **GET** /Measurements/{extchuuid}/flat | Gets flat (non-paged) measurement values for a specific external channel within a date range.
+*DefaultApi* | [**get_measurements_m_meteruuid**](docs/DefaultApi.md#get_measurements_m_meteruuid) | **GET** /Measurements/m/{meteruuid} | Gets adjacent measurement pairs for a meter at a specific measurement date.
+*DefaultApi* | [**get_meteringissues**](docs/DefaultApi.md#get_meteringissues) | **GET** /MeteringIssues | Retrieves a paged list of metering issues based on specified filter criteria.
+*DefaultApi* | [**get_meteringissues_getallbymeter**](docs/DefaultApi.md#get_meteringissues_getallbymeter) | **GET** /MeteringIssues/getAllByMeter | Retrieves a paged list of metering issues for a specific meter.
+*DefaultApi* | [**get_meteringissues_grouped**](docs/DefaultApi.md#get_meteringissues_grouped) | **GET** /MeteringIssues/grouped | Retrieves a paged list of metering issues grouped by a specified property.
+*DefaultApi* | [**get_meteringissues_meters**](docs/DefaultApi.md#get_meteringissues_meters) | **GET** /MeteringIssues/meters | Retrieves a paged list of meters that have metering issues.
+*DefaultApi* | [**get_meteringissues_overviewcount**](docs/DefaultApi.md#get_meteringissues_overviewcount) | **GET** /MeteringIssues/overviewcount | Retrieves count statistics for metering issues based on specified filter criteria.
+*DefaultApi* | [**get_meteringissues_propertygroups**](docs/DefaultApi.md#get_meteringissues_propertygroups) | **GET** /MeteringIssues/propertygroups | Retrieves a paged list of property groups that have metering issues.
+*DefaultApi* | [**get_meteringprovideraccounts_id**](docs/DefaultApi.md#get_meteringprovideraccounts_id) | **GET** /MeteringProviderAccounts/{id} | Retrieves a single metering provider account by its unique identifier.
+*DefaultApi* | [**get_meters**](docs/DefaultApi.md#get_meters) | **GET** /MutingRules/getmeters | Retrieves meters for which a muting rule with the specified parameters applies
+*DefaultApi* | [**get_migrationadmin_latest_version**](docs/DefaultApi.md#get_migrationadmin_latest_version) | **GET** /MigrationAdmin/latest-version | /MigrationAdmin/latest-version - GET
+*DefaultApi* | [**get_muting_rule**](docs/DefaultApi.md#get_muting_rule) | **GET** /MutingRules/{mutingRuleId} | Retrieves a specific muting rule by its ID
+*DefaultApi* | [**get_muting_rules_by_meter**](docs/DefaultApi.md#get_muting_rules_by_meter) | **GET** /MutingRules/getall/{meterId} | Retrieves muting rules for a specific meter
+*DefaultApi* | [**get_overview_count**](docs/DefaultApi.md#get_overview_count) | **GET** /MutingRules/getall/{meterId}/overviewCount | Gets an overview count of muting rules for a specific meter
+*DefaultApi* | [**get_productusage**](docs/DefaultApi.md#get_productusage) | **GET** /ProductUsage | Gets the metering product usage snapshot with integrations per organization.
+*DefaultApi* | [**get_related_muting_rules**](docs/DefaultApi.md#get_related_muting_rules) | **GET** /MutingRules/getallrelated | Retrieves muting rules related to specific criteria
+*DefaultApi* | [**get_serviceconsumptions_sluuid**](docs/DefaultApi.md#get_serviceconsumptions_sluuid) | **GET** /ServiceConsumptions/{sluuid} | Gets paginated consumption data for a service location
+*DefaultApi* | [**get_serviceconsumptions_sluuid_flat**](docs/DefaultApi.md#get_serviceconsumptions_sluuid_flat) | **GET** /ServiceConsumptions/{sluuid}/flat | Gets flat consumption data for a service location with optional grouping by period
+*DefaultApi* | [**get_serviceconsumptions_sluuid_raw**](docs/DefaultApi.md#get_serviceconsumptions_sluuid_raw) | **GET** /ServiceConsumptions/{sluuid}/raw | Gets raw consumption data for a service location
+*DefaultApi* | [**get_serviceconsumptions_sluuid_types**](docs/DefaultApi.md#get_serviceconsumptions_sluuid_types) | **GET** /ServiceConsumptions/{sluuid}/types | Gets available consumption types for a service location
+*DefaultApi* | [**patch_integrations_import_markprocessed**](docs/DefaultApi.md#patch_integrations_import_markprocessed) | **PATCH** /Integrations/import/markprocessed | Marks requested imports as processed, if the current status of the import allows it
+*DefaultApi* | [**patch_integrations_import_validate**](docs/DefaultApi.md#patch_integrations_import_validate) | **PATCH** /Integrations/import/validate | Attempts to revalidate multiple imports
+*DefaultApi* | [**patch_integrations_import_validate_meteringimportid**](docs/DefaultApi.md#patch_integrations_import_validate_meteringimportid) | **PATCH** /Integrations/import/validate/{meteringImportId} | Attempts to revalidate a specified import
+*DefaultApi* | [**post_consumptions_export_sum**](docs/DefaultApi.md#post_consumptions_export_sum) | **POST** /Consumptions/export/sum | Calculates and exports the sum of consumption values for a list of meters.
+*DefaultApi* | [**post_consumptions_extchuuid_recalculate**](docs/DefaultApi.md#post_consumptions_extchuuid_recalculate) | **POST** /Consumptions/{extchuuid}/recalculate | Recalculates consumption values for a specific channel within a given date range.
+*DefaultApi* | [**post_integrations_import**](docs/DefaultApi.md#post_integrations_import) | **POST** /Integrations/import | Upload measurements for specific file formats.
+*DefaultApi* | [**post_integrations_import_download**](docs/DefaultApi.md#post_integrations_import_download) | **POST** /Integrations/import/download | Downloads the original files for all imports that are requested
+*DefaultApi* | [**post_integrations_import_filter**](docs/DefaultApi.md#post_integrations_import_filter) | **POST** /Integrations/import/filter | Gets a paged list of metering imports based on the specified filters. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_integrations_import_filter_overviewcount**](docs/DefaultApi.md#post_integrations_import_filter_overviewcount) | **POST** /Integrations/import/filter/overviewcount | Gets count information for metering import overview, grouped by their status. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_integrations_import_measurements**](docs/DefaultApi.md#post_integrations_import_measurements) | **POST** /Integrations/import/measurements | Upload measurements for a collection of different meters.
+*DefaultApi* | [**post_integrations_import_process**](docs/DefaultApi.md#post_integrations_import_process) | **POST** /Integrations/import/process | Processes all selected imports if they have the status &#39;Validation failed&#39;, &#39;To process&#39;, or &#39;Processed with issues&#39;. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since bee
+*DefaultApi* | [**post_integrations_import_process_meteringimportid**](docs/DefaultApi.md#post_integrations_import_process_meteringimportid) | **POST** /Integrations/import/process/{meteringImportId} | Processes the import if it has the status &#39;Validation failed&#39;, &#39;To process&#39;, or &#39;Processed with issues&#39;. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the 
+*DefaultApi* | [**post_integrations_import_processall**](docs/DefaultApi.md#post_integrations_import_processall) | **POST** /Integrations/import/processall | Processes all imports that have status &#39;To process&#39; and &#39;Processed with issues&#39;
+*DefaultApi* | [**post_measurements**](docs/DefaultApi.md#post_measurements) | **POST** /Measurements | Adds a new measurement for an external channel.
+*DefaultApi* | [**post_measurements_bulk_delete**](docs/DefaultApi.md#post_measurements_bulk_delete) | **POST** /Measurements/bulk/delete | Bulk deletes measurements based on specified criteria.
+*DefaultApi* | [**post_measurements_export_values**](docs/DefaultApi.md#post_measurements_export_values) | **POST** /Measurements/export/values | Exports measurement values for a list of meters within a date range.
+*DefaultApi* | [**post_measurements_validate**](docs/DefaultApi.md#post_measurements_validate) | **POST** /Measurements/validate | Validates measurements against business rules without persisting them.
+*DefaultApi* | [**post_meteringissues**](docs/DefaultApi.md#post_meteringissues) | **POST** /MeteringIssues | Retrieves a paged list of metering issues based on specified filter criteria.
+*DefaultApi* | [**post_meteringissues_bulk_ignore**](docs/DefaultApi.md#post_meteringissues_bulk_ignore) | **POST** /MeteringIssues/bulk/ignore | Ignores multiple metering issues in bulk.
+*DefaultApi* | [**post_meteringissues_bulk_resolve**](docs/DefaultApi.md#post_meteringissues_bulk_resolve) | **POST** /MeteringIssues/bulk/resolve | Resolves multiple metering issues in bulk.
+*DefaultApi* | [**post_meteringissues_getallbymeter**](docs/DefaultApi.md#post_meteringissues_getallbymeter) | **POST** /MeteringIssues/getAllByMeter | Retrieves a paged list of metering issues for a specific meter.
+*DefaultApi* | [**post_meteringissues_grouped**](docs/DefaultApi.md#post_meteringissues_grouped) | **POST** /MeteringIssues/grouped | Retrieves a paged list of metering issues grouped by a specified property.
+*DefaultApi* | [**post_meteringissues_issueid_ignore**](docs/DefaultApi.md#post_meteringissues_issueid_ignore) | **POST** /MeteringIssues/{issueId}/ignore | Ignores a specific metering issue.
+*DefaultApi* | [**post_meteringissues_issueid_resolve**](docs/DefaultApi.md#post_meteringissues_issueid_resolve) | **POST** /MeteringIssues/{issueId}/resolve | Resolves a specific metering issue.
+*DefaultApi* | [**post_meteringissues_overviewcount**](docs/DefaultApi.md#post_meteringissues_overviewcount) | **POST** /MeteringIssues/overviewcount | Retrieves count statistics for metering issues based on specified filter criteria.
+*DefaultApi* | [**post_meteringissues_selectionsummary**](docs/DefaultApi.md#post_meteringissues_selectionsummary) | **POST** /MeteringIssues/selectionSummary | Summarises a metering issue selection: total issue and distinct meter counts plus a breakdown per error type.
+*DefaultApi* | [**post_meteringprovideraccounts**](docs/DefaultApi.md#post_meteringprovideraccounts) | **POST** /MeteringProviderAccounts | Creates a new metering provider account for the current tenant, or updates settings and sets status to Active if an account already exists for the provider type.
+*DefaultApi* | [**post_meteringprovideraccounts_filter**](docs/DefaultApi.md#post_meteringprovideraccounts_filter) | **POST** /MeteringProviderAccounts/filter | Retrieves metering provider accounts for the current tenant with optional filtering and paging.
+*DefaultApi* | [**post_meteringprovideraccounts_id**](docs/DefaultApi.md#post_meteringprovideraccounts_id) | **POST** /MeteringProviderAccounts/{id} | Updates an existing metering provider account by id.
+*DefaultApi* | [**post_meteringprovideraccounts_id_deactivate**](docs/DefaultApi.md#post_meteringprovideraccounts_id_deactivate) | **POST** /MeteringProviderAccounts/{id}/deactivate | Deactivates a metering provider account by id (sets status to inactive).
+*DefaultApi* | [**post_meteringproviderruns_filter**](docs/DefaultApi.md#post_meteringproviderruns_filter) | **POST** /MeteringProviderRuns/filter | Retrieves metering provider runs for the current tenant with optional filtering and paging.
+*DefaultApi* | [**post_mutingrules_bulk_frommeteringissueselection**](docs/DefaultApi.md#post_mutingrules_bulk_frommeteringissueselection) | **POST** /MutingRules/bulk/fromMeteringIssueSelection | Creates muting rules in bulk for every distinct meter in a metering issue selection, one per requested error type. Creating a rule also ignores the open issues it covers (see muting rule domain behaviour).
+*DefaultApi* | [**post_serviceconsumptions_aggregatedperperiod**](docs/DefaultApi.md#post_serviceconsumptions_aggregatedperperiod) | **POST** /ServiceConsumptions/aggregatedperperiod | Gets aggregated service consumptions per period for a list of service locations
+*DefaultApi* | [**post_serviceconsumptions_buckets**](docs/DefaultApi.md#post_serviceconsumptions_buckets) | **POST** /ServiceConsumptions/buckets | Gets consumption data for service locations grouped by provided buckets
+*DefaultApi* | [**post_serviceconsumptions_export_sum**](docs/DefaultApi.md#post_serviceconsumptions_export_sum) | **POST** /ServiceConsumptions/export/sum | Gets sum of consumption values for a list of service locations
+*DefaultApi* | [**post_serviceconsumptions_yearlyaverage**](docs/DefaultApi.md#post_serviceconsumptions_yearlyaverage) | **POST** /ServiceConsumptions/yearlyaverage | Gets yearly average consumption per service location
 
 
 ## Documentation For Models
@@ -180,382 +187,214 @@ Class | Method | HTTP request | Description
  - [AddMeasurementRequest](docs/AddMeasurementRequest.md)
  - [AddressDTO](docs/AddressDTO.md)
  - [AdjacentMeasurementPairsDTO](docs/AdjacentMeasurementPairsDTO.md)
- - [AdjacentMeasurementPairsDTOApiResponseDTO](docs/AdjacentMeasurementPairsDTOApiResponseDTO.md)
- - [AdvanceAmountChangedBy](docs/AdvanceAmountChangedBy.md)
- - [AdvanceAmountLimitType](docs/AdvanceAmountLimitType.md)
- - [AdvanceCalculationFallbackReason](docs/AdvanceCalculationFallbackReason.md)
- - [AdvanceFrequency](docs/AdvanceFrequency.md)
- - [AdvanceRecalculationType](docs/AdvanceRecalculationType.md)
  - [AggregateDetailsDTO](docs/AggregateDetailsDTO.md)
  - [AggregatedConsumptionsByMeterDTO](docs/AggregatedConsumptionsByMeterDTO.md)
- - [AggregatedConsumptionsByMeterDTOListApiResponseDTO](docs/AggregatedConsumptionsByMeterDTOListApiResponseDTO.md)
  - [AggregatedServiceConsumptionPerPeriodRequest](docs/AggregatedServiceConsumptionPerPeriodRequest.md)
  - [AggregatedServiceConsumptionsByServiceLocationDTO](docs/AggregatedServiceConsumptionsByServiceLocationDTO.md)
- - [AggregatedServiceConsumptionsByServiceLocationDTOPagedResponseModelDTO](docs/AggregatedServiceConsumptionsByServiceLocationDTOPagedResponseModelDTO.md)
- - [AggregatedServiceConsumptionsByServiceLocationDTOPagedResponseModelDTOApiResponseDTO](docs/AggregatedServiceConsumptionsByServiceLocationDTOPagedResponseModelDTOApiResponseDTO.md)
  - [AggregatedServiceConsumptionsPerPeriodDTO](docs/AggregatedServiceConsumptionsPerPeriodDTO.md)
- - [AggregatedServiceConsumptionsPerPeriodDTOListApiResponseDTO](docs/AggregatedServiceConsumptionsPerPeriodDTOListApiResponseDTO.md)
  - [AggregationFrequency](docs/AggregationFrequency.md)
- - [AggregationType](docs/AggregationType.md)
- - [AnnualStatementOrigin](docs/AnnualStatementOrigin.md)
- - [AnnualStatementStatus](docs/AnnualStatementStatus.md)
  - [ApiResponseDTO](docs/ApiResponseDTO.md)
- - [AppEnvironment](docs/AppEnvironment.md)
- - [AttachmentVisibility](docs/AttachmentVisibility.md)
- - [AttributeType](docs/AttributeType.md)
+ - [ApiResponseDTOOfAdjacentMeasurementPairsDTO](docs/ApiResponseDTOOfAdjacentMeasurementPairsDTO.md)
+ - [ApiResponseDTOOfImportedMeasurementsOverviewDTO](docs/ApiResponseDTOOfImportedMeasurementsOverviewDTO.md)
+ - [ApiResponseDTOOfListOfAggregatedConsumptionsByMeterDTO](docs/ApiResponseDTOOfListOfAggregatedConsumptionsByMeterDTO.md)
+ - [ApiResponseDTOOfListOfAggregatedServiceConsumptionsPerPeriodDTO](docs/ApiResponseDTOOfListOfAggregatedServiceConsumptionsPerPeriodDTO.md)
+ - [ApiResponseDTOOfListOfAverageServiceConsumptionPerServiceLocationDTO](docs/ApiResponseDTOOfListOfAverageServiceConsumptionPerServiceLocationDTO.md)
+ - [ApiResponseDTOOfListOfConsumptionTypeDTO](docs/ApiResponseDTOOfListOfConsumptionTypeDTO.md)
+ - [ApiResponseDTOOfListOfExportMeasurementDTO](docs/ApiResponseDTOOfListOfExportMeasurementDTO.md)
+ - [ApiResponseDTOOfListOfFlatMeasurementDTO](docs/ApiResponseDTOOfListOfFlatMeasurementDTO.md)
+ - [ApiResponseDTOOfListOfFlatServiceConsumptionDTO](docs/ApiResponseDTOOfListOfFlatServiceConsumptionDTO.md)
+ - [ApiResponseDTOOfListOfGroupedServiceConsumptionDTO](docs/ApiResponseDTOOfListOfGroupedServiceConsumptionDTO.md)
+ - [ApiResponseDTOOfListOfMutingRuleDTO](docs/ApiResponseDTOOfListOfMutingRuleDTO.md)
+ - [ApiResponseDTOOfListOfServiceConsumptionBucketDTO](docs/ApiResponseDTOOfListOfServiceConsumptionBucketDTO.md)
+ - [ApiResponseDTOOfListOfstring](docs/ApiResponseDTOOfListOfstring.md)
+ - [ApiResponseDTOOfMeasurementDTO](docs/ApiResponseDTOOfMeasurementDTO.md)
+ - [ApiResponseDTOOfMeteringImportDTO](docs/ApiResponseDTOOfMeteringImportDTO.md)
+ - [ApiResponseDTOOfMeteringImportInterpretationResultDTO](docs/ApiResponseDTOOfMeteringImportInterpretationResultDTO.md)
+ - [ApiResponseDTOOfMeteringImportIssuesCountDTO](docs/ApiResponseDTOOfMeteringImportIssuesCountDTO.md)
+ - [ApiResponseDTOOfMeteringImportOverviewCountDTO](docs/ApiResponseDTOOfMeteringImportOverviewCountDTO.md)
+ - [ApiResponseDTOOfMeteringIssueDTO](docs/ApiResponseDTOOfMeteringIssueDTO.md)
+ - [ApiResponseDTOOfMeteringIssueOverviewCountDTO](docs/ApiResponseDTOOfMeteringIssueOverviewCountDTO.md)
+ - [ApiResponseDTOOfMeteringIssueSelectionSummaryDTO](docs/ApiResponseDTOOfMeteringIssueSelectionSummaryDTO.md)
+ - [ApiResponseDTOOfMeteringProductUsageResponseDTO](docs/ApiResponseDTOOfMeteringProductUsageResponseDTO.md)
+ - [ApiResponseDTOOfMeteringProviderAccountDTO](docs/ApiResponseDTOOfMeteringProviderAccountDTO.md)
+ - [ApiResponseDTOOfMigrationLatestVersionDTO](docs/ApiResponseDTOOfMigrationLatestVersionDTO.md)
+ - [ApiResponseDTOOfMutingRuleDTO](docs/ApiResponseDTOOfMutingRuleDTO.md)
+ - [ApiResponseDTOOfMutingRuleOverviewCountDTO](docs/ApiResponseDTOOfMutingRuleOverviewCountDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfAggregatedServiceConsumptionsByServiceLocationDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfAggregatedServiceConsumptionsByServiceLocationDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfFlatConsumptionDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfFlatConsumptionDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfFlatPagedConsumptionDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfFlatPagedConsumptionDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfFlatPagedServiceConsumptionDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfFlatPagedServiceConsumptionDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfGroupedMeteringIssuesDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfGroupedMeteringIssuesDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfMeasurementDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfMeasurementDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfMeterReference](docs/ApiResponseDTOOfPagedResponseModelDTOOfMeterReference.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfMeteringImportDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfMeteringImportDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfMeteringIssueDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfMeteringIssueDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfMeteringProviderAccountDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfMeteringProviderAccountDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfMeteringProviderRunDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfMeteringProviderRunDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfMutingRuleAggregatorDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfMutingRuleAggregatorDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfMutingRuleDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfMutingRuleDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfPropertyGroupReference](docs/ApiResponseDTOOfPagedResponseModelDTOOfPropertyGroupReference.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfServiceConsumptionDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfServiceConsumptionDTO.md)
+ - [ApiResponseDTOOfServiceConsumptionGetDateRangeDTO](docs/ApiResponseDTOOfServiceConsumptionGetDateRangeDTO.md)
+ - [ApiResponseDTOOfValidateMeasurementDTO](docs/ApiResponseDTOOfValidateMeasurementDTO.md)
+ - [ApiResponseDTOOfboolean](docs/ApiResponseDTOOfboolean.md)
+ - [ApiResponseDTOOfint](docs/ApiResponseDTOOfint.md)
  - [AverageServiceConsumptionPerServiceLocationDTO](docs/AverageServiceConsumptionPerServiceLocationDTO.md)
- - [AverageServiceConsumptionPerServiceLocationDTOListApiResponseDTO](docs/AverageServiceConsumptionPerServiceLocationDTOListApiResponseDTO.md)
  - [AverageServiceConsumptionPerServiceLocationRequest](docs/AverageServiceConsumptionPerServiceLocationRequest.md)
- - [BankStatementCreditDebit](docs/BankStatementCreditDebit.md)
- - [BankTransactionType](docs/BankTransactionType.md)
+ - [BaseMeteringIssueDetailsDTO](docs/BaseMeteringIssueDetailsDTO.md)
+ - [BaseMeteringIssueDetailsDTOConsumptionZeroTooLongMeteringIssueDetailsDTO](docs/BaseMeteringIssueDetailsDTOConsumptionZeroTooLongMeteringIssueDetailsDTO.md)
+ - [BaseMeteringIssueDetailsDTOMeasurementMeteringIssueDetailsDTO](docs/BaseMeteringIssueDetailsDTOMeasurementMeteringIssueDetailsDTO.md)
+ - [BaseMeteringIssueDetailsDTOMeterReadingFrequencyMeteringIssueDetailsDTO](docs/BaseMeteringIssueDetailsDTOMeterReadingFrequencyMeteringIssueDetailsDTO.md)
+ - [BaseMeteringIssueDetailsDTOMissingConsumptionMeteringIssueDetailsDTO](docs/BaseMeteringIssueDetailsDTOMissingConsumptionMeteringIssueDetailsDTO.md)
+ - [BaseMeteringIssueDetailsDTOMissingMeterResetMeteringIssueDetailsDTO](docs/BaseMeteringIssueDetailsDTOMissingMeterResetMeteringIssueDetailsDTO.md)
+ - [BaseMeteringIssueDetailsDTOOverlappingConsumptionMeteringIssueDetailsDTO](docs/BaseMeteringIssueDetailsDTOOverlappingConsumptionMeteringIssueDetailsDTO.md)
+ - [BaseMeteringIssueDetailsDTOUncontractedConsumptionMeteringIssueDetailsDTO](docs/BaseMeteringIssueDetailsDTOUncontractedConsumptionMeteringIssueDetailsDTO.md)
  - [BaseMeteringIssueResolutionDetailsDTO](docs/BaseMeteringIssueResolutionDetailsDTO.md)
- - [BillingCalculationStreamStatus](docs/BillingCalculationStreamStatus.md)
- - [BillingCalculationType](docs/BillingCalculationType.md)
- - [BillingCompletenessQuickFilter](docs/BillingCompletenessQuickFilter.md)
- - [BillingCompletenessStatus](docs/BillingCompletenessStatus.md)
- - [BillingCompletenessTariffInputType](docs/BillingCompletenessTariffInputType.md)
- - [BillingItemLevel](docs/BillingItemLevel.md)
- - [BillingItemTariffCalculationType](docs/BillingItemTariffCalculationType.md)
- - [BillingItemTariffConditionType](docs/BillingItemTariffConditionType.md)
- - [BillingRelationScenarioType](docs/BillingRelationScenarioType.md)
- - [BillingScope](docs/BillingScope.md)
- - [BillingTariffInputType](docs/BillingTariffInputType.md)
- - [BooleanApiResponseDTO](docs/BooleanApiResponseDTO.md)
+ - [BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO](docs/BaseMeteringIssueResolutionDetailsDTOAutomaticMeteringIssueResolutionDetailsDTO.md)
+ - [BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO](docs/BaseMeteringIssueResolutionDetailsDTOManualMeteringIssueResolutionDetailsDTO.md)
+ - [BaseMeteringIssueResolutionValueDTO](docs/BaseMeteringIssueResolutionValueDTO.md)
+ - [BaseMeteringIssueResolutionValueDTOMeasurementMeteringIssueResolutionValueDTO](docs/BaseMeteringIssueResolutionValueDTOMeasurementMeteringIssueResolutionValueDTO.md)
+ - [BaseMeteringIssueResolutionValueDTOMeterReadingFrequencyMeteringIssueResolutionValueDTO](docs/BaseMeteringIssueResolutionValueDTOMeterReadingFrequencyMeteringIssueResolutionValueDTO.md)
+ - [BaseMeteringProviderSettingsDTO](docs/BaseMeteringProviderSettingsDTO.md)
+ - [BaseMeteringProviderSettingsDTOBrunataMeteringProviderSettingsDTO](docs/BaseMeteringProviderSettingsDTOBrunataMeteringProviderSettingsDTO.md)
+ - [BaseMeteringProviderSettingsDTOBrunataRosMeteringProviderSettingsDTO](docs/BaseMeteringProviderSettingsDTOBrunataRosMeteringProviderSettingsDTO.md)
+ - [BaseMeteringProviderSettingsDTOEnergyGripMeteringProviderSettingsDTO](docs/BaseMeteringProviderSettingsDTOEnergyGripMeteringProviderSettingsDTO.md)
+ - [BaseMeteringProviderSettingsDTOFortesMeteringProviderSettingsDTO](docs/BaseMeteringProviderSettingsDTOFortesMeteringProviderSettingsDTO.md)
+ - [BaseMeteringProviderSettingsDTOFortesMeteringV3ProviderSettingsDTO](docs/BaseMeteringProviderSettingsDTOFortesMeteringV3ProviderSettingsDTO.md)
+ - [BaseMeteringProviderSettingsDTORensonMeteringProviderSettingsDTO](docs/BaseMeteringProviderSettingsDTORensonMeteringProviderSettingsDTO.md)
  - [BucketedServiceConsumptionRequest](docs/BucketedServiceConsumptionRequest.md)
  - [BulkCreateMutingRuleRequest](docs/BulkCreateMutingRuleRequest.md)
+ - [BulkCreateMutingRulesFromMeteringIssueSelectionRequest](docs/BulkCreateMutingRulesFromMeteringIssueSelectionRequest.md)
  - [BulkDeleteMeasurementRequest](docs/BulkDeleteMeasurementRequest.md)
  - [BulkDeleteMeteringImportsRequest](docs/BulkDeleteMeteringImportsRequest.md)
  - [BulkIgnoreMeteringIssueRequest](docs/BulkIgnoreMeteringIssueRequest.md)
  - [BulkMarkMeteringImportsAsProcessedRequest](docs/BulkMarkMeteringImportsAsProcessedRequest.md)
  - [BulkProcessMeteringImportRequest](docs/BulkProcessMeteringImportRequest.md)
  - [BulkResolveMeteringIssueRequest](docs/BulkResolveMeteringIssueRequest.md)
- - [CalculateOutputChannelForPropertyGroupMeteringConfigurationRequest](docs/CalculateOutputChannelForPropertyGroupMeteringConfigurationRequest.md)
- - [CalculatedConsumptionDTO](docs/CalculatedConsumptionDTO.md)
- - [CalculatedConsumptionDTOListApiResponseDTO](docs/CalculatedConsumptionDTOListApiResponseDTO.md)
- - [CalculatedConsumptionForOutputChannelDTO](docs/CalculatedConsumptionForOutputChannelDTO.md)
- - [CalculatedLineStatus](docs/CalculatedLineStatus.md)
+ - [BulkValidateMeteringImportRequest](docs/BulkValidateMeteringImportRequest.md)
  - [CancelMutingRuleAggregateRequest](docs/CancelMutingRuleAggregateRequest.md)
  - [CancelMutingRuleRequest](docs/CancelMutingRuleRequest.md)
  - [ChannelMeasurementRequest](docs/ChannelMeasurementRequest.md)
- - [CollectionCaseQuickFilter](docs/CollectionCaseQuickFilter.md)
- - [CollectionChargeType](docs/CollectionChargeType.md)
- - [CollectionFlowStatus](docs/CollectionFlowStatus.md)
- - [CollectionStepLevel](docs/CollectionStepLevel.md)
- - [CollectionStepStatus](docs/CollectionStepStatus.md)
- - [CollectionStepType](docs/CollectionStepType.md)
- - [CommunicationDocumentType](docs/CommunicationDocumentType.md)
- - [CommunicationEntryQuickFilter](docs/CommunicationEntryQuickFilter.md)
- - [CommunicationEntryStatus](docs/CommunicationEntryStatus.md)
- - [CommunicationType](docs/CommunicationType.md)
- - [ConsumerGroupOrigin](docs/ConsumerGroupOrigin.md)
- - [ConsumerGroupSuggestion](docs/ConsumerGroupSuggestion.md)
- - [ConsumptionOrigin](docs/ConsumptionOrigin.md)
  - [ConsumptionTypeDTO](docs/ConsumptionTypeDTO.md)
- - [ConsumptionTypeDTOListApiResponseDTO](docs/ConsumptionTypeDTOListApiResponseDTO.md)
- - [ContactType](docs/ContactType.md)
- - [ContractBillingMethod](docs/ContractBillingMethod.md)
- - [ContractQuickFilter](docs/ContractQuickFilter.md)
- - [ContractScenarioType](docs/ContractScenarioType.md)
- - [ContractServicesUpdatedAction](docs/ContractServicesUpdatedAction.md)
- - [ContractStatus](docs/ContractStatus.md)
  - [CountryCode](docs/CountryCode.md)
- - [CreatePrepaymentTransactionRequest](docs/CreatePrepaymentTransactionRequest.md)
- - [CustAgingBucketType](docs/CustAgingBucketType.md)
- - [CustomEntityPropertyTypeTagColor](docs/CustomEntityPropertyTypeTagColor.md)
- - [CustomEntityPropertyValueType](docs/CustomEntityPropertyValueType.md)
- - [CustomerBalance](docs/CustomerBalance.md)
- - [CustomerGroupQuickFilter](docs/CustomerGroupQuickFilter.md)
- - [CustomerQuickFilter](docs/CustomerQuickFilter.md)
- - [CustomerScenarioType](docs/CustomerScenarioType.md)
- - [CustomerType](docs/CustomerType.md)
- - [DataExportCommunicationType](docs/DataExportCommunicationType.md)
- - [DataExportInvoiceFormatType](docs/DataExportInvoiceFormatType.md)
+ - [CreateMeteringProviderAccountRequest](docs/CreateMeteringProviderAccountRequest.md)
  - [DataFrequency](docs/DataFrequency.md)
  - [DataImportCommunicationType](docs/DataImportCommunicationType.md)
  - [DataImportMeteringFormatType](docs/DataImportMeteringFormatType.md)
- - [DataImportMigrationFormatType](docs/DataImportMigrationFormatType.md)
  - [DataType](docs/DataType.md)
  - [DateRange](docs/DateRange.md)
  - [Direction](docs/Direction.md)
- - [DnsRecordMeaning](docs/DnsRecordMeaning.md)
- - [DnsRecordStatus](docs/DnsRecordStatus.md)
- - [DocumentOutputFormat](docs/DocumentOutputFormat.md)
- - [DomainProblemDataType](docs/DomainProblemDataType.md)
  - [DownloadOriginalMeteringImportsRequest](docs/DownloadOriginalMeteringImportsRequest.md)
- - [EavEstimationRunStatus](docs/EavEstimationRunStatus.md)
- - [EmailConfirmationType](docs/EmailConfirmationType.md)
- - [EntityAttachmentGroupQuickFilter](docs/EntityAttachmentGroupQuickFilter.md)
- - [EntityAttachmentOrigin](docs/EntityAttachmentOrigin.md)
- - [EntityAttachmentQuickFilter](docs/EntityAttachmentQuickFilter.md)
- - [EntityAttributeType](docs/EntityAttributeType.md)
+ - [EnergyGripEnvironment](docs/EnergyGripEnvironment.md)
  - [EntitySubjectType](docs/EntitySubjectType.md)
- - [EnvelopePosition](docs/EnvelopePosition.md)
- - [ErrorCode](docs/ErrorCode.md)
+ - [EntityTagHeaderValue](docs/EntityTagHeaderValue.md)
  - [ErrorCodeCount](docs/ErrorCodeCount.md)
- - [EstimatedAnnualVolumeOrigin](docs/EstimatedAnnualVolumeOrigin.md)
- - [ExecutionStatus](docs/ExecutionStatus.md)
  - [ExportConsumptionsForMetersRequest](docs/ExportConsumptionsForMetersRequest.md)
- - [ExportJobLineStatus](docs/ExportJobLineStatus.md)
- - [ExportJobStatus](docs/ExportJobStatus.md)
- - [ExportJobsQuickFilter](docs/ExportJobsQuickFilter.md)
  - [ExportMeasurementDTO](docs/ExportMeasurementDTO.md)
- - [ExportMeasurementDTOListApiResponseDTO](docs/ExportMeasurementDTOListApiResponseDTO.md)
  - [ExportMeasurementsRequest](docs/ExportMeasurementsRequest.md)
- - [ExportOutgoingBankingTransactionPaymentRefundFormatType](docs/ExportOutgoingBankingTransactionPaymentRefundFormatType.md)
- - [ExportOutgoingBankingTransactionPaymentRequestFormatType](docs/ExportOutgoingBankingTransactionPaymentRequestFormatType.md)
- - [ExportSettingsCategoryType](docs/ExportSettingsCategoryType.md)
- - [ExportStatus](docs/ExportStatus.md)
- - [ExternalMeasurementsQuickFilter](docs/ExternalMeasurementsQuickFilter.md)
- - [FileSizeType](docs/FileSizeType.md)
- - [FilterPrepaymentTransactionRequest](docs/FilterPrepaymentTransactionRequest.md)
- - [FlatConsumptionAggregates](docs/FlatConsumptionAggregates.md)
+ - [FileStreamResult](docs/FileStreamResult.md)
  - [FlatConsumptionDTO](docs/FlatConsumptionDTO.md)
- - [FlatConsumptionDTOPagedResponseModelDTO](docs/FlatConsumptionDTOPagedResponseModelDTO.md)
- - [FlatConsumptionDTOPagedResponseModelDTOApiResponseDTO](docs/FlatConsumptionDTOPagedResponseModelDTOApiResponseDTO.md)
  - [FlatMeasurementDTO](docs/FlatMeasurementDTO.md)
- - [FlatMeasurementDTOListApiResponseDTO](docs/FlatMeasurementDTOListApiResponseDTO.md)
  - [FlatPagedConsumptionDTO](docs/FlatPagedConsumptionDTO.md)
- - [FlatPagedConsumptionDTOPagedResponseModelDTO](docs/FlatPagedConsumptionDTOPagedResponseModelDTO.md)
- - [FlatPagedConsumptionDTOPagedResponseModelDTOApiResponseDTO](docs/FlatPagedConsumptionDTOPagedResponseModelDTOApiResponseDTO.md)
  - [FlatPagedServiceConsumptionDTO](docs/FlatPagedServiceConsumptionDTO.md)
- - [FlatPagedServiceConsumptionDTOPagedResponseModelDTO](docs/FlatPagedServiceConsumptionDTOPagedResponseModelDTO.md)
- - [FlatPagedServiceConsumptionDTOPagedResponseModelDTOApiResponseDTO](docs/FlatPagedServiceConsumptionDTOPagedResponseModelDTOApiResponseDTO.md)
  - [FlatServiceConsumptionDTO](docs/FlatServiceConsumptionDTO.md)
- - [FlatServiceConsumptionDTOListApiResponseDTO](docs/FlatServiceConsumptionDTOListApiResponseDTO.md)
- - [FormulaConsumptionDTO](docs/FormulaConsumptionDTO.md)
- - [FormulaConsumptionValueDTO](docs/FormulaConsumptionValueDTO.md)
- - [FormulaExecutionResultDTO](docs/FormulaExecutionResultDTO.md)
- - [FormulaExecutionResultDTOApiResponseDTO](docs/FormulaExecutionResultDTOApiResponseDTO.md)
- - [FormulaFunctionCategory](docs/FormulaFunctionCategory.md)
- - [FormulaFunctionExceptionDTO](docs/FormulaFunctionExceptionDTO.md)
- - [FormulaFunctionInputParameterDTO](docs/FormulaFunctionInputParameterDTO.md)
- - [FormulaFunctionInputParameterReferenceType](docs/FormulaFunctionInputParameterReferenceType.md)
- - [FormulaFunctionInstanceDTO](docs/FormulaFunctionInstanceDTO.md)
- - [FormulaFunctionType](docs/FormulaFunctionType.md)
- - [FormulaType](docs/FormulaType.md)
- - [FormulaValidationResultDTO](docs/FormulaValidationResultDTO.md)
- - [FormulaValidationResultFunctionValidationErrorDTO](docs/FormulaValidationResultFunctionValidationErrorDTO.md)
- - [FractionFrequency](docs/FractionFrequency.md)
- - [FtpProtocol](docs/FtpProtocol.md)
- - [FunctionDescription](docs/FunctionDescription.md)
- - [FunctionDescriptionListApiResponseDTO](docs/FunctionDescriptionListApiResponseDTO.md)
- - [GeneralLedgerCategory](docs/GeneralLedgerCategory.md)
- - [GeneralLedgerMappingStatus](docs/GeneralLedgerMappingStatus.md)
  - [GetMeasurementsQueryParams](docs/GetMeasurementsQueryParams.md)
  - [GetMeteringImportsQueryParams](docs/GetMeteringImportsQueryParams.md)
  - [GetMeteringIssuesQueryParams](docs/GetMeteringIssuesQueryParams.md)
+ - [GetMeteringProviderAccountsQueryParams](docs/GetMeteringProviderAccountsQueryParams.md)
+ - [GetMeteringProviderRunsQueryParams](docs/GetMeteringProviderRunsQueryParams.md)
  - [GetMetersQueryParams](docs/GetMetersQueryParams.md)
  - [GroupedMeteringIssuesDTO](docs/GroupedMeteringIssuesDTO.md)
- - [GroupedMeteringIssuesDTOPagedResponseModelDTO](docs/GroupedMeteringIssuesDTOPagedResponseModelDTO.md)
- - [GroupedMeteringIssuesDTOPagedResponseModelDTOApiResponseDTO](docs/GroupedMeteringIssuesDTOPagedResponseModelDTOApiResponseDTO.md)
  - [GroupedServiceConsumptionDTO](docs/GroupedServiceConsumptionDTO.md)
- - [GroupedServiceConsumptionDTOListApiResponseDTO](docs/GroupedServiceConsumptionDTOListApiResponseDTO.md)
- - [IbanConfirmationStatus](docs/IbanConfirmationStatus.md)
  - [IgnoreMeteringIssueRequest](docs/IgnoreMeteringIssueRequest.md)
- - [ImportCategoryType](docs/ImportCategoryType.md)
- - [ImportContractInvoiceDateHandling](docs/ImportContractInvoiceDateHandling.md)
- - [ImportJobEntityIssueStage](docs/ImportJobEntityIssueStage.md)
- - [ImportJobEntityType](docs/ImportJobEntityType.md)
- - [ImportJobStatus](docs/ImportJobStatus.md)
- - [ImportJobsQuickFilter](docs/ImportJobsQuickFilter.md)
- - [ImportStatus](docs/ImportStatus.md)
- - [ImportType](docs/ImportType.md)
  - [ImportedMeasurementProcessingResultDTO](docs/ImportedMeasurementProcessingResultDTO.md)
- - [ImportedMeasurementProcessingResultDTOPagedResponseModelDTO](docs/ImportedMeasurementProcessingResultDTOPagedResponseModelDTO.md)
  - [ImportedMeasurementsOverviewDTO](docs/ImportedMeasurementsOverviewDTO.md)
- - [ImportedMeasurementsOverviewDTOApiResponseDTO](docs/ImportedMeasurementsOverviewDTOApiResponseDTO.md)
- - [IncomingBankingTransactionFormatType](docs/IncomingBankingTransactionFormatType.md)
- - [IncomingBankingTransactionQuickFilter](docs/IncomingBankingTransactionQuickFilter.md)
- - [IncomingBankingTransactionStatus](docs/IncomingBankingTransactionStatus.md)
- - [IncomingMutationPaymentMethod](docs/IncomingMutationPaymentMethod.md)
- - [IncomingMutationQuickFilter](docs/IncomingMutationQuickFilter.md)
- - [IncomingMutationStatus](docs/IncomingMutationStatus.md)
- - [IncomingMutationType](docs/IncomingMutationType.md)
  - [IncrementationType](docs/IncrementationType.md)
- - [InputMissingReason](docs/InputMissingReason.md)
- - [Int32ApiResponseDTO](docs/Int32ApiResponseDTO.md)
- - [InvoiceAmount](docs/InvoiceAmount.md)
- - [InvoiceExportType](docs/InvoiceExportType.md)
- - [InvoiceFrequency](docs/InvoiceFrequency.md)
- - [InvoiceLineType](docs/InvoiceLineType.md)
- - [InvoiceQuickFilter](docs/InvoiceQuickFilter.md)
- - [InvoiceScenarioType](docs/InvoiceScenarioType.md)
- - [InvoiceStatus](docs/InvoiceStatus.md)
- - [InvoiceType](docs/InvoiceType.md)
- - [Level](docs/Level.md)
- - [LocalisationLevel](docs/LocalisationLevel.md)
  - [LocalisedErrorDTO](docs/LocalisedErrorDTO.md)
  - [LocalisedErrorDTOMessageValue](docs/LocalisedErrorDTOMessageValue.md)
- - [ManagementRelationType](docs/ManagementRelationType.md)
- - [MandateStatus](docs/MandateStatus.md)
- - [MandateType](docs/MandateType.md)
  - [MeasurementDTO](docs/MeasurementDTO.md)
- - [MeasurementDTOApiResponseDTO](docs/MeasurementDTOApiResponseDTO.md)
- - [MeasurementDTOPagedResponseModelDTO](docs/MeasurementDTOPagedResponseModelDTO.md)
- - [MeasurementDTOPagedResponseModelDTOApiResponseDTO](docs/MeasurementDTOPagedResponseModelDTOApiResponseDTO.md)
+ - [MeasurementOriginDetailsDTOMeteringImportJobOriginDetailsDTO](docs/MeasurementOriginDetailsDTOMeteringImportJobOriginDetailsDTO.md)
  - [MeasurementPairDTO](docs/MeasurementPairDTO.md)
+ - [MeasurementReadingMethod](docs/MeasurementReadingMethod.md)
+ - [MeasurementReadingOrigin](docs/MeasurementReadingOrigin.md)
  - [MeasurementRequest](docs/MeasurementRequest.md)
- - [MeasurementSource](docs/MeasurementSource.md)
- - [MessageType](docs/MessageType.md)
- - [MeterQuickFilter](docs/MeterQuickFilter.md)
  - [MeterReadingFrequency](docs/MeterReadingFrequency.md)
  - [MeterReference](docs/MeterReference.md)
- - [MeterReferencePagedResponseModelDTO](docs/MeterReferencePagedResponseModelDTO.md)
- - [MeterReferencePagedResponseModelDTOApiResponseDTO](docs/MeterReferencePagedResponseModelDTOApiResponseDTO.md)
- - [MeterStatus](docs/MeterStatus.md)
  - [MeterType](docs/MeterType.md)
- - [MeteringFormulaDTO](docs/MeteringFormulaDTO.md)
  - [MeteringImportDTO](docs/MeteringImportDTO.md)
- - [MeteringImportDTOApiResponseDTO](docs/MeteringImportDTOApiResponseDTO.md)
- - [MeteringImportDTOPagedResponseModelDTO](docs/MeteringImportDTOPagedResponseModelDTO.md)
- - [MeteringImportDTOPagedResponseModelDTOApiResponseDTO](docs/MeteringImportDTOPagedResponseModelDTOApiResponseDTO.md)
  - [MeteringImportDataFileFormatDto](docs/MeteringImportDataFileFormatDto.md)
  - [MeteringImportDataImportDto](docs/MeteringImportDataImportDto.md)
  - [MeteringImportInterpretationIssueDTO](docs/MeteringImportInterpretationIssueDTO.md)
  - [MeteringImportInterpretationResultDTO](docs/MeteringImportInterpretationResultDTO.md)
- - [MeteringImportInterpretationResultDTOApiResponseDTO](docs/MeteringImportInterpretationResultDTOApiResponseDTO.md)
  - [MeteringImportIssuesCountDTO](docs/MeteringImportIssuesCountDTO.md)
- - [MeteringImportIssuesCountDTOApiResponseDTO](docs/MeteringImportIssuesCountDTOApiResponseDTO.md)
- - [MeteringImportMeasurementsQuickFilter](docs/MeteringImportMeasurementsQuickFilter.md)
  - [MeteringImportOverviewCountDTO](docs/MeteringImportOverviewCountDTO.md)
- - [MeteringImportOverviewCountDTOApiResponseDTO](docs/MeteringImportOverviewCountDTOApiResponseDTO.md)
- - [MeteringImportQuickFilter](docs/MeteringImportQuickFilter.md)
  - [MeteringImportStatisticDTO](docs/MeteringImportStatisticDTO.md)
  - [MeteringImportStatus](docs/MeteringImportStatus.md)
  - [MeteringImportType](docs/MeteringImportType.md)
  - [MeteringIssueDTO](docs/MeteringIssueDTO.md)
- - [MeteringIssueDTOApiResponseDTO](docs/MeteringIssueDTOApiResponseDTO.md)
- - [MeteringIssueDTOPagedResponseModelDTO](docs/MeteringIssueDTOPagedResponseModelDTO.md)
- - [MeteringIssueDTOPagedResponseModelDTOApiResponseDTO](docs/MeteringIssueDTOPagedResponseModelDTOApiResponseDTO.md)
  - [MeteringIssueError](docs/MeteringIssueError.md)
- - [MeteringIssueErrorGroup](docs/MeteringIssueErrorGroup.md)
+ - [MeteringIssueErrorTypeSummaryDTO](docs/MeteringIssueErrorTypeSummaryDTO.md)
  - [MeteringIssueOverviewCountDTO](docs/MeteringIssueOverviewCountDTO.md)
- - [MeteringIssueOverviewCountDTOApiResponseDTO](docs/MeteringIssueOverviewCountDTOApiResponseDTO.md)
- - [MeteringIssueQuickFilter](docs/MeteringIssueQuickFilter.md)
  - [MeteringIssueReference](docs/MeteringIssueReference.md)
  - [MeteringIssueResolutionDTO](docs/MeteringIssueResolutionDTO.md)
  - [MeteringIssueResolutionReason](docs/MeteringIssueResolutionReason.md)
  - [MeteringIssueResolutionType](docs/MeteringIssueResolutionType.md)
+ - [MeteringIssueSelectionSummaryDTO](docs/MeteringIssueSelectionSummaryDTO.md)
  - [MeteringIssueStatus](docs/MeteringIssueStatus.md)
- - [MeteringIssuesGroupBy](docs/MeteringIssuesGroupBy.md)
+ - [MeteringProductUsageIntegrationDTO](docs/MeteringProductUsageIntegrationDTO.md)
+ - [MeteringProductUsageOrgIntegrationDTO](docs/MeteringProductUsageOrgIntegrationDTO.md)
+ - [MeteringProductUsageResponseDTO](docs/MeteringProductUsageResponseDTO.md)
+ - [MeteringProviderAccountDTO](docs/MeteringProviderAccountDTO.md)
+ - [MeteringProviderAccountDTOBrunataMeteringProviderAccountDTO](docs/MeteringProviderAccountDTOBrunataMeteringProviderAccountDTO.md)
+ - [MeteringProviderAccountDTOBrunataRosMeteringProviderAccountDTO](docs/MeteringProviderAccountDTOBrunataRosMeteringProviderAccountDTO.md)
+ - [MeteringProviderAccountDTOEnergyGripMeteringProviderAccountDTO](docs/MeteringProviderAccountDTOEnergyGripMeteringProviderAccountDTO.md)
+ - [MeteringProviderAccountDTOFortesMeteringProviderAccountDTO](docs/MeteringProviderAccountDTOFortesMeteringProviderAccountDTO.md)
+ - [MeteringProviderAccountDTOFortesMeteringV3ProviderAccountDTO](docs/MeteringProviderAccountDTOFortesMeteringV3ProviderAccountDTO.md)
+ - [MeteringProviderAccountDTORensonMeteringProviderAccountDTO](docs/MeteringProviderAccountDTORensonMeteringProviderAccountDTO.md)
+ - [MeteringProviderAccountDTOSwitch2G10MeteringProviderAccountDTO](docs/MeteringProviderAccountDTOSwitch2G10MeteringProviderAccountDTO.md)
+ - [MeteringProviderAccountStatus](docs/MeteringProviderAccountStatus.md)
+ - [MeteringProviderRunDTO](docs/MeteringProviderRunDTO.md)
+ - [MeteringProviderRunErrorDTO](docs/MeteringProviderRunErrorDTO.md)
+ - [MeteringProviderRunStatus](docs/MeteringProviderRunStatus.md)
+ - [MeteringProviderType](docs/MeteringProviderType.md)
  - [MeteringType](docs/MeteringType.md)
- - [Month](docs/Month.md)
- - [MoveRequestQuickFilter](docs/MoveRequestQuickFilter.md)
- - [MoveRequestScenarioType](docs/MoveRequestScenarioType.md)
- - [MoveRequestStatus](docs/MoveRequestStatus.md)
- - [MoveRequestType](docs/MoveRequestType.md)
+ - [MigrationLatestVersionDTO](docs/MigrationLatestVersionDTO.md)
  - [MutingRuleAggregatorDTO](docs/MutingRuleAggregatorDTO.md)
- - [MutingRuleAggregatorDTOPagedResponseModelDTO](docs/MutingRuleAggregatorDTOPagedResponseModelDTO.md)
- - [MutingRuleAggregatorDTOPagedResponseModelDTOApiResponseDTO](docs/MutingRuleAggregatorDTOPagedResponseModelDTOApiResponseDTO.md)
  - [MutingRuleDTO](docs/MutingRuleDTO.md)
- - [MutingRuleDTOApiResponseDTO](docs/MutingRuleDTOApiResponseDTO.md)
- - [MutingRuleDTOListApiResponseDTO](docs/MutingRuleDTOListApiResponseDTO.md)
- - [MutingRuleDTOPagedResponseModelDTO](docs/MutingRuleDTOPagedResponseModelDTO.md)
- - [MutingRuleDTOPagedResponseModelDTOApiResponseDTO](docs/MutingRuleDTOPagedResponseModelDTOApiResponseDTO.md)
  - [MutingRuleOverviewCountDTO](docs/MutingRuleOverviewCountDTO.md)
- - [MutingRuleOverviewCountDTOApiResponseDTO](docs/MutingRuleOverviewCountDTOApiResponseDTO.md)
- - [MutingRuleQuickFilter](docs/MutingRuleQuickFilter.md)
  - [MutingRuleTimePeriod](docs/MutingRuleTimePeriod.md)
- - [NullQuickFilter](docs/NullQuickFilter.md)
- - [NumberOfAddresses](docs/NumberOfAddresses.md)
- - [NumberSequenceReferenceEntity](docs/NumberSequenceReferenceEntity.md)
- - [NumberSequenceSegmentType](docs/NumberSequenceSegmentType.md)
- - [NumberSign](docs/NumberSign.md)
- - [OutgoingBankingTransactionQuickFilter](docs/OutgoingBankingTransactionQuickFilter.md)
- - [OutgoingBankingTransactionStatus](docs/OutgoingBankingTransactionStatus.md)
- - [OutgoingBankingTransactionType](docs/OutgoingBankingTransactionType.md)
- - [OutgoingMutationQuickFilter](docs/OutgoingMutationQuickFilter.md)
- - [OutgoingMutationStatus](docs/OutgoingMutationStatus.md)
- - [OutgoingMutationType](docs/OutgoingMutationType.md)
- - [OutputChannelDTO](docs/OutputChannelDTO.md)
- - [PaymentDelay](docs/PaymentDelay.md)
- - [PaymentMethod](docs/PaymentMethod.md)
- - [PaymentProcessStatus](docs/PaymentProcessStatus.md)
- - [PaymentQuickFilter](docs/PaymentQuickFilter.md)
- - [PaymentRetryAction](docs/PaymentRetryAction.md)
- - [PaymentReversalReason](docs/PaymentReversalReason.md)
- - [PaymentReversalReasonCode](docs/PaymentReversalReasonCode.md)
- - [PaymentTermsFrequency](docs/PaymentTermsFrequency.md)
- - [PaymentType](docs/PaymentType.md)
- - [PingenCulture](docs/PingenCulture.md)
- - [PluginFeedActivityType](docs/PluginFeedActivityType.md)
- - [PluginFeedStatus](docs/PluginFeedStatus.md)
- - [PluginFeedTopic](docs/PluginFeedTopic.md)
- - [PluginTriggerDataType](docs/PluginTriggerDataType.md)
- - [PluginTriggerPriority](docs/PluginTriggerPriority.md)
- - [PluginType](docs/PluginType.md)
- - [PortalEmailType](docs/PortalEmailType.md)
- - [PortalNotificationType](docs/PortalNotificationType.md)
- - [PortalPageIdentifier](docs/PortalPageIdentifier.md)
- - [PrepaymentAccountStatus](docs/PrepaymentAccountStatus.md)
- - [PrepaymentTransactionDTO](docs/PrepaymentTransactionDTO.md)
- - [PrepaymentTransactionDTOApiResponseDTO](docs/PrepaymentTransactionDTOApiResponseDTO.md)
- - [PrepaymentTransactionDTOPagedResponseModelDTO](docs/PrepaymentTransactionDTOPagedResponseModelDTO.md)
- - [PrepaymentTransactionDTOPagedResponseModelDTOApiResponseDTO](docs/PrepaymentTransactionDTOPagedResponseModelDTOApiResponseDTO.md)
- - [PrepaymentTransactionOrigin](docs/PrepaymentTransactionOrigin.md)
- - [PrepaymentTransactionStatus](docs/PrepaymentTransactionStatus.md)
- - [PrepaymentTransactionType](docs/PrepaymentTransactionType.md)
+ - [PagedResponseModelDTOOfAggregatedServiceConsumptionsByServiceLocationDTO](docs/PagedResponseModelDTOOfAggregatedServiceConsumptionsByServiceLocationDTO.md)
+ - [PagedResponseModelDTOOfFlatConsumptionDTO](docs/PagedResponseModelDTOOfFlatConsumptionDTO.md)
+ - [PagedResponseModelDTOOfFlatPagedConsumptionDTO](docs/PagedResponseModelDTOOfFlatPagedConsumptionDTO.md)
+ - [PagedResponseModelDTOOfFlatPagedServiceConsumptionDTO](docs/PagedResponseModelDTOOfFlatPagedServiceConsumptionDTO.md)
+ - [PagedResponseModelDTOOfGroupedMeteringIssuesDTO](docs/PagedResponseModelDTOOfGroupedMeteringIssuesDTO.md)
+ - [PagedResponseModelDTOOfImportedMeasurementProcessingResultDTO](docs/PagedResponseModelDTOOfImportedMeasurementProcessingResultDTO.md)
+ - [PagedResponseModelDTOOfMeasurementDTO](docs/PagedResponseModelDTOOfMeasurementDTO.md)
+ - [PagedResponseModelDTOOfMeterReference](docs/PagedResponseModelDTOOfMeterReference.md)
+ - [PagedResponseModelDTOOfMeteringImportDTO](docs/PagedResponseModelDTOOfMeteringImportDTO.md)
+ - [PagedResponseModelDTOOfMeteringIssueDTO](docs/PagedResponseModelDTOOfMeteringIssueDTO.md)
+ - [PagedResponseModelDTOOfMeteringProviderAccountDTO](docs/PagedResponseModelDTOOfMeteringProviderAccountDTO.md)
+ - [PagedResponseModelDTOOfMeteringProviderRunDTO](docs/PagedResponseModelDTOOfMeteringProviderRunDTO.md)
+ - [PagedResponseModelDTOOfMutingRuleAggregatorDTO](docs/PagedResponseModelDTOOfMutingRuleAggregatorDTO.md)
+ - [PagedResponseModelDTOOfMutingRuleDTO](docs/PagedResponseModelDTOOfMutingRuleDTO.md)
+ - [PagedResponseModelDTOOfPropertyGroupReference](docs/PagedResponseModelDTOOfPropertyGroupReference.md)
+ - [PagedResponseModelDTOOfServiceConsumptionDTO](docs/PagedResponseModelDTOOfServiceConsumptionDTO.md)
  - [ProblemDetails](docs/ProblemDetails.md)
- - [ProblemLevel](docs/ProblemLevel.md)
- - [ProblemResolutionStatus](docs/ProblemResolutionStatus.md)
- - [ProductExportStatus](docs/ProductExportStatus.md)
- - [ProductItemPeriodicityType](docs/ProductItemPeriodicityType.md)
- - [PropertyGroupBillingPeriodTariffStatus](docs/PropertyGroupBillingPeriodTariffStatus.md)
- - [PropertyGroupMeteringConfigurationDTO](docs/PropertyGroupMeteringConfigurationDTO.md)
- - [PropertyGroupMeteringConfigurationDTOApiResponseDTO](docs/PropertyGroupMeteringConfigurationDTOApiResponseDTO.md)
- - [PropertyGroupMeteringConfigurationOutputChannelRequest](docs/PropertyGroupMeteringConfigurationOutputChannelRequest.md)
- - [PropertyGroupQuickFilter](docs/PropertyGroupQuickFilter.md)
  - [PropertyGroupReference](docs/PropertyGroupReference.md)
  - [PropertyGroupReferenceDTO](docs/PropertyGroupReferenceDTO.md)
- - [PropertyGroupReferencePagedResponseModelDTO](docs/PropertyGroupReferencePagedResponseModelDTO.md)
- - [PropertyGroupReferencePagedResponseModelDTOApiResponseDTO](docs/PropertyGroupReferencePagedResponseModelDTOApiResponseDTO.md)
- - [PropertyGroupType](docs/PropertyGroupType.md)
- - [PropertyType](docs/PropertyType.md)
  - [ResolveMeteringIssueRequest](docs/ResolveMeteringIssueRequest.md)
- - [ScenarioGroupingType](docs/ScenarioGroupingType.md)
- - [ScheduledJobRecurrence](docs/ScheduledJobRecurrence.md)
- - [ScheduledJobType](docs/ScheduledJobType.md)
- - [SentStatus](docs/SentStatus.md)
  - [ServiceConsumptionBucketDTO](docs/ServiceConsumptionBucketDTO.md)
- - [ServiceConsumptionBucketDTOListApiResponseDTO](docs/ServiceConsumptionBucketDTOListApiResponseDTO.md)
  - [ServiceConsumptionDTO](docs/ServiceConsumptionDTO.md)
- - [ServiceConsumptionDTOPagedResponseModelDTO](docs/ServiceConsumptionDTOPagedResponseModelDTO.md)
- - [ServiceConsumptionDTOPagedResponseModelDTOApiResponseDTO](docs/ServiceConsumptionDTOPagedResponseModelDTOApiResponseDTO.md)
  - [ServiceConsumptionGetDateRangeDTO](docs/ServiceConsumptionGetDateRangeDTO.md)
- - [ServiceConsumptionGetDateRangeDTOApiResponseDTO](docs/ServiceConsumptionGetDateRangeDTOApiResponseDTO.md)
  - [ServiceConsumptionSumRequest](docs/ServiceConsumptionSumRequest.md)
  - [ServiceConsumptionValueDTO](docs/ServiceConsumptionValueDTO.md)
- - [ServiceLocationQuickFilter](docs/ServiceLocationQuickFilter.md)
- - [ServiceStatus](docs/ServiceStatus.md)
- - [SocialTariffExportType](docs/SocialTariffExportType.md)
- - [SshAuthenticationMethod](docs/SshAuthenticationMethod.md)
- - [StatusCode](docs/StatusCode.md)
- - [StringListApiResponseDTO](docs/StringListApiResponseDTO.md)
- - [SyntheticLoadProfileOrigin](docs/SyntheticLoadProfileOrigin.md)
- - [SystemUsageRecordType](docs/SystemUsageRecordType.md)
- - [TariffOrigin](docs/TariffOrigin.md)
- - [TemplateAssetType](docs/TemplateAssetType.md)
- - [TemplateObjectType](docs/TemplateObjectType.md)
- - [TemplateUsecase](docs/TemplateUsecase.md)
- - [TierCalculationMethod](docs/TierCalculationMethod.md)
- - [TransactionQuickFilter](docs/TransactionQuickFilter.md)
- - [TransactionReferenceType](docs/TransactionReferenceType.md)
- - [TransactionStatus](docs/TransactionStatus.md)
- - [TransactionSubType](docs/TransactionSubType.md)
- - [TransactionType](docs/TransactionType.md)
- - [TranslationStatus](docs/TranslationStatus.md)
- - [UblTranslations](docs/UblTranslations.md)
+ - [StringSegment](docs/StringSegment.md)
  - [UnitOfMeasure](docs/UnitOfMeasure.md)
- - [UpdateContractProductParameter](docs/UpdateContractProductParameter.md)
- - [UpdatePropertyGroupMeteringConfigurationRequest](docs/UpdatePropertyGroupMeteringConfigurationRequest.md)
+ - [UpdateMeteringProviderAccountRequest](docs/UpdateMeteringProviderAccountRequest.md)
  - [UploadMeasurementsRequest](docs/UploadMeasurementsRequest.md)
- - [UserQuickFilter](docs/UserQuickFilter.md)
  - [UtilityType](docs/UtilityType.md)
  - [ValidateMeasurementDTO](docs/ValidateMeasurementDTO.md)
- - [ValidateMeasurementDTOApiResponseDTO](docs/ValidateMeasurementDTOApiResponseDTO.md)
  - [ValidateMeasurementRequest](docs/ValidateMeasurementRequest.md)
- - [ValueProviderType](docs/ValueProviderType.md)
- - [WriteOffHandlingType](docs/WriteOffHandlingType.md)
 
 
 <a id="documentation-for-authorization"></a>

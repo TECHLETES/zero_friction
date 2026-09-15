@@ -1,5 +1,6 @@
 # SshAuthenticationMethod
 
+Possible values: 'password', 'privatekey'
 
 ## Enum
 

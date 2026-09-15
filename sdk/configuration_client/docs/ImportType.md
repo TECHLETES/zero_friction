@@ -1,5 +1,6 @@
 # ImportType
 
+Possible values: 'billingtariff'
 
 ## Enum
 

@@ -35,25 +35,26 @@ class UpdateMoveRequestCustomerDetailsRequest(BaseModel):
     salutation: Optional[StrictStr] = None
     initials: Optional[StrictStr] = None
     first_name: Optional[StrictStr] = Field(default=None, alias="firstName")
-    last_name: Optional[StrictStr] = Field(default=None, alias="lastName")
+    last_name: Optional[StrictStr] = Field(alias="lastName")
     birth_date: Optional[datetime] = Field(default=None, alias="birthDate")
-    ssin: Optional[StrictStr] = None
-    ssin_country: Optional[CountryCode] = Field(default=None, alias="ssinCountry")
-    customer_type: Optional[CustomerType] = Field(default=None, alias="customerType")
-    company_name: Optional[StrictStr] = Field(default=None, alias="companyName")
+    ssin: Optional[StrictStr]
+    ssin_country: CountryCode = Field(alias="ssinCountry")
+    customer_type: CustomerType = Field(alias="customerType")
+    company_name: Optional[StrictStr] = Field(alias="companyName")
     organization_number: Optional[StrictStr] = Field(default=None, alias="organizationNumber")
     vat_number: Optional[StrictStr] = Field(default=None, alias="vatNumber")
-    default_payment_method: Optional[PaymentMethod] = Field(default=None, alias="defaultPaymentMethod")
+    default_payment_method: PaymentMethod = Field(alias="defaultPaymentMethod")
     invoice_address: Optional[AddressDTO] = Field(default=None, alias="invoiceAddress")
-    bank_account: Optional[StrictStr] = Field(default=None, alias="bankAccount")
+    country_code: Optional[CountryCode] = Field(default=None, alias="countryCode")
+    bank_account: Optional[StrictStr] = Field(alias="bankAccount")
     email_address: Optional[StrictStr] = Field(default=None, alias="emailAddress")
     telephone_number: Optional[StrictStr] = Field(default=None, alias="telephoneNumber")
     mobile_telephone_number: Optional[StrictStr] = Field(default=None, alias="mobileTelephoneNumber")
     website: Optional[StrictStr] = None
-    culture: Optional[str] = None
+    culture: Optional[StrictStr] = Field(default=None, description="Culture identifier (e.g., 'en-US', 'nl-NL')")
     internal_id: Optional[StrictStr] = Field(default=None, alias="internalId")
     customer_group_id: Optional[StrictStr] = Field(default=None, alias="customerGroupId")
-    __properties: ClassVar[List[str]] = ["accountNumber", "salutation", "initials", "firstName", "lastName", "birthDate", "ssin", "ssinCountry", "customerType", "companyName", "organizationNumber", "vatNumber", "defaultPaymentMethod", "invoiceAddress", "bankAccount", "emailAddress", "telephoneNumber", "mobileTelephoneNumber", "website", "culture", "internalId", "customerGroupId"]
+    __properties: ClassVar[List[str]] = ["accountNumber", "salutation", "initials", "firstName", "lastName", "birthDate", "ssin", "ssinCountry", "customerType", "companyName", "organizationNumber", "vatNumber", "defaultPaymentMethod", "invoiceAddress", "countryCode", "bankAccount", "emailAddress", "telephoneNumber", "mobileTelephoneNumber", "website", "culture", "internalId", "customerGroupId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -127,16 +128,6 @@ class UpdateMoveRequestCustomerDetailsRequest(BaseModel):
         if self.ssin is None and "ssin" in self.model_fields_set:
             _dict['ssin'] = None
 
-        # set to None if ssin_country (nullable) is None
-        # and model_fields_set contains the field
-        if self.ssin_country is None and "ssin_country" in self.model_fields_set:
-            _dict['ssinCountry'] = None
-
-        # set to None if customer_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_type is None and "customer_type" in self.model_fields_set:
-            _dict['customerType'] = None
-
         # set to None if company_name (nullable) is None
         # and model_fields_set contains the field
         if self.company_name is None and "company_name" in self.model_fields_set:
@@ -152,15 +143,15 @@ class UpdateMoveRequestCustomerDetailsRequest(BaseModel):
         if self.vat_number is None and "vat_number" in self.model_fields_set:
             _dict['vatNumber'] = None
 
-        # set to None if default_payment_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.default_payment_method is None and "default_payment_method" in self.model_fields_set:
-            _dict['defaultPaymentMethod'] = None
-
         # set to None if invoice_address (nullable) is None
         # and model_fields_set contains the field
         if self.invoice_address is None and "invoice_address" in self.model_fields_set:
             _dict['invoiceAddress'] = None
+
+        # set to None if country_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.country_code is None and "country_code" in self.model_fields_set:
+            _dict['countryCode'] = None
 
         # set to None if bank_account (nullable) is None
         # and model_fields_set contains the field
@@ -223,6 +214,7 @@ class UpdateMoveRequestCustomerDetailsRequest(BaseModel):
             "vatNumber": obj.get("vatNumber"),
             "defaultPaymentMethod": obj.get("defaultPaymentMethod"),
             "invoiceAddress": AddressDTO.from_dict(obj["invoiceAddress"]) if obj.get("invoiceAddress") is not None else None,
+            "countryCode": obj.get("countryCode"),
             "bankAccount": obj.get("bankAccount"),
             "emailAddress": obj.get("emailAddress"),
             "telephoneNumber": obj.get("telephoneNumber"),

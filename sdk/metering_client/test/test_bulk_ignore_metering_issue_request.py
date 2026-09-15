@@ -35,23 +35,15 @@ class TestBulkIgnoreMeteringIssueRequest(unittest.TestCase):
         model = BulkIgnoreMeteringIssueRequest()
         if include_optional:
             return BulkIgnoreMeteringIssueRequest(
-                message = '',
                 only_validate = True,
                 var_query_params = metering_client.models.get_metering_issues_query_params.GetMeteringIssuesQueryParams(
-                    flex_search = '', 
-                    include_only_ids = [
-                        ''
-                        ], 
-                    exclude_ids = [
-                        ''
-                        ], 
                     meter_ids = [
                         ''
                         ], 
                     noticed_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     noticed_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     statuses = [
-                        ''
+                        'unresolved'
                         ], 
                     property_group_ids = [
                         ''
@@ -61,8 +53,23 @@ class TestBulkIgnoreMeteringIssueRequest(unittest.TestCase):
                         ], 
                     errors = [
                         'consumptionnegative'
-                        ], ),
-                quick_filter = ''
+                        ], 
+                    reading_origins = [
+                        'device'
+                        ], 
+                    data_provider_ids = [
+                        ''
+                        ], 
+                    flex_search = '', 
+                    include_only_ids = [
+                        ''
+                        ], 
+                    exclude_ids = [
+                        ''
+                        ], 
+                    page_size = 56, ),
+                quick_filter = '',
+                message = ''
             )
         else:
             return BulkIgnoreMeteringIssueRequest(

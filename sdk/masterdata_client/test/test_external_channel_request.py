@@ -44,10 +44,20 @@ class TestExternalChannelRequest(unittest.TestCase):
                 unit_of_measure = 'none',
                 external_identifier = '',
                 description = '',
-                relation_external_reference = ''
+                relation_external_reference = '',
+                reset_day = 56,
+                reset_month = 56,
+                reset_hour = 56
             )
         else:
             return ExternalChannelRequest(
+                data_frequency = 'pt1m',
+                metering_type = 'none',
+                utility_type = 'none',
+                direction = 'offtake',
+                incrementation_type = 'delta',
+                unit_of_measure = 'none',
+                description = '',
         )
         """
 

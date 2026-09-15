@@ -41,7 +41,13 @@ class TestAdvanceDetailsDTO(unittest.TestCase):
                 changed_by_user_id = '',
                 changed_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 advance_amount_excl_vat = 1.337,
-                advance_frequency = 'none'
+                advance_frequency = 'none',
+                advance_calculation_type = 'fixed',
+                advance_period_percentages = [
+                    billing_client.models.advance_period_percentage.AdvancePeriodPercentage(
+                        period_index = 56, 
+                        percentage = 1.337, )
+                    ]
             )
         else:
             return AdvanceDetailsDTO(

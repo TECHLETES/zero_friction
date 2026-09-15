@@ -27,7 +27,7 @@ class UpdateServiceLocationAddressRequest(BaseModel):
     """
     UpdateServiceLocationAddressRequest
     """ # noqa: E501
-    address: Optional[AddressDTO] = None
+    address: Optional[AddressDTO]
     __properties: ClassVar[List[str]] = ["address"]
 
     model_config = ConfigDict(

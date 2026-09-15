@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payment_delay** | [**PaymentDelay**](PaymentDelay.md) |  | [optional] 
+**payment_delay** | [**PaymentDelay**](PaymentDelay.md) |  | 
 **value** | **int** |  | [optional] 
 
 ## Example

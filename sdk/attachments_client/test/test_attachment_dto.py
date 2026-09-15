@@ -35,21 +35,19 @@ class TestAttachmentDTO(unittest.TestCase):
         model = AttachmentDTO()
         if include_optional:
             return AttachmentDTO(
+                description = '',
+                subject_type = '',
+                user_id = '',
+                file_name = '',
+                internal_file_path = '',
+                organisation_id = '',
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
-                description = '',
-                subject_type = '',
-                user_id = '',
-                file_name = '',
-                internal_file_path = ''
+                is_read_only = True
             )
         else:
             return AttachmentDTO(

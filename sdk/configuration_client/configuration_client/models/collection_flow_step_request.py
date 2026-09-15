@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.collection_charge_parameters_dto import CollectionChargeParametersDTO
 from configuration_client.models.collection_charge_type import CollectionChargeType
@@ -34,19 +34,20 @@ class CollectionFlowStepRequest(BaseModel):
     CollectionFlowStepRequest
     """ # noqa: E501
     id: Optional[StrictStr] = None
-    name: Optional[StrictStr] = None
+    name: Optional[StrictStr]
     trigger_days: Optional[StrictInt] = Field(default=None, alias="triggerDays")
-    step_type: Optional[CollectionStepType] = Field(default=None, alias="stepType")
-    charge_type: Optional[CollectionChargeType] = Field(default=None, alias="chargeType")
-    charge_parameters: Optional[CollectionChargeParametersDTO] = Field(default=None, alias="chargeParameters")
-    communication_type: Optional[CommunicationType] = Field(default=None, description="The different communication options that can be used in a collection flow step.", alias="communicationType")
-    message_title: Optional[StrictStr] = Field(default=None, description="If the property ZFH.DataTransfer.Configuration.DTO.v1.Requests.CollectionFlows.CollectionFlowStepRequest.CommunicationType is set to SMS, the length of this message is limited to  456 characters.", alias="messageTitle")
-    communication_level: Optional[CollectionStepLevel] = Field(default=None, alias="communicationLevel")
-    communication_attachments: Optional[List[TemplateAttachmentRequest]] = Field(default=None, alias="communicationAttachments")
+    step_type: CollectionStepType = Field(alias="stepType")
+    charge_type: CollectionChargeType = Field(alias="chargeType")
+    charge_parameters: Optional[CollectionChargeParametersDTO] = Field(alias="chargeParameters")
+    communication_type: CommunicationType = Field(alias="communicationType")
+    auto_fallback_to_postal: Optional[StrictBool] = Field(default=None, alias="autoFallbackToPostal")
+    message_title: Optional[StrictStr] = Field(alias="messageTitle")
+    communication_level: CollectionStepLevel = Field(alias="communicationLevel")
+    communication_attachments: List[TemplateAttachmentRequest] = Field(alias="communicationAttachments")
     localisation_level: Optional[LocalisationLevel] = Field(default=None, alias="localisationLevel")
     localised_fields: Optional[List[StrictStr]] = Field(default=None, alias="localisedFields")
-    translated_fields: Optional[Dict[str, Optional[Dict[str, StrictStr]]]] = Field(default=None, alias="translatedFields")
-    __properties: ClassVar[List[str]] = ["id", "name", "triggerDays", "stepType", "chargeType", "chargeParameters", "communicationType", "messageTitle", "communicationLevel", "communicationAttachments", "localisationLevel", "localisedFields", "translatedFields"]
+    translated_fields: Optional[Dict[str, Dict[str, StrictStr]]] = Field(default=None, alias="translatedFields")
+    __properties: ClassVar[List[str]] = ["id", "name", "triggerDays", "stepType", "chargeType", "chargeParameters", "communicationType", "autoFallbackToPostal", "messageTitle", "communicationLevel", "communicationAttachments", "localisationLevel", "localisedFields", "translatedFields"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,55 +108,15 @@ class CollectionFlowStepRequest(BaseModel):
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
 
-        # set to None if step_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.step_type is None and "step_type" in self.model_fields_set:
-            _dict['stepType'] = None
-
-        # set to None if charge_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.charge_type is None and "charge_type" in self.model_fields_set:
-            _dict['chargeType'] = None
-
         # set to None if charge_parameters (nullable) is None
         # and model_fields_set contains the field
         if self.charge_parameters is None and "charge_parameters" in self.model_fields_set:
             _dict['chargeParameters'] = None
 
-        # set to None if communication_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.communication_type is None and "communication_type" in self.model_fields_set:
-            _dict['communicationType'] = None
-
         # set to None if message_title (nullable) is None
         # and model_fields_set contains the field
         if self.message_title is None and "message_title" in self.model_fields_set:
             _dict['messageTitle'] = None
-
-        # set to None if communication_level (nullable) is None
-        # and model_fields_set contains the field
-        if self.communication_level is None and "communication_level" in self.model_fields_set:
-            _dict['communicationLevel'] = None
-
-        # set to None if communication_attachments (nullable) is None
-        # and model_fields_set contains the field
-        if self.communication_attachments is None and "communication_attachments" in self.model_fields_set:
-            _dict['communicationAttachments'] = None
-
-        # set to None if localisation_level (nullable) is None
-        # and model_fields_set contains the field
-        if self.localisation_level is None and "localisation_level" in self.model_fields_set:
-            _dict['localisationLevel'] = None
-
-        # set to None if localised_fields (nullable) is None
-        # and model_fields_set contains the field
-        if self.localised_fields is None and "localised_fields" in self.model_fields_set:
-            _dict['localisedFields'] = None
-
-        # set to None if translated_fields (nullable) is None
-        # and model_fields_set contains the field
-        if self.translated_fields is None and "translated_fields" in self.model_fields_set:
-            _dict['translatedFields'] = None
 
         return _dict
 
@@ -176,6 +137,7 @@ class CollectionFlowStepRequest(BaseModel):
             "chargeType": obj.get("chargeType"),
             "chargeParameters": CollectionChargeParametersDTO.from_dict(obj["chargeParameters"]) if obj.get("chargeParameters") is not None else None,
             "communicationType": obj.get("communicationType"),
+            "autoFallbackToPostal": obj.get("autoFallbackToPostal"),
             "messageTitle": obj.get("messageTitle"),
             "communicationLevel": obj.get("communicationLevel"),
             "communicationAttachments": [TemplateAttachmentRequest.from_dict(_item) for _item in obj["communicationAttachments"]] if obj.get("communicationAttachments") is not None else None,

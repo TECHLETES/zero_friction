@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**product_id** | **str** |  | [optional] 
 **only_validate** | **bool** |  | [optional] 
 **var_query_params** | [**GetServiceLocationsQueryParams**](GetServiceLocationsQueryParams.md) |  | [optional] 
 **quick_filter** | **str** |  | [optional] 
+**product_id** | **str** |  | [optional] 
 
 ## Example
 

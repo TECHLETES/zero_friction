@@ -26,12 +26,14 @@ class CreateBankAccountRequest(BaseModel):
     """
     CreateBankAccountRequest
     """ # noqa: E501
+    account_holder: Optional[StrictStr] = Field(alias="accountHolder")
+    sepa_creditor_id: Optional[StrictStr] = Field(alias="sepaCreditorId")
+    accounting_code_id_for_processed_transactions: Optional[StrictStr] = Field(default=None, alias="accountingCodeIdForProcessedTransactions")
+    accounting_code_id_for_ignored_transactions: Optional[StrictStr] = Field(default=None, alias="accountingCodeIdForIgnoredTransactions")
+    is_default: StrictBool = Field(alias="isDefault")
     iban: Optional[StrictStr] = None
-    account_holder: Optional[StrictStr] = Field(default=None, alias="accountHolder")
-    bic: Optional[StrictStr] = None
-    sepa_creditor_id: Optional[StrictStr] = Field(default=None, alias="sepaCreditorId")
-    is_default: Optional[StrictBool] = Field(default=None, alias="isDefault")
-    __properties: ClassVar[List[str]] = ["iban", "accountHolder", "bic", "sepaCreditorId", "isDefault"]
+    bic: Optional[StrictStr]
+    __properties: ClassVar[List[str]] = ["accountHolder", "sepaCreditorId", "accountingCodeIdForProcessedTransactions", "accountingCodeIdForIgnoredTransactions", "isDefault", "iban", "bic"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,25 +74,35 @@ class CreateBankAccountRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if iban (nullable) is None
-        # and model_fields_set contains the field
-        if self.iban is None and "iban" in self.model_fields_set:
-            _dict['iban'] = None
-
         # set to None if account_holder (nullable) is None
         # and model_fields_set contains the field
         if self.account_holder is None and "account_holder" in self.model_fields_set:
             _dict['accountHolder'] = None
 
-        # set to None if bic (nullable) is None
-        # and model_fields_set contains the field
-        if self.bic is None and "bic" in self.model_fields_set:
-            _dict['bic'] = None
-
         # set to None if sepa_creditor_id (nullable) is None
         # and model_fields_set contains the field
         if self.sepa_creditor_id is None and "sepa_creditor_id" in self.model_fields_set:
             _dict['sepaCreditorId'] = None
+
+        # set to None if accounting_code_id_for_processed_transactions (nullable) is None
+        # and model_fields_set contains the field
+        if self.accounting_code_id_for_processed_transactions is None and "accounting_code_id_for_processed_transactions" in self.model_fields_set:
+            _dict['accountingCodeIdForProcessedTransactions'] = None
+
+        # set to None if accounting_code_id_for_ignored_transactions (nullable) is None
+        # and model_fields_set contains the field
+        if self.accounting_code_id_for_ignored_transactions is None and "accounting_code_id_for_ignored_transactions" in self.model_fields_set:
+            _dict['accountingCodeIdForIgnoredTransactions'] = None
+
+        # set to None if iban (nullable) is None
+        # and model_fields_set contains the field
+        if self.iban is None and "iban" in self.model_fields_set:
+            _dict['iban'] = None
+
+        # set to None if bic (nullable) is None
+        # and model_fields_set contains the field
+        if self.bic is None and "bic" in self.model_fields_set:
+            _dict['bic'] = None
 
         return _dict
 
@@ -104,11 +116,13 @@ class CreateBankAccountRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "iban": obj.get("iban"),
             "accountHolder": obj.get("accountHolder"),
-            "bic": obj.get("bic"),
             "sepaCreditorId": obj.get("sepaCreditorId"),
-            "isDefault": obj.get("isDefault")
+            "accountingCodeIdForProcessedTransactions": obj.get("accountingCodeIdForProcessedTransactions"),
+            "accountingCodeIdForIgnoredTransactions": obj.get("accountingCodeIdForIgnoredTransactions"),
+            "isDefault": obj.get("isDefault"),
+            "iban": obj.get("iban"),
+            "bic": obj.get("bic")
         })
         return _obj
 

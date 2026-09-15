@@ -1,5 +1,6 @@
 # IbanConfirmationStatus
 
+Possible values: 'unspecified', 'known', 'unknownfirst', 'unknownsecond'
 
 ## Enum
 

@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from billing_client.models.advance_calculation_fallback_reason import AdvanceCalculationFallbackReason
+from billing_client.models.advance_calculation_type import AdvanceCalculationType
 from billing_client.models.advance_recalculation_type import AdvanceRecalculationType
 from billing_client.models.level import Level
 from typing import Optional, Set
@@ -27,17 +28,19 @@ from typing_extensions import Self
 
 class AdvanceCalculationDetailsDTO(BaseModel):
     """
-    Represents details of advance payment calculations
+    AdvanceCalculationDetailsDTO
     """ # noqa: E501
-    new_advance_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="New advance amount excluding VAT", alias="newAdvanceAmountExclVAT")
-    new_advance_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="New advance amount including VAT", alias="newAdvanceAmountInclVAT")
-    old_advance_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Old advance amount including VAT", alias="oldAdvanceAmountInclVAT")
-    next_invoice_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Next invoice amount including VAT", alias="nextInvoiceAmountInclVat")
-    next_invoice_amount_accuracy: Optional[Level] = Field(default=None, description="Accuracy level of the next invoice amount", alias="nextInvoiceAmountAccuracy")
-    recalculation_type: Optional[AdvanceRecalculationType] = Field(default=None, description="Type of advance recalculation", alias="recalculationType")
-    fallback_reason: Optional[AdvanceCalculationFallbackReason] = Field(default=None, description="Reason for fallback in advance calculation", alias="fallbackReason")
-    changed_by_user_id: Optional[StrictStr] = Field(default=None, description="Identifier of the user who made the changes", alias="changedByUserId")
-    __properties: ClassVar[List[str]] = ["newAdvanceAmountExclVAT", "newAdvanceAmountInclVAT", "oldAdvanceAmountInclVAT", "nextInvoiceAmountInclVat", "nextInvoiceAmountAccuracy", "recalculationType", "fallbackReason", "changedByUserId"]
+    new_advance_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="newAdvanceAmountExclVAT")
+    new_advance_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="newAdvanceAmountInclVAT")
+    old_advance_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="oldAdvanceAmountInclVAT")
+    next_invoice_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="nextInvoiceAmountInclVat")
+    next_invoice_amount_accuracy: Optional[Level] = Field(default=None, alias="nextInvoiceAmountAccuracy")
+    recalculation_type: Optional[AdvanceRecalculationType] = Field(default=None, alias="recalculationType")
+    fallback_reason: Optional[AdvanceCalculationFallbackReason] = Field(default=None, alias="fallbackReason")
+    changed_by_user_id: Optional[StrictStr] = Field(default=None, alias="changedByUserId")
+    applied_period_percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="appliedPeriodPercentage")
+    advance_calculation_type: Optional[AdvanceCalculationType] = Field(default=None, alias="advanceCalculationType")
+    __properties: ClassVar[List[str]] = ["newAdvanceAmountExclVAT", "newAdvanceAmountInclVAT", "oldAdvanceAmountInclVAT", "nextInvoiceAmountInclVat", "nextInvoiceAmountAccuracy", "recalculationType", "fallbackReason", "changedByUserId", "appliedPeriodPercentage", "advanceCalculationType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,25 +96,15 @@ class AdvanceCalculationDetailsDTO(BaseModel):
         if self.next_invoice_amount_incl_vat is None and "next_invoice_amount_incl_vat" in self.model_fields_set:
             _dict['nextInvoiceAmountInclVat'] = None
 
-        # set to None if next_invoice_amount_accuracy (nullable) is None
-        # and model_fields_set contains the field
-        if self.next_invoice_amount_accuracy is None and "next_invoice_amount_accuracy" in self.model_fields_set:
-            _dict['nextInvoiceAmountAccuracy'] = None
-
-        # set to None if recalculation_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.recalculation_type is None and "recalculation_type" in self.model_fields_set:
-            _dict['recalculationType'] = None
-
-        # set to None if fallback_reason (nullable) is None
-        # and model_fields_set contains the field
-        if self.fallback_reason is None and "fallback_reason" in self.model_fields_set:
-            _dict['fallbackReason'] = None
-
         # set to None if changed_by_user_id (nullable) is None
         # and model_fields_set contains the field
         if self.changed_by_user_id is None and "changed_by_user_id" in self.model_fields_set:
             _dict['changedByUserId'] = None
+
+        # set to None if applied_period_percentage (nullable) is None
+        # and model_fields_set contains the field
+        if self.applied_period_percentage is None and "applied_period_percentage" in self.model_fields_set:
+            _dict['appliedPeriodPercentage'] = None
 
         return _dict
 
@@ -132,7 +125,9 @@ class AdvanceCalculationDetailsDTO(BaseModel):
             "nextInvoiceAmountAccuracy": obj.get("nextInvoiceAmountAccuracy"),
             "recalculationType": obj.get("recalculationType"),
             "fallbackReason": obj.get("fallbackReason"),
-            "changedByUserId": obj.get("changedByUserId")
+            "changedByUserId": obj.get("changedByUserId"),
+            "appliedPeriodPercentage": obj.get("appliedPeriodPercentage"),
+            "advanceCalculationType": obj.get("advanceCalculationType")
         })
         return _obj
 

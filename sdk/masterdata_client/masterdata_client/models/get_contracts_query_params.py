@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,17 +26,20 @@ class GetContractsQueryParams(BaseModel):
     """
     GetContractsQueryParams
     """ # noqa: E501
-    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
-    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
-    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
     service_location_id: Optional[StrictStr] = Field(default=None, alias="serviceLocationId")
     property_group_ids: Optional[List[StrictStr]] = Field(default=None, alias="propertyGroupIds")
+    utility_types: Optional[List[StrictStr]] = Field(default=None, alias="utilityTypes")
     customer_group_id: Optional[StrictStr] = Field(default=None, alias="customerGroupId")
     customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
     customer_type: Optional[StrictStr] = Field(default=None, alias="customerType")
     product_id: Optional[StrictStr] = Field(default=None, alias="productId")
+    product_ids: Optional[List[StrictStr]] = Field(default=None, alias="productIds")
     exclude_terminated_contracts: Optional[StrictBool] = Field(default=None, alias="excludeTerminatedContracts")
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "serviceLocationId", "propertyGroupIds", "customerGroupId", "customerId", "customerType", "productId", "excludeTerminatedContracts"]
+    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
+    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
+    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["serviceLocationId", "propertyGroupIds", "utilityTypes", "customerGroupId", "customerId", "customerType", "productId", "productIds", "excludeTerminatedContracts", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,45 +85,10 @@ class GetContractsQueryParams(BaseModel):
         if self.flex_search is None and "flex_search" in self.model_fields_set:
             _dict['flexSearch'] = None
 
-        # set to None if include_only_ids (nullable) is None
+        # set to None if page_size (nullable) is None
         # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
-        # set to None if service_location_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.service_location_id is None and "service_location_id" in self.model_fields_set:
-            _dict['serviceLocationId'] = None
-
-        # set to None if property_group_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.property_group_ids is None and "property_group_ids" in self.model_fields_set:
-            _dict['propertyGroupIds'] = None
-
-        # set to None if customer_group_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_group_id is None and "customer_group_id" in self.model_fields_set:
-            _dict['customerGroupId'] = None
-
-        # set to None if customer_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_id is None and "customer_id" in self.model_fields_set:
-            _dict['customerId'] = None
-
-        # set to None if customer_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_type is None and "customer_type" in self.model_fields_set:
-            _dict['customerType'] = None
-
-        # set to None if product_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.product_id is None and "product_id" in self.model_fields_set:
-            _dict['productId'] = None
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
 
         return _dict
 
@@ -134,16 +102,19 @@ class GetContractsQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
             "serviceLocationId": obj.get("serviceLocationId"),
             "propertyGroupIds": obj.get("propertyGroupIds"),
+            "utilityTypes": obj.get("utilityTypes"),
             "customerGroupId": obj.get("customerGroupId"),
             "customerId": obj.get("customerId"),
             "customerType": obj.get("customerType"),
             "productId": obj.get("productId"),
-            "excludeTerminatedContracts": obj.get("excludeTerminatedContracts")
+            "productIds": obj.get("productIds"),
+            "excludeTerminatedContracts": obj.get("excludeTerminatedContracts"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
 

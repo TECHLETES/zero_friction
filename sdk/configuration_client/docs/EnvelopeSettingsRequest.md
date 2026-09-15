@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**margin_position** | [**EnvelopePosition**](EnvelopePosition.md) |  | [optional] 
+**margin_position** | [**EnvelopePosition**](EnvelopePosition.md) |  | 
 **margin** | **int** |  | [optional] 
 **margin_top** | **int** |  | [optional] 
 

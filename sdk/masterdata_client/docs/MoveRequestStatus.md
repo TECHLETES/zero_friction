@@ -1,5 +1,6 @@
 # MoveRequestStatus
 
+Possible values: 'new', 'pendingatcustomer', 'pendingatsupplier', 'processed', 'rejected', 'gatheringdata'
 
 ## Enum
 

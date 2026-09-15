@@ -5,16 +5,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data_frequency** | [**DataFrequency**](DataFrequency.md) |  | [optional] 
-**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**direction** | [**Direction**](Direction.md) |  | [optional] 
-**incrementation_type** | [**IncrementationType**](IncrementationType.md) |  | [optional] 
+**data_frequency** | [**DataFrequency**](DataFrequency.md) |  | 
+**metering_type** | [**MeteringType**](MeteringType.md) |  | 
+**utility_type** | [**UtilityType**](UtilityType.md) |  | 
+**direction** | [**Direction**](Direction.md) |  | 
+**incrementation_type** | [**IncrementationType**](IncrementationType.md) |  | 
 **time_of_use** | **str** |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | 
 **external_identifier** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
+**description** | **str** |  | 
 **relation_external_reference** | **str** |  | [optional] 
+**reset_day** | **int** |  | [optional] 
+**reset_month** | **int** |  | [optional] 
+**reset_hour** | **int** |  | [optional] 
 
 ## Example
 

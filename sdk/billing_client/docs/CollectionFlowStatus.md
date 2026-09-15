@@ -1,9 +1,12 @@
 # CollectionFlowStatus
 
+Possible values: 'active', 'paused', 'manuallyclosed', 'automaticallyclosed'
 
 ## Enum
 
 * `ACTIVE` (value: `'active'`)
+
+* `PAUSED` (value: `'paused'`)
 
 * `MANUALLYCLOSED` (value: `'manuallyclosed'`)
 

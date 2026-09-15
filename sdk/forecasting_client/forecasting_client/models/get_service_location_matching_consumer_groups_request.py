@@ -28,8 +28,8 @@ class GetServiceLocationMatchingConsumerGroupsRequest(BaseModel):
     GetServiceLocationMatchingConsumerGroupsRequest
     """ # noqa: E501
     property_group_id: Optional[StrictStr] = Field(default=None, alias="propertyGroupId")
-    product_id: Optional[StrictStr] = Field(default=None, alias="productId")
-    utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
+    product_id: Optional[StrictStr] = Field(alias="productId")
+    utility_type: UtilityType = Field(alias="utilityType")
     __properties: ClassVar[List[str]] = ["propertyGroupId", "productId", "utilityType"]
 
     model_config = ConfigDict(
@@ -80,11 +80,6 @@ class GetServiceLocationMatchingConsumerGroupsRequest(BaseModel):
         # and model_fields_set contains the field
         if self.product_id is None and "product_id" in self.model_fields_set:
             _dict['productId'] = None
-
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
 
         return _dict
 

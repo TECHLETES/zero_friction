@@ -43,7 +43,8 @@ class TestBulkDeleteSocialTariffsRequest(unittest.TestCase):
                         ], 
                     exclude_ids = [
                         ''
-                        ], ),
+                        ], 
+                    page_size = 56, ),
                 quick_filter = ''
             )
         else:

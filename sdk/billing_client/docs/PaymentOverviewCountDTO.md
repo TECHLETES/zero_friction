@@ -1,13 +1,12 @@
 # PaymentOverviewCountDTO
 
-Provides an overview of payment counts by their status.  This DTO contains aggregated counts of payments in different states.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** | The total number of payments. | [optional] 
-**reversed** | **int** | The number of reversed payments. | [optional] 
+**all** | **int** |  | [optional] 
+**reversed** | **int** |  | [optional] 
 
 ## Example
 

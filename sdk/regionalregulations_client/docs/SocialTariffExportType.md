@@ -1,5 +1,6 @@
 # SocialTariffExportType
 
+Possible values: 'customerportfolio', 'claimsprotectedcustomers'
 
 ## Enum
 

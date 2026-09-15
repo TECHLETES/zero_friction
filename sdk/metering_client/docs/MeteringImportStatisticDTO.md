@@ -1,14 +1,13 @@
 # MeteringImportStatisticDTO
 
-Contains the statistics of a metering import phase to know how many values were processed.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount_success** | **int** | How many values were successfully processed in the metering import phase? | [optional] 
-**amount_failed** | **int** | How many values could not be processed in the metering import phase? | [optional] 
-**amount_ignored** | **int** | How many values did we ignore in the metering import phase?  This can happen if a measurement was already processed with the same date and value on a channel. | [optional] 
+**amount_success** | **int** |  | [optional] 
+**amount_failed** | **int** |  | [optional] 
+**amount_ignored** | **int** |  | [optional] 
 
 ## Example
 

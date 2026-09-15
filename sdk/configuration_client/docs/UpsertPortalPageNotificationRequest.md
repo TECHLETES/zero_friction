@@ -5,9 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**page_identifier** | [**PortalPageIdentifier**](PortalPageIdentifier.md) |  | [optional] 
-**notification_type** | [**PortalNotificationType**](PortalNotificationType.md) |  | [optional] 
-**translated_content** | **Dict[str, Optional[str]]** |  | [optional] 
+**page_identifier** | [**PortalPageIdentifier**](PortalPageIdentifier.md) |  | 
+**notification_type** | [**PortalNotificationType**](PortalNotificationType.md) |  | 
+**start_date_time** | **datetime** |  | [optional] 
+**end_date_time** | **datetime** |  | [optional] 
+**translated_content** | **Dict[str, str]** |  | 
 
 ## Example
 

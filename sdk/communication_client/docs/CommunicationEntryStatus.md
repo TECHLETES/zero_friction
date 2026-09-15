@@ -1,5 +1,6 @@
 # CommunicationEntryStatus
 
+Possible values: 'generating', 'sending', 'failed', 'successful', 'skipped', 'gatheringdata', 'rejected'
 
 ## Enum
 
@@ -12,6 +13,10 @@
 * `SUCCESSFUL` (value: `'successful'`)
 
 * `SKIPPED` (value: `'skipped'`)
+
+* `GATHERINGDATA` (value: `'gatheringdata'`)
+
+* `REJECTED` (value: `'rejected'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

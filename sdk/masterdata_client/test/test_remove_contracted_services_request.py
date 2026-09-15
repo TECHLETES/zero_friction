@@ -39,20 +39,30 @@ class TestRemoveContractedServicesRequest(unittest.TestCase):
                 services = [
                     masterdata_client.models.change_contract_service_location_request.ChangeContractServiceLocationRequest(
                         service_location_id = '', 
-                        utility_type = null, 
-                        external_identifier = '', 
+                        utility_type = 'none', 
                         estimated_consumptions = [
                             masterdata_client.models.change_contract_service_estimated_consumption_request.ChangeContractServiceEstimatedConsumptionRequest(
                                 consumer_group_id = '', 
-                                value = 1.337, 
-                                unit_of_measure = null, 
-                                metering_type = null, 
-                                is_manual_entry = True, )
+                                unit_of_measure = 'none', 
+                                metering_type = 'none', 
+                                direction = 'offtake', )
                             ], )
                     ]
             )
         else:
             return RemoveContractedServicesRequest(
+                services = [
+                    masterdata_client.models.change_contract_service_location_request.ChangeContractServiceLocationRequest(
+                        service_location_id = '', 
+                        utility_type = 'none', 
+                        estimated_consumptions = [
+                            masterdata_client.models.change_contract_service_estimated_consumption_request.ChangeContractServiceEstimatedConsumptionRequest(
+                                consumer_group_id = '', 
+                                unit_of_measure = 'none', 
+                                metering_type = 'none', 
+                                direction = 'offtake', )
+                            ], )
+                    ],
         )
         """
 

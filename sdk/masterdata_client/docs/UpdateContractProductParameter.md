@@ -1,5 +1,6 @@
 # UpdateContractProductParameter
 
+Possible values: 'fromcontractstartdate', 'fromfirstopenperiod', 'fromsupplieddate', 'fromdatebasedonspecificperiod'
 
 ## Enum
 

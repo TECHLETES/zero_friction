@@ -20,13 +20,14 @@ from typing_extensions import Self
 
 class CollectionFlowStatus(str, Enum):
     """
-    CollectionFlowStatus
+    Possible values: 'active', 'paused', 'manuallyclosed', 'automaticallyclosed'
     """
 
     """
     allowed enum values
     """
     ACTIVE = 'active'
+    PAUSED = 'paused'
     MANUALLYCLOSED = 'manuallyclosed'
     AUTOMATICALLYCLOSED = 'automaticallyclosed'
 

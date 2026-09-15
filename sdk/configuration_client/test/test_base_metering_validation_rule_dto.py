@@ -35,11 +35,30 @@ class TestBaseMeteringValidationRuleDTO(unittest.TestCase):
         model = BaseMeteringValidationRuleDTO()
         if include_optional:
             return BaseMeteringValidationRuleDTO(
+                type = 'BaseMeteringValidationRuleDTO:MeasurementFrequencyTooLow',
+                grace_period_in_days = 56,
                 error = 'consumptionnegative',
-                enabled = True
+                enabled = True,
+                synchronous = True,
+                supported_incrementation_types = [
+                    'delta'
+                    ],
+                evaluation_window_days = 56,
+                grace_days_before_supply_start = 56,
+                grace_days_after_supply_end = 56,
+                maximum_allowed_consumption = 1.337,
+                high_consumption_margin = 1.337,
+                low_consumption_margin = 1.337,
+                min_expected_days = 56,
+                consumption_threshold = 1.337,
+                grace_days_after_supply_start = 56,
+                grace_days_before_supply_end = 56,
+                auto_solve = True,
+                minimum_gap_duration = '-072888001528021798096225500850762068629.33:93:33'
             )
         else:
             return BaseMeteringValidationRuleDTO(
+                type = 'BaseMeteringValidationRuleDTO:MeasurementFrequencyTooLow',
         )
         """
 

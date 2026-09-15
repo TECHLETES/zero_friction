@@ -36,8 +36,7 @@ class TestBillingTariffNodeDTO(unittest.TestCase):
         if include_optional:
             return BillingTariffNodeDTO(
                 billing_tariff_id = '',
-                calculation_parameters = configuration_client.models.base_tariff_calculation_type_parameters_dto.BaseTariffCalculationTypeParametersDTO(
-                    calculation_type = null, ),
+                calculation_parameters = configuration_client.models.base_tariff_calculation_type_parameters_dto.BaseTariffCalculationTypeParametersDTO(),
                 condition = configuration_client.models.base_tariff_condition_type_parameters_dto.BaseTariffConditionTypeParametersDTO()
             )
         else:

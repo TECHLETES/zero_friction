@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** |  | [optional] 
 **only_validate** | **bool** |  | [optional] 
 **var_query_params** | [**GetEntityAttachmentQueryParams**](GetEntityAttachmentQueryParams.md) |  | [optional] 
 **quick_filter** | **str** |  | [optional] 
+**customer_id** | **str** |  | [optional] 
 
 ## Example
 

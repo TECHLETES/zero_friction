@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **message** | **str** |  | [optional] 
-**resolution_value** | **object** |  | [optional] 
+**resolution_value** | [**BaseMeteringIssueResolutionValueDTO**](BaseMeteringIssueResolutionValueDTO.md) |  | [optional] 
 
 ## Example
 

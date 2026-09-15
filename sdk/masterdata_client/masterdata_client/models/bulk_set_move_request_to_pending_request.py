@@ -28,11 +28,11 @@ class BulkSetMoveRequestToPendingRequest(BaseModel):
     """
     BulkSetMoveRequestToPendingRequest
     """ # noqa: E501
-    new_status: Optional[MoveRequestStatus] = Field(default=None, alias="newStatus")
     only_validate: Optional[StrictBool] = Field(default=None, alias="onlyValidate")
     var_query_params: Optional[GetMoveRequestsQueryParams] = Field(default=None, alias="queryParams")
     quick_filter: Optional[StrictStr] = Field(default=None, alias="quickFilter")
-    __properties: ClassVar[List[str]] = ["newStatus", "onlyValidate", "queryParams", "quickFilter"]
+    new_status: Optional[MoveRequestStatus] = Field(default=None, alias="newStatus")
+    __properties: ClassVar[List[str]] = ["onlyValidate", "queryParams", "quickFilter", "newStatus"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,16 +76,6 @@ class BulkSetMoveRequestToPendingRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if new_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.new_status is None and "new_status" in self.model_fields_set:
-            _dict['newStatus'] = None
-
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
         # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
         if self.quick_filter is None and "quick_filter" in self.model_fields_set:
@@ -103,10 +93,10 @@ class BulkSetMoveRequestToPendingRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "newStatus": obj.get("newStatus"),
             "onlyValidate": obj.get("onlyValidate"),
             "queryParams": GetMoveRequestsQueryParams.from_dict(obj["queryParams"]) if obj.get("queryParams") is not None else None,
-            "quickFilter": obj.get("quickFilter")
+            "quickFilter": obj.get("quickFilter"),
+            "newStatus": obj.get("newStatus")
         })
         return _obj
 

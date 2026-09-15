@@ -1,5 +1,6 @@
 # ManagementRelationType
 
+Possible values: 'owner', 'propertymanager'
 
 ## Enum
 

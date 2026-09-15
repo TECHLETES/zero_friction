@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**translations** | **Dict[str, Optional[str]]** |  | [optional] 
+**translations** | **Dict[str, str]** |  | 
 
 ## Example
 

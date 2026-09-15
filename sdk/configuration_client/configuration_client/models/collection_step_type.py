@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class CollectionStepType(str, Enum):
     """
-    CollectionStepType
+    Possible values: 'communication', 'manualintervention'
     """
 
     """

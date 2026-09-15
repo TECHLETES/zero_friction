@@ -29,22 +29,22 @@ from typing_extensions import Self
 
 class EstimatedInvoiceDTO(BaseModel):
     """
-    Represents an estimated invoice for a customer.  This DTO contains information about the estimated charges, periods, and accuracy of the estimation.
+    EstimatedInvoiceDTO
     """ # noqa: E501
-    customer_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the customer.", alias="customerId")
-    contract_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the contract.", alias="contractId")
-    original_billing_completeness_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the original billing completeness record.", alias="originalBillingCompletenessId")
-    product: Optional[ProductReferenceDTO] = Field(default=None, description="Reference to the product associated with this estimated invoice.")
-    calculation_date: Optional[datetime] = Field(default=None, description="The date and time when this estimation was calculated.", alias="calculationDate")
-    period_end_date_time: Optional[datetime] = Field(default=None, description="The end date and time of the billing period.", alias="periodEndDateTime")
-    period_start_date_time: Optional[datetime] = Field(default=None, description="The start date and time of the billing period.", alias="periodStartDateTime")
-    total_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount including VAT.", alias="totalAmountInclVAT")
-    total_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount excluding VAT.", alias="totalAmountExclVAT")
-    total_vat_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total VAT amount.", alias="totalVATAmount")
-    remaining_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The remaining amount to be billed.", alias="remainingAmount")
-    lines: Optional[List[EstimatedInvoiceLineDTO]] = Field(default=None, description="List of line items in the estimated invoice.")
-    advances: Optional[List[EstimatedAdvancePeriodDTO]] = Field(default=None, description="List of advance periods associated with this estimated invoice.")
-    accuracy: Optional[Level] = Field(default=None, description="The accuracy level of this estimation.")
+    customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
+    contract_id: Optional[StrictStr] = Field(default=None, alias="contractId")
+    original_billing_completeness_id: Optional[StrictStr] = Field(default=None, alias="originalBillingCompletenessId")
+    product: Optional[ProductReferenceDTO] = None
+    calculation_date: Optional[datetime] = Field(default=None, alias="calculationDate")
+    period_end_date_time: Optional[datetime] = Field(default=None, alias="periodEndDateTime")
+    period_start_date_time: Optional[datetime] = Field(default=None, alias="periodStartDateTime")
+    total_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalAmountInclVAT")
+    total_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalAmountExclVAT")
+    total_vat_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalVATAmount")
+    remaining_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="remainingAmount")
+    lines: Optional[List[EstimatedInvoiceLineDTO]] = None
+    advances: Optional[List[EstimatedAdvancePeriodDTO]] = None
+    accuracy: Optional[Level] = None
     __properties: ClassVar[List[str]] = ["customerId", "contractId", "originalBillingCompletenessId", "product", "calculationDate", "periodEndDateTime", "periodStartDateTime", "totalAmountInclVAT", "totalAmountExclVAT", "totalVATAmount", "remainingAmount", "lines", "advances", "accuracy"]
 
     model_config = ConfigDict(
@@ -132,11 +132,6 @@ class EstimatedInvoiceDTO(BaseModel):
         # and model_fields_set contains the field
         if self.advances is None and "advances" in self.model_fields_set:
             _dict['advances'] = None
-
-        # set to None if accuracy (nullable) is None
-        # and model_fields_set contains the field
-        if self.accuracy is None and "accuracy" in self.model_fields_set:
-            _dict['accuracy'] = None
 
         return _dict
 

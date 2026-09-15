@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AdvanceCalculationFallbackReason(str, Enum):
     """
-    AdvanceCalculationFallbackReason
+    Possible values: 'na', 'deviationtoolow', 'accuracytoolow', 'estimationfailed', 'estimationfailedanddeviationtoolow', 'manuallyoverridden', 'noupcomingadvances'
     """
 
     """
@@ -32,6 +32,7 @@ class AdvanceCalculationFallbackReason(str, Enum):
     ESTIMATIONFAILED = 'estimationfailed'
     ESTIMATIONFAILEDANDDEVIATIONTOOLOW = 'estimationfailedanddeviationtoolow'
     MANUALLYOVERRIDDEN = 'manuallyoverridden'
+    NOUPCOMINGADVANCES = 'noupcomingadvances'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.data_import_metering_format_type import DataImportMeteringFormatType
+from configuration_client.models.data_import_parameters_dto import DataImportParametersDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,10 +29,10 @@ class UpdateDataImportRequest(BaseModel):
     UpdateDataImportRequest
     """ # noqa: E501
     disabled: Optional[StrictBool] = None
-    automatic_processing: Optional[StrictBool] = Field(default=None, description="Indicates if incomming import jobs are automatically processed or if a user has to manually trigger them", alias="automaticProcessing")
-    custom_file_format_id: Optional[StrictStr] = Field(default=None, description="When using a file format that deviates from the built-in format, you should fill in this property with the  ID of the custom file format.", alias="customFileFormatId")
-    metering_format_type: Optional[DataImportMeteringFormatType] = Field(default=None, description="When using a built-in format, you just need to specify the type of the format here.", alias="meteringFormatType")
-    parameters: Optional[Dict[str, Any]] = None
+    automatic_processing: Optional[StrictBool] = Field(default=None, alias="automaticProcessing")
+    custom_file_format_id: Optional[StrictStr] = Field(alias="customFileFormatId")
+    metering_format_type: DataImportMeteringFormatType = Field(alias="meteringFormatType")
+    parameters: Optional[DataImportParametersDTO]
     __properties: ClassVar[List[str]] = ["disabled", "automaticProcessing", "customFileFormatId", "meteringFormatType", "parameters"]
 
     model_config = ConfigDict(
@@ -73,15 +74,13 @@ class UpdateDataImportRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of parameters
+        if self.parameters:
+            _dict['parameters'] = self.parameters.to_dict()
         # set to None if custom_file_format_id (nullable) is None
         # and model_fields_set contains the field
         if self.custom_file_format_id is None and "custom_file_format_id" in self.model_fields_set:
             _dict['customFileFormatId'] = None
-
-        # set to None if metering_format_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.metering_format_type is None and "metering_format_type" in self.model_fields_set:
-            _dict['meteringFormatType'] = None
 
         # set to None if parameters (nullable) is None
         # and model_fields_set contains the field
@@ -104,7 +103,7 @@ class UpdateDataImportRequest(BaseModel):
             "automaticProcessing": obj.get("automaticProcessing"),
             "customFileFormatId": obj.get("customFileFormatId"),
             "meteringFormatType": obj.get("meteringFormatType"),
-            "parameters": obj.get("parameters")
+            "parameters": DataImportParametersDTO.from_dict(obj["parameters"]) if obj.get("parameters") is not None else None
         })
         return _obj
 

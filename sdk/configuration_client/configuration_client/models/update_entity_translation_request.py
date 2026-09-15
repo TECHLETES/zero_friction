@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +26,7 @@ class UpdateEntityTranslationRequest(BaseModel):
     """
     UpdateEntityTranslationRequest
     """ # noqa: E501
-    translated_fields: Optional[Dict[str, Optional[Dict[str, StrictStr]]]] = Field(default=None, alias="translatedFields")
+    translated_fields: Dict[str, Dict[str, StrictStr]] = Field(alias="translatedFields")
     __properties: ClassVar[List[str]] = ["translatedFields"]
 
     model_config = ConfigDict(
@@ -68,11 +68,6 @@ class UpdateEntityTranslationRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if translated_fields (nullable) is None
-        # and model_fields_set contains the field
-        if self.translated_fields is None and "translated_fields" in self.model_fields_set:
-            _dict['translatedFields'] = None
-
         return _dict
 
     @classmethod

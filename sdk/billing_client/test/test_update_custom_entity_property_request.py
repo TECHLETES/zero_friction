@@ -52,6 +52,20 @@ class TestUpdateCustomEntityPropertyRequest(unittest.TestCase):
             )
         else:
             return UpdateCustomEntityPropertyRequest(
+                custom_entity_property_type_id = '',
+                values = [
+                    billing_client.models.update_custom_entity_property_value_request.UpdateCustomEntityPropertyValueRequest(
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        value_decimal = 1.337, 
+                        value_string = '', 
+                        value_boolean = True, 
+                        value_number = 56, 
+                        value_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        value_dropdown = [
+                            ''
+                            ], )
+                    ],
         )
         """
 

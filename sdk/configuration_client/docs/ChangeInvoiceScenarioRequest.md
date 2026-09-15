@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
-**pdf_template** | [**InvoicePdfTemplateRequest**](InvoicePdfTemplateRequest.md) |  | [optional] 
-**email_template** | [**InvoiceEmailTemplateRequest**](InvoiceEmailTemplateRequest.md) |  | [optional] 
+**pdf_template** | [**InvoicePdfTemplateRequest**](InvoicePdfTemplateRequest.md) |  | 
+**email_template** | [**InvoiceEmailTemplateRequest**](InvoiceEmailTemplateRequest.md) |  | 
+**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | 
+**auto_fallback_to_postal** | **bool** |  | [optional] 
 
 ## Example
 

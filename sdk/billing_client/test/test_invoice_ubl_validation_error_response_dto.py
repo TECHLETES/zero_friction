@@ -37,15 +37,33 @@ class TestInvoiceUBLValidationErrorResponseDTO(unittest.TestCase):
             return InvoiceUBLValidationErrorResponseDTO(
                 general_errors = [
                     billing_client.models.invoice_ubl_validation_general_error_dto.InvoiceUBLValidationGeneralErrorDTO(
-                        error_message = null, )
+                        error_message = billing_client.models.localised_error_dto.LocalisedErrorDTO(
+                            key = 56, 
+                            correlation_id = '', 
+                            message = '', 
+                            message_values = [
+                                billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
+                                    data_type = 'text', 
+                                    value = '', 
+                                    capitalize = True, )
+                                ], ), )
                     ],
                 specific_errors = [
                     billing_client.models.invoice_ubl_validation_specific_error_dto.InvoiceUBLValidationSpecificErrorDTO(
                         invoice_id = '', 
                         invoice_number = '', 
-                        error_subject = null, 
+                        error_subject = 'none', 
                         error_subject_id = '', 
-                        error_message = null, )
+                        error_message = billing_client.models.localised_error_dto.LocalisedErrorDTO(
+                            key = 56, 
+                            correlation_id = '', 
+                            message = '', 
+                            message_values = [
+                                billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
+                                    data_type = 'text', 
+                                    value = '', 
+                                    capitalize = True, )
+                                ], ), )
                     ],
                 unique_invoices_with_errors = 56
             )

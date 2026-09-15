@@ -1,14 +1,14 @@
 # ServiceConsumptionValueDTO
 
-Represents a single consumption value with its time period
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | **float** | The consumption value | [optional] 
-**start_date_time** | **datetime** | Start date and time of the consumption period | [optional] 
-**end_date_time** | **datetime** | End date and time of the consumption period | [optional] 
+**value** | **float** |  | [optional] 
+**start_date_time** | **datetime** |  | [optional] 
+**end_date_time** | **datetime** |  | [optional] 
+**time_of_use** | **str** |  | [optional] 
 
 ## Example
 

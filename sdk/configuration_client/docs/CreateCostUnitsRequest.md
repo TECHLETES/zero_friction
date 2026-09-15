@@ -1,12 +1,11 @@
 # CreateCostUnitsRequest
 
-Request model for creating new cost units.  Cost units should correspond to entries in an external accounting system  to enable proper data synchronization during billing operations.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cost_units** | [**List[CreateCostUnitRequest]**](CreateCostUnitRequest.md) | List of cost units to create. | [optional] 
+**cost_units** | [**List[CreateCostUnitRequest]**](CreateCostUnitRequest.md) |  | [optional] 
 
 ## Example
 

@@ -29,8 +29,8 @@ class PortalOrganisationContactSettingsDTO(BaseModel):
     email_address: Optional[StrictStr] = Field(default=None, alias="emailAddress")
     contact_url: Optional[StrictStr] = Field(default=None, alias="contactUrl")
     telephone_number: Optional[StrictStr] = Field(default=None, alias="telephoneNumber")
-    sepa_mandate_terms_and_conditions_urls: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, alias="sepaMandateTermsAndConditionsUrls")
-    terms_and_conditions_urls: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, alias="termsAndConditionsUrls")
+    sepa_mandate_terms_and_conditions_urls: Optional[Dict[str, StrictStr]] = Field(default=None, alias="sepaMandateTermsAndConditionsUrls")
+    terms_and_conditions_urls: Optional[Dict[str, StrictStr]] = Field(default=None, alias="termsAndConditionsUrls")
     __properties: ClassVar[List[str]] = ["emailAddress", "contactUrl", "telephoneNumber", "sepaMandateTermsAndConditionsUrls", "termsAndConditionsUrls"]
 
     model_config = ConfigDict(

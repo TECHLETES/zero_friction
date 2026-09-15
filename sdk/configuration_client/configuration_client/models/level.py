@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class Level(str, Enum):
     """
-    Level
+    Possible values: 'low', 'moderate', 'high'
     """
 
     """

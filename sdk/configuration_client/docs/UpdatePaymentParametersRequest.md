@@ -7,9 +7,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **retry_parameters** | [**List[PaymentRetryParameterRequest]**](PaymentRetryParameterRequest.md) |  | [optional] 
 **refund_payment_delay_in_days** | **int** |  | [optional] 
-**payment_terms_id** | **str** |  | [optional] 
+**payment_terms_id** | **str** |  | 
 **default_collection_flow_id** | **str** |  | [optional] 
 **only_use_invoice_number_in_payment_references** | **bool** |  | [optional] 
+**block_automatic_refunding** | **bool** |  | [optional] 
+**default_collection_delay** | [**PaymentDelay**](PaymentDelay.md) |  | 
+**default_collection_delay_value** | **int** |  | [optional] 
+**allow_resident_to_choose_collection_day** | **bool** |  | [optional] 
+**allow_customer_collection_day_override** | **bool** |  | [optional] 
+**selectable_collection_days** | **List[int]** |  | 
+**matching_rules** | [**List[BaseBankStatementMatchingRuleDTO]**](BaseBankStatementMatchingRuleDTO.md) |  | [optional] 
 
 ## Example
 

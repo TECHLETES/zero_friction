@@ -43,6 +43,9 @@ class TestMoveRequestContractEstimationRequest(unittest.TestCase):
             )
         else:
             return MoveRequestContractEstimationRequest(
+                unit_of_measure = 'none',
+                metering_type = 'none',
+                consumer_group_id = '',
         )
         """
 

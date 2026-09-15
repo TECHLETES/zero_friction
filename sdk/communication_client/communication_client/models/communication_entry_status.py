@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class CommunicationEntryStatus(str, Enum):
     """
-    CommunicationEntryStatus
+    Possible values: 'generating', 'sending', 'failed', 'successful', 'skipped', 'gatheringdata', 'rejected'
     """
 
     """
@@ -31,6 +31,8 @@ class CommunicationEntryStatus(str, Enum):
     FAILED = 'failed'
     SUCCESSFUL = 'successful'
     SKIPPED = 'skipped'
+    GATHERINGDATA = 'gatheringdata'
+    REJECTED = 'rejected'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

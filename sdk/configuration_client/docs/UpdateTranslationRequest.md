@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **update_all_scenarios** | **bool** |  | [optional] 
-**translations** | **Dict[str, Optional[str]]** |  | [optional] 
+**translations** | **Dict[str, str]** |  | 
 **entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
 **entity_subject_sub_type** | **str** |  | [optional] 
 

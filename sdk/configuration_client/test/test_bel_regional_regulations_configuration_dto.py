@@ -35,21 +35,22 @@ class TestBELRegionalRegulationsConfigurationDTO(unittest.TestCase):
         model = BELRegionalRegulationsConfigurationDTO()
         if include_optional:
             return BELRegionalRegulationsConfigurationDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 country_code = 'aut',
                 social_tariff_parameters = configuration_client.models.social_tariff_parameters_dto.SocialTariffParametersDTO(
                     kbo_number = '', 
                     gln_id = '', 
-                    supplier_address = null, 
+                    supplier_address = configuration_client.models.address_dto.AddressDTO(
+                        street_name = '', 
+                        street_number = '', 
+                        street_number_addition = '', 
+                        postal_code = '', 
+                        building_name = '', 
+                        locality = '', 
+                        city = '', 
+                        country = 'aut', 
+                        localized_display = '', 
+                        line_one = '', 
+                        line_two = '', ), 
                     contact_email_address = '', 
                     contact_telephone_number = '', 
                     contact_fax_number = '', 
@@ -58,7 +59,15 @@ class TestBELRegionalRegulationsConfigurationDTO(unittest.TestCase):
                     social_tariff_custom_entity_property_id = '', 
                     share_props_with_government_custom_entity_property_id = '', 
                     bim_custom_entity_property_id = '', 
-                    configured = True, )
+                    configured = True, ),
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return BELRegionalRegulationsConfigurationDTO(

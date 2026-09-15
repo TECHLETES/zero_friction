@@ -5,9 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**emergency_credit** | **float** |  | [optional] 
-**enable_deduction** | **bool** |  | [optional] 
-**deduction_rate** | **float** |  | [optional] 
+**organisation_id** | **str** |  | [optional] 
+**id** | **str** |  | [optional] 
+**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**created_date_time** | **datetime** |  | [optional] 
+**discriminator** | **str** |  | [optional] 
+**etag** | **str** |  | [optional] 
+**has_errors** | **bool** |  | [optional] 
+**is_read_only** | **bool** |  | [optional] 
 
 ## Example
 

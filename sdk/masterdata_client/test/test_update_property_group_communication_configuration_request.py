@@ -48,7 +48,7 @@ class TestUpdatePropertyGroupCommunicationConfigurationRequest(unittest.TestCase
                     building_name = '', 
                     locality = '', 
                     city = '', 
-                    country = null, 
+                    country = 'aut', 
                     localized_display = '', 
                     line_one = '', 
                     line_two = '', ),
@@ -61,6 +61,11 @@ class TestUpdatePropertyGroupCommunicationConfigurationRequest(unittest.TestCase
             )
         else:
             return UpdatePropertyGroupCommunicationConfigurationRequest(
+                contact_details = masterdata_client.models.property_group_contact_details_request.PropertyGroupContactDetailsRequest(
+                    email_address = '', 
+                    telephone = '', 
+                    website = '', 
+                    telephone_interruptions = '', ),
         )
         """
 

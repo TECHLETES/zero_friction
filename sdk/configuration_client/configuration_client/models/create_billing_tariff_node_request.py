@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.base_tariff_calculation_type_parameters_dto import BaseTariffCalculationTypeParametersDTO
+from configuration_client.models.base_tariff_condition_type_parameters_dto import BaseTariffConditionTypeParametersDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +29,7 @@ class CreateBillingTariffNodeRequest(BaseModel):
     CreateBillingTariffNodeRequest
     """ # noqa: E501
     calculation_parameters: Optional[BaseTariffCalculationTypeParametersDTO] = Field(default=None, alias="calculationParameters")
-    condition: Optional[Dict[str, Any]] = None
+    condition: Optional[BaseTariffConditionTypeParametersDTO] = None
     __properties: ClassVar[List[str]] = ["calculationParameters", "condition"]
 
     model_config = ConfigDict(
@@ -73,6 +74,9 @@ class CreateBillingTariffNodeRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of calculation_parameters
         if self.calculation_parameters:
             _dict['calculationParameters'] = self.calculation_parameters.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of condition
+        if self.condition:
+            _dict['condition'] = self.condition.to_dict()
         # set to None if calculation_parameters (nullable) is None
         # and model_fields_set contains the field
         if self.calculation_parameters is None and "calculation_parameters" in self.model_fields_set:
@@ -96,7 +100,7 @@ class CreateBillingTariffNodeRequest(BaseModel):
 
         _obj = cls.model_validate({
             "calculationParameters": BaseTariffCalculationTypeParametersDTO.from_dict(obj["calculationParameters"]) if obj.get("calculationParameters") is not None else None,
-            "condition": obj.get("condition")
+            "condition": BaseTariffConditionTypeParametersDTO.from_dict(obj["condition"]) if obj.get("condition") is not None else None
         })
         return _obj
 

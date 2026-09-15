@@ -1,13 +1,12 @@
 # GetPropertyGroupBillingConfigurationConsolidatedNotesToCustomerRequest
 
-Represents a request to get consolidated notes to customer for property group billing configurations.  This DTO is used to retrieve combined notes that will be displayed to customers for multiple property groups.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**property_group_ids** | **List[str]** | List of property group IDs for which to retrieve consolidated notes. | [optional] 
-**culture** | [**CultureInfo**](CultureInfo.md) | The culture to use for formatting the notes. If null, the system will use the default culture. | [optional] 
+**property_group_ids** | **List[str]** |  | [optional] 
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | [optional] 
 
 ## Example
 

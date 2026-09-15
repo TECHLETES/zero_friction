@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MeteringIssueResolutionType(str, Enum):
     """
-    MeteringIssueResolutionType
+    Possible values: 'manual', 'automatic'
     """
 
     """

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AggregationFrequency(str, Enum):
     """
-    AggregationFrequency
+    Possible values: 'none', 'daily', 'monthly', 'yearly'
     """
 
     """

@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
+**address** | [**AddressDTO**](AddressDTO.md) |  | 
 **external_id** | **str** |  | [optional] 
 **product_id** | **str** |  | [optional] 
-**services** | [**List[CreateServiceRequest]**](CreateServiceRequest.md) |  | [optional] 
+**services** | [**List[CreateServiceRequest]**](CreateServiceRequest.md) |  | 
 **management_relations** | [**List[ManagementRelationRequest]**](ManagementRelationRequest.md) |  | [optional] 
 
 ## Example

@@ -53,7 +53,11 @@ class ExternalChannelDTO(BaseModel):
     issues: Optional[List[MeteringIssueReference]] = None
     built_in: Optional[StrictBool] = Field(default=None, alias="builtIn")
     hidden: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["startDateTime", "endDateTime", "dataFrequency", "incrementationType", "meteringType", "utilityType", "direction", "unitOfMeasure", "timeOfUse", "description", "externalIdentifier", "lastTimeReceivedData", "measurementsUntil", "relationExternalReference", "issuesCount", "hasIssue", "issues", "builtIn", "hidden"]
+    reset_day: Optional[StrictInt] = Field(default=None, alias="resetDay")
+    reset_month: Optional[StrictInt] = Field(default=None, alias="resetMonth")
+    reset_hour: Optional[StrictInt] = Field(default=None, alias="resetHour")
+    reset_date: Optional[datetime] = Field(default=None, alias="resetDate")
+    __properties: ClassVar[List[str]] = ["startDateTime", "endDateTime", "dataFrequency", "incrementationType", "meteringType", "utilityType", "direction", "unitOfMeasure", "timeOfUse", "description", "externalIdentifier", "lastTimeReceivedData", "measurementsUntil", "relationExternalReference", "issuesCount", "hasIssue", "issues", "builtIn", "hidden", "resetDay", "resetMonth", "resetHour", "resetDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,10 +89,8 @@ class ExternalChannelDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "has_issue",
         ])
 
         _dict = self.model_dump(
@@ -103,36 +105,6 @@ class ExternalChannelDTO(BaseModel):
                 if _item_issues:
                     _items.append(_item_issues.to_dict())
             _dict['issues'] = _items
-        # set to None if data_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.data_frequency is None and "data_frequency" in self.model_fields_set:
-            _dict['dataFrequency'] = None
-
-        # set to None if incrementation_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.incrementation_type is None and "incrementation_type" in self.model_fields_set:
-            _dict['incrementationType'] = None
-
-        # set to None if metering_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.metering_type is None and "metering_type" in self.model_fields_set:
-            _dict['meteringType'] = None
-
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if direction (nullable) is None
-        # and model_fields_set contains the field
-        if self.direction is None and "direction" in self.model_fields_set:
-            _dict['direction'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
-
         # set to None if time_of_use (nullable) is None
         # and model_fields_set contains the field
         if self.time_of_use is None and "time_of_use" in self.model_fields_set:
@@ -168,6 +140,26 @@ class ExternalChannelDTO(BaseModel):
         if self.issues is None and "issues" in self.model_fields_set:
             _dict['issues'] = None
 
+        # set to None if reset_day (nullable) is None
+        # and model_fields_set contains the field
+        if self.reset_day is None and "reset_day" in self.model_fields_set:
+            _dict['resetDay'] = None
+
+        # set to None if reset_month (nullable) is None
+        # and model_fields_set contains the field
+        if self.reset_month is None and "reset_month" in self.model_fields_set:
+            _dict['resetMonth'] = None
+
+        # set to None if reset_hour (nullable) is None
+        # and model_fields_set contains the field
+        if self.reset_hour is None and "reset_hour" in self.model_fields_set:
+            _dict['resetHour'] = None
+
+        # set to None if reset_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.reset_date is None and "reset_date" in self.model_fields_set:
+            _dict['resetDate'] = None
+
         return _dict
 
     @classmethod
@@ -198,7 +190,11 @@ class ExternalChannelDTO(BaseModel):
             "hasIssue": obj.get("hasIssue"),
             "issues": [MeteringIssueReference.from_dict(_item) for _item in obj["issues"]] if obj.get("issues") is not None else None,
             "builtIn": obj.get("builtIn"),
-            "hidden": obj.get("hidden")
+            "hidden": obj.get("hidden"),
+            "resetDay": obj.get("resetDay"),
+            "resetMonth": obj.get("resetMonth"),
+            "resetHour": obj.get("resetHour"),
+            "resetDate": obj.get("resetDate")
         })
         return _obj
 

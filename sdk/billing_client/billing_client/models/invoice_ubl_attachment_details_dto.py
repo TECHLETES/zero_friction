@@ -25,11 +25,11 @@ from typing_extensions import Self
 
 class InvoiceUBLAttachmentDetailsDTO(BaseModel):
     """
-    Represents details of a UBL attachment
+    InvoiceUBLAttachmentDetailsDTO
     """ # noqa: E501
-    errors: Optional[List[InvoiceUBLValidationErrorDTO]] = Field(default=None, description="List of UBL validation errors")
-    attachment_id: Optional[StrictStr] = Field(default=None, description="Identifier of the attachment", alias="attachmentId")
-    attachment_file_name: Optional[StrictStr] = Field(default=None, description="Name of the attachment file", alias="attachmentFileName")
+    errors: Optional[List[InvoiceUBLValidationErrorDTO]] = None
+    attachment_id: Optional[StrictStr] = Field(default=None, alias="attachmentId")
+    attachment_file_name: Optional[StrictStr] = Field(default=None, alias="attachmentFileName")
     __properties: ClassVar[List[str]] = ["errors", "attachmentId", "attachmentFileName"]
 
     model_config = ConfigDict(

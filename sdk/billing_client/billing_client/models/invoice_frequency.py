@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class InvoiceFrequency(str, Enum):
     """
-    InvoiceFrequency
+    Possible values: 'monthly', 'quarterly', 'halfyearly', 'yearly'
     """
 
     """

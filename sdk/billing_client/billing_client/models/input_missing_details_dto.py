@@ -25,10 +25,10 @@ from typing_extensions import Self
 
 class InputMissingDetailsDTO(BaseModel):
     """
-    Represents details about missing input data
+    InputMissingDetailsDTO
     """ # noqa: E501
-    reason: Optional[InputMissingReason] = Field(default=None, description="Reason why input data is missing")
-    extra_info: Optional[StrictStr] = Field(default=None, description="Additional information about the missing input", alias="extraInfo")
+    reason: Optional[InputMissingReason] = None
+    extra_info: Optional[StrictStr] = Field(default=None, alias="extraInfo")
     __properties: ClassVar[List[str]] = ["reason", "extraInfo"]
 
     model_config = ConfigDict(
@@ -70,11 +70,6 @@ class InputMissingDetailsDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if reason (nullable) is None
-        # and model_fields_set contains the field
-        if self.reason is None and "reason" in self.model_fields_set:
-            _dict['reason'] = None
-
         # set to None if extra_info (nullable) is None
         # and model_fields_set contains the field
         if self.extra_info is None and "extra_info" in self.model_fields_set:

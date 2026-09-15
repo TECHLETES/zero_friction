@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **property_group_id** | **str** |  | [optional] 
-**product_id** | **str** |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
+**product_id** | **str** |  | 
+**utility_type** | [**UtilityType**](UtilityType.md) |  | 
 
 ## Example
 

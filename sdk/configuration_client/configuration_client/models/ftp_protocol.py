@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class FtpProtocol(str, Enum):
     """
-    FtpProtocol
+    Possible values: 'none', 'ssl2', 'ssl3', 'tls', 'default', 'tls11', 'tls12'
     """
 
     """

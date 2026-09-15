@@ -40,9 +40,9 @@ class TestCollectionFlowStepRequest(unittest.TestCase):
                 trigger_days = 56,
                 step_type = 'communication',
                 charge_type = 'none',
-                charge_parameters = configuration_client.models.collection_charge_parameters_dto.CollectionChargeParametersDTO(
-                    tax_code_id = '', ),
-                communication_type = 'postal',
+                charge_parameters = configuration_client.models.collection_charge_parameters_dto.CollectionChargeParametersDTO(),
+                communication_type = 'none',
+                auto_fallback_to_postal = True,
                 message_title = '',
                 communication_level = 'collection',
                 communication_attachments = [
@@ -63,6 +63,19 @@ class TestCollectionFlowStepRequest(unittest.TestCase):
             )
         else:
             return CollectionFlowStepRequest(
+                name = '',
+                step_type = 'communication',
+                charge_type = 'none',
+                charge_parameters = configuration_client.models.collection_charge_parameters_dto.CollectionChargeParametersDTO(),
+                communication_type = 'none',
+                message_title = '',
+                communication_level = 'collection',
+                communication_attachments = [
+                    configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
+                        id = '', 
+                        internal_file_path = '', 
+                        file_name = '', )
+                    ],
         )
         """
 

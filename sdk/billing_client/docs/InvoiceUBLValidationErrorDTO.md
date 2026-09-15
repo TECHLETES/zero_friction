@@ -1,14 +1,13 @@
 # InvoiceUBLValidationErrorDTO
 
-Represents a UBL validation error
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**originator_type** | [**EntitySubjectType**](EntitySubjectType.md) | Type of the originator of the error | [optional] 
-**originator_id** | **str** | Identifier of the originator | [optional] 
-**message** | [**LocalisedErrorDTO**](LocalisedErrorDTO.md) | Localized error message | [optional] 
+**originator_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**originator_id** | **str** |  | [optional] 
+**message** | [**LocalisedErrorDTO**](LocalisedErrorDTO.md) |  | [optional] 
 
 ## Example
 

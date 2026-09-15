@@ -37,7 +37,7 @@ class TestOutgoingMutationReferenceDetailsDTO(unittest.TestCase):
             return OutgoingMutationReferenceDetailsDTO(
                 reference_type = 'invoice',
                 reference_id = '',
-                parameters = None
+                parameters = billing_client.models.outgoing_mutation_reference_parameters_dto.OutgoingMutationReferenceParametersDTO()
             )
         else:
             return OutgoingMutationReferenceDetailsDTO(

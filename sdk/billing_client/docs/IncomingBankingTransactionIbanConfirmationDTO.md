@@ -1,13 +1,12 @@
 # IncomingBankingTransactionIbanConfirmationDTO
 
-Represents an IBAN confirmation associated with an incoming banking transaction.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** | The unique identifier of the customer. | [optional] 
-**iban** | **str** | The International Bank Account Number (IBAN) being confirmed. | [optional] 
+**customer_id** | **str** |  | [optional] 
+**iban** | **str** |  | [optional] 
 
 ## Example
 

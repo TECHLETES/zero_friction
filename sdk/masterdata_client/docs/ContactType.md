@@ -1,5 +1,6 @@
 # ContactType
 
+Possible values: 'email', 'telephone', 'mobiletelephone', 'website'
 
 ## Enum
 

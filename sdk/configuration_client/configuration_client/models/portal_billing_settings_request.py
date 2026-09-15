@@ -27,8 +27,11 @@ class PortalBillingSettingsRequest(BaseModel):
     PortalBillingSettingsRequest
     """ # noqa: E501
     allow_customer_to_change_advance_amount: Optional[StrictBool] = Field(default=None, alias="allowCustomerToChangeAdvanceAmount")
+    allow_customer_to_change_invoice_address: Optional[StrictBool] = Field(default=None, alias="allowCustomerToChangeInvoiceAddress")
     hide_invoice_section: Optional[StrictBool] = Field(default=None, alias="hideInvoiceSection")
-    __properties: ClassVar[List[str]] = ["allowCustomerToChangeAdvanceAmount", "hideInvoiceSection"]
+    hide_payment_reference: Optional[StrictBool] = Field(default=None, alias="hidePaymentReference")
+    require_birth_date_for_persons: Optional[StrictBool] = Field(default=None, alias="requireBirthDateForPersons")
+    __properties: ClassVar[List[str]] = ["allowCustomerToChangeAdvanceAmount", "allowCustomerToChangeInvoiceAddress", "hideInvoiceSection", "hidePaymentReference", "requireBirthDateForPersons"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,7 +85,10 @@ class PortalBillingSettingsRequest(BaseModel):
 
         _obj = cls.model_validate({
             "allowCustomerToChangeAdvanceAmount": obj.get("allowCustomerToChangeAdvanceAmount"),
-            "hideInvoiceSection": obj.get("hideInvoiceSection")
+            "allowCustomerToChangeInvoiceAddress": obj.get("allowCustomerToChangeInvoiceAddress"),
+            "hideInvoiceSection": obj.get("hideInvoiceSection"),
+            "hidePaymentReference": obj.get("hidePaymentReference"),
+            "requireBirthDateForPersons": obj.get("requireBirthDateForPersons")
         })
         return _obj
 

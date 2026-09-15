@@ -82,19 +82,19 @@ configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
 # Enter a context with an instance of the API client
 with masterdata_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = masterdata_client.ContractsApi(api_client)
-    contractuuid = 'contractuuid_example' # str | The ID of the contract.
-    zf_tuuid = '{{zf-tuuid}}' # str | Format - uuid. Tenant ID
-    zf_ouuid = '{{zf-ouuid}}' # str | Format - uuid. Organisation ID
-    add_contracted_services_request = {"supplyStartDate":"string","supplyEndDate":"string","services":[{"serviceLocationId":"string","utilityType":{},"externalIdentifier":"string","estimatedConsumptions":[{"consumerGroupId":"string","value":0,"unitOfMeasure":{},"meteringType":{},"isManualEntry":true}]}]} # AddContractedServicesRequest | The request containing new locations and services details, inluding their supply period. (optional)
+    api_instance = masterdata_client.DefaultApi(api_client)
+    contract_id = 'contract_id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    add_contract_service_request = {"utilityType":"none","estimatedConsumption":{"consumerGroupId":"string","unitOfMeasure":"none","meteringType":"none","direction":"offtake"}} # AddContractServiceRequest |  (optional)
 
     try:
-        # Add locations and/or services to be supplied on a contract.
-        api_response = api_instance.add_contracted_services(contractuuid, zf_tuuid, zf_ouuid, add_contracted_services_request=add_contracted_services_request)
-        print("The response of ContractsApi->add_contracted_services:\n")
+        # AddContractService
+        api_response = api_instance.add_contract_service(contract_id, zf_tuuid, zf_ouuid, add_contract_service_request=add_contract_service_request)
+        print("The response of DefaultApi->add_contract_service:\n")
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling ContractsApi->add_contracted_services: %s\n" % e)
+        print("Exception when calling DefaultApi->add_contract_service: %s\n" % e)
 
 ```
 
@@ -104,533 +104,458 @@ All URIs are relative to *https://api.zerofriction.co/api/md*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ContractsApi* | [**add_contracted_services**](docs/ContractsApi.md#add_contracted_services) | **PUT** /Contracts/{contractuuid}/services/add | Add locations and/or services to be supplied on a contract.
-*ContractsApi* | [**delete_contracts_bulk**](docs/ContractsApi.md#delete_contracts_bulk) | **DELETE** /Contracts/bulk | Delete multiple draft contracts in bulk.
-*ContractsApi* | [**delete_contracts_contractuuid**](docs/ContractsApi.md#delete_contracts_contractuuid) | **DELETE** /Contracts/{contractuuid} | Delete a draft contract.
-*ContractsApi* | [**get_contracts_contractuuid**](docs/ContractsApi.md#get_contracts_contractuuid) | **GET** /Contracts/{contractuuid} | Retrieve a contract by its ID.
-*ContractsApi* | [**post_contracts**](docs/ContractsApi.md#post_contracts) | **POST** /Contracts | Create new contract.
-*ContractsApi* | [**post_contracts_bulk_block**](docs/ContractsApi.md#post_contracts_bulk_block) | **POST** /Contracts/bulk/block | Mark multiple contracts as blocked in bulk.
-*ContractsApi* | [**post_contracts_bulk_estimate**](docs/ContractsApi.md#post_contracts_bulk_estimate) | **POST** /Contracts/bulk/estimate | Trigger recalculation of EAV for multiple contracts in bulk.
-*ContractsApi* | [**post_contracts_bulk_sign**](docs/ContractsApi.md#post_contracts_bulk_sign) | **POST** /Contracts/bulk/sign | Sign multiple contracts in bulk.
-*ContractsApi* | [**post_contracts_bulk_terminate**](docs/ContractsApi.md#post_contracts_bulk_terminate) | **POST** /Contracts/bulk/terminate | Terminate multiple signed contracts in bulk.
-*ContractsApi* | [**post_contracts_bulk_unblock**](docs/ContractsApi.md#post_contracts_bulk_unblock) | **POST** /Contracts/bulk/unblock | Mark multiple contracts as unblocked in bulk.
-*ContractsApi* | [**post_contracts_bulk_updateproduct**](docs/ContractsApi.md#post_contracts_bulk_updateproduct) | **POST** /Contracts/bulk/updateproduct | Update product on multiple contracts in bulk.
-*ContractsApi* | [**post_contracts_contractuuid_block**](docs/ContractsApi.md#post_contracts_contractuuid_block) | **POST** /Contracts/{contractuuid}/block | Mark a contract as blocked for billing.
-*ContractsApi* | [**post_contracts_contractuuid_changeadvanceamount**](docs/ContractsApi.md#post_contracts_contractuuid_changeadvanceamount) | **POST** /Contracts/{contractuuid}/changeadvanceamount | Update the advance amount for a draft contract.
-*ContractsApi* | [**post_contracts_contractuuid_changeservices**](docs/ContractsApi.md#post_contracts_contractuuid_changeservices) | **POST** /Contracts/{contractuuid}/changeservices | Update the locations and services supplied on a contract.
-*ContractsApi* | [**post_contracts_contractuuid_sign**](docs/ContractsApi.md#post_contracts_contractuuid_sign) | **POST** /Contracts/{contractuuid}/sign | Sign a contract.
-*ContractsApi* | [**post_contracts_contractuuid_terminate**](docs/ContractsApi.md#post_contracts_contractuuid_terminate) | **POST** /Contracts/{contractuuid}/terminate | Terminate a signed contract.
-*ContractsApi* | [**post_contracts_contractuuid_unblock**](docs/ContractsApi.md#post_contracts_contractuuid_unblock) | **POST** /Contracts/{contractuuid}/unblock | Mark a contract as unblocked for billing.
-*ContractsApi* | [**post_contracts_contractuuid_updatebillingdetails**](docs/ContractsApi.md#post_contracts_contractuuid_updatebillingdetails) | **POST** /Contracts/{contractuuid}/updatebillingdetails | Update billing details of a contract.
-*ContractsApi* | [**post_contracts_contractuuid_updateexternalcontractreference**](docs/ContractsApi.md#post_contracts_contractuuid_updateexternalcontractreference) | **POST** /Contracts/{contractuuid}/updateexternalcontractreference | Update the external contract reference.
-*ContractsApi* | [**post_contracts_contractuuid_updateproduct**](docs/ContractsApi.md#post_contracts_contractuuid_updateproduct) | **POST** /Contracts/{contractuuid}/updateproduct | Update product of a contract.
-*ContractsApi* | [**post_contracts_entityid_customproperties**](docs/ContractsApi.md#post_contracts_entityid_customproperties) | **POST** /Contracts/{entityId}/customproperties | /Contracts/{entityId}/customproperties - POST
-*ContractsApi* | [**post_contracts_filter**](docs/ContractsApi.md#post_contracts_filter) | **POST** /Contracts/filter | Retrieve contracts based on the provided query parameters.
-*ContractsApi* | [**post_contracts_filter_overviewcount**](docs/ContractsApi.md#post_contracts_filter_overviewcount) | **POST** /Contracts/filter/overviewcount | Retrieve the overview count of contracts based on the provided query parameters.
-*ContractsApi* | [**post_contracts_updatecostallocation**](docs/ContractsApi.md#post_contracts_updatecostallocation) | **POST** /Contracts/updatecostallocation | Update contracts to use cost allocation for billing.
-*ContractsApi* | [**remove_contracted_services**](docs/ContractsApi.md#remove_contracted_services) | **PUT** /Contracts/{contractuuid}/services/remove | Remove locations and/or services from being supplied on a contract.
-*CustomerGroupsApi* | [**delete_customergroups_uuid**](docs/CustomerGroupsApi.md#delete_customergroups_uuid) | **DELETE** /CustomerGroups/{uuid} | Delete customer group.
-*CustomerGroupsApi* | [**get_customergroups**](docs/CustomerGroupsApi.md#get_customergroups) | **GET** /CustomerGroups | Retrieve customer groups based on the provided query parameters.
-*CustomerGroupsApi* | [**get_customergroups_customergroupuuid**](docs/CustomerGroupsApi.md#get_customergroups_customergroupuuid) | **GET** /CustomerGroups/{customerGroupuuId} | Retrieve customer group by its ID.
-*CustomerGroupsApi* | [**get_overview_count_customer_groups**](docs/CustomerGroupsApi.md#get_overview_count_customer_groups) | **GET** /CustomerGroups/overviewcount | Retrieve the overview count of customer groups based on the provided query parameters.
-*CustomerGroupsApi* | [**post_customergroups**](docs/CustomerGroupsApi.md#post_customergroups) | **POST** /CustomerGroups | Create new customer group, which gives the possibility to group customers togather and apply the same settings to them.
-*CustomerGroupsApi* | [**post_customergroups_search**](docs/CustomerGroupsApi.md#post_customergroups_search) | **POST** /CustomerGroups/search | Retrieve customer group by name.
-*CustomerGroupsApi* | [**post_customergroups_uuid_settings_automaticsettlement**](docs/CustomerGroupsApi.md#post_customergroups_uuid_settings_automaticsettlement) | **POST** /CustomerGroups/{uuid}/settings/automaticsettlement | Update auto-settlement settings of customer group.
-*CustomerGroupsApi* | [**post_customergroups_uuid_updatename**](docs/CustomerGroupsApi.md#post_customergroups_uuid_updatename) | **POST** /CustomerGroups/{uuid}/updatename | Update name of customer group.
-*CustomersApi* | [**bulk_change_customer_group**](docs/CustomersApi.md#bulk_change_customer_group) | **POST** /Customers/bulk/customergroup | Move multiple customers to customer group in bulk.
-*CustomersApi* | [**change_customer_billing_details**](docs/CustomersApi.md#change_customer_billing_details) | **POST** /Customers/{customeruuid}/billingdetails | Update billing details of a customer.
-*CustomersApi* | [**change_customer_communication_preferences**](docs/CustomersApi.md#change_customer_communication_preferences) | **POST** /Customers/{customeruuid}/communicationpreferences | Update communication preferences of a customer.
-*CustomersApi* | [**change_customer_contact_details**](docs/CustomersApi.md#change_customer_contact_details) | **POST** /Customers/{customeruuid}/contactdetails | Update contact details of a customer.
-*CustomersApi* | [**change_customer_details**](docs/CustomersApi.md#change_customer_details) | **POST** /Customers/{customeruuid}/details | Update details of a customer.
-*CustomersApi* | [**change_customer_group**](docs/CustomersApi.md#change_customer_group) | **POST** /Customers/{customeruuid}/customergroup | Move customer to a different customer group.
-*CustomersApi* | [**change_customer_invoice_address**](docs/CustomersApi.md#change_customer_invoice_address) | **POST** /Customers/{customeruuid}/invoiceaddress | Update invoice address of a customer.
-*CustomersApi* | [**change_portal_details**](docs/CustomersApi.md#change_portal_details) | **POST** /Customers/{customeruuid}/portaldetails | Update customer portal details of a customer.
-*CustomersApi* | [**create_customer**](docs/CustomersApi.md#create_customer) | **POST** /Customers | Create new customer.
-*CustomersApi* | [**filter_all_customers**](docs/CustomersApi.md#filter_all_customers) | **POST** /Customers/filter | Retrieve customers based on the provided query parameters.
-*CustomersApi* | [**filter_overview_count_customers**](docs/CustomersApi.md#filter_overview_count_customers) | **POST** /Customers/filter/overviewcount | Retrieve the overview count of customers based on the provided query parameters.
-*CustomersApi* | [**get_customer**](docs/CustomersApi.md#get_customer) | **GET** /Customers/{customeruuid} | Retrieve a customer by its ID.
-*CustomersApi* | [**get_customer_by_account_number**](docs/CustomersApi.md#get_customer_by_account_number) | **GET** /Customers/ByAccountNumber/{customerAccountNumber} | Retrieve a customer by its account number.
-*CustomersApi* | [**post_customers_annualstatement_year_filter_overviewcount**](docs/CustomersApi.md#post_customers_annualstatement_year_filter_overviewcount) | **POST** /Customers/annualstatement/{year}/filter/overviewcount | Retrieve the overview count of annual statements for filtered customers based on the provided query parameters.
-*CustomersApi* | [**post_customers_bulk_createannualstatement**](docs/CustomersApi.md#post_customers_bulk_createannualstatement) | **POST** /Customers/bulk/createannualstatement | Create and generate annual statements for multiple customers in bulk.
-*CustomersApi* | [**post_customers_entityid_customproperties**](docs/CustomersApi.md#post_customers_entityid_customproperties) | **POST** /Customers/{entityId}/customproperties | /Customers/{entityId}/customproperties - POST
-*CustomersApi* | [**send_customer_communication_via_email**](docs/CustomersApi.md#send_customer_communication_via_email) | **POST** /Customers/{customeruuid}/send/{subType} | Send email to a customer.
-*MetersApi* | [**get_meters**](docs/MetersApi.md#get_meters) | **GET** /Meters | Retrieve meters based on the provided query parameters.
-*MetersApi* | [**get_meters_meteruuid**](docs/MetersApi.md#get_meters_meteruuid) | **GET** /Meters/{meteruuid} | Retrieve a meter by its ID.
-*MetersApi* | [**get_meters_overviewcount**](docs/MetersApi.md#get_meters_overviewcount) | **GET** /Meters/overviewcount | Retrieve the overview count of meters based on the provided query parameters.
-*MetersApi* | [**post_meters**](docs/MetersApi.md#post_meters) | **POST** /Meters | Create new meter.
-*MetersApi* | [**post_meters_bulk_uninstall**](docs/MetersApi.md#post_meters_bulk_uninstall) | **POST** /Meters/bulk/uninstall | Uninstall multiple installed meters in bulk.
-*MetersApi* | [**post_meters_entityid_customproperties**](docs/MetersApi.md#post_meters_entityid_customproperties) | **POST** /Meters/{entityId}/customproperties | /Meters/{entityId}/customproperties - POST
-*MetersApi* | [**post_meters_meteruuid_channels**](docs/MetersApi.md#post_meters_meteruuid_channels) | **POST** /Meters/{meteruuid}/channels | Update channels configured on a meter.
-*MetersApi* | [**post_meters_meteruuid_details**](docs/MetersApi.md#post_meters_meteruuid_details) | **POST** /Meters/{meteruuid}/details | Update details of a meter.
-*MetersApi* | [**post_meters_meteruuid_install**](docs/MetersApi.md#post_meters_meteruuid_install) | **POST** /Meters/{meteruuid}/install | Install an uninstalled meter.
-*MetersApi* | [**post_meters_meteruuid_metertag**](docs/MetersApi.md#post_meters_meteruuid_metertag) | **POST** /Meters/{meteruuid}/metertag | Update meter tag.
-*MetersApi* | [**post_meters_meteruuid_submeter_add**](docs/MetersApi.md#post_meters_meteruuid_submeter_add) | **POST** /Meters/{meteruuid}/submeter/add | Set this meter as a parent meter of another meter.
-*MetersApi* | [**post_meters_meteruuid_uninstall**](docs/MetersApi.md#post_meters_meteruuid_uninstall) | **POST** /Meters/{meteruuid}/uninstall | Uninstall an installed meter.
-*MetersApi* | [**post_meters_meteruuid_updateparentrelation**](docs/MetersApi.md#post_meters_meteruuid_updateparentrelation) | **POST** /Meters/{meteruuid}/updateparentrelation | Set this meter as a sub-meter of another meter.
-*MetersApi* | [**post_meters_meteruuid_validate**](docs/MetersApi.md#post_meters_meteruuid_validate) | **POST** /Meters/{meteruuid}/validate | Trigger meter validation.
-*MoveRequestsApi* | [**delete_moverequests**](docs/MoveRequestsApi.md#delete_moverequests) | **DELETE** /MoveRequests | Delete multiple move requests in bulk.
-*MoveRequestsApi* | [**delete_moverequests_moverequestuuid**](docs/MoveRequestsApi.md#delete_moverequests_moverequestuuid) | **DELETE** /MoveRequests/{moverequestuuid} | Delete move request.
-*MoveRequestsApi* | [**get_moverequests**](docs/MoveRequestsApi.md#get_moverequests) | **GET** /MoveRequests | Retrieve move requests based on the provided query parameters.
-*MoveRequestsApi* | [**get_moverequests_externalid_externalid**](docs/MoveRequestsApi.md#get_moverequests_externalid_externalid) | **GET** /MoveRequests/externalid/{externalId} | Retrieve a move request by its external ID.
-*MoveRequestsApi* | [**get_moverequests_moverequestuuid**](docs/MoveRequestsApi.md#get_moverequests_moverequestuuid) | **GET** /MoveRequests/{moverequestuuid} | Retrieve a move request by its ID.
-*MoveRequestsApi* | [**get_moverequests_overviewcount**](docs/MoveRequestsApi.md#get_moverequests_overviewcount) | **GET** /MoveRequests/overviewcount | Retrieve the overview count of move requests based on the provided query parameters.
-*MoveRequestsApi* | [**post_moverequests**](docs/MoveRequestsApi.md#post_moverequests) | **POST** /MoveRequests | Create new move request.
-*MoveRequestsApi* | [**post_moverequests_bulk_reject**](docs/MoveRequestsApi.md#post_moverequests_bulk_reject) | **POST** /MoveRequests/bulk/reject | Reject multiple uncompleted move requests in bulk.
-*MoveRequestsApi* | [**post_moverequests_bulk_setnew**](docs/MoveRequestsApi.md#post_moverequests_bulk_setnew) | **POST** /MoveRequests/bulk/setnew | Mark multiple uncompleted move requests as new in bulk.
-*MoveRequestsApi* | [**post_moverequests_bulk_setpending**](docs/MoveRequestsApi.md#post_moverequests_bulk_setpending) | **POST** /MoveRequests/bulk/setpending | Mark multiple uncompleted move requests as pending in bulk.
-*MoveRequestsApi* | [**post_moverequests_moverequestuuid_process**](docs/MoveRequestsApi.md#post_moverequests_moverequestuuid_process) | **POST** /MoveRequests/{moverequestuuid}/process | Process uncompleted move request.
-*MoveRequestsApi* | [**post_moverequests_moverequestuuid_reject**](docs/MoveRequestsApi.md#post_moverequests_moverequestuuid_reject) | **POST** /MoveRequests/{moverequestuuid}/reject | Reject uncompleted move request.
-*MoveRequestsApi* | [**post_moverequests_moverequestuuid_setnew**](docs/MoveRequestsApi.md#post_moverequests_moverequestuuid_setnew) | **POST** /MoveRequests/{moverequestuuid}/setnew | Mark uncompleted move request as new.
-*MoveRequestsApi* | [**post_moverequests_moverequestuuid_setpending**](docs/MoveRequestsApi.md#post_moverequests_moverequestuuid_setpending) | **POST** /MoveRequests/{moverequestuuid}/setpending | Mark uncompleted move request as pending.
-*MoveRequestsApi* | [**post_moverequests_moverequestuuid_updatecustomerdetails**](docs/MoveRequestsApi.md#post_moverequests_moverequestuuid_updatecustomerdetails) | **POST** /MoveRequests/{moverequestuuid}/updatecustomerdetails | Update customer details of a move request.
-*MoveRequestsApi* | [**post_moverequests_moverequestuuid_updatedetails**](docs/MoveRequestsApi.md#post_moverequests_moverequestuuid_updatedetails) | **POST** /MoveRequests/{moverequestuuid}/updatedetails | Update details of a move request.
-*MoveRequestsApi* | [**post_moverequests_moverequestuuid_updatemeasurementdetails**](docs/MoveRequestsApi.md#post_moverequests_moverequestuuid_updatemeasurementdetails) | **POST** /MoveRequests/{moverequestuuid}/updatemeasurementdetails | Update measurement details of a move request.
-*MoveRequestsApi* | [**post_moverequests_moverequestuuid_updatemutationdatetime**](docs/MoveRequestsApi.md#post_moverequests_moverequestuuid_updatemutationdatetime) | **POST** /MoveRequests/{moverequestuuid}/updateMutationDateTime | Update mutation date of a move request.
-*MoveRequestsApi* | [**post_moverequests_moverequestuuid_updateservicelocationdetails**](docs/MoveRequestsApi.md#post_moverequests_moverequestuuid_updateservicelocationdetails) | **POST** /MoveRequests/{moverequestuuid}/updateservicelocationdetails | Update location details of a move request.
-*PrepaymentAccountsApi* | [**get_prepaymentaccounts**](docs/PrepaymentAccountsApi.md#get_prepaymentaccounts) | **GET** /PrepaymentAccounts | Retrieve prepayment accounts based on the provided query parameters.
-*PrepaymentAccountsApi* | [**get_prepaymentaccounts_meter_meterid_contracts_distinct**](docs/PrepaymentAccountsApi.md#get_prepaymentaccounts_meter_meterid_contracts_distinct) | **GET** /PrepaymentAccounts/meter/{meterId}/contracts/distinct | Retrieve distinct prepayment contracts, which are linked to the meter.
-*PrepaymentAccountsApi* | [**get_prepaymentaccounts_prepaymentaccountid**](docs/PrepaymentAccountsApi.md#get_prepaymentaccounts_prepaymentaccountid) | **GET** /PrepaymentAccounts/{prepaymentAccountId} | Retrieve a prepayment account by its ID.
-*PrepaymentAccountsApi* | [**post_prepaymentaccounts_installedprepaymentmeters**](docs/PrepaymentAccountsApi.md#post_prepaymentaccounts_installedprepaymentmeters) | **POST** /PrepaymentAccounts/installedprepaymentmeters | Return locations with lists of prepayment meters installed on them, and utility types that are supported for prepayment on given location for each of these prepayment meters.
-*PrepaymentAccountsApi* | [**post_prepaymentaccounts_meter_meterid_externalreferences**](docs/PrepaymentAccountsApi.md#post_prepaymentaccounts_meter_meterid_externalreferences) | **POST** /PrepaymentAccounts/meter/{meterId}/externalReferences | Update external references on prepayment accounts related to given meter.
-*PropertyGroupsApi* | [**delete_propertygroups_bulk**](docs/PropertyGroupsApi.md#delete_propertygroups_bulk) | **DELETE** /PropertyGroups/bulk | Delete multiple location groups in bulk.
-*PropertyGroupsApi* | [**delete_propertygroups_propertygroupuuid**](docs/PropertyGroupsApi.md#delete_propertygroups_propertygroupuuid) | **DELETE** /PropertyGroups/{propertygroupuuid} | Delete a location group.
-*PropertyGroupsApi* | [**delete_propertygroups_propertygroupuuid_servicelocations**](docs/PropertyGroupsApi.md#delete_propertygroups_propertygroupuuid_servicelocations) | **DELETE** /PropertyGroups/{propertygroupuuid}/servicelocations | Remove locations from a location group.
-*PropertyGroupsApi* | [**get_propertygroups**](docs/PropertyGroupsApi.md#get_propertygroups) | **GET** /PropertyGroups | Retrieve location groups based on the provided query parameters.
-*PropertyGroupsApi* | [**get_propertygroups_overviewcount**](docs/PropertyGroupsApi.md#get_propertygroups_overviewcount) | **GET** /PropertyGroups/overviewcount | Retrieve the overview count of location groups based on the provided query parameters.
-*PropertyGroupsApi* | [**get_propertygroups_propertygroupuuid**](docs/PropertyGroupsApi.md#get_propertygroups_propertygroupuuid) | **GET** /PropertyGroups/{propertygroupuuid} | Retrieve a location group by its ID.
-*PropertyGroupsApi* | [**post_propertygroups**](docs/PropertyGroupsApi.md#post_propertygroups) | **POST** /PropertyGroups | Create new location group.
-*PropertyGroupsApi* | [**post_propertygroups_entityid_customproperties**](docs/PropertyGroupsApi.md#post_propertygroups_entityid_customproperties) | **POST** /PropertyGroups/{entityId}/customproperties | /PropertyGroups/{entityId}/customproperties - POST
-*PropertyGroupsApi* | [**post_propertygroups_propertygroupuuid**](docs/PropertyGroupsApi.md#post_propertygroups_propertygroupuuid) | **POST** /PropertyGroups/{propertygroupuuid} | Update details of a location group.
-*PropertyGroupsApi* | [**post_propertygroups_propertygroupuuid_communicationconfiguration**](docs/PropertyGroupsApi.md#post_propertygroups_propertygroupuuid_communicationconfiguration) | **POST** /PropertyGroups/{propertygroupuuid}/communicationconfiguration | Update communication configuration of a location group.
-*PropertyGroupsApi* | [**post_propertygroups_propertygroupuuid_managementrelations**](docs/PropertyGroupsApi.md#post_propertygroups_propertygroupuuid_managementrelations) | **POST** /PropertyGroups/{propertygroupuuid}/managementrelations | Update management relations of a location group.
-*PropertyGroupsApi* | [**post_propertygroups_propertygroupuuid_servicelocations**](docs/PropertyGroupsApi.md#post_propertygroups_propertygroupuuid_servicelocations) | **POST** /PropertyGroups/{propertygroupuuid}/servicelocations | Add locations to a location group.
-*ServiceLocationsApi* | [**bulk_update_service_location_product**](docs/ServiceLocationsApi.md#bulk_update_service_location_product) | **POST** /ServiceLocations/bulk/updateproduct | Update product for multiple locations in bulk.
-*ServiceLocationsApi* | [**create_service_location**](docs/ServiceLocationsApi.md#create_service_location) | **POST** /ServiceLocations | Create new location.
-*ServiceLocationsApi* | [**delete_servicelocations_bulk**](docs/ServiceLocationsApi.md#delete_servicelocations_bulk) | **DELETE** /ServiceLocations/bulk | Delete multiple unused locations in bulk.
-*ServiceLocationsApi* | [**filter_all_service_locations**](docs/ServiceLocationsApi.md#filter_all_service_locations) | **POST** /ServiceLocations/filter | Retrieve locations based on the provided query parameters.
-*ServiceLocationsApi* | [**filter_service_location_overview_count**](docs/ServiceLocationsApi.md#filter_service_location_overview_count) | **POST** /ServiceLocations/filter/overviewcount | Retrieve the overview count of locations based on the provided query parameters.
-*ServiceLocationsApi* | [**get_postal_addresses**](docs/ServiceLocationsApi.md#get_postal_addresses) | **GET** /ServiceLocations/postaladdresses | GetPostalAddresses
-*ServiceLocationsApi* | [**get_service_location**](docs/ServiceLocationsApi.md#get_service_location) | **GET** /ServiceLocations/{servicelocationuuid} | Retrieve a location by its ID.
-*ServiceLocationsApi* | [**post_servicelocations_bulk_recalculateeav**](docs/ServiceLocationsApi.md#post_servicelocations_bulk_recalculateeav) | **POST** /ServiceLocations/bulk/recalculateeav | Trigger recalculation of EAV for multiple locations in bulk.
-*ServiceLocationsApi* | [**post_servicelocations_entityid_customproperties**](docs/ServiceLocationsApi.md#post_servicelocations_entityid_customproperties) | **POST** /ServiceLocations/{entityId}/customproperties | /ServiceLocations/{entityId}/customproperties - POST
-*ServiceLocationsApi* | [**update_service_location_address**](docs/ServiceLocationsApi.md#update_service_location_address) | **POST** /ServiceLocations/{servicelocationuuid}/updateaddress | Update addres of a location.
-*ServiceLocationsApi* | [**update_service_location_external_id**](docs/ServiceLocationsApi.md#update_service_location_external_id) | **POST** /ServiceLocations/{servicelocationuuid}/updateexternalid | Update external ID of a location.
-*ServiceLocationsApi* | [**update_service_location_management_details**](docs/ServiceLocationsApi.md#update_service_location_management_details) | **POST** /ServiceLocations/{servicelocationuuid}/updatemanagementdetails | Update management relations of a location.
-*ServiceLocationsApi* | [**update_service_location_product**](docs/ServiceLocationsApi.md#update_service_location_product) | **POST** /ServiceLocations/{servicelocationuuid}/updateproduct | Update product for a location.
+*DefaultApi* | [**add_contract_service**](docs/DefaultApi.md#add_contract_service) | **POST** /Contracts/{contractId}/addservice | AddContractService
+*DefaultApi* | [**add_contracted_services**](docs/DefaultApi.md#add_contracted_services) | **PUT** /Contracts/{contractuuid}/services/add | Add locations and/or services to be supplied on a contract.
+*DefaultApi* | [**bulk_add_contract_service**](docs/DefaultApi.md#bulk_add_contract_service) | **POST** /Contracts/bulk/addservice | BulkAddContractService
+*DefaultApi* | [**bulk_change_customer_group**](docs/DefaultApi.md#bulk_change_customer_group) | **POST** /Customers/bulk/customergroup | Move multiple customers to customer group in bulk.
+*DefaultApi* | [**bulk_remove_contract_service**](docs/DefaultApi.md#bulk_remove_contract_service) | **POST** /Contracts/bulk/removeservice | BulkRemoveContractService
+*DefaultApi* | [**bulk_update_service_location_product**](docs/DefaultApi.md#bulk_update_service_location_product) | **POST** /ServiceLocations/bulk/updateproduct | Update product for multiple locations in bulk.
+*DefaultApi* | [**bulk_update_service_location_services**](docs/DefaultApi.md#bulk_update_service_location_services) | **POST** /ServiceLocations/bulk/updateservices | Update which services are enabled on multiple service locations in bulk.
+*DefaultApi* | [**change_customer_billing_details**](docs/DefaultApi.md#change_customer_billing_details) | **POST** /Customers/{customeruuid}/billingdetails | Update billing details of a customer.
+*DefaultApi* | [**change_customer_collection_day**](docs/DefaultApi.md#change_customer_collection_day) | **POST** /Customers/{customeruuid}/collectionday | Update only the Direct Debit collection day of a customer. Narrow, single-purpose endpoint used by the resident portal self-service so residents can hold a minimal collection-day permission rather than the broad billing-details one (which also changes payment terms and default payment method).
+*DefaultApi* | [**change_customer_communication_preferences**](docs/DefaultApi.md#change_customer_communication_preferences) | **POST** /Customers/{customeruuid}/communicationpreferences | Update communication preferences of a customer.
+*DefaultApi* | [**change_customer_contact_details**](docs/DefaultApi.md#change_customer_contact_details) | **POST** /Customers/{customeruuid}/contactdetails | Update contact details of a customer.
+*DefaultApi* | [**change_customer_details**](docs/DefaultApi.md#change_customer_details) | **POST** /Customers/{customeruuid}/details | Update details of a customer.
+*DefaultApi* | [**change_customer_e_invoicing_settings**](docs/DefaultApi.md#change_customer_e_invoicing_settings) | **POST** /Customers/{customeruuid}/einvoicingsettings | Update e-invoicing settings of a customer.
+*DefaultApi* | [**change_customer_group**](docs/DefaultApi.md#change_customer_group) | **POST** /Customers/{customeruuid}/customergroup | Move customer to a different customer group.
+*DefaultApi* | [**change_customer_invoice_address**](docs/DefaultApi.md#change_customer_invoice_address) | **POST** /Customers/{customeruuid}/invoiceaddress | Update invoice address of a customer.
+*DefaultApi* | [**change_portal_details**](docs/DefaultApi.md#change_portal_details) | **POST** /Customers/{customeruuid}/portaldetails | Update customer portal details of a customer.
+*DefaultApi* | [**confirm_customer_portal_account**](docs/DefaultApi.md#confirm_customer_portal_account) | **POST** /Customers/{customeruuid}/portal/confirm | Confirm portal account of a customer
+*DefaultApi* | [**create_customer**](docs/DefaultApi.md#create_customer) | **POST** /Customers | Create new customer.
+*DefaultApi* | [**create_service_location**](docs/DefaultApi.md#create_service_location) | **POST** /ServiceLocations | Create new location.
+*DefaultApi* | [**delete_contracts_bulk**](docs/DefaultApi.md#delete_contracts_bulk) | **DELETE** /Contracts/bulk | Delete multiple draft contracts in bulk.
+*DefaultApi* | [**delete_contracts_contractuuid**](docs/DefaultApi.md#delete_contracts_contractuuid) | **DELETE** /Contracts/{contractuuid} | Delete a draft contract.
+*DefaultApi* | [**delete_customergroups_uuid**](docs/DefaultApi.md#delete_customergroups_uuid) | **DELETE** /CustomerGroups/{uuid} | Delete customer group.
+*DefaultApi* | [**delete_customers_bulk**](docs/DefaultApi.md#delete_customers_bulk) | **DELETE** /Customers/bulk | Delete multiple customers in bulk.
+*DefaultApi* | [**delete_customers_customeruuid**](docs/DefaultApi.md#delete_customers_customeruuid) | **DELETE** /Customers/{customeruuid} | Delete a customer.
+*DefaultApi* | [**delete_moverequests**](docs/DefaultApi.md#delete_moverequests) | **DELETE** /MoveRequests | Delete multiple move requests in bulk.
+*DefaultApi* | [**delete_moverequests_moverequestuuid**](docs/DefaultApi.md#delete_moverequests_moverequestuuid) | **DELETE** /MoveRequests/{moverequestuuid} | Delete move request.
+*DefaultApi* | [**delete_propertygroups_bulk**](docs/DefaultApi.md#delete_propertygroups_bulk) | **DELETE** /PropertyGroups/bulk | Delete multiple location groups in bulk.
+*DefaultApi* | [**delete_propertygroups_propertygroupuuid**](docs/DefaultApi.md#delete_propertygroups_propertygroupuuid) | **DELETE** /PropertyGroups/{propertygroupuuid} | Delete a location group.
+*DefaultApi* | [**delete_propertygroups_propertygroupuuid_servicelocations**](docs/DefaultApi.md#delete_propertygroups_propertygroupuuid_servicelocations) | **DELETE** /PropertyGroups/{propertygroupuuid}/servicelocations | Remove locations from a location group.
+*DefaultApi* | [**delete_servicelocations_bulk**](docs/DefaultApi.md#delete_servicelocations_bulk) | **DELETE** /ServiceLocations/bulk | Delete multiple unused locations in bulk.
+*DefaultApi* | [**filter_all_customers**](docs/DefaultApi.md#filter_all_customers) | **POST** /Customers/filter | Retrieve customers based on the provided query parameters.
+*DefaultApi* | [**filter_all_service_locations**](docs/DefaultApi.md#filter_all_service_locations) | **POST** /ServiceLocations/filter | Retrieve locations based on the provided query parameters.
+*DefaultApi* | [**filter_overview_count_customers**](docs/DefaultApi.md#filter_overview_count_customers) | **POST** /Customers/filter/overviewcount | Retrieve the overview count of customers based on the provided query parameters.
+*DefaultApi* | [**filter_overview_count_service_locations**](docs/DefaultApi.md#filter_overview_count_service_locations) | **POST** /ServiceLocations/filter/overviewcount | Retrieve the overview count of locations based on the provided query parameters.
+*DefaultApi* | [**filter_postal_addresses**](docs/DefaultApi.md#filter_postal_addresses) | **POST** /ServiceLocations/postaladdresses/filter | Retrieve postal addresses based on the provided query parameters. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**generate_customer_impersonation_token**](docs/DefaultApi.md#generate_customer_impersonation_token) | **POST** /Customers/{customeruuid}/portal/impersonate | Generate impersonation token for customer portal access.
+*DefaultApi* | [**get_accounting_costcenters_mapping**](docs/DefaultApi.md#get_accounting_costcenters_mapping) | **GET** /Accounting/costcenters/mapping | Retrieves a paged list of all categories (only property groups for now) that are mapped or need to be mapped to a cost centers.
+*DefaultApi* | [**get_accounting_costcenters_unmapped_overviewcount**](docs/DefaultApi.md#get_accounting_costcenters_unmapped_overviewcount) | **GET** /Accounting/costcenters/unmapped/overviewcount | Retrieves an overview count of all cost centers and the amount of items that still need mapping
+*DefaultApi* | [**get_accounting_costunits_mapping**](docs/DefaultApi.md#get_accounting_costunits_mapping) | **GET** /Accounting/costunits/mapping | Retrieves a paged list of cost center categories (only customer groups for now) that are mapped or need to be mapped to a cost units.
+*DefaultApi* | [**get_accounting_costunits_unmapped_overviewcount**](docs/DefaultApi.md#get_accounting_costunits_unmapped_overviewcount) | **GET** /Accounting/costunits/unmapped/overviewcount | Retrieves an overview count of all cost unit categories and the amount of items that still need mapping
+*DefaultApi* | [**get_accounting_itemcodes_mapping**](docs/DefaultApi.md#get_accounting_itemcodes_mapping) | **GET** /Accounting/itemcodes/mapping | Retrieves a paged list of item code mapping items
+*DefaultApi* | [**get_accounting_itemcodes_unmapped_overviewcount**](docs/DefaultApi.md#get_accounting_itemcodes_unmapped_overviewcount) | **GET** /Accounting/itemcodes/unmapped/overviewcount | Retrieves an overview count of all item code categories and the amount of items that still need mapping
+*DefaultApi* | [**get_accounting_projectcodes_mapping**](docs/DefaultApi.md#get_accounting_projectcodes_mapping) | **GET** /Accounting/projectcodes/mapping | Retrieves a paged list of project code mapping items
+*DefaultApi* | [**get_accounting_projectcodes_unmapped_overviewcount**](docs/DefaultApi.md#get_accounting_projectcodes_unmapped_overviewcount) | **GET** /Accounting/projectcodes/unmapped/overviewcount | Retrieves an overview count of all project code categories and the amount of items that still need mapping
+*DefaultApi* | [**get_contract_bulk_add_service_context**](docs/DefaultApi.md#get_contract_bulk_add_service_context) | **POST** /Contracts/filter/bulkaddservicecontext | GetContractBulkAddServiceContext
+*DefaultApi* | [**get_contract_bulk_remove_service_context**](docs/DefaultApi.md#get_contract_bulk_remove_service_context) | **POST** /Contracts/filter/bulkremoveservicecontext | GetContractBulkRemoveServiceContext
+*DefaultApi* | [**get_contracts_contractuuid**](docs/DefaultApi.md#get_contracts_contractuuid) | **GET** /Contracts/{contractuuid} | Retrieve a contract by its ID.
+*DefaultApi* | [**get_customer**](docs/DefaultApi.md#get_customer) | **GET** /Customers/{customeruuid} | Retrieve a customer by its ID.
+*DefaultApi* | [**get_customer_by_account_number**](docs/DefaultApi.md#get_customer_by_account_number) | **GET** /Customers/ByAccountNumber | Retrieve a customer by its account number.
+*DefaultApi* | [**get_customergroups**](docs/DefaultApi.md#get_customergroups) | **GET** /CustomerGroups | Retrieve customer groups based on the provided query parameters.
+*DefaultApi* | [**get_customergroups_customergroupuuid**](docs/DefaultApi.md#get_customergroups_customergroupuuid) | **GET** /CustomerGroups/{customerGroupuuId} | Retrieve customer group by its ID.
+*DefaultApi* | [**get_meters**](docs/DefaultApi.md#get_meters) | **GET** /Meters | REPLACED BY POST! Retrieve meters based on the provided query parameters.
+*DefaultApi* | [**get_meters_meteruuid**](docs/DefaultApi.md#get_meters_meteruuid) | **GET** /Meters/{meteruuid} | Retrieve a meter by its ID.
+*DefaultApi* | [**get_meters_overviewcount**](docs/DefaultApi.md#get_meters_overviewcount) | **GET** /Meters/overviewcount | REPLACED BY POST! Retrieve the overview count of meters based on the provided query parameters.
+*DefaultApi* | [**get_migrationadmin_latest_version**](docs/DefaultApi.md#get_migrationadmin_latest_version) | **GET** /MigrationAdmin/latest-version | /MigrationAdmin/latest-version - GET
+*DefaultApi* | [**get_moverequests**](docs/DefaultApi.md#get_moverequests) | **GET** /MoveRequests | Retrieve move requests based on the provided query parameters.
+*DefaultApi* | [**get_moverequests_externalid_externalid**](docs/DefaultApi.md#get_moverequests_externalid_externalid) | **GET** /MoveRequests/externalid/{externalId} | Retrieve a move request by its external ID.
+*DefaultApi* | [**get_moverequests_moverequestuuid**](docs/DefaultApi.md#get_moverequests_moverequestuuid) | **GET** /MoveRequests/{moverequestuuid} | Retrieve a move request by its ID.
+*DefaultApi* | [**get_moverequests_overviewcount**](docs/DefaultApi.md#get_moverequests_overviewcount) | **GET** /MoveRequests/overviewcount | Retrieve the overview count of move requests based on the provided query parameters.
+*DefaultApi* | [**get_overview_count_customer_groups**](docs/DefaultApi.md#get_overview_count_customer_groups) | **GET** /CustomerGroups/overviewcount | Retrieve the overview count of customer groups based on the provided query parameters.
+*DefaultApi* | [**get_postal_addresses**](docs/DefaultApi.md#get_postal_addresses) | **GET** /ServiceLocations/postaladdresses | Retrieves postal addresses (postal codes) for service locations matching the query filters.
+*DefaultApi* | [**get_propertygroups**](docs/DefaultApi.md#get_propertygroups) | **GET** /PropertyGroups | Retrieve location groups based on the provided query parameters.
+*DefaultApi* | [**get_propertygroups_overviewcount**](docs/DefaultApi.md#get_propertygroups_overviewcount) | **GET** /PropertyGroups/overviewcount | Retrieve the overview count of location groups based on the provided query parameters.
+*DefaultApi* | [**get_propertygroups_propertygroupuuid**](docs/DefaultApi.md#get_propertygroups_propertygroupuuid) | **GET** /PropertyGroups/{propertygroupuuid} | Retrieve a location group by its ID.
+*DefaultApi* | [**get_service_location**](docs/DefaultApi.md#get_service_location) | **GET** /ServiceLocations/{servicelocationuuid} | Retrieve a location by its ID.
+*DefaultApi* | [**get_service_location_bulk_update_services_context**](docs/DefaultApi.md#get_service_location_bulk_update_services_context) | **POST** /ServiceLocations/filter/bulkupdateservicescontext | Retrieves context for bulk update of service locations.
+*DefaultApi* | [**patch_accounting_costcenters_mapping**](docs/DefaultApi.md#patch_accounting_costcenters_mapping) | **PATCH** /Accounting/costcenters/mapping | Links multiple mapping items to a cost center in bulk.
+*DefaultApi* | [**patch_accounting_costcenters_mapping_mappingitemid**](docs/DefaultApi.md#patch_accounting_costcenters_mapping_mappingitemid) | **PATCH** /Accounting/costcenters/mapping/{mappingItemId} | Links a mapping item to a cost center.
+*DefaultApi* | [**patch_accounting_costunits_mapping**](docs/DefaultApi.md#patch_accounting_costunits_mapping) | **PATCH** /Accounting/costunits/mapping | Links multiple mapping items to a cost unit in bulk.
+*DefaultApi* | [**patch_accounting_costunits_mapping_mappingitemid**](docs/DefaultApi.md#patch_accounting_costunits_mapping_mappingitemid) | **PATCH** /Accounting/costunits/mapping/{mappingItemId} | Links a mapping item to a cost unit.
+*DefaultApi* | [**patch_accounting_itemcodes_mapping**](docs/DefaultApi.md#patch_accounting_itemcodes_mapping) | **PATCH** /Accounting/itemcodes/mapping | Links multiple mapping items to an item code in bulk.
+*DefaultApi* | [**patch_accounting_itemcodes_mapping_mappingitemid**](docs/DefaultApi.md#patch_accounting_itemcodes_mapping_mappingitemid) | **PATCH** /Accounting/itemcodes/mapping/{mappingItemId} | Links a mapping item to an item code.
+*DefaultApi* | [**patch_accounting_projectcodes_mapping**](docs/DefaultApi.md#patch_accounting_projectcodes_mapping) | **PATCH** /Accounting/projectcodes/mapping | Links multiple mapping items to a project code in bulk.
+*DefaultApi* | [**patch_accounting_projectcodes_mapping_mappingitemid**](docs/DefaultApi.md#patch_accounting_projectcodes_mapping_mappingitemid) | **PATCH** /Accounting/projectcodes/mapping/{mappingItemId} | Links a mapping item to a project code.
+*DefaultApi* | [**patch_contracts_contractuuid_billing_method**](docs/DefaultApi.md#patch_contracts_contractuuid_billing_method) | **PATCH** /Contracts/{contractuuid}/billing-method | Update billing method of a contract (Change of Mode PayG to/from Credit).
+*DefaultApi* | [**post_accounting_costcenters_mapping_filter**](docs/DefaultApi.md#post_accounting_costcenters_mapping_filter) | **POST** /Accounting/costcenters/mapping/filter | Retrieves a paged list of all categories (only property groups for now) that are mapped or need to be mapped to a cost centers. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_costunits_mapping_filter**](docs/DefaultApi.md#post_accounting_costunits_mapping_filter) | **POST** /Accounting/costunits/mapping/filter | Retrieves a paged list of cost center categories (only customer groups for now) that are mapped or need to be mapped to a cost units. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_itemcodes_mapping_filter**](docs/DefaultApi.md#post_accounting_itemcodes_mapping_filter) | **POST** /Accounting/itemcodes/mapping/filter | Retrieves a paged list of item code mapping items. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_projectcodes_mapping_filter**](docs/DefaultApi.md#post_accounting_projectcodes_mapping_filter) | **POST** /Accounting/projectcodes/mapping/filter | Retrieves a paged list of project code mapping items. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_contracts**](docs/DefaultApi.md#post_contracts) | **POST** /Contracts | Create new contract.
+*DefaultApi* | [**post_contracts_bulk_block**](docs/DefaultApi.md#post_contracts_bulk_block) | **POST** /Contracts/bulk/block | Mark multiple contracts as blocked in bulk.
+*DefaultApi* | [**post_contracts_bulk_estimate**](docs/DefaultApi.md#post_contracts_bulk_estimate) | **POST** /Contracts/bulk/estimate | Trigger recalculation of EAV for multiple contracts in bulk.
+*DefaultApi* | [**post_contracts_bulk_sign**](docs/DefaultApi.md#post_contracts_bulk_sign) | **POST** /Contracts/bulk/sign | Sign multiple contracts in bulk.
+*DefaultApi* | [**post_contracts_bulk_terminate**](docs/DefaultApi.md#post_contracts_bulk_terminate) | **POST** /Contracts/bulk/terminate | Terminate multiple signed contracts in bulk.
+*DefaultApi* | [**post_contracts_bulk_unblock**](docs/DefaultApi.md#post_contracts_bulk_unblock) | **POST** /Contracts/bulk/unblock | Mark multiple contracts as unblocked in bulk.
+*DefaultApi* | [**post_contracts_bulk_updateconsumptiongroups**](docs/DefaultApi.md#post_contracts_bulk_updateconsumptiongroups) | **POST** /Contracts/bulk/updateConsumptionGroups | Update consumptiongroup on multiple contracts in bulk.
+*DefaultApi* | [**post_contracts_bulk_updateproduct**](docs/DefaultApi.md#post_contracts_bulk_updateproduct) | **POST** /Contracts/bulk/updateproduct | Update product on multiple contracts in bulk.
+*DefaultApi* | [**post_contracts_contractuuid_block**](docs/DefaultApi.md#post_contracts_contractuuid_block) | **POST** /Contracts/{contractuuid}/block | Mark a contract as blocked for billing.
+*DefaultApi* | [**post_contracts_contractuuid_changeadvanceamount**](docs/DefaultApi.md#post_contracts_contractuuid_changeadvanceamount) | **POST** /Contracts/{contractuuid}/changeadvanceamount | Update the advance amount for a draft contract.
+*DefaultApi* | [**post_contracts_contractuuid_consumptiongroups**](docs/DefaultApi.md#post_contracts_contractuuid_consumptiongroups) | **POST** /Contracts/{contractuuid}/consumptiongroups | Updates the consumption groups and their estimated values for services provided on a contract.
+*DefaultApi* | [**post_contracts_contractuuid_sign**](docs/DefaultApi.md#post_contracts_contractuuid_sign) | **POST** /Contracts/{contractuuid}/sign | Sign a contract.
+*DefaultApi* | [**post_contracts_contractuuid_terminate**](docs/DefaultApi.md#post_contracts_contractuuid_terminate) | **POST** /Contracts/{contractuuid}/terminate | Terminate a signed contract.
+*DefaultApi* | [**post_contracts_contractuuid_unblock**](docs/DefaultApi.md#post_contracts_contractuuid_unblock) | **POST** /Contracts/{contractuuid}/unblock | Mark a contract as unblocked for billing.
+*DefaultApi* | [**post_contracts_contractuuid_updatebillingdetails**](docs/DefaultApi.md#post_contracts_contractuuid_updatebillingdetails) | **POST** /Contracts/{contractuuid}/updatebillingdetails | Update billing details of a contract.
+*DefaultApi* | [**post_contracts_contractuuid_updateexternalcontractreference**](docs/DefaultApi.md#post_contracts_contractuuid_updateexternalcontractreference) | **POST** /Contracts/{contractuuid}/updateexternalcontractreference | Update the external contract reference.
+*DefaultApi* | [**post_contracts_contractuuid_updateproduct**](docs/DefaultApi.md#post_contracts_contractuuid_updateproduct) | **POST** /Contracts/{contractuuid}/updateproduct | Update product of a contract.
+*DefaultApi* | [**post_contracts_entityid_customproperties**](docs/DefaultApi.md#post_contracts_entityid_customproperties) | **POST** /Contracts/{entityId}/customproperties | /Contracts/{entityId}/customproperties - POST
+*DefaultApi* | [**post_contracts_filter**](docs/DefaultApi.md#post_contracts_filter) | **POST** /Contracts/filter | Retrieve contracts based on the provided query parameters.
+*DefaultApi* | [**post_contracts_filter_overviewcount**](docs/DefaultApi.md#post_contracts_filter_overviewcount) | **POST** /Contracts/filter/overviewcount | Retrieve the overview count of contracts based on the provided query parameters.
+*DefaultApi* | [**post_contracts_filter_uniqueutilitytypes**](docs/DefaultApi.md#post_contracts_filter_uniqueutilitytypes) | **POST** /Contracts/filter/uniqueUtilityTypes | Retrieve unique utilityTypes for the filters.
+*DefaultApi* | [**post_customergroups**](docs/DefaultApi.md#post_customergroups) | **POST** /CustomerGroups | Create new customer group, which gives the possibility to group customers togather and apply the same settings to them.
+*DefaultApi* | [**post_customergroups_filter**](docs/DefaultApi.md#post_customergroups_filter) | **POST** /CustomerGroups/filter | Retrieve customer groups based on the provided query parameters. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_customergroups_filter_overviewcount**](docs/DefaultApi.md#post_customergroups_filter_overviewcount) | **POST** /CustomerGroups/filter/overviewcount | Retrieve the overview count of customer groups based on the provided query parameters. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_customergroups_search**](docs/DefaultApi.md#post_customergroups_search) | **POST** /CustomerGroups/search | Retrieve customer group by name.
+*DefaultApi* | [**post_customergroups_uuid_settings_automaticsettlement**](docs/DefaultApi.md#post_customergroups_uuid_settings_automaticsettlement) | **POST** /CustomerGroups/{uuid}/settings/automaticsettlement | Update auto-settlement settings of customer group.
+*DefaultApi* | [**post_customergroups_uuid_updatename**](docs/DefaultApi.md#post_customergroups_uuid_updatename) | **POST** /CustomerGroups/{uuid}/updatename | Update name of customer group.
+*DefaultApi* | [**post_customers_annualstatement_year_filter_overviewcount**](docs/DefaultApi.md#post_customers_annualstatement_year_filter_overviewcount) | **POST** /Customers/annualstatement/{year}/filter/overviewcount | Retrieve the overview count of annual statements for filtered customers based on the provided query parameters.
+*DefaultApi* | [**post_customers_bulk_createannualstatement**](docs/DefaultApi.md#post_customers_bulk_createannualstatement) | **POST** /Customers/bulk/createannualstatement | Create and generate annual statements for multiple customers in bulk.
+*DefaultApi* | [**post_customers_entityid_customproperties**](docs/DefaultApi.md#post_customers_entityid_customproperties) | **POST** /Customers/{entityId}/customproperties | /Customers/{entityId}/customproperties - POST
+*DefaultApi* | [**post_meters**](docs/DefaultApi.md#post_meters) | **POST** /Meters | Create new meter.
+*DefaultApi* | [**post_meters_bulk_delete**](docs/DefaultApi.md#post_meters_bulk_delete) | **POST** /Meters/bulk/delete | Soft-delete multiple meters in bulk.
+*DefaultApi* | [**post_meters_bulk_reconfigure_from_model**](docs/DefaultApi.md#post_meters_bulk_reconfigure_from_model) | **POST** /Meters/bulk/reconfigure-from-model | Reconfigure multiple meters from a model&#39;s channel templates in bulk.
+*DefaultApi* | [**post_meters_bulk_uninstall**](docs/DefaultApi.md#post_meters_bulk_uninstall) | **POST** /Meters/bulk/uninstall | Uninstall multiple installed meters in bulk.
+*DefaultApi* | [**post_meters_entityid_customproperties**](docs/DefaultApi.md#post_meters_entityid_customproperties) | **POST** /Meters/{entityId}/customproperties | /Meters/{entityId}/customproperties - POST
+*DefaultApi* | [**post_meters_filter**](docs/DefaultApi.md#post_meters_filter) | **POST** /Meters/filter | Retrieve meters based on the provided query parameters.
+*DefaultApi* | [**post_meters_filter_overviewcount**](docs/DefaultApi.md#post_meters_filter_overviewcount) | **POST** /Meters/filter/overviewcount | Retrieve the overview count of meters based on the provided query parameters.
+*DefaultApi* | [**post_meters_meteruuid_channels**](docs/DefaultApi.md#post_meters_meteruuid_channels) | **POST** /Meters/{meteruuid}/channels | Update channels configured on a meter.
+*DefaultApi* | [**post_meters_meteruuid_delete**](docs/DefaultApi.md#post_meters_meteruuid_delete) | **POST** /Meters/{meteruuid}/delete | Soft-delete a meter that was never installed, freeing its serial number for reuse.
+*DefaultApi* | [**post_meters_meteruuid_details**](docs/DefaultApi.md#post_meters_meteruuid_details) | **POST** /Meters/{meteruuid}/details | Update details of a meter.
+*DefaultApi* | [**post_meters_meteruuid_install**](docs/DefaultApi.md#post_meters_meteruuid_install) | **POST** /Meters/{meteruuid}/install | Install an uninstalled meter.
+*DefaultApi* | [**post_meters_meteruuid_metertag**](docs/DefaultApi.md#post_meters_meteruuid_metertag) | **POST** /Meters/{meteruuid}/metertag | Update meter tag.
+*DefaultApi* | [**post_meters_meteruuid_submeter_add**](docs/DefaultApi.md#post_meters_meteruuid_submeter_add) | **POST** /Meters/{meteruuid}/submeter/add | Set this meter as a parent meter of another meter.
+*DefaultApi* | [**post_meters_meteruuid_uninstall**](docs/DefaultApi.md#post_meters_meteruuid_uninstall) | **POST** /Meters/{meteruuid}/uninstall | Uninstall an installed meter.
+*DefaultApi* | [**post_meters_meteruuid_updateparentrelation**](docs/DefaultApi.md#post_meters_meteruuid_updateparentrelation) | **POST** /Meters/{meteruuid}/updateparentrelation | Set this meter as a sub-meter of another meter.
+*DefaultApi* | [**post_meters_meteruuid_validate**](docs/DefaultApi.md#post_meters_meteruuid_validate) | **POST** /Meters/{meteruuid}/validate | Trigger meter validation.
+*DefaultApi* | [**post_moverequests**](docs/DefaultApi.md#post_moverequests) | **POST** /MoveRequests | Create new move request.
+*DefaultApi* | [**post_moverequests_bulk_reject**](docs/DefaultApi.md#post_moverequests_bulk_reject) | **POST** /MoveRequests/bulk/reject | Reject multiple uncompleted move requests in bulk.
+*DefaultApi* | [**post_moverequests_bulk_setnew**](docs/DefaultApi.md#post_moverequests_bulk_setnew) | **POST** /MoveRequests/bulk/setnew | Mark multiple uncompleted move requests as new in bulk.
+*DefaultApi* | [**post_moverequests_bulk_setpending**](docs/DefaultApi.md#post_moverequests_bulk_setpending) | **POST** /MoveRequests/bulk/setpending | Mark multiple uncompleted move requests as pending in bulk.
+*DefaultApi* | [**post_moverequests_filter**](docs/DefaultApi.md#post_moverequests_filter) | **POST** /MoveRequests/filter | Retrieve move requests based on the provided query parameters. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_moverequests_filter_overviewcount**](docs/DefaultApi.md#post_moverequests_filter_overviewcount) | **POST** /MoveRequests/filter/overviewcount | Retrieve the overview count of move requests based on the provided query parameters. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_moverequests_moverequestuuid_process**](docs/DefaultApi.md#post_moverequests_moverequestuuid_process) | **POST** /MoveRequests/{moverequestuuid}/process | Process uncompleted move request.
+*DefaultApi* | [**post_moverequests_moverequestuuid_reject**](docs/DefaultApi.md#post_moverequests_moverequestuuid_reject) | **POST** /MoveRequests/{moverequestuuid}/reject | Reject uncompleted move request.
+*DefaultApi* | [**post_moverequests_moverequestuuid_setnew**](docs/DefaultApi.md#post_moverequests_moverequestuuid_setnew) | **POST** /MoveRequests/{moverequestuuid}/setnew | Mark uncompleted move request as new.
+*DefaultApi* | [**post_moverequests_moverequestuuid_setpending**](docs/DefaultApi.md#post_moverequests_moverequestuuid_setpending) | **POST** /MoveRequests/{moverequestuuid}/setpending | Mark uncompleted move request as pending.
+*DefaultApi* | [**post_moverequests_moverequestuuid_updatecustomerdetails**](docs/DefaultApi.md#post_moverequests_moverequestuuid_updatecustomerdetails) | **POST** /MoveRequests/{moverequestuuid}/updatecustomerdetails | Update customer details of a move request.
+*DefaultApi* | [**post_moverequests_moverequestuuid_updatedetails**](docs/DefaultApi.md#post_moverequests_moverequestuuid_updatedetails) | **POST** /MoveRequests/{moverequestuuid}/updatedetails | Update details of a move request.
+*DefaultApi* | [**post_moverequests_moverequestuuid_updatemeasurementdetails**](docs/DefaultApi.md#post_moverequests_moverequestuuid_updatemeasurementdetails) | **POST** /MoveRequests/{moverequestuuid}/updatemeasurementdetails | Update measurement details of a move request.
+*DefaultApi* | [**post_moverequests_moverequestuuid_updatemutationdatetime**](docs/DefaultApi.md#post_moverequests_moverequestuuid_updatemutationdatetime) | **POST** /MoveRequests/{moverequestuuid}/updateMutationDateTime | Update mutation date of a move request.
+*DefaultApi* | [**post_moverequests_moverequestuuid_updateservicelocationdetails**](docs/DefaultApi.md#post_moverequests_moverequestuuid_updateservicelocationdetails) | **POST** /MoveRequests/{moverequestuuid}/updateservicelocationdetails | Update location details of a move request.
+*DefaultApi* | [**post_propertygroups**](docs/DefaultApi.md#post_propertygroups) | **POST** /PropertyGroups | Create new location group.
+*DefaultApi* | [**post_propertygroups_entityid_customproperties**](docs/DefaultApi.md#post_propertygroups_entityid_customproperties) | **POST** /PropertyGroups/{entityId}/customproperties | /PropertyGroups/{entityId}/customproperties - POST
+*DefaultApi* | [**post_propertygroups_filter**](docs/DefaultApi.md#post_propertygroups_filter) | **POST** /PropertyGroups/filter | Retrieve location groups based on the provided query parameters. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_propertygroups_filter_overviewcount**](docs/DefaultApi.md#post_propertygroups_filter_overviewcount) | **POST** /PropertyGroups/filter/overviewcount | Retrieve the overview count of location groups based on the provided query parameters. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_propertygroups_propertygroupuuid**](docs/DefaultApi.md#post_propertygroups_propertygroupuuid) | **POST** /PropertyGroups/{propertygroupuuid} | Update details of a location group.
+*DefaultApi* | [**post_propertygroups_propertygroupuuid_communicationconfiguration**](docs/DefaultApi.md#post_propertygroups_propertygroupuuid_communicationconfiguration) | **POST** /PropertyGroups/{propertygroupuuid}/communicationconfiguration | Update communication configuration of a location group.
+*DefaultApi* | [**post_propertygroups_propertygroupuuid_managementrelations**](docs/DefaultApi.md#post_propertygroups_propertygroupuuid_managementrelations) | **POST** /PropertyGroups/{propertygroupuuid}/managementrelations | Update management relations of a location group.
+*DefaultApi* | [**post_propertygroups_propertygroupuuid_servicelocations**](docs/DefaultApi.md#post_propertygroups_propertygroupuuid_servicelocations) | **POST** /PropertyGroups/{propertygroupuuid}/servicelocations | Add locations to a location group.
+*DefaultApi* | [**post_servicelocations_bulk_archive**](docs/DefaultApi.md#post_servicelocations_bulk_archive) | **POST** /ServiceLocations/bulk/archive | Archive multiple service locations in bulk.
+*DefaultApi* | [**post_servicelocations_bulk_recalculateeav**](docs/DefaultApi.md#post_servicelocations_bulk_recalculateeav) | **POST** /ServiceLocations/bulk/recalculateeav | Trigger recalculation of EAV for multiple locations in bulk.
+*DefaultApi* | [**post_servicelocations_bulk_restore**](docs/DefaultApi.md#post_servicelocations_bulk_restore) | **POST** /ServiceLocations/bulk/restore | Restore multiple archived service locations in bulk.
+*DefaultApi* | [**post_servicelocations_entityid_customproperties**](docs/DefaultApi.md#post_servicelocations_entityid_customproperties) | **POST** /ServiceLocations/{entityId}/customproperties | /ServiceLocations/{entityId}/customproperties - POST
+*DefaultApi* | [**remove_contract_service**](docs/DefaultApi.md#remove_contract_service) | **POST** /Contracts/{contractId}/removeservice | RemoveContractService
+*DefaultApi* | [**remove_contracted_services**](docs/DefaultApi.md#remove_contracted_services) | **PUT** /Contracts/{contractuuid}/services/remove | Remove locations and/or services from being supplied on a contract.
+*DefaultApi* | [**reset_customer_portal_account**](docs/DefaultApi.md#reset_customer_portal_account) | **POST** /Customers/{customeruuid}/portal/reset | Reset portal account of a customer, which will delete the customer portal account and reset the portal properties.
+*DefaultApi* | [**send_customer_communication_via_email**](docs/DefaultApi.md#send_customer_communication_via_email) | **POST** /Customers/{customeruuid}/send/{subType} | Send email to a customer.
+*DefaultApi* | [**update_service_location_address**](docs/DefaultApi.md#update_service_location_address) | **POST** /ServiceLocations/{servicelocationuuid}/updateaddress | Update addres of a location.
+*DefaultApi* | [**update_service_location_external_id**](docs/DefaultApi.md#update_service_location_external_id) | **POST** /ServiceLocations/{servicelocationuuid}/updateexternalid | Update external ID of a location.
+*DefaultApi* | [**update_service_location_management_details**](docs/DefaultApi.md#update_service_location_management_details) | **POST** /ServiceLocations/{servicelocationuuid}/updatemanagementdetails | Update management relations of a location.
+*DefaultApi* | [**update_service_location_product**](docs/DefaultApi.md#update_service_location_product) | **POST** /ServiceLocations/{servicelocationuuid}/updateproduct | Update product for a location.
+*DefaultApi* | [**update_service_location_services**](docs/DefaultApi.md#update_service_location_services) | **POST** /ServiceLocations/{servicelocationuuid}/updateservices | Update which services are enabled on the service location. Only services that were never supplied can be removed.
 
 
 ## Documentation For Models
 
+ - [AccountingCodeLinkDTO](docs/AccountingCodeLinkDTO.md)
+ - [AccountingMappingStatus](docs/AccountingMappingStatus.md)
+ - [AddContractServiceEstimatedConsumptionRequest](docs/AddContractServiceEstimatedConsumptionRequest.md)
+ - [AddContractServiceRequest](docs/AddContractServiceRequest.md)
  - [AddContractedServicesRequest](docs/AddContractedServicesRequest.md)
  - [AddSubMeterRequest](docs/AddSubMeterRequest.md)
  - [AddressDTO](docs/AddressDTO.md)
- - [AdvanceAmountChangedBy](docs/AdvanceAmountChangedBy.md)
- - [AdvanceAmountLimitType](docs/AdvanceAmountLimitType.md)
- - [AdvanceCalculationFallbackReason](docs/AdvanceCalculationFallbackReason.md)
+ - [AdvanceCalculationType](docs/AdvanceCalculationType.md)
  - [AdvanceFrequency](docs/AdvanceFrequency.md)
- - [AdvanceRecalculationType](docs/AdvanceRecalculationType.md)
+ - [AdvancePeriodPercentage](docs/AdvancePeriodPercentage.md)
  - [AggregateDetailsDTO](docs/AggregateDetailsDTO.md)
- - [AggregationFrequency](docs/AggregationFrequency.md)
- - [AggregationType](docs/AggregationType.md)
- - [AnnualStatementOrigin](docs/AnnualStatementOrigin.md)
  - [AnnualStatementReference](docs/AnnualStatementReference.md)
  - [AnnualStatementStatus](docs/AnnualStatementStatus.md)
  - [ApiResponseDTO](docs/ApiResponseDTO.md)
- - [AppEnvironment](docs/AppEnvironment.md)
+ - [ApiResponseDTOOfContractBulkAddServiceContextDTO](docs/ApiResponseDTOOfContractBulkAddServiceContextDTO.md)
+ - [ApiResponseDTOOfContractBulkRemoveServiceContextDTO](docs/ApiResponseDTOOfContractBulkRemoveServiceContextDTO.md)
+ - [ApiResponseDTOOfContractDTO](docs/ApiResponseDTOOfContractDTO.md)
+ - [ApiResponseDTOOfContractOverviewCountDTO](docs/ApiResponseDTOOfContractOverviewCountDTO.md)
+ - [ApiResponseDTOOfCostCenterMappingOverviewCountResponseDTO](docs/ApiResponseDTOOfCostCenterMappingOverviewCountResponseDTO.md)
+ - [ApiResponseDTOOfCostUnitMappingOverviewCountResponseDTO](docs/ApiResponseDTOOfCostUnitMappingOverviewCountResponseDTO.md)
+ - [ApiResponseDTOOfCustomerAnnualStatementOverviewCountDTO](docs/ApiResponseDTOOfCustomerAnnualStatementOverviewCountDTO.md)
+ - [ApiResponseDTOOfCustomerDTO](docs/ApiResponseDTOOfCustomerDTO.md)
+ - [ApiResponseDTOOfCustomerGroupDTO](docs/ApiResponseDTOOfCustomerGroupDTO.md)
+ - [ApiResponseDTOOfCustomerGroupOverviewCountDTO](docs/ApiResponseDTOOfCustomerGroupOverviewCountDTO.md)
+ - [ApiResponseDTOOfCustomerOverviewCountDTO](docs/ApiResponseDTOOfCustomerOverviewCountDTO.md)
+ - [ApiResponseDTOOfItemCodeMappingOverviewCountDTO](docs/ApiResponseDTOOfItemCodeMappingOverviewCountDTO.md)
+ - [ApiResponseDTOOfMeterDTO](docs/ApiResponseDTOOfMeterDTO.md)
+ - [ApiResponseDTOOfMeterOverviewCountDTO](docs/ApiResponseDTOOfMeterOverviewCountDTO.md)
+ - [ApiResponseDTOOfMigrationLatestVersionDTO](docs/ApiResponseDTOOfMigrationLatestVersionDTO.md)
+ - [ApiResponseDTOOfMoveRequestDTO](docs/ApiResponseDTOOfMoveRequestDTO.md)
+ - [ApiResponseDTOOfMoveRequestOverviewCountDTO](docs/ApiResponseDTOOfMoveRequestOverviewCountDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfContractDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfContractDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfCostCenterMappingItemDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCostCenterMappingItemDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfCostUnitMappingItemDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCostUnitMappingItemDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfCustomerDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCustomerDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfCustomerGroupDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCustomerGroupDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfItemCodeMappingItemDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfItemCodeMappingItemDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfMeterDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfMeterDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfMoveRequestDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfMoveRequestDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfPostalCodeDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfPostalCodeDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfProjectCodeMappingItemDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfProjectCodeMappingItemDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfPropertyGroupDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfPropertyGroupDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfServiceLocationDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfServiceLocationDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfUtilityType](docs/ApiResponseDTOOfPagedResponseModelDTOOfUtilityType.md)
+ - [ApiResponseDTOOfProjectCodeMappingOverviewCountDTO](docs/ApiResponseDTOOfProjectCodeMappingOverviewCountDTO.md)
+ - [ApiResponseDTOOfPropertyGroupDTO](docs/ApiResponseDTOOfPropertyGroupDTO.md)
+ - [ApiResponseDTOOfPropertyGroupOverviewCountDTO](docs/ApiResponseDTOOfPropertyGroupOverviewCountDTO.md)
+ - [ApiResponseDTOOfServiceLocationBulkUpdateServicesContextDTO](docs/ApiResponseDTOOfServiceLocationBulkUpdateServicesContextDTO.md)
+ - [ApiResponseDTOOfServiceLocationDTO](docs/ApiResponseDTOOfServiceLocationDTO.md)
+ - [ApiResponseDTOOfServiceLocationOverviewCountDTO](docs/ApiResponseDTOOfServiceLocationOverviewCountDTO.md)
+ - [ApiResponseDTOOfboolean](docs/ApiResponseDTOOfboolean.md)
+ - [ApiResponseDTOOfstring](docs/ApiResponseDTOOfstring.md)
  - [AttachmentSignature](docs/AttachmentSignature.md)
- - [AttachmentVisibility](docs/AttachmentVisibility.md)
- - [AttributeType](docs/AttributeType.md)
  - [BankAccountDTO](docs/BankAccountDTO.md)
  - [BankAccountRequest](docs/BankAccountRequest.md)
- - [BankStatementCreditDebit](docs/BankStatementCreditDebit.md)
- - [BankTransactionType](docs/BankTransactionType.md)
- - [BillingCalculationStreamStatus](docs/BillingCalculationStreamStatus.md)
- - [BillingCalculationType](docs/BillingCalculationType.md)
- - [BillingCompletenessQuickFilter](docs/BillingCompletenessQuickFilter.md)
- - [BillingCompletenessStatus](docs/BillingCompletenessStatus.md)
- - [BillingCompletenessTariffInputType](docs/BillingCompletenessTariffInputType.md)
+ - [BaseQueryParams](docs/BaseQueryParams.md)
  - [BillingDetailsDTO](docs/BillingDetailsDTO.md)
- - [BillingItemLevel](docs/BillingItemLevel.md)
- - [BillingItemTariffCalculationType](docs/BillingItemTariffCalculationType.md)
- - [BillingItemTariffConditionType](docs/BillingItemTariffConditionType.md)
- - [BillingRelationScenarioType](docs/BillingRelationScenarioType.md)
- - [BillingScope](docs/BillingScope.md)
- - [BillingTariffInputType](docs/BillingTariffInputType.md)
+ - [BillingMethodPeriodReferenceDTO](docs/BillingMethodPeriodReferenceDTO.md)
  - [BlockContractRequest](docs/BlockContractRequest.md)
- - [BooleanApiResponseDTO](docs/BooleanApiResponseDTO.md)
+ - [BulkAddContractServiceRequest](docs/BulkAddContractServiceRequest.md)
+ - [BulkArchiveServiceLocationRequest](docs/BulkArchiveServiceLocationRequest.md)
  - [BulkBlockContractRequest](docs/BulkBlockContractRequest.md)
  - [BulkChangeCustomerCustomerGroupRequest](docs/BulkChangeCustomerCustomerGroupRequest.md)
  - [BulkCreateAnnualStatementRequest](docs/BulkCreateAnnualStatementRequest.md)
+ - [BulkDeleteMeterRequest](docs/BulkDeleteMeterRequest.md)
  - [BulkDeleteMoveRequestRequest](docs/BulkDeleteMoveRequestRequest.md)
  - [BulkDeletePropertyGroupRequest](docs/BulkDeletePropertyGroupRequest.md)
  - [BulkDeleteServiceLocationRequest](docs/BulkDeleteServiceLocationRequest.md)
+ - [BulkLinkCostCentersRequest](docs/BulkLinkCostCentersRequest.md)
+ - [BulkLinkCostUnitsRequest](docs/BulkLinkCostUnitsRequest.md)
+ - [BulkLinkItemCodesRequest](docs/BulkLinkItemCodesRequest.md)
+ - [BulkLinkProjectCodesRequest](docs/BulkLinkProjectCodesRequest.md)
  - [BulkRecalculateEavContractRequest](docs/BulkRecalculateEavContractRequest.md)
  - [BulkRecalculateEavServiceLocationRequest](docs/BulkRecalculateEavServiceLocationRequest.md)
+ - [BulkReconfigureMeterFromModelRequest](docs/BulkReconfigureMeterFromModelRequest.md)
  - [BulkRejectMoveRequest](docs/BulkRejectMoveRequest.md)
  - [BulkRemoveContractRequest](docs/BulkRemoveContractRequest.md)
+ - [BulkRemoveContractServiceRequest](docs/BulkRemoveContractServiceRequest.md)
+ - [BulkRemoveCustomerRequest](docs/BulkRemoveCustomerRequest.md)
+ - [BulkRestoreServiceLocationRequest](docs/BulkRestoreServiceLocationRequest.md)
  - [BulkSetMoveRequestToNew](docs/BulkSetMoveRequestToNew.md)
  - [BulkSetMoveRequestToPendingRequest](docs/BulkSetMoveRequestToPendingRequest.md)
  - [BulkSignContractRequest](docs/BulkSignContractRequest.md)
  - [BulkTerminateContractRequest](docs/BulkTerminateContractRequest.md)
  - [BulkUnblockContractRequest](docs/BulkUnblockContractRequest.md)
  - [BulkUninstallMeterRequest](docs/BulkUninstallMeterRequest.md)
+ - [BulkUpdateContractConsumptionGroupForUtilityRequest](docs/BulkUpdateContractConsumptionGroupForUtilityRequest.md)
  - [BulkUpdateContractProductRequest](docs/BulkUpdateContractProductRequest.md)
  - [BulkUpdateServiceLocationProductRequest](docs/BulkUpdateServiceLocationProductRequest.md)
- - [CalculatedLineStatus](docs/CalculatedLineStatus.md)
  - [Calendar](docs/Calendar.md)
- - [CalendarAlgorithmType](docs/CalendarAlgorithmType.md)
- - [CalendarWeekRule](docs/CalendarWeekRule.md)
  - [ChangeContractServiceEstimatedConsumptionRequest](docs/ChangeContractServiceEstimatedConsumptionRequest.md)
  - [ChangeContractServiceLocationRequest](docs/ChangeContractServiceLocationRequest.md)
- - [ChangeContractedServicesRequest](docs/ChangeContractedServicesRequest.md)
  - [ChangeCustomerCommunicationPreferencesRequest](docs/ChangeCustomerCommunicationPreferencesRequest.md)
  - [ChangeCustomerContactDetailsRequest](docs/ChangeCustomerContactDetailsRequest.md)
  - [ChangeCustomerCustomerGroupRequest](docs/ChangeCustomerCustomerGroupRequest.md)
  - [ChangeCustomerDetailsRequest](docs/ChangeCustomerDetailsRequest.md)
  - [ChangeDraftContractAdvanceAmountRequest](docs/ChangeDraftContractAdvanceAmountRequest.md)
- - [CollectionCaseQuickFilter](docs/CollectionCaseQuickFilter.md)
- - [CollectionChargeType](docs/CollectionChargeType.md)
- - [CollectionFlowStatus](docs/CollectionFlowStatus.md)
- - [CollectionStepLevel](docs/CollectionStepLevel.md)
- - [CollectionStepStatus](docs/CollectionStepStatus.md)
- - [CollectionStepType](docs/CollectionStepType.md)
  - [CommunicationConfigurationDTO](docs/CommunicationConfigurationDTO.md)
- - [CommunicationDocumentType](docs/CommunicationDocumentType.md)
- - [CommunicationEntryQuickFilter](docs/CommunicationEntryQuickFilter.md)
- - [CommunicationEntryStatus](docs/CommunicationEntryStatus.md)
  - [CommunicationType](docs/CommunicationType.md)
  - [CompareInfo](docs/CompareInfo.md)
- - [ConsumerGroupOrigin](docs/ConsumerGroupOrigin.md)
- - [ConsumerGroupSuggestion](docs/ConsumerGroupSuggestion.md)
- - [ConsumptionOrigin](docs/ConsumptionOrigin.md)
+ - [ConfirmCustomerPortalAccountRequest](docs/ConfirmCustomerPortalAccountRequest.md)
  - [ContactEntryDTO](docs/ContactEntryDTO.md)
  - [ContactEntryRequest](docs/ContactEntryRequest.md)
  - [ContactType](docs/ContactType.md)
  - [ContractBillingMethod](docs/ContractBillingMethod.md)
+ - [ContractBulkAddServiceContextDTO](docs/ContractBulkAddServiceContextDTO.md)
+ - [ContractBulkRemoveServiceContextDTO](docs/ContractBulkRemoveServiceContextDTO.md)
  - [ContractDTO](docs/ContractDTO.md)
- - [ContractDTOApiResponseDTO](docs/ContractDTOApiResponseDTO.md)
- - [ContractDTOListApiResponseDTO](docs/ContractDTOListApiResponseDTO.md)
- - [ContractDTOPagedResponseModelDTO](docs/ContractDTOPagedResponseModelDTO.md)
- - [ContractDTOPagedResponseModelDTOApiResponseDTO](docs/ContractDTOPagedResponseModelDTOApiResponseDTO.md)
  - [ContractDetailsBillingPropertiesBaseDTO](docs/ContractDetailsBillingPropertiesBaseDTO.md)
+ - [ContractDetailsBillingPropertiesBaseDTOContractDetailsBillingPropertiesCreditDTO](docs/ContractDetailsBillingPropertiesBaseDTOContractDetailsBillingPropertiesCreditDTO.md)
+ - [ContractDetailsBillingPropertiesBaseDTOContractDetailsBillingPropertiesPrepaymentDTO](docs/ContractDetailsBillingPropertiesBaseDTOContractDetailsBillingPropertiesPrepaymentDTO.md)
  - [ContractDetailsDTO](docs/ContractDetailsDTO.md)
  - [ContractEstimationDTO](docs/ContractEstimationDTO.md)
  - [ContractOverviewCountDTO](docs/ContractOverviewCountDTO.md)
- - [ContractOverviewCountDTOApiResponseDTO](docs/ContractOverviewCountDTOApiResponseDTO.md)
- - [ContractQuickFilter](docs/ContractQuickFilter.md)
- - [ContractScenarioType](docs/ContractScenarioType.md)
  - [ContractServiceLocationDTO](docs/ContractServiceLocationDTO.md)
- - [ContractServicesUpdatedAction](docs/ContractServicesUpdatedAction.md)
  - [ContractStatus](docs/ContractStatus.md)
  - [ContractStatusHistoryDTO](docs/ContractStatusHistoryDTO.md)
  - [ContractedServiceDTO](docs/ContractedServiceDTO.md)
  - [ContractedServiceEstimatedConsumptionDTO](docs/ContractedServiceEstimatedConsumptionDTO.md)
  - [ContractorDTO](docs/ContractorDTO.md)
+ - [CostCenterMappingItemDTO](docs/CostCenterMappingItemDTO.md)
+ - [CostCenterMappingOverviewCountResponseDTO](docs/CostCenterMappingOverviewCountResponseDTO.md)
+ - [CostUnitMappingItemDTO](docs/CostUnitMappingItemDTO.md)
+ - [CostUnitMappingOverviewCountResponseDTO](docs/CostUnitMappingOverviewCountResponseDTO.md)
  - [CountryCode](docs/CountryCode.md)
+ - [CreateContractBillingPropertiesBaseRequest](docs/CreateContractBillingPropertiesBaseRequest.md)
+ - [CreateContractBillingPropertiesBaseRequestCreateContractBillingPropertiesCreditRequest](docs/CreateContractBillingPropertiesBaseRequestCreateContractBillingPropertiesCreditRequest.md)
+ - [CreateContractBillingPropertiesBaseRequestCreateContractBillingPropertiesPrepaymentRequest](docs/CreateContractBillingPropertiesBaseRequestCreateContractBillingPropertiesPrepaymentRequest.md)
  - [CreateContractRequest](docs/CreateContractRequest.md)
  - [CreateContractServiceEstimatedConsumptionRequest](docs/CreateContractServiceEstimatedConsumptionRequest.md)
  - [CreateContractServiceLocationRequest](docs/CreateContractServiceLocationRequest.md)
+ - [CreateContractServiceLocationRequestBase](docs/CreateContractServiceLocationRequestBase.md)
+ - [CreateContractServiceLocationRequestMigrateContractServiceLocationRequest](docs/CreateContractServiceLocationRequestMigrateContractServiceLocationRequest.md)
  - [CreateCustomerGroupRequest](docs/CreateCustomerGroupRequest.md)
  - [CreateCustomerGroupSettingsRequest](docs/CreateCustomerGroupSettingsRequest.md)
  - [CreateCustomerRequest](docs/CreateCustomerRequest.md)
  - [CreateMeterParentRelationRequest](docs/CreateMeterParentRelationRequest.md)
  - [CreateMeterRequest](docs/CreateMeterRequest.md)
  - [CreateMoveRequestRequest](docs/CreateMoveRequestRequest.md)
+ - [CreatePropertyGroupBillingConfigurationRequest](docs/CreatePropertyGroupBillingConfigurationRequest.md)
+ - [CreatePropertyGroupPrepaymentConfigurationRequest](docs/CreatePropertyGroupPrepaymentConfigurationRequest.md)
  - [CreatePropertyGroupRequest](docs/CreatePropertyGroupRequest.md)
  - [CreateServiceLocationRequest](docs/CreateServiceLocationRequest.md)
  - [CreateServiceRequest](docs/CreateServiceRequest.md)
- - [CultureInfo](docs/CultureInfo.md)
- - [CultureTypes](docs/CultureTypes.md)
- - [CustAgingBucketType](docs/CustAgingBucketType.md)
  - [CustomEntityPropertyDTO](docs/CustomEntityPropertyDTO.md)
- - [CustomEntityPropertyTypeTagColor](docs/CustomEntityPropertyTypeTagColor.md)
  - [CustomEntityPropertyValueDTO](docs/CustomEntityPropertyValueDTO.md)
- - [CustomEntityPropertyValueType](docs/CustomEntityPropertyValueType.md)
  - [CustomerAnnualStatementOverviewCountDTO](docs/CustomerAnnualStatementOverviewCountDTO.md)
- - [CustomerAnnualStatementOverviewCountDTOApiResponseDTO](docs/CustomerAnnualStatementOverviewCountDTOApiResponseDTO.md)
- - [CustomerBalance](docs/CustomerBalance.md)
  - [CustomerBillingSettingsAutomaticSettlementDTO](docs/CustomerBillingSettingsAutomaticSettlementDTO.md)
  - [CustomerBillingSettingsDTO](docs/CustomerBillingSettingsDTO.md)
+ - [CustomerBlockedForDeletionReason](docs/CustomerBlockedForDeletionReason.md)
  - [CustomerCommunicationPreferencesDTO](docs/CustomerCommunicationPreferencesDTO.md)
  - [CustomerCommunicationPreferencesRequest](docs/CustomerCommunicationPreferencesRequest.md)
  - [CustomerContractDTO](docs/CustomerContractDTO.md)
  - [CustomerDTO](docs/CustomerDTO.md)
- - [CustomerDTOApiResponseDTO](docs/CustomerDTOApiResponseDTO.md)
- - [CustomerDTOPagedResponseModelDTO](docs/CustomerDTOPagedResponseModelDTO.md)
- - [CustomerDTOPagedResponseModelDTOApiResponseDTO](docs/CustomerDTOPagedResponseModelDTOApiResponseDTO.md)
  - [CustomerDetailsDTO](docs/CustomerDetailsDTO.md)
  - [CustomerGroupDTO](docs/CustomerGroupDTO.md)
- - [CustomerGroupDTOApiResponseDTO](docs/CustomerGroupDTOApiResponseDTO.md)
- - [CustomerGroupDTOPagedResponseModelDTO](docs/CustomerGroupDTOPagedResponseModelDTO.md)
- - [CustomerGroupDTOPagedResponseModelDTOApiResponseDTO](docs/CustomerGroupDTOPagedResponseModelDTOApiResponseDTO.md)
  - [CustomerGroupOverviewCountDTO](docs/CustomerGroupOverviewCountDTO.md)
- - [CustomerGroupOverviewCountDTOApiResponseDTO](docs/CustomerGroupOverviewCountDTOApiResponseDTO.md)
- - [CustomerGroupQuickFilter](docs/CustomerGroupQuickFilter.md)
  - [CustomerGroupReferenceDTO](docs/CustomerGroupReferenceDTO.md)
  - [CustomerGroupSettingsDTO](docs/CustomerGroupSettingsDTO.md)
  - [CustomerInvoiceCommunicationPreferencesRequest](docs/CustomerInvoiceCommunicationPreferencesRequest.md)
  - [CustomerOverviewCountDTO](docs/CustomerOverviewCountDTO.md)
- - [CustomerOverviewCountDTOApiResponseDTO](docs/CustomerOverviewCountDTOApiResponseDTO.md)
  - [CustomerPortalPropertiesDTO](docs/CustomerPortalPropertiesDTO.md)
- - [CustomerQuickFilter](docs/CustomerQuickFilter.md)
- - [CustomerScenarioType](docs/CustomerScenarioType.md)
  - [CustomerType](docs/CustomerType.md)
- - [DataExportCommunicationType](docs/DataExportCommunicationType.md)
- - [DataExportInvoiceFormatType](docs/DataExportInvoiceFormatType.md)
  - [DataFrequency](docs/DataFrequency.md)
- - [DataImportCommunicationType](docs/DataImportCommunicationType.md)
- - [DataImportMeteringFormatType](docs/DataImportMeteringFormatType.md)
- - [DataImportMigrationFormatType](docs/DataImportMigrationFormatType.md)
  - [DataType](docs/DataType.md)
- - [DateRange](docs/DateRange.md)
  - [DateTimeFormatInfo](docs/DateTimeFormatInfo.md)
- - [DayOfWeek](docs/DayOfWeek.md)
  - [DeletePropertyGroupRequest](docs/DeletePropertyGroupRequest.md)
- - [DigitShapes](docs/DigitShapes.md)
  - [Direction](docs/Direction.md)
- - [DnsRecordMeaning](docs/DnsRecordMeaning.md)
- - [DnsRecordStatus](docs/DnsRecordStatus.md)
- - [DocumentOutputFormat](docs/DocumentOutputFormat.md)
- - [DomainProblemDataType](docs/DomainProblemDataType.md)
- - [EavEstimationRunStatus](docs/EavEstimationRunStatus.md)
- - [EmailConfirmationType](docs/EmailConfirmationType.md)
- - [EntityAttachmentGroupQuickFilter](docs/EntityAttachmentGroupQuickFilter.md)
  - [EntityAttachmentOrigin](docs/EntityAttachmentOrigin.md)
- - [EntityAttachmentQuickFilter](docs/EntityAttachmentQuickFilter.md)
- - [EntityAttributeType](docs/EntityAttributeType.md)
  - [EntitySubjectType](docs/EntitySubjectType.md)
- - [EnvelopePosition](docs/EnvelopePosition.md)
- - [ErrorCode](docs/ErrorCode.md)
- - [EstimatedAnnualVolumeOrigin](docs/EstimatedAnnualVolumeOrigin.md)
- - [ExecutionStatus](docs/ExecutionStatus.md)
- - [ExportJobLineStatus](docs/ExportJobLineStatus.md)
- - [ExportJobStatus](docs/ExportJobStatus.md)
- - [ExportJobsQuickFilter](docs/ExportJobsQuickFilter.md)
- - [ExportOutgoingBankingTransactionPaymentRefundFormatType](docs/ExportOutgoingBankingTransactionPaymentRefundFormatType.md)
- - [ExportOutgoingBankingTransactionPaymentRequestFormatType](docs/ExportOutgoingBankingTransactionPaymentRequestFormatType.md)
- - [ExportSettingsCategoryType](docs/ExportSettingsCategoryType.md)
- - [ExportStatus](docs/ExportStatus.md)
+ - [ExternalAccountingReferenceDTO](docs/ExternalAccountingReferenceDTO.md)
  - [ExternalChannelDTO](docs/ExternalChannelDTO.md)
  - [ExternalChannelRequest](docs/ExternalChannelRequest.md)
- - [ExternalMeasurementsQuickFilter](docs/ExternalMeasurementsQuickFilter.md)
- - [FileSizeType](docs/FileSizeType.md)
- - [FlatConsumptionAggregates](docs/FlatConsumptionAggregates.md)
- - [FormulaFunctionCategory](docs/FormulaFunctionCategory.md)
- - [FormulaFunctionInputParameterReferenceType](docs/FormulaFunctionInputParameterReferenceType.md)
- - [FormulaFunctionType](docs/FormulaFunctionType.md)
- - [FormulaType](docs/FormulaType.md)
- - [FractionFrequency](docs/FractionFrequency.md)
- - [FtpProtocol](docs/FtpProtocol.md)
- - [GeneralLedgerCategory](docs/GeneralLedgerCategory.md)
- - [GeneralLedgerMappingStatus](docs/GeneralLedgerMappingStatus.md)
  - [GetContractsQueryParams](docs/GetContractsQueryParams.md)
  - [GetCustomersQueryParams](docs/GetCustomersQueryParams.md)
  - [GetMetersQueryParams](docs/GetMetersQueryParams.md)
  - [GetMoveRequestsQueryParams](docs/GetMoveRequestsQueryParams.md)
- - [GetPrepaymentMetersInstalledOnServiceLocationsRequest](docs/GetPrepaymentMetersInstalledOnServiceLocationsRequest.md)
+ - [GetPostalCodesQueryParams](docs/GetPostalCodesQueryParams.md)
  - [GetPropertyGroupsQueryParams](docs/GetPropertyGroupsQueryParams.md)
  - [GetServiceLocationsQueryParams](docs/GetServiceLocationsQueryParams.md)
- - [IbanConfirmationStatus](docs/IbanConfirmationStatus.md)
- - [ImportCategoryType](docs/ImportCategoryType.md)
- - [ImportContractInvoiceDateHandling](docs/ImportContractInvoiceDateHandling.md)
- - [ImportJobEntityIssueStage](docs/ImportJobEntityIssueStage.md)
- - [ImportJobEntityType](docs/ImportJobEntityType.md)
- - [ImportJobStatus](docs/ImportJobStatus.md)
- - [ImportJobsQuickFilter](docs/ImportJobsQuickFilter.md)
- - [ImportStatus](docs/ImportStatus.md)
- - [ImportType](docs/ImportType.md)
- - [IncomingBankingTransactionFormatType](docs/IncomingBankingTransactionFormatType.md)
- - [IncomingBankingTransactionQuickFilter](docs/IncomingBankingTransactionQuickFilter.md)
- - [IncomingBankingTransactionStatus](docs/IncomingBankingTransactionStatus.md)
- - [IncomingMutationPaymentMethod](docs/IncomingMutationPaymentMethod.md)
- - [IncomingMutationQuickFilter](docs/IncomingMutationQuickFilter.md)
- - [IncomingMutationStatus](docs/IncomingMutationStatus.md)
- - [IncomingMutationType](docs/IncomingMutationType.md)
  - [IncrementationType](docs/IncrementationType.md)
- - [InputMissingReason](docs/InputMissingReason.md)
  - [InstallMeterRequest](docs/InstallMeterRequest.md)
- - [InvoiceAmount](docs/InvoiceAmount.md)
  - [InvoiceCommunicationPreferenceDTO](docs/InvoiceCommunicationPreferenceDTO.md)
- - [InvoiceExportType](docs/InvoiceExportType.md)
  - [InvoiceFrequency](docs/InvoiceFrequency.md)
- - [InvoiceLineType](docs/InvoiceLineType.md)
- - [InvoiceQuickFilter](docs/InvoiceQuickFilter.md)
- - [InvoiceScenarioType](docs/InvoiceScenarioType.md)
- - [InvoiceStatus](docs/InvoiceStatus.md)
  - [InvoiceType](docs/InvoiceType.md)
- - [Level](docs/Level.md)
- - [LocalisationLevel](docs/LocalisationLevel.md)
+ - [ItemCodeCategory](docs/ItemCodeCategory.md)
+ - [ItemCodeMappingItemDTO](docs/ItemCodeMappingItemDTO.md)
+ - [ItemCodeMappingOverviewCountDTO](docs/ItemCodeMappingOverviewCountDTO.md)
+ - [LinkCostCenterRequest](docs/LinkCostCenterRequest.md)
+ - [LinkCostUnitRequest](docs/LinkCostUnitRequest.md)
+ - [LinkItemCodeRequest](docs/LinkItemCodeRequest.md)
+ - [LinkProjectCodeRequest](docs/LinkProjectCodeRequest.md)
  - [LocalisedErrorDTO](docs/LocalisedErrorDTO.md)
  - [LocalisedErrorDTOMessageValue](docs/LocalisedErrorDTOMessageValue.md)
  - [ManagementRelationDTO](docs/ManagementRelationDTO.md)
- - [ManagementRelationDTO2](docs/ManagementRelationDTO2.md)
  - [ManagementRelationRequest](docs/ManagementRelationRequest.md)
  - [ManagementRelationType](docs/ManagementRelationType.md)
- - [MandateStatus](docs/MandateStatus.md)
- - [MandateType](docs/MandateType.md)
  - [MeasurementDetailsDTO](docs/MeasurementDetailsDTO.md)
- - [MeasurementSource](docs/MeasurementSource.md)
- - [MessageType](docs/MessageType.md)
  - [MeterDTO](docs/MeterDTO.md)
- - [MeterDTOApiResponseDTO](docs/MeterDTOApiResponseDTO.md)
- - [MeterDTOPagedResponseModelDTO](docs/MeterDTOPagedResponseModelDTO.md)
- - [MeterDTOPagedResponseModelDTOApiResponseDTO](docs/MeterDTOPagedResponseModelDTOApiResponseDTO.md)
  - [MeterOverviewCountDTO](docs/MeterOverviewCountDTO.md)
- - [MeterOverviewCountDTOApiResponseDTO](docs/MeterOverviewCountDTOApiResponseDTO.md)
- - [MeterQuickFilter](docs/MeterQuickFilter.md)
  - [MeterReadingFrequency](docs/MeterReadingFrequency.md)
- - [MeterReference](docs/MeterReference.md)
  - [MeterRelationDTO](docs/MeterRelationDTO.md)
  - [MeterStatus](docs/MeterStatus.md)
  - [MeterStatusHistoryDTO](docs/MeterStatusHistoryDTO.md)
  - [MeterType](docs/MeterType.md)
- - [MeteringImportMeasurementsQuickFilter](docs/MeteringImportMeasurementsQuickFilter.md)
- - [MeteringImportQuickFilter](docs/MeteringImportQuickFilter.md)
- - [MeteringImportStatus](docs/MeteringImportStatus.md)
- - [MeteringImportType](docs/MeteringImportType.md)
  - [MeteringIssueError](docs/MeteringIssueError.md)
- - [MeteringIssueErrorGroup](docs/MeteringIssueErrorGroup.md)
- - [MeteringIssueQuickFilter](docs/MeteringIssueQuickFilter.md)
  - [MeteringIssueReference](docs/MeteringIssueReference.md)
- - [MeteringIssueResolutionReason](docs/MeteringIssueResolutionReason.md)
- - [MeteringIssueResolutionType](docs/MeteringIssueResolutionType.md)
  - [MeteringIssueStatus](docs/MeteringIssueStatus.md)
- - [MeteringIssuesGroupBy](docs/MeteringIssuesGroupBy.md)
  - [MeteringType](docs/MeteringType.md)
- - [Month](docs/Month.md)
+ - [MigrationLatestVersionDTO](docs/MigrationLatestVersionDTO.md)
  - [MoveRequestAttachmentSignatureRequest](docs/MoveRequestAttachmentSignatureRequest.md)
  - [MoveRequestContractDetailsDTO](docs/MoveRequestContractDetailsDTO.md)
  - [MoveRequestContractEstimationRequest](docs/MoveRequestContractEstimationRequest.md)
  - [MoveRequestCustomerDetails](docs/MoveRequestCustomerDetails.md)
  - [MoveRequestDTO](docs/MoveRequestDTO.md)
- - [MoveRequestDTOApiResponseDTO](docs/MoveRequestDTOApiResponseDTO.md)
- - [MoveRequestDTOPagedResponseModelDTO](docs/MoveRequestDTOPagedResponseModelDTO.md)
- - [MoveRequestDTOPagedResponseModelDTOApiResponseDTO](docs/MoveRequestDTOPagedResponseModelDTOApiResponseDTO.md)
  - [MoveRequestMeasurementDetails](docs/MoveRequestMeasurementDetails.md)
  - [MoveRequestOverviewCountDTO](docs/MoveRequestOverviewCountDTO.md)
- - [MoveRequestOverviewCountDTOApiResponseDTO](docs/MoveRequestOverviewCountDTOApiResponseDTO.md)
- - [MoveRequestQuickFilter](docs/MoveRequestQuickFilter.md)
- - [MoveRequestScenarioType](docs/MoveRequestScenarioType.md)
  - [MoveRequestServiceLocationDetails](docs/MoveRequestServiceLocationDetails.md)
  - [MoveRequestServiceLocationServiceDetailsRequest](docs/MoveRequestServiceLocationServiceDetailsRequest.md)
  - [MoveRequestStatus](docs/MoveRequestStatus.md)
  - [MoveRequestType](docs/MoveRequestType.md)
- - [MutingRuleQuickFilter](docs/MutingRuleQuickFilter.md)
- - [MutingRuleTimePeriod](docs/MutingRuleTimePeriod.md)
- - [NullQuickFilter](docs/NullQuickFilter.md)
  - [NumberFormatInfo](docs/NumberFormatInfo.md)
- - [NumberOfAddresses](docs/NumberOfAddresses.md)
- - [NumberSequenceReferenceEntity](docs/NumberSequenceReferenceEntity.md)
- - [NumberSequenceSegmentType](docs/NumberSequenceSegmentType.md)
- - [NumberSign](docs/NumberSign.md)
- - [OutgoingBankingTransactionQuickFilter](docs/OutgoingBankingTransactionQuickFilter.md)
- - [OutgoingBankingTransactionStatus](docs/OutgoingBankingTransactionStatus.md)
- - [OutgoingBankingTransactionType](docs/OutgoingBankingTransactionType.md)
- - [OutgoingMutationQuickFilter](docs/OutgoingMutationQuickFilter.md)
- - [OutgoingMutationStatus](docs/OutgoingMutationStatus.md)
- - [OutgoingMutationType](docs/OutgoingMutationType.md)
- - [PaymentDelay](docs/PaymentDelay.md)
+ - [PagedCostCenterMappingQueryParams](docs/PagedCostCenterMappingQueryParams.md)
+ - [PagedCostUnitMappingQueryParams](docs/PagedCostUnitMappingQueryParams.md)
+ - [PagedItemCodeMappingQueryParams](docs/PagedItemCodeMappingQueryParams.md)
+ - [PagedProjectCodeMappingQueryParams](docs/PagedProjectCodeMappingQueryParams.md)
+ - [PagedResponseModelDTOOfContractDTO](docs/PagedResponseModelDTOOfContractDTO.md)
+ - [PagedResponseModelDTOOfCostCenterMappingItemDTO](docs/PagedResponseModelDTOOfCostCenterMappingItemDTO.md)
+ - [PagedResponseModelDTOOfCostUnitMappingItemDTO](docs/PagedResponseModelDTOOfCostUnitMappingItemDTO.md)
+ - [PagedResponseModelDTOOfCustomerDTO](docs/PagedResponseModelDTOOfCustomerDTO.md)
+ - [PagedResponseModelDTOOfCustomerGroupDTO](docs/PagedResponseModelDTOOfCustomerGroupDTO.md)
+ - [PagedResponseModelDTOOfItemCodeMappingItemDTO](docs/PagedResponseModelDTOOfItemCodeMappingItemDTO.md)
+ - [PagedResponseModelDTOOfMeterDTO](docs/PagedResponseModelDTOOfMeterDTO.md)
+ - [PagedResponseModelDTOOfMoveRequestDTO](docs/PagedResponseModelDTOOfMoveRequestDTO.md)
+ - [PagedResponseModelDTOOfPostalCodeDTO](docs/PagedResponseModelDTOOfPostalCodeDTO.md)
+ - [PagedResponseModelDTOOfProjectCodeMappingItemDTO](docs/PagedResponseModelDTOOfProjectCodeMappingItemDTO.md)
+ - [PagedResponseModelDTOOfPropertyGroupDTO](docs/PagedResponseModelDTOOfPropertyGroupDTO.md)
+ - [PagedResponseModelDTOOfServiceLocationDTO](docs/PagedResponseModelDTOOfServiceLocationDTO.md)
+ - [PagedResponseModelDTOOfUtilityType](docs/PagedResponseModelDTOOfUtilityType.md)
  - [PaymentMethod](docs/PaymentMethod.md)
- - [PaymentProcessStatus](docs/PaymentProcessStatus.md)
- - [PaymentQuickFilter](docs/PaymentQuickFilter.md)
- - [PaymentRetryAction](docs/PaymentRetryAction.md)
- - [PaymentReversalReason](docs/PaymentReversalReason.md)
- - [PaymentReversalReasonCode](docs/PaymentReversalReasonCode.md)
- - [PaymentTermsFrequency](docs/PaymentTermsFrequency.md)
- - [PaymentType](docs/PaymentType.md)
- - [PingenCulture](docs/PingenCulture.md)
- - [PluginFeedActivityType](docs/PluginFeedActivityType.md)
- - [PluginFeedStatus](docs/PluginFeedStatus.md)
- - [PluginFeedTopic](docs/PluginFeedTopic.md)
- - [PluginTriggerDataType](docs/PluginTriggerDataType.md)
- - [PluginTriggerPriority](docs/PluginTriggerPriority.md)
- - [PluginType](docs/PluginType.md)
- - [PortalEmailType](docs/PortalEmailType.md)
- - [PortalNotificationType](docs/PortalNotificationType.md)
- - [PortalPageIdentifier](docs/PortalPageIdentifier.md)
+ - [PeppolScheme](docs/PeppolScheme.md)
  - [PostalCodeDTO](docs/PostalCodeDTO.md)
- - [PostalCodeDTOPagedResponseModelDTO](docs/PostalCodeDTOPagedResponseModelDTO.md)
- - [PostalCodeDTOPagedResponseModelDTOApiResponseDTO](docs/PostalCodeDTOPagedResponseModelDTOApiResponseDTO.md)
- - [PrepaymentAccountDTO](docs/PrepaymentAccountDTO.md)
- - [PrepaymentAccountDTOApiResponseDTO](docs/PrepaymentAccountDTOApiResponseDTO.md)
- - [PrepaymentAccountDTOListApiResponseDTO](docs/PrepaymentAccountDTOListApiResponseDTO.md)
- - [PrepaymentAccountDTOPagedResponseModelDTO](docs/PrepaymentAccountDTOPagedResponseModelDTO.md)
- - [PrepaymentAccountDTOPagedResponseModelDTOApiResponseDTO](docs/PrepaymentAccountDTOPagedResponseModelDTOApiResponseDTO.md)
- - [PrepaymentAccountStatus](docs/PrepaymentAccountStatus.md)
- - [PrepaymentMeterInstalledDTO](docs/PrepaymentMeterInstalledDTO.md)
- - [PrepaymentMetersInstalledOnServiceLocationDTO](docs/PrepaymentMetersInstalledOnServiceLocationDTO.md)
- - [PrepaymentMetersInstalledOnServiceLocationDTOListApiResponseDTO](docs/PrepaymentMetersInstalledOnServiceLocationDTOListApiResponseDTO.md)
- - [PrepaymentTransactionOrigin](docs/PrepaymentTransactionOrigin.md)
- - [PrepaymentTransactionStatus](docs/PrepaymentTransactionStatus.md)
- - [PrepaymentTransactionType](docs/PrepaymentTransactionType.md)
+ - [PrepaymentAccountReferenceDTO](docs/PrepaymentAccountReferenceDTO.md)
+ - [PrepaymentDeviceCoverageReferenceDTO](docs/PrepaymentDeviceCoverageReferenceDTO.md)
+ - [PrepaymentDeviceReferenceDTO](docs/PrepaymentDeviceReferenceDTO.md)
  - [ProblemDetails](docs/ProblemDetails.md)
- - [ProblemLevel](docs/ProblemLevel.md)
- - [ProblemResolutionStatus](docs/ProblemResolutionStatus.md)
- - [ProductExportStatus](docs/ProductExportStatus.md)
- - [ProductItemPeriodicityType](docs/ProductItemPeriodicityType.md)
  - [ProductPeriodReferenceDTO](docs/ProductPeriodReferenceDTO.md)
  - [ProductReferenceDTO](docs/ProductReferenceDTO.md)
- - [PropertyGroupBillingPeriodTariffStatus](docs/PropertyGroupBillingPeriodTariffStatus.md)
+ - [ProjectCodeCategory](docs/ProjectCodeCategory.md)
+ - [ProjectCodeMappingItemDTO](docs/ProjectCodeMappingItemDTO.md)
+ - [ProjectCodeMappingOverviewCountDTO](docs/ProjectCodeMappingOverviewCountDTO.md)
  - [PropertyGroupContactDetailsDTO](docs/PropertyGroupContactDetailsDTO.md)
  - [PropertyGroupContactDetailsRequest](docs/PropertyGroupContactDetailsRequest.md)
  - [PropertyGroupDTO](docs/PropertyGroupDTO.md)
- - [PropertyGroupDTOApiResponseDTO](docs/PropertyGroupDTOApiResponseDTO.md)
- - [PropertyGroupDTOPagedResponseModelDTO](docs/PropertyGroupDTOPagedResponseModelDTO.md)
- - [PropertyGroupDTOPagedResponseModelDTOApiResponseDTO](docs/PropertyGroupDTOPagedResponseModelDTOApiResponseDTO.md)
  - [PropertyGroupOverviewCountDTO](docs/PropertyGroupOverviewCountDTO.md)
- - [PropertyGroupOverviewCountDTOApiResponseDTO](docs/PropertyGroupOverviewCountDTOApiResponseDTO.md)
- - [PropertyGroupQuickFilter](docs/PropertyGroupQuickFilter.md)
  - [PropertyGroupReferenceDTO](docs/PropertyGroupReferenceDTO.md)
  - [PropertyGroupServiceLocationsRequest](docs/PropertyGroupServiceLocationsRequest.md)
  - [PropertyGroupType](docs/PropertyGroupType.md)
- - [PropertyType](docs/PropertyType.md)
+ - [RemoveContractServiceRequest](docs/RemoveContractServiceRequest.md)
  - [RemoveContractedServicesRequest](docs/RemoveContractedServicesRequest.md)
- - [ScenarioGroupingType](docs/ScenarioGroupingType.md)
- - [ScheduledJobRecurrence](docs/ScheduledJobRecurrence.md)
- - [ScheduledJobType](docs/ScheduledJobType.md)
+ - [ResetCustomerPortalAccountRequest](docs/ResetCustomerPortalAccountRequest.md)
  - [SearchCustomerRequest](docs/SearchCustomerRequest.md)
- - [SentStatus](docs/SentStatus.md)
  - [ServiceContractDTO](docs/ServiceContractDTO.md)
  - [ServiceDTO](docs/ServiceDTO.md)
+ - [ServiceLocationBulkUpdateServicesContextCountByUtilityTypeDTO](docs/ServiceLocationBulkUpdateServicesContextCountByUtilityTypeDTO.md)
+ - [ServiceLocationBulkUpdateServicesContextDTO](docs/ServiceLocationBulkUpdateServicesContextDTO.md)
  - [ServiceLocationDTO](docs/ServiceLocationDTO.md)
- - [ServiceLocationDTOApiResponseDTO](docs/ServiceLocationDTOApiResponseDTO.md)
- - [ServiceLocationDTOPagedResponseModelDTO](docs/ServiceLocationDTOPagedResponseModelDTO.md)
- - [ServiceLocationDTOPagedResponseModelDTOApiResponseDTO](docs/ServiceLocationDTOPagedResponseModelDTOApiResponseDTO.md)
  - [ServiceLocationDetailsDTO](docs/ServiceLocationDetailsDTO.md)
  - [ServiceLocationOverviewCountDTO](docs/ServiceLocationOverviewCountDTO.md)
- - [ServiceLocationOverviewCountDTOApiResponseDTO](docs/ServiceLocationOverviewCountDTOApiResponseDTO.md)
- - [ServiceLocationQuickFilter](docs/ServiceLocationQuickFilter.md)
  - [ServiceLocationServiceDetailsDTO](docs/ServiceLocationServiceDetailsDTO.md)
  - [ServiceStatus](docs/ServiceStatus.md)
  - [ServiceStatusHistoryDTO](docs/ServiceStatusHistoryDTO.md)
  - [SetMoveRequestToPendingRequest](docs/SetMoveRequestToPendingRequest.md)
  - [SignContractRequest](docs/SignContractRequest.md)
- - [SocialTariffExportType](docs/SocialTariffExportType.md)
  - [SortVersion](docs/SortVersion.md)
- - [SshAuthenticationMethod](docs/SshAuthenticationMethod.md)
- - [StatusCode](docs/StatusCode.md)
- - [SyntheticLoadProfileOrigin](docs/SyntheticLoadProfileOrigin.md)
- - [SystemUsageRecordType](docs/SystemUsageRecordType.md)
- - [TariffOrigin](docs/TariffOrigin.md)
- - [TemplateAssetType](docs/TemplateAssetType.md)
- - [TemplateObjectType](docs/TemplateObjectType.md)
- - [TemplateUsecase](docs/TemplateUsecase.md)
  - [TerminateContractRequest](docs/TerminateContractRequest.md)
  - [TextInfo](docs/TextInfo.md)
- - [TierCalculationMethod](docs/TierCalculationMethod.md)
- - [TransactionQuickFilter](docs/TransactionQuickFilter.md)
- - [TransactionReferenceType](docs/TransactionReferenceType.md)
- - [TransactionStatus](docs/TransactionStatus.md)
- - [TransactionSubType](docs/TransactionSubType.md)
- - [TransactionType](docs/TransactionType.md)
- - [TranslationStatus](docs/TranslationStatus.md)
- - [UblTranslations](docs/UblTranslations.md)
  - [UninstallMeterRequest](docs/UninstallMeterRequest.md)
  - [UnitOfMeasure](docs/UnitOfMeasure.md)
+ - [UpdateCollectionDayRequest](docs/UpdateCollectionDayRequest.md)
  - [UpdateContractBillingDetailsRequest](docs/UpdateContractBillingDetailsRequest.md)
+ - [UpdateContractBillingMethodRequest](docs/UpdateContractBillingMethodRequest.md)
+ - [UpdateContractConsumptionGroupRequest](docs/UpdateContractConsumptionGroupRequest.md)
+ - [UpdateContractConsumptionGroupsRequest](docs/UpdateContractConsumptionGroupsRequest.md)
  - [UpdateContractProductParameter](docs/UpdateContractProductParameter.md)
  - [UpdateContractProductRequest](docs/UpdateContractProductRequest.md)
- - [UpdateContractsForCostAllocationRequest](docs/UpdateContractsForCostAllocationRequest.md)
+ - [UpdateContractServiceEstimatedConsumptionRequest](docs/UpdateContractServiceEstimatedConsumptionRequest.md)
  - [UpdateCustomEntityPropertiesRequest](docs/UpdateCustomEntityPropertiesRequest.md)
  - [UpdateCustomEntityPropertyRequest](docs/UpdateCustomEntityPropertyRequest.md)
  - [UpdateCustomEntityPropertyValueRequest](docs/UpdateCustomEntityPropertyValueRequest.md)
@@ -638,6 +563,7 @@ Class | Method | HTTP request | Description
  - [UpdateCustomerGroupNameRequest](docs/UpdateCustomerGroupNameRequest.md)
  - [UpdateCustomerGroupSettingsAutomaticSettlementRequest](docs/UpdateCustomerGroupSettingsAutomaticSettlementRequest.md)
  - [UpdateCustomerPortalDetailsRequest](docs/UpdateCustomerPortalDetailsRequest.md)
+ - [UpdateEInvoicingSettingsRequest](docs/UpdateEInvoicingSettingsRequest.md)
  - [UpdateExternalContractReferenceRequest](docs/UpdateExternalContractReferenceRequest.md)
  - [UpdateExternalIdRequest](docs/UpdateExternalIdRequest.md)
  - [UpdateInvoiceAddressRequest](docs/UpdateInvoiceAddressRequest.md)
@@ -651,16 +577,13 @@ Class | Method | HTTP request | Description
  - [UpdateMoveRequestRequest](docs/UpdateMoveRequestRequest.md)
  - [UpdateMoveRequestServiceLocationDetailsRequest](docs/UpdateMoveRequestServiceLocationDetailsRequest.md)
  - [UpdateParentRelationRequest](docs/UpdateParentRelationRequest.md)
- - [UpdatePrepaymentAccountsExternalReferencesRequest](docs/UpdatePrepaymentAccountsExternalReferencesRequest.md)
  - [UpdatePropertyGroupCommunicationConfigurationRequest](docs/UpdatePropertyGroupCommunicationConfigurationRequest.md)
  - [UpdatePropertyGroupManagementRelationsRequest](docs/UpdatePropertyGroupManagementRelationsRequest.md)
  - [UpdatePropertyGroupRequest](docs/UpdatePropertyGroupRequest.md)
  - [UpdateServiceLocationAddressRequest](docs/UpdateServiceLocationAddressRequest.md)
  - [UpdateServiceLocationProductRequest](docs/UpdateServiceLocationProductRequest.md)
- - [UserQuickFilter](docs/UserQuickFilter.md)
+ - [UpdateServiceLocationServicesRequest](docs/UpdateServiceLocationServicesRequest.md)
  - [UtilityType](docs/UtilityType.md)
- - [ValueProviderType](docs/ValueProviderType.md)
- - [WriteOffHandlingType](docs/WriteOffHandlingType.md)
 
 
 <a id="documentation-for-authorization"></a>

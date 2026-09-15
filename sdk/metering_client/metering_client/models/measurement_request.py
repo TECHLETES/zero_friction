@@ -25,11 +25,12 @@ from typing_extensions import Self
 
 class MeasurementRequest(BaseModel):
     """
-    Contains the value of the actual measurement and when that measurement was read.
+    MeasurementRequest
     """ # noqa: E501
-    reading_date_time: Optional[datetime] = Field(default=None, description="Date and time when the value of the measurement was read.  If it differs from UTC, the value should include the offset how much it differs from UTC.", alias="readingDateTime")
-    value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The measurement value.    When the Enumerations.UnitOfMeasure isn't specified, the unit of measure of the channel is used which  is set by the ExternalChannelIdentifier on the channel measurement.")
-    __properties: ClassVar[List[str]] = ["readingDateTime", "value"]
+    start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
+    reading_date_time: Optional[datetime] = Field(default=None, alias="readingDateTime")
+    value: Optional[Union[StrictFloat, StrictInt]] = None
+    __properties: ClassVar[List[str]] = ["startDateTime", "readingDateTime", "value"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,6 +71,11 @@ class MeasurementRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if start_date_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_date_time is None and "start_date_time" in self.model_fields_set:
+            _dict['startDateTime'] = None
+
         return _dict
 
     @classmethod
@@ -82,6 +88,7 @@ class MeasurementRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "startDateTime": obj.get("startDateTime"),
             "readingDateTime": obj.get("readingDateTime"),
             "value": obj.get("value")
         })

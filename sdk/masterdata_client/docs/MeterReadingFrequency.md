@@ -1,5 +1,6 @@
 # MeterReadingFrequency
 
+Possible values: 'hourly', 'daily', 'weekly', 'monthly', 'bimonthly', 'quarterly', 'halfyearly', 'yearly'
 
 ## Enum
 

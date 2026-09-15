@@ -29,10 +29,10 @@ class CreateServiceLocationRequest(BaseModel):
     """
     CreateServiceLocationRequest
     """ # noqa: E501
-    address: Optional[AddressDTO] = None
+    address: Optional[AddressDTO]
     external_id: Optional[StrictStr] = Field(default=None, alias="externalId")
     product_id: Optional[StrictStr] = Field(default=None, alias="productId")
-    services: Optional[List[CreateServiceRequest]] = None
+    services: Optional[List[CreateServiceRequest]]
     management_relations: Optional[List[ManagementRelationRequest]] = Field(default=None, alias="managementRelations")
     __properties: ClassVar[List[str]] = ["address", "externalId", "productId", "services", "managementRelations"]
 

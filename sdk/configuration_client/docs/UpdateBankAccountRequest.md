@@ -5,10 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bic** | **str** |  | [optional] 
-**account_holder** | **str** |  | [optional] 
-**sepa_creditor_id** | **str** |  | [optional] 
+**account_holder** | **str** |  | 
+**sepa_creditor_id** | **str** |  | 
+**accounting_code_id_for_processed_transactions** | **str** |  | [optional] 
+**accounting_code_id_for_ignored_transactions** | **str** |  | [optional] 
 **is_default** | **bool** |  | [optional] 
+**iban** | **str** |  | [optional] 
+**bic** | **str** |  | 
 
 ## Example
 

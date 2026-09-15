@@ -36,7 +36,10 @@ class TestPortalBillingSettingsRequest(unittest.TestCase):
         if include_optional:
             return PortalBillingSettingsRequest(
                 allow_customer_to_change_advance_amount = True,
-                hide_invoice_section = True
+                allow_customer_to_change_invoice_address = True,
+                hide_invoice_section = True,
+                hide_payment_reference = True,
+                require_birth_date_for_persons = True
             )
         else:
             return PortalBillingSettingsRequest(

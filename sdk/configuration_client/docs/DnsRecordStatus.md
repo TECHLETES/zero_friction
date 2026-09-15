@@ -1,5 +1,6 @@
 # DnsRecordStatus
 
+Possible values: 'unverified', 'valid', 'error'
 
 ## Enum
 

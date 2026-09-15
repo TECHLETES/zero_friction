@@ -25,41 +25,44 @@ from billing_client.models.collection_flow_status import CollectionFlowStatus
 from billing_client.models.custom_entity_property_dto import CustomEntityPropertyDTO
 from billing_client.models.debtor_dto import DebtorDTO
 from billing_client.models.entity_subject_type import EntitySubjectType
+from billing_client.models.localised_error_dto import LocalisedErrorDTO
+from billing_client.models.payment_plan_details_dto import PaymentPlanDetailsDTO
 from billing_client.models.property_group_reference_dto import PropertyGroupReferenceDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
 class CollectionCaseDTO(BaseModel):
     """
-    Represents a collection case for managing debt collection processes.  This DTO contains information about the collection workflow, steps, and associated entities.
+    CollectionCaseDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
-    collection_num: Optional[StrictStr] = Field(default=None, description="The unique collection case number.", alias="collectionNum")
-    sequence_num: Optional[StrictInt] = Field(default=None, description="The sequence number of the collection case.", alias="sequenceNum")
-    workflow_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the workflow.", alias="workflowId")
-    workflow_name: Optional[StrictStr] = Field(default=None, description="The name of the workflow.", alias="workflowName")
-    debtor: Optional[DebtorDTO] = Field(default=None, description="Information about the debtor associated with this collection case.")
-    manual_intervention_required: Optional[StrictBool] = Field(default=None, description="Indicates whether manual intervention is required for this case.", alias="manualInterventionRequired")
-    status: Optional[CollectionFlowStatus] = Field(default=None, description="The current status of the collection flow.")
-    steps: Optional[List[CollectionCaseStepDTO]] = Field(default=None, description="List of steps in the collection case workflow.")
-    last_step: Optional[CollectionCaseStepDTO] = Field(default=None, description="Gets the most recently executed step in the collection case.", alias="lastStep")
-    next_step: Optional[CollectionCaseStepDTO] = Field(default=None, description="Gets the next pending step to be executed in the collection case.", alias="nextStep")
-    next_action_due: Optional[datetime] = Field(default=None, description="Gets the date and time when the next action is due.", alias="nextActionDue")
-    referenced_transactions: Optional[List[StrictStr]] = Field(default=None, description="List of transaction IDs referenced in this collection case.", alias="referencedTransactions")
-    payment_reference: Optional[StrictStr] = Field(default=None, description="The payment reference number for this collection case.", alias="paymentReference")
-    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, description="List of property groups associated with this collection case.", alias="propertyGroups")
-    total_open_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total open amount including VAT for this collection case.", alias="totalOpenAmountInclVAT")
-    custom_properties: Optional[List[CustomEntityPropertyDTO]] = Field(default=None, description="List of custom properties associated with this collection case.", alias="customProperties")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "collectionNum", "sequenceNum", "workflowId", "workflowName", "debtor", "manualInterventionRequired", "status", "steps", "lastStep", "nextStep", "nextActionDue", "referencedTransactions", "paymentReference", "propertyGroups", "totalOpenAmountInclVAT", "customProperties"]
+    collection_num: Optional[StrictStr] = Field(default=None, alias="collectionNum")
+    sequence_num: Optional[StrictInt] = Field(default=None, alias="sequenceNum")
+    workflow_id: Optional[StrictStr] = Field(default=None, alias="workflowId")
+    workflow_name: Optional[StrictStr] = Field(default=None, alias="workflowName")
+    debtor: Optional[DebtorDTO] = None
+    manual_intervention_required: Optional[StrictBool] = Field(default=None, alias="manualInterventionRequired")
+    status: Optional[CollectionFlowStatus] = None
+    steps: Optional[List[CollectionCaseStepDTO]] = None
+    last_step: Optional[CollectionCaseStepDTO] = Field(default=None, alias="lastStep")
+    next_step: Optional[CollectionCaseStepDTO] = Field(default=None, alias="nextStep")
+    next_action_due: Optional[datetime] = Field(default=None, alias="nextActionDue")
+    referenced_transactions: Optional[List[StrictStr]] = Field(default=None, alias="referencedTransactions")
+    payment_reference: Optional[StrictStr] = Field(default=None, alias="paymentReference")
+    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, alias="propertyGroups")
+    total_open_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOpenAmountInclVAT")
+    payment_plan_details: Optional[PaymentPlanDetailsDTO] = Field(default=None, alias="paymentPlanDetails")
+    has_active_payment_plan: Optional[StrictBool] = Field(default=None, alias="hasActivePaymentPlan")
+    custom_properties: Optional[List[CustomEntityPropertyDTO]] = Field(default=None, alias="customProperties")
+    failure_reason_code: Optional[LocalisedErrorDTO] = Field(default=None, alias="failureReasonCode")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["collectionNum", "sequenceNum", "workflowId", "workflowName", "debtor", "manualInterventionRequired", "status", "steps", "lastStep", "nextStep", "nextActionDue", "referencedTransactions", "paymentReference", "propertyGroups", "totalOpenAmountInclVAT", "paymentPlanDetails", "hasActivePaymentPlan", "customProperties", "failureReasonCode", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,16 +94,8 @@ class CollectionCaseDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
-            "last_step",
-            "next_step",
-            "next_action_due",
         ])
 
         _dict = self.model_dump(
@@ -131,6 +126,9 @@ class CollectionCaseDTO(BaseModel):
                 if _item_property_groups:
                     _items.append(_item_property_groups.to_dict())
             _dict['propertyGroups'] = _items
+        # override the default output from pydantic by calling `to_dict()` of payment_plan_details
+        if self.payment_plan_details:
+            _dict['paymentPlanDetails'] = self.payment_plan_details.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in custom_properties (list)
         _items = []
         if self.custom_properties:
@@ -138,31 +136,9 @@ class CollectionCaseDTO(BaseModel):
                 if _item_custom_properties:
                     _items.append(_item_custom_properties.to_dict())
             _dict['customProperties'] = _items
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of failure_reason_code
+        if self.failure_reason_code:
+            _dict['failureReasonCode'] = self.failure_reason_code.to_dict()
         # set to None if collection_num (nullable) is None
         # and model_fields_set contains the field
         if self.collection_num is None and "collection_num" in self.model_fields_set:
@@ -183,25 +159,10 @@ class CollectionCaseDTO(BaseModel):
         if self.debtor is None and "debtor" in self.model_fields_set:
             _dict['debtor'] = None
 
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
-
         # set to None if steps (nullable) is None
         # and model_fields_set contains the field
         if self.steps is None and "steps" in self.model_fields_set:
             _dict['steps'] = None
-
-        # set to None if last_step (nullable) is None
-        # and model_fields_set contains the field
-        if self.last_step is None and "last_step" in self.model_fields_set:
-            _dict['lastStep'] = None
-
-        # set to None if next_step (nullable) is None
-        # and model_fields_set contains the field
-        if self.next_step is None and "next_step" in self.model_fields_set:
-            _dict['nextStep'] = None
 
         # set to None if referenced_transactions (nullable) is None
         # and model_fields_set contains the field
@@ -218,10 +179,15 @@ class CollectionCaseDTO(BaseModel):
         if self.property_groups is None and "property_groups" in self.model_fields_set:
             _dict['propertyGroups'] = None
 
-        # set to None if custom_properties (nullable) is None
+        # set to None if payment_plan_details (nullable) is None
         # and model_fields_set contains the field
-        if self.custom_properties is None and "custom_properties" in self.model_fields_set:
-            _dict['customProperties'] = None
+        if self.payment_plan_details is None and "payment_plan_details" in self.model_fields_set:
+            _dict['paymentPlanDetails'] = None
+
+        # set to None if failure_reason_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.failure_reason_code is None and "failure_reason_code" in self.model_fields_set:
+            _dict['failureReasonCode'] = None
 
         return _dict
 
@@ -235,16 +201,6 @@ class CollectionCaseDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "collectionNum": obj.get("collectionNum"),
             "sequenceNum": obj.get("sequenceNum"),
             "workflowId": obj.get("workflowId"),
@@ -260,7 +216,18 @@ class CollectionCaseDTO(BaseModel):
             "paymentReference": obj.get("paymentReference"),
             "propertyGroups": [PropertyGroupReferenceDTO.from_dict(_item) for _item in obj["propertyGroups"]] if obj.get("propertyGroups") is not None else None,
             "totalOpenAmountInclVAT": obj.get("totalOpenAmountInclVAT"),
-            "customProperties": [CustomEntityPropertyDTO.from_dict(_item) for _item in obj["customProperties"]] if obj.get("customProperties") is not None else None
+            "paymentPlanDetails": PaymentPlanDetailsDTO.from_dict(obj["paymentPlanDetails"]) if obj.get("paymentPlanDetails") is not None else None,
+            "hasActivePaymentPlan": obj.get("hasActivePaymentPlan"),
+            "customProperties": [CustomEntityPropertyDTO.from_dict(_item) for _item in obj["customProperties"]] if obj.get("customProperties") is not None else None,
+            "failureReasonCode": LocalisedErrorDTO.from_dict(obj["failureReasonCode"]) if obj.get("failureReasonCode") is not None else None,
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

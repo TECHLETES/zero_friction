@@ -35,35 +35,52 @@ class TestIncomingMutationDTO(unittest.TestCase):
         model = IncomingMutationDTO()
         if include_optional:
             return IncomingMutationDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 incoming_banking_transaction_id = '',
                 transaction_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 type = 'incomingtransfer',
                 status = 'created',
                 amount = 1.337,
+                display_amount = 1.337,
                 is_manual_match = True,
-                details = None,
+                details = billing_client.models.base_incoming_mutation_details_dto.BaseIncomingMutationDetailsDTO(),
+                reference_analysis = billing_client.models.incoming_mutation_reference_analysis_dto.IncomingMutationReferenceAnalysisDTO(
+                    raw_reference = '', 
+                    kind = 'none', 
+                    tokens = [
+                        billing_client.models.incoming_mutation_reference_token_dto.IncomingMutationReferenceTokenDTO(
+                            value = '', 
+                            start = 56, 
+                            length = 56, )
+                        ], 
+                    suggested_customer_id = '', 
+                    suggested_transaction_ids = [
+                        ''
+                        ], 
+                    amount_matches = True, 
+                    iban_matches = True, 
+                    auto_match_applied = True, 
+                    reason = '', 
+                    analyzed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
                 errors = [
                     billing_client.models.localised_error_dto.LocalisedErrorDTO(
-                        key = null, 
+                        key = 56, 
                         correlation_id = '', 
                         message = '', 
                         message_values = [
                             billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                data_type = null, 
+                                data_type = 'text', 
                                 value = '', 
                                 capitalize = True, )
                             ], )
-                    ]
+                    ],
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return IncomingMutationDTO(

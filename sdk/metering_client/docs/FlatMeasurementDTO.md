@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **external_channel_identifier** | **str** |  | [optional] 
 **end_date_time** | **datetime** |  | [optional] 
 **value** | **float** |  | [optional] 
+**time_of_use** | **str** |  | [optional] 
 
 ## Example
 

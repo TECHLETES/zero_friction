@@ -35,16 +35,6 @@ class TestProductExportItemDTO(unittest.TestCase):
         model = ProductExportItemDTO()
         if include_optional:
             return ProductExportItemDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 product_name = '',
                 billing_item_name = '',
                 billing_item_unit_of_measure = 'none',
@@ -71,7 +61,15 @@ class TestProductExportItemDTO(unittest.TestCase):
                         unit_price = 1.337, 
                         unit_price_uses_formula = True, 
                         formula_expression = '', )
-                    ]
+                    ],
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return ProductExportItemDTO(

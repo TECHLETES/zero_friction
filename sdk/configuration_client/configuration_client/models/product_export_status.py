@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ProductExportStatus(str, Enum):
     """
-    ProductExportStatus
+    Possible values: 'new', 'current'
     """
 
     """

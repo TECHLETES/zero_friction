@@ -38,16 +38,32 @@ class TestUpdatePaymentParametersRequest(unittest.TestCase):
                 retry_parameters = [
                     configuration_client.models.payment_retry_parameter_request.PaymentRetryParameterRequest(
                         retry_attempt = 56, 
-                        retry_action = null, 
+                        retry_action = 'retryonfixedday', 
                         value = 56, )
                     ],
                 refund_payment_delay_in_days = 56,
                 payment_terms_id = '',
                 default_collection_flow_id = '',
-                only_use_invoice_number_in_payment_references = True
+                only_use_invoice_number_in_payment_references = True,
+                block_automatic_refunding = True,
+                default_collection_delay = 'delayuntilfixeddayofmonth',
+                default_collection_delay_value = 56,
+                allow_resident_to_choose_collection_day = True,
+                allow_customer_collection_day_override = True,
+                selectable_collection_days = [
+                    56
+                    ],
+                matching_rules = [
+                    configuration_client.models.base_bank_statement_matching_rule_dto.BaseBankStatementMatchingRuleDTO()
+                    ]
             )
         else:
             return UpdatePaymentParametersRequest(
+                payment_terms_id = '',
+                default_collection_delay = 'delayuntilfixeddayofmonth',
+                selectable_collection_days = [
+                    56
+                    ],
         )
         """
 

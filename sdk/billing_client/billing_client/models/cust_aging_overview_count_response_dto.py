@@ -24,17 +24,17 @@ from typing_extensions import Self
 
 class CustAgingOverviewCountResponseDTO(BaseModel):
     """
-    Represents an overview of customer aging counts and amounts.  This DTO provides aggregated financial information about outstanding transactions across different aging buckets.
+    CustAgingOverviewCountResponseDTO
     """ # noqa: E501
-    open_credits: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of open credit transactions.", alias="openCredits")
-    open_debits: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Sum of all open transactions to be paid by the customer", alias="openDebits")
-    total_open_not_overdue: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Open amount and not yet overdue", alias="totalOpenNotOverdue")
-    total_overdue30_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of transactions overdue between 0 and 30 days (excluding end date).", alias="totalOverdue30D")
-    total_overdue60_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of transactions overdue between 30 and 60 days (excluding end date).", alias="totalOverdue60D")
-    total_overdue90_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of transactions overdue between 60 and 90 days (excluding end date).", alias="totalOverdue90D")
-    total_overdue_over90_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of transactions overdue for more than 90 days.", alias="totalOverdueOver90D")
-    total_collection_costs_open: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of open collection costs, including both open and potentially overdue costs.", alias="totalCollectionCostsOpen")
-    total_open: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of all open transactions.", alias="totalOpen")
+    open_credits: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="openCredits")
+    open_debits: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="openDebits")
+    total_open_not_overdue: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOpenNotOverdue")
+    total_overdue30_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOverdue30D")
+    total_overdue60_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOverdue60D")
+    total_overdue90_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOverdue90D")
+    total_overdue_over90_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOverdueOver90D")
+    total_collection_costs_open: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalCollectionCostsOpen")
+    total_open: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOpen")
     __properties: ClassVar[List[str]] = ["openCredits", "openDebits", "totalOpenNotOverdue", "totalOverdue30D", "totalOverdue60D", "totalOverdue90D", "totalOverdueOver90D", "totalCollectionCostsOpen", "totalOpen"]
 
     model_config = ConfigDict(

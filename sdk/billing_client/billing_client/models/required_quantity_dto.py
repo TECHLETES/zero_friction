@@ -13,126 +13,155 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
+import json
 import pprint
 import re  # noqa: F401
-import json
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+from typing import Optional
+from billing_client.models.required_quantity_dto_required_consumption_quantity_dto import RequiredQuantityDTORequiredConsumptionQuantityDTO
+from billing_client.models.required_quantity_dto_required_custom_entity_property_quantity_dto import RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO
+from billing_client.models.required_quantity_dto_required_prepayment_quantity_dto import RequiredQuantityDTORequiredPrepaymentQuantityDTO
+from billing_client.models.required_quantity_dto_required_subscription_quantity_dto import RequiredQuantityDTORequiredSubscriptionQuantityDTO
+from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
+from typing_extensions import Literal, Self
+from pydantic import Field
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from billing_client.models.localised_error_dto import LocalisedErrorDTO
-from billing_client.models.required_quantity_validation_error_dto import RequiredQuantityValidationErrorDTO
-from typing import Optional, Set
-from typing_extensions import Self
+REQUIREDQUANTITYDTO_ANY_OF_SCHEMAS = ["RequiredQuantityDTORequiredConsumptionQuantityDTO", "RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO", "RequiredQuantityDTORequiredPrepaymentQuantityDTO", "RequiredQuantityDTORequiredSubscriptionQuantityDTO"]
 
 class RequiredQuantityDTO(BaseModel):
     """
-    Base class for all required quantity types in billing completeness
-    """ # noqa: E501
-    billing_item_id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the billing item", alias="billingItemId")
-    service_location_id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the service location", alias="serviceLocationId")
-    calculation_group_id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the calculation group", alias="calculationGroupId")
-    complete: Optional[StrictBool] = Field(default=None, description="Indicates if all required data is complete")
-    errors: Optional[List[LocalisedErrorDTO]] = Field(default=None, description="List of localized error messages")
-    validation_errors: Optional[List[RequiredQuantityValidationErrorDTO]] = Field(default=None, description="List of validation errors for this quantity", alias="validationErrors")
-    __properties: ClassVar[List[str]] = ["billingItemId", "serviceLocationId", "calculationGroupId", "complete", "errors", "validationErrors"]
+    RequiredQuantityDTO
+    """
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    # data type: RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO
+    anyof_schema_1_validator: Optional[RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO] = None
+    # data type: RequiredQuantityDTORequiredConsumptionQuantityDTO
+    anyof_schema_2_validator: Optional[RequiredQuantityDTORequiredConsumptionQuantityDTO] = None
+    # data type: RequiredQuantityDTORequiredSubscriptionQuantityDTO
+    anyof_schema_3_validator: Optional[RequiredQuantityDTORequiredSubscriptionQuantityDTO] = None
+    # data type: RequiredQuantityDTORequiredPrepaymentQuantityDTO
+    anyof_schema_4_validator: Optional[RequiredQuantityDTORequiredPrepaymentQuantityDTO] = None
+    if TYPE_CHECKING:
+        actual_instance: Optional[Union[RequiredQuantityDTORequiredConsumptionQuantityDTO, RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO, RequiredQuantityDTORequiredPrepaymentQuantityDTO, RequiredQuantityDTORequiredSubscriptionQuantityDTO]] = None
+    else:
+        actual_instance: Any = None
+    any_of_schemas: Set[str] = { "RequiredQuantityDTORequiredConsumptionQuantityDTO", "RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO", "RequiredQuantityDTORequiredPrepaymentQuantityDTO", "RequiredQuantityDTORequiredSubscriptionQuantityDTO" }
 
+    model_config = {
+        "validate_assignment": True,
+        "protected_namespaces": (),
+    }
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+    discriminator_value_class_map: Dict[str, str] = {
+    }
+
+    def __init__(self, *args, **kwargs) -> None:
+        if args:
+            if len(args) > 1:
+                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+            if kwargs:
+                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+            super().__init__(actual_instance=args[0])
+        else:
+            super().__init__(**kwargs)
+
+    @field_validator('actual_instance')
+    def actual_instance_must_validate_anyof(cls, v):
+        instance = RequiredQuantityDTO.model_construct()
+        error_messages = []
+        # validate data type: RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO
+        if not isinstance(v, RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO`")
+        else:
+            return v
+
+        # validate data type: RequiredQuantityDTORequiredConsumptionQuantityDTO
+        if not isinstance(v, RequiredQuantityDTORequiredConsumptionQuantityDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `RequiredQuantityDTORequiredConsumptionQuantityDTO`")
+        else:
+            return v
+
+        # validate data type: RequiredQuantityDTORequiredSubscriptionQuantityDTO
+        if not isinstance(v, RequiredQuantityDTORequiredSubscriptionQuantityDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `RequiredQuantityDTORequiredSubscriptionQuantityDTO`")
+        else:
+            return v
+
+        # validate data type: RequiredQuantityDTORequiredPrepaymentQuantityDTO
+        if not isinstance(v, RequiredQuantityDTORequiredPrepaymentQuantityDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `RequiredQuantityDTORequiredPrepaymentQuantityDTO`")
+        else:
+            return v
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when setting the actual_instance in RequiredQuantityDTO with anyOf schemas: RequiredQuantityDTORequiredConsumptionQuantityDTO, RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO, RequiredQuantityDTORequiredPrepaymentQuantityDTO, RequiredQuantityDTORequiredSubscriptionQuantityDTO. Details: " + ", ".join(error_messages))
+        else:
+            return v
+
+    @classmethod
+    def from_dict(cls, obj: Dict[str, Any]) -> Self:
+        return cls.from_json(json.dumps(obj))
+
+    @classmethod
+    def from_json(cls, json_str: str) -> Self:
+        """Returns the object represented by the json string"""
+        instance = cls.model_construct()
+        error_messages = []
+        # anyof_schema_1_validator: Optional[RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO] = None
+        try:
+            instance.actual_instance = RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_2_validator: Optional[RequiredQuantityDTORequiredConsumptionQuantityDTO] = None
+        try:
+            instance.actual_instance = RequiredQuantityDTORequiredConsumptionQuantityDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_3_validator: Optional[RequiredQuantityDTORequiredSubscriptionQuantityDTO] = None
+        try:
+            instance.actual_instance = RequiredQuantityDTORequiredSubscriptionQuantityDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_4_validator: Optional[RequiredQuantityDTORequiredPrepaymentQuantityDTO] = None
+        try:
+            instance.actual_instance = RequiredQuantityDTORequiredPrepaymentQuantityDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into RequiredQuantityDTO with anyOf schemas: RequiredQuantityDTORequiredConsumptionQuantityDTO, RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO, RequiredQuantityDTORequiredPrepaymentQuantityDTO, RequiredQuantityDTORequiredSubscriptionQuantityDTO. Details: " + ", ".join(error_messages))
+        else:
+            return instance
 
     def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
 
-    @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RequiredQuantityDTO from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+            return self.actual_instance.to_json()
+        else:
+            return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
-        # override the default output from pydantic by calling `to_dict()` of each item in errors (list)
-        _items = []
-        if self.errors:
-            for _item_errors in self.errors:
-                if _item_errors:
-                    _items.append(_item_errors.to_dict())
-            _dict['errors'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in validation_errors (list)
-        _items = []
-        if self.validation_errors:
-            for _item_validation_errors in self.validation_errors:
-                if _item_validation_errors:
-                    _items.append(_item_validation_errors.to_dict())
-            _dict['validationErrors'] = _items
-        # set to None if billing_item_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.billing_item_id is None and "billing_item_id" in self.model_fields_set:
-            _dict['billingItemId'] = None
-
-        # set to None if service_location_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.service_location_id is None and "service_location_id" in self.model_fields_set:
-            _dict['serviceLocationId'] = None
-
-        # set to None if calculation_group_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.calculation_group_id is None and "calculation_group_id" in self.model_fields_set:
-            _dict['calculationGroupId'] = None
-
-        # set to None if errors (nullable) is None
-        # and model_fields_set contains the field
-        if self.errors is None and "errors" in self.model_fields_set:
-            _dict['errors'] = None
-
-        # set to None if validation_errors (nullable) is None
-        # and model_fields_set contains the field
-        if self.validation_errors is None and "validation_errors" in self.model_fields_set:
-            _dict['validationErrors'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RequiredQuantityDTO from a dict"""
-        if obj is None:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], RequiredQuantityDTORequiredConsumptionQuantityDTO, RequiredQuantityDTORequiredCustomEntityPropertyQuantityDTO, RequiredQuantityDTORequiredPrepaymentQuantityDTO, RequiredQuantityDTORequiredSubscriptionQuantityDTO]]:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is None:
             return None
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+            return self.actual_instance.to_dict()
+        else:
+            return self.actual_instance
 
-        _obj = cls.model_validate({
-            "billingItemId": obj.get("billingItemId"),
-            "serviceLocationId": obj.get("serviceLocationId"),
-            "calculationGroupId": obj.get("calculationGroupId"),
-            "complete": obj.get("complete"),
-            "errors": [LocalisedErrorDTO.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None,
-            "validationErrors": [RequiredQuantityValidationErrorDTO.from_dict(_item) for _item in obj["validationErrors"]] if obj.get("validationErrors") is not None else None
-        })
-        return _obj
+    def to_str(self) -> str:
+        """Returns the string representation of the actual instance"""
+        return pprint.pformat(self.model_dump())
 
 

@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **customer_id** | **str** |  | [optional] 
+**customer_display_name** | **str** |  | [optional] 
+**customer_account_number** | **str** |  | [optional] 
 **address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
 **email** | **str** |  | [optional] 
 **preferred_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 

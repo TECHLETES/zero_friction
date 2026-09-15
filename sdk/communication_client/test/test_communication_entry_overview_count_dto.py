@@ -36,7 +36,10 @@ class TestCommunicationEntryOverviewCountDTO(unittest.TestCase):
         if include_optional:
             return CommunicationEntryOverviewCountDTO(
                 all = 56,
-                failed = 56
+                failed = 56,
+                sent = 56,
+                not_sent = 56,
+                in_transit = 56
             )
         else:
             return CommunicationEntryOverviewCountDTO(

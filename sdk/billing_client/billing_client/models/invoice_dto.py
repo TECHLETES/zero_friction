@@ -30,8 +30,10 @@ from billing_client.models.invoice_line_dto import InvoiceLineDTO
 from billing_client.models.invoice_status import InvoiceStatus
 from billing_client.models.invoice_type import InvoiceType
 from billing_client.models.invoice_ubl_attachment_details_dto import InvoiceUBLAttachmentDetailsDTO
+from billing_client.models.invoice_validation_result_dto import InvoiceValidationResultDTO
 from billing_client.models.localised_error_dto import LocalisedErrorDTO
 from billing_client.models.payment_details_dto import PaymentDetailsDTO
+from billing_client.models.payment_plan_details_dto import PaymentPlanDetailsDTO
 from billing_client.models.product_reference_dto import ProductReferenceDTO
 from billing_client.models.property_group_reference_dto import PropertyGroupReferenceDTO
 from billing_client.models.sent_status import SentStatus
@@ -40,55 +42,56 @@ from typing_extensions import Self
 
 class InvoiceDTO(BaseModel):
     """
-    Represents an invoice in the billing system
+    InvoiceDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
-    invoice_num: Optional[StrictStr] = Field(default=None, description="Invoice number", alias="invoiceNum")
-    sequence_number: Optional[StrictInt] = Field(default=None, description="Sequential number of the invoice", alias="sequenceNumber")
-    invoice_date: Optional[datetime] = Field(default=None, description="Date when the invoice was created", alias="invoiceDate")
-    type: Optional[InvoiceType] = Field(default=None, description="Type of the invoice")
-    status: Optional[InvoiceStatus] = Field(default=None, description="Current status of the invoice")
-    debtor: Optional[DebtorDTO] = Field(default=None, description="Debtor information for the invoice")
-    contract_id: Optional[StrictStr] = Field(default=None, description="Identifier of the associated contract", alias="contractId")
-    contract_number: Optional[StrictStr] = Field(default=None, description="Contract number", alias="contractNumber")
-    note_to_customer: Optional[StrictStr] = Field(default=None, description="Note to be displayed to the customer", alias="noteToCustomer")
-    external_reference: Optional[StrictStr] = Field(default=None, description="External reference for the invoice", alias="externalReference")
-    due_date: Optional[datetime] = Field(default=None, description="Date when the invoice is due for payment", alias="dueDate")
-    period_start_date_time: Optional[datetime] = Field(default=None, description="Start date and time of the billing period", alias="periodStartDateTime")
-    period_end_date_time: Optional[datetime] = Field(default=None, description="End date and time of the billing period", alias="periodEndDateTime")
-    lines: Optional[List[InvoiceLineDTO]] = Field(default=None, description="List of invoice lines")
-    remaining_invoice_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Remaining amount to be paid on the invoice", alias="remainingInvoiceAmount")
-    total_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total invoice amount including VAT", alias="totalAmountInclVAT")
-    total_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total invoice amount excluding VAT", alias="totalAmountExclVAT")
-    payment_details: Optional[PaymentDetailsDTO] = Field(default=None, description="Payment details for the invoice", alias="paymentDetails")
-    attachment_id: Optional[StrictStr] = Field(default=None, description="Identifier of the associated attachment", alias="attachmentId")
-    credited_by_invoice_id: Optional[StrictStr] = Field(default=None, description="Identifier of the invoice that credited this invoice", alias="creditedByInvoiceId")
-    credited_invoice_id: Optional[StrictStr] = Field(default=None, description="Identifier of the invoice that was credited by this invoice", alias="creditedInvoiceId")
-    billing_completeness_id: Optional[StrictStr] = Field(default=None, description="Identifier of the associated billing completeness record", alias="billingCompletenessId")
-    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, description="List of associated property groups", alias="propertyGroups")
-    product: Optional[ProductReferenceDTO] = Field(default=None, description="Associated product reference")
-    company_bank_account_id: Optional[StrictStr] = Field(default=None, description="Identifier of the company's bank account", alias="companyBankAccountId")
-    consumption_calculation_inputs: Optional[List[ConsumptionCalculationInputDTO]] = Field(default=None, description="List of consumption calculation inputs", alias="consumptionCalculationInputs")
-    collection_details: Optional[CollectionCaseDetailsDTO] = Field(default=None, description="Collection case details", alias="collectionDetails")
-    sent: Optional[SentStatus] = Field(default=None, description="Status of invoice sending")
-    failure_reason_code: Optional[LocalisedErrorDTO] = Field(default=None, description="Localized error code for any failure", alias="failureReasonCode")
-    failure_details: Optional[StrictStr] = Field(default=None, description="Detailed failure information", alias="failureDetails")
-    supports_external_printing: Optional[StrictBool] = Field(default=None, description="Indicates if the document can be printed externally", alias="supportsExternalPrinting")
-    export_status: Optional[ExportStatus] = Field(default=None, description="Status of invoice export", alias="exportStatus")
-    new_advance_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="New advance amount excluding VAT (obsolete, use AdvanceCalculationDetails)", alias="newAdvanceAmountExclVAT")
-    new_advance_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="New advance amount including VAT (obsolete, use AdvanceCalculationDetails)", alias="newAdvanceAmountInclVAT")
-    advance_calculation_details: Optional[AdvanceCalculationDetailsDTO] = Field(default=None, description="Details of advance payment calculations", alias="advanceCalculationDetails")
-    ubl_attachment_details: Optional[InvoiceUBLAttachmentDetailsDTO] = Field(default=None, description="Details of UBL attachment", alias="ublAttachmentDetails")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "invoiceNum", "sequenceNumber", "invoiceDate", "type", "status", "debtor", "contractId", "contractNumber", "noteToCustomer", "externalReference", "dueDate", "periodStartDateTime", "periodEndDateTime", "lines", "remainingInvoiceAmount", "totalAmountInclVAT", "totalAmountExclVAT", "paymentDetails", "attachmentId", "creditedByInvoiceId", "creditedInvoiceId", "billingCompletenessId", "propertyGroups", "product", "companyBankAccountId", "consumptionCalculationInputs", "collectionDetails", "sent", "failureReasonCode", "failureDetails", "supportsExternalPrinting", "exportStatus", "newAdvanceAmountExclVAT", "newAdvanceAmountInclVAT", "advanceCalculationDetails", "ublAttachmentDetails"]
+    invoice_num: Optional[StrictStr] = Field(default=None, alias="invoiceNum")
+    sequence_number: Optional[StrictInt] = Field(default=None, alias="sequenceNumber")
+    invoice_date: Optional[datetime] = Field(default=None, alias="invoiceDate")
+    type: Optional[InvoiceType] = None
+    status: Optional[InvoiceStatus] = None
+    debtor: Optional[DebtorDTO] = None
+    contract_id: Optional[StrictStr] = Field(default=None, alias="contractId")
+    contract_number: Optional[StrictStr] = Field(default=None, alias="contractNumber")
+    note_to_customer: Optional[StrictStr] = Field(default=None, alias="noteToCustomer")
+    external_reference: Optional[StrictStr] = Field(default=None, alias="externalReference")
+    due_date: Optional[datetime] = Field(default=None, alias="dueDate")
+    period_start_date_time: Optional[datetime] = Field(default=None, alias="periodStartDateTime")
+    period_end_date_time: Optional[datetime] = Field(default=None, alias="periodEndDateTime")
+    lines: Optional[List[InvoiceLineDTO]] = None
+    remaining_invoice_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="remainingInvoiceAmount")
+    total_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalAmountInclVAT")
+    total_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalAmountExclVAT")
+    payment_details: Optional[PaymentDetailsDTO] = Field(default=None, alias="paymentDetails")
+    attachment_id: Optional[StrictStr] = Field(default=None, alias="attachmentId")
+    credited_by_invoice_id: Optional[StrictStr] = Field(default=None, alias="creditedByInvoiceId")
+    credited_invoice_id: Optional[StrictStr] = Field(default=None, alias="creditedInvoiceId")
+    billing_completeness_id: Optional[StrictStr] = Field(default=None, alias="billingCompletenessId")
+    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, alias="propertyGroups")
+    product: Optional[ProductReferenceDTO] = None
+    company_bank_account_id: Optional[StrictStr] = Field(default=None, alias="companyBankAccountId")
+    consumption_calculation_inputs: Optional[List[ConsumptionCalculationInputDTO]] = Field(default=None, alias="consumptionCalculationInputs")
+    collection_details: Optional[CollectionCaseDetailsDTO] = Field(default=None, alias="collectionDetails")
+    payment_plan_details: Optional[PaymentPlanDetailsDTO] = Field(default=None, alias="paymentPlanDetails")
+    sent: Optional[SentStatus] = None
+    failure_reason_code: Optional[LocalisedErrorDTO] = Field(default=None, alias="failureReasonCode")
+    failure_details: Optional[StrictStr] = Field(default=None, alias="failureDetails")
+    supports_external_printing: Optional[StrictBool] = Field(default=None, alias="supportsExternalPrinting")
+    export_status: Optional[ExportStatus] = Field(default=None, alias="exportStatus")
+    new_advance_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="newAdvanceAmountExclVAT")
+    new_advance_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="newAdvanceAmountInclVAT")
+    advance_calculation_details: Optional[AdvanceCalculationDetailsDTO] = Field(default=None, alias="advanceCalculationDetails")
+    ubl_attachment_details: Optional[InvoiceUBLAttachmentDetailsDTO] = Field(default=None, alias="ublAttachmentDetails")
+    validation_result: Optional[InvoiceValidationResultDTO] = Field(default=None, alias="validationResult")
+    auto_approved: Optional[StrictBool] = Field(default=None, alias="autoApproved")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["invoiceNum", "sequenceNumber", "invoiceDate", "type", "status", "debtor", "contractId", "contractNumber", "noteToCustomer", "externalReference", "dueDate", "periodStartDateTime", "periodEndDateTime", "lines", "remainingInvoiceAmount", "totalAmountInclVAT", "totalAmountExclVAT", "paymentDetails", "attachmentId", "creditedByInvoiceId", "creditedInvoiceId", "billingCompletenessId", "propertyGroups", "product", "companyBankAccountId", "consumptionCalculationInputs", "collectionDetails", "paymentPlanDetails", "sent", "failureReasonCode", "failureDetails", "supportsExternalPrinting", "exportStatus", "newAdvanceAmountExclVAT", "newAdvanceAmountInclVAT", "advanceCalculationDetails", "ublAttachmentDetails", "validationResult", "autoApproved", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -120,14 +123,8 @@ class InvoiceDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
-            "new_advance_amount_excl_vat",
-            "new_advance_amount_incl_vat",
         ])
 
         _dict = self.model_dump(
@@ -168,6 +165,9 @@ class InvoiceDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of collection_details
         if self.collection_details:
             _dict['collectionDetails'] = self.collection_details.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of payment_plan_details
+        if self.payment_plan_details:
+            _dict['paymentPlanDetails'] = self.payment_plan_details.to_dict()
         # override the default output from pydantic by calling `to_dict()` of failure_reason_code
         if self.failure_reason_code:
             _dict['failureReasonCode'] = self.failure_reason_code.to_dict()
@@ -177,45 +177,13 @@ class InvoiceDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of ubl_attachment_details
         if self.ubl_attachment_details:
             _dict['ublAttachmentDetails'] = self.ubl_attachment_details.to_dict()
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of validation_result
+        if self.validation_result:
+            _dict['validationResult'] = self.validation_result.to_dict()
         # set to None if invoice_num (nullable) is None
         # and model_fields_set contains the field
         if self.invoice_num is None and "invoice_num" in self.model_fields_set:
             _dict['invoiceNum'] = None
-
-        # set to None if type (nullable) is None
-        # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
-
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
 
         # set to None if debtor (nullable) is None
         # and model_fields_set contains the field
@@ -297,10 +265,10 @@ class InvoiceDTO(BaseModel):
         if self.collection_details is None and "collection_details" in self.model_fields_set:
             _dict['collectionDetails'] = None
 
-        # set to None if sent (nullable) is None
+        # set to None if payment_plan_details (nullable) is None
         # and model_fields_set contains the field
-        if self.sent is None and "sent" in self.model_fields_set:
-            _dict['sent'] = None
+        if self.payment_plan_details is None and "payment_plan_details" in self.model_fields_set:
+            _dict['paymentPlanDetails'] = None
 
         # set to None if failure_reason_code (nullable) is None
         # and model_fields_set contains the field
@@ -311,11 +279,6 @@ class InvoiceDTO(BaseModel):
         # and model_fields_set contains the field
         if self.failure_details is None and "failure_details" in self.model_fields_set:
             _dict['failureDetails'] = None
-
-        # set to None if export_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.export_status is None and "export_status" in self.model_fields_set:
-            _dict['exportStatus'] = None
 
         # set to None if new_advance_amount_excl_vat (nullable) is None
         # and model_fields_set contains the field
@@ -349,16 +312,6 @@ class InvoiceDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "invoiceNum": obj.get("invoiceNum"),
             "sequenceNumber": obj.get("sequenceNumber"),
             "invoiceDate": obj.get("invoiceDate"),
@@ -386,6 +339,7 @@ class InvoiceDTO(BaseModel):
             "companyBankAccountId": obj.get("companyBankAccountId"),
             "consumptionCalculationInputs": [ConsumptionCalculationInputDTO.from_dict(_item) for _item in obj["consumptionCalculationInputs"]] if obj.get("consumptionCalculationInputs") is not None else None,
             "collectionDetails": CollectionCaseDetailsDTO.from_dict(obj["collectionDetails"]) if obj.get("collectionDetails") is not None else None,
+            "paymentPlanDetails": PaymentPlanDetailsDTO.from_dict(obj["paymentPlanDetails"]) if obj.get("paymentPlanDetails") is not None else None,
             "sent": obj.get("sent"),
             "failureReasonCode": LocalisedErrorDTO.from_dict(obj["failureReasonCode"]) if obj.get("failureReasonCode") is not None else None,
             "failureDetails": obj.get("failureDetails"),
@@ -394,7 +348,17 @@ class InvoiceDTO(BaseModel):
             "newAdvanceAmountExclVAT": obj.get("newAdvanceAmountExclVAT"),
             "newAdvanceAmountInclVAT": obj.get("newAdvanceAmountInclVAT"),
             "advanceCalculationDetails": AdvanceCalculationDetailsDTO.from_dict(obj["advanceCalculationDetails"]) if obj.get("advanceCalculationDetails") is not None else None,
-            "ublAttachmentDetails": InvoiceUBLAttachmentDetailsDTO.from_dict(obj["ublAttachmentDetails"]) if obj.get("ublAttachmentDetails") is not None else None
+            "ublAttachmentDetails": InvoiceUBLAttachmentDetailsDTO.from_dict(obj["ublAttachmentDetails"]) if obj.get("ublAttachmentDetails") is not None else None,
+            "validationResult": InvoiceValidationResultDTO.from_dict(obj["validationResult"]) if obj.get("validationResult") is not None else None,
+            "autoApproved": obj.get("autoApproved"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

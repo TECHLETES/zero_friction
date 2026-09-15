@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **reply_to_email_address** | **str** |  | [optional] 
 **reply_to_name** | **str** |  | [optional] 
 **is_sandboxed** | **bool** |  | [optional] 
-**sandbox_recipient_email** | **str** |  | [optional] 
-**sandbox_recipient_phone_number** | **str** |  | [optional] 
+**sandbox_recipient_email** | **str** |  | 
+**sandbox_recipient_phone_number** | **str** |  | 
 
 ## Example
 

@@ -5,11 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**type** | [**PropertyGroupType**](PropertyGroupType.md) |  | [optional] 
-**address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
+**name** | **str** |  | 
+**type** | [**PropertyGroupType**](PropertyGroupType.md) |  | 
+**address** | [**AddressDTO**](AddressDTO.md) |  | 
 **management_relations** | [**List[ManagementRelationRequest]**](ManagementRelationRequest.md) |  | [optional] 
 **service_locations** | **List[str]** |  | [optional] 
+**cost_center_id** | **str** |  | [optional] 
+**property_group_billing_configuration** | [**CreatePropertyGroupBillingConfigurationRequest**](CreatePropertyGroupBillingConfigurationRequest.md) |  | [optional] 
+**property_group_prepayment_configuration** | [**CreatePropertyGroupPrepaymentConfigurationRequest**](CreatePropertyGroupPrepaymentConfigurationRequest.md) |  | [optional] 
 
 ## Example
 

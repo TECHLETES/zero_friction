@@ -1,5 +1,6 @@
 # AggregationFrequency
 
+Possible values: 'none', 'daily', 'monthly', 'yearly'
 
 ## Enum
 

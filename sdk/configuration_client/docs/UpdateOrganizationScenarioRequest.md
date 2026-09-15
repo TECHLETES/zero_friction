@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
 **email_template** | [**BaseEmailTemplateRequest**](BaseEmailTemplateRequest.md) |  | [optional] 
 **pdf_template** | [**BasePdfTemplateRequest**](BasePdfTemplateRequest.md) |  | [optional] 
+**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
+**auto_fallback_to_postal** | **bool** |  | [optional] 
 
 ## Example
 

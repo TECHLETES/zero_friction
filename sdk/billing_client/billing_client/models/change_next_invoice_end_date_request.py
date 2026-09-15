@@ -25,10 +25,10 @@ from typing_extensions import Self
 
 class ChangeNextInvoiceEndDateRequest(BaseModel):
     """
-    Represents a request to change the end date of the next invoice
+    ChangeNextInvoiceEndDateRequest
     """ # noqa: E501
-    from_first_open_period: Optional[StrictBool] = Field(default=None, description="Indicates whether to use the start date of the last known non-closed billing completeness (true)  or the end date of the last known non-closed billing completeness (false) as the start date", alias="fromFirstOpenPeriod")
-    end_date_time: Optional[datetime] = Field(default=None, description="The new end date and time for the next invoice. Must not be after or on the contract end date", alias="endDateTime")
+    from_first_open_period: Optional[StrictBool] = Field(default=None, alias="fromFirstOpenPeriod")
+    end_date_time: datetime = Field(alias="endDateTime")
     __properties: ClassVar[List[str]] = ["fromFirstOpenPeriod", "endDateTime"]
 
     model_config = ConfigDict(

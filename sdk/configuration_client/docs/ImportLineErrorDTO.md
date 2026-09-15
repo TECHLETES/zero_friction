@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **line_number** | **int** |  | [optional] 
-**error_messages** | [**List[ErrorCode]**](ErrorCode.md) |  | [optional] 
+**error_messages** | **List[int]** |  | [optional] 
 **is_valid** | **bool** |  | [optional] 
 
 ## Example

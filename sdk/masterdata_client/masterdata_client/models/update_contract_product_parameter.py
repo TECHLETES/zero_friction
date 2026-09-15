@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class UpdateContractProductParameter(str, Enum):
     """
-    UpdateContractProductParameter
+    Possible values: 'fromcontractstartdate', 'fromfirstopenperiod', 'fromsupplieddate', 'fromdatebasedonspecificperiod'
     """
 
     """

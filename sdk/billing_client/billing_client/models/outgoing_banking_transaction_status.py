@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class OutgoingBankingTransactionStatus(str, Enum):
     """
-    OutgoingBankingTransactionStatus
+    Possible values: 'created', 'closed', 'toconfirmbybank', 'cancelled', 'readytosend', 'resolveissues', 'dateexpired', 'partiallyclosed', 'sending'
     """
 
     """
@@ -34,6 +34,7 @@ class OutgoingBankingTransactionStatus(str, Enum):
     RESOLVEISSUES = 'resolveissues'
     DATEEXPIRED = 'dateexpired'
     PARTIALLYCLOSED = 'partiallyclosed'
+    SENDING = 'sending'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

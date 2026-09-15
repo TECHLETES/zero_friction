@@ -13,136 +13,227 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
+import json
 import pprint
 import re  # noqa: F401
-import json
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+from typing import Optional
+from configuration_client.models.base_email_template_dto_annual_statement_email_template_dto import BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO
+from configuration_client.models.base_email_template_dto_base import BaseEmailTemplateDTOBase
+from configuration_client.models.base_email_template_dto_portal_confirmation_email_template_dto import BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO
+from configuration_client.models.base_email_template_dto_portal_email_changed_email_template_dto import BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO
+from configuration_client.models.base_email_template_dto_portal_invoice_address_changed_email_template_dto import BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO
+from configuration_client.models.base_email_template_dto_portal_mobile_changed_email_template_dto import BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO
+from configuration_client.models.base_email_template_dto_portal_personal_information_changed_email_template_dto import BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO
+from configuration_client.models.base_email_template_dto_portal_reset_password_email_template_dto import BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO
+from configuration_client.models.base_email_template_dto_prepayment_statement_email_template_dto import BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO
+from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
+from typing_extensions import Literal, Self
+from pydantic import Field
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from configuration_client.models.template_attachment_dto import TemplateAttachmentDTO
-from configuration_client.models.template_usecase import TemplateUsecase
-from configuration_client.models.translation_status import TranslationStatus
-from typing import Optional, Set
-from typing_extensions import Self
+BASEEMAILTEMPLATEDTO_ANY_OF_SCHEMAS = ["BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO", "BaseEmailTemplateDTOBase", "BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO", "BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO", "BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO"]
 
 class BaseEmailTemplateDTO(BaseModel):
     """
     BaseEmailTemplateDTO
-    """ # noqa: E501
-    file_name: Optional[StrictStr] = Field(default=None, alias="fileName")
-    use_case: Optional[TemplateUsecase] = Field(default=None, alias="useCase")
-    use_build_in: Optional[StrictBool] = Field(default=None, alias="useBuildIn")
-    custom_template_internal_file_path: Optional[StrictStr] = Field(default=None, alias="customTemplateInternalFilePath")
-    custom_template_file_name: Optional[StrictStr] = Field(default=None, alias="customTemplateFileName")
-    translation_status: Optional[TranslationStatus] = Field(default=None, alias="translationStatus")
-    subject: Optional[StrictStr] = None
-    attachments: Optional[List[TemplateAttachmentDTO]] = None
-    __properties: ClassVar[List[str]] = ["fileName", "useCase", "useBuildIn", "customTemplateInternalFilePath", "customTemplateFileName", "translationStatus", "subject", "attachments"]
+    """
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    # data type: BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO
+    anyof_schema_1_validator: Optional[BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO] = None
+    # data type: BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO
+    anyof_schema_2_validator: Optional[BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO] = None
+    # data type: BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO
+    anyof_schema_3_validator: Optional[BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO] = None
+    # data type: BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO
+    anyof_schema_4_validator: Optional[BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO] = None
+    # data type: BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO
+    anyof_schema_5_validator: Optional[BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO] = None
+    # data type: BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO
+    anyof_schema_6_validator: Optional[BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO] = None
+    # data type: BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO
+    anyof_schema_7_validator: Optional[BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO] = None
+    # data type: BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO
+    anyof_schema_8_validator: Optional[BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO] = None
+    # data type: BaseEmailTemplateDTOBase
+    anyof_schema_9_validator: Optional[BaseEmailTemplateDTOBase] = None
+    if TYPE_CHECKING:
+        actual_instance: Optional[Union[BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO, BaseEmailTemplateDTOBase, BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO, BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO, BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO]] = None
+    else:
+        actual_instance: Any = None
+    any_of_schemas: Set[str] = { "BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO", "BaseEmailTemplateDTOBase", "BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO", "BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO", "BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO" }
 
+    model_config = {
+        "validate_assignment": True,
+        "protected_namespaces": (),
+    }
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+    def __init__(self, *args, **kwargs) -> None:
+        if args:
+            if len(args) > 1:
+                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+            if kwargs:
+                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+            super().__init__(actual_instance=args[0])
+        else:
+            super().__init__(**kwargs)
+
+    @field_validator('actual_instance')
+    def actual_instance_must_validate_anyof(cls, v):
+        instance = BaseEmailTemplateDTO.model_construct()
+        error_messages = []
+        # validate data type: BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO
+        if not isinstance(v, BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO`")
+        else:
+            return v
+
+        # validate data type: BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO
+        if not isinstance(v, BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO`")
+        else:
+            return v
+
+        # validate data type: BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO
+        if not isinstance(v, BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO`")
+        else:
+            return v
+
+        # validate data type: BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO
+        if not isinstance(v, BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO`")
+        else:
+            return v
+
+        # validate data type: BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO
+        if not isinstance(v, BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO`")
+        else:
+            return v
+
+        # validate data type: BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO
+        if not isinstance(v, BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO`")
+        else:
+            return v
+
+        # validate data type: BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO
+        if not isinstance(v, BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO`")
+        else:
+            return v
+
+        # validate data type: BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO
+        if not isinstance(v, BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO`")
+        else:
+            return v
+
+        # validate data type: BaseEmailTemplateDTOBase
+        if not isinstance(v, BaseEmailTemplateDTOBase):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateDTOBase`")
+        else:
+            return v
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when setting the actual_instance in BaseEmailTemplateDTO with anyOf schemas: BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO, BaseEmailTemplateDTOBase, BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO, BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO, BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO. Details: " + ", ".join(error_messages))
+        else:
+            return v
+
+    @classmethod
+    def from_dict(cls, obj: Dict[str, Any]) -> Self:
+        return cls.from_json(json.dumps(obj))
+
+    @classmethod
+    def from_json(cls, json_str: str) -> Self:
+        """Returns the object represented by the json string"""
+        instance = cls.model_construct()
+        error_messages = []
+        # anyof_schema_1_validator: Optional[BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_2_validator: Optional[BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_3_validator: Optional[BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_4_validator: Optional[BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_5_validator: Optional[BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_6_validator: Optional[BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_7_validator: Optional[BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_8_validator: Optional[BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_9_validator: Optional[BaseEmailTemplateDTOBase] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateDTOBase.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into BaseEmailTemplateDTO with anyOf schemas: BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO, BaseEmailTemplateDTOBase, BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO, BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO, BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO. Details: " + ", ".join(error_messages))
+        else:
+            return instance
 
     def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
 
-    @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BaseEmailTemplateDTO from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+            return self.actual_instance.to_json()
+        else:
+            return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        """
-        excluded_fields: Set[str] = set([
-            "use_build_in",
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
-        # override the default output from pydantic by calling `to_dict()` of each item in attachments (list)
-        _items = []
-        if self.attachments:
-            for _item_attachments in self.attachments:
-                if _item_attachments:
-                    _items.append(_item_attachments.to_dict())
-            _dict['attachments'] = _items
-        # set to None if file_name (nullable) is None
-        # and model_fields_set contains the field
-        if self.file_name is None and "file_name" in self.model_fields_set:
-            _dict['fileName'] = None
-
-        # set to None if use_case (nullable) is None
-        # and model_fields_set contains the field
-        if self.use_case is None and "use_case" in self.model_fields_set:
-            _dict['useCase'] = None
-
-        # set to None if custom_template_internal_file_path (nullable) is None
-        # and model_fields_set contains the field
-        if self.custom_template_internal_file_path is None and "custom_template_internal_file_path" in self.model_fields_set:
-            _dict['customTemplateInternalFilePath'] = None
-
-        # set to None if custom_template_file_name (nullable) is None
-        # and model_fields_set contains the field
-        if self.custom_template_file_name is None and "custom_template_file_name" in self.model_fields_set:
-            _dict['customTemplateFileName'] = None
-
-        # set to None if translation_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.translation_status is None and "translation_status" in self.model_fields_set:
-            _dict['translationStatus'] = None
-
-        # set to None if subject (nullable) is None
-        # and model_fields_set contains the field
-        if self.subject is None and "subject" in self.model_fields_set:
-            _dict['subject'] = None
-
-        # set to None if attachments (nullable) is None
-        # and model_fields_set contains the field
-        if self.attachments is None and "attachments" in self.model_fields_set:
-            _dict['attachments'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BaseEmailTemplateDTO from a dict"""
-        if obj is None:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO, BaseEmailTemplateDTOBase, BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO, BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO, BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO]]:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is None:
             return None
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+            return self.actual_instance.to_dict()
+        else:
+            return self.actual_instance
 
-        _obj = cls.model_validate({
-            "fileName": obj.get("fileName"),
-            "useCase": obj.get("useCase"),
-            "useBuildIn": obj.get("useBuildIn"),
-            "customTemplateInternalFilePath": obj.get("customTemplateInternalFilePath"),
-            "customTemplateFileName": obj.get("customTemplateFileName"),
-            "translationStatus": obj.get("translationStatus"),
-            "subject": obj.get("subject"),
-            "attachments": [TemplateAttachmentDTO.from_dict(_item) for _item in obj["attachments"]] if obj.get("attachments") is not None else None
-        })
-        return _obj
+    def to_str(self) -> str:
+        """Returns the string representation of the actual instance"""
+        return pprint.pformat(self.model_dump())
 
 

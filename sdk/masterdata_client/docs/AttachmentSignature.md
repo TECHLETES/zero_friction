@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**culture** | **str** |  | [optional] 
-**attachment_file_name** | **str** |  | [optional] 
-**error_code** | [**ErrorCode**](ErrorCode.md) |  | [optional] 
-**origin** | [**EntityAttachmentOrigin**](EntityAttachmentOrigin.md) |  | [optional] 
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | 
+**attachment_file_name** | **str** |  | 
+**error_code** | **int** |  | [optional] 
+**origin** | [**EntityAttachmentOrigin**](EntityAttachmentOrigin.md) |  | 
 **product_attachment_id** | **str** |  | [optional] 
-**attachment_file_id** | **str** |  | [optional] 
-**entity_attachment_group_id** | **str** |  | [optional] 
+**attachment_file_id** | **str** |  | 
+**entity_attachment_group_id** | **str** |  | 
 **sign_date** | **datetime** |  | [optional] 
 **viewed_date** | **datetime** |  | [optional] 
 

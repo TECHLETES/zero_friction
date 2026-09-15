@@ -26,18 +26,13 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
-  "attachments_client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/attachments_client",
-  "billing_client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/billing_client",
-  "communication_client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/communication_client",
-  "configuration_client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/configuration_client",
-  "forecasting_client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/forecasting_client",
-  "masterdata_client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/masterdata_client",
-  "metering_client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/metering_client",
-  "regionalregulations_client @ git+https://github.com/TECHLETES/zero_friction.git@main#subdirectory=sdk/regionalregulations_client",
   "pandas>=2.2.0,<3.0.0",
   "python-dotenv>=1.0.0,<2.0.0",
   "ratelimit>=2.2.1,<3.0.0",
+  "pydantic>=2",
+  "python-dateutil>=2.8.2",
   "requests>=2.32.4,<3.0.0",
+  "typing-extensions>=4.7.1",
   "urllib3>=2.6.0,<3.0.0",
 ]
 
@@ -70,11 +65,41 @@ Repository = "https://github.com/TECHLETES/zero_friction"
 Issues = "https://github.com/TECHLETES/zero_friction/issues"
 
 [tool.setuptools]
-package-dir = { "" = "." }
+
+[tool.setuptools.package-dir]
+"" = "."
+attachments_client = "sdk/attachments_client/attachments_client"
+billing_client = "sdk/billing_client/billing_client"
+communication_client = "sdk/communication_client/communication_client"
+configuration_client = "sdk/configuration_client/configuration_client"
+forecasting_client = "sdk/forecasting_client/forecasting_client"
+masterdata_client = "sdk/masterdata_client/masterdata_client"
+metering_client = "sdk/metering_client/metering_client"
+regionalregulations_client = "sdk/regionalregulations_client/regionalregulations_client"
 
 [tool.setuptools.packages.find]
-where = ["."]
-include = ["zero_friction*"]
+where = [
+  ".",
+  "sdk/attachments_client",
+  "sdk/billing_client",
+  "sdk/communication_client",
+  "sdk/configuration_client",
+  "sdk/forecasting_client",
+  "sdk/masterdata_client",
+  "sdk/metering_client",
+  "sdk/regionalregulations_client",
+]
+include = [
+  "zero_friction*",
+  "attachments_client*",
+  "billing_client*",
+  "communication_client*",
+  "configuration_client*",
+  "forecasting_client*",
+  "masterdata_client*",
+  "metering_client*",
+  "regionalregulations_client*",
+]
 
 [tool.black]
 line-length = 88
@@ -156,7 +181,7 @@ exclude_files = [
   "^coverage.svg$",
   "^tests/",
   "^sdk/",
-
+  "openapi_specs/"
 ]
 
 [tool.uv]

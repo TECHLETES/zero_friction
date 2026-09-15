@@ -41,6 +41,8 @@ class TestUpdateContractProductRequest(unittest.TestCase):
             )
         else:
             return UpdateContractProductRequest(
+                start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                parameter = 'fromcontractstartdate',
         )
         """
 

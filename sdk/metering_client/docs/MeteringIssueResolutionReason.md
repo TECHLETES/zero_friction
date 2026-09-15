@@ -1,5 +1,6 @@
 # MeteringIssueResolutionReason
 
+Possible values: 'newmeasurementimportjob', 'measurementdeleted', 'newmeasurementmanuallyadded', 'newmeasurementmoverequest', 'measurementvalidated', 'meterdeleted', 'meterresetmeasurementreceived', 'meterresetdatereconfigured', 'meterreadingfrequencyrestored', 'mutingrulecreated'
 
 ## Enum
 
@@ -12,6 +13,16 @@
 * `NEWMEASUREMENTMOVEREQUEST` (value: `'newmeasurementmoverequest'`)
 
 * `MEASUREMENTVALIDATED` (value: `'measurementvalidated'`)
+
+* `METERDELETED` (value: `'meterdeleted'`)
+
+* `METERRESETMEASUREMENTRECEIVED` (value: `'meterresetmeasurementreceived'`)
+
+* `METERRESETDATERECONFIGURED` (value: `'meterresetdatereconfigured'`)
+
+* `METERREADINGFREQUENCYRESTORED` (value: `'meterreadingfrequencyrestored'`)
+
+* `MUTINGRULECREATED` (value: `'mutingrulecreated'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

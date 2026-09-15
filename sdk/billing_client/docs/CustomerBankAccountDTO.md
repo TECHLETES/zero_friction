@@ -1,29 +1,26 @@
 # CustomerBankAccountDTO
 
-Represents a customer's bank account information.  This DTO contains details about the bank account, associated mandates, and usage information.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | Gets or sets the unique identifier. | [optional] 
-**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) | Gets or sets the type of the entity. | [optional] 
-**created_date_time** | **datetime** | Gets or sets the date and time when the entity was created. | [optional] 
-**discriminator** | **str** | Gets or sets the discriminator value. | [optional] 
-**etag** | **str** | Gets or sets the ETag value. | [optional] 
-**require_attention** | **bool** | Gets a value indicating whether the entity requires attention. | [optional] [readonly] 
-**has_errors** | **bool** | Gets or sets a value indicating whether the entity has errors. | [optional] 
-**has_warnings** | **bool** | Gets or sets a value indicating whether the entity has warnings. | [optional] 
-**is_read_only** | **bool** | Gets or sets a value indicating whether the entity is read-only. | [optional] 
-**organisation_id** | **str** | Gets or sets the organization identifier. | [optional] 
-**customer_id** | **str** | The unique identifier of the customer associated with this bank account. | [optional] 
-**active_mandate** | [**CustomerMandateDTO**](CustomerMandateDTO.md) | The currently active mandate for this bank account. | [optional] 
-**customer_mandates** | [**List[CustomerMandateDTO]**](CustomerMandateDTO.md) | List of all mandates associated with this bank account. | [optional] 
-**iban** | **str** | The International Bank Account Number (IBAN) for this account. | [optional] 
-**bic** | **str** | The Bank Identifier Code (BIC) for this account. | [optional] 
-**added_from_incoming_banking_transaction** | **bool** | Indicates whether this bank account was added from an incoming banking transaction. | [optional] 
-**is_default** | **bool** | Indicates whether this is the default bank account for the customer. | [optional] 
-**last_used_date** | **datetime** | The date and time when this bank account was last used. | [optional] 
+**customer_id** | **str** |  | [optional] 
+**active_mandate** | [**CustomerMandateDTO**](CustomerMandateDTO.md) |  | [optional] 
+**customer_mandates** | [**List[CustomerMandateDTO]**](CustomerMandateDTO.md) |  | [optional] 
+**iban** | **str** |  | [optional] 
+**bic** | **str** |  | [optional] 
+**added_from_incoming_banking_transaction** | **bool** |  | [optional] 
+**is_default** | **bool** |  | [optional] 
+**last_used_date** | **datetime** |  | [optional] 
+**organisation_id** | **str** |  | [optional] 
+**id** | **str** |  | [optional] 
+**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**created_date_time** | **datetime** |  | [optional] 
+**discriminator** | **str** |  | [optional] 
+**etag** | **str** |  | [optional] 
+**has_errors** | **bool** |  | [optional] 
+**is_read_only** | **bool** |  | [optional] 
 
 ## Example
 

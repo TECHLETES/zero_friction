@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MandateType(str, Enum):
     """
-    MandateType
+    Possible values: 'core', 'b2b'
     """
 
     """

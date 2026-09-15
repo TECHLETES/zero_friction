@@ -1,5 +1,6 @@
 # EntitySubjectType
 
+Possible values: 'none', 'customer', 'contract', 'meter', 'servicelocation', 'invoice', 'importjob', 'propertygroup', 'payment', 'communicationentry', 'exportjob', 'dataexport', 'dataimport', 'asset', 'bankaccount', 'billingitem', 'billingtariff', 'costcomponent', 'costcomponentvalue', 'model', 'numbersequence', 'billingparameters', 'product', 'taxcode', 'template', 'billingrelation', 'transaction', 'dataimportfileformat', 'dataexportfileformat', 'tenant', 'consumption', 'attachment', 'exportjobline', 'culturetable', 'collectioncase', 'collectionflowstep', 'incominginvoice', 'moverequest', 'activityentry', 'commententry', 'problem', 'relatedentity', 'customeragingreport', 'billingcompleteness', 'propertygroupbillingconfiguration', 'propertygroupbillingperiod', 'collectionflow', 'configuredplugin', 'organizationscenarios', 'paymentterms', 'paymentdelaysetting', 'paymentparameters', 'domainauthenticationparameters', 'communicationparameters', 'organization', 'incominginvoicecomponent', 'costallocationcomponent', 'scheduledattempt', 'plugintrigger', 'exportentitycontainer', 'externalbankstatement', 'externalbanktransaction', 'externalmeasurement', 'importjobentityissue', 'intermediateexportformat', 'consumptionunit', 'calculatedconsumption', 'propertygroupmeteringconfiguration', 'measurement', 'externalchannel', 'serviceconsumption', 'purgerequest', 'migrationversion', 'formulaconsumption', 'templatedataobject', 'dataupgradebaseline', 'processrequest', 'validationrequest', 'postprocessrequest', 'outgoingbankingtransaction', 'incomingmutation', 'outgoingmutation', 'incomingbankingtransaction', 'customerbankaccount', 'pluginmanualtrigger', 'billingcustomer', 'enumsymboltranslation', 'scenariotranslation', 'syntheticloadprofile', 'consumergroup', 'estimablecontract', 'plugininboundwebhooktrigger', 'pluginmappingentry', 'eavestimationrun', 'customentitypropertytype', 'customentityproperty', 'pluginfeedentry', 'regionalregulationsconfiguration', 'entityattachment', 'entityattachmentgroup', 'propertygroupforecastingconfiguration', 'prepaymenttransaction', 'customeragingheader', 'estimatedbillingcompleteness', 'estimatedinvoice', 'customergroup', 'meteringissue', 'meteringparameters', 'mutingrule', 'reportmappingentry', 'meteringimport', 'prepaymentaccount', 'baseimport', 'systemusagerecord', 'portalsettings', 'organizationscenario', 'tenantrole', 'useraccessentry', 'annualstatement', 'accounting', 'externalintegrationauthorization', 'customerportal', 'paymentintent', 'paymentprovideraccount', 'paymentserviceproviderevent', 'bankingdataprovider', 'communicationevent', 'paymentplan', 'paymentplanparameters', 'communicationsubject', 'communicationprovideraccount', 'paymentprovideraccountregistry', 'prepaymentaccountissue', 'prepaymentdevice', 'prepaymentconfiguration', 'serviceconsumptioncost', 'prepaymentcost', 'prepaymentprofile', 'propertygroupprepaymentconfiguration', 'bankholidaycalendar', 'friendlycreditwindow', 'billingprepaymentaccount', 'meteringprovideraccount', 'meteringproviderrun', 'masterdataparameters', 'prepaymentbalanceprocessedevent', 'prepaymentstatement', 'outgoingmandateexportrecord', 'outgoingmandateexportgroup', 'prepaymentparameters', 'accountingexportprovider', 'accountingexportrun', 'prepaymentcustomer', 'timeofusetype', 'timeofusecalendar', 'reportingprovider', 'paymentprovidercustomer', 'reportingconfigurationprovider', 'servicelocationsuppliedservices', 'prepaymentdeviceprovideraccount', 'psprefund', 'betaenvironmentprovider', 'crmcustomer', 'ticket', 'ticketconversation', 'socialtariffexport', 'socialtariffimportheader', 'socialtariffimportline'
 
 ## Enum
 
@@ -28,8 +29,6 @@
 * `DATAEXPORT` (value: `'dataexport'`)
 
 * `DATAIMPORT` (value: `'dataimport'`)
-
-* `ENTITYATTRIBUTE` (value: `'entityattribute'`)
 
 * `ASSET` (value: `'asset'`)
 
@@ -76,8 +75,6 @@
 * `COLLECTIONCASE` (value: `'collectioncase'`)
 
 * `COLLECTIONFLOWSTEP` (value: `'collectionflowstep'`)
-
-* `CONSUMPTIONUNITTYPE` (value: `'consumptionunittype'`)
 
 * `INCOMINGINVOICE` (value: `'incominginvoice'`)
 
@@ -231,21 +228,111 @@
 
 * `PREPAYMENTACCOUNT` (value: `'prepaymentaccount'`)
 
-* `USER` (value: `'user'`)
-
-* `ROLE` (value: `'role'`)
-
 * `BASEIMPORT` (value: `'baseimport'`)
 
 * `SYSTEMUSAGERECORD` (value: `'systemusagerecord'`)
 
 * `PORTALSETTINGS` (value: `'portalsettings'`)
 
-* `ANNUALSTATEMENT` (value: `'annualstatement'`)
-
 * `ORGANIZATIONSCENARIO` (value: `'organizationscenario'`)
 
+* `TENANTROLE` (value: `'tenantrole'`)
+
+* `USERACCESSENTRY` (value: `'useraccessentry'`)
+
+* `ANNUALSTATEMENT` (value: `'annualstatement'`)
+
 * `ACCOUNTING` (value: `'accounting'`)
+
+* `EXTERNALINTEGRATIONAUTHORIZATION` (value: `'externalintegrationauthorization'`)
+
+* `CUSTOMERPORTAL` (value: `'customerportal'`)
+
+* `PAYMENTINTENT` (value: `'paymentintent'`)
+
+* `PAYMENTPROVIDERACCOUNT` (value: `'paymentprovideraccount'`)
+
+* `PAYMENTSERVICEPROVIDEREVENT` (value: `'paymentserviceproviderevent'`)
+
+* `BANKINGDATAPROVIDER` (value: `'bankingdataprovider'`)
+
+* `COMMUNICATIONEVENT` (value: `'communicationevent'`)
+
+* `PAYMENTPLAN` (value: `'paymentplan'`)
+
+* `PAYMENTPLANPARAMETERS` (value: `'paymentplanparameters'`)
+
+* `COMMUNICATIONSUBJECT` (value: `'communicationsubject'`)
+
+* `COMMUNICATIONPROVIDERACCOUNT` (value: `'communicationprovideraccount'`)
+
+* `PAYMENTPROVIDERACCOUNTREGISTRY` (value: `'paymentprovideraccountregistry'`)
+
+* `PREPAYMENTACCOUNTISSUE` (value: `'prepaymentaccountissue'`)
+
+* `PREPAYMENTDEVICE` (value: `'prepaymentdevice'`)
+
+* `PREPAYMENTCONFIGURATION` (value: `'prepaymentconfiguration'`)
+
+* `SERVICECONSUMPTIONCOST` (value: `'serviceconsumptioncost'`)
+
+* `PREPAYMENTCOST` (value: `'prepaymentcost'`)
+
+* `PREPAYMENTPROFILE` (value: `'prepaymentprofile'`)
+
+* `PROPERTYGROUPPREPAYMENTCONFIGURATION` (value: `'propertygroupprepaymentconfiguration'`)
+
+* `BANKHOLIDAYCALENDAR` (value: `'bankholidaycalendar'`)
+
+* `FRIENDLYCREDITWINDOW` (value: `'friendlycreditwindow'`)
+
+* `BILLINGPREPAYMENTACCOUNT` (value: `'billingprepaymentaccount'`)
+
+* `METERINGPROVIDERACCOUNT` (value: `'meteringprovideraccount'`)
+
+* `METERINGPROVIDERRUN` (value: `'meteringproviderrun'`)
+
+* `MASTERDATAPARAMETERS` (value: `'masterdataparameters'`)
+
+* `PREPAYMENTBALANCEPROCESSEDEVENT` (value: `'prepaymentbalanceprocessedevent'`)
+
+* `PREPAYMENTSTATEMENT` (value: `'prepaymentstatement'`)
+
+* `OUTGOINGMANDATEEXPORTRECORD` (value: `'outgoingmandateexportrecord'`)
+
+* `OUTGOINGMANDATEEXPORTGROUP` (value: `'outgoingmandateexportgroup'`)
+
+* `PREPAYMENTPARAMETERS` (value: `'prepaymentparameters'`)
+
+* `ACCOUNTINGEXPORTPROVIDER` (value: `'accountingexportprovider'`)
+
+* `ACCOUNTINGEXPORTRUN` (value: `'accountingexportrun'`)
+
+* `PREPAYMENTCUSTOMER` (value: `'prepaymentcustomer'`)
+
+* `TIMEOFUSETYPE` (value: `'timeofusetype'`)
+
+* `TIMEOFUSECALENDAR` (value: `'timeofusecalendar'`)
+
+* `REPORTINGPROVIDER` (value: `'reportingprovider'`)
+
+* `PAYMENTPROVIDERCUSTOMER` (value: `'paymentprovidercustomer'`)
+
+* `REPORTINGCONFIGURATIONPROVIDER` (value: `'reportingconfigurationprovider'`)
+
+* `SERVICELOCATIONSUPPLIEDSERVICES` (value: `'servicelocationsuppliedservices'`)
+
+* `PREPAYMENTDEVICEPROVIDERACCOUNT` (value: `'prepaymentdeviceprovideraccount'`)
+
+* `PSPREFUND` (value: `'psprefund'`)
+
+* `BETAENVIRONMENTPROVIDER` (value: `'betaenvironmentprovider'`)
+
+* `CRMCUSTOMER` (value: `'crmcustomer'`)
+
+* `TICKET` (value: `'ticket'`)
+
+* `TICKETCONVERSATION` (value: `'ticketconversation'`)
 
 * `SOCIALTARIFFEXPORT` (value: `'socialtariffexport'`)
 

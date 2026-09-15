@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **contact_entries** | [**List[ContactEntryRequest]**](ContactEntryRequest.md) |  | [optional] 
+**country_code** | [**CountryCode**](CountryCode.md) |  | [optional] 
+**changed_by_portal** | **bool** |  | [optional] 
 
 ## Example
 

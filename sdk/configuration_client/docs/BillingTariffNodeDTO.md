@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **billing_tariff_id** | **str** |  | [optional] 
 **calculation_parameters** | [**BaseTariffCalculationTypeParametersDTO**](BaseTariffCalculationTypeParametersDTO.md) |  | [optional] 
-**condition** | **object** |  | [optional] 
+**condition** | [**BaseTariffConditionTypeParametersDTO**](BaseTariffConditionTypeParametersDTO.md) |  | [optional] 
 
 ## Example
 

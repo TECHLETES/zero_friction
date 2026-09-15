@@ -28,10 +28,10 @@ class UpdateNumberSequenceRequest(BaseModel):
     """
     UpdateNumberSequenceRequest
     """ # noqa: E501
-    last_value: Optional[StrictInt] = Field(default=None, alias="lastValue")
+    last_value: StrictInt = Field(alias="lastValue")
     segments: Optional[List[SegmentRequest]] = None
-    format_string: Optional[StrictStr] = Field(default=None, alias="formatString")
-    reference_entity: Optional[NumberSequenceReferenceEntity] = Field(default=None, alias="referenceEntity")
+    format_string: Optional[StrictStr] = Field(alias="formatString")
+    reference_entity: NumberSequenceReferenceEntity = Field(alias="referenceEntity")
     __properties: ClassVar[List[str]] = ["lastValue", "segments", "formatString", "referenceEntity"]
 
     model_config = ConfigDict(
@@ -89,11 +89,6 @@ class UpdateNumberSequenceRequest(BaseModel):
         # and model_fields_set contains the field
         if self.format_string is None and "format_string" in self.model_fields_set:
             _dict['formatString'] = None
-
-        # set to None if reference_entity (nullable) is None
-        # and model_fields_set contains the field
-        if self.reference_entity is None and "reference_entity" in self.model_fields_set:
-            _dict['referenceEntity'] = None
 
         return _dict
 

@@ -36,13 +36,16 @@ class TestCreateContractServiceEstimatedConsumptionRequest(unittest.TestCase):
         if include_optional:
             return CreateContractServiceEstimatedConsumptionRequest(
                 consumer_group_id = '',
-                value = 1.337,
                 unit_of_measure = 'none',
                 metering_type = 'none',
-                is_manual_entry = True
+                direction = 'offtake',
+                consumption_quantity = 1.337
             )
         else:
             return CreateContractServiceEstimatedConsumptionRequest(
+                consumer_group_id = '',
+                unit_of_measure = 'none',
+                metering_type = 'none',
         )
         """
 

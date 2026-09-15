@@ -20,13 +20,15 @@ from typing_extensions import Self
 
 class ExportOutgoingBankingTransactionPaymentRequestFormatType(str, Enum):
     """
-    ExportOutgoingBankingTransactionPaymentRequestFormatType
+    Possible values: 'pain_008001002', 'bacs', 'pain_008001008'
     """
 
     """
     allowed enum values
     """
     PAIN_008001002 = 'pain_008001002'
+    BACS = 'bacs'
+    PAIN_008001008 = 'pain_008001008'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

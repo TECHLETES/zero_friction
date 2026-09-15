@@ -27,13 +27,15 @@ class InvoicePdfTemplateRequest(BaseModel):
     """
     InvoicePdfTemplateRequest
     """ # noqa: E501
-    envelope_settings: Optional[EnvelopeSettingsRequest] = Field(default=None, alias="envelopeSettings")
     cost_allocation: Optional[StrictBool] = Field(default=None, alias="costAllocation")
     show_country: Optional[StrictBool] = Field(default=None, alias="showCountry")
+    show_price_formulae: Optional[StrictBool] = Field(default=None, alias="showPriceFormulae")
     show_balance: Optional[StrictBool] = Field(default=None, alias="showBalance")
     show_vat_specs: Optional[StrictBool] = Field(default=None, alias="showVatSpecs")
     show_custom_information: Optional[StrictBool] = Field(default=None, alias="showCustomInformation")
-    __properties: ClassVar[List[str]] = ["envelopeSettings", "costAllocation", "showCountry", "showBalance", "showVatSpecs", "showCustomInformation"]
+    unit_price_excl_vat_for_persons: Optional[StrictBool] = Field(default=None, alias="unitPriceExclVatForPersons")
+    envelope_settings: Optional[EnvelopeSettingsRequest] = Field(default=None, alias="envelopeSettings")
+    __properties: ClassVar[List[str]] = ["costAllocation", "showCountry", "showPriceFormulae", "showBalance", "showVatSpecs", "showCustomInformation", "unitPriceExclVatForPersons", "envelopeSettings"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,12 +96,14 @@ class InvoicePdfTemplateRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "envelopeSettings": EnvelopeSettingsRequest.from_dict(obj["envelopeSettings"]) if obj.get("envelopeSettings") is not None else None,
             "costAllocation": obj.get("costAllocation"),
             "showCountry": obj.get("showCountry"),
+            "showPriceFormulae": obj.get("showPriceFormulae"),
             "showBalance": obj.get("showBalance"),
             "showVatSpecs": obj.get("showVatSpecs"),
-            "showCustomInformation": obj.get("showCustomInformation")
+            "showCustomInformation": obj.get("showCustomInformation"),
+            "unitPriceExclVatForPersons": obj.get("unitPriceExclVatForPersons"),
+            "envelopeSettings": EnvelopeSettingsRequest.from_dict(obj["envelopeSettings"]) if obj.get("envelopeSettings") is not None else None
         })
         return _obj
 

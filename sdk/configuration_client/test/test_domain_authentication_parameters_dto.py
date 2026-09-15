@@ -35,29 +35,41 @@ class TestDomainAuthenticationParametersDTO(unittest.TestCase):
         model = DomainAuthenticationParametersDTO()
         if include_optional:
             return DomainAuthenticationParametersDTO(
+                domain_name = '',
+                last_verified_utc = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                records = [
+                    configuration_client.models.dns_record_dto.DnsRecordDTO(
+                        meaning = 'mailcname', 
+                        type = '', 
+                        key = '', 
+                        value = '', 
+                        status = 'unverified', 
+                        errors = [
+                            ''
+                            ], )
+                    ],
+                eu_records = [
+                    configuration_client.models.dns_record_dto.DnsRecordDTO(
+                        meaning = 'mailcname', 
+                        type = '', 
+                        key = '', 
+                        value = '', 
+                        status = 'unverified', 
+                        errors = [
+                            ''
+                            ], )
+                    ],
+                eu_last_verified_utc = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                accept_allowed = True,
+                primary_records_indicate_eu = True,
+                organisation_id = '',
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
-                domain_name = '',
-                last_verified_utc = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                records = [
-                    configuration_client.models.dns_record_dto.DnsRecordDTO(
-                        meaning = null, 
-                        type = '', 
-                        key = '', 
-                        value = '', 
-                        status = null, 
-                        errors = [
-                            ''
-                            ], )
-                    ]
+                is_read_only = True
             )
         else:
             return DomainAuthenticationParametersDTO(

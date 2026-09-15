@@ -40,6 +40,8 @@ class TestSortVersion(unittest.TestCase):
             )
         else:
             return SortVersion(
+                full_version = 56,
+                sort_id = '',
         )
         """
 

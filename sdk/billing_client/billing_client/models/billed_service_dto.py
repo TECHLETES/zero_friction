@@ -26,14 +26,15 @@ from typing_extensions import Self
 
 class BilledServiceDTO(BaseModel):
     """
-    Represents a service being billed under a contract.  This DTO contains information about the service, its location, and supply period.
+    BilledServiceDTO
     """ # noqa: E501
-    utility_type: Optional[UtilityType] = Field(default=None, description="The type of utility being provided.", alias="utilityType")
-    service_location_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the service location.", alias="serviceLocationId")
-    supply_start_date_time: Optional[datetime] = Field(default=None, description="The start date and time of the service supply period.", alias="supplyStartDateTime")
-    supply_end_date_time: Optional[datetime] = Field(default=None, description="The end date and time of the service supply period.", alias="supplyEndDateTime")
-    external_identifier: Optional[StrictStr] = Field(default=None, description="An external identifier for the service.", alias="externalIdentifier")
-    __properties: ClassVar[List[str]] = ["utilityType", "serviceLocationId", "supplyStartDateTime", "supplyEndDateTime", "externalIdentifier"]
+    utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
+    service_location_id: Optional[StrictStr] = Field(default=None, alias="serviceLocationId")
+    property_group_id: Optional[StrictStr] = Field(default=None, alias="propertyGroupId")
+    supply_start_date_time: Optional[datetime] = Field(default=None, alias="supplyStartDateTime")
+    supply_end_date_time: Optional[datetime] = Field(default=None, alias="supplyEndDateTime")
+    external_identifier: Optional[StrictStr] = Field(default=None, alias="externalIdentifier")
+    __properties: ClassVar[List[str]] = ["utilityType", "serviceLocationId", "propertyGroupId", "supplyStartDateTime", "supplyEndDateTime", "externalIdentifier"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,15 +75,15 @@ class BilledServiceDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
         # set to None if service_location_id (nullable) is None
         # and model_fields_set contains the field
         if self.service_location_id is None and "service_location_id" in self.model_fields_set:
             _dict['serviceLocationId'] = None
+
+        # set to None if property_group_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.property_group_id is None and "property_group_id" in self.model_fields_set:
+            _dict['propertyGroupId'] = None
 
         # set to None if external_identifier (nullable) is None
         # and model_fields_set contains the field
@@ -103,6 +104,7 @@ class BilledServiceDTO(BaseModel):
         _obj = cls.model_validate({
             "utilityType": obj.get("utilityType"),
             "serviceLocationId": obj.get("serviceLocationId"),
+            "propertyGroupId": obj.get("propertyGroupId"),
             "supplyStartDateTime": obj.get("supplyStartDateTime"),
             "supplyEndDateTime": obj.get("supplyEndDateTime"),
             "externalIdentifier": obj.get("externalIdentifier")

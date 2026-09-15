@@ -35,6 +35,13 @@ class TestGetMeteringImportsQueryParams(unittest.TestCase):
         model = GetMeteringImportsQueryParams()
         if include_optional:
             return GetMeteringImportsQueryParams(
+                status = [
+                    ''
+                    ],
+                communication_type = '',
+                metering_format = '',
+                created_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                created_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 flex_search = '',
                 include_only_ids = [
                     ''
@@ -42,13 +49,7 @@ class TestGetMeteringImportsQueryParams(unittest.TestCase):
                 exclude_ids = [
                     ''
                     ],
-                status = [
-                    ''
-                    ],
-                communication_type = '',
-                metering_format = '',
-                created_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                created_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                page_size = 56
             )
         else:
             return GetMeteringImportsQueryParams(

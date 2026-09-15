@@ -57,7 +57,7 @@ class TestMoveRequestCustomerDetails(unittest.TestCase):
                     building_name = '', 
                     locality = '', 
                     city = '', 
-                    country = null, 
+                    country = 'aut', 
                     localized_display = '', 
                     line_one = '', 
                     line_two = '', ),
@@ -66,10 +66,16 @@ class TestMoveRequestCustomerDetails(unittest.TestCase):
                 telephone_number = '',
                 mobile_telephone_number = '',
                 website = '',
-                culture = 
+                culture = ''
             )
         else:
             return MoveRequestCustomerDetails(
+                last_name = '',
+                ssin = '',
+                ssin_country = 'aut',
+                customer_type = 'person',
+                company_name = '',
+                default_payment_method = 'sct',
         )
         """
 

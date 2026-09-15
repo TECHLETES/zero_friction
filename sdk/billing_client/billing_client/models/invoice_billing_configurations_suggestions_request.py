@@ -24,10 +24,10 @@ from typing_extensions import Self
 
 class InvoiceBillingConfigurationsSuggestionsRequest(BaseModel):
     """
-    Represents a request to get suggested invoice billing configurations.  This DTO is used to retrieve recommended billing configurations based on service locations and contract.
+    InvoiceBillingConfigurationsSuggestionsRequest
     """ # noqa: E501
-    service_location_ids: Optional[List[StrictStr]] = Field(default=None, description="List of service location IDs for which to get billing configuration suggestions.", alias="serviceLocationIds")
-    contract_id: Optional[StrictStr] = Field(default=None, description="The ID of the contract associated with the billing configurations.", alias="contractId")
+    service_location_ids: Optional[List[StrictStr]] = Field(alias="serviceLocationIds")
+    contract_id: Optional[StrictStr] = Field(default=None, alias="contractId")
     __properties: ClassVar[List[str]] = ["serviceLocationIds", "contractId"]
 
     model_config = ConfigDict(

@@ -1,5 +1,6 @@
 # IncrementationType
 
+Possible values: 'delta', 'cumul', 'na'
 
 ## Enum
 

@@ -35,15 +35,17 @@ class TestInvoicePdfTemplateRequest(unittest.TestCase):
         model = InvoicePdfTemplateRequest()
         if include_optional:
             return InvoicePdfTemplateRequest(
-                envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
-                    margin_position = null, 
-                    margin = 56, 
-                    margin_top = 56, ),
                 cost_allocation = True,
                 show_country = True,
+                show_price_formulae = True,
                 show_balance = True,
                 show_vat_specs = True,
-                show_custom_information = True
+                show_custom_information = True,
+                unit_price_excl_vat_for_persons = True,
+                envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                    margin_position = 'left', 
+                    margin = 56, 
+                    margin_top = 56, )
             )
         else:
             return InvoicePdfTemplateRequest(

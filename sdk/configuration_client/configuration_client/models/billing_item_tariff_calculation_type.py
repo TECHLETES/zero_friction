@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class BillingItemTariffCalculationType(str, Enum):
     """
-    BillingItemTariffCalculationType
+    Possible values: 'unitprice', 'tiered', 'volume', 'stairstep', 'condition'
     """
 
     """

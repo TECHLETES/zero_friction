@@ -73,11 +73,6 @@ class EstimatedAnnualVolumeDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if origin (nullable) is None
-        # and model_fields_set contains the field
-        if self.origin is None and "origin" in self.model_fields_set:
-            _dict['origin'] = None
-
         return _dict
 
     @classmethod

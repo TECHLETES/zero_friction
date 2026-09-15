@@ -5,7 +5,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**external_identifier** | **str** |  | [optional] 
 **utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
 **status_history** | [**List[ServiceStatusHistoryDTO]**](ServiceStatusHistoryDTO.md) |  | [optional] 
 **contracts** | [**List[ServiceContractDTO]**](ServiceContractDTO.md) |  | [optional] 

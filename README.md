@@ -1,9 +1,10 @@
 # Zero Friction Unified Python SDK
 
 This repository provides one installable Python package for the Zero Friction
-API suite. It combines eight generated API clients under `sdk/` with the
+API suite. It bundles eight generated API clients from `sdk/` with the
 hand-maintained `zero_friction/` package, which provides shared configuration,
-authentication, and a unified client surface.
+authentication, and a unified client surface. The generated clients therefore
+always match the branch or tag used to install `zero-friction`.
 
 ## Installation
 
@@ -18,6 +19,9 @@ For stable consumers, prefer an explicit release tag once available, for example
 ```bash
 pip install "git+https://github.com/TECHLETES/zero_friction.git@v1"
 ```
+
+The generated client import packages are included in `zero-friction`; do not
+install the standalone `*_client` distributions separately.
 
 For repository development, use the supported uv workflow:
 
@@ -47,7 +51,7 @@ from zero_friction.core.sdk_client import SDKClient
 config = ZeroFrictionConfig()
 sdk = SDKClient(config=config)
 
-contract = sdk.masterdata_client.contracts_api.get_contracts_contractuuid(
+contract = sdk.masterdata_client.default_api.get_contracts_contractuuid(
     contractuuid="fc77b9c6-42bc-4fe7-b0a2-0f0309449a98",
     **config.as_kwargs(),
 )
@@ -57,7 +61,7 @@ print(contract)
 ## Repository layout
 
 ```text
-sdk/                 Generated, independently installable API clients
+sdk/                 Generated API client source bundled into zero-friction
 openapi_specs/       Zero Friction OpenAPI specification snapshots
 zero_friction/       Unified client and shared SDK logic
 tests/               Repository tests

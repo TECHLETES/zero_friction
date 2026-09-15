@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **product_id** | **str** |  | [optional] 
 **use_property_group_product** | **bool** |  | [optional] 
 **contract_number** | **str** |  | [optional] 
-**estimations** | [**List[MoveRequestContractEstimationRequest]**](MoveRequestContractEstimationRequest.md) |  | [optional] 
-**billing_properties** | [**ContractDetailsBillingPropertiesBaseDTO**](ContractDetailsBillingPropertiesBaseDTO.md) |  | [optional] 
+**estimations** | [**List[MoveRequestContractEstimationRequest]**](MoveRequestContractEstimationRequest.md) |  | 
+**billing_properties** | [**ContractDetailsBillingPropertiesBaseDTO**](ContractDetailsBillingPropertiesBaseDTO.md) |  | 
 
 ## Example
 

@@ -24,14 +24,16 @@ from typing_extensions import Self
 
 class TransactionOverviewCountDTO(BaseModel):
     """
-    Represents counts of transactions in different states for overview purposes
+    TransactionOverviewCountDTO
     """ # noqa: E501
-    all: Optional[StrictInt] = Field(default=None, description="Total number of all transactions")
-    to_pay: Optional[StrictInt] = Field(default=None, description="Number of transactions pending payment", alias="toPay")
-    to_refund: Optional[StrictInt] = Field(default=None, description="Number of transactions pending refund", alias="toRefund")
-    only_open: Optional[StrictInt] = Field(default=None, description="Number of open transactions", alias="onlyOpen")
-    only_closed: Optional[StrictInt] = Field(default=None, description="Number of closed transactions", alias="onlyClosed")
-    __properties: ClassVar[List[str]] = ["all", "toPay", "toRefund", "onlyOpen", "onlyClosed"]
+    all: Optional[StrictInt] = None
+    to_pay: Optional[StrictInt] = Field(default=None, alias="toPay")
+    to_refund: Optional[StrictInt] = Field(default=None, alias="toRefund")
+    only_open: Optional[StrictInt] = Field(default=None, alias="onlyOpen")
+    only_closed: Optional[StrictInt] = Field(default=None, alias="onlyClosed")
+    exported: Optional[StrictInt] = None
+    failed_exporting: Optional[StrictInt] = Field(default=None, alias="failedExporting")
+    __properties: ClassVar[List[str]] = ["all", "toPay", "toRefund", "onlyOpen", "onlyClosed", "exported", "failedExporting"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +90,9 @@ class TransactionOverviewCountDTO(BaseModel):
             "toPay": obj.get("toPay"),
             "toRefund": obj.get("toRefund"),
             "onlyOpen": obj.get("onlyOpen"),
-            "onlyClosed": obj.get("onlyClosed")
+            "onlyClosed": obj.get("onlyClosed"),
+            "exported": obj.get("exported"),
+            "failedExporting": obj.get("failedExporting")
         })
         return _obj
 

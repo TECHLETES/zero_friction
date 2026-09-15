@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mutation_date_time** | **datetime** |  | [optional] 
+**mutation_date_time** | **datetime** |  | 
 **service_location_id** | **str** |  | [optional] 
 **property_group_id** | **str** |  | [optional] 
 **address_installed** | [**AddressDTO**](AddressDTO.md) |  | [optional] 

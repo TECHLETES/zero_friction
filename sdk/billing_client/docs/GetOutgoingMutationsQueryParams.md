@@ -5,12 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
 **outgoing_banking_transaction_id** | **str** |  | [optional] 
 **status** | **str** |  | [optional] 
 **reference_type** | **str** |  | [optional] 
+**flex_search** | **str** |  | [optional] 
+**include_only_ids** | **List[str]** |  | [optional] 
+**exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

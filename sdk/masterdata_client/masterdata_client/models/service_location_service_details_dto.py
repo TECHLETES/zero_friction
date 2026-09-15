@@ -75,11 +75,6 @@ class ServiceLocationServiceDetailsDTO(BaseModel):
         if self.external_identifier is None and "external_identifier" in self.model_fields_set:
             _dict['externalIdentifier'] = None
 
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
         return _dict
 
     @classmethod

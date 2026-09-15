@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.external_accounting_metadata_request import ExternalAccountingMetadataRequest
 from typing import Optional, Set
@@ -25,11 +25,11 @@ from typing_extensions import Self
 
 class CreateGeneralLedgerCodeRequest(BaseModel):
     """
-    Request model for creating a new general ledger code.
+    CreateGeneralLedgerCodeRequest
     """ # noqa: E501
-    code: Optional[StrictStr] = Field(default=None, description="The code of the general ledger.")
-    description: Optional[StrictStr] = Field(default=None, description="Description of the general ledger itself.  Currently, we only support the description in one language so this field is not localized.")
-    metadata: Optional[ExternalAccountingMetadataRequest] = Field(default=None, description="Metadata to track back the origin of the data.  This is required so that we can push the data back to the source accounting system.")
+    code: Optional[StrictStr]
+    description: Optional[StrictStr]
+    metadata: Optional[ExternalAccountingMetadataRequest]
     __properties: ClassVar[List[str]] = ["code", "description", "metadata"]
 
     model_config = ConfigDict(

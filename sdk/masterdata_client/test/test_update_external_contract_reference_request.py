@@ -39,6 +39,7 @@ class TestUpdateExternalContractReferenceRequest(unittest.TestCase):
             )
         else:
             return UpdateExternalContractReferenceRequest(
+                external_contract_reference = '',
         )
         """
 

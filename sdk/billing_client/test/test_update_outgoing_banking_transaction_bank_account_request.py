@@ -39,6 +39,7 @@ class TestUpdateOutgoingBankingTransactionBankAccountRequest(unittest.TestCase):
             )
         else:
             return UpdateOutgoingBankingTransactionBankAccountRequest(
+                company_bank_account_id = '',
         )
         """
 

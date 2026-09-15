@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class EntityAttachmentOrigin(str, Enum):
     """
-    EntityAttachmentOrigin
+    Possible values: 'customer', 'contract', 'product', 'entityattachmentgroup'
     """
 
     """

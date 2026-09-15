@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | 
+**value_type** | [**BasePropertyValueTypeDTO**](BasePropertyValueTypeDTO.md) |  | 
 **name** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
 **show_in_header** | **bool** |  | [optional] 
 **tag_color** | [**CustomEntityPropertyTypeTagColor**](CustomEntityPropertyTypeTagColor.md) |  | [optional] 
-**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
-**value_type** | **object** |  | [optional] 
 
 ## Example
 

@@ -1,5 +1,6 @@
 # EntityAttachmentOrigin
 
+Possible values: 'customer', 'contract', 'product', 'entityattachmentgroup'
 
 ## Enum
 

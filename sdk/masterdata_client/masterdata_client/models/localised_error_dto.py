@@ -17,9 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from masterdata_client.models.error_code import ErrorCode
 from masterdata_client.models.localised_error_dto_message_value import LocalisedErrorDTOMessageValue
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +27,7 @@ class LocalisedErrorDTO(BaseModel):
     """
     LocalisedErrorDTO
     """ # noqa: E501
-    key: Optional[ErrorCode] = None
+    key: Optional[StrictInt] = None
     correlation_id: Optional[StrictStr] = Field(default=None, alias="correlationId")
     message: Optional[StrictStr] = None
     message_values: Optional[List[LocalisedErrorDTOMessageValue]] = Field(default=None, alias="messageValues")
@@ -80,26 +79,6 @@ class LocalisedErrorDTO(BaseModel):
                 if _item_message_values:
                     _items.append(_item_message_values.to_dict())
             _dict['messageValues'] = _items
-        # set to None if key (nullable) is None
-        # and model_fields_set contains the field
-        if self.key is None and "key" in self.model_fields_set:
-            _dict['key'] = None
-
-        # set to None if correlation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.correlation_id is None and "correlation_id" in self.model_fields_set:
-            _dict['correlationId'] = None
-
-        # set to None if message (nullable) is None
-        # and model_fields_set contains the field
-        if self.message is None and "message" in self.model_fields_set:
-            _dict['message'] = None
-
-        # set to None if message_values (nullable) is None
-        # and model_fields_set contains the field
-        if self.message_values is None and "message_values" in self.model_fields_set:
-            _dict['messageValues'] = None
-
         return _dict
 
     @classmethod

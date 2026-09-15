@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **flex_search** | **str** |  | [optional] 
 **include_only_ids** | **List[str]** |  | [optional] 
 **exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**comment** | **str** |  | [optional] 
 **only_validate** | **bool** |  | [optional] 
 **var_query_params** | [**GetContractsQueryParams**](GetContractsQueryParams.md) |  | [optional] 
 **quick_filter** | **str** |  | [optional] 
+**comment** | **str** |  | [optional] 
 
 ## Example
 

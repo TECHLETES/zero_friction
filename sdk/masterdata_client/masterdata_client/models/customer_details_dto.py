@@ -51,7 +51,7 @@ class CustomerDetailsDTO(BaseModel):
     telephone_number: Optional[StrictStr] = Field(default=None, alias="telephoneNumber")
     mobile_telephone_number: Optional[StrictStr] = Field(default=None, alias="mobileTelephoneNumber")
     website: Optional[StrictStr] = None
-    culture: Optional[str] = None
+    culture: Optional[StrictStr] = Field(default=None, description="Culture identifier (e.g., 'en-US', 'nl-NL')")
     internal_id: Optional[StrictStr] = Field(default=None, alias="internalId")
     created_or_linked: Optional[StrictBool] = Field(default=None, alias="createdOrLinked")
     errors: Optional[List[LocalisedErrorDTO]] = None
@@ -137,16 +137,6 @@ class CustomerDetailsDTO(BaseModel):
         if self.ssin is None and "ssin" in self.model_fields_set:
             _dict['ssin'] = None
 
-        # set to None if ssin_country (nullable) is None
-        # and model_fields_set contains the field
-        if self.ssin_country is None and "ssin_country" in self.model_fields_set:
-            _dict['ssinCountry'] = None
-
-        # set to None if customer_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_type is None and "customer_type" in self.model_fields_set:
-            _dict['customerType'] = None
-
         # set to None if company_name (nullable) is None
         # and model_fields_set contains the field
         if self.company_name is None and "company_name" in self.model_fields_set:
@@ -161,11 +151,6 @@ class CustomerDetailsDTO(BaseModel):
         # and model_fields_set contains the field
         if self.vat_number is None and "vat_number" in self.model_fields_set:
             _dict['vatNumber'] = None
-
-        # set to None if default_payment_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.default_payment_method is None and "default_payment_method" in self.model_fields_set:
-            _dict['defaultPaymentMethod'] = None
 
         # set to None if invoice_address (nullable) is None
         # and model_fields_set contains the field

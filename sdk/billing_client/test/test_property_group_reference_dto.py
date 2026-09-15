@@ -40,6 +40,7 @@ class TestPropertyGroupReferenceDTO(unittest.TestCase):
             )
         else:
             return PropertyGroupReferenceDTO(
+                name = '',
         )
         """
 

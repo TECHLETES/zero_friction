@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**consumer_groups** | **Dict[str, Optional[str]]** |  | [optional] 
+**consumer_groups** | **Dict[str, str]** |  | 
 
 ## Example
 

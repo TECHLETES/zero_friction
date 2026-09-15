@@ -38,35 +38,26 @@ class TestProductAttachmentFlatDTO(unittest.TestCase):
                 attachment = configuration_client.models.product_attachment_dto.ProductAttachmentDTO(
                     product_attachment_id = '', 
                     include_in_welcome_email = True, 
-                    visibility = null, 
+                    visibility = 'internal', 
                     approval_required = True, 
                     valid_from = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     valid_until = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     attachment_files = [
                         configuration_client.models.product_attachment_file_dto.ProductAttachmentFileDTO(
-                            culture = null, 
+                            culture = '', 
                             file_name = '', 
                             internal_file_name = '', 
                             attachment_id = '', )
                         ], ),
                 product = configuration_client.models.product_dto.ProductDTO(
-                    id = '', 
-                    entity_type = null, 
-                    created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    discriminator = '', 
-                    _etag = '', 
-                    require_attention = True, 
-                    has_errors = True, 
-                    has_warnings = True, 
-                    is_read_only = True, 
-                    organisation_id = '', 
                     name = '', 
                     invoice_upfront = True, 
+                    is_prepayment_eligible = True, 
                     billing_items = [
                         configuration_client.models.product_billing_item_dto.ProductBillingItemDTO(
                             billing_item_id = '', 
                             order = 56, 
-                            periodicity_parameters = null, 
+                            periodicity_parameters = configuration_client.models.product_item_periodicity_parameters_dto.ProductItemPeriodicityParametersDTO(), 
                             start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                         ], 
@@ -74,19 +65,19 @@ class TestProductAttachmentFlatDTO(unittest.TestCase):
                         configuration_client.models.product_attachment_dto.ProductAttachmentDTO(
                             product_attachment_id = '', 
                             include_in_welcome_email = True, 
-                            visibility = null, 
+                            visibility = 'internal', 
                             approval_required = True, 
                             valid_from = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             valid_until = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             attachment_files = [
                                 configuration_client.models.product_attachment_file_dto.ProductAttachmentFileDTO(
-                                    culture = null, 
+                                    culture = '', 
                                     file_name = '', 
                                     internal_file_name = '', 
                                     attachment_id = '', )
                                 ], )
                         ], 
-                    localisation_level = null, 
+                    localisation_level = 'none', 
                     localised_fields = [
                         ''
                         ], 
@@ -94,7 +85,16 @@ class TestProductAttachmentFlatDTO(unittest.TestCase):
                         'key' : {
                             'key' : ''
                             }
-                        }, )
+                        }, 
+                    accounting_code_id = '', 
+                    organisation_id = '', 
+                    id = '', 
+                    entity_type = 'none', 
+                    created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    discriminator = '', 
+                    _etag = '', 
+                    has_errors = True, 
+                    is_read_only = True, )
             )
         else:
             return ProductAttachmentFlatDTO(
