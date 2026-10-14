@@ -69,6 +69,14 @@ docker run --rm \
 
 The output directory is intentionally the existing generated client directory. OpenAPI Generator will update generated source files, models, API classes, documentation and generator metadata in place.
 
+After generating any client, run the repository post-generation patch from the root:
+
+```bash
+uv run python scripts/patch_api_version.py
+```
+
+The script applies the required `api-version=1.0` query parameter to all eight generated `ApiClient` classes. It is safe to run repeatedly and fails if the generator changes the expected insertion point, so regeneration cannot silently remove this gateway requirement. Run it after every individual generation too, since the generated `api_client.py` is replaced in place.
+
 ## Regenerating the complete SDK
 
 For a complete Zero Friction API refresh, regenerate all eight clients from the repository root:
@@ -96,7 +104,11 @@ Masterdata-1-0.yaml|masterdata_client|masterdata_client
 Metering-1-0.yaml|metering_client|metering_client
 RegionalRegulations-1-0.yaml|regionalregulations_client|regionalregulations_client
 EOF
+
+uv run python scripts/patch_api_version.py
 ```
+
+The post-generation step above is part of the generation process. It keeps the API Management requirement in place when OpenAPI Generator rewrites its client files.
 
 After generation, inspect the result before making any manual compatibility changes:
 
@@ -197,6 +209,14 @@ exercise imports, API attributes, method signatures, model construction, and
 authentication/header behavior used by the project.
 
 The regeneration branch is the integration target until all known consumers have been checked.
+
+## API Management version parameter
+
+All eight generated clients must include `api-version=1.0` on every request. The OpenAPI specifications do not declare this gateway parameter, so OpenAPI Generator cannot produce it from the schema. `scripts/patch_api_version.py` is the maintained post-generation step.
+
+The v1 baseline on `main` (tag `v1`, commit `92a5e81`) contains this behavior in all eight generated clients. The v1.1 candidate branch `chore/regenerate-sdk-v1.1` now also carries it through the post-generation step; consumers testing v1.1 should pin that branch until its merge and release tag. Do not use the earlier candidate revision `dfc4325` for this behavior.
+
+On 2026-10-14, unauthenticated GET requests were sent to the documented Configuration gateway host, `https://api.zerofriction.co/api/cfg`, both with and without `api-version=1.0`. For `/Integrations/billingTariff/import/locked` and the import-listing operation `/Integrations/billingTariff/import`, requests without the version returned HTTP 404; requests with it returned HTTP 401. This confirms the versioned paths resolve at the gateway and are protected by authorization. It does not verify the authenticated operation result; the remaining 401 requires valid tenant credentials and is not evidence of a missing route.
 
 Point a dependent project temporarily at the branch instead of `main`, for example:
 
