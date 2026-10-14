@@ -1,5 +1,6 @@
 """Apply the API Management version parameter to generated SDK clients."""
 
+import argparse
 from pathlib import Path
 
 CLIENTS = (
@@ -20,11 +21,12 @@ PATCH = (
 MARKER = "        # query parameters\n"
 
 
-def patch_api_clients(root: Path) -> None:
-    """Add the API version to each generated client's outgoing query parameters.
+def patch_api_clients(root: Path, check: bool = False) -> None:
+    """Add or validate the API version in each generated client.
 
     Args:
         root: Repository root containing the ``sdk`` directory.
+        check: Validate the patch without modifying generated files.
 
     Raises:
         FileNotFoundError: If a generated client file is missing.
@@ -33,12 +35,27 @@ def patch_api_clients(root: Path) -> None:
     for client in CLIENTS:
         path = root / "sdk" / client / client / "api_client.py"
         source = path.read_text(encoding="utf-8")
-        if PATCH in source:
+        patch_count = source.count(PATCH)
+        if patch_count > 1:
+            raise ValueError(f"Found duplicate API version patches in {path}")
+        if patch_count == 1:
+            if MARKER not in source or source.index(PATCH) > source.index(MARKER):
+                raise ValueError(f"API version patch is misplaced in {path}")
             continue
         if MARKER not in source:
             raise ValueError(f"Expected query parameter insertion point in {path}")
+        if check:
+            raise ValueError(f"API version patch is missing from {path}")
         path.write_text(source.replace(MARKER, PATCH + MARKER, 1), encoding="utf-8")
 
 
 if __name__ == "__main__":
-    patch_api_clients(Path(__file__).resolve().parents[1])
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="verify every generated client is patched without changing files",
+    )
+    patch_api_clients(
+        Path(__file__).resolve().parents[1], check=parser.parse_args().check
+    )

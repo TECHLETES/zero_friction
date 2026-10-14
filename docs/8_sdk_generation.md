@@ -75,40 +75,17 @@ After generating any client, run the repository post-generation patch from the r
 uv run python scripts/patch_api_version.py
 ```
 
-The script applies the required `api-version=1.0` query parameter to all eight generated `ApiClient` classes. It is safe to run repeatedly and fails if the generator changes the expected insertion point, so regeneration cannot silently remove this gateway requirement. Run it after every individual generation too, since the generated `api_client.py` is replaced in place.
+The script applies the required `api-version=1.0` query parameter to all eight generated `ApiClient` classes. It is safe to run repeatedly and fails if the generator changes the expected insertion point, so regeneration cannot silently remove this gateway requirement. Run it after every individual generation too, then validate the patch with `uv run python scripts/patch_api_version.py --check`.
 
 ## Regenerating the complete SDK
 
-For a complete Zero Friction API refresh, regenerate all eight clients from the repository root:
+For a complete Zero Friction API refresh, run the canonical generation script from the repository root:
 
 ```bash
-set -euo pipefail
-
-GENERATOR_VERSION="7.13.0"
-
-while IFS='|' read -r spec output package; do
-  docker run --rm \
-    -v "$PWD:/local" \
-    "openapitools/openapi-generator-cli:v${GENERATOR_VERSION}" generate \
-    -i "/local/openapi_specs/${spec}" \
-    -g python \
-    -o "/local/sdk/${output}" \
-    --package-name "${package}"
-done <<'EOF'
-Attachments-1-0.yaml|attachments_client|attachments_client
-Billing-1-0.yaml|billing_client|billing_client
-Communication-1-0.yaml|communication_client|communication_client
-Configuration-1-0.yaml|configuration_client|configuration_client
-Forecasting-1-0.yaml|forecasting_client|forecasting_client
-Masterdata-1-0.yaml|masterdata_client|masterdata_client
-Metering-1-0.yaml|metering_client|metering_client
-RegionalRegulations-1-0.yaml|regionalregulations_client|regionalregulations_client
-EOF
-
-uv run python scripts/patch_api_version.py
+scripts/regenerate_sdk.sh
 ```
 
-The post-generation step above is part of the generation process. It keeps the API Management requirement in place when OpenAPI Generator rewrites its client files.
+This script pins OpenAPI Generator to `7.13.0`, regenerates all eight clients, applies the API Management version patch, and runs the patch validator. It stops on any failed generator, patch, or validation command.
 
 After generation, inspect the result before making any manual compatibility changes:
 
