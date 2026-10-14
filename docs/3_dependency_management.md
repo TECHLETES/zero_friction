@@ -180,10 +180,10 @@ dependencies = [
 
 ### First-Time Setup
 
-The devcontainer image already provides `uv`. When the container is first
-opened, `.devcontainer/post-create.sh` runs `uv sync` and creates the project
-`.venv` from `uv.lock`. No host installation or manual environment activation
-is required.
+The shared devcontainer image already provides `uv`. When the container is
+first opened, `techletes-dev post-create python` runs the workspace bootstrap
+and creates the project `.venv` from `uv.lock`. No host installation or manual
+environment activation is required.
 
 ### Day-to-Day Workflow
 

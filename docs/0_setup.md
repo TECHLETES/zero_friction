@@ -57,8 +57,8 @@ extensions automatically.
 
 ## Rebuild or refresh
 
-Rebuild after changing `.devcontainer/Dockerfile` or
-`.devcontainer/devcontainer.json`:
+Rebuild after changing `.devcontainer/devcontainer.json` or when the shared
+image needs to be refreshed:
 
 1. Run **Dev Containers: Rebuild Container** in VS Code.
 2. Wait for `post-create` to finish.
