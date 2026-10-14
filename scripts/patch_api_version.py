@@ -56,6 +56,14 @@ if __name__ == "__main__":
         action="store_true",
         help="verify every generated client is patched without changing files",
     )
+    parser.add_argument(
+        "--root",
+        type=Path,
+        default=Path(__file__).resolve().parents[1],
+        help="repository-like root containing sdk/ (defaults to this repository)",
+    )
+    args = parser.parse_args()
     patch_api_clients(
-        Path(__file__).resolve().parents[1], check=parser.parse_args().check
+        args.root,
+        check=args.check,
     )

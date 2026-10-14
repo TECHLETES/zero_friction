@@ -85,7 +85,7 @@ For a complete Zero Friction API refresh, run the canonical generation script fr
 scripts/regenerate_sdk.sh
 ```
 
-This script pins OpenAPI Generator to `7.13.0`, regenerates all eight clients, applies the API Management version patch, and runs the patch validator. It stops on any failed generator, patch, or validation command.
+This script pins OpenAPI Generator to `7.13.0`, stages the specifications and generated clients through Docker copy operations, regenerates all eight clients, applies the API Management version patch, and validates the staged output before replacing `sdk/`. It does not depend on the Docker daemon sharing the workspace filesystem. The bundled Masterdata specification currently has duplicate parameters in two operations (`bulkremoveservicecontext` and `bulkaddservicecontext`), so the script skips generator spec validation for that client only; generation still must succeed, and the remaining seven specifications use normal validation. The script stops on any failed generator, patch, or patch-validation command, and preserves the current `sdk/` tree if generation or patch validation fails.
 
 After generation, inspect the result before making any manual compatibility changes:
 
