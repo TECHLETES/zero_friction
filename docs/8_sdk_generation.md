@@ -47,8 +47,6 @@ git switch -c chore/regenerate-sdk-v1.1
 
 Before changing the specifications, ensure the current `main` commit that represents the existing SDK has been tagged as `v1`.
 
-Then update the relevant files under `openapi_specs/` with the newly downloaded specifications from the Zero Friction developer documentation.
-
 Commit the specification files and regenerated clients together so the generated code can always be traced back to the exact specification snapshot that produced it.
 
 ## Regenerating one client
@@ -85,7 +83,9 @@ For a complete Zero Friction API refresh, run the canonical generation script fr
 scripts/regenerate_sdk.sh
 ```
 
-This script pins OpenAPI Generator to `7.13.0`, stages the specifications and generated clients through Docker copy operations, regenerates all eight clients, applies the API Management version patch, and validates the staged output before replacing `sdk/`. It does not depend on the Docker daemon sharing the workspace filesystem. The bundled Masterdata specification currently has duplicate parameters in two operations (`bulkremoveservicecontext` and `bulkaddservicecontext`), so the script skips generator spec validation for that client only; generation still must succeed, and the remaining seven specifications use normal validation. The script stops on any failed generator, patch, or patch-validation command, and preserves the current `sdk/` tree if generation or patch validation fails.
+The script first fetches all eight raw OpenAPI exports from Zero Friction's APIM endpoint into a temporary directory and compares them byte-for-byte with `openapi_specs/`. If any differ, it prompts before replacing the snapshots or regenerating clients. Use `scripts/regenerate_sdk.sh --yes` (or `--non-interactive`) in unattended workflows to accept fetched changes automatically; APIM `--api-version` and endpoint `--base-url` overrides are also supported. An export that only differs in YAML formatting will be reported as a change, so review the diff before accepting it. The downloaded snapshots are kept as published and should be excluded from formatting hooks that modify files.
+
+After approval, the script pins OpenAPI Generator to `7.13.0`, stages the fetched specifications and generated clients through Docker copy operations, regenerates all eight clients, applies the API Management version patch, and validates the staged output before replacing `openapi_specs/` and `sdk/`. It does not depend on the Docker daemon sharing the workspace filesystem. The bundled Masterdata specification currently has duplicate parameters in two operations (`bulkremoveservicecontext` and `bulkaddservicecontext`), so the script skips generator spec validation for that client only; generation still must succeed, and the remaining seven specifications use normal validation. The script stops on any failed fetch, generator, patch, or patch-validation command and restores the prior specs and SDK if installation fails.
 
 After generation, inspect the result before making any manual compatibility changes:
 

@@ -16,13 +16,54 @@ clients=(
   "Metering-1-0.yaml|metering_client"
   "RegionalRegulations-1-0.yaml|regionalregulations_client"
 )
+auto_approve=0
+fetch_options=()
 
-for command in docker uv; do
-  if ! command -v "$command" >/dev/null 2>&1; then
-    printf 'Required command not found: %s\n' "$command" >&2
-    exit 1
-  fi
+usage() {
+  cat <<'EOF'
+Usage: scripts/regenerate_sdk.sh [--yes|--non-interactive] [--api-version VERSION] [--base-url URL]
+
+Fetch current OpenAPI specs, prompt before regenerating if any differ, then
+regenerate all SDK clients. --yes and --non-interactive accept spec updates
+without prompting. Fetch options are passed to fetch_openapi_specs.py.
+EOF
+}
+
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
+    --yes|-y|--non-interactive)
+      auto_approve=1
+      shift
+      ;;
+    --api-version|--base-url)
+      if [[ "$#" -lt 2 ]]; then
+        printf 'Missing value for %s\n' "$1" >&2
+        usage >&2
+        exit 2
+      fi
+      fetch_options+=("$1" "$2")
+      shift 2
+      ;;
+    --api-version=*|--base-url=*)
+      fetch_options+=("$1")
+      shift
+      ;;
+    --help|-h)
+      usage
+      exit 0
+      ;;
+    *)
+      printf 'Unknown option: %s\n' "$1" >&2
+      usage >&2
+      exit 2
+      ;;
+  esac
 done
+
+if ! command -v uv >/dev/null 2>&1; then
+  printf 'Required command not found: uv\n' >&2
+  exit 1
+fi
 
 for entry in "${clients[@]}"; do
   IFS='|' read -r spec client <<< "$entry"
@@ -33,8 +74,9 @@ for entry in "${clients[@]}"; do
 done
 
 stage_root="$(mktemp -d "$repo_root/.regenerate-sdk.XXXXXX")"
-container_id="$(docker create --entrypoint sh "$generator_image" -c 'sleep infinity')"
 sdk_swapped=0
+specs_swapped=0
+container_id=""
 
 cleanup() {
   local status=$?
@@ -42,15 +84,69 @@ cleanup() {
     rm -rf "$repo_root/sdk"
     mv "$stage_root/previous-sdk" "$repo_root/sdk"
   fi
-  docker rm -f "$container_id" >/dev/null 2>&1 || true
+  if [[ "$specs_swapped" -eq 1 ]]; then
+    for entry in "${clients[@]}"; do
+      local spec
+      IFS='|' read -r spec _ <<< "$entry"
+      if [[ -f "$stage_root/previous-specs/$spec" ]]; then
+        rm -f "$repo_root/openapi_specs/$spec"
+        mv "$stage_root/previous-specs/$spec" "$repo_root/openapi_specs/$spec"
+      fi
+    done
+  fi
+  if [[ -n "$container_id" ]]; then
+    docker rm -f "$container_id" >/dev/null 2>&1 || true
+  fi
   rm -rf "$stage_root"
   exit "$status"
 }
 trap cleanup EXIT
 
+uv run python scripts/fetch_openapi_specs.py \
+  --output-dir "$stage_root/fetched_specs" "${fetch_options[@]}"
+
+changed_specs=()
+for entry in "${clients[@]}"; do
+  IFS='|' read -r spec client <<< "$entry"
+  if ! cmp -s "$repo_root/openapi_specs/$spec" \
+    "$stage_root/fetched_specs/$spec"; then
+    changed_specs+=("$spec")
+  fi
+done
+
+if [[ "${#changed_specs[@]}" -gt 0 ]]; then
+  printf 'Fetched OpenAPI specs differ from the current files:\n'
+  printf '  %s\n' "${changed_specs[@]}"
+  if [[ "$auto_approve" -eq 1 ]]; then
+    printf 'Non-interactive mode: accepting spec updates.\n'
+  else
+    if [[ ! -t 0 ]]; then
+      printf 'A terminal is required to approve updates; rerun with --yes.\n' >&2
+      exit 2
+    fi
+    read -r -p 'Update the specs and regenerate the SDK? [y/N] ' answer
+    case "$answer" in
+      y|Y|yes|YES|Yes)
+        ;;
+      *)
+        printf 'Update declined; specs and SDK were left unchanged.\n'
+        exit 0
+        ;;
+    esac
+  fi
+else
+  printf 'Fetched OpenAPI specs match the current files.\n'
+fi
+
+if ! command -v docker >/dev/null 2>&1; then
+  printf 'Required command not found: docker\n' >&2
+  exit 1
+fi
+
+container_id="$(docker create --entrypoint sh "$generator_image" -c 'sleep infinity')"
 docker start "$container_id" >/dev/null
 docker exec "$container_id" mkdir -p /local/openapi_specs /local/sdk
-docker cp "$repo_root/openapi_specs/." "$container_id:/local/openapi_specs/"
+docker cp "$stage_root/fetched_specs/." "$container_id:/local/openapi_specs/"
 
 for entry in "${clients[@]}"; do
   IFS='|' read -r spec client <<< "$entry"
@@ -75,8 +171,18 @@ docker cp "$container_id:/local/sdk/." "$stage_root/staged/sdk/"
 uv run python scripts/patch_api_version.py --root "$stage_root/staged"
 uv run python scripts/patch_api_version.py --root "$stage_root/staged" --check
 
+mkdir -p "$stage_root/previous-specs"
+specs_swapped=1
+for entry in "${clients[@]}"; do
+  IFS='|' read -r spec client <<< "$entry"
+  mv "$repo_root/openapi_specs/$spec" "$stage_root/previous-specs/$spec"
+  mv "$stage_root/fetched_specs/$spec" "$repo_root/openapi_specs/$spec"
+done
+
 mv "$repo_root/sdk" "$stage_root/previous-sdk"
 sdk_swapped=1
 mv "$stage_root/staged/sdk" "$repo_root/sdk"
 rm -rf "$stage_root/previous-sdk"
+rm -rf "$stage_root/previous-specs"
 sdk_swapped=0
+specs_swapped=0
