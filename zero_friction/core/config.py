@@ -29,6 +29,18 @@ class ZeroFrictionConfig:
         """Initialize SDK configuration and retrieve an OAuth token."""
         self.zf_tuuid = os.getenv("ZF_TENANT_ID")
         self.zf_ouuid = os.getenv("ZF_ORG_ID")
+        missing_ids = [
+            name
+            for name, value in (
+                ("ZF_TENANT_ID", self.zf_tuuid),
+                ("ZF_ORG_ID", self.zf_ouuid),
+            )
+            if not value
+        ]
+        if missing_ids:
+            missing = ", ".join(missing_ids)
+            raise ValueError(f"Missing required environment variable(s): {missing}")
+
         self.headers = get_headers()
         self.rate_limit_per_minute = rate_limit_per_minute
         self.debug_mode = debug_mode
@@ -52,8 +64,8 @@ class ZeroFrictionConfig:
         return {
             "Authorization": f"Bearer {self.oauth_token}",
             "apim-sub": ZF_API_KEY,
-            "zf-tuuid": ZF_TENANT_ID,
-            "zf-ouuid": ZF_ORG_ID,
+            "zf-tuuid": self.zf_tuuid,
+            "zf-ouuid": self.zf_ouuid,
             "Content-Type": "application/json",
             "Cache-Control": "no-cache",
         }

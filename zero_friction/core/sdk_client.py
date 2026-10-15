@@ -113,6 +113,13 @@ class SDKClient:
 
         self._all_clients = [getattr(self, attr) for attr in sdk_modules]
 
+        # Tenant and organisation context applies to every API request, so keep
+        # these headers at the generated ApiClient layer instead of requiring
+        # each endpoint to declare and pass them separately.
+        for client in self._all_clients:
+            client.set_default_header("zf-tuuid", config.zf_tuuid)
+            client.set_default_header("zf-ouuid", config.zf_ouuid)
+
         # Attach all API classes for each client
         for attr, module in sdk_modules.items():
             client_instance = getattr(self, attr)

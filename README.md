@@ -31,8 +31,7 @@ cp .env.template .env
 uv run pre-commit install --install-hooks
 ```
 
-Do not commit `.env` or real credentials. The SDK reads these environment
-variables for authentication:
+Do not commit `.env` or real credentials. The SDK reads these environment variables for authentication and request context. `ZF_TENANT_ID` and `ZF_ORG_ID` are required; the unified client sends them as `zf-tuuid` and `zf-ouuid` headers on every API request.
 
 ```text
 ZF_API_KEY=
