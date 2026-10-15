@@ -38,7 +38,8 @@ class TestFlatConsumptionDTO(unittest.TestCase):
                 external_channel_identifier = '',
                 start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                value = 1.337
+                value = 1.337,
+                time_of_use = ''
             )
         else:
             return FlatConsumptionDTO(

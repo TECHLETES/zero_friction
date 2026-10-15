@@ -1,32 +1,32 @@
 # InvoiceLineDTO
 
-Represents a line item on an invoice
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billing_item_id** | **str** | Identifier of the billing item | [optional] 
-**billing_tariff_id** | **str** | Identifier of the billing tariff | [optional] 
-**description** | **str** | Description of the line item | [optional] 
-**amount_excl_vat** | **float** | Amount excluding VAT | [optional] 
-**amount_incl_vat** | **float** | Amount including VAT | [optional] 
-**vat** | **float** | VAT amount | [optional] 
-**quantity** | **float** | Quantity of items | [optional] 
-**raw_quantity** | **float** | Raw quantity before any adjustments | [optional] 
-**unit_price** | **float** | Price per unit | [optional] 
-**start_date_time** | **datetime** | Start date and time of the line item | [optional] 
-**end_date_time** | **datetime** | End date and time of the line item | [optional] 
-**tax_code_id** | **str** | Identifier of the tax code | [optional] 
-**tax_rate** | **float** | Tax rate applied | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) | Unit of measure for the quantity | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) | Type of utility being billed | [optional] 
-**line_type** | [**InvoiceLineType**](InvoiceLineType.md) | Type of the line item | [optional] 
-**consumption_based** | **bool** | Indicates if the line item is based on consumption | [optional] 
-**service_location_id** | **str** | Identifier of the service location | [optional] 
-**original_invoice_id** | **str** | Identifier of the original invoice | [optional] 
-**sort_order** | **int** | Sort order of the line item | [optional] 
-**id** | **str** | Unique identifier of the line item | [optional] 
+**billing_item_id** | **str** |  | [optional] 
+**billing_tariff_id** | **str** |  | [optional] 
+**time_of_use** | **str** |  | [optional] 
+**description** | **str** |  | [optional] 
+**amount_excl_vat** | **float** |  | [optional] 
+**amount_incl_vat** | **float** |  | [optional] 
+**vat** | **float** |  | [optional] 
+**quantity** | **float** |  | [optional] 
+**raw_quantity** | **float** |  | [optional] 
+**unit_price** | **float** |  | [optional] 
+**start_date_time** | **datetime** |  | [optional] 
+**end_date_time** | **datetime** |  | [optional] 
+**tax_code_id** | **str** |  | [optional] 
+**tax_rate** | **float** |  | [optional] 
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
+**line_type** | [**InvoiceLineType**](InvoiceLineType.md) |  | [optional] 
+**consumption_based** | **bool** |  | [optional] 
+**service_location_id** | **str** |  | [optional] 
+**original_invoice_id** | **str** |  | [optional] 
+**sort_order** | **int** |  | [optional] 
+**id** | **str** |  | [optional] 
 
 ## Example
 

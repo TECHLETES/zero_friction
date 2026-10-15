@@ -42,6 +42,7 @@ class TestProductReferenceDTO(unittest.TestCase):
             )
         else:
             return ProductReferenceDTO(
+                product_name = '',
         )
         """
 

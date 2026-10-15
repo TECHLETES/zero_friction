@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class SshAuthenticationMethod(str, Enum):
     """
-    SshAuthenticationMethod
+    Possible values: 'password', 'privatekey'
     """
 
     """

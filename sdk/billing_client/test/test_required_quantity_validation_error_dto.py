@@ -36,16 +36,16 @@ class TestRequiredQuantityValidationErrorDTO(unittest.TestCase):
         if include_optional:
             return RequiredQuantityValidationErrorDTO(
                 reason = 'unknown',
-                error = 'ASSET_ALREADY_EXISTS',
+                error = 56,
                 problem_entity = billing_client.models.reason_entity_dto.ReasonEntityDTO(
-                    entity_subject_type = null, 
+                    entity_subject_type = 'none', 
                     entity_subject_id = '', ),
                 impacted_entity = billing_client.models.impacted_entity_dto.ImpactedEntityDTO(
-                    entity_subject_type = null, 
+                    entity_subject_type = 'none', 
                     entity_subject_id = '', ),
                 related_entities = [
                     billing_client.models.related_entity_dto.RelatedEntityDTO(
-                        entity_subject_type = null, 
+                        entity_subject_type = 'none', 
                         entity_subject_id = '', )
                     ]
             )

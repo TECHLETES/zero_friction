@@ -26,13 +26,13 @@ from typing_extensions import Self
 
 class DebtorDTO(BaseModel):
     """
-    Represents a debtor in the billing system.  Contains essential information about a customer who owes payment.
+    DebtorDTO
     """ # noqa: E501
-    customer_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the customer.", alias="customerId")
-    display_name: Optional[StrictStr] = Field(default=None, description="The display name of the customer.", alias="displayName")
-    customer_account_number: Optional[StrictStr] = Field(default=None, description="The account number assigned to the customer.", alias="customerAccountNumber")
-    customer_type: Optional[CustomerType] = Field(default=None, description="The type of customer (e.g., individual, business).", alias="customerType")
-    customer_group: Optional[CustomerGroupReferenceDTO] = Field(default=None, description="Reference to the customer group this debtor belongs to.", alias="customerGroup")
+    customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
+    display_name: Optional[StrictStr] = Field(default=None, alias="displayName")
+    customer_account_number: Optional[StrictStr] = Field(default=None, alias="customerAccountNumber")
+    customer_type: Optional[CustomerType] = Field(default=None, alias="customerType")
+    customer_group: Optional[CustomerGroupReferenceDTO] = Field(default=None, alias="customerGroup")
     __properties: ClassVar[List[str]] = ["customerId", "displayName", "customerAccountNumber", "customerType", "customerGroup"]
 
     model_config = ConfigDict(
@@ -91,11 +91,6 @@ class DebtorDTO(BaseModel):
         # and model_fields_set contains the field
         if self.customer_account_number is None and "customer_account_number" in self.model_fields_set:
             _dict['customerAccountNumber'] = None
-
-        # set to None if customer_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_type is None and "customer_type" in self.model_fields_set:
-            _dict['customerType'] = None
 
         # set to None if customer_group (nullable) is None
         # and model_fields_set contains the field

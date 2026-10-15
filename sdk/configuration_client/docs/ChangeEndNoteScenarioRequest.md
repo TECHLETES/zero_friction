@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
-**pdf_template** | [**EndNotePdfTemplateRequest**](EndNotePdfTemplateRequest.md) |  | [optional] 
-**email_template** | [**EndNoteEmailTemplateRequest**](EndNoteEmailTemplateRequest.md) |  | [optional] 
+**pdf_template** | [**EndNotePdfTemplateRequest**](EndNotePdfTemplateRequest.md) |  | 
+**email_template** | [**EndNoteEmailTemplateRequest**](EndNoteEmailTemplateRequest.md) |  | 
+**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | 
+**auto_fallback_to_postal** | **bool** |  | [optional] 
 
 ## Example
 

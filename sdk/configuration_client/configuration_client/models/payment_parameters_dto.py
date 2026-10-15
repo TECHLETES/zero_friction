@@ -20,7 +20,9 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from configuration_client.models.base_bank_statement_matching_rule_dto import BaseBankStatementMatchingRuleDTO
 from configuration_client.models.entity_subject_type import EntitySubjectType
+from configuration_client.models.payment_delay import PaymentDelay
 from configuration_client.models.payment_retry_parameter_dto import PaymentRetryParameterDTO
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,23 +31,28 @@ class PaymentParametersDTO(BaseModel):
     """
     PaymentParametersDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
     retry_parameters: Optional[List[PaymentRetryParameterDTO]] = Field(default=None, alias="retryParameters")
     block_automatic_settlement: Optional[StrictBool] = Field(default=None, alias="blockAutomaticSettlement")
+    block_automatic_refunding: Optional[StrictBool] = Field(default=None, alias="blockAutomaticRefunding")
     refund_payment_delay_in_days: Optional[StrictInt] = Field(default=None, alias="refundPaymentDelayInDays")
     payment_terms_id: Optional[StrictStr] = Field(default=None, alias="paymentTermsId")
     only_use_invoice_number_in_payment_references: Optional[StrictBool] = Field(default=None, alias="onlyUseInvoiceNumberInPaymentReferences")
     default_collection_flow_id: Optional[StrictStr] = Field(default=None, alias="defaultCollectionFlowId")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "retryParameters", "blockAutomaticSettlement", "refundPaymentDelayInDays", "paymentTermsId", "onlyUseInvoiceNumberInPaymentReferences", "defaultCollectionFlowId"]
+    default_collection_delay: Optional[PaymentDelay] = Field(default=None, alias="defaultCollectionDelay")
+    default_collection_delay_value: Optional[StrictInt] = Field(default=None, alias="defaultCollectionDelayValue")
+    allow_resident_to_choose_collection_day: Optional[StrictBool] = Field(default=None, alias="allowResidentToChooseCollectionDay")
+    allow_customer_collection_day_override: Optional[StrictBool] = Field(default=None, alias="allowCustomerCollectionDayOverride")
+    selectable_collection_days: Optional[List[StrictInt]] = Field(default=None, alias="selectableCollectionDays")
+    matching_rules: Optional[List[BaseBankStatementMatchingRuleDTO]] = Field(default=None, alias="matchingRules")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["retryParameters", "blockAutomaticSettlement", "blockAutomaticRefunding", "refundPaymentDelayInDays", "paymentTermsId", "onlyUseInvoiceNumberInPaymentReferences", "defaultCollectionFlowId", "defaultCollectionDelay", "defaultCollectionDelayValue", "allowResidentToChooseCollectionDay", "allowCustomerCollectionDayOverride", "selectableCollectionDays", "matchingRules", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,10 +84,8 @@ class PaymentParametersDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -95,31 +100,13 @@ class PaymentParametersDTO(BaseModel):
                 if _item_retry_parameters:
                     _items.append(_item_retry_parameters.to_dict())
             _dict['retryParameters'] = _items
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of each item in matching_rules (list)
+        _items = []
+        if self.matching_rules:
+            for _item_matching_rules in self.matching_rules:
+                if _item_matching_rules:
+                    _items.append(_item_matching_rules.to_dict())
+            _dict['matchingRules'] = _items
         # set to None if retry_parameters (nullable) is None
         # and model_fields_set contains the field
         if self.retry_parameters is None and "retry_parameters" in self.model_fields_set:
@@ -147,22 +134,27 @@ class PaymentParametersDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "retryParameters": [PaymentRetryParameterDTO.from_dict(_item) for _item in obj["retryParameters"]] if obj.get("retryParameters") is not None else None,
+            "blockAutomaticSettlement": obj.get("blockAutomaticSettlement"),
+            "blockAutomaticRefunding": obj.get("blockAutomaticRefunding"),
+            "refundPaymentDelayInDays": obj.get("refundPaymentDelayInDays"),
+            "paymentTermsId": obj.get("paymentTermsId"),
+            "onlyUseInvoiceNumberInPaymentReferences": obj.get("onlyUseInvoiceNumberInPaymentReferences"),
+            "defaultCollectionFlowId": obj.get("defaultCollectionFlowId"),
+            "defaultCollectionDelay": obj.get("defaultCollectionDelay"),
+            "defaultCollectionDelayValue": obj.get("defaultCollectionDelayValue"),
+            "allowResidentToChooseCollectionDay": obj.get("allowResidentToChooseCollectionDay"),
+            "allowCustomerCollectionDayOverride": obj.get("allowCustomerCollectionDayOverride"),
+            "selectableCollectionDays": obj.get("selectableCollectionDays"),
+            "matchingRules": [BaseBankStatementMatchingRuleDTO.from_dict(_item) for _item in obj["matchingRules"]] if obj.get("matchingRules") is not None else None,
+            "organisationId": obj.get("organisationId"),
             "id": obj.get("id"),
             "entityType": obj.get("entityType"),
             "createdDateTime": obj.get("createdDateTime"),
             "discriminator": obj.get("discriminator"),
             "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
             "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
-            "retryParameters": [PaymentRetryParameterDTO.from_dict(_item) for _item in obj["retryParameters"]] if obj.get("retryParameters") is not None else None,
-            "blockAutomaticSettlement": obj.get("blockAutomaticSettlement"),
-            "refundPaymentDelayInDays": obj.get("refundPaymentDelayInDays"),
-            "paymentTermsId": obj.get("paymentTermsId"),
-            "onlyUseInvoiceNumberInPaymentReferences": obj.get("onlyUseInvoiceNumberInPaymentReferences"),
-            "defaultCollectionFlowId": obj.get("defaultCollectionFlowId")
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

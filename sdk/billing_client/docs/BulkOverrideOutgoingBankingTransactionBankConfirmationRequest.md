@@ -1,14 +1,13 @@
 # BulkOverrideOutgoingBankingTransactionBankConfirmationRequest
 
-Represents a bulk request to override the bank confirmation status of multiple outgoing banking transactions.  This DTO allows for batch overriding of bank confirmations based on query parameters and filters.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**only_validate** | **bool** | Indicates whether this is a validation-only request without actual override. | [optional] 
-**var_query_params** | [**GetOutgoingBankingTransactionsQueryParams**](GetOutgoingBankingTransactionsQueryParams.md) | Query parameters to filter the transactions to be overridden. | [optional] 
-**quick_filter** | **str** | A quick filter string to further refine the selection of transactions to be overridden. | [optional] 
+**only_validate** | **bool** |  | [optional] 
+**var_query_params** | [**GetOutgoingBankingTransactionsQueryParams**](GetOutgoingBankingTransactionsQueryParams.md) |  | [optional] 
+**quick_filter** | **str** |  | [optional] 
 
 ## Example
 

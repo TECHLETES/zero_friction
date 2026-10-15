@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class OutgoingMutationStatus(str, Enum):
     """
-    OutgoingMutationStatus
+    Possible values: 'created', 'readytosend', 'resolveissues', 'toconfirmbybank', 'closed', 'reversed', 'failedtoclose', 'failedtoreverse', 'cancelled'
     """
 
     """

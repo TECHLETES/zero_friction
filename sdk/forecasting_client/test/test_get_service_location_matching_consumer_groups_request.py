@@ -41,6 +41,8 @@ class TestGetServiceLocationMatchingConsumerGroupsRequest(unittest.TestCase):
             )
         else:
             return GetServiceLocationMatchingConsumerGroupsRequest(
+                product_id = '',
+                utility_type = 'none',
         )
         """
 

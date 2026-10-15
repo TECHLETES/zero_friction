@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **meter_tag** | **str** |  | [optional] 
 **operation_id** | **str** |  | [optional] 
 **value** | **float** |  | [optional] 
+**start_date_time** | **datetime** |  | [optional] 
 **end_date_time** | **datetime** |  | [optional] 
 **deleted** | **bool** |  | [optional] 
 **data_frequency** | [**DataFrequency**](DataFrequency.md) |  | [optional] 
@@ -22,6 +23,9 @@ Name | Type | Description | Notes
 **time_of_use** | **str** |  | [optional] 
 **property_group_name** | **str** |  | [optional] 
 **property_group_id** | **str** |  | [optional] 
+**reading_origin** | [**MeasurementReadingOrigin**](MeasurementReadingOrigin.md) |  | [optional] 
+**reading_method** | [**MeasurementReadingMethod**](MeasurementReadingMethod.md) |  | [optional] 
+**origin_details** | [**MeasurementOriginDetailsDTOMeteringImportJobOriginDetailsDTO**](MeasurementOriginDetailsDTOMeteringImportJobOriginDetailsDTO.md) |  | [optional] 
 
 ## Example
 

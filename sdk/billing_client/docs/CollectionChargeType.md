@@ -1,5 +1,6 @@
 # CollectionChargeType
 
+Possible values: 'none', 'fixed', 'percentageofopenamount', 'tieredpercentageofopenamount'
 
 ## Enum
 

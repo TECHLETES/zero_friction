@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class DnsRecordStatus(str, Enum):
     """
-    DnsRecordStatus
+    Possible values: 'unverified', 'valid', 'error'
     """
 
     """

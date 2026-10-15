@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class TemplateUsecase(str, Enum):
     """
-    TemplateUsecase
+    Possible values: 'pdf', 'email'
     """
 
     """

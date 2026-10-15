@@ -42,6 +42,10 @@ class TestUpdateCultureTableRequest(unittest.TestCase):
             )
         else:
             return UpdateCultureTableRequest(
+                default_culture_name = '',
+                supported_culture_names = [
+                    ''
+                    ],
         )
         """
 

@@ -1,16 +1,15 @@
 # IncomingMutationsOverviewCountDTO
 
-Provides an overview of incoming mutation counts by their type.  This DTO contains aggregated counts of different types of mutations.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** | The total number of incoming mutations. | [optional] 
-**bank_transfers** | **int** | The number of bank transfer mutations. | [optional] 
-**reversals** | **int** | The number of reversal mutations. | [optional] 
-**bank_confirmations** | **int** | The number of bank confirmation mutations. | [optional] 
-**resolve_issues** | **int** | The number of mutations that have issues requiring resolution. | [optional] 
+**all** | **int** |  | [optional] 
+**bank_transfers** | **int** |  | [optional] 
+**reversals** | **int** |  | [optional] 
+**bank_confirmations** | **int** |  | [optional] 
+**resolve_issues** | **int** |  | [optional] 
 
 ## Example
 

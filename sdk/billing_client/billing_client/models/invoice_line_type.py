@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class InvoiceLineType(str, Enum):
     """
-    InvoiceLineType
+    Possible values: 'advance', 'previouslyadvanced', 'charge', 'vatpennydifference'
     """
 
     """

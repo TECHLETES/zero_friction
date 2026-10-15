@@ -1,12 +1,11 @@
 # ChangeExportStatusRequest
 
-Represents a request to change the export status of an invoice.  This DTO is used to update the export status of a single invoice.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**export_status** | [**ExportStatus**](ExportStatus.md) | The new export status to set for the invoice. | [optional] 
+**export_status** | [**ExportStatus**](ExportStatus.md) |  | 
 
 ## Example
 

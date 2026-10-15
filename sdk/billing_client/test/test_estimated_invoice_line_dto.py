@@ -35,6 +35,12 @@ class TestEstimatedInvoiceLineDTO(unittest.TestCase):
         model = EstimatedInvoiceLineDTO()
         if include_optional:
             return EstimatedInvoiceLineDTO(
+                type = 'EstimatedInvoiceLineDTO:Consumption',
+                consumption_origin_shares = [
+                    billing_client.models.consumption_origin_share_dto.ConsumptionOriginShareDTO(
+                        origin = 'actual', 
+                        percentage = 1.337, )
+                    ],
                 calculation_type = 'consumption',
                 billing_item_reference = billing_client.models.billing_item_reference.BillingItemReference(
                     billing_item_id = '', 
@@ -53,23 +59,38 @@ class TestEstimatedInvoiceLineDTO(unittest.TestCase):
                 service_location_id = '',
                 billing_tariff_accuracy = billing_client.models.period_for_entity_dto.PeriodForEntityDTO(
                     entity_id = '', 
-                    entity_period = null, 
+                    entity_period = billing_client.models.date_range.DateRange(
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
                     out_dated = True, ),
                 cost_component_accuracies = [
                     billing_client.models.period_for_entity_dto.PeriodForEntityDTO(
                         entity_id = '', 
-                        entity_period = null, 
+                        entity_period = billing_client.models.date_range.DateRange(
+                            start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
                         out_dated = True, )
                     ],
                 tax_accuracy = billing_client.models.period_for_entity_dto.PeriodForEntityDTO(
                     entity_id = '', 
-                    entity_period = null, 
+                    entity_period = billing_client.models.date_range.DateRange(
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
                     out_dated = True, ),
                 accuracy = 'low',
-                quantity_accuracy = 'low'
+                quantity_accuracy = 'low',
+                custom_entity_property_entity_subject_type = 'none',
+                custom_entity_property_entity_subject_id = '',
+                custom_entity_property_accuracy = billing_client.models.period_for_entity_dto.PeriodForEntityDTO(
+                    entity_id = '', 
+                    entity_period = billing_client.models.date_range.DateRange(
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
+                    out_dated = True, )
             )
         else:
             return EstimatedInvoiceLineDTO(
+                type = 'EstimatedInvoiceLineDTO:Consumption',
         )
         """
 

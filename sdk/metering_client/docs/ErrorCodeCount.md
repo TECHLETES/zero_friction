@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error_code** | **str** |  | [optional] 
-**count** | **int** |  | [optional] 
+**error_code** | **str** |  | 
+**count** | **int** |  | 
 
 ## Example
 

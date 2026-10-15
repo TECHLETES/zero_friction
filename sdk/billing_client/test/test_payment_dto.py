@@ -35,16 +35,6 @@ class TestPaymentDTO(unittest.TestCase):
         model = PaymentDTO()
         if include_optional:
             return PaymentDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 type = 'incomingtransfer',
                 payment_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 payment_reference = '',
@@ -55,24 +45,30 @@ class TestPaymentDTO(unittest.TestCase):
                     customer_id = '', 
                     display_name = '', 
                     customer_account_number = '', 
-                    customer_type = null, 
-                    customer_group = null, ),
+                    customer_type = 'person', 
+                    customer_group = billing_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
+                        id = '', 
+                        name = '', ), ),
+                source = billing_client.models.payment_source_dto.PaymentSourceDTO(),
                 customer_bank_account_iban = '',
                 is_manual = True,
                 payment_entity_references = [
                     billing_client.models.payment_entity_reference_dto.PaymentEntityReferenceDTO(
                         transaction_id = '', 
                         reference_id = '', 
-                        reference_type = null, )
+                        reference_type = 'payment', )
                     ],
                 is_reversed = True,
                 reversal_details = billing_client.models.payment_reversal_details_dto.PaymentReversalDetailsDTO(
-                    reversal_reason = null, 
+                    reversal_reason = 'manualreverse', 
                     reversal_additional_information = '', 
                     reversal_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     reversal_incoming_banking_transaction_id = '', 
                     reversal_incoming_banking_transaction_identification = '', 
-                    reversal_incoming_mutation_id = '', ),
+                    reversal_incoming_mutation_id = '', 
+                    reversal_outgoing_banking_transaction_id = '', 
+                    reversal_outgoing_banking_transaction_identification = '', 
+                    reversal_outgoing_mutation_id = '', ),
                 outgoing_mutation_id = '',
                 outgoing_banking_transaction_id = '',
                 outgoing_banking_transaction_identification = '',
@@ -80,7 +76,30 @@ class TestPaymentDTO(unittest.TestCase):
                 incoming_banking_transaction_id = '',
                 incoming_banking_transaction_identification = '',
                 incoming_mutation_id = '',
-                canonical_search = ''
+                canonical_search = '',
+                prepayment_account_id = '',
+                psp = billing_client.models.payment_psp_source_dto.PaymentPspSourceDTO(
+                    provider = 'stripe', 
+                    payment_provider_account_zfh_id = '', 
+                    provider_workspace_account_id = '', 
+                    provider_external_payment_id = '', 
+                    provider_payment_method_type = 'unknown', 
+                    requested_payment_rail = 'card', 
+                    payment_intent_id = '', 
+                    refund = billing_client.models.payment_psp_refund_dto.PaymentPspRefundDTO(
+                        psp_refund_status = 'pending', 
+                        refunded_amount = 1.337, 
+                        refunded_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        provider_external_refund_id = '', ), 
+                    supports_refund = True, ),
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return PaymentDTO(

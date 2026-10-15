@@ -43,6 +43,7 @@ class TestUpdateAdvanceCalculationParametersRequest(unittest.TestCase):
             )
         else:
             return UpdateAdvanceCalculationParametersRequest(
+                minimum_accuracy = 'low',
         )
         """
 

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**remove_date** | **datetime** |  | [optional] 
+**remove_date** | **datetime** |  | 
 
 ## Example
 

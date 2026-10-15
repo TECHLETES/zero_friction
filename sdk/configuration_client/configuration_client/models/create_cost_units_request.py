@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class CreateCostUnitsRequest(BaseModel):
     """
-    Request model for creating new cost units.  Cost units should correspond to entries in an external accounting system  to enable proper data synchronization during billing operations.
+    CreateCostUnitsRequest
     """ # noqa: E501
-    cost_units: Optional[List[CreateCostUnitRequest]] = Field(default=None, description="List of cost units to create.", alias="costUnits")
+    cost_units: Optional[List[CreateCostUnitRequest]] = Field(default=None, alias="costUnits")
     __properties: ClassVar[List[str]] = ["costUnits"]
 
     model_config = ConfigDict(

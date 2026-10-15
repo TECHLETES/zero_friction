@@ -38,7 +38,19 @@ class TestOutgoingMutationCustomerBankAccountDTO(unittest.TestCase):
                 iban = '',
                 account_holder = '',
                 mandate_number = '',
-                mandate_signed_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                mandate_signed_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                address = billing_client.models.address_dto.AddressDTO(
+                    street_name = '', 
+                    street_number = '', 
+                    street_number_addition = '', 
+                    postal_code = '', 
+                    building_name = '', 
+                    locality = '', 
+                    city = '', 
+                    country = 'aut', 
+                    localized_display = '', 
+                    line_one = '', 
+                    line_two = '', )
             )
         else:
             return OutgoingMutationCustomerBankAccountDTO(

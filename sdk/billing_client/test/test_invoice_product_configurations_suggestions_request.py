@@ -42,6 +42,9 @@ class TestInvoiceProductConfigurationsSuggestionsRequest(unittest.TestCase):
             )
         else:
             return InvoiceProductConfigurationsSuggestionsRequest(
+                service_location_ids = [
+                    ''
+                    ],
         )
         """
 

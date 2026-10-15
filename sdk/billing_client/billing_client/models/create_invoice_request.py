@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from billing_client.models.create_invoice_lines_request import CreateInvoiceLinesRequest
 from billing_client.models.invoice_status import InvoiceStatus
@@ -31,31 +31,33 @@ from typing_extensions import Self
 
 class CreateInvoiceRequest(BaseModel):
     """
-    Represents a request to create a new invoice.  This DTO contains all the necessary information to create a complete invoice including header details and line items.
+    CreateInvoiceRequest
     """ # noqa: E501
-    invoice_num: Optional[StrictStr] = Field(default=None, description="The unique invoice number assigned to this invoice.", alias="invoiceNum")
-    status: Optional[InvoiceStatus] = Field(default=None, description="The current status of the invoice.")
-    invoice_date: Optional[datetime] = Field(default=None, description="The date when the invoice was created.", alias="invoiceDate")
-    invoice_type: Optional[InvoiceType] = Field(default=None, description="The type of invoice (e.g., regular, credit note, etc.).", alias="invoiceType")
-    remaining_invoice_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The remaining amount to be paid on this invoice.", alias="remainingInvoiceAmount")
-    total_invoice_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total invoice amount excluding VAT.", alias="totalInvoiceAmountExclVAT")
-    total_invoice_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total invoice amount including VAT.", alias="totalInvoiceAmountInclVAT")
-    contract_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the associated contract.", alias="contractId")
-    credited_invoice_id: Optional[StrictStr] = Field(default=None, description="The ID of the invoice being credited (if this is a credit note).", alias="creditedInvoiceId")
-    contract_number: Optional[StrictStr] = Field(default=None, description="The contract number associated with this invoice.", alias="contractNumber")
-    customer_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the customer.", alias="customerId")
-    company_bank_account_id: Optional[StrictStr] = Field(default=None, description="The ID of the company's bank account for receiving payments.", alias="companyBankAccountId")
-    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, description="List of property groups associated with this invoice.", alias="propertyGroups")
-    payment_method: Optional[PaymentMethod] = Field(default=None, description="The method of payment for this invoice.", alias="paymentMethod")
-    payment_reference: Optional[StrictStr] = Field(default=None, description="The payment reference number for tracking payments.", alias="paymentReference")
-    external_reference: Optional[StrictStr] = Field(default=None, description="An external reference number for integration with other systems.", alias="externalReference")
-    period_start_date_time: Optional[datetime] = Field(default=None, description="The start date and time of the billing period.", alias="periodStartDateTime")
-    period_end_date_time: Optional[datetime] = Field(default=None, description="The end date and time of the billing period.", alias="periodEndDateTime")
-    due_date: Optional[datetime] = Field(default=None, description="The date when the invoice payment is due.", alias="dueDate")
-    note_to_customer: Optional[StrictStr] = Field(default=None, description="Additional notes or comments for the customer.", alias="noteToCustomer")
-    sent: Optional[SentStatus] = Field(default=None, description="The current sent status of the invoice.")
-    lines: Optional[List[CreateInvoiceLinesRequest]] = Field(default=None, description="List of line items in the invoice.")
-    __properties: ClassVar[List[str]] = ["invoiceNum", "status", "invoiceDate", "invoiceType", "remainingInvoiceAmount", "totalInvoiceAmountExclVAT", "totalInvoiceAmountInclVAT", "contractId", "creditedInvoiceId", "contractNumber", "customerId", "companyBankAccountId", "propertyGroups", "paymentMethod", "paymentReference", "externalReference", "periodStartDateTime", "periodEndDateTime", "dueDate", "noteToCustomer", "sent", "lines"]
+    invoice_num: Optional[StrictStr] = Field(alias="invoiceNum")
+    status: InvoiceStatus
+    invoice_date: datetime = Field(alias="invoiceDate")
+    invoice_type: InvoiceType = Field(alias="invoiceType")
+    remaining_invoice_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="remainingInvoiceAmount")
+    total_invoice_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(alias="totalInvoiceAmountExclVAT")
+    total_invoice_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(alias="totalInvoiceAmountInclVAT")
+    billing_completeness_id: Optional[StrictStr] = Field(default=None, alias="billingCompletenessId")
+    contract_id: Optional[StrictStr] = Field(default=None, alias="contractId")
+    credited_invoice_id: Optional[StrictStr] = Field(default=None, alias="creditedInvoiceId")
+    contract_number: Optional[StrictStr] = Field(default=None, alias="contractNumber")
+    customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
+    company_bank_account_id: Optional[StrictStr] = Field(alias="companyBankAccountId")
+    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, alias="propertyGroups")
+    payment_method: PaymentMethod = Field(alias="paymentMethod")
+    payment_reference: Optional[StrictStr] = Field(default=None, alias="paymentReference")
+    external_reference: Optional[StrictStr] = Field(default=None, alias="externalReference")
+    period_start_date_time: datetime = Field(alias="periodStartDateTime")
+    period_end_date_time: datetime = Field(alias="periodEndDateTime")
+    due_date: Optional[datetime] = Field(default=None, alias="dueDate")
+    note_to_customer: Optional[StrictStr] = Field(default=None, alias="noteToCustomer")
+    sent: SentStatus
+    lines: Optional[List[CreateInvoiceLinesRequest]] = None
+    disable_vat_calculation: Optional[StrictBool] = Field(default=None, alias="disableVATCalculation")
+    __properties: ClassVar[List[str]] = ["invoiceNum", "status", "invoiceDate", "invoiceType", "remainingInvoiceAmount", "totalInvoiceAmountExclVAT", "totalInvoiceAmountInclVAT", "billingCompletenessId", "contractId", "creditedInvoiceId", "contractNumber", "customerId", "companyBankAccountId", "propertyGroups", "paymentMethod", "paymentReference", "externalReference", "periodStartDateTime", "periodEndDateTime", "dueDate", "noteToCustomer", "sent", "lines", "disableVATCalculation"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,16 +117,6 @@ class CreateInvoiceRequest(BaseModel):
         if self.invoice_num is None and "invoice_num" in self.model_fields_set:
             _dict['invoiceNum'] = None
 
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
-
-        # set to None if invoice_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_type is None and "invoice_type" in self.model_fields_set:
-            _dict['invoiceType'] = None
-
         # set to None if remaining_invoice_amount (nullable) is None
         # and model_fields_set contains the field
         if self.remaining_invoice_amount is None and "remaining_invoice_amount" in self.model_fields_set:
@@ -139,6 +131,11 @@ class CreateInvoiceRequest(BaseModel):
         # and model_fields_set contains the field
         if self.total_invoice_amount_incl_vat is None and "total_invoice_amount_incl_vat" in self.model_fields_set:
             _dict['totalInvoiceAmountInclVAT'] = None
+
+        # set to None if billing_completeness_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.billing_completeness_id is None and "billing_completeness_id" in self.model_fields_set:
+            _dict['billingCompletenessId'] = None
 
         # set to None if contract_id (nullable) is None
         # and model_fields_set contains the field
@@ -170,11 +167,6 @@ class CreateInvoiceRequest(BaseModel):
         if self.property_groups is None and "property_groups" in self.model_fields_set:
             _dict['propertyGroups'] = None
 
-        # set to None if payment_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.payment_method is None and "payment_method" in self.model_fields_set:
-            _dict['paymentMethod'] = None
-
         # set to None if payment_reference (nullable) is None
         # and model_fields_set contains the field
         if self.payment_reference is None and "payment_reference" in self.model_fields_set:
@@ -189,11 +181,6 @@ class CreateInvoiceRequest(BaseModel):
         # and model_fields_set contains the field
         if self.note_to_customer is None and "note_to_customer" in self.model_fields_set:
             _dict['noteToCustomer'] = None
-
-        # set to None if sent (nullable) is None
-        # and model_fields_set contains the field
-        if self.sent is None and "sent" in self.model_fields_set:
-            _dict['sent'] = None
 
         # set to None if lines (nullable) is None
         # and model_fields_set contains the field
@@ -219,6 +206,7 @@ class CreateInvoiceRequest(BaseModel):
             "remainingInvoiceAmount": obj.get("remainingInvoiceAmount"),
             "totalInvoiceAmountExclVAT": obj.get("totalInvoiceAmountExclVAT"),
             "totalInvoiceAmountInclVAT": obj.get("totalInvoiceAmountInclVAT"),
+            "billingCompletenessId": obj.get("billingCompletenessId"),
             "contractId": obj.get("contractId"),
             "creditedInvoiceId": obj.get("creditedInvoiceId"),
             "contractNumber": obj.get("contractNumber"),
@@ -233,7 +221,8 @@ class CreateInvoiceRequest(BaseModel):
             "dueDate": obj.get("dueDate"),
             "noteToCustomer": obj.get("noteToCustomer"),
             "sent": obj.get("sent"),
-            "lines": [CreateInvoiceLinesRequest.from_dict(_item) for _item in obj["lines"]] if obj.get("lines") is not None else None
+            "lines": [CreateInvoiceLinesRequest.from_dict(_item) for _item in obj["lines"]] if obj.get("lines") is not None else None,
+            "disableVATCalculation": obj.get("disableVATCalculation")
         })
         return _obj
 

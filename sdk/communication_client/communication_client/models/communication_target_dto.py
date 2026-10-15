@@ -29,11 +29,14 @@ class CommunicationTargetDTO(BaseModel):
     CommunicationTargetDTO
     """ # noqa: E501
     customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
+    customer_display_name: Optional[StrictStr] = Field(default=None, alias="customerDisplayName")
+    customer_account_number: Optional[StrictStr] = Field(default=None, alias="customerAccountNumber")
     address: Optional[AddressDTO] = None
     email: Optional[StrictStr] = None
     preferred_communication_type: Optional[CommunicationType] = Field(default=None, alias="preferredCommunicationType")
     mobile_phone_number: Optional[StrictStr] = Field(default=None, alias="mobilePhoneNumber")
-    __properties: ClassVar[List[str]] = ["customerId", "address", "email", "preferredCommunicationType", "mobilePhoneNumber"]
+    recipient_address: Optional[StrictStr] = Field(default=None, alias="recipientAddress")
+    __properties: ClassVar[List[str]] = ["customerId", "customerDisplayName", "customerAccountNumber", "address", "email", "preferredCommunicationType", "mobilePhoneNumber", "recipientAddress"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,6 +85,16 @@ class CommunicationTargetDTO(BaseModel):
         if self.customer_id is None and "customer_id" in self.model_fields_set:
             _dict['customerId'] = None
 
+        # set to None if customer_display_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.customer_display_name is None and "customer_display_name" in self.model_fields_set:
+            _dict['customerDisplayName'] = None
+
+        # set to None if customer_account_number (nullable) is None
+        # and model_fields_set contains the field
+        if self.customer_account_number is None and "customer_account_number" in self.model_fields_set:
+            _dict['customerAccountNumber'] = None
+
         # set to None if address (nullable) is None
         # and model_fields_set contains the field
         if self.address is None and "address" in self.model_fields_set:
@@ -102,6 +115,11 @@ class CommunicationTargetDTO(BaseModel):
         if self.mobile_phone_number is None and "mobile_phone_number" in self.model_fields_set:
             _dict['mobilePhoneNumber'] = None
 
+        # set to None if recipient_address (nullable) is None
+        # and model_fields_set contains the field
+        if self.recipient_address is None and "recipient_address" in self.model_fields_set:
+            _dict['recipientAddress'] = None
+
         return _dict
 
     @classmethod
@@ -115,10 +133,13 @@ class CommunicationTargetDTO(BaseModel):
 
         _obj = cls.model_validate({
             "customerId": obj.get("customerId"),
+            "customerDisplayName": obj.get("customerDisplayName"),
+            "customerAccountNumber": obj.get("customerAccountNumber"),
             "address": AddressDTO.from_dict(obj["address"]) if obj.get("address") is not None else None,
             "email": obj.get("email"),
             "preferredCommunicationType": obj.get("preferredCommunicationType"),
-            "mobilePhoneNumber": obj.get("mobilePhoneNumber")
+            "mobilePhoneNumber": obj.get("mobilePhoneNumber"),
+            "recipientAddress": obj.get("recipientAddress")
         })
         return _obj
 

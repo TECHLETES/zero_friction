@@ -36,6 +36,7 @@ class TestManuallyAddPaymentRequest(unittest.TestCase):
         if include_optional:
             return ManuallyAddPaymentRequest(
                 customer_id = '',
+                prepayment_account_id = '',
                 iban = '',
                 amount = 1.337,
                 payment_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
@@ -45,13 +46,18 @@ class TestManuallyAddPaymentRequest(unittest.TestCase):
                     billing_client.models.payment_entity_reference_request.PaymentEntityReferenceRequest(
                         transaction_id = '', 
                         reference_id = '', 
-                        reference_type = null, )
+                        reference_type = 'payment', )
                     ],
                 is_payment_reference_structured = True,
-                organization_country = 'aut'
+                organization_country = 'aut',
+                transaction_type = 'invoice'
             )
         else:
             return ManuallyAddPaymentRequest(
+                customer_id = '',
+                amount = 1.337,
+                payment_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                company_bank_account_id = '',
         )
         """
 

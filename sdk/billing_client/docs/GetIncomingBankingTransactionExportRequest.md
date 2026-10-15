@@ -1,12 +1,11 @@
 # GetIncomingBankingTransactionExportRequest
 
-Represents a request to export data for specific incoming banking transactions.  This DTO is used to retrieve transaction data in a format suitable for export.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**incoming_banking_transaction_ids** | **List[str]** | A list of IDs for the incoming banking transactions to be included in the export. | [optional] 
+**incoming_banking_transaction_ids** | **List[str]** |  | 
 
 ## Example
 

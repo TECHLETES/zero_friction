@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class CustomerType(str, Enum):
     """
-    CustomerType
+    Possible values: 'person', 'organization', 'supplier', 'government'
     """
 
     """
@@ -28,6 +28,8 @@ class CustomerType(str, Enum):
     """
     PERSON = 'person'
     ORGANIZATION = 'organization'
+    SUPPLIER = 'supplier'
+    GOVERNMENT = 'government'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

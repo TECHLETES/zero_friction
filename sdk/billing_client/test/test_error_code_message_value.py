@@ -41,6 +41,8 @@ class TestErrorCodeMessageValue(unittest.TestCase):
             )
         else:
             return ErrorCodeMessageValue(
+                data_type = 'text',
+                value = '',
         )
         """
 

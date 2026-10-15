@@ -1,5 +1,6 @@
 # ConsumerGroupOrigin
 
+Possible values: 'manual', 'systemgenerated'
 
 ## Enum
 

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class SentStatus(str, Enum):
     """
-    SentStatus
+    Possible values: 'notsent', 'sending', 'printing', 'skipped', 'sent', 'failed'
     """
 
     """

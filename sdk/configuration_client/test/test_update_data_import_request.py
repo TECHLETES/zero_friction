@@ -39,10 +39,13 @@ class TestUpdateDataImportRequest(unittest.TestCase):
                 automatic_processing = True,
                 custom_file_format_id = '',
                 metering_format_type = 'elvaco_1104',
-                parameters = None
+                parameters = configuration_client.models.data_import_parameters_dto.DataImportParametersDTO()
             )
         else:
             return UpdateDataImportRequest(
+                custom_file_format_id = '',
+                metering_format_type = 'elvaco_1104',
+                parameters = configuration_client.models.data_import_parameters_dto.DataImportParametersDTO(),
         )
         """
 

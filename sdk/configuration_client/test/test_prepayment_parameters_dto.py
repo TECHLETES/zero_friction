@@ -35,9 +35,14 @@ class TestPrepaymentParametersDTO(unittest.TestCase):
         model = PrepaymentParametersDTO()
         if include_optional:
             return PrepaymentParametersDTO(
-                emergency_credit = 1.337,
-                enable_deduction = True,
-                deduction_rate = 1.337
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return PrepaymentParametersDTO(

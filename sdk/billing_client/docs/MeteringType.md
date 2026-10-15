@@ -1,5 +1,6 @@
 # MeteringType
 
+Possible values: 'none', 'energy', 'volume', 'volumeflow', 'flowtemp', 'returntemp', 'difftemp', 'balance'
 
 ## Enum
 

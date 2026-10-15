@@ -37,6 +37,12 @@ class TestBulkSendAnnualStatementViaPostalRequest(unittest.TestCase):
             return BulkSendAnnualStatementViaPostalRequest(
                 only_validate = True,
                 var_query_params = billing_client.models.get_annual_statements_query_params.GetAnnualStatementsQueryParams(
+                    customer_id = '', 
+                    statuses = [
+                        ''
+                        ], 
+                    year = 56, 
+                    limit = 56, 
                     flex_search = '', 
                     include_only_ids = [
                         ''
@@ -44,13 +50,9 @@ class TestBulkSendAnnualStatementViaPostalRequest(unittest.TestCase):
                     exclude_ids = [
                         ''
                         ], 
-                    customer_id = '', 
-                    statuses = [
-                        ''
-                        ], 
-                    year = 56, 
-                    limit = 56, ),
-                quick_filter = ''
+                    page_size = 56, ),
+                quick_filter = '',
+                apply_start_communication_idempotency = True
             )
         else:
             return BulkSendAnnualStatementViaPostalRequest(

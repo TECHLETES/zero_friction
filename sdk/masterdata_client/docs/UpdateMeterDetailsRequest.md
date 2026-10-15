@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**meter_type** | [**MeterType**](MeterType.md) |  | [optional] 
+**meter_type** | [**MeterType**](MeterType.md) |  | 
 **next_expected_reading_date** | **datetime** |  | [optional] 
 **meter_reading_frequency** | [**MeterReadingFrequency**](MeterReadingFrequency.md) |  | [optional] 
 

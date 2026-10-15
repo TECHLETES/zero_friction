@@ -5,6 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**billing_methods** | [**List[BillingMethodPeriodReferenceDTO]**](BillingMethodPeriodReferenceDTO.md) |  | [optional] 
+**current_billing_method** | [**ContractBillingMethod**](ContractBillingMethod.md) |  | [optional] 
 **billing_method** | [**ContractBillingMethod**](ContractBillingMethod.md) |  | [optional] 
 **invoice_frequency** | [**InvoiceFrequency**](InvoiceFrequency.md) |  | [optional] 
 **advance_frequency** | [**AdvanceFrequency**](AdvanceFrequency.md) |  | [optional] 
@@ -14,6 +16,8 @@ Name | Type | Description | Notes
 **first_invoice_start_date_time** | **datetime** |  | [optional] 
 **first_invoice_end_date_time** | **datetime** |  | [optional] 
 **blocked** | **bool** |  | [optional] 
+**advance_calculation_type** | [**AdvanceCalculationType**](AdvanceCalculationType.md) |  | [optional] 
+**advance_period_percentages** | [**List[AdvancePeriodPercentage]**](AdvancePeriodPercentage.md) |  | [optional] 
 
 ## Example
 

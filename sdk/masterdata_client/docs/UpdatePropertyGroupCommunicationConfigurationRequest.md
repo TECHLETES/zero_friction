@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **secondary_color** | **str** |  | [optional] 
 **address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
 **logo** | **str** |  | [optional] 
-**contact_details** | [**PropertyGroupContactDetailsRequest**](PropertyGroupContactDetailsRequest.md) |  | [optional] 
+**contact_details** | [**PropertyGroupContactDetailsRequest**](PropertyGroupContactDetailsRequest.md) |  | 
 
 ## Example
 

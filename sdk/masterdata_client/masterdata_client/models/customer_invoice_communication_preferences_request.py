@@ -71,16 +71,6 @@ class CustomerInvoiceCommunicationPreferencesRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if invoice_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_type is None and "invoice_type" in self.model_fields_set:
-            _dict['invoiceType'] = None
-
-        # set to None if communication_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.communication_type is None and "communication_type" in self.model_fields_set:
-            _dict['communicationType'] = None
-
         return _dict
 
     @classmethod

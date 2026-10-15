@@ -37,7 +37,9 @@ class TestConsumptionCalculationMeasurementDTO(unittest.TestCase):
             return ConsumptionCalculationMeasurementDTO(
                 value = 1.337,
                 reading_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                unit_of_measure = 'none'
+                unit_of_measure = 'none',
+                reading_origin = 'device',
+                reading_method = 'automatic'
             )
         else:
             return ConsumptionCalculationMeasurementDTO(

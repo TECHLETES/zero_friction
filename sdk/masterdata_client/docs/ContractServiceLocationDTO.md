@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
 **property_group_id** | **str** |  | [optional] 
 **services** | [**List[ContractedServiceDTO]**](ContractedServiceDTO.md) |  | [optional] 
+**prepayment_device_coverage_references** | [**List[PrepaymentDeviceCoverageReferenceDTO]**](PrepaymentDeviceCoverageReferenceDTO.md) |  | [optional] 
 
 ## Example
 

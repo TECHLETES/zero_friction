@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class TranslationStatus(str, Enum):
     """
-    TranslationStatus
+    Possible values: 'defaulttranslation', 'missingtranslation', 'translated'
     """
 
     """

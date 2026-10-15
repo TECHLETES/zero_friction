@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ExportStatus(str, Enum):
     """
-    ExportStatus
+    Possible values: 'notexported', 'exported'
     """
 
     """

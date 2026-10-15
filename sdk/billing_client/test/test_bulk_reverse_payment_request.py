@@ -35,9 +35,18 @@ class TestBulkReversePaymentRequest(unittest.TestCase):
         model = BulkReversePaymentRequest()
         if include_optional:
             return BulkReversePaymentRequest(
-                reversal_additional_information = '',
                 only_validate = True,
                 var_query_params = billing_client.models.get_payments_query_params.GetPaymentsQueryParams(
+                    payment_type = '', 
+                    customer_id = '', 
+                    start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    psp_provider_account_zfh_id = '', 
+                    psp_requested_payment_rail = 'card', 
+                    psp_refund_statuses = [
+                        ''
+                        ], 
+                    prepayment_account_id = '', 
                     flex_search = '', 
                     include_only_ids = [
                         ''
@@ -45,12 +54,9 @@ class TestBulkReversePaymentRequest(unittest.TestCase):
                     exclude_ids = [
                         ''
                         ], 
-                    payment_type = '', 
-                    customer_id = '', 
-                    start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    batch_mutation_id = '', ),
-                quick_filter = ''
+                    page_size = 56, ),
+                quick_filter = '',
+                reversal_additional_information = ''
             )
         else:
             return BulkReversePaymentRequest(

@@ -41,7 +41,7 @@ class TestScenarioTranslationListDTO(unittest.TestCase):
                 scenario_translations = [
                     configuration_client.models.scenario_translation_dto.ScenarioTranslationDTO(
                         name = '', 
-                        status = null, 
+                        status = 'defaulttranslation', 
                         has_default_translation = True, 
                         translations = {
                             'key' : ''

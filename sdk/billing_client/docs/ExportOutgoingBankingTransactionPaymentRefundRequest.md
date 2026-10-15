@@ -1,12 +1,11 @@
 # ExportOutgoingBankingTransactionPaymentRefundRequest
 
-Represents a request to export outgoing banking transaction payment refunds.  This DTO is used to export payment refund transactions in a specified format.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**format_type** | [**ExportOutgoingBankingTransactionPaymentRefundFormatType**](ExportOutgoingBankingTransactionPaymentRefundFormatType.md) | The format type to be used for exporting the payment refund transactions. | [optional] 
+**format_type** | [**ExportOutgoingBankingTransactionPaymentRefundFormatType**](ExportOutgoingBankingTransactionPaymentRefundFormatType.md) |  | [optional] 
 
 ## Example
 

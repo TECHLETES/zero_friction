@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **currency_decimal_digits** | **int** |  | [optional] 
 **currency_decimal_separator** | **str** |  | [optional] 
-**is_read_only** | **bool** |  | [optional] [readonly] 
+**is_read_only** | **bool** |  | [optional] 
 **currency_group_sizes** | **List[int]** |  | [optional] 
 **number_group_sizes** | **List[int]** |  | [optional] 
 **percent_group_sizes** | **List[int]** |  | [optional] 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **percent_symbol** | **str** |  | [optional] 
 **per_mille_symbol** | **str** |  | [optional] 
 **native_digits** | **List[str]** |  | [optional] 
-**digit_substitution** | [**DigitShapes**](DigitShapes.md) |  | [optional] 
+**digit_substitution** | **int** |  | [optional] 
 
 ## Example
 

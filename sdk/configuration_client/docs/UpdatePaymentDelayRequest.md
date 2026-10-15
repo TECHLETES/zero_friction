@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payment_delay** | [**PaymentDelay**](PaymentDelay.md) |  | [optional] 
+**invoice_type** | [**InvoiceType**](InvoiceType.md) |  | [optional] 
+**payment_delay** | [**PaymentDelay**](PaymentDelay.md) |  | 
 **value** | **int** |  | [optional] 
 
 ## Example

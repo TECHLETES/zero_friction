@@ -1,14 +1,13 @@
 # OutgoingMutationReferenceDetailsDTO
 
-Contains reference details for an outgoing mutation.  This DTO includes information about the type of reference and its associated parameters.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reference_type** | [**OutgoingMutationType**](OutgoingMutationType.md) | The type of reference for this mutation. | [optional] 
-**reference_id** | **str** | The unique identifier of the reference. | [optional] 
-**parameters** | **object** | The parameters associated with this reference. | [optional] 
+**reference_type** | [**OutgoingMutationType**](OutgoingMutationType.md) |  | [optional] 
+**reference_id** | **str** |  | [optional] 
+**parameters** | [**OutgoingMutationReferenceParametersDTO**](OutgoingMutationReferenceParametersDTO.md) |  | [optional] 
 
 ## Example
 

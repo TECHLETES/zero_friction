@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MoveRequestType(str, Enum):
     """
-    MoveRequestType
+    Possible values: 'movein', 'moveout'
     """
 
     """

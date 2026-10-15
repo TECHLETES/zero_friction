@@ -29,7 +29,7 @@ class UpdateMeterDetailsRequest(BaseModel):
     """
     UpdateMeterDetailsRequest
     """ # noqa: E501
-    meter_type: Optional[MeterType] = Field(default=None, alias="meterType")
+    meter_type: MeterType = Field(alias="meterType")
     next_expected_reading_date: Optional[datetime] = Field(default=None, alias="nextExpectedReadingDate")
     meter_reading_frequency: Optional[MeterReadingFrequency] = Field(default=None, alias="meterReadingFrequency")
     __properties: ClassVar[List[str]] = ["meterType", "nextExpectedReadingDate", "meterReadingFrequency"]
@@ -73,20 +73,10 @@ class UpdateMeterDetailsRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if meter_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.meter_type is None and "meter_type" in self.model_fields_set:
-            _dict['meterType'] = None
-
         # set to None if next_expected_reading_date (nullable) is None
         # and model_fields_set contains the field
         if self.next_expected_reading_date is None and "next_expected_reading_date" in self.model_fields_set:
             _dict['nextExpectedReadingDate'] = None
-
-        # set to None if meter_reading_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.meter_reading_frequency is None and "meter_reading_frequency" in self.model_fields_set:
-            _dict['meterReadingFrequency'] = None
 
         return _dict
 

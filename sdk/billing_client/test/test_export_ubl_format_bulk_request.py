@@ -42,6 +42,9 @@ class TestExportUblFormatBulkRequest(unittest.TestCase):
             )
         else:
             return ExportUblFormatBulkRequest(
+                invoice_ids = [
+                    ''
+                    ],
         )
         """
 

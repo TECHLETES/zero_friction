@@ -1,5 +1,6 @@
 # DataImportCommunicationType
 
+Possible values: 'sftp', 'ftp', 'ftps', 'inboundemail', 'manualupload', 'configuredplugin', 'inboundapi'
 
 ## Enum
 

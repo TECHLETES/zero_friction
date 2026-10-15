@@ -37,7 +37,7 @@ class TestImportLineErrorDTO(unittest.TestCase):
             return ImportLineErrorDTO(
                 line_number = 56,
                 error_messages = [
-                    'ASSET_ALREADY_EXISTS'
+                    56
                     ],
                 is_valid = True
             )

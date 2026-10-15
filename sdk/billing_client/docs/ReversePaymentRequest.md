@@ -1,12 +1,11 @@
 # ReversePaymentRequest
 
-Represents a request to reverse a payment.  This DTO is used to initiate the reversal of a previously processed payment.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reversal_additional_information** | **str** | Additional information or reason for the payment reversal. | [optional] 
+**reversal_additional_information** | **str** |  | [optional] 
 
 ## Example
 

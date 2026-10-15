@@ -24,11 +24,11 @@ from typing_extensions import Self
 
 class MeteringImportStatisticDTO(BaseModel):
     """
-    Contains the statistics of a metering import phase to know how many values were processed.
+    MeteringImportStatisticDTO
     """ # noqa: E501
-    amount_success: Optional[StrictInt] = Field(default=None, description="How many values were successfully processed in the metering import phase?", alias="amountSuccess")
-    amount_failed: Optional[StrictInt] = Field(default=None, description="How many values could not be processed in the metering import phase?", alias="amountFailed")
-    amount_ignored: Optional[StrictInt] = Field(default=None, description="How many values did we ignore in the metering import phase?  This can happen if a measurement was already processed with the same date and value on a channel.", alias="amountIgnored")
+    amount_success: Optional[StrictInt] = Field(default=None, alias="amountSuccess")
+    amount_failed: Optional[StrictInt] = Field(default=None, alias="amountFailed")
+    amount_ignored: Optional[StrictInt] = Field(default=None, alias="amountIgnored")
     __properties: ClassVar[List[str]] = ["amountSuccess", "amountFailed", "amountIgnored"]
 
     model_config = ConfigDict(

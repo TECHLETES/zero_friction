@@ -29,7 +29,7 @@ class EnumSymbolTranslationsDTO(BaseModel):
     """ # noqa: E501
     enum_type: Optional[StrictStr] = Field(default=None, alias="enumType")
     symbol: Optional[StrictStr] = None
-    translations: Optional[Dict[str, Optional[StrictStr]]] = None
+    translations: Optional[Dict[str, StrictStr]] = None
     translation_status: Optional[TranslationStatus] = Field(default=None, alias="translationStatus")
     __properties: ClassVar[List[str]] = ["enumType", "symbol", "translations", "translationStatus"]
 
@@ -86,11 +86,6 @@ class EnumSymbolTranslationsDTO(BaseModel):
         # and model_fields_set contains the field
         if self.translations is None and "translations" in self.model_fields_set:
             _dict['translations'] = None
-
-        # set to None if translation_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.translation_status is None and "translation_status" in self.model_fields_set:
-            _dict['translationStatus'] = None
 
         return _dict
 

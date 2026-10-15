@@ -25,12 +25,12 @@ from typing_extensions import Self
 
 class ManualMatchIncomingMutationRequest(BaseModel):
     """
-    Represents a request to manually match an incoming banking transaction with outgoing transactions or a customer.  This DTO allows for flexible matching scenarios including direct transaction matching, customer-based matching,  or matching with specific outgoing transactions.
+    ManualMatchIncomingMutationRequest
     """ # noqa: E501
-    outgoing_banking_transaction_id: Optional[StrictStr] = Field(default=None, description="The ID of the outgoing banking transaction to match with.  This field must be empty if other matching criteria are provided.", alias="outgoingBankingTransactionId")
-    outgoing_mutation_id: Optional[StrictStr] = Field(default=None, description="The ID of the outgoing mutation to match with.  This field must be empty if other matching criteria are provided.", alias="outgoingMutationId")
-    customer_id: Optional[StrictStr] = Field(default=None, description="The ID of the customer to match with.  This field must be empty if other matching criteria are provided.", alias="customerId")
-    matching_transactions: Optional[List[MatchingTransactionRequest]] = Field(default=None, description="A list of transactions to match with their respective settlement amounts.  This field must be empty if other matching criteria are provided.", alias="matchingTransactions")
+    outgoing_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="outgoingBankingTransactionId")
+    outgoing_mutation_id: Optional[StrictStr] = Field(default=None, alias="outgoingMutationId")
+    customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
+    matching_transactions: Optional[List[MatchingTransactionRequest]] = Field(default=None, alias="matchingTransactions")
     __properties: ClassVar[List[str]] = ["outgoingBankingTransactionId", "outgoingMutationId", "customerId", "matchingTransactions"]
 
     model_config = ConfigDict(

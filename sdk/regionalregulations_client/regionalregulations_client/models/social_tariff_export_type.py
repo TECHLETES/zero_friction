@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class SocialTariffExportType(str, Enum):
     """
-    SocialTariffExportType
+    Possible values: 'customerportfolio', 'claimsprotectedcustomers'
     """
 
     """

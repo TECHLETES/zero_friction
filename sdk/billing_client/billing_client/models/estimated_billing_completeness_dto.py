@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from billing_client.models.advance_period_dto import AdvancePeriodDTO
 from billing_client.models.billing_completeness_status import BillingCompletenessStatus
+from billing_client.models.contract_billing_method import ContractBillingMethod
 from billing_client.models.debtor_dto import DebtorDTO
 from billing_client.models.entity_subject_type import EntitySubjectType
 from billing_client.models.error_code_message import ErrorCodeMessage
@@ -29,46 +30,48 @@ from billing_client.models.input_missing_details_dto import InputMissingDetailsD
 from billing_client.models.invoice_type import InvoiceType
 from billing_client.models.property_group_reference_dto import PropertyGroupReferenceDTO
 from billing_client.models.required_quantity_grouped_dto import RequiredQuantityGroupedDTO
+from billing_client.models.statement_type import StatementType
 from typing import Optional, Set
 from typing_extensions import Self
 
 class EstimatedBillingCompletenessDTO(BaseModel):
     """
-    Represents an estimated billing completeness status
+    EstimatedBillingCompletenessDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
-    contract_id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the contract", alias="contractId")
-    contract_num: Optional[StrictStr] = Field(default=None, description="Contract number", alias="contractNum")
-    debtor: Optional[DebtorDTO] = Field(default=None, description="Information about the debtor")
-    billing_relation_id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the billing relation", alias="billingRelationId")
-    period_start_date_time: Optional[datetime] = Field(default=None, description="Start date and time of the billing period", alias="periodStartDateTime")
-    period_end_date_time: Optional[datetime] = Field(default=None, description="End date and time of the billing period", alias="periodEndDateTime")
-    status: Optional[BillingCompletenessStatus] = Field(default=None, description="Current status of billing completeness")
-    input_missing_details: Optional[InputMissingDetailsDTO] = Field(default=None, description="Details about any missing input data", alias="inputMissingDetails")
-    has_corrections: Optional[StrictBool] = Field(default=None, description="Indicates if there are any corrections made to the billing data", alias="hasCorrections")
-    invoice_type: Optional[InvoiceType] = Field(default=None, description="Type of invoice being generated", alias="invoiceType")
-    blocked: Optional[StrictBool] = Field(default=None, description="Indicates if the billing is currently blocked")
-    required_quantities_grouped: Optional[RequiredQuantityGroupedDTO] = Field(default=None, description="Grouped required quantities for billing", alias="requiredQuantitiesGrouped")
-    advance_periods: Optional[List[AdvancePeriodDTO]] = Field(default=None, description="List of advance payment periods", alias="advancePeriods")
-    expect_advances_to_be_imported_periodically: Optional[StrictBool] = Field(default=None, description="Indicates if advances are expected to be imported periodically", alias="expectAdvancesToBeImportedPeriodically")
-    cost_allocation_billable: Optional[StrictBool] = Field(default=None, description="Indicates if cost allocation is billable", alias="costAllocationBillable")
-    invoicing_upfront: Optional[StrictBool] = Field(default=None, description="Indicates if invoicing is done upfront", alias="invoicingUpfront")
-    invoicing_checkpoint_date_time: Optional[datetime] = Field(default=None, description="Date and time of the last invoicing checkpoint", alias="invoicingCheckpointDateTime")
-    product_id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the product", alias="productId")
-    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, description="List of property groups associated with this billing", alias="propertyGroups")
-    original_billing_completeness_id: Optional[StrictStr] = Field(default=None, description="ID of the original billing completeness entry", alias="originalBillingCompletenessId")
-    estimation_messages_requested: Optional[List[StrictStr]] = Field(default=None, description="Collection of reference IDs for estimation messages", alias="estimationMessagesRequested")
-    validation_errors: Optional[List[ErrorCodeMessage]] = Field(default=None, description="List of validation errors encountered during estimation", alias="validationErrors")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "contractId", "contractNum", "debtor", "billingRelationId", "periodStartDateTime", "periodEndDateTime", "status", "inputMissingDetails", "hasCorrections", "invoiceType", "blocked", "requiredQuantitiesGrouped", "advancePeriods", "expectAdvancesToBeImportedPeriodically", "costAllocationBillable", "invoicingUpfront", "invoicingCheckpointDateTime", "productId", "propertyGroups", "originalBillingCompletenessId", "estimationMessagesRequested", "validationErrors"]
+    original_billing_completeness_id: Optional[StrictStr] = Field(default=None, alias="originalBillingCompletenessId")
+    estimation_messages_requested: Optional[List[StrictStr]] = Field(default=None, alias="estimationMessagesRequested")
+    validation_errors: Optional[List[ErrorCodeMessage]] = Field(default=None, alias="validationErrors")
+    contract_id: Optional[StrictStr] = Field(default=None, alias="contractId")
+    contract_num: Optional[StrictStr] = Field(default=None, alias="contractNum")
+    debtor: Optional[DebtorDTO] = None
+    billing_relation_id: Optional[StrictStr] = Field(default=None, alias="billingRelationId")
+    period_start_date_time: Optional[datetime] = Field(default=None, alias="periodStartDateTime")
+    period_end_date_time: Optional[datetime] = Field(default=None, alias="periodEndDateTime")
+    status: Optional[BillingCompletenessStatus] = None
+    input_missing_details: Optional[InputMissingDetailsDTO] = Field(default=None, alias="inputMissingDetails")
+    has_corrections: Optional[StrictBool] = Field(default=None, alias="hasCorrections")
+    billing_method: Optional[ContractBillingMethod] = Field(default=None, alias="billingMethod")
+    statement_type: Optional[StatementType] = Field(default=None, alias="statementType")
+    invoice_type: Optional[InvoiceType] = Field(default=None, alias="invoiceType")
+    blocked: Optional[StrictBool] = None
+    required_quantities_grouped: Optional[RequiredQuantityGroupedDTO] = Field(default=None, alias="requiredQuantitiesGrouped")
+    advance_periods: Optional[List[AdvancePeriodDTO]] = Field(default=None, alias="advancePeriods")
+    expect_advances_to_be_imported_periodically: Optional[StrictBool] = Field(default=None, alias="expectAdvancesToBeImportedPeriodically")
+    invoicing_upfront: Optional[StrictBool] = Field(default=None, alias="invoicingUpfront")
+    invoicing_checkpoint_date_time: Optional[datetime] = Field(default=None, alias="invoicingCheckpointDateTime")
+    product_id: Optional[StrictStr] = Field(default=None, alias="productId")
+    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, alias="propertyGroups")
+    get_detail_navigation_id: Optional[StrictStr] = Field(default=None, alias="getDetailNavigationId")
+    get_detail_navigation_type: Optional[Any] = Field(default=None, alias="getDetailNavigationType")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["originalBillingCompletenessId", "estimationMessagesRequested", "validationErrors", "contractId", "contractNum", "debtor", "billingRelationId", "periodStartDateTime", "periodEndDateTime", "status", "inputMissingDetails", "hasCorrections", "billingMethod", "statementType", "invoiceType", "blocked", "requiredQuantitiesGrouped", "advancePeriods", "expectAdvancesToBeImportedPeriodically", "invoicingUpfront", "invoicingCheckpointDateTime", "productId", "propertyGroups", "getDetailNavigationId", "getDetailNavigationType", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,10 +103,8 @@ class EstimatedBillingCompletenessDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -111,6 +112,13 @@ class EstimatedBillingCompletenessDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in validation_errors (list)
+        _items = []
+        if self.validation_errors:
+            for _item_validation_errors in self.validation_errors:
+                if _item_validation_errors:
+                    _items.append(_item_validation_errors.to_dict())
+            _dict['validationErrors'] = _items
         # override the default output from pydantic by calling `to_dict()` of debtor
         if self.debtor:
             _dict['debtor'] = self.debtor.to_dict()
@@ -134,37 +142,20 @@ class EstimatedBillingCompletenessDTO(BaseModel):
                 if _item_property_groups:
                     _items.append(_item_property_groups.to_dict())
             _dict['propertyGroups'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in validation_errors (list)
-        _items = []
-        if self.validation_errors:
-            for _item_validation_errors in self.validation_errors:
-                if _item_validation_errors:
-                    _items.append(_item_validation_errors.to_dict())
-            _dict['validationErrors'] = _items
-        # set to None if id (nullable) is None
+        # set to None if original_billing_completeness_id (nullable) is None
         # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
+        if self.original_billing_completeness_id is None and "original_billing_completeness_id" in self.model_fields_set:
+            _dict['originalBillingCompletenessId'] = None
 
-        # set to None if entity_type (nullable) is None
+        # set to None if estimation_messages_requested (nullable) is None
         # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
+        if self.estimation_messages_requested is None and "estimation_messages_requested" in self.model_fields_set:
+            _dict['estimationMessagesRequested'] = None
 
-        # set to None if discriminator (nullable) is None
+        # set to None if validation_errors (nullable) is None
         # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
+        if self.validation_errors is None and "validation_errors" in self.model_fields_set:
+            _dict['validationErrors'] = None
 
         # set to None if contract_id (nullable) is None
         # and model_fields_set contains the field
@@ -186,15 +177,20 @@ class EstimatedBillingCompletenessDTO(BaseModel):
         if self.billing_relation_id is None and "billing_relation_id" in self.model_fields_set:
             _dict['billingRelationId'] = None
 
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
-
         # set to None if input_missing_details (nullable) is None
         # and model_fields_set contains the field
         if self.input_missing_details is None and "input_missing_details" in self.model_fields_set:
             _dict['inputMissingDetails'] = None
+
+        # set to None if billing_method (nullable) is None
+        # and model_fields_set contains the field
+        if self.billing_method is None and "billing_method" in self.model_fields_set:
+            _dict['billingMethod'] = None
+
+        # set to None if statement_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.statement_type is None and "statement_type" in self.model_fields_set:
+            _dict['statementType'] = None
 
         # set to None if invoice_type (nullable) is None
         # and model_fields_set contains the field
@@ -221,20 +217,15 @@ class EstimatedBillingCompletenessDTO(BaseModel):
         if self.property_groups is None and "property_groups" in self.model_fields_set:
             _dict['propertyGroups'] = None
 
-        # set to None if original_billing_completeness_id (nullable) is None
+        # set to None if get_detail_navigation_id (nullable) is None
         # and model_fields_set contains the field
-        if self.original_billing_completeness_id is None and "original_billing_completeness_id" in self.model_fields_set:
-            _dict['originalBillingCompletenessId'] = None
+        if self.get_detail_navigation_id is None and "get_detail_navigation_id" in self.model_fields_set:
+            _dict['getDetailNavigationId'] = None
 
-        # set to None if estimation_messages_requested (nullable) is None
+        # set to None if get_detail_navigation_type (nullable) is None
         # and model_fields_set contains the field
-        if self.estimation_messages_requested is None and "estimation_messages_requested" in self.model_fields_set:
-            _dict['estimationMessagesRequested'] = None
-
-        # set to None if validation_errors (nullable) is None
-        # and model_fields_set contains the field
-        if self.validation_errors is None and "validation_errors" in self.model_fields_set:
-            _dict['validationErrors'] = None
+        if self.get_detail_navigation_type is None and "get_detail_navigation_type" in self.model_fields_set:
+            _dict['getDetailNavigationType'] = None
 
         return _dict
 
@@ -248,16 +239,9 @@ class EstimatedBillingCompletenessDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
+            "originalBillingCompletenessId": obj.get("originalBillingCompletenessId"),
+            "estimationMessagesRequested": obj.get("estimationMessagesRequested"),
+            "validationErrors": [ErrorCodeMessage.from_dict(_item) for _item in obj["validationErrors"]] if obj.get("validationErrors") is not None else None,
             "contractId": obj.get("contractId"),
             "contractNum": obj.get("contractNum"),
             "debtor": DebtorDTO.from_dict(obj["debtor"]) if obj.get("debtor") is not None else None,
@@ -267,19 +251,27 @@ class EstimatedBillingCompletenessDTO(BaseModel):
             "status": obj.get("status"),
             "inputMissingDetails": InputMissingDetailsDTO.from_dict(obj["inputMissingDetails"]) if obj.get("inputMissingDetails") is not None else None,
             "hasCorrections": obj.get("hasCorrections"),
+            "billingMethod": obj.get("billingMethod"),
+            "statementType": obj.get("statementType"),
             "invoiceType": obj.get("invoiceType"),
             "blocked": obj.get("blocked"),
             "requiredQuantitiesGrouped": RequiredQuantityGroupedDTO.from_dict(obj["requiredQuantitiesGrouped"]) if obj.get("requiredQuantitiesGrouped") is not None else None,
             "advancePeriods": [AdvancePeriodDTO.from_dict(_item) for _item in obj["advancePeriods"]] if obj.get("advancePeriods") is not None else None,
             "expectAdvancesToBeImportedPeriodically": obj.get("expectAdvancesToBeImportedPeriodically"),
-            "costAllocationBillable": obj.get("costAllocationBillable"),
             "invoicingUpfront": obj.get("invoicingUpfront"),
             "invoicingCheckpointDateTime": obj.get("invoicingCheckpointDateTime"),
             "productId": obj.get("productId"),
             "propertyGroups": [PropertyGroupReferenceDTO.from_dict(_item) for _item in obj["propertyGroups"]] if obj.get("propertyGroups") is not None else None,
-            "originalBillingCompletenessId": obj.get("originalBillingCompletenessId"),
-            "estimationMessagesRequested": obj.get("estimationMessagesRequested"),
-            "validationErrors": [ErrorCodeMessage.from_dict(_item) for _item in obj["validationErrors"]] if obj.get("validationErrors") is not None else None
+            "getDetailNavigationId": obj.get("getDetailNavigationId"),
+            "getDetailNavigationType": obj.get("getDetailNavigationType"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

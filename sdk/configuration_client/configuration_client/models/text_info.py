@@ -67,24 +67,8 @@ class TextInfo(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "ansi_code_page",
-            "oem_code_page",
-            "mac_code_page",
-            "ebcdic_code_page",
-            "lcid",
-            "culture_name",
-            "is_read_only",
-            "is_right_to_left",
         ])
 
         _dict = self.model_dump(
@@ -96,11 +80,6 @@ class TextInfo(BaseModel):
         # and model_fields_set contains the field
         if self.culture_name is None and "culture_name" in self.model_fields_set:
             _dict['cultureName'] = None
-
-        # set to None if list_separator (nullable) is None
-        # and model_fields_set contains the field
-        if self.list_separator is None and "list_separator" in self.model_fields_set:
-            _dict['listSeparator'] = None
 
         return _dict
 

@@ -40,6 +40,8 @@ class TestEmailAddress(unittest.TestCase):
             )
         else:
             return EmailAddress(
+                address = '',
+                name = '',
         )
         """
 

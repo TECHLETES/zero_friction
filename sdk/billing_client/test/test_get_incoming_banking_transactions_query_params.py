@@ -35,6 +35,11 @@ class TestGetIncomingBankingTransactionsQueryParams(unittest.TestCase):
         model = GetIncomingBankingTransactionsQueryParams()
         if include_optional:
             return GetIncomingBankingTransactionsQueryParams(
+                company_bank_account_id = '',
+                mutation_date_time_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                mutation_date_time_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                opening_balance_date_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                opening_balance_date_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 flex_search = '',
                 include_only_ids = [
                     ''
@@ -42,11 +47,7 @@ class TestGetIncomingBankingTransactionsQueryParams(unittest.TestCase):
                 exclude_ids = [
                     ''
                     ],
-                company_bank_account_id = '',
-                mutation_date_time_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                mutation_date_time_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                opening_balance_date_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                opening_balance_date_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                page_size = 56
             )
         else:
             return GetIncomingBankingTransactionsQueryParams(

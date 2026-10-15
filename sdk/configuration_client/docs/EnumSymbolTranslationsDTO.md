@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **enum_type** | **str** |  | [optional] 
 **symbol** | **str** |  | [optional] 
-**translations** | **Dict[str, Optional[str]]** |  | [optional] 
+**translations** | **Dict[str, str]** |  | [optional] 
 **translation_status** | [**TranslationStatus**](TranslationStatus.md) |  | [optional] 
 
 ## Example

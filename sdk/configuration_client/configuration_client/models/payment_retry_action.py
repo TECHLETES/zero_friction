@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PaymentRetryAction(str, Enum):
     """
-    PaymentRetryAction
+    Possible values: 'retryonfixedday', 'daysafterreversal'
     """
 
     """

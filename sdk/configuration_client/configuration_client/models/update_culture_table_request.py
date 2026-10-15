@@ -26,8 +26,8 @@ class UpdateCultureTableRequest(BaseModel):
     """
     UpdateCultureTableRequest
     """ # noqa: E501
-    default_culture_name: Optional[StrictStr] = Field(default=None, alias="defaultCultureName")
-    supported_culture_names: Optional[List[StrictStr]] = Field(default=None, alias="supportedCultureNames")
+    default_culture_name: Optional[StrictStr] = Field(alias="defaultCultureName")
+    supported_culture_names: Optional[List[StrictStr]] = Field(alias="supportedCultureNames")
     __properties: ClassVar[List[str]] = ["defaultCultureName", "supportedCultureNames"]
 
     model_config = ConfigDict(

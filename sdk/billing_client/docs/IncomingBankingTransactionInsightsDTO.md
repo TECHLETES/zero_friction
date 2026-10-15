@@ -1,21 +1,20 @@
 # IncomingBankingTransactionInsightsDTO
 
-Provides detailed insights and analytics about an incoming banking transaction.  This DTO contains aggregated information about mutations grouped by status, type, and payment method.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**incoming_banking_transaction_id** | **str** | The unique identifier of the incoming banking transaction. | [optional] 
-**identification** | **str** | The identification number of the transaction file. | [optional] 
-**opening_balance** | **float** | The opening balance of the account at the start of the transaction period. | [optional] 
-**closing_balance** | **float** | The closing balance of the account at the end of the transaction period. | [optional] 
-**balance_difference** | **float** | The difference between the closing and opening balances. | [optional] 
-**opening_balance_date** | **datetime** | The date and time of the opening balance. | [optional] 
-**closing_balance_date** | **datetime** | The date and time of the closing balance. | [optional] 
-**status_details** | [**Dict[str, IncomingMutationGroupedDetailsDTO]**](IncomingMutationGroupedDetailsDTO.md) | Details of mutations grouped by their status. | [optional] 
-**mutation_type_details** | [**Dict[str, IncomingMutationGroupedDetailsDTO]**](IncomingMutationGroupedDetailsDTO.md) | Details of mutations grouped by their type. | [optional] 
-**payment_method_details** | [**Dict[str, IncomingMutationGroupedDetailsDTO]**](IncomingMutationGroupedDetailsDTO.md) | Details of mutations grouped by their payment method. | [optional] 
+**incoming_banking_transaction_id** | **str** |  | [optional] 
+**identification** | **str** |  | [optional] 
+**opening_balance** | **float** |  | [optional] 
+**closing_balance** | **float** |  | [optional] 
+**balance_difference** | **float** |  | [optional] 
+**opening_balance_date** | **datetime** |  | [optional] 
+**closing_balance_date** | **datetime** |  | [optional] 
+**status_details** | [**Dict[str, IncomingMutationGroupedDetailsDTO]**](IncomingMutationGroupedDetailsDTO.md) |  | [optional] 
+**mutation_type_details** | [**Dict[str, IncomingMutationGroupedDetailsDTO]**](IncomingMutationGroupedDetailsDTO.md) |  | [optional] 
+**payment_method_details** | [**Dict[str, IncomingMutationGroupedDetailsDTO]**](IncomingMutationGroupedDetailsDTO.md) |  | [optional] 
 
 ## Example
 

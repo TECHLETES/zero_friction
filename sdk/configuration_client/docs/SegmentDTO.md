@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **segment_type** | [**NumberSequenceSegmentType**](NumberSequenceSegmentType.md) |  | [optional] 
-**segment_lookup_values** | **Dict[str, Optional[str]]** |  | [optional] 
+**segment_lookup_values** | **Dict[str, str]** |  | [optional] 
 
 ## Example
 

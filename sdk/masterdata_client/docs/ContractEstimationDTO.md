@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
 **unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
 **metering_type** | [**MeteringType**](MeteringType.md) |  | [optional] 
-**value** | **float** |  | [optional] 
 **consumer_group_id** | **str** |  | [optional] 
+**consumption_quantity** | **float** |  | [optional] 
 
 ## Example
 

@@ -30,7 +30,7 @@ class GroupedServiceConsumptionDTO(BaseModel):
     """
     GroupedServiceConsumptionDTO
     """ # noqa: E501
-    external_identifier: Optional[StrictStr] = Field(default=None, description="This is NOT the externalchannel identifier!", alias="externalIdentifier")
+    external_identifier: Optional[StrictStr] = Field(default=None, alias="externalIdentifier")
     service_location_id: Optional[StrictStr] = Field(default=None, alias="serviceLocationId")
     time_of_use: Optional[StrictStr] = Field(default=None, alias="timeOfUse")
     utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
@@ -100,16 +100,6 @@ class GroupedServiceConsumptionDTO(BaseModel):
         # and model_fields_set contains the field
         if self.time_of_use is None and "time_of_use" in self.model_fields_set:
             _dict['timeOfUse'] = None
-
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
 
         # set to None if values (nullable) is None
         # and model_fields_set contains the field

@@ -26,10 +26,10 @@ from typing_extensions import Self
 
 class InvoiceCommunicationPreferenceDTO(BaseModel):
     """
-    Represents invoice communication preferences
+    InvoiceCommunicationPreferenceDTO
     """ # noqa: E501
-    invoice_type: Optional[InvoiceType] = Field(default=None, description="Type of invoice", alias="invoiceType")
-    communication_type: Optional[CommunicationType] = Field(default=None, description="Preferred communication type for invoices", alias="communicationType")
+    invoice_type: Optional[InvoiceType] = Field(default=None, alias="invoiceType")
+    communication_type: Optional[CommunicationType] = Field(default=None, alias="communicationType")
     __properties: ClassVar[List[str]] = ["invoiceType", "communicationType"]
 
     model_config = ConfigDict(
@@ -71,16 +71,6 @@ class InvoiceCommunicationPreferenceDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if invoice_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_type is None and "invoice_type" in self.model_fields_set:
-            _dict['invoiceType'] = None
-
-        # set to None if communication_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.communication_type is None and "communication_type" in self.model_fields_set:
-            _dict['communicationType'] = None
-
         return _dict
 
     @classmethod

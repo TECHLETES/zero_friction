@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class BillingTariffInputType(str, Enum):
     """
-    BillingTariffInputType
+    Possible values: 'none', 'fixed', 'costcomponent'
     """
 
     """

@@ -37,10 +37,13 @@ class TestCreateDataImportFileFormatRequest(unittest.TestCase):
             return CreateDataImportFileFormatRequest(
                 name = '',
                 description = '',
-                settings = None
+                settings = configuration_client.models.base_data_import_settings_dto.BaseDataImportSettingsDTO()
             )
         else:
             return CreateDataImportFileFormatRequest(
+                name = '',
+                description = '',
+                settings = configuration_client.models.base_data_import_settings_dto.BaseDataImportSettingsDTO(),
         )
         """
 

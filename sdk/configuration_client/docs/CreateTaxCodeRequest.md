@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
+**name** | **str** |  | 
+**accounting_code_id** | **str** |  | [optional] 
 **rates** | [**List[CreateTaxCodeRateRequest]**](CreateTaxCodeRateRequest.md) |  | [optional] 
 
 ## Example

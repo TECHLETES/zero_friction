@@ -36,28 +36,17 @@ class MeterDTO(BaseModel):
     """
     MeterDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
     serial_number: Optional[StrictStr] = Field(default=None, alias="serialNumber")
     meter_tag: Optional[StrictStr] = Field(default=None, alias="meterTag")
     meter_type: Optional[MeterType] = Field(default=None, alias="meterType")
     model_id: Optional[StrictStr] = Field(default=None, alias="modelId")
     status_history: Optional[List[MeterStatusHistoryDTO]] = Field(default=None, alias="statusHistory")
-    channels: Optional[List[ExternalChannelDTO]] = Field(default=None, description="By default only contains not hidden channels. If you want to get hidden channels, call /md/meters/{meterId}?showhiddenchannels=true")
+    channels: Optional[List[ExternalChannelDTO]] = None
     last_time_received_data: Optional[datetime] = Field(default=None, alias="lastTimeReceivedData")
     measurements_until: Optional[datetime] = Field(default=None, alias="measurementsUntil")
     parent_meter_relation: Optional[MeterRelationDTO] = Field(default=None, alias="parentMeterRelation")
     property_group: Optional[PropertyGroupReferenceDTO] = Field(default=None, alias="propertyGroup")
     time_zone: Optional[StrictStr] = Field(default=None, alias="timeZone")
-    meter_properties: Optional[Dict[str, Any]] = Field(default=None, alias="meterProperties")
     custom_properties: Optional[List[CustomEntityPropertyDTO]] = Field(default=None, alias="customProperties")
     measurement_issues_count: Optional[StrictInt] = Field(default=None, alias="measurementIssuesCount")
     meter_issues_count: Optional[StrictInt] = Field(default=None, alias="meterIssuesCount")
@@ -66,7 +55,16 @@ class MeterDTO(BaseModel):
     issues: Optional[List[MeteringIssueReference]] = None
     reading_frequency: Optional[MeterReadingFrequency] = Field(default=None, alias="readingFrequency")
     next_expected_reading_date: Optional[datetime] = Field(default=None, alias="nextExpectedReadingDate")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "serialNumber", "meterTag", "meterType", "modelId", "statusHistory", "channels", "lastTimeReceivedData", "measurementsUntil", "parentMeterRelation", "propertyGroup", "timeZone", "meterProperties", "customProperties", "measurementIssuesCount", "meterIssuesCount", "issuesCount", "hasIssue", "issues", "readingFrequency", "nextExpectedReadingDate"]
+    deleted: Optional[StrictBool] = None
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["serialNumber", "meterTag", "meterType", "modelId", "statusHistory", "channels", "lastTimeReceivedData", "measurementsUntil", "parentMeterRelation", "propertyGroup", "timeZone", "customProperties", "measurementIssuesCount", "meterIssuesCount", "issuesCount", "hasIssue", "issues", "readingFrequency", "nextExpectedReadingDate", "deleted", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,18 +96,8 @@ class MeterDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
-            "last_time_received_data",
-            "measurements_until",
-            "issues_count",
-            "has_issue",
         ])
 
         _dict = self.model_dump(
@@ -151,31 +139,6 @@ class MeterDTO(BaseModel):
                 if _item_issues:
                     _items.append(_item_issues.to_dict())
             _dict['issues'] = _items
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
         # set to None if serial_number (nullable) is None
         # and model_fields_set contains the field
         if self.serial_number is None and "serial_number" in self.model_fields_set:
@@ -185,11 +148,6 @@ class MeterDTO(BaseModel):
         # and model_fields_set contains the field
         if self.meter_tag is None and "meter_tag" in self.model_fields_set:
             _dict['meterTag'] = None
-
-        # set to None if meter_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.meter_type is None and "meter_type" in self.model_fields_set:
-            _dict['meterType'] = None
 
         # set to None if model_id (nullable) is None
         # and model_fields_set contains the field
@@ -231,25 +189,10 @@ class MeterDTO(BaseModel):
         if self.time_zone is None and "time_zone" in self.model_fields_set:
             _dict['timeZone'] = None
 
-        # set to None if meter_properties (nullable) is None
-        # and model_fields_set contains the field
-        if self.meter_properties is None and "meter_properties" in self.model_fields_set:
-            _dict['meterProperties'] = None
-
-        # set to None if custom_properties (nullable) is None
-        # and model_fields_set contains the field
-        if self.custom_properties is None and "custom_properties" in self.model_fields_set:
-            _dict['customProperties'] = None
-
         # set to None if issues (nullable) is None
         # and model_fields_set contains the field
         if self.issues is None and "issues" in self.model_fields_set:
             _dict['issues'] = None
-
-        # set to None if reading_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.reading_frequency is None and "reading_frequency" in self.model_fields_set:
-            _dict['readingFrequency'] = None
 
         # set to None if next_expected_reading_date (nullable) is None
         # and model_fields_set contains the field
@@ -268,16 +211,6 @@ class MeterDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "serialNumber": obj.get("serialNumber"),
             "meterTag": obj.get("meterTag"),
             "meterType": obj.get("meterType"),
@@ -289,7 +222,6 @@ class MeterDTO(BaseModel):
             "parentMeterRelation": MeterRelationDTO.from_dict(obj["parentMeterRelation"]) if obj.get("parentMeterRelation") is not None else None,
             "propertyGroup": PropertyGroupReferenceDTO.from_dict(obj["propertyGroup"]) if obj.get("propertyGroup") is not None else None,
             "timeZone": obj.get("timeZone"),
-            "meterProperties": obj.get("meterProperties"),
             "customProperties": [CustomEntityPropertyDTO.from_dict(_item) for _item in obj["customProperties"]] if obj.get("customProperties") is not None else None,
             "measurementIssuesCount": obj.get("measurementIssuesCount"),
             "meterIssuesCount": obj.get("meterIssuesCount"),
@@ -297,7 +229,16 @@ class MeterDTO(BaseModel):
             "hasIssue": obj.get("hasIssue"),
             "issues": [MeteringIssueReference.from_dict(_item) for _item in obj["issues"]] if obj.get("issues") is not None else None,
             "readingFrequency": obj.get("readingFrequency"),
-            "nextExpectedReadingDate": obj.get("nextExpectedReadingDate")
+            "nextExpectedReadingDate": obj.get("nextExpectedReadingDate"),
+            "deleted": obj.get("deleted"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

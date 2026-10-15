@@ -19,6 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from communication_client.models.communication_entry_quick_filter import CommunicationEntryQuickFilter
+from communication_client.models.get_communication_entries_query_params import GetCommunicationEntriesQueryParams
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,8 +28,11 @@ class DownloadCommunicationEntriesZipRequest(BaseModel):
     """
     DownloadCommunicationEntriesZipRequest
     """ # noqa: E501
-    communication_entry_ids: Optional[List[StrictStr]] = Field(default=None, alias="communicationEntryIds")
-    __properties: ClassVar[List[str]] = ["communicationEntryIds"]
+    communication_entry_ids: List[StrictStr] = Field(alias="communicationEntryIds")
+    var_query_params: Optional[GetCommunicationEntriesQueryParams] = Field(alias="queryParams")
+    quick_filter: Optional[CommunicationEntryQuickFilter] = Field(default=None, alias="quickFilter")
+    excluded_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludedIds")
+    __properties: ClassVar[List[str]] = ["communicationEntryIds", "queryParams", "quickFilter", "excludedIds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -68,10 +73,18 @@ class DownloadCommunicationEntriesZipRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if communication_entry_ids (nullable) is None
+        # override the default output from pydantic by calling `to_dict()` of var_query_params
+        if self.var_query_params:
+            _dict['queryParams'] = self.var_query_params.to_dict()
+        # set to None if var_query_params (nullable) is None
         # and model_fields_set contains the field
-        if self.communication_entry_ids is None and "communication_entry_ids" in self.model_fields_set:
-            _dict['communicationEntryIds'] = None
+        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
+            _dict['queryParams'] = None
+
+        # set to None if quick_filter (nullable) is None
+        # and model_fields_set contains the field
+        if self.quick_filter is None and "quick_filter" in self.model_fields_set:
+            _dict['quickFilter'] = None
 
         return _dict
 
@@ -85,7 +98,10 @@ class DownloadCommunicationEntriesZipRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "communicationEntryIds": obj.get("communicationEntryIds")
+            "communicationEntryIds": obj.get("communicationEntryIds"),
+            "queryParams": GetCommunicationEntriesQueryParams.from_dict(obj["queryParams"]) if obj.get("queryParams") is not None else None,
+            "quickFilter": obj.get("quickFilter"),
+            "excludedIds": obj.get("excludedIds")
         })
         return _obj
 

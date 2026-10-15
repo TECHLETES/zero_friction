@@ -37,10 +37,12 @@ class TestCreateCustomerGroupRequest(unittest.TestCase):
             return CreateCustomerGroupRequest(
                 name = '',
                 settings = masterdata_client.models.create_customer_group_settings_request.CreateCustomerGroupSettingsRequest(
-                    automatic_settlement = True, )
+                    automatic_settlement = True, ),
+                cost_unit_id = ''
             )
         else:
             return CreateCustomerGroupRequest(
+                name = '',
         )
         """
 

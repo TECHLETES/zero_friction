@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MeteringType(str, Enum):
     """
-    MeteringType
+    Possible values: 'none', 'energy', 'volume', 'volumeflow', 'flowtemp', 'returntemp', 'difftemp', 'balance'
     """
 
     """

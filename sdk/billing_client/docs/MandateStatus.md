@@ -1,5 +1,6 @@
 # MandateStatus
 
+Possible values: 'requested', 'cancelled', 'signed'
 
 ## Enum
 

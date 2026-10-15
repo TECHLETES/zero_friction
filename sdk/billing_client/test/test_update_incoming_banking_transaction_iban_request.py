@@ -41,6 +41,8 @@ class TestUpdateIncomingBankingTransactionIbanRequest(unittest.TestCase):
             )
         else:
             return UpdateIncomingBankingTransactionIbanRequest(
+                customer_id = '',
+                iban = '',
         )
         """
 

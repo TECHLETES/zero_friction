@@ -74,11 +74,6 @@ class MatchingConsumerGroupsDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of consumer_group
         if self.consumer_group:
             _dict['consumerGroup'] = self.consumer_group.to_dict()
-        # set to None if suggestion (nullable) is None
-        # and model_fields_set contains the field
-        if self.suggestion is None and "suggestion" in self.model_fields_set:
-            _dict['suggestion'] = None
-
         # set to None if consumer_group (nullable) is None
         # and model_fields_set contains the field
         if self.consumer_group is None and "consumer_group" in self.model_fields_set:

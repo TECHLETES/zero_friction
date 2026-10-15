@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class UninstallMeterRequest(BaseModel):
     """
     UninstallMeterRequest
     """ # noqa: E501
-    remove_date: Optional[datetime] = Field(default=None, alias="removeDate")
+    remove_date: datetime = Field(alias="removeDate")
     __properties: ClassVar[List[str]] = ["removeDate"]
 
     model_config = ConfigDict(

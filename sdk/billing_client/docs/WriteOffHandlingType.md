@@ -1,5 +1,6 @@
 # WriteOffHandlingType
 
+Possible values: 'nowriteoff', 'openamount', 'chargeamount'
 
 ## Enum
 

@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.data_import_metering_format_type import DataImportMeteringFormatType
+from configuration_client.models.data_import_parameters_dto import DataImportParametersDTO
 from configuration_client.models.entity_subject_type import EntitySubjectType
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,24 +30,22 @@ class DataImportDTO(BaseModel):
     """
     DataImportDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
     name: Optional[StrictStr] = None
-    custom_file_format_id: Optional[StrictStr] = Field(default=None, description="When using a file format that deviates from the built-in format, this property will contain the ID  of the custom file format.", alias="customFileFormatId")
-    metering_format_type: Optional[DataImportMeteringFormatType] = Field(default=None, description="When using a built-in format, the format type will be filled in.", alias="meteringFormatType")
-    parameters: Optional[Dict[str, Any]] = None
+    custom_file_format_id: Optional[StrictStr] = Field(default=None, alias="customFileFormatId")
+    metering_format_type: Optional[DataImportMeteringFormatType] = Field(default=None, alias="meteringFormatType")
+    parameters: Optional[DataImportParametersDTO] = None
     automatic_processing: Optional[StrictBool] = Field(default=None, alias="automaticProcessing")
     disabled: Optional[StrictBool] = None
     deleted: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "name", "customFileFormatId", "meteringFormatType", "parameters", "automaticProcessing", "disabled", "deleted"]
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["name", "customFileFormatId", "meteringFormatType", "parameters", "automaticProcessing", "disabled", "deleted", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,10 +77,8 @@ class DataImportDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -89,31 +86,9 @@ class DataImportDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of parameters
+        if self.parameters:
+            _dict['parameters'] = self.parameters.to_dict()
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -123,11 +98,6 @@ class DataImportDTO(BaseModel):
         # and model_fields_set contains the field
         if self.custom_file_format_id is None and "custom_file_format_id" in self.model_fields_set:
             _dict['customFileFormatId'] = None
-
-        # set to None if metering_format_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.metering_format_type is None and "metering_format_type" in self.model_fields_set:
-            _dict['meteringFormatType'] = None
 
         # set to None if parameters (nullable) is None
         # and model_fields_set contains the field
@@ -146,23 +116,21 @@ class DataImportDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "name": obj.get("name"),
+            "customFileFormatId": obj.get("customFileFormatId"),
+            "meteringFormatType": obj.get("meteringFormatType"),
+            "parameters": DataImportParametersDTO.from_dict(obj["parameters"]) if obj.get("parameters") is not None else None,
+            "automaticProcessing": obj.get("automaticProcessing"),
+            "disabled": obj.get("disabled"),
+            "deleted": obj.get("deleted"),
+            "organisationId": obj.get("organisationId"),
             "id": obj.get("id"),
             "entityType": obj.get("entityType"),
             "createdDateTime": obj.get("createdDateTime"),
             "discriminator": obj.get("discriminator"),
             "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
             "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
-            "name": obj.get("name"),
-            "customFileFormatId": obj.get("customFileFormatId"),
-            "meteringFormatType": obj.get("meteringFormatType"),
-            "parameters": obj.get("parameters"),
-            "automaticProcessing": obj.get("automaticProcessing"),
-            "disabled": obj.get("disabled"),
-            "deleted": obj.get("deleted")
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

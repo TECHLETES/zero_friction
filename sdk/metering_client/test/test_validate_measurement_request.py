@@ -35,13 +35,18 @@ class TestValidateMeasurementRequest(unittest.TestCase):
         model = ValidateMeasurementRequest()
         if include_optional:
             return ValidateMeasurementRequest(
+                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 value = 1.337,
+                reading_origin = 'device',
                 meter_id = '',
                 external_channel_id = ''
             )
         else:
             return ValidateMeasurementRequest(
+                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                meter_id = '',
+                external_channel_id = '',
         )
         """
 

@@ -40,6 +40,8 @@ class TestErrorCodeCount(unittest.TestCase):
             )
         else:
             return ErrorCodeCount(
+                error_code = '',
+                count = 56,
         )
         """
 

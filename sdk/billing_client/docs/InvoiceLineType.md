@@ -1,5 +1,6 @@
 # InvoiceLineType
 
+Possible values: 'advance', 'previouslyadvanced', 'charge', 'vatpennydifference'
 
 ## Enum
 

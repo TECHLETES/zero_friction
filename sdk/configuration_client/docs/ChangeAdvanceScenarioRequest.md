@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
-**pdf_template** | [**AdvancePdfTemplateRequest**](AdvancePdfTemplateRequest.md) |  | [optional] 
-**email_template** | [**AdvanceEmailTemplateRequest**](AdvanceEmailTemplateRequest.md) |  | [optional] 
+**pdf_template** | [**AdvancePdfTemplateRequest**](AdvancePdfTemplateRequest.md) |  | 
+**email_template** | [**AdvanceEmailTemplateRequest**](AdvanceEmailTemplateRequest.md) |  | 
+**default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | 
+**auto_fallback_to_postal** | **bool** |  | [optional] 
 
 ## Example
 

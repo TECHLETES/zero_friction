@@ -26,19 +26,19 @@ from typing_extensions import Self
 
 class CollectionCaseDetailsDTO(BaseModel):
     """
-    Represents detailed information about a collection case.  Contains information about the case's workflow, current status, and step progression.
+    CollectionCaseDetailsDTO
     """ # noqa: E501
-    collection_case_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the collection case.", alias="collectionCaseId")
-    closed: Optional[StrictBool] = Field(default=None, description="Indicates whether the collection case is closed.")
-    workflow_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the workflow associated with this collection case.", alias="workflowId")
-    workflow_name: Optional[StrictStr] = Field(default=None, description="The name of the workflow associated with this collection case.", alias="workflowName")
-    previous_step_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the previous step in the collection workflow.", alias="previousStepId")
-    previous_step_name: Optional[StrictStr] = Field(default=None, description="The name of the previous step in the collection workflow.", alias="previousStepName")
-    previous_step_executed_at: Optional[datetime] = Field(default=None, description="The date and time when the previous step was executed.", alias="previousStepExecutedAt")
-    previous_step_status: Optional[CollectionStepStatus] = Field(default=None, description="The status of the previous step in the collection workflow.", alias="previousStepStatus")
-    next_step_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the next step in the collection workflow.", alias="nextStepId")
-    next_step_name: Optional[StrictStr] = Field(default=None, description="The name of the next step in the collection workflow.", alias="nextStepName")
-    next_step_execution_date: Optional[datetime] = Field(default=None, description="The scheduled date and time for executing the next step.", alias="nextStepExecutionDate")
+    collection_case_id: Optional[StrictStr] = Field(default=None, alias="collectionCaseId")
+    closed: Optional[StrictBool] = None
+    workflow_id: Optional[StrictStr] = Field(default=None, alias="workflowId")
+    workflow_name: Optional[StrictStr] = Field(default=None, alias="workflowName")
+    previous_step_id: Optional[StrictStr] = Field(default=None, alias="previousStepId")
+    previous_step_name: Optional[StrictStr] = Field(default=None, alias="previousStepName")
+    previous_step_executed_at: Optional[datetime] = Field(default=None, alias="previousStepExecutedAt")
+    previous_step_status: Optional[CollectionStepStatus] = Field(default=None, alias="previousStepStatus")
+    next_step_id: Optional[StrictStr] = Field(default=None, alias="nextStepId")
+    next_step_name: Optional[StrictStr] = Field(default=None, alias="nextStepName")
+    next_step_execution_date: Optional[datetime] = Field(default=None, alias="nextStepExecutionDate")
     __properties: ClassVar[List[str]] = ["collectionCaseId", "closed", "workflowId", "workflowName", "previousStepId", "previousStepName", "previousStepExecutedAt", "previousStepStatus", "nextStepId", "nextStepName", "nextStepExecutionDate"]
 
     model_config = ConfigDict(
@@ -104,11 +104,6 @@ class CollectionCaseDetailsDTO(BaseModel):
         # and model_fields_set contains the field
         if self.previous_step_name is None and "previous_step_name" in self.model_fields_set:
             _dict['previousStepName'] = None
-
-        # set to None if previous_step_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.previous_step_status is None and "previous_step_status" in self.model_fields_set:
-            _dict['previousStepStatus'] = None
 
         # set to None if next_step_id (nullable) is None
         # and model_fields_set contains the field

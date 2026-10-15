@@ -1,5 +1,6 @@
 # ImportStatus
 
+Possible values: 'created', 'validating', 'processing', 'finished', 'failed', 'undone'
 
 ## Enum
 

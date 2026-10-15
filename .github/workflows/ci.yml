@@ -33,7 +33,6 @@ jobs:
       all: ${{ steps.filter.outputs.all }}
       python: ${{ steps.filter.outputs.python }}
       pre_commit: ${{ steps.filter.outputs.pre_commit }}
-      devcontainer: ${{ steps.filter.outputs.devcontainer }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -58,8 +57,6 @@ jobs:
               - '.pre-commit-config.yaml'
               - '.secret.baseline'
               - 'scripts/hooks/**'
-            devcontainer:
-              - '.devcontainer/**'
 
   pre-commit:
     uses: ./.github/workflows/test-pre-commit.yml
@@ -70,10 +67,4 @@ jobs:
     uses: ./.github/workflows/test-python.yml
     if: ${{ needs.changed-files.outputs.all == 'true' || needs.changed-files.outputs.python == 'true' }}
     needs: changed-files
-    secrets: inherit
-
-  devcontainer-smoke:
-    if: ${{ needs.changed-files.outputs.all == 'true' || needs.changed-files.outputs.devcontainer == 'true' }}
-    needs: changed-files
-    uses: ./.github/workflows/test-devcontainer.yml
     secrets: inherit

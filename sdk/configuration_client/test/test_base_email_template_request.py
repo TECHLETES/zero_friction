@@ -35,6 +35,7 @@ class TestBaseEmailTemplateRequest(unittest.TestCase):
         model = BaseEmailTemplateRequest()
         if include_optional:
             return BaseEmailTemplateRequest(
+                type = 'UpdatePortalCustomerAccountConfirmationEmailTemplateRequest',
                 subject = '',
                 attachments = [
                     configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
@@ -45,6 +46,7 @@ class TestBaseEmailTemplateRequest(unittest.TestCase):
             )
         else:
             return BaseEmailTemplateRequest(
+                type = 'UpdatePortalCustomerAccountConfirmationEmailTemplateRequest',
         )
         """
 

@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.create_tax_code_rate_request import CreateTaxCodeRateRequest
 from typing import Optional, Set
@@ -27,9 +27,10 @@ class CreateTaxCodeRequest(BaseModel):
     """
     CreateTaxCodeRequest
     """ # noqa: E501
-    name: Optional[StrictStr] = None
+    name: Optional[StrictStr]
+    accounting_code_id: Optional[StrictStr] = Field(default=None, alias="accountingCodeId")
     rates: Optional[List[CreateTaxCodeRateRequest]] = None
-    __properties: ClassVar[List[str]] = ["name", "rates"]
+    __properties: ClassVar[List[str]] = ["name", "accountingCodeId", "rates"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,6 +83,11 @@ class CreateTaxCodeRequest(BaseModel):
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
 
+        # set to None if accounting_code_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.accounting_code_id is None and "accounting_code_id" in self.model_fields_set:
+            _dict['accountingCodeId'] = None
+
         # set to None if rates (nullable) is None
         # and model_fields_set contains the field
         if self.rates is None and "rates" in self.model_fields_set:
@@ -100,6 +106,7 @@ class CreateTaxCodeRequest(BaseModel):
 
         _obj = cls.model_validate({
             "name": obj.get("name"),
+            "accountingCodeId": obj.get("accountingCodeId"),
             "rates": [CreateTaxCodeRateRequest.from_dict(_item) for _item in obj["rates"]] if obj.get("rates") is not None else None
         })
         return _obj

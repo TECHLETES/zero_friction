@@ -5,7 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | **str** |  | 
+**email_template** | [**BaseEmailTemplateDTO**](BaseEmailTemplateDTO.md) |  | [optional] 
 **default_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
+**auto_fallback_to_postal** | **bool** |  | [optional] 
 **translation_list_id** | **str** |  | [optional] 
 **translation_list_history_id** | **str** |  | [optional] 
 **data_type** | [**TemplateObjectType**](TemplateObjectType.md) |  | [optional] 
@@ -14,6 +17,14 @@ Name | Type | Description | Notes
 **grouping_type** | [**ScenarioGroupingType**](ScenarioGroupingType.md) |  | [optional] 
 **entity_type** | [**EntityTypeDTO**](EntityTypeDTO.md) |  | [optional] 
 **available_communication_types** | [**List[CommunicationType]**](CommunicationType.md) |  | [optional] 
+**pdf_template** | [**BasePdfTemplateDTO**](BasePdfTemplateDTO.md) |  | [optional] 
+**organisation_id** | **str** |  | [optional] 
+**id** | **str** |  | [optional] 
+**created_date_time** | **datetime** |  | [optional] 
+**discriminator** | **str** |  | [optional] 
+**etag** | **str** |  | [optional] 
+**has_errors** | **bool** |  | [optional] 
+**is_read_only** | **bool** |  | [optional] 
 
 ## Example
 

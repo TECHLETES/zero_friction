@@ -41,6 +41,8 @@ class TestChangeAdvanceAmountRequest(unittest.TestCase):
             )
         else:
             return ChangeAdvanceAmountRequest(
+                new_advance_amount = 1.337,
+                changed_by = 'systeminvoicecalculation',
         )
         """
 

@@ -31,23 +31,23 @@ from typing_extensions import Self
 
 class ServiceConsumptionDTO(BaseModel):
     """
-    Represents consumption data for a service location over a specific time period
+    ServiceConsumptionDTO
     """ # noqa: E501
-    external_channel_identifier: Optional[StrictStr] = Field(default=None, description="External identifier for the channel", alias="externalChannelIdentifier")
-    service_location_id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the service location", alias="serviceLocationId")
-    formula_stream_name: Optional[StrictStr] = Field(default=None, description="Name of the formula stream that generated this consumption", alias="formulaStreamName")
-    production_day: Optional[StrictInt] = Field(default=None, description="Day number for which the consumption is calculated", alias="productionDay")
-    time_zone: Optional[StrictStr] = Field(default=None, description="Time zone identifier for the consumption data", alias="timeZone")
-    production_day_start_utc: Optional[datetime] = Field(default=None, description="Start of the production day in UTC", alias="productionDayStartUtc")
-    production_day_end_utc: Optional[datetime] = Field(default=None, description="End of the production day in UTC", alias="productionDayEndUtc")
-    values: Optional[List[ServiceConsumptionValueDTO]] = Field(default=None, description="List of consumption values with their time periods")
-    data_frequency: Optional[DataFrequency] = Field(default=None, description="Frequency of the consumption data points", alias="dataFrequency")
-    metering_type: Optional[MeteringType] = Field(default=None, description="Type of metering used for the consumption data", alias="meteringType")
-    utility_type: Optional[UtilityType] = Field(default=None, description="Type of utility being measured", alias="utilityType")
-    direction: Optional[Direction] = Field(default=None, description="Direction of the consumption flow")
-    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, description="Unit of measure for the consumption values", alias="unitOfMeasure")
-    time_of_use: Optional[StrictStr] = Field(default=None, description="Time of use classification for the consumption", alias="timeOfUse")
-    total: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total consumption value for the period")
+    external_channel_identifier: Optional[StrictStr] = Field(default=None, alias="externalChannelIdentifier")
+    service_location_id: Optional[StrictStr] = Field(default=None, alias="serviceLocationId")
+    formula_stream_name: Optional[StrictStr] = Field(default=None, alias="formulaStreamName")
+    production_day: Optional[StrictInt] = Field(default=None, alias="productionDay")
+    time_zone: Optional[StrictStr] = Field(default=None, alias="timeZone")
+    production_day_start_utc: Optional[datetime] = Field(default=None, alias="productionDayStartUtc")
+    production_day_end_utc: Optional[datetime] = Field(default=None, alias="productionDayEndUtc")
+    values: Optional[List[ServiceConsumptionValueDTO]] = None
+    data_frequency: Optional[DataFrequency] = Field(default=None, alias="dataFrequency")
+    metering_type: Optional[MeteringType] = Field(default=None, alias="meteringType")
+    utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
+    direction: Optional[Direction] = None
+    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, alias="unitOfMeasure")
+    time_of_use: Optional[StrictStr] = Field(default=None, alias="timeOfUse")
+    total: Optional[Union[StrictFloat, StrictInt]] = None
     __properties: ClassVar[List[str]] = ["externalChannelIdentifier", "serviceLocationId", "formulaStreamName", "productionDay", "timeZone", "productionDayStartUtc", "productionDayEndUtc", "values", "dataFrequency", "meteringType", "utilityType", "direction", "unitOfMeasure", "timeOfUse", "total"]
 
     model_config = ConfigDict(
@@ -120,31 +120,6 @@ class ServiceConsumptionDTO(BaseModel):
         # and model_fields_set contains the field
         if self.values is None and "values" in self.model_fields_set:
             _dict['values'] = None
-
-        # set to None if data_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.data_frequency is None and "data_frequency" in self.model_fields_set:
-            _dict['dataFrequency'] = None
-
-        # set to None if metering_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.metering_type is None and "metering_type" in self.model_fields_set:
-            _dict['meteringType'] = None
-
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if direction (nullable) is None
-        # and model_fields_set contains the field
-        if self.direction is None and "direction" in self.model_fields_set:
-            _dict['direction'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
 
         # set to None if time_of_use (nullable) is None
         # and model_fields_set contains the field

@@ -1,13 +1,16 @@
 # AssignInvoiceToCollectionCaseRequest
 
-Represents a request to assign an invoice to a collection case.  This DTO is used to link an invoice to a specific collection case for debt recovery purposes.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**collection_flow_id** | **str** | The unique identifier of the collection flow to be used for this case. | [optional] 
-**collection_case_number** | **str** | The unique case number assigned to this collection case. | [optional] 
+**collection_flow_id** | **str** |  | [optional] 
+**collection_case_number** | **str** |  | [optional] 
+**last_executed_step** | **int** |  | [optional] 
+**last_step_executed_at** | **datetime** |  | [optional] 
+**status** | [**CollectionFlowStatus**](CollectionFlowStatus.md) |  | [optional] 
+**induce_charge** | **bool** |  | [optional] 
 
 ## Example
 

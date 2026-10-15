@@ -25,10 +25,10 @@ from typing_extensions import Self
 
 class RequiredQuantityLocationGroupedDTO(BaseModel):
     """
-    Represents required quantities grouped by location
+    RequiredQuantityLocationGroupedDTO
     """ # noqa: E501
-    service_location_id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the service location", alias="serviceLocationId")
-    required_quantities: Optional[List[RequiredQuantityDTO]] = Field(default=None, description="List of required quantities for this location", alias="requiredQuantities")
+    service_location_id: Optional[StrictStr] = Field(default=None, alias="serviceLocationId")
+    required_quantities: Optional[List[RequiredQuantityDTO]] = Field(default=None, alias="requiredQuantities")
     __properties: ClassVar[List[str]] = ["serviceLocationId", "requiredQuantities"]
 
     model_config = ConfigDict(

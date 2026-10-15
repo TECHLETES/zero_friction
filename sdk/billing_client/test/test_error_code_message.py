@@ -35,10 +35,10 @@ class TestErrorCodeMessage(unittest.TestCase):
         model = ErrorCodeMessage()
         if include_optional:
             return ErrorCodeMessage(
-                error_code = 'ASSET_ALREADY_EXISTS',
+                error_code = 56,
                 values = [
                     billing_client.models.error_code_message_value.ErrorCodeMessageValue(
-                        data_type = null, 
+                        data_type = 'text', 
                         value = '', 
                         capitalize = True, )
                     ]

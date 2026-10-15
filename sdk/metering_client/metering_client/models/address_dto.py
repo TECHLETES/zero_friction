@@ -79,61 +79,6 @@ class AddressDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if street_name (nullable) is None
-        # and model_fields_set contains the field
-        if self.street_name is None and "street_name" in self.model_fields_set:
-            _dict['streetName'] = None
-
-        # set to None if street_number (nullable) is None
-        # and model_fields_set contains the field
-        if self.street_number is None and "street_number" in self.model_fields_set:
-            _dict['streetNumber'] = None
-
-        # set to None if street_number_addition (nullable) is None
-        # and model_fields_set contains the field
-        if self.street_number_addition is None and "street_number_addition" in self.model_fields_set:
-            _dict['streetNumberAddition'] = None
-
-        # set to None if postal_code (nullable) is None
-        # and model_fields_set contains the field
-        if self.postal_code is None and "postal_code" in self.model_fields_set:
-            _dict['postalCode'] = None
-
-        # set to None if building_name (nullable) is None
-        # and model_fields_set contains the field
-        if self.building_name is None and "building_name" in self.model_fields_set:
-            _dict['buildingName'] = None
-
-        # set to None if locality (nullable) is None
-        # and model_fields_set contains the field
-        if self.locality is None and "locality" in self.model_fields_set:
-            _dict['locality'] = None
-
-        # set to None if city (nullable) is None
-        # and model_fields_set contains the field
-        if self.city is None and "city" in self.model_fields_set:
-            _dict['city'] = None
-
-        # set to None if country (nullable) is None
-        # and model_fields_set contains the field
-        if self.country is None and "country" in self.model_fields_set:
-            _dict['country'] = None
-
-        # set to None if localized_display (nullable) is None
-        # and model_fields_set contains the field
-        if self.localized_display is None and "localized_display" in self.model_fields_set:
-            _dict['localizedDisplay'] = None
-
-        # set to None if line_one (nullable) is None
-        # and model_fields_set contains the field
-        if self.line_one is None and "line_one" in self.model_fields_set:
-            _dict['lineOne'] = None
-
-        # set to None if line_two (nullable) is None
-        # and model_fields_set contains the field
-        if self.line_two is None and "line_two" in self.model_fields_set:
-            _dict['lineTwo'] = None
-
         return _dict
 
     @classmethod

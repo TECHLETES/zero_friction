@@ -37,10 +37,13 @@ class TestTransactionReferenceDetailsDTO(unittest.TestCase):
             return TransactionReferenceDetailsDTO(
                 transaction_reference_type = 'payment',
                 transaction_reference_id = '',
-                parameters = None
+                parameters = billing_client.models.transaction_reference_parameters_dto.TransactionReferenceParametersDTO()
             )
         else:
             return TransactionReferenceDetailsDTO(
+                transaction_reference_type = 'payment',
+                transaction_reference_id = '',
+                parameters = billing_client.models.transaction_reference_parameters_dto.TransactionReferenceParametersDTO(),
         )
         """
 

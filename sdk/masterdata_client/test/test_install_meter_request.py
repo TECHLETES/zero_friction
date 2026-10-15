@@ -46,28 +46,32 @@ class TestInstallMeterRequest(unittest.TestCase):
                     building_name = '', 
                     locality = '', 
                     city = '', 
-                    country = null, 
+                    country = 'aut', 
                     localized_display = '', 
                     line_one = '', 
                     line_two = '', ),
                 channel_templates = [
                     masterdata_client.models.external_channel_request.ExternalChannelRequest(
-                        data_frequency = null, 
-                        metering_type = null, 
-                        utility_type = null, 
-                        direction = null, 
-                        incrementation_type = null, 
+                        data_frequency = 'pt1m', 
+                        metering_type = 'none', 
+                        utility_type = 'none', 
+                        direction = 'offtake', 
+                        incrementation_type = 'delta', 
                         time_of_use = '', 
-                        unit_of_measure = null, 
+                        unit_of_measure = 'none', 
                         external_identifier = '', 
                         description = '', 
-                        relation_external_reference = '', )
+                        relation_external_reference = '', 
+                        reset_day = 56, 
+                        reset_month = 56, 
+                        reset_hour = 56, )
                     ],
                 next_expected_reading_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 reading_frequency = 'hourly'
             )
         else:
             return InstallMeterRequest(
+                mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

@@ -5,14 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
 **status** | **str** |  | [optional] 
 **incoming_mutation_type** | **str** |  | [optional] 
 **incoming_banking_transaction_id** | **str** |  | [optional] 
 **transaction_date_start** | **datetime** |  | [optional] 
 **transaction_date_end** | **datetime** |  | [optional] 
+**flex_search** | **str** |  | [optional] 
+**include_only_ids** | **List[str]** |  | [optional] 
+**exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

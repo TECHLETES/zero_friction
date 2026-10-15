@@ -43,13 +43,26 @@ class TestUpdateInvoiceAddressRequest(unittest.TestCase):
                     building_name = '', 
                     locality = '', 
                     city = '', 
-                    country = null, 
+                    country = 'aut', 
                     localized_display = '', 
                     line_one = '', 
-                    line_two = '', )
+                    line_two = '', ),
+                changed_by_portal = True
             )
         else:
             return UpdateInvoiceAddressRequest(
+                invoice_address = masterdata_client.models.address_dto.AddressDTO(
+                    street_name = '', 
+                    street_number = '', 
+                    street_number_addition = '', 
+                    postal_code = '', 
+                    building_name = '', 
+                    locality = '', 
+                    city = '', 
+                    country = 'aut', 
+                    localized_display = '', 
+                    line_one = '', 
+                    line_two = '', ),
         )
         """
 

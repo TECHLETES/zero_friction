@@ -1,5 +1,6 @@
 # LocalisationLevel
 
+Possible values: 'none', 'partial', 'all'
 
 ## Enum
 

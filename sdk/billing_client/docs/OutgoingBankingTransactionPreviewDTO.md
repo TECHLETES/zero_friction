@@ -1,13 +1,12 @@
 # OutgoingBankingTransactionPreviewDTO
 
-Provides a preview of outgoing banking transactions, separating requests and refunds.  This DTO contains insights about both payment requests and refund transactions.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**requests** | [**OutgoingBankingTransactionPreviewInsightsDTO**](OutgoingBankingTransactionPreviewInsightsDTO.md) | Insights about payment requests in the preview. | [optional] 
-**refunds** | [**OutgoingBankingTransactionPreviewInsightsDTO**](OutgoingBankingTransactionPreviewInsightsDTO.md) | Insights about refund transactions in the preview. | [optional] 
+**requests** | [**OutgoingBankingTransactionPreviewInsightsDTO**](OutgoingBankingTransactionPreviewInsightsDTO.md) |  | [optional] 
+**refunds** | [**OutgoingBankingTransactionPreviewInsightsDTO**](OutgoingBankingTransactionPreviewInsightsDTO.md) |  | [optional] 
 
 ## Example
 

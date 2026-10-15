@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entity_attachment_ids** | **List[str]** |  | [optional] 
+**entity_attachment_ids** | **List[str]** |  | 
 **customer_id** | **str** |  | [optional] 
-**culture** | [**CultureInfo**](CultureInfo.md) |  | [optional] 
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | [optional] 
 
 ## Example
 

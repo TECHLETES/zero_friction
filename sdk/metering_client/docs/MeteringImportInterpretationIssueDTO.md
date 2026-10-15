@@ -1,15 +1,14 @@
 # MeteringImportInterpretationIssueDTO
 
-Contains the information about the interpretation issue that was discovered during importing.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error_code** | [**LocalisedErrorDTO**](LocalisedErrorDTO.md) | The error that occured. | [optional] 
-**error_code_info** | [**LocalisedErrorDTO**](LocalisedErrorDTO.md) | A more descriptive message about the error that occured. | [optional] 
-**line_number** | **int** | The LineNumber where the error occured in the original file. | [optional] 
-**message** | **str** | The raw, untranslateable error message. | [optional] 
+**error_code** | [**LocalisedErrorDTO**](LocalisedErrorDTO.md) |  | [optional] 
+**error_code_info** | [**LocalisedErrorDTO**](LocalisedErrorDTO.md) |  | [optional] 
+**line_number** | **int** |  | [optional] 
+**message** | **str** |  | [optional] 
 
 ## Example
 

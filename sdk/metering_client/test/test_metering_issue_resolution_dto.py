@@ -37,9 +37,7 @@ class TestMeteringIssueResolutionDTO(unittest.TestCase):
             return MeteringIssueResolutionDTO(
                 resolved_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 type = 'manual',
-                details = metering_client.models.base_metering_issue_resolution_details_dto.BaseMeteringIssueResolutionDetailsDTO(
-                    resolved_by_user_id = '', 
-                    new_value = 1.337, )
+                details = metering_client.models.base_metering_issue_resolution_details_dto.BaseMeteringIssueResolutionDetailsDTO()
             )
         else:
             return MeteringIssueResolutionDTO(

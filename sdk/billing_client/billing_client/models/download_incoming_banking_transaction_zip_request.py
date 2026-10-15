@@ -18,15 +18,15 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
 class DownloadIncomingBankingTransactionZipRequest(BaseModel):
     """
-    Represents a request to download banking transaction documents as a ZIP file.  This DTO is used to retrieve transaction-related documents for multiple transactions at once.
+    DownloadIncomingBankingTransactionZipRequest
     """ # noqa: E501
-    incoming_banking_transaction_ids: Optional[List[StrictStr]] = Field(default=None, description="An array of IDs for the incoming banking transactions whose documents should be included in the ZIP file.", alias="incomingBankingTransactionIds")
+    incoming_banking_transaction_ids: List[StrictStr] = Field(alias="incomingBankingTransactionIds")
     __properties: ClassVar[List[str]] = ["incomingBankingTransactionIds"]
 
     model_config = ConfigDict(
@@ -68,11 +68,6 @@ class DownloadIncomingBankingTransactionZipRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if incoming_banking_transaction_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.incoming_banking_transaction_ids is None and "incoming_banking_transaction_ids" in self.model_fields_set:
-            _dict['incomingBankingTransactionIds'] = None
-
         return _dict
 
     @classmethod

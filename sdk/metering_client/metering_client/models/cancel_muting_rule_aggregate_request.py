@@ -28,9 +28,9 @@ class CancelMutingRuleAggregateRequest(BaseModel):
     """
     CancelMutingRuleAggregateRequest
     """ # noqa: E501
-    error_type: Optional[MeteringIssueError] = Field(default=None, alias="errorType")
+    error_type: MeteringIssueError = Field(alias="errorType")
     message: Optional[StrictStr] = None
-    time_period: Optional[MutingRuleTimePeriod] = Field(default=None, alias="timePeriod")
+    time_period: MutingRuleTimePeriod = Field(alias="timePeriod")
     mute_from_with_numeric_value: Optional[StrictInt] = Field(default=None, alias="muteFromWithNumericValue")
     mute_until_with_numeric_value: Optional[StrictInt] = Field(default=None, alias="muteUntilWithNumericValue")
     user_id: Optional[StrictStr] = Field(default=None, alias="userId")
@@ -75,20 +75,10 @@ class CancelMutingRuleAggregateRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if error_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.error_type is None and "error_type" in self.model_fields_set:
-            _dict['errorType'] = None
-
         # set to None if message (nullable) is None
         # and model_fields_set contains the field
         if self.message is None and "message" in self.model_fields_set:
             _dict['message'] = None
-
-        # set to None if time_period (nullable) is None
-        # and model_fields_set contains the field
-        if self.time_period is None and "time_period" in self.model_fields_set:
-            _dict['timePeriod'] = None
 
         # set to None if user_id (nullable) is None
         # and model_fields_set contains the field

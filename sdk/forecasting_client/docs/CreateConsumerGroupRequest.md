@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **str** |  | [optional] 
+**code** | **str** |  | 
 **description** | **str** |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
+**utility_type** | [**UtilityType**](UtilityType.md) |  | 
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | 
 **estimated_annual_volume** | **float** |  | [optional] 
 
 ## Example

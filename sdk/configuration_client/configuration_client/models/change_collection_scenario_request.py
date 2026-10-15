@@ -28,8 +28,8 @@ class ChangeCollectionScenarioRequest(BaseModel):
     """
     ChangeCollectionScenarioRequest
     """ # noqa: E501
-    pdf_template: Optional[CollectionPdfTemplateRequest] = Field(default=None, alias="pdfTemplate")
-    email_template: Optional[CollectionEmailTemplateRequest] = Field(default=None, alias="emailTemplate")
+    pdf_template: Optional[CollectionPdfTemplateRequest] = Field(alias="pdfTemplate")
+    email_template: Optional[CollectionEmailTemplateRequest] = Field(alias="emailTemplate")
     __properties: ClassVar[List[str]] = ["pdfTemplate", "emailTemplate"]
 
     model_config = ConfigDict(

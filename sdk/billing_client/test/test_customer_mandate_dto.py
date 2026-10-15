@@ -39,7 +39,8 @@ class TestCustomerMandateDTO(unittest.TestCase):
                 signed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 cancelled_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 type = 'core',
-                status = 'requested'
+                status = 'requested',
+                company_bank_account_id = ''
             )
         else:
             return CustomerMandateDTO(

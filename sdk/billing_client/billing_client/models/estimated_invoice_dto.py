@@ -18,8 +18,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from billing_client.models.contract_reference_dto import ContractReferenceDTO
+from billing_client.models.debtor_dto import DebtorDTO
+from billing_client.models.entity_subject_type import EntitySubjectType
 from billing_client.models.estimated_advance_period_dto import EstimatedAdvancePeriodDTO
 from billing_client.models.estimated_invoice_line_dto import EstimatedInvoiceLineDTO
 from billing_client.models.level import Level
@@ -29,23 +32,31 @@ from typing_extensions import Self
 
 class EstimatedInvoiceDTO(BaseModel):
     """
-    Represents an estimated invoice for a customer.  This DTO contains information about the estimated charges, periods, and accuracy of the estimation.
+    EstimatedInvoiceDTO
     """ # noqa: E501
-    customer_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the customer.", alias="customerId")
-    contract_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the contract.", alias="contractId")
-    original_billing_completeness_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the original billing completeness record.", alias="originalBillingCompletenessId")
-    product: Optional[ProductReferenceDTO] = Field(default=None, description="Reference to the product associated with this estimated invoice.")
-    calculation_date: Optional[datetime] = Field(default=None, description="The date and time when this estimation was calculated.", alias="calculationDate")
-    period_end_date_time: Optional[datetime] = Field(default=None, description="The end date and time of the billing period.", alias="periodEndDateTime")
-    period_start_date_time: Optional[datetime] = Field(default=None, description="The start date and time of the billing period.", alias="periodStartDateTime")
-    total_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount including VAT.", alias="totalAmountInclVAT")
-    total_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount excluding VAT.", alias="totalAmountExclVAT")
-    total_vat_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total VAT amount.", alias="totalVATAmount")
-    remaining_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The remaining amount to be billed.", alias="remainingAmount")
-    lines: Optional[List[EstimatedInvoiceLineDTO]] = Field(default=None, description="List of line items in the estimated invoice.")
-    advances: Optional[List[EstimatedAdvancePeriodDTO]] = Field(default=None, description="List of advance periods associated with this estimated invoice.")
-    accuracy: Optional[Level] = Field(default=None, description="The accuracy level of this estimation.")
-    __properties: ClassVar[List[str]] = ["customerId", "contractId", "originalBillingCompletenessId", "product", "calculationDate", "periodEndDateTime", "periodStartDateTime", "totalAmountInclVAT", "totalAmountExclVAT", "totalVATAmount", "remainingAmount", "lines", "advances", "accuracy"]
+    debtor: Optional[DebtorDTO] = None
+    contract: Optional[ContractReferenceDTO] = None
+    original_billing_completeness_id: Optional[StrictStr] = Field(default=None, alias="originalBillingCompletenessId")
+    product: Optional[ProductReferenceDTO] = None
+    calculation_date: Optional[datetime] = Field(default=None, alias="calculationDate")
+    period_end_date_time: Optional[datetime] = Field(default=None, alias="periodEndDateTime")
+    period_start_date_time: Optional[datetime] = Field(default=None, alias="periodStartDateTime")
+    total_amount_incl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalAmountInclVAT")
+    total_amount_excl_vat: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalAmountExclVAT")
+    total_vat_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalVATAmount")
+    remaining_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="remainingAmount")
+    lines: Optional[List[EstimatedInvoiceLineDTO]] = None
+    advances: Optional[List[EstimatedAdvancePeriodDTO]] = None
+    accuracy: Optional[Level] = None
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["debtor", "contract", "originalBillingCompletenessId", "product", "calculationDate", "periodEndDateTime", "periodStartDateTime", "totalAmountInclVAT", "totalAmountExclVAT", "totalVATAmount", "remainingAmount", "lines", "advances", "accuracy", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,6 +97,12 @@ class EstimatedInvoiceDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of debtor
+        if self.debtor:
+            _dict['debtor'] = self.debtor.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of contract
+        if self.contract:
+            _dict['contract'] = self.contract.to_dict()
         # override the default output from pydantic by calling `to_dict()` of product
         if self.product:
             _dict['product'] = self.product.to_dict()
@@ -103,15 +120,15 @@ class EstimatedInvoiceDTO(BaseModel):
                 if _item_advances:
                     _items.append(_item_advances.to_dict())
             _dict['advances'] = _items
-        # set to None if customer_id (nullable) is None
+        # set to None if debtor (nullable) is None
         # and model_fields_set contains the field
-        if self.customer_id is None and "customer_id" in self.model_fields_set:
-            _dict['customerId'] = None
+        if self.debtor is None and "debtor" in self.model_fields_set:
+            _dict['debtor'] = None
 
-        # set to None if contract_id (nullable) is None
+        # set to None if contract (nullable) is None
         # and model_fields_set contains the field
-        if self.contract_id is None and "contract_id" in self.model_fields_set:
-            _dict['contractId'] = None
+        if self.contract is None and "contract" in self.model_fields_set:
+            _dict['contract'] = None
 
         # set to None if original_billing_completeness_id (nullable) is None
         # and model_fields_set contains the field
@@ -133,11 +150,6 @@ class EstimatedInvoiceDTO(BaseModel):
         if self.advances is None and "advances" in self.model_fields_set:
             _dict['advances'] = None
 
-        # set to None if accuracy (nullable) is None
-        # and model_fields_set contains the field
-        if self.accuracy is None and "accuracy" in self.model_fields_set:
-            _dict['accuracy'] = None
-
         return _dict
 
     @classmethod
@@ -150,8 +162,8 @@ class EstimatedInvoiceDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "customerId": obj.get("customerId"),
-            "contractId": obj.get("contractId"),
+            "debtor": DebtorDTO.from_dict(obj["debtor"]) if obj.get("debtor") is not None else None,
+            "contract": ContractReferenceDTO.from_dict(obj["contract"]) if obj.get("contract") is not None else None,
             "originalBillingCompletenessId": obj.get("originalBillingCompletenessId"),
             "product": ProductReferenceDTO.from_dict(obj["product"]) if obj.get("product") is not None else None,
             "calculationDate": obj.get("calculationDate"),
@@ -163,7 +175,15 @@ class EstimatedInvoiceDTO(BaseModel):
             "remainingAmount": obj.get("remainingAmount"),
             "lines": [EstimatedInvoiceLineDTO.from_dict(_item) for _item in obj["lines"]] if obj.get("lines") is not None else None,
             "advances": [EstimatedAdvancePeriodDTO.from_dict(_item) for _item in obj["advances"]] if obj.get("advances") is not None else None,
-            "accuracy": obj.get("accuracy")
+            "accuracy": obj.get("accuracy"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

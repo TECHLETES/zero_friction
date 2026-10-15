@@ -5,14 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
 **billing_relation_id** | **str** |  | [optional] 
 **customer_id** | **str** |  | [optional] 
 **property_group_ids** | **List[str]** |  | [optional] 
 **contract_id** | **str** |  | [optional] 
 **invoice_type** | **str** |  | [optional] 
+**billing_method** | **str** |  | [optional] 
+**statement_type** | **str** |  | [optional] 
 **status** | **str** |  | [optional] 
 **only_open** | **bool** |  | [optional] 
 **skip_blocked** | **bool** |  | [optional] 
@@ -20,6 +19,11 @@ Name | Type | Description | Notes
 **period_end_date_time** | **datetime** |  | [optional] 
 **invoicing_checkpoint_start_date_time** | **datetime** |  | [optional] 
 **invoicing_checkpoint_end_date_time** | **datetime** |  | [optional] 
+**customer_type** | **str** |  | [optional] 
+**flex_search** | **str** |  | [optional] 
+**include_only_ids** | **List[str]** |  | [optional] 
+**exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

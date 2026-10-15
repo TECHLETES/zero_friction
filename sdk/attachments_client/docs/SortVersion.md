@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**full_version** | **int** |  | [optional] 
-**sort_id** | **str** |  | [optional] 
+**full_version** | **int** |  | 
+**sort_id** | **str** |  | 
 
 ## Example
 

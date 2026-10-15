@@ -35,7 +35,10 @@ class TestIScenarioDTO(unittest.TestCase):
         model = IScenarioDTO()
         if include_optional:
             return IScenarioDTO(
-                default_communication_type = 'postal',
+                type = 'OrganizationScenarioDTO',
+                email_template = configuration_client.models.base_email_template_dto.BaseEmailTemplateDTO(),
+                default_communication_type = 'none',
+                auto_fallback_to_postal = True,
                 translation_list_id = '',
                 translation_list_history_id = '',
                 data_type = 'invoice',
@@ -43,14 +46,23 @@ class TestIScenarioDTO(unittest.TestCase):
                 entity_subject_sub_type = '',
                 grouping_type = 'invoice',
                 entity_type = configuration_client.models.entity_type_dto.EntityTypeDTO(
-                    entity_subject_type = null, 
+                    entity_subject_type = 'none', 
                     entity_subject_sub_type = '', ),
                 available_communication_types = [
-                    'postal'
-                    ]
+                    'none'
+                    ],
+                pdf_template = configuration_client.models.base_pdf_template_dto.BasePdfTemplateDTO(),
+                organisation_id = '',
+                id = '',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return IScenarioDTO(
+                type = 'OrganizationScenarioDTO',
         )
         """
 

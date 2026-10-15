@@ -1,15 +1,14 @@
 # BulkApproveInvoiceRequest
 
-Represents a bulk request to approve multiple invoices.  This DTO allows approving multiple invoices in a single operation.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_date** | **datetime** | The date when the invoice should be approved. | [optional] 
-**only_validate** | **bool** | Indicates if only validation should be performed without actually approving the invoices.  When true, the system will only validate if the invoices can be approved without making any changes. | [optional] 
-**var_query_params** | [**GetInvoicesQueryParams**](GetInvoicesQueryParams.md) | Query parameters to filter the invoices to be approved. | [optional] 
-**quick_filter** | **str** | Quick filter string to filter invoices without using complex query parameters. | [optional] 
+**only_validate** | **bool** |  | [optional] 
+**var_query_params** | [**GetInvoicesQueryParams**](GetInvoicesQueryParams.md) |  | [optional] 
+**quick_filter** | **str** |  | [optional] 
+**invoice_date** | **datetime** |  | [optional] 
 
 ## Example
 

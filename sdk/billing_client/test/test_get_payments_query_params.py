@@ -35,6 +35,16 @@ class TestGetPaymentsQueryParams(unittest.TestCase):
         model = GetPaymentsQueryParams()
         if include_optional:
             return GetPaymentsQueryParams(
+                payment_type = '',
+                customer_id = '',
+                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                psp_provider_account_zfh_id = '',
+                psp_requested_payment_rail = 'card',
+                psp_refund_statuses = [
+                    ''
+                    ],
+                prepayment_account_id = '',
                 flex_search = '',
                 include_only_ids = [
                     ''
@@ -42,11 +52,7 @@ class TestGetPaymentsQueryParams(unittest.TestCase):
                 exclude_ids = [
                     ''
                     ],
-                payment_type = '',
-                customer_id = '',
-                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                batch_mutation_id = ''
+                page_size = 56
             )
         else:
             return GetPaymentsQueryParams(

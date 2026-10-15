@@ -1,14 +1,13 @@
 # BulkCreditInvoiceRequest
 
-Represents a bulk request to credit multiple invoices.  This DTO allows creating credit notes for multiple invoices in a single operation.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**only_validate** | **bool** | Indicates if only validation should be performed without actually creating credit notes.  When true, the system will only validate if the invoices can be credited without making any changes. | [optional] 
-**var_query_params** | [**GetInvoicesQueryParams**](GetInvoicesQueryParams.md) | Query parameters to filter the invoices to be credited. | [optional] 
-**quick_filter** | **str** | Quick filter string to filter invoices without using complex query parameters. | [optional] 
+**only_validate** | **bool** |  | [optional] 
+**var_query_params** | [**GetInvoicesQueryParams**](GetInvoicesQueryParams.md) |  | [optional] 
+**quick_filter** | **str** |  | [optional] 
 
 ## Example
 

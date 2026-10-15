@@ -46,11 +46,15 @@ class TestConsumptionCalculationInputDTO(unittest.TestCase):
                 first_measurement = billing_client.models.consumption_calculation_measurement_dto.ConsumptionCalculationMeasurementDTO(
                     value = 1.337, 
                     reading_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    unit_of_measure = null, ),
+                    unit_of_measure = 'none', 
+                    reading_origin = 'device', 
+                    reading_method = 'automatic', ),
                 second_measurement = billing_client.models.consumption_calculation_measurement_dto.ConsumptionCalculationMeasurementDTO(
                     value = 1.337, 
                     reading_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    unit_of_measure = null, ),
+                    unit_of_measure = 'none', 
+                    reading_origin = 'device', 
+                    reading_method = 'automatic', ),
                 consumption_value = 1.337,
                 start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')

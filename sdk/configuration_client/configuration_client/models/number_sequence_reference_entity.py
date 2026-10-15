@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class NumberSequenceReferenceEntity(str, Enum):
     """
-    NumberSequenceReferenceEntity
+    Possible values: 'customer', 'contract', 'invoice', 'mandate', 'exportjob', 'collectioncase', 'bankingtransaction', 'paymentplan', 'prepaymentaccount', 'moverequest', 'outgoingmandateexportgroup', 'prepaymentstatement'
     """
 
     """
@@ -33,6 +33,11 @@ class NumberSequenceReferenceEntity(str, Enum):
     EXPORTJOB = 'exportjob'
     COLLECTIONCASE = 'collectioncase'
     BANKINGTRANSACTION = 'bankingtransaction'
+    PAYMENTPLAN = 'paymentplan'
+    PREPAYMENTACCOUNT = 'prepaymentaccount'
+    MOVEREQUEST = 'moverequest'
+    OUTGOINGMANDATEEXPORTGROUP = 'outgoingmandateexportgroup'
+    PREPAYMENTSTATEMENT = 'prepaymentstatement'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

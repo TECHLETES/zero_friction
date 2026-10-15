@@ -35,15 +35,17 @@ class TestCreateCustomEntityPropertyTypeRequest(unittest.TestCase):
         model = CreateCustomEntityPropertyTypeRequest()
         if include_optional:
             return CreateCustomEntityPropertyTypeRequest(
+                entity_subject_type = 'none',
+                value_type = configuration_client.models.base_property_value_type_dto.BasePropertyValueTypeDTO(),
                 name = '',
                 description = '',
                 show_in_header = True,
-                tag_color = 'blue',
-                entity_subject_type = 'none',
-                value_type = None
+                tag_color = 'blue'
             )
         else:
             return CreateCustomEntityPropertyTypeRequest(
+                entity_subject_type = 'none',
+                value_type = configuration_client.models.base_property_value_type_dto.BasePropertyValueTypeDTO(),
         )
         """
 

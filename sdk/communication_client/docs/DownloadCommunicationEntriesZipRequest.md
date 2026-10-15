@@ -5,7 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**communication_entry_ids** | **List[str]** |  | [optional] 
+**communication_entry_ids** | **List[str]** |  | 
+**var_query_params** | [**GetCommunicationEntriesQueryParams**](GetCommunicationEntriesQueryParams.md) |  | 
+**quick_filter** | [**CommunicationEntryQuickFilter**](CommunicationEntryQuickFilter.md) |  | [optional] 
+**excluded_ids** | **List[str]** |  | [optional] 
 
 ## Example
 

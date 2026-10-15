@@ -41,6 +41,9 @@ class TestPaymentTermsRequest(unittest.TestCase):
             )
         else:
             return PaymentTermsRequest(
+                name = '',
+                amount = 56,
+                payment_terms_frequency = 'day',
         )
         """
 

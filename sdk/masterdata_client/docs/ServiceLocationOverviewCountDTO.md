@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **all** | **int** |  | [optional] 
 **supplied** | **int** |  | [optional] 
 **unsupplied** | **int** |  | [optional] 
+**archived** | **int** |  | [optional] 
 
 ## Example
 

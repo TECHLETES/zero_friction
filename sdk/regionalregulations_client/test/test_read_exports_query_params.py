@@ -41,7 +41,8 @@ class TestReadExportsQueryParams(unittest.TestCase):
                     ],
                 exclude_ids = [
                     ''
-                    ]
+                    ],
+                page_size = 56
             )
         else:
             return ReadExportsQueryParams(

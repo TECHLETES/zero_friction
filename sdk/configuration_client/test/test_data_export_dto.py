@@ -35,23 +35,18 @@ class TestDataExportDTO(unittest.TestCase):
         model = DataExportDTO()
         if include_optional:
             return DataExportDTO(
+                name = '',
+                parameters = configuration_client.models.base_data_export_parameters_dto.BaseDataExportParametersDTO(),
+                file_format_id = '',
+                deleted = True,
+                organisation_id = '',
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
-                name = '',
-                parameters = configuration_client.models.base_data_export_parameters_dto.BaseDataExportParametersDTO(
-                    auto_move_after_generation = True, 
-                    zip_files = True, 
-                    auto_assign_entities_to_export = True, ),
-                file_format_id = '',
-                deleted = True
+                is_read_only = True
             )
         else:
             return DataExportDTO(

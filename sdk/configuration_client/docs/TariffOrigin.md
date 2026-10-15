@@ -1,5 +1,6 @@
 # TariffOrigin
 
+Possible values: 'product', 'billingitem'
 
 ## Enum
 

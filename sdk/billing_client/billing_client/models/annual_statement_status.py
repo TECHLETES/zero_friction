@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AnnualStatementStatus(str, Enum):
     """
-    AnnualStatementStatus
+    Possible values: 'created', 'generationinprogress', 'generated', 'generationfailed'
     """
 
     """

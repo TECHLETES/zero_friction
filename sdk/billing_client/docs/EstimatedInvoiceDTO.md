@@ -1,25 +1,32 @@
 # EstimatedInvoiceDTO
 
-Represents an estimated invoice for a customer.  This DTO contains information about the estimated charges, periods, and accuracy of the estimation.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** | The unique identifier of the customer. | [optional] 
-**contract_id** | **str** | The unique identifier of the contract. | [optional] 
-**original_billing_completeness_id** | **str** | The unique identifier of the original billing completeness record. | [optional] 
-**product** | [**ProductReferenceDTO**](ProductReferenceDTO.md) | Reference to the product associated with this estimated invoice. | [optional] 
-**calculation_date** | **datetime** | The date and time when this estimation was calculated. | [optional] 
-**period_end_date_time** | **datetime** | The end date and time of the billing period. | [optional] 
-**period_start_date_time** | **datetime** | The start date and time of the billing period. | [optional] 
-**total_amount_incl_vat** | **float** | The total amount including VAT. | [optional] 
-**total_amount_excl_vat** | **float** | The total amount excluding VAT. | [optional] 
-**total_vat_amount** | **float** | The total VAT amount. | [optional] 
-**remaining_amount** | **float** | The remaining amount to be billed. | [optional] 
-**lines** | [**List[EstimatedInvoiceLineDTO]**](EstimatedInvoiceLineDTO.md) | List of line items in the estimated invoice. | [optional] 
-**advances** | [**List[EstimatedAdvancePeriodDTO]**](EstimatedAdvancePeriodDTO.md) | List of advance periods associated with this estimated invoice. | [optional] 
-**accuracy** | [**Level**](Level.md) | The accuracy level of this estimation. | [optional] 
+**debtor** | [**DebtorDTO**](DebtorDTO.md) |  | [optional] 
+**contract** | [**ContractReferenceDTO**](ContractReferenceDTO.md) |  | [optional] 
+**original_billing_completeness_id** | **str** |  | [optional] 
+**product** | [**ProductReferenceDTO**](ProductReferenceDTO.md) |  | [optional] 
+**calculation_date** | **datetime** |  | [optional] 
+**period_end_date_time** | **datetime** |  | [optional] 
+**period_start_date_time** | **datetime** |  | [optional] 
+**total_amount_incl_vat** | **float** |  | [optional] 
+**total_amount_excl_vat** | **float** |  | [optional] 
+**total_vat_amount** | **float** |  | [optional] 
+**remaining_amount** | **float** |  | [optional] 
+**lines** | [**List[EstimatedInvoiceLineDTO]**](EstimatedInvoiceLineDTO.md) |  | [optional] 
+**advances** | [**List[EstimatedAdvancePeriodDTO]**](EstimatedAdvancePeriodDTO.md) |  | [optional] 
+**accuracy** | [**Level**](Level.md) |  | [optional] 
+**organisation_id** | **str** |  | [optional] 
+**id** | **str** |  | [optional] 
+**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**created_date_time** | **datetime** |  | [optional] 
+**discriminator** | **str** |  | [optional] 
+**etag** | **str** |  | [optional] 
+**has_errors** | **bool** |  | [optional] 
+**is_read_only** | **bool** |  | [optional] 
 
 ## Example
 

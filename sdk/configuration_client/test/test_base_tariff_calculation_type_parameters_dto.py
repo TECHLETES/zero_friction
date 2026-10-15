@@ -35,10 +35,36 @@ class TestBaseTariffCalculationTypeParametersDTO(unittest.TestCase):
         model = BaseTariffCalculationTypeParametersDTO()
         if include_optional:
             return BaseTariffCalculationTypeParametersDTO(
-                calculation_type = 'unitprice'
+                type = 'volume',
+                calculation_type = 'unitprice',
+                slices = [
+                    configuration_client.models.tiered_slice_dto.TieredSliceDTO(
+                        from = 1.337, 
+                        formula_based = True, 
+                        input_parameters = [
+                            configuration_client.models.billing_tariff_input_dto.BillingTariffInputDTO(
+                                identifier = '', 
+                                input_type = 'none', 
+                                input_reference = '', 
+                                value = 1.337, )
+                            ], 
+                        unit_tariff = 1.337, 
+                        expression = '', )
+                    ],
+                formula_based = True,
+                input_parameters = [
+                    configuration_client.models.billing_tariff_input_dto.BillingTariffInputDTO(
+                        identifier = '', 
+                        input_type = 'none', 
+                        input_reference = '', 
+                        value = 1.337, )
+                    ],
+                unit_tariff = 1.337,
+                expression = ''
             )
         else:
             return BaseTariffCalculationTypeParametersDTO(
+                type = 'volume',
         )
         """
 

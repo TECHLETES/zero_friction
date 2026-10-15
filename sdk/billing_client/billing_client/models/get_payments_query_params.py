@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from billing_client.models.payment_rail import PaymentRail
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,15 +28,19 @@ class GetPaymentsQueryParams(BaseModel):
     """
     GetPaymentsQueryParams
     """ # noqa: E501
-    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
-    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
-    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
     payment_type: Optional[StrictStr] = Field(default=None, alias="paymentType")
     customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
     start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
     end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
-    batch_mutation_id: Optional[StrictStr] = Field(default=None, alias="batchMutationId")
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "paymentType", "customerId", "startDateTime", "endDateTime", "batchMutationId"]
+    psp_provider_account_zfh_id: Optional[StrictStr] = Field(default=None, alias="pspProviderAccountZfhId")
+    psp_requested_payment_rail: Optional[PaymentRail] = Field(default=None, alias="pspRequestedPaymentRail")
+    psp_refund_statuses: Optional[List[StrictStr]] = Field(default=None, alias="pspRefundStatuses")
+    prepayment_account_id: Optional[StrictStr] = Field(default=None, alias="prepaymentAccountId")
+    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
+    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
+    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["paymentType", "customerId", "startDateTime", "endDateTime", "pspProviderAccountZfhId", "pspRequestedPaymentRail", "pspRefundStatuses", "prepaymentAccountId", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,31 +81,6 @@ class GetPaymentsQueryParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if flex_search (nullable) is None
-        # and model_fields_set contains the field
-        if self.flex_search is None and "flex_search" in self.model_fields_set:
-            _dict['flexSearch'] = None
-
-        # set to None if include_only_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
-        # set to None if payment_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.payment_type is None and "payment_type" in self.model_fields_set:
-            _dict['paymentType'] = None
-
-        # set to None if customer_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.customer_id is None and "customer_id" in self.model_fields_set:
-            _dict['customerId'] = None
-
         # set to None if start_date_time (nullable) is None
         # and model_fields_set contains the field
         if self.start_date_time is None and "start_date_time" in self.model_fields_set:
@@ -111,10 +91,30 @@ class GetPaymentsQueryParams(BaseModel):
         if self.end_date_time is None and "end_date_time" in self.model_fields_set:
             _dict['endDateTime'] = None
 
-        # set to None if batch_mutation_id (nullable) is None
+        # set to None if psp_provider_account_zfh_id (nullable) is None
         # and model_fields_set contains the field
-        if self.batch_mutation_id is None and "batch_mutation_id" in self.model_fields_set:
-            _dict['batchMutationId'] = None
+        if self.psp_provider_account_zfh_id is None and "psp_provider_account_zfh_id" in self.model_fields_set:
+            _dict['pspProviderAccountZfhId'] = None
+
+        # set to None if psp_requested_payment_rail (nullable) is None
+        # and model_fields_set contains the field
+        if self.psp_requested_payment_rail is None and "psp_requested_payment_rail" in self.model_fields_set:
+            _dict['pspRequestedPaymentRail'] = None
+
+        # set to None if prepayment_account_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.prepayment_account_id is None and "prepayment_account_id" in self.model_fields_set:
+            _dict['prepaymentAccountId'] = None
+
+        # set to None if flex_search (nullable) is None
+        # and model_fields_set contains the field
+        if self.flex_search is None and "flex_search" in self.model_fields_set:
+            _dict['flexSearch'] = None
+
+        # set to None if page_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
 
         return _dict
 
@@ -128,14 +128,18 @@ class GetPaymentsQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
             "paymentType": obj.get("paymentType"),
             "customerId": obj.get("customerId"),
             "startDateTime": obj.get("startDateTime"),
             "endDateTime": obj.get("endDateTime"),
-            "batchMutationId": obj.get("batchMutationId")
+            "pspProviderAccountZfhId": obj.get("pspProviderAccountZfhId"),
+            "pspRequestedPaymentRail": obj.get("pspRequestedPaymentRail"),
+            "pspRefundStatuses": obj.get("pspRefundStatuses"),
+            "prepaymentAccountId": obj.get("prepaymentAccountId"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
 

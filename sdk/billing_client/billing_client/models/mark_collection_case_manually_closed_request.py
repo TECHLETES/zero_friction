@@ -25,10 +25,10 @@ from typing_extensions import Self
 
 class MarkCollectionCaseManuallyClosedRequest(BaseModel):
     """
-    Represents a request to manually close a collection case.  This DTO is used to close a collection case and optionally handle any associated fees.
+    MarkCollectionCaseManuallyClosedRequest
     """ # noqa: E501
-    write_off_fees: Optional[StrictBool] = Field(default=None, description="Indicates whether any collection fees should be written off when closing the case.", alias="writeOffFees")
-    write_off_handling_type: Optional[WriteOffHandlingType] = Field(default=None, description="Specifies how any collection fees should be handled when closing the case.  This is required when WriteOffFees is true.", alias="writeOffHandlingType")
+    write_off_fees: Optional[StrictBool] = Field(default=None, alias="writeOffFees")
+    write_off_handling_type: WriteOffHandlingType = Field(alias="writeOffHandlingType")
     __properties: ClassVar[List[str]] = ["writeOffFees", "writeOffHandlingType"]
 
     model_config = ConfigDict(
@@ -70,11 +70,6 @@ class MarkCollectionCaseManuallyClosedRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if write_off_handling_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.write_off_handling_type is None and "write_off_handling_type" in self.model_fields_set:
-            _dict['writeOffHandlingType'] = None
-
         return _dict
 
     @classmethod

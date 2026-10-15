@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PropertyGroupType(str, Enum):
     """
-    PropertyGroupType
+    Possible values: 'building', 'project'
     """
 
     """

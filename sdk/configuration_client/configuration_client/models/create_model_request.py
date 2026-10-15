@@ -27,9 +27,9 @@ class CreateModelRequest(BaseModel):
     """
     CreateModelRequest
     """ # noqa: E501
-    name: Optional[StrictStr] = None
+    name: Optional[StrictStr]
     description: Optional[StrictStr] = None
-    brand_name: Optional[StrictStr] = Field(default=None, alias="brandName")
+    brand_name: Optional[StrictStr] = Field(alias="brandName")
     channel_templates: Optional[List[ChannelTemplateRequest]] = Field(default=None, alias="channelTemplates")
     __properties: ClassVar[List[str]] = ["name", "description", "brandName", "channelTemplates"]
 

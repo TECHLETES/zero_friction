@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
+**invoice_address** | [**AddressDTO**](AddressDTO.md) |  | 
+**changed_by_portal** | **bool** |  | [optional] 
 
 ## Example
 

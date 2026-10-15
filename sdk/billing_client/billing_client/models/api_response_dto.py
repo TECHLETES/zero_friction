@@ -65,10 +65,8 @@ class ApiResponseDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "succeeded_entities_count",
         ])
 
         _dict = self.model_dump(
@@ -83,11 +81,6 @@ class ApiResponseDTO(BaseModel):
                 if _item_errors:
                     _items.append(_item_errors.to_dict())
             _dict['errors'] = _items
-        # set to None if errors (nullable) is None
-        # and model_fields_set contains the field
-        if self.errors is None and "errors" in self.model_fields_set:
-            _dict['errors'] = None
-
         return _dict
 
     @classmethod

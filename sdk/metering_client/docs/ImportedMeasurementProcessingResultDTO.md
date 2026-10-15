@@ -13,12 +13,15 @@ Name | Type | Description | Notes
 **direction** | [**Direction**](Direction.md) |  | [optional] 
 **unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
 **reading_date_time** | **datetime** |  | [optional] 
+**measurement_start_date_time** | **datetime** |  | [optional] 
 **time_of_use** | **str** |  | [optional] 
 **reading_value** | **float** |  | [optional] 
 **error_code** | **str** |  | [optional] 
 **line_number** | **int** |  | [optional] 
 **processed_on** | **datetime** |  | [optional] 
 **was_ignored** | **bool** |  | [optional] 
+**reading_origin** | [**MeasurementReadingOrigin**](MeasurementReadingOrigin.md) |  | [optional] 
+**reading_method** | [**MeasurementReadingMethod**](MeasurementReadingMethod.md) |  | [optional] 
 
 ## Example
 

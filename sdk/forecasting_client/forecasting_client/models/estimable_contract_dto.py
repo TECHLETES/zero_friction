@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from forecasting_client.models.contract_status import ContractStatus
 from forecasting_client.models.entity_subject_type import EntitySubjectType
 from forecasting_client.models.estimable_contracted_service_dto import EstimableContractedServiceDTO
+from forecasting_client.models.product_period_reference_dto import ProductPeriodReferenceDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,16 +31,6 @@ class EstimableContractDTO(BaseModel):
     """
     EstimableContractDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
     contract_status: Optional[ContractStatus] = Field(default=None, alias="contractStatus")
     supply_start_date_time: Optional[datetime] = Field(default=None, alias="supplyStartDateTime")
     supply_end_date_time: Optional[datetime] = Field(default=None, alias="supplyEndDateTime")
@@ -48,10 +39,19 @@ class EstimableContractDTO(BaseModel):
     contract_services: Optional[List[EstimableContractedServiceDTO]] = Field(default=None, alias="contractServices")
     calculation_years_in_progress: Optional[List[StrictInt]] = Field(default=None, alias="calculationYearsInProgress")
     customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
+    products: Optional[List[ProductPeriodReferenceDTO]] = None
     time_zone: Optional[StrictStr] = Field(default=None, alias="timeZone")
     is_estimation_in_progress: Optional[StrictBool] = Field(default=None, alias="isEstimationInProgress")
     is_invoice_estimation_in_progress: Optional[StrictBool] = Field(default=None, alias="isInvoiceEstimationInProgress")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "contractStatus", "supplyStartDateTime", "supplyEndDateTime", "supplyStartYear", "supplyEndYear", "contractServices", "calculationYearsInProgress", "customerId", "timeZone", "isEstimationInProgress", "isInvoiceEstimationInProgress"]
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["contractStatus", "supplyStartDateTime", "supplyEndDateTime", "supplyStartYear", "supplyEndYear", "contractServices", "calculationYearsInProgress", "customerId", "products", "timeZone", "isEstimationInProgress", "isInvoiceEstimationInProgress", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,10 +83,8 @@ class EstimableContractDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -101,36 +99,13 @@ class EstimableContractDTO(BaseModel):
                 if _item_contract_services:
                     _items.append(_item_contract_services.to_dict())
             _dict['contractServices'] = _items
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
-        # set to None if contract_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.contract_status is None and "contract_status" in self.model_fields_set:
-            _dict['contractStatus'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of each item in products (list)
+        _items = []
+        if self.products:
+            for _item_products in self.products:
+                if _item_products:
+                    _items.append(_item_products.to_dict())
+            _dict['products'] = _items
         # set to None if supply_end_year (nullable) is None
         # and model_fields_set contains the field
         if self.supply_end_year is None and "supply_end_year" in self.model_fields_set:
@@ -141,15 +116,15 @@ class EstimableContractDTO(BaseModel):
         if self.contract_services is None and "contract_services" in self.model_fields_set:
             _dict['contractServices'] = None
 
-        # set to None if calculation_years_in_progress (nullable) is None
-        # and model_fields_set contains the field
-        if self.calculation_years_in_progress is None and "calculation_years_in_progress" in self.model_fields_set:
-            _dict['calculationYearsInProgress'] = None
-
         # set to None if customer_id (nullable) is None
         # and model_fields_set contains the field
         if self.customer_id is None and "customer_id" in self.model_fields_set:
             _dict['customerId'] = None
+
+        # set to None if products (nullable) is None
+        # and model_fields_set contains the field
+        if self.products is None and "products" in self.model_fields_set:
+            _dict['products'] = None
 
         # set to None if time_zone (nullable) is None
         # and model_fields_set contains the field
@@ -168,16 +143,6 @@ class EstimableContractDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "contractStatus": obj.get("contractStatus"),
             "supplyStartDateTime": obj.get("supplyStartDateTime"),
             "supplyEndDateTime": obj.get("supplyEndDateTime"),
@@ -186,9 +151,18 @@ class EstimableContractDTO(BaseModel):
             "contractServices": [EstimableContractedServiceDTO.from_dict(_item) for _item in obj["contractServices"]] if obj.get("contractServices") is not None else None,
             "calculationYearsInProgress": obj.get("calculationYearsInProgress"),
             "customerId": obj.get("customerId"),
+            "products": [ProductPeriodReferenceDTO.from_dict(_item) for _item in obj["products"]] if obj.get("products") is not None else None,
             "timeZone": obj.get("timeZone"),
             "isEstimationInProgress": obj.get("isEstimationInProgress"),
-            "isInvoiceEstimationInProgress": obj.get("isInvoiceEstimationInProgress")
+            "isInvoiceEstimationInProgress": obj.get("isInvoiceEstimationInProgress"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

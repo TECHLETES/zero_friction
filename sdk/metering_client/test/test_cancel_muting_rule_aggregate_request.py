@@ -44,6 +44,8 @@ class TestCancelMutingRuleAggregateRequest(unittest.TestCase):
             )
         else:
             return CancelMutingRuleAggregateRequest(
+                error_type = 'consumptionnegative',
+                time_period = 'day',
         )
         """
 

@@ -23,6 +23,9 @@ from typing import Any, ClassVar, Dict, List, Optional, Union
 from metering_client.models.data_frequency import DataFrequency
 from metering_client.models.direction import Direction
 from metering_client.models.incrementation_type import IncrementationType
+from metering_client.models.measurement_origin_details_dto_metering_import_job_origin_details_dto import MeasurementOriginDetailsDTOMeteringImportJobOriginDetailsDTO
+from metering_client.models.measurement_reading_method import MeasurementReadingMethod
+from metering_client.models.measurement_reading_origin import MeasurementReadingOrigin
 from metering_client.models.metering_type import MeteringType
 from metering_client.models.unit_of_measure import UnitOfMeasure
 from metering_client.models.utility_type import UtilityType
@@ -39,6 +42,7 @@ class ExportMeasurementDTO(BaseModel):
     meter_tag: Optional[StrictStr] = Field(default=None, alias="meterTag")
     operation_id: Optional[StrictStr] = Field(default=None, alias="operationId")
     value: Optional[Union[StrictFloat, StrictInt]] = None
+    start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
     end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
     deleted: Optional[StrictBool] = None
     data_frequency: Optional[DataFrequency] = Field(default=None, alias="dataFrequency")
@@ -50,7 +54,10 @@ class ExportMeasurementDTO(BaseModel):
     time_of_use: Optional[StrictStr] = Field(default=None, alias="timeOfUse")
     property_group_name: Optional[StrictStr] = Field(default=None, alias="propertyGroupName")
     property_group_id: Optional[StrictStr] = Field(default=None, alias="propertyGroupId")
-    __properties: ClassVar[List[str]] = ["id", "externalChannelIdentifier", "meterSerialNumber", "meterTag", "operationId", "value", "endDateTime", "deleted", "dataFrequency", "incrementationType", "meteringType", "utilityType", "direction", "unitOfMeasure", "timeOfUse", "propertyGroupName", "propertyGroupId"]
+    reading_origin: Optional[MeasurementReadingOrigin] = Field(default=None, alias="readingOrigin")
+    reading_method: Optional[MeasurementReadingMethod] = Field(default=None, alias="readingMethod")
+    origin_details: Optional[MeasurementOriginDetailsDTOMeteringImportJobOriginDetailsDTO] = Field(default=None, alias="originDetails")
+    __properties: ClassVar[List[str]] = ["id", "externalChannelIdentifier", "meterSerialNumber", "meterTag", "operationId", "value", "startDateTime", "endDateTime", "deleted", "dataFrequency", "incrementationType", "meteringType", "utilityType", "direction", "unitOfMeasure", "timeOfUse", "propertyGroupName", "propertyGroupId", "readingOrigin", "readingMethod", "originDetails"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,6 +98,9 @@ class ExportMeasurementDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of origin_details
+        if self.origin_details:
+            _dict['originDetails'] = self.origin_details.to_dict()
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
         if self.id is None and "id" in self.model_fields_set:
@@ -116,35 +126,10 @@ class ExportMeasurementDTO(BaseModel):
         if self.operation_id is None and "operation_id" in self.model_fields_set:
             _dict['operationId'] = None
 
-        # set to None if data_frequency (nullable) is None
+        # set to None if start_date_time (nullable) is None
         # and model_fields_set contains the field
-        if self.data_frequency is None and "data_frequency" in self.model_fields_set:
-            _dict['dataFrequency'] = None
-
-        # set to None if incrementation_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.incrementation_type is None and "incrementation_type" in self.model_fields_set:
-            _dict['incrementationType'] = None
-
-        # set to None if metering_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.metering_type is None and "metering_type" in self.model_fields_set:
-            _dict['meteringType'] = None
-
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if direction (nullable) is None
-        # and model_fields_set contains the field
-        if self.direction is None and "direction" in self.model_fields_set:
-            _dict['direction'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
+        if self.start_date_time is None and "start_date_time" in self.model_fields_set:
+            _dict['startDateTime'] = None
 
         # set to None if time_of_use (nullable) is None
         # and model_fields_set contains the field
@@ -160,6 +145,16 @@ class ExportMeasurementDTO(BaseModel):
         # and model_fields_set contains the field
         if self.property_group_id is None and "property_group_id" in self.model_fields_set:
             _dict['propertyGroupId'] = None
+
+        # set to None if reading_origin (nullable) is None
+        # and model_fields_set contains the field
+        if self.reading_origin is None and "reading_origin" in self.model_fields_set:
+            _dict['readingOrigin'] = None
+
+        # set to None if reading_method (nullable) is None
+        # and model_fields_set contains the field
+        if self.reading_method is None and "reading_method" in self.model_fields_set:
+            _dict['readingMethod'] = None
 
         return _dict
 
@@ -179,6 +174,7 @@ class ExportMeasurementDTO(BaseModel):
             "meterTag": obj.get("meterTag"),
             "operationId": obj.get("operationId"),
             "value": obj.get("value"),
+            "startDateTime": obj.get("startDateTime"),
             "endDateTime": obj.get("endDateTime"),
             "deleted": obj.get("deleted"),
             "dataFrequency": obj.get("dataFrequency"),
@@ -189,7 +185,10 @@ class ExportMeasurementDTO(BaseModel):
             "unitOfMeasure": obj.get("unitOfMeasure"),
             "timeOfUse": obj.get("timeOfUse"),
             "propertyGroupName": obj.get("propertyGroupName"),
-            "propertyGroupId": obj.get("propertyGroupId")
+            "propertyGroupId": obj.get("propertyGroupId"),
+            "readingOrigin": obj.get("readingOrigin"),
+            "readingMethod": obj.get("readingMethod"),
+            "originDetails": MeasurementOriginDetailsDTOMeteringImportJobOriginDetailsDTO.from_dict(obj["originDetails"]) if obj.get("originDetails") is not None else None
         })
         return _obj
 

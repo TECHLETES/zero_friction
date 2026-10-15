@@ -35,16 +35,6 @@ class TestMutingRuleDTO(unittest.TestCase):
         model = MutingRuleDTO()
         if include_optional:
             return MutingRuleDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 error_type = 'consumptionnegative',
                 message = '',
                 time_period = 'day',
@@ -53,7 +43,15 @@ class TestMutingRuleDTO(unittest.TestCase):
                 meter_id = '',
                 mute_from_with_numeric_value = 56,
                 mute_until_with_numeric_value = 56,
-                user_id = ''
+                user_id = '',
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return MutingRuleDTO(

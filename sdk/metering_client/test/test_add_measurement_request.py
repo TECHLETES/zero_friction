@@ -35,15 +35,21 @@ class TestAddMeasurementRequest(unittest.TestCase):
         model = AddMeasurementRequest()
         if include_optional:
             return AddMeasurementRequest(
+                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 value = 1.337,
                 external_channel_identifier = '',
                 meter_id = '',
                 skip_validation = True,
-                resolve_issues_manually = True
+                resolve_issues_manually = True,
+                reading_origin = 'device',
+                reading_method = 'automatic'
             )
         else:
             return AddMeasurementRequest(
+                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                external_channel_identifier = '',
+                meter_id = '',
         )
         """
 

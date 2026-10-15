@@ -35,16 +35,6 @@ class TestEstimableContractDTO(unittest.TestCase):
         model = EstimableContractDTO()
         if include_optional:
             return EstimableContractDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 contract_status = 'draft',
                 supply_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 supply_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
@@ -54,9 +44,9 @@ class TestEstimableContractDTO(unittest.TestCase):
                     forecasting_client.models.estimable_contracted_service_dto.EstimableContractedServiceDTO(
                         service_location_id = '', 
                         property_group_id = '', 
-                        utility_type = null, 
-                        metering_type = null, 
-                        unit_of_measure = null, 
+                        utility_type = 'none', 
+                        metering_type = 'none', 
+                        unit_of_measure = 'none', 
                         external_identifier = '', 
                         consumer_group_id = '', 
                         supply_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -67,7 +57,7 @@ class TestEstimableContractDTO(unittest.TestCase):
                             forecasting_client.models.estimated_annual_volume_dto.EstimatedAnnualVolumeDTO(
                                 year = 56, 
                                 value = 1.337, 
-                                origin = null, 
+                                origin = 'manual', 
                                 last_recalculated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                             ], )
                     ],
@@ -75,9 +65,24 @@ class TestEstimableContractDTO(unittest.TestCase):
                     56
                     ],
                 customer_id = '',
+                products = [
+                    forecasting_client.models.product_period_reference_dto.ProductPeriodReferenceDTO(
+                        product_id = '', 
+                        product_name = '', 
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                    ],
                 time_zone = '',
                 is_estimation_in_progress = True,
-                is_invoice_estimation_in_progress = True
+                is_invoice_estimation_in_progress = True,
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return EstimableContractDTO(

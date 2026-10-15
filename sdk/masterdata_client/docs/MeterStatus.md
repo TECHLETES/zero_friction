@@ -1,5 +1,6 @@
 # MeterStatus
 
+Possible values: 'requested', 'installed', 'removed'
 
 ## Enum
 

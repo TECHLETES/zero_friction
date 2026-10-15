@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **start_date_time** | **datetime** |  | [optional] 
 **end_date_time** | **datetime** |  | [optional] 
 **value** | **float** |  | [optional] 
+**time_of_use** | **str** |  | [optional] 
 
 ## Example
 

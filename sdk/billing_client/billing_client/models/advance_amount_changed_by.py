@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AdvanceAmountChangedBy(str, Enum):
     """
-    AdvanceAmountChangedBy
+    Possible values: 'systeminvoicecalculation', 'customer', 'customerservicerepresentative'
     """
 
     """

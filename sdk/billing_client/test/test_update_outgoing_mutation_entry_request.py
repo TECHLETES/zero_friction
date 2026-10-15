@@ -41,6 +41,8 @@ class TestUpdateOutgoingMutationEntryRequest(unittest.TestCase):
             )
         else:
             return UpdateOutgoingMutationEntryRequest(
+                amount = 1.337,
+                payment_reference = '',
         )
         """
 

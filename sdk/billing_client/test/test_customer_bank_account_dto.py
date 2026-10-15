@@ -35,36 +35,36 @@ class TestCustomerBankAccountDTO(unittest.TestCase):
         model = CustomerBankAccountDTO()
         if include_optional:
             return CustomerBankAccountDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 customer_id = '',
                 active_mandate = billing_client.models.customer_mandate_dto.CustomerMandateDTO(
                     number = '', 
                     signed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     cancelled_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    type = null, 
-                    status = null, ),
+                    type = 'core', 
+                    status = 'requested', 
+                    company_bank_account_id = '', ),
                 customer_mandates = [
                     billing_client.models.customer_mandate_dto.CustomerMandateDTO(
                         number = '', 
                         signed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         cancelled_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        type = null, 
-                        status = null, )
+                        type = 'core', 
+                        status = 'requested', 
+                        company_bank_account_id = '', )
                     ],
                 iban = '',
                 bic = '',
                 added_from_incoming_banking_transaction = True,
                 is_default = True,
-                last_used_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                last_used_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return CustomerBankAccountDTO(

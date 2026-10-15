@@ -39,6 +39,7 @@ class TestSearchCustomerRequest(unittest.TestCase):
             )
         else:
             return SearchCustomerRequest(
+                name = '',
         )
         """
 

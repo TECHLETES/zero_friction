@@ -48,6 +48,16 @@ class TestMeteringImportIssuesCountDTO(unittest.TestCase):
             )
         else:
             return MeteringImportIssuesCountDTO(
+                invalid_format_errors = [
+                    metering_client.models.error_code_count.ErrorCodeCount(
+                        error_code = '', 
+                        count = 56, )
+                    ],
+                invalid_data_errors = [
+                    metering_client.models.error_code_count.ErrorCodeCount(
+                        error_code = '', 
+                        count = 56, )
+                    ],
         )
         """
 

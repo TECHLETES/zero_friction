@@ -42,6 +42,10 @@ class TestMergePdfRequest(unittest.TestCase):
             )
         else:
             return MergePdfRequest(
+                attachment_ids = [
+                    ''
+                    ],
+                resulting_file_name = '',
         )
         """
 

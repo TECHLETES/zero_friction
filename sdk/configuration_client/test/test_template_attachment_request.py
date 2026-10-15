@@ -41,6 +41,9 @@ class TestTemplateAttachmentRequest(unittest.TestCase):
             )
         else:
             return TemplateAttachmentRequest(
+                id = '',
+                internal_file_path = '',
+                file_name = '',
         )
         """
 

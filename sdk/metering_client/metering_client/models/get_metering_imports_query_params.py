@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,15 +27,16 @@ class GetMeteringImportsQueryParams(BaseModel):
     """
     GetMeteringImportsQueryParams
     """ # noqa: E501
-    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
-    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
-    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
     status: Optional[List[StrictStr]] = None
     communication_type: Optional[StrictStr] = Field(default=None, alias="communicationType")
     metering_format: Optional[StrictStr] = Field(default=None, alias="meteringFormat")
     created_start_date_time: Optional[datetime] = Field(default=None, alias="createdStartDateTime")
     created_end_date_time: Optional[datetime] = Field(default=None, alias="createdEndDateTime")
-    __properties: ClassVar[List[str]] = ["flexSearch", "includeOnlyIds", "excludeIds", "status", "communicationType", "meteringFormat", "createdStartDateTime", "createdEndDateTime"]
+    flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
+    include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
+    exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
+    page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
+    __properties: ClassVar[List[str]] = ["status", "communicationType", "meteringFormat", "createdStartDateTime", "createdEndDateTime", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,36 +77,6 @@ class GetMeteringImportsQueryParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if flex_search (nullable) is None
-        # and model_fields_set contains the field
-        if self.flex_search is None and "flex_search" in self.model_fields_set:
-            _dict['flexSearch'] = None
-
-        # set to None if include_only_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.include_only_ids is None and "include_only_ids" in self.model_fields_set:
-            _dict['includeOnlyIds'] = None
-
-        # set to None if exclude_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.exclude_ids is None and "exclude_ids" in self.model_fields_set:
-            _dict['excludeIds'] = None
-
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
-
-        # set to None if communication_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.communication_type is None and "communication_type" in self.model_fields_set:
-            _dict['communicationType'] = None
-
-        # set to None if metering_format (nullable) is None
-        # and model_fields_set contains the field
-        if self.metering_format is None and "metering_format" in self.model_fields_set:
-            _dict['meteringFormat'] = None
-
         # set to None if created_start_date_time (nullable) is None
         # and model_fields_set contains the field
         if self.created_start_date_time is None and "created_start_date_time" in self.model_fields_set:
@@ -115,6 +86,16 @@ class GetMeteringImportsQueryParams(BaseModel):
         # and model_fields_set contains the field
         if self.created_end_date_time is None and "created_end_date_time" in self.model_fields_set:
             _dict['createdEndDateTime'] = None
+
+        # set to None if flex_search (nullable) is None
+        # and model_fields_set contains the field
+        if self.flex_search is None and "flex_search" in self.model_fields_set:
+            _dict['flexSearch'] = None
+
+        # set to None if page_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
 
         return _dict
 
@@ -128,14 +109,15 @@ class GetMeteringImportsQueryParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "flexSearch": obj.get("flexSearch"),
-            "includeOnlyIds": obj.get("includeOnlyIds"),
-            "excludeIds": obj.get("excludeIds"),
             "status": obj.get("status"),
             "communicationType": obj.get("communicationType"),
             "meteringFormat": obj.get("meteringFormat"),
             "createdStartDateTime": obj.get("createdStartDateTime"),
-            "createdEndDateTime": obj.get("createdEndDateTime")
+            "createdEndDateTime": obj.get("createdEndDateTime"),
+            "flexSearch": obj.get("flexSearch"),
+            "includeOnlyIds": obj.get("includeOnlyIds"),
+            "excludeIds": obj.get("excludeIds"),
+            "pageSize": obj.get("pageSize")
         })
         return _obj
 

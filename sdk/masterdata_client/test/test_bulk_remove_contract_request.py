@@ -37,6 +37,21 @@ class TestBulkRemoveContractRequest(unittest.TestCase):
             return BulkRemoveContractRequest(
                 only_validate = True,
                 var_query_params = masterdata_client.models.get_contracts_query_params.GetContractsQueryParams(
+                    service_location_id = '', 
+                    property_group_ids = [
+                        ''
+                        ], 
+                    utility_types = [
+                        ''
+                        ], 
+                    customer_group_id = '', 
+                    customer_id = '', 
+                    customer_type = '', 
+                    product_id = '', 
+                    product_ids = [
+                        ''
+                        ], 
+                    exclude_terminated_contracts = True, 
                     flex_search = '', 
                     include_only_ids = [
                         ''
@@ -44,15 +59,7 @@ class TestBulkRemoveContractRequest(unittest.TestCase):
                     exclude_ids = [
                         ''
                         ], 
-                    service_location_id = '', 
-                    property_group_ids = [
-                        ''
-                        ], 
-                    customer_group_id = '', 
-                    customer_id = '', 
-                    customer_type = '', 
-                    product_id = '', 
-                    exclude_terminated_contracts = True, ),
+                    page_size = 56, ),
                 quick_filter = ''
             )
         else:

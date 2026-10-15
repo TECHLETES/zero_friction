@@ -37,10 +37,12 @@ class TestTriggerBillingCompletenessRequest(unittest.TestCase):
             return TriggerBillingCompletenessRequest(
                 only_advances = True,
                 recalculate_if_needed = True,
-                advance_until_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                advance_until_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                override_estimated_measurement_creation = True
             )
         else:
             return TriggerBillingCompletenessRequest(
+                advance_until_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

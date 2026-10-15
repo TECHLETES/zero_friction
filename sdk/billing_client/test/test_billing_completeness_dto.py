@@ -35,32 +35,26 @@ class TestBillingCompletenessDTO(unittest.TestCase):
         model = BillingCompletenessDTO()
         if include_optional:
             return BillingCompletenessDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 contract_id = '',
                 contract_num = '',
                 debtor = billing_client.models.debtor_dto.DebtorDTO(
                     customer_id = '', 
                     display_name = '', 
                     customer_account_number = '', 
-                    customer_type = null, 
-                    customer_group = null, ),
+                    customer_type = 'person', 
+                    customer_group = billing_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
+                        id = '', 
+                        name = '', ), ),
                 billing_relation_id = '',
                 period_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 period_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 status = 'waiting',
                 input_missing_details = billing_client.models.input_missing_details_dto.InputMissingDetailsDTO(
-                    reason = null, 
+                    reason = 'unknown', 
                     extra_info = '', ),
                 has_corrections = True,
+                billing_method = 'credit',
+                statement_type = 'regular',
                 invoice_type = 'advance',
                 blocked = True,
                 required_quantities_grouped = billing_client.models.required_quantity_grouped_dto.RequiredQuantityGroupedDTO(
@@ -68,35 +62,7 @@ class TestBillingCompletenessDTO(unittest.TestCase):
                         billing_client.models.required_quantity_contract_grouped_dto.RequiredQuantityContractGroupedDTO(
                             billing_item_id = '', 
                             required_quantities = [
-                                billing_client.models.required_quantity_dto.RequiredQuantityDTO(
-                                    billing_item_id = '', 
-                                    service_location_id = '', 
-                                    calculation_group_id = '', 
-                                    complete = True, 
-                                    errors = [
-                                        billing_client.models.localised_error_dto.LocalisedErrorDTO(
-                                            key = null, 
-                                            correlation_id = '', 
-                                            message = '', 
-                                            message_values = [
-                                                billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                                    data_type = null, 
-                                                    value = '', 
-                                                    capitalize = True, )
-                                                ], )
-                                        ], 
-                                    validation_errors = [
-                                        billing_client.models.required_quantity_validation_error_dto.RequiredQuantityValidationErrorDTO(
-                                            reason = null, 
-                                            error = null, 
-                                            problem_entity = null, 
-                                            impacted_entity = null, 
-                                            related_entities = [
-                                                billing_client.models.related_entity_dto.RelatedEntityDTO(
-                                                    entity_subject_type = null, 
-                                                    entity_subject_id = '', )
-                                                ], )
-                                        ], )
+                                billing_client.models.required_quantity_dto.RequiredQuantityDTO()
                                 ], )
                         ], 
                     location_required_quantities = [
@@ -108,16 +74,17 @@ class TestBillingCompletenessDTO(unittest.TestCase):
                         start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         advance_amount_excl_vat = 1.337, 
+                        advance_amount_incl_vat = 1.337, 
                         invoice_id = '', 
                         invoice_num = '', 
                         invoice_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        sent_status = null, 
+                        sent_status = 'notsent', 
                         paid = True, 
                         automatically_deleted = True, 
-                        manually_deleted = True, )
+                        manually_deleted = True, 
+                        blocked_reason = 'estimatedinvoicemissing', )
                     ],
                 expect_advances_to_be_imported_periodically = True,
-                cost_allocation_billable = True,
                 invoicing_upfront = True,
                 invoicing_checkpoint_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 product_id = '',
@@ -125,7 +92,17 @@ class TestBillingCompletenessDTO(unittest.TestCase):
                     billing_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
                         id = '', 
                         name = '', )
-                    ]
+                    ],
+                get_detail_navigation_id = '',
+                get_detail_navigation_type = None,
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return BillingCompletenessDTO(

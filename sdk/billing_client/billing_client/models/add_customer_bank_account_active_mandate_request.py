@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from billing_client.models.mandate_type import MandateType
 from typing import Optional, Set
@@ -26,11 +26,12 @@ from typing_extensions import Self
 
 class AddCustomerBankAccountActiveMandateRequest(BaseModel):
     """
-    Represents the mandate information for a customer's bank account.  This DTO contains details about the mandate that authorizes direct debit transactions.
+    AddCustomerBankAccountActiveMandateRequest
     """ # noqa: E501
-    type: Optional[MandateType] = Field(default=None, description="The type of mandate (e.g., CORE, B2B).  Currently only CORE mandates are supported.")
-    signed_date_time: Optional[datetime] = Field(default=None, description="The date and time when the mandate was signed by the customer.", alias="signedDateTime")
-    __properties: ClassVar[List[str]] = ["type", "signedDateTime"]
+    type: MandateType
+    signed_date_time: Optional[datetime] = Field(default=None, alias="signedDateTime")
+    company_bank_account_id: Optional[StrictStr] = Field(default=None, alias="companyBankAccountId")
+    __properties: ClassVar[List[str]] = ["type", "signedDateTime", "companyBankAccountId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,10 +72,10 @@ class AddCustomerBankAccountActiveMandateRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if type (nullable) is None
+        # set to None if company_bank_account_id (nullable) is None
         # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
+        if self.company_bank_account_id is None and "company_bank_account_id" in self.model_fields_set:
+            _dict['companyBankAccountId'] = None
 
         return _dict
 
@@ -89,7 +90,8 @@ class AddCustomerBankAccountActiveMandateRequest(BaseModel):
 
         _obj = cls.model_validate({
             "type": obj.get("type"),
-            "signedDateTime": obj.get("signedDateTime")
+            "signedDateTime": obj.get("signedDateTime"),
+            "companyBankAccountId": obj.get("companyBankAccountId")
         })
         return _obj
 

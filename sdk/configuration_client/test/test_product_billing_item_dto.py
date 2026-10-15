@@ -37,8 +37,7 @@ class TestProductBillingItemDTO(unittest.TestCase):
             return ProductBillingItemDTO(
                 billing_item_id = '',
                 order = 56,
-                periodicity_parameters = configuration_client.models.product_item_periodicity_parameters_dto.ProductItemPeriodicityParametersDTO(
-                    periodicity_type = null, ),
+                periodicity_parameters = configuration_client.models.product_item_periodicity_parameters_dto.ProductItemPeriodicityParametersDTO(),
                 start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )

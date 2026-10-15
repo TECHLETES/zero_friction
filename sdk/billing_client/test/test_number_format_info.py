@@ -70,7 +70,7 @@ class TestNumberFormatInfo(unittest.TestCase):
                 native_digits = [
                     ''
                     ],
-                digit_substitution = 'Context'
+                digit_substitution = 56
             )
         else:
             return NumberFormatInfo(

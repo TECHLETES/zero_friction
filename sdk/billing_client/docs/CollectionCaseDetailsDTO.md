@@ -1,22 +1,21 @@
 # CollectionCaseDetailsDTO
 
-Represents detailed information about a collection case.  Contains information about the case's workflow, current status, and step progression.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**collection_case_id** | **str** | The unique identifier of the collection case. | [optional] 
-**closed** | **bool** | Indicates whether the collection case is closed. | [optional] 
-**workflow_id** | **str** | The unique identifier of the workflow associated with this collection case. | [optional] 
-**workflow_name** | **str** | The name of the workflow associated with this collection case. | [optional] 
-**previous_step_id** | **str** | The unique identifier of the previous step in the collection workflow. | [optional] 
-**previous_step_name** | **str** | The name of the previous step in the collection workflow. | [optional] 
-**previous_step_executed_at** | **datetime** | The date and time when the previous step was executed. | [optional] 
-**previous_step_status** | [**CollectionStepStatus**](CollectionStepStatus.md) | The status of the previous step in the collection workflow. | [optional] 
-**next_step_id** | **str** | The unique identifier of the next step in the collection workflow. | [optional] 
-**next_step_name** | **str** | The name of the next step in the collection workflow. | [optional] 
-**next_step_execution_date** | **datetime** | The scheduled date and time for executing the next step. | [optional] 
+**collection_case_id** | **str** |  | [optional] 
+**closed** | **bool** |  | [optional] 
+**workflow_id** | **str** |  | [optional] 
+**workflow_name** | **str** |  | [optional] 
+**previous_step_id** | **str** |  | [optional] 
+**previous_step_name** | **str** |  | [optional] 
+**previous_step_executed_at** | **datetime** |  | [optional] 
+**previous_step_status** | [**CollectionStepStatus**](CollectionStepStatus.md) |  | [optional] 
+**next_step_id** | **str** |  | [optional] 
+**next_step_name** | **str** |  | [optional] 
+**next_step_execution_date** | **datetime** |  | [optional] 
 
 ## Example
 

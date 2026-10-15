@@ -29,7 +29,8 @@ class ServiceLocationOverviewCountDTO(BaseModel):
     all: Optional[StrictInt] = None
     supplied: Optional[StrictInt] = None
     unsupplied: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["all", "supplied", "unsupplied"]
+    archived: Optional[StrictInt] = None
+    __properties: ClassVar[List[str]] = ["all", "supplied", "unsupplied", "archived"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,7 +85,8 @@ class ServiceLocationOverviewCountDTO(BaseModel):
         _obj = cls.model_validate({
             "all": obj.get("all"),
             "supplied": obj.get("supplied"),
-            "unsupplied": obj.get("unsupplied")
+            "unsupplied": obj.get("unsupplied"),
+            "archived": obj.get("archived")
         })
         return _obj
 

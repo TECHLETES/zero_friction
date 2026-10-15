@@ -1,5 +1,6 @@
 # MeteringIssueResolutionType
 
+Possible values: 'manual', 'automatic'
 
 ## Enum
 

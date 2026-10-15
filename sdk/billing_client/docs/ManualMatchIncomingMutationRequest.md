@@ -1,15 +1,14 @@
 # ManualMatchIncomingMutationRequest
 
-Represents a request to manually match an incoming banking transaction with outgoing transactions or a customer.  This DTO allows for flexible matching scenarios including direct transaction matching, customer-based matching,  or matching with specific outgoing transactions.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**outgoing_banking_transaction_id** | **str** | The ID of the outgoing banking transaction to match with.  This field must be empty if other matching criteria are provided. | [optional] 
-**outgoing_mutation_id** | **str** | The ID of the outgoing mutation to match with.  This field must be empty if other matching criteria are provided. | [optional] 
-**customer_id** | **str** | The ID of the customer to match with.  This field must be empty if other matching criteria are provided. | [optional] 
-**matching_transactions** | [**List[MatchingTransactionRequest]**](MatchingTransactionRequest.md) | A list of transactions to match with their respective settlement amounts.  This field must be empty if other matching criteria are provided. | [optional] 
+**outgoing_banking_transaction_id** | **str** |  | [optional] 
+**outgoing_mutation_id** | **str** |  | [optional] 
+**customer_id** | **str** |  | [optional] 
+**matching_transactions** | [**List[MatchingTransactionRequest]**](MatchingTransactionRequest.md) |  | [optional] 
 
 ## Example
 

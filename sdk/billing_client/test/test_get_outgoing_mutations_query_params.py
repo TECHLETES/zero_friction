@@ -35,6 +35,9 @@ class TestGetOutgoingMutationsQueryParams(unittest.TestCase):
         model = GetOutgoingMutationsQueryParams()
         if include_optional:
             return GetOutgoingMutationsQueryParams(
+                outgoing_banking_transaction_id = '',
+                status = '',
+                reference_type = '',
                 flex_search = '',
                 include_only_ids = [
                     ''
@@ -42,9 +45,7 @@ class TestGetOutgoingMutationsQueryParams(unittest.TestCase):
                 exclude_ids = [
                     ''
                     ],
-                outgoing_banking_transaction_id = '',
-                status = '',
-                reference_type = ''
+                page_size = 56
             )
         else:
             return GetOutgoingMutationsQueryParams(

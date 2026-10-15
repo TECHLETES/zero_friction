@@ -5,14 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
 **external_channel_identifier** | **str** |  | [optional] 
 **start_date_time** | **datetime** |  | [optional] 
 **end_date_time** | **datetime** |  | [optional] 
 **show_invalid** | **bool** |  | [optional] 
 **data_frequency** | [**DataFrequency**](DataFrequency.md) |  | [optional] 
+**flex_search** | **str** |  | [optional] 
+**include_only_ids** | **List[str]** |  | [optional] 
+**exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

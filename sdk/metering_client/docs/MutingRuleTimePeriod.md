@@ -1,5 +1,6 @@
 # MutingRuleTimePeriod
 
+Possible values: 'day', 'week', 'month'
 
 ## Enum
 

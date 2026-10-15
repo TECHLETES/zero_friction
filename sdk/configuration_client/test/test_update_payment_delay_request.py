@@ -35,11 +35,13 @@ class TestUpdatePaymentDelayRequest(unittest.TestCase):
         model = UpdatePaymentDelayRequest()
         if include_optional:
             return UpdatePaymentDelayRequest(
+                invoice_type = 'advance',
                 payment_delay = 'delayuntilfixeddayofmonth',
                 value = 56
             )
         else:
             return UpdatePaymentDelayRequest(
+                payment_delay = 'delayuntilfixeddayofmonth',
         )
         """
 

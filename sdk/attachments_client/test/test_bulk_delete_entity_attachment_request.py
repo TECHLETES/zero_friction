@@ -35,16 +35,8 @@ class TestBulkDeleteEntityAttachmentRequest(unittest.TestCase):
         model = BulkDeleteEntityAttachmentRequest()
         if include_optional:
             return BulkDeleteEntityAttachmentRequest(
-                customer_id = '',
                 only_validate = True,
                 var_query_params = attachments_client.models.get_entity_attachment_query_params.GetEntityAttachmentQueryParams(
-                    flex_search = '', 
-                    include_only_ids = [
-                        ''
-                        ], 
-                    exclude_ids = [
-                        ''
-                        ], 
                     customer_id = '', 
                     contract_id = '', 
                     viewed = True, 
@@ -52,8 +44,17 @@ class TestBulkDeleteEntityAttachmentRequest(unittest.TestCase):
                         ''
                         ], 
                     created_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    created_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
-                quick_filter = ''
+                    created_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    flex_search = '', 
+                    include_only_ids = [
+                        ''
+                        ], 
+                    exclude_ids = [
+                        ''
+                        ], 
+                    page_size = 56, ),
+                quick_filter = '',
+                customer_id = ''
             )
         else:
             return BulkDeleteEntityAttachmentRequest(

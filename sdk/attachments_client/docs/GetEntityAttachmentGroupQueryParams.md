@@ -5,9 +5,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
 **subject_type** | **str** |  | [optional] 
 **subject_id** | **str** |  | [optional] 
 **viewed** | **bool** |  | [optional] 
@@ -15,6 +12,10 @@ Name | Type | Description | Notes
 **created_start_date_time** | **datetime** |  | [optional] 
 **created_end_date_time** | **datetime** |  | [optional] 
 **validity_date** | **datetime** |  | [optional] 
+**flex_search** | **str** |  | [optional] 
+**include_only_ids** | **List[str]** |  | [optional] 
+**exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

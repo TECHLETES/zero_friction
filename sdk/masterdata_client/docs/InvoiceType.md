@@ -1,5 +1,6 @@
 # InvoiceType
 
+Possible values: 'advance', 'invoice', 'endnote', 'creditnote', 'incidentalnote', 'correctionnote'
 
 ## Enum
 

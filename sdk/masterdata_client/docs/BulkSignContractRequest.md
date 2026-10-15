@@ -5,11 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mutation_date_time** | **datetime** |  | [optional] 
-**keep_existing_invoice_on_end_date** | **bool** | When this flag is set, if an invoice exists with the end date equal to the move-out date,  no credit note shall be created. | [optional] 
 **only_validate** | **bool** |  | [optional] 
 **var_query_params** | [**GetContractsQueryParams**](GetContractsQueryParams.md) |  | [optional] 
 **quick_filter** | **str** |  | [optional] 
+**mutation_date_time** | **datetime** |  | [optional] 
+**keep_existing_invoice_on_end_date** | **bool** |  | [optional] 
+**create_billing_completenesses_from_existing_invoices** | **bool** |  | [optional] 
 
 ## Example
 

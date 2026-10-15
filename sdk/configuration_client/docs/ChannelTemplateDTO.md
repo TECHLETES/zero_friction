@@ -13,6 +13,9 @@ Name | Type | Description | Notes
 **unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
 **time_of_use** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
+**reset_day** | **int** |  | [optional] 
+**reset_month** | **int** |  | [optional] 
+**reset_hour** | **int** |  | [optional] 
 
 ## Example
 

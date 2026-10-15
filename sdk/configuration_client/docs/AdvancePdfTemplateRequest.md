@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**envelope_settings** | [**EnvelopeSettingsRequest**](EnvelopeSettingsRequest.md) |  | [optional] 
 **show_country** | **bool** |  | [optional] 
 **show_balance** | **bool** |  | [optional] 
 **show_vat_specs** | **bool** |  | [optional] 
 **show_custom_information** | **bool** |  | [optional] 
+**envelope_settings** | [**EnvelopeSettingsRequest**](EnvelopeSettingsRequest.md) |  | [optional] 
 
 ## Example
 

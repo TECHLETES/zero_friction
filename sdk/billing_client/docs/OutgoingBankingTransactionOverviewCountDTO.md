@@ -1,17 +1,16 @@
 # OutgoingBankingTransactionOverviewCountDTO
 
-Provides an overview of outgoing banking transaction counts by their status.  This DTO contains aggregated counts of transactions in different states.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** | The total number of outgoing banking transactions. | [optional] 
-**ready_to_send** | **int** | The number of transactions that are ready to be sent. | [optional] 
-**to_confirm** | **int** | The number of transactions waiting for confirmation. | [optional] 
-**closed** | **int** | The number of closed transactions. | [optional] 
-**date_expired** | **int** | The number of transactions that have expired due to date constraints. | [optional] 
-**resolve_issues** | **int** | The number of transactions that have issues requiring resolution. | [optional] 
+**all** | **int** |  | [optional] 
+**ready_to_send** | **int** |  | [optional] 
+**to_confirm** | **int** |  | [optional] 
+**closed** | **int** |  | [optional] 
+**date_expired** | **int** |  | [optional] 
+**resolve_issues** | **int** |  | [optional] 
 
 ## Example
 

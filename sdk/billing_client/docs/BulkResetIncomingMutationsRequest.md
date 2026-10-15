@@ -1,14 +1,13 @@
 # BulkResetIncomingMutationsRequest
 
-Represents a bulk request to reset multiple incoming mutations to their initial state.  This DTO allows for batch resetting of mutations based on query parameters and filters.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**only_validate** | **bool** | Indicates whether this is a validation-only request without actual resetting. | [optional] 
-**var_query_params** | [**GetIncomingMutationsQueryParams**](GetIncomingMutationsQueryParams.md) | Query parameters to filter the mutations to be reset. | [optional] 
-**quick_filter** | **str** | A quick filter string to further refine the selection of mutations to be reset. | [optional] 
+**only_validate** | **bool** |  | [optional] 
+**var_query_params** | [**GetIncomingMutationsQueryParams**](GetIncomingMutationsQueryParams.md) |  | [optional] 
+**quick_filter** | **str** |  | [optional] 
 
 ## Example
 

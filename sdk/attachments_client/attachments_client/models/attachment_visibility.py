@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AttachmentVisibility(str, Enum):
     """
-    AttachmentVisibility
+    Possible values: 'internal', 'portal', 'portalandmovein'
     """
 
     """

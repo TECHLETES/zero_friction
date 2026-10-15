@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AdvanceRecalculationType(str, Enum):
     """
-    AdvanceRecalculationType
+    Possible values: 'none', 'usingpreviousinvoice', 'usingestimatedinvoice'
     """
 
     """

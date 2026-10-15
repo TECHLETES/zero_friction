@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class CollectionChargeType(str, Enum):
     """
-    CollectionChargeType
+    Possible values: 'none', 'fixed', 'percentageofopenamount', 'tieredpercentageofopenamount'
     """
 
     """

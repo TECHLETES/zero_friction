@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**measurements** | [**ImportedMeasurementProcessingResultDTOPagedResponseModelDTO**](ImportedMeasurementProcessingResultDTOPagedResponseModelDTO.md) |  | [optional] 
+**measurements** | [**PagedResponseModelDTOOfImportedMeasurementProcessingResultDTO**](PagedResponseModelDTOOfImportedMeasurementProcessingResultDTO.md) |  | [optional] 
 **total_invalid_measurements** | **int** |  | [optional] 
 **total_valid_measurements** | **int** |  | [optional] 
 **total_measurements_not_processed** | **int** |  | [optional] 

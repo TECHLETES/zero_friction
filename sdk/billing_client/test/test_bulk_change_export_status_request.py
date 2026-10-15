@@ -35,16 +35,8 @@ class TestBulkChangeExportStatusRequest(unittest.TestCase):
         model = BulkChangeExportStatusRequest()
         if include_optional:
             return BulkChangeExportStatusRequest(
-                export_status = 'notexported',
                 only_validate = True,
                 var_query_params = billing_client.models.get_invoices_query_params.GetInvoicesQueryParams(
-                    flex_search = '', 
-                    include_only_ids = [
-                        ''
-                        ], 
-                    exclude_ids = [
-                        ''
-                        ], 
                     invoice_type = [
                         ''
                         ], 
@@ -53,6 +45,7 @@ class TestBulkChangeExportStatusRequest(unittest.TestCase):
                         ], 
                     product_id = '', 
                     customer_id = '', 
+                    customer_type = '', 
                     contract_id = '', 
                     invoice_status = [
                         ''
@@ -74,8 +67,25 @@ class TestBulkChangeExportStatusRequest(unittest.TestCase):
                     export_status = '', 
                     collection_case_id = '', 
                     customer_group_id = '', 
-                    company_bank_account_id = '', ),
-                quick_filter = ''
+                    company_bank_account_id = '', 
+                    has_attachment = True, 
+                    payment_plan_id = '', 
+                    apply_filters_over_included_ids = True, 
+                    only_with_estimated_origin_measurements = True, 
+                    only_credited_invoices = True, 
+                    auto_approved_filter = True, 
+                    validation_score_min = 56, 
+                    validation_score_max = 56, 
+                    flex_search = '', 
+                    include_only_ids = [
+                        ''
+                        ], 
+                    exclude_ids = [
+                        ''
+                        ], 
+                    page_size = 56, ),
+                quick_filter = '',
+                export_status = 'notexported'
             )
         else:
             return BulkChangeExportStatusRequest(

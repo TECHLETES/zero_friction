@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invalid_format_errors** | [**List[ErrorCodeCount]**](ErrorCodeCount.md) |  | [optional] 
-**invalid_data_errors** | [**List[ErrorCodeCount]**](ErrorCodeCount.md) |  | [optional] 
+**invalid_format_errors** | [**List[ErrorCodeCount]**](ErrorCodeCount.md) |  | 
+**invalid_data_errors** | [**List[ErrorCodeCount]**](ErrorCodeCount.md) |  | 
 
 ## Example
 

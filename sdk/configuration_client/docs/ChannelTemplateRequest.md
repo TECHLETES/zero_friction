@@ -5,14 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data_frequency** | [**DataFrequency**](DataFrequency.md) |  | [optional] 
-**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**direction** | [**Direction**](Direction.md) |  | [optional] 
-**incrementation_type** | [**IncrementationType**](IncrementationType.md) |  | [optional] 
-**time_of_use** | **str** |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
-**description** | **str** |  | [optional] 
+**data_frequency** | [**DataFrequency**](DataFrequency.md) |  | 
+**metering_type** | [**MeteringType**](MeteringType.md) |  | 
+**utility_type** | [**UtilityType**](UtilityType.md) |  | 
+**direction** | [**Direction**](Direction.md) |  | 
+**incrementation_type** | [**IncrementationType**](IncrementationType.md) |  | 
+**time_of_use** | **str** |  | 
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | 
+**description** | **str** |  | 
+**reset_day** | **int** |  | 
+**reset_month** | **int** |  | 
+**reset_hour** | **int** |  | 
 
 ## Example
 

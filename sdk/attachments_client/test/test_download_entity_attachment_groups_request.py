@@ -38,10 +38,14 @@ class TestDownloadEntityAttachmentGroupsRequest(unittest.TestCase):
                 entity_attachment_group_ids = [
                     ''
                     ],
-                culture = 
+                culture = ''
             )
         else:
             return DownloadEntityAttachmentGroupsRequest(
+                entity_attachment_group_ids = [
+                    ''
+                    ],
+                culture = '',
         )
         """
 

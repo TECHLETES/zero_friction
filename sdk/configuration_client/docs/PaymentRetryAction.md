@@ -1,5 +1,6 @@
 # PaymentRetryAction
 
+Possible values: 'retryonfixedday', 'daysafterreversal'
 
 ## Enum
 

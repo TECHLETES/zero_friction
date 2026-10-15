@@ -85,11 +85,6 @@ class ScenarioTranslationListDTO(BaseModel):
         if self.id is None and "id" in self.model_fields_set:
             _dict['id'] = None
 
-        # set to None if template_entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.template_entity_type is None and "template_entity_type" in self.model_fields_set:
-            _dict['templateEntityType'] = None
-
         # set to None if template_entity_sub_type (nullable) is None
         # and model_fields_set contains the field
         if self.template_entity_sub_type is None and "template_entity_sub_type" in self.model_fields_set:

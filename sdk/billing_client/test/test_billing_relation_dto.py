@@ -40,20 +40,28 @@ class TestBillingRelationDTO(unittest.TestCase):
                     customer_id = '', 
                     display_name = '', 
                     customer_account_number = '', 
-                    customer_type = null, 
-                    customer_group = null, ),
+                    customer_type = 'person', 
+                    customer_group = billing_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
+                        id = '', 
+                        name = '', ), ),
                 payment_terms_id = '',
                 payment_method = 'sct',
                 advance_details = billing_client.models.advance_details_dto.AdvanceDetailsDTO(
                     advance_amount = 1.337, 
                     original_amount = 1.337, 
-                    changed_by = null, 
+                    changed_by = 'systeminvoicecalculation', 
                     changed_by_user_id = '', 
                     changed_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     advance_amount_excl_vat = 1.337, 
-                    advance_frequency = null, ),
+                    advance_frequency = 'none', 
+                    advance_calculation_type = 'fixed', 
+                    advance_period_percentages = [
+                        billing_client.models.advance_period_percentage.AdvancePeriodPercentage(
+                            period_index = 56, 
+                            percentage = 1.337, )
+                        ], ),
                 invoice_details = billing_client.models.invoice_details_dto.InvoiceDetailsDTO(
-                    invoice_frequency = null, 
+                    invoice_frequency = 'monthly', 
                     first_invoice_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     first_invoice_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
                 contract = billing_client.models.billing_contract_dto.BillingContractDTO(
@@ -68,19 +76,26 @@ class TestBillingRelationDTO(unittest.TestCase):
                         ], 
                     services = [
                         billing_client.models.billed_service_dto.BilledServiceDTO(
-                            utility_type = null, 
+                            utility_type = 'none', 
                             service_location_id = '', 
+                            property_group_id = '', 
                             supply_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             supply_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             external_identifier = '', )
                         ], 
-                    use_property_group_product = True, 
                     property_groups = [
                         billing_client.models.property_group_reference_dto.PropertyGroupReferenceDTO(
                             id = '', 
                             name = '', )
                         ], 
-                    billing_method = null, ),
+                    billing_methods = [
+                        billing_client.models.billing_method_period_reference_dto.BillingMethodPeriodReferenceDTO(
+                            billing_method = 'credit', 
+                            start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                        ], 
+                    current_billing_method = 'credit', 
+                    billing_method = 'credit', ),
                 contract_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 contract_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 block_details = billing_client.models.block_details_dto.BlockDetailsDTO(

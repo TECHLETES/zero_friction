@@ -24,10 +24,10 @@ from typing_extensions import Self
 
 class IncomingBankingTransactionIbanConfirmationDTO(BaseModel):
     """
-    Represents an IBAN confirmation associated with an incoming banking transaction.
+    IncomingBankingTransactionIbanConfirmationDTO
     """ # noqa: E501
-    customer_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the customer.", alias="customerId")
-    iban: Optional[StrictStr] = Field(default=None, description="The International Bank Account Number (IBAN) being confirmed.")
+    customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
+    iban: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["customerId", "iban"]
 
     model_config = ConfigDict(

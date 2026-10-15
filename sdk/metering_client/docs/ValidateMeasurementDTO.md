@@ -6,8 +6,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **error** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional] 
-**is_valid** | **bool** |  | [optional] [readonly] 
+**is_valid** | **bool** |  | [optional] 
 **is_error_muted** | **bool** |  | [optional] 
+**is_pending_async_validation** | **bool** |  | [optional] 
+**auto_solve_warning** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional] 
 
 ## Example
 

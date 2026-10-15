@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**supply_start_date** | **datetime** |  | [optional] 
+**supply_start_date** | **datetime** |  | 
 **supply_end_date** | **datetime** |  | [optional] 
-**services** | [**List[ChangeContractServiceLocationRequest]**](ChangeContractServiceLocationRequest.md) |  | [optional] 
+**services** | [**List[ChangeContractServiceLocationRequest]**](ChangeContractServiceLocationRequest.md) |  | 
 
 ## Example
 

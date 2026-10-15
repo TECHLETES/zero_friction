@@ -75,21 +75,6 @@ class AdvanceCalculationParametersDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if recalculation_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.recalculation_type is None and "recalculation_type" in self.model_fields_set:
-            _dict['recalculationType'] = None
-
-        # set to None if advance_limit_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.advance_limit_type is None and "advance_limit_type" in self.model_fields_set:
-            _dict['advanceLimitType'] = None
-
-        # set to None if minimum_accuracy (nullable) is None
-        # and model_fields_set contains the field
-        if self.minimum_accuracy is None and "minimum_accuracy" in self.model_fields_set:
-            _dict['minimumAccuracy'] = None
-
         return _dict
 
     @classmethod

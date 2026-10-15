@@ -36,16 +36,6 @@ class ContractDTO(BaseModel):
     """
     ContractDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
     contract_number: Optional[StrictStr] = Field(default=None, alias="contractNumber")
     contractor: Optional[ContractorDTO] = None
     supply_start_date: Optional[datetime] = Field(default=None, alias="supplyStartDate")
@@ -62,7 +52,15 @@ class ContractDTO(BaseModel):
     property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, alias="propertyGroups")
     attachment_signatures: Optional[List[AttachmentSignature]] = Field(default=None, alias="attachmentSignatures")
     custom_properties: Optional[List[CustomEntityPropertyDTO]] = Field(default=None, alias="customProperties")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "contractNumber", "contractor", "supplyStartDate", "supplyEndDate", "serviceLocations", "statusHistory", "currentContractStatus", "billingDetails", "externalContractReference", "paymentTermsId", "blockedForDeletion", "expectAdvancesToBeImportedPeriodically", "usePropertyGroupProduct", "propertyGroups", "attachmentSignatures", "customProperties"]
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["contractNumber", "contractor", "supplyStartDate", "supplyEndDate", "serviceLocations", "statusHistory", "currentContractStatus", "billingDetails", "externalContractReference", "paymentTermsId", "blockedForDeletion", "expectAdvancesToBeImportedPeriodically", "usePropertyGroupProduct", "propertyGroups", "attachmentSignatures", "customProperties", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,10 +92,8 @@ class ContractDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -146,31 +142,6 @@ class ContractDTO(BaseModel):
                 if _item_custom_properties:
                     _items.append(_item_custom_properties.to_dict())
             _dict['customProperties'] = _items
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
         # set to None if contract_number (nullable) is None
         # and model_fields_set contains the field
         if self.contract_number is None and "contract_number" in self.model_fields_set:
@@ -191,11 +162,6 @@ class ContractDTO(BaseModel):
         if self.status_history is None and "status_history" in self.model_fields_set:
             _dict['statusHistory'] = None
 
-        # set to None if current_contract_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.current_contract_status is None and "current_contract_status" in self.model_fields_set:
-            _dict['currentContractStatus'] = None
-
         # set to None if billing_details (nullable) is None
         # and model_fields_set contains the field
         if self.billing_details is None and "billing_details" in self.model_fields_set:
@@ -211,21 +177,6 @@ class ContractDTO(BaseModel):
         if self.payment_terms_id is None and "payment_terms_id" in self.model_fields_set:
             _dict['paymentTermsId'] = None
 
-        # set to None if property_groups (nullable) is None
-        # and model_fields_set contains the field
-        if self.property_groups is None and "property_groups" in self.model_fields_set:
-            _dict['propertyGroups'] = None
-
-        # set to None if attachment_signatures (nullable) is None
-        # and model_fields_set contains the field
-        if self.attachment_signatures is None and "attachment_signatures" in self.model_fields_set:
-            _dict['attachmentSignatures'] = None
-
-        # set to None if custom_properties (nullable) is None
-        # and model_fields_set contains the field
-        if self.custom_properties is None and "custom_properties" in self.model_fields_set:
-            _dict['customProperties'] = None
-
         return _dict
 
     @classmethod
@@ -238,16 +189,6 @@ class ContractDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "contractNumber": obj.get("contractNumber"),
             "contractor": ContractorDTO.from_dict(obj["contractor"]) if obj.get("contractor") is not None else None,
             "supplyStartDate": obj.get("supplyStartDate"),
@@ -263,7 +204,15 @@ class ContractDTO(BaseModel):
             "usePropertyGroupProduct": obj.get("usePropertyGroupProduct"),
             "propertyGroups": [PropertyGroupReferenceDTO.from_dict(_item) for _item in obj["propertyGroups"]] if obj.get("propertyGroups") is not None else None,
             "attachmentSignatures": [AttachmentSignature.from_dict(_item) for _item in obj["attachmentSignatures"]] if obj.get("attachmentSignatures") is not None else None,
-            "customProperties": [CustomEntityPropertyDTO.from_dict(_item) for _item in obj["customProperties"]] if obj.get("customProperties") is not None else None
+            "customProperties": [CustomEntityPropertyDTO.from_dict(_item) for _item in obj["customProperties"]] if obj.get("customProperties") is not None else None,
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

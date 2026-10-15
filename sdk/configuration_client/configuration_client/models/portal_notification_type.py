@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PortalNotificationType(str, Enum):
     """
-    PortalNotificationType
+    Possible values: 'neutral', 'warning', 'important'
     """
 
     """

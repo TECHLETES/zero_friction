@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MeteringImportType(str, Enum):
     """
-    MeteringImportType
+    Possible values: 'measurements'
     """
 
     """

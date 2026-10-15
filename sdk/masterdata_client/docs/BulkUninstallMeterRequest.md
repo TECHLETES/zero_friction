@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**remove_date** | **datetime** |  | [optional] 
 **only_validate** | **bool** |  | [optional] 
 **var_query_params** | [**GetMetersQueryParams**](GetMetersQueryParams.md) |  | [optional] 
 **quick_filter** | **str** |  | [optional] 
+**remove_date** | **datetime** |  | [optional] 
 
 ## Example
 

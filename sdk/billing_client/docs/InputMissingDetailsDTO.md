@@ -1,13 +1,12 @@
 # InputMissingDetailsDTO
 
-Represents details about missing input data
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reason** | [**InputMissingReason**](InputMissingReason.md) | Reason why input data is missing | [optional] 
-**extra_info** | **str** | Additional information about the missing input | [optional] 
+**reason** | [**InputMissingReason**](InputMissingReason.md) |  | [optional] 
+**extra_info** | **str** |  | [optional] 
 
 ## Example
 

@@ -24,9 +24,9 @@ from typing_extensions import Self
 
 class GetIncomingBankingTransactionExportRequest(BaseModel):
     """
-    Represents a request to export data for specific incoming banking transactions.  This DTO is used to retrieve transaction data in a format suitable for export.
+    GetIncomingBankingTransactionExportRequest
     """ # noqa: E501
-    incoming_banking_transaction_ids: Optional[List[StrictStr]] = Field(default=None, description="A list of IDs for the incoming banking transactions to be included in the export.", alias="incomingBankingTransactionIds")
+    incoming_banking_transaction_ids: Optional[List[StrictStr]] = Field(alias="incomingBankingTransactionIds")
     __properties: ClassVar[List[str]] = ["incomingBankingTransactionIds"]
 
     model_config = ConfigDict(

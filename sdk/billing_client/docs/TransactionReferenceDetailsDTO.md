@@ -1,14 +1,13 @@
 # TransactionReferenceDetailsDTO
 
-Represents reference details for a transaction
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transaction_reference_type** | [**TransactionReferenceType**](TransactionReferenceType.md) | Type of transaction reference | [optional] 
-**transaction_reference_id** | **str** | Identifier of the transaction reference | [optional] 
-**parameters** | **object** | Parameters for the transaction reference | [optional] 
+**transaction_reference_type** | [**TransactionReferenceType**](TransactionReferenceType.md) |  | 
+**transaction_reference_id** | **str** |  | 
+**parameters** | [**TransactionReferenceParametersDTO**](TransactionReferenceParametersDTO.md) |  | 
 
 ## Example
 

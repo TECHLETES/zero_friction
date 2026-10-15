@@ -37,7 +37,7 @@ class TestCalendar(unittest.TestCase):
             return Calendar(
                 min_supported_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 max_supported_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                algorithm_type = 'Unknown',
+                algorithm_type = 56,
                 is_read_only = True,
                 eras = [
                     56

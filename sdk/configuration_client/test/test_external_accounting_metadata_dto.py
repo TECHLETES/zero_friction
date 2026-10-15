@@ -35,12 +35,18 @@ class TestExternalAccountingMetadataDTO(unittest.TestCase):
         model = ExternalAccountingMetadataDTO()
         if include_optional:
             return ExternalAccountingMetadataDTO(
-                source = '0',
-                source_entity_id = ''
+                source = '',
+                source_entity_id = '',
+                source_accounting_company_id = '',
+                source_references = [
+                    configuration_client.models.external_accounting_reference_dto.ExternalAccountingReferenceDTO(
+                        source_entity_id = '', 
+                        source_accounting_company_id = '', )
+                    ]
             )
         else:
             return ExternalAccountingMetadataDTO(
-                source = '0',
+                source = '',
                 source_entity_id = '',
         )
         """

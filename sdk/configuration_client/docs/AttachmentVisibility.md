@@ -1,5 +1,6 @@
 # AttachmentVisibility
 
+Possible values: 'internal', 'portal', 'portalandmovein'
 
 ## Enum
 

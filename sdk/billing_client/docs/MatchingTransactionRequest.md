@@ -1,13 +1,12 @@
 # MatchingTransactionRequest
 
-Represents a single transaction to be matched with its settlement amount.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**matching_transaction_id** | **str** | The ID of the transaction to be matched. | [optional] 
-**amount_to_settle** | **float** | The amount to be settled for this transaction. | [optional] 
+**matching_transaction_id** | **str** |  | 
+**amount_to_settle** | **float** |  | 
 
 ## Example
 

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class CommunicationEntryQuickFilter(str, Enum):
     """
-    CommunicationEntryQuickFilter
+    Possible values: 'all', 'failed', 'notsent', 'sent', 'intransit'
     """
 
     """
@@ -28,6 +28,9 @@ class CommunicationEntryQuickFilter(str, Enum):
     """
     ALL = 'all'
     FAILED = 'failed'
+    NOTSENT = 'notsent'
+    SENT = 'sent'
+    INTRANSIT = 'intransit'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

@@ -42,6 +42,10 @@ class TestCancelMutingRuleRequest(unittest.TestCase):
             )
         else:
             return CancelMutingRuleRequest(
+                error_type = 'consumptionnegative',
+                meter_ids = [
+                    ''
+                    ],
         )
         """
 

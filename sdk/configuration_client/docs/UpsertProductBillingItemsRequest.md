@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **billing_item_id** | **str** |  | [optional] 
 **order** | **int** |  | [optional] 
-**periodicity_parameters** | [**ProductItemPeriodicityParametersDTO**](ProductItemPeriodicityParametersDTO.md) |  | [optional] 
+**periodicity_parameters** | [**ProductItemPeriodicityParametersDTO**](ProductItemPeriodicityParametersDTO.md) |  | 
 **start_date_time** | **datetime** |  | [optional] 
 **end_date_time** | **datetime** |  | [optional] 
 

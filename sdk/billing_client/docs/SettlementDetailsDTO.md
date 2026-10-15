@@ -1,12 +1,11 @@
 # SettlementDetailsDTO
 
-Represents settlement details for a transaction
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**settled_transactions_with_amounts** | [**List[SettledTransactionDTO]**](SettledTransactionDTO.md) | List of transactions that have been settled with their amounts | [optional] 
+**settled_transactions_with_amounts** | [**List[SettledTransactionDTO]**](SettledTransactionDTO.md) |  | [optional] 
 
 ## Example
 

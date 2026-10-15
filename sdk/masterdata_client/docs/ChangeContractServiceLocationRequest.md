@@ -6,9 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **service_location_id** | **str** |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**external_identifier** | **str** |  | [optional] 
-**estimated_consumptions** | [**List[ChangeContractServiceEstimatedConsumptionRequest]**](ChangeContractServiceEstimatedConsumptionRequest.md) |  | [optional] 
+**utility_type** | [**UtilityType**](UtilityType.md) |  | 
+**estimated_consumptions** | [**List[ChangeContractServiceEstimatedConsumptionRequest]**](ChangeContractServiceEstimatedConsumptionRequest.md) |  | 
 
 ## Example
 

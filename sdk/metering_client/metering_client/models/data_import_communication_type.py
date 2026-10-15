@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class DataImportCommunicationType(str, Enum):
     """
-    DataImportCommunicationType
+    Possible values: 'sftp', 'ftp', 'ftps', 'inboundemail', 'manualupload', 'configuredplugin', 'inboundapi'
     """
 
     """

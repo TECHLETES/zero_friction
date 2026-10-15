@@ -40,6 +40,8 @@ class TestUpdateEntityAttachmentVisibilityRequest(unittest.TestCase):
             )
         else:
             return UpdateEntityAttachmentVisibilityRequest(
+                customer_id = '',
+                visibility = 'internal',
         )
         """
 

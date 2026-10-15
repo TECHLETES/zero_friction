@@ -27,8 +27,8 @@ class AggregatedServiceConsumptionPerPeriodRequest(BaseModel):
     """
     AggregatedServiceConsumptionPerPeriodRequest
     """ # noqa: E501
-    service_location_ids: Optional[List[StrictStr]] = Field(default=None, alias="serviceLocationIds")
-    group_by_period: Optional[AggregationFrequency] = Field(default=None, alias="groupByPeriod")
+    service_location_ids: Optional[List[StrictStr]] = Field(alias="serviceLocationIds")
+    group_by_period: AggregationFrequency = Field(alias="groupByPeriod")
     __properties: ClassVar[List[str]] = ["serviceLocationIds", "groupByPeriod"]
 
     model_config = ConfigDict(
@@ -74,11 +74,6 @@ class AggregatedServiceConsumptionPerPeriodRequest(BaseModel):
         # and model_fields_set contains the field
         if self.service_location_ids is None and "service_location_ids" in self.model_fields_set:
             _dict['serviceLocationIds'] = None
-
-        # set to None if group_by_period (nullable) is None
-        # and model_fields_set contains the field
-        if self.group_by_period is None and "group_by_period" in self.model_fields_set:
-            _dict['groupByPeriod'] = None
 
         return _dict
 

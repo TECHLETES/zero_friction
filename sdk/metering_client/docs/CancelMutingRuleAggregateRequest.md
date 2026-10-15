@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error_type** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional] 
+**error_type** | [**MeteringIssueError**](MeteringIssueError.md) |  | 
 **message** | **str** |  | [optional] 
-**time_period** | [**MutingRuleTimePeriod**](MutingRuleTimePeriod.md) |  | [optional] 
+**time_period** | [**MutingRuleTimePeriod**](MutingRuleTimePeriod.md) |  | 
 **mute_from_with_numeric_value** | **int** |  | [optional] 
 **mute_until_with_numeric_value** | **int** |  | [optional] 
 **user_id** | **str** |  | [optional] 

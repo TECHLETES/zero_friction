@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from configuration_client.models.base_tariff_calculation_type_parameters_dto import BaseTariffCalculationTypeParametersDTO
+from configuration_client.models.base_tariff_condition_type_parameters_dto import BaseTariffConditionTypeParametersDTO
 from configuration_client.models.entity_subject_type import EntitySubjectType
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,24 +30,22 @@ class BillingTariffDTO(BaseModel):
     """
     BillingTariffDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
     product_id: Optional[StrictStr] = Field(default=None, alias="productId")
     billing_item_id: Optional[StrictStr] = Field(default=None, alias="billingItemId")
     contract_id: Optional[StrictStr] = Field(default=None, alias="contractId")
     calculation_parameters: Optional[BaseTariffCalculationTypeParametersDTO] = Field(default=None, alias="calculationParameters")
-    condition_parameters: Optional[List[Dict[str, Any]]] = Field(default=None, alias="conditionParameters")
+    condition_parameters: Optional[List[BaseTariffConditionTypeParametersDTO]] = Field(default=None, alias="conditionParameters")
     start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
     end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "productId", "billingItemId", "contractId", "calculationParameters", "conditionParameters", "startDateTime", "endDateTime"]
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["productId", "billingItemId", "contractId", "calculationParameters", "conditionParameters", "startDateTime", "endDateTime", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,10 +77,8 @@ class BillingTariffDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -92,31 +89,13 @@ class BillingTariffDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of calculation_parameters
         if self.calculation_parameters:
             _dict['calculationParameters'] = self.calculation_parameters.to_dict()
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of each item in condition_parameters (list)
+        _items = []
+        if self.condition_parameters:
+            for _item_condition_parameters in self.condition_parameters:
+                if _item_condition_parameters:
+                    _items.append(_item_condition_parameters.to_dict())
+            _dict['conditionParameters'] = _items
         # set to None if product_id (nullable) is None
         # and model_fields_set contains the field
         if self.product_id is None and "product_id" in self.model_fields_set:
@@ -154,23 +133,21 @@ class BillingTariffDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "productId": obj.get("productId"),
+            "billingItemId": obj.get("billingItemId"),
+            "contractId": obj.get("contractId"),
+            "calculationParameters": BaseTariffCalculationTypeParametersDTO.from_dict(obj["calculationParameters"]) if obj.get("calculationParameters") is not None else None,
+            "conditionParameters": [BaseTariffConditionTypeParametersDTO.from_dict(_item) for _item in obj["conditionParameters"]] if obj.get("conditionParameters") is not None else None,
+            "startDateTime": obj.get("startDateTime"),
+            "endDateTime": obj.get("endDateTime"),
+            "organisationId": obj.get("organisationId"),
             "id": obj.get("id"),
             "entityType": obj.get("entityType"),
             "createdDateTime": obj.get("createdDateTime"),
             "discriminator": obj.get("discriminator"),
             "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
             "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
-            "productId": obj.get("productId"),
-            "billingItemId": obj.get("billingItemId"),
-            "contractId": obj.get("contractId"),
-            "calculationParameters": BaseTariffCalculationTypeParametersDTO.from_dict(obj["calculationParameters"]) if obj.get("calculationParameters") is not None else None,
-            "conditionParameters": obj.get("conditionParameters"),
-            "startDateTime": obj.get("startDateTime"),
-            "endDateTime": obj.get("endDateTime")
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

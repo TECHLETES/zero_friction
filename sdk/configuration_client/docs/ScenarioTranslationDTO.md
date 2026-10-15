@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] 
 **status** | [**TranslationStatus**](TranslationStatus.md) |  | [optional] 
 **has_default_translation** | **bool** |  | [optional] 
-**translations** | **Dict[str, Optional[str]]** |  | [optional] 
+**translations** | **Dict[str, str]** |  | [optional] 
 **use_cases** | [**List[TemplateUsecase]**](TemplateUsecase.md) |  | [optional] 
 
 ## Example

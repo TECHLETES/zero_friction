@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error_type** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional] 
-**meter_ids** | **List[str]** |  | [optional] 
+**error_type** | [**MeteringIssueError**](MeteringIssueError.md) |  | 
+**meter_ids** | **List[str]** |  | 
 
 ## Example
 

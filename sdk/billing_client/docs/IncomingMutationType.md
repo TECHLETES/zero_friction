@@ -1,5 +1,6 @@
 # IncomingMutationType
 
+Possible values: 'incomingtransfer', 'outgoingtransfer', 'paymentrequestreversal', 'refundreversal', 'unknown', 'paymentrequesttransactionconfirmation', 'paymentrequestmutationconfirmation', 'refundtransactionconfirmation', 'refundmutationconfirmation', 'requestconfirmation', 'refundconfirmation'
 
 ## Enum
 

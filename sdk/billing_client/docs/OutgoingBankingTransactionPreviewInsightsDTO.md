@@ -1,13 +1,12 @@
 # OutgoingBankingTransactionPreviewInsightsDTO
 
-Contains insights about a specific type of outgoing banking transaction.  This DTO provides information about the number of invoices and total amount.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**number_of_invoices** | **int** | The total number of invoices included in this preview. | [optional] 
-**total_amount** | **float** | The total amount of all invoices in this preview. | [optional] 
+**number_of_invoices** | **int** |  | [optional] 
+**total_amount** | **float** |  | [optional] 
 
 ## Example
 

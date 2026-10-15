@@ -26,7 +26,7 @@ class UpdateEnumSymbolTranslationRequest(BaseModel):
     """
     UpdateEnumSymbolTranslationRequest
     """ # noqa: E501
-    translations: Optional[Dict[str, Optional[StrictStr]]] = None
+    translations: Optional[Dict[str, StrictStr]]
     __properties: ClassVar[List[str]] = ["translations"]
 
     model_config = ConfigDict(

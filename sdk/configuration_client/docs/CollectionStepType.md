@@ -1,5 +1,6 @@
 # CollectionStepType
 
+Possible values: 'communication', 'manualintervention'
 
 ## Enum
 

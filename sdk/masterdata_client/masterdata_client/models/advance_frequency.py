@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AdvanceFrequency(str, Enum):
     """
-    AdvanceFrequency
+    Possible values: 'none', 'monthly', 'quarterly', 'halfyearly', 'yearly'
     """
 
     """
@@ -30,6 +30,7 @@ class AdvanceFrequency(str, Enum):
     MONTHLY = 'monthly'
     QUARTERLY = 'quarterly'
     HALFYEARLY = 'halfyearly'
+    YEARLY = 'yearly'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

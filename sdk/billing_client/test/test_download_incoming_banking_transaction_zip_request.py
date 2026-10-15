@@ -41,6 +41,9 @@ class TestDownloadIncomingBankingTransactionZipRequest(unittest.TestCase):
             )
         else:
             return DownloadIncomingBankingTransactionZipRequest(
+                incoming_banking_transaction_ids = [
+                    ''
+                    ],
         )
         """
 

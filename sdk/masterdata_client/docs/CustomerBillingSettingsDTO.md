@@ -1,12 +1,12 @@
 # CustomerBillingSettingsDTO
 
-Represents billing settings for a customer
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**automatic_settlement_setting** | [**CustomerBillingSettingsAutomaticSettlementDTO**](CustomerBillingSettingsAutomaticSettlementDTO.md) | Automatic settlement settings for the customer | [optional] 
+**automatic_settlement_setting** | [**CustomerBillingSettingsAutomaticSettlementDTO**](CustomerBillingSettingsAutomaticSettlementDTO.md) |  | [optional] 
+**collection_day_of_month** | **int** |  | [optional] 
 
 ## Example
 

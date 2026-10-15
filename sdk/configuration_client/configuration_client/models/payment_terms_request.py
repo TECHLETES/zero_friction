@@ -27,9 +27,9 @@ class PaymentTermsRequest(BaseModel):
     """
     PaymentTermsRequest
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    amount: Optional[StrictInt] = None
-    payment_terms_frequency: Optional[PaymentTermsFrequency] = Field(default=None, alias="paymentTermsFrequency")
+    name: Optional[StrictStr]
+    amount: StrictInt
+    payment_terms_frequency: PaymentTermsFrequency = Field(alias="paymentTermsFrequency")
     __properties: ClassVar[List[str]] = ["name", "amount", "paymentTermsFrequency"]
 
     model_config = ConfigDict(
@@ -75,11 +75,6 @@ class PaymentTermsRequest(BaseModel):
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
-
-        # set to None if payment_terms_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.payment_terms_frequency is None and "payment_terms_frequency" in self.model_fields_set:
-            _dict['paymentTermsFrequency'] = None
 
         return _dict
 

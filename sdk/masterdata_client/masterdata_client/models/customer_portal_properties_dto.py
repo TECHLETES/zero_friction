@@ -17,20 +17,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
 class CustomerPortalPropertiesDTO(BaseModel):
     """
-    Represents portal-specific properties for a customer
+    CustomerPortalPropertiesDTO
     """ # noqa: E501
-    application_user_id: Optional[StrictStr] = Field(default=None, description="Unique identifier for the application user", alias="applicationUserId")
-    confirm_account_token: Optional[StrictStr] = Field(default=None, description="Token for account confirmation", alias="confirmAccountToken")
-    reset_password_token: Optional[StrictStr] = Field(default=None, description="Token for password reset", alias="resetPasswordToken")
-    email: Optional[StrictStr] = Field(default=None, description="Email address for the customer")
-    __properties: ClassVar[List[str]] = ["applicationUserId", "confirmAccountToken", "resetPasswordToken", "email"]
+    application_user_id: Optional[StrictStr] = Field(default=None, alias="applicationUserId")
+    confirm_account_token: Optional[StrictStr] = Field(default=None, alias="confirmAccountToken")
+    reset_password_token: Optional[StrictStr] = Field(default=None, alias="resetPasswordToken")
+    email: Optional[StrictStr] = None
+    email_confirmed: Optional[StrictBool] = Field(default=None, alias="emailConfirmed")
+    __properties: ClassVar[List[str]] = ["applicationUserId", "confirmAccountToken", "resetPasswordToken", "email", "emailConfirmed"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,7 +107,8 @@ class CustomerPortalPropertiesDTO(BaseModel):
             "applicationUserId": obj.get("applicationUserId"),
             "confirmAccountToken": obj.get("confirmAccountToken"),
             "resetPasswordToken": obj.get("resetPasswordToken"),
-            "email": obj.get("email")
+            "email": obj.get("email"),
+            "emailConfirmed": obj.get("emailConfirmed")
         })
         return _obj
 

@@ -31,13 +31,16 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
+      # Preserve upstream OpenAPI exports exactly as downloaded.
       - id: trailing-whitespace
+        exclude: ^openapi_specs/
       - id: end-of-file-fixer
-        exclude: coverage\.svg$
+        exclude: ^(coverage\.svg$|openapi_specs/)
       - id: check-toml
       - id: check-json
       - id: check-symlinks
       - id: check-yaml
+        exclude: ^openapi_specs/
       - id: check-added-large-files
         exclude: uv.lock
       - id: check-merge-conflict

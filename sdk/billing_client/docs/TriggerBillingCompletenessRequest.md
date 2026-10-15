@@ -1,14 +1,14 @@
 # TriggerBillingCompletenessRequest
 
-Represents a request to trigger billing completeness calculation
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**only_advances** | **bool** | Indicates if only advance payments should be calculated | [optional] 
-**recalculate_if_needed** | **bool** | Indicates if recalculation should be performed if needed | [optional] 
-**advance_until_date_time** | **datetime** | Date and time until which advance payments should be calculated | [optional] 
+**only_advances** | **bool** |  | [optional] 
+**recalculate_if_needed** | **bool** |  | [optional] 
+**advance_until_date_time** | **datetime** |  | 
+**override_estimated_measurement_creation** | **bool** |  | [optional] 
 
 ## Example
 

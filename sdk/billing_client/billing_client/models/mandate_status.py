@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MandateStatus(str, Enum):
     """
-    MandateStatus
+    Possible values: 'requested', 'cancelled', 'signed'
     """
 
     """

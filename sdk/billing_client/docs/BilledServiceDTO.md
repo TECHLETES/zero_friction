@@ -1,16 +1,16 @@
 # BilledServiceDTO
 
-Represents a service being billed under a contract.  This DTO contains information about the service, its location, and supply period.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**utility_type** | [**UtilityType**](UtilityType.md) | The type of utility being provided. | [optional] 
-**service_location_id** | **str** | The unique identifier of the service location. | [optional] 
-**supply_start_date_time** | **datetime** | The start date and time of the service supply period. | [optional] 
-**supply_end_date_time** | **datetime** | The end date and time of the service supply period. | [optional] 
-**external_identifier** | **str** | An external identifier for the service. | [optional] 
+**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
+**service_location_id** | **str** |  | [optional] 
+**property_group_id** | **str** |  | [optional] 
+**supply_start_date_time** | **datetime** |  | [optional] 
+**supply_end_date_time** | **datetime** |  | [optional] 
+**external_identifier** | **str** |  | [optional] 
 
 ## Example
 

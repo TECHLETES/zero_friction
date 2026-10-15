@@ -35,11 +35,11 @@ class TestCreateServiceRequest(unittest.TestCase):
         model = CreateServiceRequest()
         if include_optional:
             return CreateServiceRequest(
-                utility_type = 'none',
-                external_identifier = ''
+                utility_type = 'none'
             )
         else:
             return CreateServiceRequest(
+                utility_type = 'none',
         )
         """
 

@@ -28,12 +28,13 @@ class BulkTerminateContractRequest(BaseModel):
     """
     BulkTerminateContractRequest
     """ # noqa: E501
-    mutation_date_time: Optional[datetime] = Field(default=None, alias="mutationDateTime")
-    keep_existing_invoice_on_end_date: Optional[StrictBool] = Field(default=None, description="When this flag is set, if an invoice exists with the end date equal to the move-out date,  no credit note shall be created.", alias="keepExistingInvoiceOnEndDate")
     only_validate: Optional[StrictBool] = Field(default=None, alias="onlyValidate")
     var_query_params: Optional[GetContractsQueryParams] = Field(default=None, alias="queryParams")
     quick_filter: Optional[StrictStr] = Field(default=None, alias="quickFilter")
-    __properties: ClassVar[List[str]] = ["mutationDateTime", "keepExistingInvoiceOnEndDate", "onlyValidate", "queryParams", "quickFilter"]
+    mutation_date_time: Optional[datetime] = Field(default=None, alias="mutationDateTime")
+    keep_existing_invoice_on_end_date: Optional[StrictBool] = Field(default=None, alias="keepExistingInvoiceOnEndDate")
+    create_prepayment_correction_for_charged_costs: Optional[StrictBool] = Field(default=None, alias="createPrepaymentCorrectionForChargedCosts")
+    __properties: ClassVar[List[str]] = ["onlyValidate", "queryParams", "quickFilter", "mutationDateTime", "keepExistingInvoiceOnEndDate", "createPrepaymentCorrectionForChargedCosts"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,11 +78,6 @@ class BulkTerminateContractRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
         # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
         if self.quick_filter is None and "quick_filter" in self.model_fields_set:
@@ -99,11 +95,12 @@ class BulkTerminateContractRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "mutationDateTime": obj.get("mutationDateTime"),
-            "keepExistingInvoiceOnEndDate": obj.get("keepExistingInvoiceOnEndDate"),
             "onlyValidate": obj.get("onlyValidate"),
             "queryParams": GetContractsQueryParams.from_dict(obj["queryParams"]) if obj.get("queryParams") is not None else None,
-            "quickFilter": obj.get("quickFilter")
+            "quickFilter": obj.get("quickFilter"),
+            "mutationDateTime": obj.get("mutationDateTime"),
+            "keepExistingInvoiceOnEndDate": obj.get("keepExistingInvoiceOnEndDate"),
+            "createPrepaymentCorrectionForChargedCosts": obj.get("createPrepaymentCorrectionForChargedCosts")
         })
         return _obj
 

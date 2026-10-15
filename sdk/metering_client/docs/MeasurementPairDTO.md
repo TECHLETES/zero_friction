@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **end_date_time** | **datetime** |  | [optional] 
 **previous_measurements** | [**List[MeasurementDTO]**](MeasurementDTO.md) |  | [optional] 
 **next_measurements** | [**List[MeasurementDTO]**](MeasurementDTO.md) |  | [optional] 
-**previous_measurement** | [**MeasurementDTO**](MeasurementDTO.md) | Represents a measurement reading from a meter with associated metadata | [optional] 
-**next_measurement** | [**MeasurementDTO**](MeasurementDTO.md) | Represents a measurement reading from a meter with associated metadata | [optional] 
+**previous_measurement** | [**MeasurementDTO**](MeasurementDTO.md) |  | [optional] 
+**next_measurement** | [**MeasurementDTO**](MeasurementDTO.md) |  | [optional] 
 
 ## Example
 

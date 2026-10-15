@@ -1,5 +1,6 @@
 # NumberSequenceSegmentType
 
+Possible values: 'constant', 'year', 'invoicetype', 'date'
 
 ## Enum
 

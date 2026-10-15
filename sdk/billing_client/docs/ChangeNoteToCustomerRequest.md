@@ -1,12 +1,11 @@
 # ChangeNoteToCustomerRequest
 
-Represents a request to change the note to customer on an invoice.  This DTO is used to update the customer-facing notes or comments on an invoice.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**note_to_customer** | **str** | The new note or comment to be displayed to the customer on the invoice. | [optional] 
+**note_to_customer** | **str** |  | [optional] 
 
 ## Example
 

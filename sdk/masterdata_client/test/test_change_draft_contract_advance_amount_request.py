@@ -39,6 +39,7 @@ class TestChangeDraftContractAdvanceAmountRequest(unittest.TestCase):
             )
         else:
             return ChangeDraftContractAdvanceAmountRequest(
+                new_advance_amount = 1.337,
         )
         """
 

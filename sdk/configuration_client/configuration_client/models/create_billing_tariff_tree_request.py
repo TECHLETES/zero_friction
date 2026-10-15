@@ -30,7 +30,7 @@ class CreateBillingTariffTreeRequest(BaseModel):
     """ # noqa: E501
     id: Optional[StrictStr] = None
     product_id: Optional[StrictStr] = Field(default=None, alias="productId")
-    activity_period: Optional[DateRange] = Field(default=None, alias="activityPeriod")
+    activity_period: DateRange = Field(alias="activityPeriod")
     nodes: Optional[List[CreateBillingTariffNodeRequest]] = None
     __properties: ClassVar[List[str]] = ["id", "productId", "activityPeriod", "nodes"]
 
@@ -64,10 +64,8 @@ class CreateBillingTariffTreeRequest(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "id",
         ])
 
         _dict = self.model_dump(
@@ -94,16 +92,6 @@ class CreateBillingTariffTreeRequest(BaseModel):
         # and model_fields_set contains the field
         if self.product_id is None and "product_id" in self.model_fields_set:
             _dict['productId'] = None
-
-        # set to None if activity_period (nullable) is None
-        # and model_fields_set contains the field
-        if self.activity_period is None and "activity_period" in self.model_fields_set:
-            _dict['activityPeriod'] = None
-
-        # set to None if nodes (nullable) is None
-        # and model_fields_set contains the field
-        if self.nodes is None and "nodes" in self.model_fields_set:
-            _dict['nodes'] = None
 
         return _dict
 

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class Direction(str, Enum):
     """
-    Direction
+    Possible values: 'offtake', 'injection', 'na'
     """
 
     """

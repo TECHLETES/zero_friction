@@ -113,14 +113,26 @@ class SDKClient:
 
         self._all_clients = [getattr(self, attr) for attr in sdk_modules]
 
+        # Tenant and organisation context applies to every API request, so keep
+        # these headers at the generated ApiClient layer instead of requiring
+        # each endpoint to declare and pass them separately.
+        for client in self._all_clients:
+            client.set_default_header("zf-tuuid", config.zf_tuuid)
+            client.set_default_header("zf-ouuid", config.zf_ouuid)
+
         # Attach all API classes for each client
         for attr, module in sdk_modules.items():
             client_instance = getattr(self, attr)
             create_api_classes_for_client(module, client_instance)
 
         # Patch specific methods
+        masterdata_customer_api = (
+            self.masterdata_client.default_api
+            if hasattr(self.masterdata_client, "default_api")
+            else self.masterdata_client.customers_api
+        )
         self.masterdata_client.customers_api = PatchedCustomersApi(
-            self.masterdata_client.customers_api
+            masterdata_customer_api
         )
 
         # Now wrap call_api of every client for retry/rate-limit handling.

@@ -26,7 +26,7 @@ class UpdateExternalContractReferenceRequest(BaseModel):
     """
     UpdateExternalContractReferenceRequest
     """ # noqa: E501
-    external_contract_reference: Optional[StrictStr] = Field(default=None, alias="externalContractReference")
+    external_contract_reference: Optional[StrictStr] = Field(alias="externalContractReference")
     __properties: ClassVar[List[str]] = ["externalContractReference"]
 
     model_config = ConfigDict(

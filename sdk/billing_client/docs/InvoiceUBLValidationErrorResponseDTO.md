@@ -1,14 +1,13 @@
 # InvoiceUBLValidationErrorResponseDTO
 
-Represents UBL validation errors for invoices
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**general_errors** | [**List[InvoiceUBLValidationGeneralErrorDTO]**](InvoiceUBLValidationGeneralErrorDTO.md) | List of general validation errors that apply to multiple invoices | [optional] 
-**specific_errors** | [**List[InvoiceUBLValidationSpecificErrorDTO]**](InvoiceUBLValidationSpecificErrorDTO.md) | List of specific validation errors for individual invoices | [optional] 
-**unique_invoices_with_errors** | **int** | Number of unique invoices that have validation errors | [optional] [readonly] 
+**general_errors** | [**List[InvoiceUBLValidationGeneralErrorDTO]**](InvoiceUBLValidationGeneralErrorDTO.md) |  | [optional] 
+**specific_errors** | [**List[InvoiceUBLValidationSpecificErrorDTO]**](InvoiceUBLValidationSpecificErrorDTO.md) |  | [optional] 
+**unique_invoices_with_errors** | **int** |  | [optional] 
 
 ## Example
 

@@ -1,5 +1,6 @@
 # MeteringImportType
 
+Possible values: 'measurements'
 
 ## Enum
 

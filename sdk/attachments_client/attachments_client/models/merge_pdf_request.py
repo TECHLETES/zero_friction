@@ -26,8 +26,8 @@ class MergePdfRequest(BaseModel):
     """
     MergePdfRequest
     """ # noqa: E501
-    attachment_ids: Optional[List[StrictStr]] = Field(default=None, alias="attachmentIds")
-    resulting_file_name: Optional[StrictStr] = Field(default=None, alias="resultingFileName")
+    attachment_ids: List[StrictStr] = Field(alias="attachmentIds")
+    resulting_file_name: Optional[StrictStr] = Field(alias="resultingFileName")
     __properties: ClassVar[List[str]] = ["attachmentIds", "resultingFileName"]
 
     model_config = ConfigDict(
@@ -69,11 +69,6 @@ class MergePdfRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if attachment_ids (nullable) is None
-        # and model_fields_set contains the field
-        if self.attachment_ids is None and "attachment_ids" in self.model_fields_set:
-            _dict['attachmentIds'] = None
-
         # set to None if resulting_file_name (nullable) is None
         # and model_fields_set contains the field
         if self.resulting_file_name is None and "resulting_file_name" in self.model_fields_set:

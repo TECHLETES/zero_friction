@@ -1,5 +1,6 @@
 # MoveRequestType
 
+Possible values: 'movein', 'moveout'
 
 ## Enum
 

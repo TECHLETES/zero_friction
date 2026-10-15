@@ -27,7 +27,7 @@ class GetServiceLocationMatchingConsumerGroupsDTO(BaseModel):
     """
     GetServiceLocationMatchingConsumerGroupsDTO
     """ # noqa: E501
-    matching_consumer_groups: Optional[Dict[str, Optional[List[MatchingConsumerGroupsDTO]]]] = Field(default=None, alias="matchingConsumerGroups")
+    matching_consumer_groups: Optional[Dict[str, List[MatchingConsumerGroupsDTO]]] = Field(default=None, alias="matchingConsumerGroups")
     __properties: ClassVar[List[str]] = ["matchingConsumerGroups"]
 
     model_config = ConfigDict(
@@ -78,11 +78,6 @@ class GetServiceLocationMatchingConsumerGroupsDTO(BaseModel):
                         _item.to_dict() for _item in self.matching_consumer_groups[_key_matching_consumer_groups]
                     ]
             _dict['matchingConsumerGroups'] = _field_dict_of_array
-        # set to None if matching_consumer_groups (nullable) is None
-        # and model_fields_set contains the field
-        if self.matching_consumer_groups is None and "matching_consumer_groups" in self.model_fields_set:
-            _dict['matchingConsumerGroups'] = None
-
         return _dict
 
     @classmethod

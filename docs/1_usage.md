@@ -56,8 +56,8 @@ Install the repository’s optional agents from the attached container:
 
 ## If the container needs a refresh
 
-- After Dockerfile or devcontainer configuration changes, run **Dev
-  Containers: Rebuild Container**.
+- After devcontainer configuration changes, run **Dev Containers: Rebuild
+  Container**.
 - After dependency changes, run `uv lock && uv sync`.
 - If the environment remains inconsistent, use **Rebuild Container Without
   Cache**.

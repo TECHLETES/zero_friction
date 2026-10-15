@@ -37,10 +37,12 @@ class TestUpdateCustomerBankAccountActiveMandateRequest(unittest.TestCase):
             return UpdateCustomerBankAccountActiveMandateRequest(
                 number = '',
                 type = 'core',
-                signed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                signed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                company_bank_account_id = ''
             )
         else:
             return UpdateCustomerBankAccountActiveMandateRequest(
+                type = 'core',
         )
         """
 

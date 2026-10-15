@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class IbanConfirmationStatus(str, Enum):
     """
-    IbanConfirmationStatus
+    Possible values: 'unspecified', 'known', 'unknownfirst', 'unknownsecond'
     """
 
     """

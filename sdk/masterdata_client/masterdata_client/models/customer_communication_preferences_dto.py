@@ -26,13 +26,14 @@ from typing_extensions import Self
 
 class CustomerCommunicationPreferencesDTO(BaseModel):
     """
-    Represents communication preferences for a customer
+    CustomerCommunicationPreferencesDTO
     """ # noqa: E501
-    culture: Optional[str] = None
-    invoice_communication_preferences: Optional[List[InvoiceCommunicationPreferenceDTO]] = Field(default=None, description="List of invoice communication preferences", alias="invoiceCommunicationPreferences")
-    annual_statement_communication_preference: Optional[CommunicationType] = Field(default=None, description="The communication type preference for annual statements", alias="annualStatementCommunicationPreference")
-    collection_flow_id: Optional[StrictStr] = Field(default=None, description="Identifier for the collection flow", alias="collectionFlowId")
-    __properties: ClassVar[List[str]] = ["culture", "invoiceCommunicationPreferences", "annualStatementCommunicationPreference", "collectionFlowId"]
+    culture: Optional[StrictStr] = None
+    invoice_communication_preferences: Optional[List[InvoiceCommunicationPreferenceDTO]] = Field(default=None, alias="invoiceCommunicationPreferences")
+    annual_statement_communication_preference: Optional[CommunicationType] = Field(default=None, alias="annualStatementCommunicationPreference")
+    prepayment_statement_communication_preference: Optional[CommunicationType] = Field(default=None, alias="prepaymentStatementCommunicationPreference")
+    collection_flow_id: Optional[StrictStr] = Field(default=None, alias="collectionFlowId")
+    __properties: ClassVar[List[str]] = ["culture", "invoiceCommunicationPreferences", "annualStatementCommunicationPreference", "prepaymentStatementCommunicationPreference", "collectionFlowId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,15 +81,15 @@ class CustomerCommunicationPreferencesDTO(BaseModel):
                 if _item_invoice_communication_preferences:
                     _items.append(_item_invoice_communication_preferences.to_dict())
             _dict['invoiceCommunicationPreferences'] = _items
+        # set to None if culture (nullable) is None
+        # and model_fields_set contains the field
+        if self.culture is None and "culture" in self.model_fields_set:
+            _dict['culture'] = None
+
         # set to None if invoice_communication_preferences (nullable) is None
         # and model_fields_set contains the field
         if self.invoice_communication_preferences is None and "invoice_communication_preferences" in self.model_fields_set:
             _dict['invoiceCommunicationPreferences'] = None
-
-        # set to None if annual_statement_communication_preference (nullable) is None
-        # and model_fields_set contains the field
-        if self.annual_statement_communication_preference is None and "annual_statement_communication_preference" in self.model_fields_set:
-            _dict['annualStatementCommunicationPreference'] = None
 
         # set to None if collection_flow_id (nullable) is None
         # and model_fields_set contains the field
@@ -110,6 +111,7 @@ class CustomerCommunicationPreferencesDTO(BaseModel):
             "culture": obj.get("culture"),
             "invoiceCommunicationPreferences": [InvoiceCommunicationPreferenceDTO.from_dict(_item) for _item in obj["invoiceCommunicationPreferences"]] if obj.get("invoiceCommunicationPreferences") is not None else None,
             "annualStatementCommunicationPreference": obj.get("annualStatementCommunicationPreference"),
+            "prepaymentStatementCommunicationPreference": obj.get("prepaymentStatementCommunicationPreference"),
             "collectionFlowId": obj.get("collectionFlowId")
         })
         return _obj

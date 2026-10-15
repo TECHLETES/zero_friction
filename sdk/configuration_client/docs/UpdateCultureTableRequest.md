@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_culture_name** | **str** |  | [optional] 
-**supported_culture_names** | **List[str]** |  | [optional] 
+**default_culture_name** | **str** |  | 
+**supported_culture_names** | **List[str]** |  | 
 
 ## Example
 

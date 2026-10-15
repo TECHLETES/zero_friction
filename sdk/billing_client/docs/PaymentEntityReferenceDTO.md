@@ -1,14 +1,13 @@
 # PaymentEntityReferenceDTO
 
-Contains reference information for entities associated with a payment.  This DTO links payments to related transactions and references.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transaction_id** | **str** | The ID of the associated transaction. | [optional] 
-**reference_id** | **str** | The reference ID associated with this entity. | [optional] 
-**reference_type** | [**TransactionReferenceType**](TransactionReferenceType.md) | The type of reference for this entity. | [optional] 
+**transaction_id** | **str** |  | [optional] 
+**reference_id** | **str** |  | [optional] 
+**reference_type** | [**TransactionReferenceType**](TransactionReferenceType.md) |  | [optional] 
 
 ## Example
 

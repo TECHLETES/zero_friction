@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**new_status** | [**MoveRequestStatus**](MoveRequestStatus.md) |  | [optional] 
 **only_validate** | **bool** |  | [optional] 
 **var_query_params** | [**GetMoveRequestsQueryParams**](GetMoveRequestsQueryParams.md) |  | [optional] 
 **quick_filter** | **str** |  | [optional] 
+**new_status** | [**MoveRequestStatus**](MoveRequestStatus.md) |  | [optional] 
 
 ## Example
 

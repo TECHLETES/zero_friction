@@ -35,19 +35,17 @@ class TestCultureTableDTO(unittest.TestCase):
         model = CultureTableDTO()
         if include_optional:
             return CultureTableDTO(
+                default_culture = '',
+                supported_cultures = [
+                    ''
+                    ],
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                default_culture = ,
-                supported_cultures = [
-                    
-                    ]
+                is_read_only = True
             )
         else:
             return CultureTableDTO(

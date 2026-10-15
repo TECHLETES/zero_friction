@@ -24,10 +24,10 @@ from typing_extensions import Self
 
 class ExportUblFormatBulkRequest(BaseModel):
     """
-    Represents a bulk request to export invoices in UBL format.  This DTO is used to export multiple invoices in UBL (Universal Business Language) format in a single operation.
+    ExportUblFormatBulkRequest
     """ # noqa: E501
-    invoice_ids: Optional[List[StrictStr]] = Field(default=None, description="List of invoice IDs to be exported in UBL format.", alias="invoiceIds")
-    mark_as_exported: Optional[StrictBool] = Field(default=None, description="Indicates whether the exported invoices should be marked as exported in the system.", alias="markAsExported")
+    invoice_ids: Optional[List[StrictStr]] = Field(alias="invoiceIds")
+    mark_as_exported: Optional[StrictBool] = Field(default=None, alias="markAsExported")
     __properties: ClassVar[List[str]] = ["invoiceIds", "markAsExported"]
 
     model_config = ConfigDict(

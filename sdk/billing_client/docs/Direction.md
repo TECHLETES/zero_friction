@@ -1,5 +1,6 @@
 # Direction
 
+Possible values: 'offtake', 'injection', 'na'
 
 ## Enum
 

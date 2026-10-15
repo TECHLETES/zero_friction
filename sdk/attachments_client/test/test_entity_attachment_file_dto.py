@@ -37,7 +37,7 @@ class TestEntityAttachmentFileDTO(unittest.TestCase):
             return EntityAttachmentFileDTO(
                 file_name = '',
                 localised_file_name = '',
-                culture = 
+                culture = ''
             )
         else:
             return EntityAttachmentFileDTO(

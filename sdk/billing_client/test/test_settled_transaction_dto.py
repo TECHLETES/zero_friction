@@ -44,6 +44,10 @@ class TestSettledTransactionDTO(unittest.TestCase):
             )
         else:
             return SettledTransactionDTO(
+                transaction_id = '',
+                transaction_reference_type = 'payment',
+                transaction_reference_id = '',
+                transaction_reference_display_name = '',
         )
         """
 

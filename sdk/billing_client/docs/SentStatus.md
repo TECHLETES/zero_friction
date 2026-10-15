@@ -1,5 +1,6 @@
 # SentStatus
 
+Possible values: 'notsent', 'sending', 'printing', 'skipped', 'sent', 'failed'
 
 ## Enum
 

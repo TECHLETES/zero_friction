@@ -27,7 +27,7 @@ class PropertyGroupReferenceDTO(BaseModel):
     PropertyGroupReferenceDTO
     """ # noqa: E501
     id: Optional[StrictStr] = None
-    name: Optional[StrictStr] = None
+    name: Optional[StrictStr]
     __properties: ClassVar[List[str]] = ["id", "name"]
 
     model_config = ConfigDict(

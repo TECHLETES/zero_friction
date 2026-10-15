@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class EnvelopePosition(str, Enum):
     """
-    EnvelopePosition
+    Possible values: 'left', 'right'
     """
 
     """

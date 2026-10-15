@@ -44,6 +44,9 @@ class TestUpdateTranslationRequest(unittest.TestCase):
             )
         else:
             return UpdateTranslationRequest(
+                translations = {
+                    'key' : ''
+                    },
         )
         """
 

@@ -36,7 +36,7 @@ class TestCustomerInvoiceCommunicationPreferencesRequest(unittest.TestCase):
         if include_optional:
             return CustomerInvoiceCommunicationPreferencesRequest(
                 invoice_type = 'advance',
-                communication_type = 'postal'
+                communication_type = 'none'
             )
         else:
             return CustomerInvoiceCommunicationPreferencesRequest(

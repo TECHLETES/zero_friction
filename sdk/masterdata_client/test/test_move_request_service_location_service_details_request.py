@@ -35,11 +35,11 @@ class TestMoveRequestServiceLocationServiceDetailsRequest(unittest.TestCase):
         model = MoveRequestServiceLocationServiceDetailsRequest()
         if include_optional:
             return MoveRequestServiceLocationServiceDetailsRequest(
-                external_identifier = '',
                 utility_type = 'none'
             )
         else:
             return MoveRequestServiceLocationServiceDetailsRequest(
+                utility_type = 'none',
         )
         """
 

@@ -5,15 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
 **customer_id** | **str** |  | [optional] 
 **contract_id** | **str** |  | [optional] 
 **viewed** | **bool** |  | [optional] 
 **visibilities** | **List[str]** |  | [optional] 
 **created_start_date_time** | **datetime** |  | [optional] 
 **created_end_date_time** | **datetime** |  | [optional] 
+**flex_search** | **str** |  | [optional] 
+**include_only_ids** | **List[str]** |  | [optional] 
+**exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

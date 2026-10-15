@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MeterStatus(str, Enum):
     """
-    MeterStatus
+    Possible values: 'requested', 'installed', 'removed'
     """
 
     """

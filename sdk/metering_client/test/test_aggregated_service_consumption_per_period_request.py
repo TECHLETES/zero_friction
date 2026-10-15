@@ -42,6 +42,10 @@ class TestAggregatedServiceConsumptionPerPeriodRequest(unittest.TestCase):
             )
         else:
             return AggregatedServiceConsumptionPerPeriodRequest(
+                service_location_ids = [
+                    ''
+                    ],
+                group_by_period = 'none',
         )
         """
 

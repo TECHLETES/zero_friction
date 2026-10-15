@@ -1,13 +1,12 @@
 # IncomingMutationGroupedDetailsDTO
 
-Contains aggregated details about a group of mutations.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | **int** | The number of mutations in the group. | [optional] 
-**amount** | **float** | The total amount of all mutations in the group. | [optional] 
+**count** | **int** |  | [optional] 
+**amount** | **float** |  | [optional] 
 
 ## Example
 

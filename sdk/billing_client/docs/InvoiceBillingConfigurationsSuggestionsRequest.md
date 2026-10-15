@@ -1,13 +1,12 @@
 # InvoiceBillingConfigurationsSuggestionsRequest
 
-Represents a request to get suggested invoice billing configurations.  This DTO is used to retrieve recommended billing configurations based on service locations and contract.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_location_ids** | **List[str]** | List of service location IDs for which to get billing configuration suggestions. | [optional] 
-**contract_id** | **str** | The ID of the contract associated with the billing configurations. | [optional] 
+**service_location_ids** | **List[str]** |  | 
+**contract_id** | **str** |  | [optional] 
 
 ## Example
 

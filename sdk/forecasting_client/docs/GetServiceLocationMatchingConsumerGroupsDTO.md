@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**matching_consumer_groups** | **Dict[str, Optional[List[MatchingConsumerGroupsDTO]]]** |  | [optional] 
+**matching_consumer_groups** | **Dict[str, List[MatchingConsumerGroupsDTO]]** |  | [optional] 
 
 ## Example
 

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MeterReadingFrequency(str, Enum):
     """
-    MeterReadingFrequency
+    Possible values: 'hourly', 'daily', 'weekly', 'monthly', 'bimonthly', 'quarterly', 'halfyearly', 'yearly'
     """
 
     """

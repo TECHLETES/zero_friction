@@ -48,6 +48,8 @@ class TestBucketedServiceConsumptionRequest(unittest.TestCase):
             )
         else:
             return BucketedServiceConsumptionRequest(
+                utility_type = 'none',
+                unit_of_measure = 'none',
         )
         """
 

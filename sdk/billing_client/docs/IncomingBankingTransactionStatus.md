@@ -1,5 +1,6 @@
 # IncomingBankingTransactionStatus
 
+Possible values: 'created', 'processing', 'matching', 'resolveissues', 'readytoprocess', 'closed'
 
 ## Enum
 

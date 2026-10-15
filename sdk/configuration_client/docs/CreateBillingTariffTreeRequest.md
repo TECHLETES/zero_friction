@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] [readonly] 
+**id** | **str** |  | [optional] 
 **product_id** | **str** |  | [optional] 
-**activity_period** | [**DateRange**](DateRange.md) |  | [optional] 
+**activity_period** | [**DateRange**](DateRange.md) |  | 
 **nodes** | [**List[CreateBillingTariffNodeRequest]**](CreateBillingTariffNodeRequest.md) |  | [optional] 
 
 ## Example

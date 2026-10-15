@@ -5,10 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
-**customer_type** | **str** |  | [optional] 
+**customer_types** | **List[str]** |  | [optional] 
 **default_payment_method** | **str** |  | [optional] 
 **property_group_ids** | **List[str]** |  | [optional] 
 **exclude_property_group_id** | **str** |  | [optional] 
@@ -21,6 +18,10 @@ Name | Type | Description | Notes
 **vulnerability_register_property_type_id** | **str** |  | [optional] 
 **priority_service_register_ids** | **List[str]** |  | [optional] 
 **vulnerability_register_ids** | **List[str]** |  | [optional] 
+**flex_search** | **str** |  | [optional] 
+**include_only_ids** | **List[str]** |  | [optional] 
+**exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

@@ -35,26 +35,23 @@ class TestBillingTariffDTO(unittest.TestCase):
         model = BillingTariffDTO()
         if include_optional:
             return BillingTariffDTO(
+                product_id = '',
+                billing_item_id = '',
+                contract_id = '',
+                calculation_parameters = configuration_client.models.base_tariff_calculation_type_parameters_dto.BaseTariffCalculationTypeParametersDTO(),
+                condition_parameters = [
+                    configuration_client.models.base_tariff_condition_type_parameters_dto.BaseTariffConditionTypeParametersDTO()
+                    ],
+                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                organisation_id = '',
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
-                product_id = '',
-                billing_item_id = '',
-                contract_id = '',
-                calculation_parameters = configuration_client.models.base_tariff_calculation_type_parameters_dto.BaseTariffCalculationTypeParametersDTO(
-                    calculation_type = null, ),
-                condition_parameters = [
-                    configuration_client.models.base_tariff_condition_type_parameters_dto.BaseTariffConditionTypeParametersDTO()
-                    ],
-                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                is_read_only = True
             )
         else:
             return BillingTariffDTO(

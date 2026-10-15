@@ -50,6 +50,18 @@ class TestCreateNewOutgoingBankingTransactionRequest(unittest.TestCase):
             )
         else:
             return CreateNewOutgoingBankingTransactionRequest(
+                outgoing_banking_transaction_type = 'paymentrequests',
+                collection_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                company_bank_account_id = '',
+                entries = [
+                    billing_client.models.add_entry_to_outgoing_banking_transaction_request.AddEntryToOutgoingBankingTransactionRequest(
+                        invoice_id = '', 
+                        amount = 1.337, 
+                        payment_reference = '', 
+                        iban = '', 
+                        customer_id = '', 
+                        transaction_id = '', )
+                    ],
         )
         """
 

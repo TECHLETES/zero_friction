@@ -1,5 +1,6 @@
 # MandateType
 
+Possible values: 'core', 'b2b'
 
 ## Enum
 

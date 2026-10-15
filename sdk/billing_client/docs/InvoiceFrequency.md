@@ -1,5 +1,6 @@
 # InvoiceFrequency
 
+Possible values: 'monthly', 'quarterly', 'halfyearly', 'yearly'
 
 ## Enum
 

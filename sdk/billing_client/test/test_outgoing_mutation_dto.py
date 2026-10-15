@@ -35,38 +35,40 @@ class TestOutgoingMutationDTO(unittest.TestCase):
         model = OutgoingMutationDTO()
         if include_optional:
             return OutgoingMutationDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 outgoing_banking_transaction_id = '',
                 type = 'paymentrequests',
                 amount = 1.337,
                 description = '',
                 reference_details = billing_client.models.outgoing_mutation_reference_details_dto.OutgoingMutationReferenceDetailsDTO(
-                    reference_type = null, 
+                    reference_type = 'invoice', 
                     reference_id = '', 
-                    parameters = null, ),
+                    parameters = billing_client.models.outgoing_mutation_reference_parameters_dto.OutgoingMutationReferenceParametersDTO(), ),
                 customer_bank_account = billing_client.models.outgoing_mutation_customer_bank_account_dto.OutgoingMutationCustomerBankAccountDTO(
                     iban = '', 
                     account_holder = '', 
                     mandate_number = '', 
-                    mandate_signed_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
+                    mandate_signed_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    address = billing_client.models.address_dto.AddressDTO(
+                        street_name = '', 
+                        street_number = '', 
+                        street_number_addition = '', 
+                        postal_code = '', 
+                        building_name = '', 
+                        locality = '', 
+                        city = '', 
+                        country = 'aut', 
+                        localized_display = '', 
+                        line_one = '', 
+                        line_two = '', ), ),
                 status = 'created',
                 errors = [
                     billing_client.models.localised_error_dto.LocalisedErrorDTO(
-                        key = null, 
+                        key = 56, 
                         correlation_id = '', 
                         message = '', 
                         message_values = [
                             billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                data_type = null, 
+                                data_type = 'text', 
                                 value = '', 
                                 capitalize = True, )
                             ], )
@@ -76,7 +78,15 @@ class TestOutgoingMutationDTO(unittest.TestCase):
                 confirming_incoming_mutation_id = '',
                 reverting_incoming_banking_transaction_id = '',
                 reverting_incoming_banking_transaction_identification = '',
-                reverting_incoming_mutation_id = ''
+                reverting_incoming_mutation_id = '',
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return OutgoingMutationDTO(

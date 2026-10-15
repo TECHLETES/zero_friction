@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **product_id** | **str** |  | [optional] 
-**product_name** | **str** |  | [optional] 
+**product_name** | **str** |  | 
 **start_date_time** | **datetime** |  | [optional] 
 **end_date_time** | **datetime** |  | [optional] 
 

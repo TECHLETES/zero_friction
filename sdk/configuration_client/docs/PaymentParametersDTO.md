@@ -5,22 +5,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | Gets or sets the unique identifier. | [optional] 
-**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) | Gets or sets the type of the entity. | [optional] 
-**created_date_time** | **datetime** | Gets or sets the date and time when the entity was created. | [optional] 
-**discriminator** | **str** | Gets or sets the discriminator value. | [optional] 
-**etag** | **str** | Gets or sets the ETag value. | [optional] 
-**require_attention** | **bool** | Gets a value indicating whether the entity requires attention. | [optional] [readonly] 
-**has_errors** | **bool** | Gets or sets a value indicating whether the entity has errors. | [optional] 
-**has_warnings** | **bool** | Gets or sets a value indicating whether the entity has warnings. | [optional] 
-**is_read_only** | **bool** | Gets or sets a value indicating whether the entity is read-only. | [optional] 
-**organisation_id** | **str** | Gets or sets the organization identifier. | [optional] 
 **retry_parameters** | [**List[PaymentRetryParameterDTO]**](PaymentRetryParameterDTO.md) |  | [optional] 
 **block_automatic_settlement** | **bool** |  | [optional] 
+**block_automatic_refunding** | **bool** |  | [optional] 
 **refund_payment_delay_in_days** | **int** |  | [optional] 
 **payment_terms_id** | **str** |  | [optional] 
 **only_use_invoice_number_in_payment_references** | **bool** |  | [optional] 
 **default_collection_flow_id** | **str** |  | [optional] 
+**default_collection_delay** | [**PaymentDelay**](PaymentDelay.md) |  | [optional] 
+**default_collection_delay_value** | **int** |  | [optional] 
+**allow_resident_to_choose_collection_day** | **bool** |  | [optional] 
+**allow_customer_collection_day_override** | **bool** |  | [optional] 
+**selectable_collection_days** | **List[int]** |  | [optional] 
+**matching_rules** | [**List[BaseBankStatementMatchingRuleDTO]**](BaseBankStatementMatchingRuleDTO.md) |  | [optional] 
+**organisation_id** | **str** |  | [optional] 
+**id** | **str** |  | [optional] 
+**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**created_date_time** | **datetime** |  | [optional] 
+**discriminator** | **str** |  | [optional] 
+**etag** | **str** |  | [optional] 
+**has_errors** | **bool** |  | [optional] 
+**is_read_only** | **bool** |  | [optional] 
 
 ## Example
 

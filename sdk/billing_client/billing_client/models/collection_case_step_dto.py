@@ -32,29 +32,28 @@ from typing_extensions import Self
 
 class CollectionCaseStepDTO(BaseModel):
     """
-    Represents a step in the collection case workflow.  This DTO contains information about the step's execution, communication details, and status.
+    CollectionCaseStepDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the collection case step.")
-    step_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the step definition.", alias="stepId")
-    order: Optional[StrictInt] = Field(default=None, description="The order in which this step should be executed.")
-    name: Optional[StrictStr] = Field(default=None, description="The name of the step.")
-    trigger_days: Optional[StrictInt] = Field(default=None, description="The number of days after which this step should be triggered.", alias="triggerDays")
-    execute_at: Optional[datetime] = Field(default=None, description="The date and time when this step should be executed.", alias="executeAt")
-    step_type: Optional[CollectionStepType] = Field(default=None, description="The type of collection step.", alias="stepType")
-    communication_type: Optional[CommunicationType] = Field(default=None, description="The type of communication to be used for this step.", alias="communicationType")
-    communication_level: Optional[CollectionStepLevel] = Field(default=None, description="The level of communication for this step.", alias="communicationLevel")
-    charge_type: Optional[CollectionChargeType] = Field(default=None, description="The type of charge associated with this step.", alias="chargeType")
-    charges: Optional[StepChargeDTO] = Field(default=None, description="The charges associated with this step.")
-    executed_at: Optional[datetime] = Field(default=None, description="The date and time when this step was executed.", alias="executedAt")
-    documents_sent_at: Optional[datetime] = Field(default=None, description="The date and time when documents were sent for this step.", alias="documentsSentAt")
-    document_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the document associated with this step.", alias="documentId")
-    email_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the email associated with this step.", alias="emailId")
-    status: Optional[CollectionStepStatus] = Field(default=None, description="The current status of this collection step.")
-    failure_reason_code: Optional[LocalisedErrorDTO] = Field(default=None, description="The localized error code if the step execution failed.", alias="failureReasonCode")
-    failure_details: Optional[StrictStr] = Field(default=None, description="Detailed information about any failure that occurred during step execution.", alias="failureDetails")
-    supports_external_printing: Optional[StrictBool] = Field(default=None, description="Indicates whether the document can be printed externally.", alias="supportsExternalPrinting")
-    retry_count: Optional[StrictInt] = Field(default=None, description="The number of times this step has been retried.", alias="retryCount")
-    __properties: ClassVar[List[str]] = ["id", "stepId", "order", "name", "triggerDays", "executeAt", "stepType", "communicationType", "communicationLevel", "chargeType", "charges", "executedAt", "documentsSentAt", "documentId", "emailId", "status", "failureReasonCode", "failureDetails", "supportsExternalPrinting", "retryCount"]
+    id: Optional[StrictStr] = None
+    step_id: Optional[StrictStr] = Field(default=None, alias="stepId")
+    order: Optional[StrictInt] = None
+    name: Optional[StrictStr] = None
+    trigger_days: Optional[StrictInt] = Field(default=None, alias="triggerDays")
+    execute_at: Optional[datetime] = Field(default=None, alias="executeAt")
+    step_type: Optional[CollectionStepType] = Field(default=None, alias="stepType")
+    communication_type: Optional[CommunicationType] = Field(default=None, alias="communicationType")
+    communication_level: Optional[CollectionStepLevel] = Field(default=None, alias="communicationLevel")
+    charge_type: Optional[CollectionChargeType] = Field(default=None, alias="chargeType")
+    charges: Optional[StepChargeDTO] = None
+    executed_at: Optional[datetime] = Field(default=None, alias="executedAt")
+    documents_sent_at: Optional[datetime] = Field(default=None, alias="documentsSentAt")
+    document_id: Optional[StrictStr] = Field(default=None, alias="documentId")
+    email_id: Optional[StrictStr] = Field(default=None, alias="emailId")
+    status: Optional[CollectionStepStatus] = None
+    failure_reason_code: Optional[LocalisedErrorDTO] = Field(default=None, alias="failureReasonCode")
+    supports_external_printing: Optional[StrictBool] = Field(default=None, alias="supportsExternalPrinting")
+    retry_count: Optional[StrictInt] = Field(default=None, alias="retryCount")
+    __properties: ClassVar[List[str]] = ["id", "stepId", "order", "name", "triggerDays", "executeAt", "stepType", "communicationType", "communicationLevel", "chargeType", "charges", "executedAt", "documentsSentAt", "documentId", "emailId", "status", "failureReasonCode", "supportsExternalPrinting", "retryCount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,26 +115,6 @@ class CollectionCaseStepDTO(BaseModel):
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
 
-        # set to None if step_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.step_type is None and "step_type" in self.model_fields_set:
-            _dict['stepType'] = None
-
-        # set to None if communication_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.communication_type is None and "communication_type" in self.model_fields_set:
-            _dict['communicationType'] = None
-
-        # set to None if communication_level (nullable) is None
-        # and model_fields_set contains the field
-        if self.communication_level is None and "communication_level" in self.model_fields_set:
-            _dict['communicationLevel'] = None
-
-        # set to None if charge_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.charge_type is None and "charge_type" in self.model_fields_set:
-            _dict['chargeType'] = None
-
         # set to None if charges (nullable) is None
         # and model_fields_set contains the field
         if self.charges is None and "charges" in self.model_fields_set:
@@ -151,20 +130,10 @@ class CollectionCaseStepDTO(BaseModel):
         if self.email_id is None and "email_id" in self.model_fields_set:
             _dict['emailId'] = None
 
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
-
         # set to None if failure_reason_code (nullable) is None
         # and model_fields_set contains the field
         if self.failure_reason_code is None and "failure_reason_code" in self.model_fields_set:
             _dict['failureReasonCode'] = None
-
-        # set to None if failure_details (nullable) is None
-        # and model_fields_set contains the field
-        if self.failure_details is None and "failure_details" in self.model_fields_set:
-            _dict['failureDetails'] = None
 
         return _dict
 
@@ -195,7 +164,6 @@ class CollectionCaseStepDTO(BaseModel):
             "emailId": obj.get("emailId"),
             "status": obj.get("status"),
             "failureReasonCode": LocalisedErrorDTO.from_dict(obj["failureReasonCode"]) if obj.get("failureReasonCode") is not None else None,
-            "failureDetails": obj.get("failureDetails"),
             "supportsExternalPrinting": obj.get("supportsExternalPrinting"),
             "retryCount": obj.get("retryCount")
         })

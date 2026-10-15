@@ -37,7 +37,8 @@ class TestServiceLocationOverviewCountDTO(unittest.TestCase):
             return ServiceLocationOverviewCountDTO(
                 all = 56,
                 supplied = 56,
-                unsupplied = 56
+                unsupplied = 56,
+                archived = 56
             )
         else:
             return ServiceLocationOverviewCountDTO(

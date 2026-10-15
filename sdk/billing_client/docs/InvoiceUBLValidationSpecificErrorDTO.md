@@ -1,16 +1,15 @@
 # InvoiceUBLValidationSpecificErrorDTO
 
-Represents a specific UBL validation error for a single invoice
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_id** | **str** | Identifier of the invoice with the error | [optional] 
-**invoice_number** | **str** | Invoice number | [optional] 
-**error_subject** | [**EntitySubjectType**](EntitySubjectType.md) | Type of entity that caused the error | [optional] 
-**error_subject_id** | **str** | Identifier of the entity that caused the error | [optional] 
-**error_message** | [**LocalisedErrorDTO**](LocalisedErrorDTO.md) | Localized error message | [optional] 
+**invoice_id** | **str** |  | [optional] 
+**invoice_number** | **str** |  | [optional] 
+**error_subject** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**error_subject_id** | **str** |  | [optional] 
+**error_message** | [**LocalisedErrorDTO**](LocalisedErrorDTO.md) |  | [optional] 
 
 ## Example
 

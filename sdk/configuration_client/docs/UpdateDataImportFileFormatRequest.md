@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
+**name** | **str** |  | 
+**description** | **str** |  | 
 **is_built_in** | **bool** |  | [optional] 
-**settings** | **object** |  | [optional] 
+**settings** | [**BaseDataImportSettingsDTO**](BaseDataImportSettingsDTO.md) |  | 
 
 ## Example
 

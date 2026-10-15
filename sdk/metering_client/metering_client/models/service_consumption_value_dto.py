@@ -18,19 +18,20 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
 class ServiceConsumptionValueDTO(BaseModel):
     """
-    Represents a single consumption value with its time period
+    ServiceConsumptionValueDTO
     """ # noqa: E501
-    value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The consumption value")
-    start_date_time: Optional[datetime] = Field(default=None, description="Start date and time of the consumption period", alias="startDateTime")
-    end_date_time: Optional[datetime] = Field(default=None, description="End date and time of the consumption period", alias="endDateTime")
-    __properties: ClassVar[List[str]] = ["value", "startDateTime", "endDateTime"]
+    value: Optional[Union[StrictFloat, StrictInt]] = None
+    start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
+    end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
+    time_of_use: Optional[StrictStr] = Field(default=None, alias="timeOfUse")
+    __properties: ClassVar[List[str]] = ["value", "startDateTime", "endDateTime", "timeOfUse"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +72,11 @@ class ServiceConsumptionValueDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if time_of_use (nullable) is None
+        # and model_fields_set contains the field
+        if self.time_of_use is None and "time_of_use" in self.model_fields_set:
+            _dict['timeOfUse'] = None
+
         return _dict
 
     @classmethod
@@ -85,7 +91,8 @@ class ServiceConsumptionValueDTO(BaseModel):
         _obj = cls.model_validate({
             "value": obj.get("value"),
             "startDateTime": obj.get("startDateTime"),
-            "endDateTime": obj.get("endDateTime")
+            "endDateTime": obj.get("endDateTime"),
+            "timeOfUse": obj.get("timeOfUse")
         })
         return _obj
 

@@ -35,7 +35,7 @@ class TestProductAttachmentFileDTO(unittest.TestCase):
         model = ProductAttachmentFileDTO()
         if include_optional:
             return ProductAttachmentFileDTO(
-                culture = ,
+                culture = '',
                 file_name = '',
                 internal_file_name = '',
                 attachment_id = ''

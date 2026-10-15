@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
-**amount** | **int** |  | [optional] 
-**payment_terms_frequency** | [**PaymentTermsFrequency**](PaymentTermsFrequency.md) |  | [optional] 
+**name** | **str** |  | 
+**amount** | **int** |  | 
+**payment_terms_frequency** | [**PaymentTermsFrequency**](PaymentTermsFrequency.md) |  | 
 
 ## Example
 

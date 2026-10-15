@@ -5,7 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tax_code_id** | **str** |  | [optional] 
+**type** | **str** |  | 
+**amount_excl_vat** | **float** |  | 
+**tax_code_id** | **str** |  | 
+**percentage** | **float** |  | 
+**tiers** | [**List[TierRequest]**](TierRequest.md) |  | 
 
 ## Example
 

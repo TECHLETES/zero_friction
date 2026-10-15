@@ -35,7 +35,7 @@ class UpdatePropertyGroupCommunicationConfigurationRequest(BaseModel):
     secondary_color: Optional[StrictStr] = Field(default=None, alias="secondaryColor")
     address: Optional[AddressDTO] = None
     logo: Optional[StrictStr] = None
-    contact_details: Optional[PropertyGroupContactDetailsRequest] = Field(default=None, alias="contactDetails")
+    contact_details: Optional[PropertyGroupContactDetailsRequest] = Field(alias="contactDetails")
     __properties: ClassVar[List[str]] = ["companyName", "vatAccountNumber", "companyAccountNumber", "primaryColor", "secondaryColor", "address", "logo", "contactDetails"]
 
     model_config = ConfigDict(

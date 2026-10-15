@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class OutgoingBankingTransactionType(str, Enum):
     """
-    OutgoingBankingTransactionType
+    Possible values: 'paymentrequests', 'paymentrefunds'
     """
 
     """

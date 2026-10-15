@@ -24,10 +24,10 @@ from typing_extensions import Self
 
 class MatchingTransactionRequest(BaseModel):
     """
-    Represents a single transaction to be matched with its settlement amount.
+    MatchingTransactionRequest
     """ # noqa: E501
-    matching_transaction_id: Optional[StrictStr] = Field(default=None, description="The ID of the transaction to be matched.", alias="matchingTransactionId")
-    amount_to_settle: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount to be settled for this transaction.", alias="amountToSettle")
+    matching_transaction_id: Optional[StrictStr] = Field(alias="matchingTransactionId")
+    amount_to_settle: Union[StrictFloat, StrictInt] = Field(alias="amountToSettle")
     __properties: ClassVar[List[str]] = ["matchingTransactionId", "amountToSettle"]
 
     model_config = ConfigDict(

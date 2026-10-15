@@ -42,7 +42,9 @@ class TestAdvanceCalculationDetailsDTO(unittest.TestCase):
                 next_invoice_amount_accuracy = 'low',
                 recalculation_type = 'none',
                 fallback_reason = 'na',
-                changed_by_user_id = ''
+                changed_by_user_id = '',
+                applied_period_percentage = 1.337,
+                advance_calculation_type = 'fixed'
             )
         else:
             return AdvanceCalculationDetailsDTO(

@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mutation_date_time** | **datetime** |  | [optional] 
-**keep_existing_invoice_on_end_date** | **bool** | When this flag is set, if an invoice exists with the end date equal to the move-out date,  no credit note shall be created. | [optional] 
+**mutation_date_time** | **datetime** |  | 
+**keep_existing_invoice_on_end_date** | **bool** |  | [optional] 
+**create_prepayment_correction_for_charged_costs** | **bool** |  | [optional] 
 
 ## Example
 

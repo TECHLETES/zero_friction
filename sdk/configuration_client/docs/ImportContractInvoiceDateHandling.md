@@ -1,5 +1,6 @@
 # ImportContractInvoiceDateHandling
 
+Possible values: 'donothing', 'recalculateinvoicedates', 'nextinvoicedateminusfrequency'
 
 ## Enum
 

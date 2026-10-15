@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] [readonly] 
+**id** | **str** |  | [optional] 
 **billing_item_id** | **str** |  | [optional] 
 **product_id** | **str** |  | [optional] 
 **activity_period** | [**DateRange**](DateRange.md) |  | [optional] 

@@ -20,14 +20,22 @@ from typing_extensions import Self
 
 class MeteringIssueError(str, Enum):
     """
-    MeteringIssueError
+    Possible values: 'consumptionnegative', 'consumptionpositiveforinjection', 'consumptionoutofbounds', 'consumptionzerotoolong', 'measurementfrequencytoolow', 'consumptiongap', 'overlappingconsumption', 'missingmeterreset', 'incorrectmeterresetmeasurementvalue', 'uncontractedconsumption'
     """
 
     """
     allowed enum values
     """
     CONSUMPTIONNEGATIVE = 'consumptionnegative'
+    CONSUMPTIONPOSITIVEFORINJECTION = 'consumptionpositiveforinjection'
+    CONSUMPTIONOUTOFBOUNDS = 'consumptionoutofbounds'
+    CONSUMPTIONZEROTOOLONG = 'consumptionzerotoolong'
     MEASUREMENTFREQUENCYTOOLOW = 'measurementfrequencytoolow'
+    CONSUMPTIONGAP = 'consumptiongap'
+    OVERLAPPINGCONSUMPTION = 'overlappingconsumption'
+    MISSINGMETERRESET = 'missingmeterreset'
+    INCORRECTMETERRESETMEASUREMENTVALUE = 'incorrectmeterresetmeasurementvalue'
+    UNCONTRACTEDCONSUMPTION = 'uncontractedconsumption'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

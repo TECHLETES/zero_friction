@@ -5,15 +5,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
+**exclude_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
+**exclude_communication_entry_status** | [**CommunicationEntryStatus**](CommunicationEntryStatus.md) |  | [optional] 
+**communication_entry_status** | [**CommunicationEntryStatus**](CommunicationEntryStatus.md) |  | [optional] 
+**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**subject_sub_type** | **str** |  | [optional] 
+**entity_subject_id** | **str** |  | [optional] 
+**failure_reason_code** | **int** |  | [optional] 
+**sent_start_date_time_offset** | **datetime** |  | [optional] 
+**sent_end_date_time_offset** | **datetime** |  | [optional] 
+**customer_id** | **str** |  | [optional] 
 **flex_search** | **str** |  | [optional] 
 **include_only_ids** | **List[str]** |  | [optional] 
 **exclude_ids** | **List[str]** |  | [optional] 
-**communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
-**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
-**entity_subject_id** | **str** |  | [optional] 
-**failure_reason_code** | [**ErrorCode**](ErrorCode.md) |  | [optional] 
-**sent_start_date_time_offset** | **datetime** |  | [optional] 
-**sent_end_date_time_offset** | **datetime** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

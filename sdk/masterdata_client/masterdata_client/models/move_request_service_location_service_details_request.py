@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List
 from masterdata_client.models.utility_type import UtilityType
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,9 +27,8 @@ class MoveRequestServiceLocationServiceDetailsRequest(BaseModel):
     """
     MoveRequestServiceLocationServiceDetailsRequest
     """ # noqa: E501
-    external_identifier: Optional[StrictStr] = Field(default=None, alias="externalIdentifier")
-    utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
-    __properties: ClassVar[List[str]] = ["externalIdentifier", "utilityType"]
+    utility_type: UtilityType = Field(alias="utilityType")
+    __properties: ClassVar[List[str]] = ["utilityType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,16 +69,6 @@ class MoveRequestServiceLocationServiceDetailsRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if external_identifier (nullable) is None
-        # and model_fields_set contains the field
-        if self.external_identifier is None and "external_identifier" in self.model_fields_set:
-            _dict['externalIdentifier'] = None
-
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
         return _dict
 
     @classmethod
@@ -92,7 +81,6 @@ class MoveRequestServiceLocationServiceDetailsRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "externalIdentifier": obj.get("externalIdentifier"),
             "utilityType": obj.get("utilityType")
         })
         return _obj

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **service_location** | **str** |  | [optional] 
 **service_location_address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
+**location_group** | **str** |  | [optional] 
 **utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
 **unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
 **time_of_use** | **str** |  | [optional] 

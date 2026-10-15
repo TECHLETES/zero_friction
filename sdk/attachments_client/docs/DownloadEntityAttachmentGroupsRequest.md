@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entity_attachment_group_ids** | **List[str]** |  | [optional] 
-**culture** | [**CultureInfo**](CultureInfo.md) |  | [optional] 
+**entity_attachment_group_ids** | **List[str]** |  | 
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | 
 
 ## Example
 

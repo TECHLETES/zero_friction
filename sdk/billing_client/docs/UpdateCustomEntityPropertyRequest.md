@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**custom_entity_property_type_id** | **str** |  | [optional] 
-**values** | [**List[UpdateCustomEntityPropertyValueRequest]**](UpdateCustomEntityPropertyValueRequest.md) |  | [optional] 
+**custom_entity_property_type_id** | **str** |  | 
+**values** | [**List[UpdateCustomEntityPropertyValueRequest]**](UpdateCustomEntityPropertyValueRequest.md) |  | 
 
 ## Example
 

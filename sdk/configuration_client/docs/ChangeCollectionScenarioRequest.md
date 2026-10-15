@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pdf_template** | [**CollectionPdfTemplateRequest**](CollectionPdfTemplateRequest.md) |  | [optional] 
-**email_template** | [**CollectionEmailTemplateRequest**](CollectionEmailTemplateRequest.md) |  | [optional] 
+**pdf_template** | [**CollectionPdfTemplateRequest**](CollectionPdfTemplateRequest.md) |  | 
+**email_template** | [**CollectionEmailTemplateRequest**](CollectionEmailTemplateRequest.md) |  | 
 
 ## Example
 

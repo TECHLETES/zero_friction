@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class IncrementationType(str, Enum):
     """
-    IncrementationType
+    Possible values: 'delta', 'cumul', 'na'
     """
 
     """

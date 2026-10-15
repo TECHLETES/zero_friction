@@ -27,9 +27,9 @@ class ReminderPdfTemplateRequest(BaseModel):
     """
     ReminderPdfTemplateRequest
     """ # noqa: E501
-    envelope_settings: Optional[EnvelopeSettingsRequest] = Field(default=None, alias="envelopeSettings")
     show_country: Optional[StrictBool] = Field(default=None, alias="showCountry")
-    __properties: ClassVar[List[str]] = ["envelopeSettings", "showCountry"]
+    envelope_settings: Optional[EnvelopeSettingsRequest] = Field(default=None, alias="envelopeSettings")
+    __properties: ClassVar[List[str]] = ["showCountry", "envelopeSettings"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,8 +90,8 @@ class ReminderPdfTemplateRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "envelopeSettings": EnvelopeSettingsRequest.from_dict(obj["envelopeSettings"]) if obj.get("envelopeSettings") is not None else None,
-            "showCountry": obj.get("showCountry")
+            "showCountry": obj.get("showCountry"),
+            "envelopeSettings": EnvelopeSettingsRequest.from_dict(obj["envelopeSettings"]) if obj.get("envelopeSettings") is not None else None
         })
         return _obj
 

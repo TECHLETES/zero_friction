@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **telephone_number** | **str** |  | [optional] 
 **mobile_telephone_number** | **str** |  | [optional] 
 **website** | **str** |  | [optional] 
-**culture** | **str** |  | [optional] 
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | [optional] 
 **internal_id** | **str** |  | [optional] 
 **created_or_linked** | **bool** |  | [optional] 
 **errors** | [**List[LocalisedErrorDTO]**](LocalisedErrorDTO.md) |  | [optional] 

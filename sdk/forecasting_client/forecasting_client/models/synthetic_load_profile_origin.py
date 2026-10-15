@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class SyntheticLoadProfileOrigin(str, Enum):
     """
-    SyntheticLoadProfileOrigin
+    Possible values: 'manual', 'systemgenerated'
     """
 
     """

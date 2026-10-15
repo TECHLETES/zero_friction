@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from metering_client.models.base_metering_issue_resolution_value_dto import BaseMeteringIssueResolutionValueDTO
 from metering_client.models.get_metering_issues_query_params import GetMeteringIssuesQueryParams
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,12 +28,12 @@ class BulkResolveMeteringIssueRequest(BaseModel):
     """
     BulkResolveMeteringIssueRequest
     """ # noqa: E501
-    message: Optional[StrictStr] = None
-    resolution_value: Optional[Dict[str, Any]] = Field(default=None, alias="resolutionValue")
     only_validate: Optional[StrictBool] = Field(default=None, alias="onlyValidate")
     var_query_params: Optional[GetMeteringIssuesQueryParams] = Field(default=None, alias="queryParams")
     quick_filter: Optional[StrictStr] = Field(default=None, alias="quickFilter")
-    __properties: ClassVar[List[str]] = ["message", "resolutionValue", "onlyValidate", "queryParams", "quickFilter"]
+    message: Optional[StrictStr] = None
+    resolution_value: Optional[BaseMeteringIssueResolutionValueDTO] = Field(default=None, alias="resolutionValue")
+    __properties: ClassVar[List[str]] = ["onlyValidate", "queryParams", "quickFilter", "message", "resolutionValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,6 +77,14 @@ class BulkResolveMeteringIssueRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of resolution_value
+        if self.resolution_value:
+            _dict['resolutionValue'] = self.resolution_value.to_dict()
+        # set to None if quick_filter (nullable) is None
+        # and model_fields_set contains the field
+        if self.quick_filter is None and "quick_filter" in self.model_fields_set:
+            _dict['quickFilter'] = None
+
         # set to None if message (nullable) is None
         # and model_fields_set contains the field
         if self.message is None and "message" in self.model_fields_set:
@@ -85,16 +94,6 @@ class BulkResolveMeteringIssueRequest(BaseModel):
         # and model_fields_set contains the field
         if self.resolution_value is None and "resolution_value" in self.model_fields_set:
             _dict['resolutionValue'] = None
-
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
-        # set to None if quick_filter (nullable) is None
-        # and model_fields_set contains the field
-        if self.quick_filter is None and "quick_filter" in self.model_fields_set:
-            _dict['quickFilter'] = None
 
         return _dict
 
@@ -108,11 +107,11 @@ class BulkResolveMeteringIssueRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "message": obj.get("message"),
-            "resolutionValue": obj.get("resolutionValue"),
             "onlyValidate": obj.get("onlyValidate"),
             "queryParams": GetMeteringIssuesQueryParams.from_dict(obj["queryParams"]) if obj.get("queryParams") is not None else None,
-            "quickFilter": obj.get("quickFilter")
+            "quickFilter": obj.get("quickFilter"),
+            "message": obj.get("message"),
+            "resolutionValue": BaseMeteringIssueResolutionValueDTO.from_dict(obj["resolutionValue"]) if obj.get("resolutionValue") is not None else None
         })
         return _obj
 

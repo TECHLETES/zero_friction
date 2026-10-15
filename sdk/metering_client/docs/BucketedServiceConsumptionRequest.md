@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **service_location_ids** | **List[str]** |  | [optional] 
 **buckets** | [**List[DateRange]**](DateRange.md) |  | [optional] 
-**utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
+**utility_type** | [**UtilityType**](UtilityType.md) |  | 
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | 
 
 ## Example
 

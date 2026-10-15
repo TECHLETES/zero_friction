@@ -31,33 +31,31 @@ from typing_extensions import Self
 
 class OutgoingMutationDTO(BaseModel):
     """
-    Represents an outgoing mutation in the banking system.  This DTO contains comprehensive information about the mutation, including its status, amount, and related transactions.
+    OutgoingMutationDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
-    outgoing_banking_transaction_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the associated outgoing banking transaction.", alias="outgoingBankingTransactionId")
-    type: Optional[OutgoingBankingTransactionType] = Field(default=None, description="The type of outgoing banking transaction.")
-    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount of the mutation.")
-    description: Optional[StrictStr] = Field(default=None, description="A description of the mutation.")
-    reference_details: Optional[OutgoingMutationReferenceDetailsDTO] = Field(default=None, description="Reference details associated with this mutation.", alias="referenceDetails")
-    customer_bank_account: Optional[OutgoingMutationCustomerBankAccountDTO] = Field(default=None, description="Information about the customer's bank account.", alias="customerBankAccount")
-    status: Optional[OutgoingMutationStatus] = Field(default=None, description="The current status of the outgoing mutation.")
-    errors: Optional[List[LocalisedErrorDTO]] = Field(default=None, description="List of localized errors associated with this mutation.")
-    confirming_incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, description="The ID of the incoming banking transaction that confirms this mutation.", alias="confirmingIncomingBankingTransactionId")
-    confirming_incoming_banking_transaction_identification: Optional[StrictStr] = Field(default=None, description="The identification of the incoming banking transaction that confirms this mutation.", alias="confirmingIncomingBankingTransactionIdentification")
-    confirming_incoming_mutation_id: Optional[StrictStr] = Field(default=None, description="The ID of the incoming mutation that confirms this mutation.", alias="confirmingIncomingMutationId")
-    reverting_incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, description="The ID of the incoming banking transaction that reverts this mutation.", alias="revertingIncomingBankingTransactionId")
-    reverting_incoming_banking_transaction_identification: Optional[StrictStr] = Field(default=None, description="The identification of the incoming banking transaction that reverts this mutation.", alias="revertingIncomingBankingTransactionIdentification")
-    reverting_incoming_mutation_id: Optional[StrictStr] = Field(default=None, description="The ID of the incoming mutation that reverts this mutation.", alias="revertingIncomingMutationId")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "outgoingBankingTransactionId", "type", "amount", "description", "referenceDetails", "customerBankAccount", "status", "errors", "confirmingIncomingBankingTransactionId", "confirmingIncomingBankingTransactionIdentification", "confirmingIncomingMutationId", "revertingIncomingBankingTransactionId", "revertingIncomingBankingTransactionIdentification", "revertingIncomingMutationId"]
+    outgoing_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="outgoingBankingTransactionId")
+    type: Optional[OutgoingBankingTransactionType] = None
+    amount: Optional[Union[StrictFloat, StrictInt]] = None
+    description: Optional[StrictStr] = None
+    reference_details: Optional[OutgoingMutationReferenceDetailsDTO] = Field(default=None, alias="referenceDetails")
+    customer_bank_account: Optional[OutgoingMutationCustomerBankAccountDTO] = Field(default=None, alias="customerBankAccount")
+    status: Optional[OutgoingMutationStatus] = None
+    errors: Optional[List[LocalisedErrorDTO]] = None
+    confirming_incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="confirmingIncomingBankingTransactionId")
+    confirming_incoming_banking_transaction_identification: Optional[StrictStr] = Field(default=None, alias="confirmingIncomingBankingTransactionIdentification")
+    confirming_incoming_mutation_id: Optional[StrictStr] = Field(default=None, alias="confirmingIncomingMutationId")
+    reverting_incoming_banking_transaction_id: Optional[StrictStr] = Field(default=None, alias="revertingIncomingBankingTransactionId")
+    reverting_incoming_banking_transaction_identification: Optional[StrictStr] = Field(default=None, alias="revertingIncomingBankingTransactionIdentification")
+    reverting_incoming_mutation_id: Optional[StrictStr] = Field(default=None, alias="revertingIncomingMutationId")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["outgoingBankingTransactionId", "type", "amount", "description", "referenceDetails", "customerBankAccount", "status", "errors", "confirmingIncomingBankingTransactionId", "confirmingIncomingBankingTransactionIdentification", "confirmingIncomingMutationId", "revertingIncomingBankingTransactionId", "revertingIncomingBankingTransactionIdentification", "revertingIncomingMutationId", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,10 +87,8 @@ class OutgoingMutationDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -113,40 +109,10 @@ class OutgoingMutationDTO(BaseModel):
                 if _item_errors:
                     _items.append(_item_errors.to_dict())
             _dict['errors'] = _items
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
         # set to None if outgoing_banking_transaction_id (nullable) is None
         # and model_fields_set contains the field
         if self.outgoing_banking_transaction_id is None and "outgoing_banking_transaction_id" in self.model_fields_set:
             _dict['outgoingBankingTransactionId'] = None
-
-        # set to None if type (nullable) is None
-        # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
 
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
@@ -162,11 +128,6 @@ class OutgoingMutationDTO(BaseModel):
         # and model_fields_set contains the field
         if self.customer_bank_account is None and "customer_bank_account" in self.model_fields_set:
             _dict['customerBankAccount'] = None
-
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict['status'] = None
 
         # set to None if errors (nullable) is None
         # and model_fields_set contains the field
@@ -215,16 +176,6 @@ class OutgoingMutationDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "outgoingBankingTransactionId": obj.get("outgoingBankingTransactionId"),
             "type": obj.get("type"),
             "amount": obj.get("amount"),
@@ -238,7 +189,15 @@ class OutgoingMutationDTO(BaseModel):
             "confirmingIncomingMutationId": obj.get("confirmingIncomingMutationId"),
             "revertingIncomingBankingTransactionId": obj.get("revertingIncomingBankingTransactionId"),
             "revertingIncomingBankingTransactionIdentification": obj.get("revertingIncomingBankingTransactionIdentification"),
-            "revertingIncomingMutationId": obj.get("revertingIncomingMutationId")
+            "revertingIncomingMutationId": obj.get("revertingIncomingMutationId"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

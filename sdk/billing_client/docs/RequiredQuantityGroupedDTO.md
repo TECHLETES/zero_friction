@@ -1,13 +1,12 @@
 # RequiredQuantityGroupedDTO
 
-Represents grouped required quantities for billing
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**contract_required_quantities** | [**List[RequiredQuantityContractGroupedDTO]**](RequiredQuantityContractGroupedDTO.md) | Required quantities grouped by contract | [optional] 
-**location_required_quantities** | [**List[RequiredQuantityLocationGroupedDTO]**](RequiredQuantityLocationGroupedDTO.md) | Required quantities grouped by location | [optional] 
+**contract_required_quantities** | [**List[RequiredQuantityContractGroupedDTO]**](RequiredQuantityContractGroupedDTO.md) |  | [optional] 
+**location_required_quantities** | [**List[RequiredQuantityLocationGroupedDTO]**](RequiredQuantityLocationGroupedDTO.md) |  | [optional] 
 
 ## Example
 

@@ -1,34 +1,32 @@
 # OutgoingBankingTransactionDTO
 
-Represents an outgoing banking transaction in the system.  This DTO contains comprehensive information about the transaction, including its status, amounts, and related entities.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | Gets or sets the unique identifier. | [optional] 
-**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) | Gets or sets the type of the entity. | [optional] 
-**created_date_time** | **datetime** | Gets or sets the date and time when the entity was created. | [optional] 
-**discriminator** | **str** | Gets or sets the discriminator value. | [optional] 
-**etag** | **str** | Gets or sets the ETag value. | [optional] 
-**require_attention** | **bool** | Gets a value indicating whether the entity requires attention. | [optional] [readonly] 
-**has_errors** | **bool** | Gets or sets a value indicating whether the entity has errors. | [optional] 
-**has_warnings** | **bool** | Gets or sets a value indicating whether the entity has warnings. | [optional] 
-**is_read_only** | **bool** | Gets or sets a value indicating whether the entity is read-only. | [optional] 
-**organisation_id** | **str** | Gets or sets the organization identifier. | [optional] 
-**identification** | **str** | The unique identification of the outgoing banking transaction. | [optional] 
-**sequence_num** | **int** | The sequence number of the transaction. | [optional] 
-**type** | [**OutgoingBankingTransactionType**](OutgoingBankingTransactionType.md) | The type of outgoing banking transaction. | [optional] 
-**status** | [**OutgoingBankingTransactionStatus**](OutgoingBankingTransactionStatus.md) | The current status of the outgoing banking transaction. | [optional] 
-**mutation_date_time** | **datetime** | The date and time when the mutation occurred. | [optional] 
-**company_bank_account** | [**OutgoingBankingTransactionCompanyBankAccountDTO**](OutgoingBankingTransactionCompanyBankAccountDTO.md) | Information about the company bank account associated with this transaction. | [optional] 
-**file_name** | **str** | The name of the file containing the transaction details. | [optional] 
-**internal_file_path** | **str** | The internal file path where the transaction file is stored. | [optional] 
-**total_amount** | **float** | The total amount of the transaction. | [optional] 
-**entity_counts** | [**OutgoingBankingTransactionEntityCountsDTO**](OutgoingBankingTransactionEntityCountsDTO.md) | Counts of various entities associated with this transaction. | [optional] 
-**migrated** | **bool** | Indicates whether this transaction has been migrated from an older system. | [optional] 
-**locked** | **bool** | Indicates whether this transaction is locked for modifications. | [optional] 
-**confirming_incoming_banking_transactions** | **Dict[str, Optional[str]]** | Dictionary mapping incoming banking transaction IDs to their confirmations. | [optional] 
+**identification** | **str** |  | [optional] 
+**sequence_num** | **int** |  | [optional] 
+**type** | [**OutgoingBankingTransactionType**](OutgoingBankingTransactionType.md) |  | [optional] 
+**status** | [**OutgoingBankingTransactionStatus**](OutgoingBankingTransactionStatus.md) |  | [optional] 
+**provider_type** | [**BankingTransactionProviderType**](BankingTransactionProviderType.md) |  | [optional] 
+**mutation_date_time** | **datetime** |  | [optional] 
+**company_bank_account** | [**OutgoingBankingTransactionCompanyBankAccountDTO**](OutgoingBankingTransactionCompanyBankAccountDTO.md) |  | [optional] 
+**file_name** | **str** |  | [optional] 
+**internal_file_path** | **str** |  | [optional] 
+**total_amount** | **float** |  | [optional] 
+**entity_counts** | [**OutgoingBankingTransactionEntityCountsDTO**](OutgoingBankingTransactionEntityCountsDTO.md) |  | [optional] 
+**migrated** | **bool** |  | [optional] 
+**locked** | **bool** |  | [optional] 
+**confirming_incoming_banking_transactions** | **Dict[str, str]** |  | [optional] 
+**organisation_id** | **str** |  | [optional] 
+**id** | **str** |  | [optional] 
+**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**created_date_time** | **datetime** |  | [optional] 
+**discriminator** | **str** |  | [optional] 
+**etag** | **str** |  | [optional] 
+**has_errors** | **bool** |  | [optional] 
+**is_read_only** | **bool** |  | [optional] 
 
 ## Example
 

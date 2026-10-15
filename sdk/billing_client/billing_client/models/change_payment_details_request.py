@@ -21,16 +21,18 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from billing_client.models.payment_method import PaymentMethod
+from billing_client.models.psp_instrument_snapshot_request import PspInstrumentSnapshotRequest
 from typing import Optional, Set
 from typing_extensions import Self
 
 class ChangePaymentDetailsRequest(BaseModel):
     """
-    Represents a request to change the payment details of an invoice.  This DTO is used to update the payment method and collection date for an invoice.
+    ChangePaymentDetailsRequest
     """ # noqa: E501
-    new_payment_method: Optional[PaymentMethod] = Field(default=None, description="The new payment method to be used for the invoice.", alias="newPaymentMethod")
-    collection_date: Optional[datetime] = Field(default=None, description="The new date when the payment should be collected.", alias="collectionDate")
-    __properties: ClassVar[List[str]] = ["newPaymentMethod", "collectionDate"]
+    new_payment_method: PaymentMethod = Field(alias="newPaymentMethod")
+    collection_date: Optional[datetime] = Field(default=None, alias="collectionDate")
+    psp_instrument: Optional[PspInstrumentSnapshotRequest] = Field(default=None, alias="pspInstrument")
+    __properties: ClassVar[List[str]] = ["newPaymentMethod", "collectionDate", "pspInstrument"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,10 +73,13 @@ class ChangePaymentDetailsRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if new_payment_method (nullable) is None
+        # override the default output from pydantic by calling `to_dict()` of psp_instrument
+        if self.psp_instrument:
+            _dict['pspInstrument'] = self.psp_instrument.to_dict()
+        # set to None if psp_instrument (nullable) is None
         # and model_fields_set contains the field
-        if self.new_payment_method is None and "new_payment_method" in self.model_fields_set:
-            _dict['newPaymentMethod'] = None
+        if self.psp_instrument is None and "psp_instrument" in self.model_fields_set:
+            _dict['pspInstrument'] = None
 
         return _dict
 
@@ -89,7 +94,8 @@ class ChangePaymentDetailsRequest(BaseModel):
 
         _obj = cls.model_validate({
             "newPaymentMethod": obj.get("newPaymentMethod"),
-            "collectionDate": obj.get("collectionDate")
+            "collectionDate": obj.get("collectionDate"),
+            "pspInstrument": PspInstrumentSnapshotRequest.from_dict(obj["pspInstrument"]) if obj.get("pspInstrument") is not None else None
         })
         return _obj
 

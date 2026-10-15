@@ -1,14 +1,13 @@
 # CustomerBillingSettingsAutomaticSettlementDTO
 
-Represents automatic settlement settings for a customer
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**automatic_settlement** | **bool** | Indicates whether automatic settlement is enabled | [optional] 
-**originator_type** | [**EntitySubjectType**](EntitySubjectType.md) | Type of entity that initiated the automatic settlement | [optional] 
-**originator_id** | **str** | Identifier of the entity that initiated the automatic settlement | [optional] 
+**automatic_settlement** | **bool** |  | [optional] 
+**originator_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**originator_id** | **str** |  | [optional] 
 
 ## Example
 

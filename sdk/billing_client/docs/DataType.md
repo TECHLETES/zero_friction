@@ -1,5 +1,6 @@
 # DataType
 
+Possible values: 'text', 'number', 'date', 'dateandtime', 'enumeration'
 
 ## Enum
 

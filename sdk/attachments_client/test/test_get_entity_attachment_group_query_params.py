@@ -35,13 +35,6 @@ class TestGetEntityAttachmentGroupQueryParams(unittest.TestCase):
         model = GetEntityAttachmentGroupQueryParams()
         if include_optional:
             return GetEntityAttachmentGroupQueryParams(
-                flex_search = '',
-                include_only_ids = [
-                    ''
-                    ],
-                exclude_ids = [
-                    ''
-                    ],
                 subject_type = '',
                 subject_id = '',
                 viewed = True,
@@ -50,7 +43,15 @@ class TestGetEntityAttachmentGroupQueryParams(unittest.TestCase):
                     ],
                 created_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                validity_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                validity_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                flex_search = '',
+                include_only_ids = [
+                    ''
+                    ],
+                exclude_ids = [
+                    ''
+                    ],
+                page_size = 56
             )
         else:
             return GetEntityAttachmentGroupQueryParams(

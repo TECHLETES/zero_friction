@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **value** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
 **primary_for_type** | **bool** |  | [optional] 
-**contact_type** | [**ContactType**](ContactType.md) |  | [optional] 
+**contact_type** | [**ContactType**](ContactType.md) |  | 
 
 ## Example
 

@@ -35,6 +35,12 @@ class TestGetAnnualStatementsQueryParams(unittest.TestCase):
         model = GetAnnualStatementsQueryParams()
         if include_optional:
             return GetAnnualStatementsQueryParams(
+                customer_id = '',
+                statuses = [
+                    ''
+                    ],
+                year = 56,
+                limit = 56,
                 flex_search = '',
                 include_only_ids = [
                     ''
@@ -42,12 +48,7 @@ class TestGetAnnualStatementsQueryParams(unittest.TestCase):
                 exclude_ids = [
                     ''
                     ],
-                customer_id = '',
-                statuses = [
-                    ''
-                    ],
-                year = 56,
-                limit = 56
+                page_size = 56
             )
         else:
             return GetAnnualStatementsQueryParams(

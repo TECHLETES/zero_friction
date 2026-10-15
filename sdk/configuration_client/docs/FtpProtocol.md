@@ -1,5 +1,6 @@
 # FtpProtocol
 
+Possible values: 'none', 'ssl2', 'ssl3', 'tls', 'default', 'tls11', 'tls12'
 
 ## Enum
 

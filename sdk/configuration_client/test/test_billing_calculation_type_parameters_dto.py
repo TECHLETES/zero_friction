@@ -35,12 +35,23 @@ class TestBillingCalculationTypeParametersDTO(unittest.TestCase):
         model = BillingCalculationTypeParametersDTO()
         if include_optional:
             return BillingCalculationTypeParametersDTO(
+                type = 'consumption',
+                utility_type = 'none',
+                metering_type = 'none',
+                direction = 'offtake',
+                billing_calculation_type = 'consumption',
                 unit_of_measure = 'none',
-                billing_calculation_type = 'consumption'
+                scope = 'contract',
+                custom_entity_property_type_id = ''
             )
         else:
             return BillingCalculationTypeParametersDTO(
+                type = 'consumption',
+                utility_type = 'none',
+                metering_type = 'none',
                 unit_of_measure = 'none',
+                scope = 'contract',
+                custom_entity_property_type_id = '',
         )
         """
 

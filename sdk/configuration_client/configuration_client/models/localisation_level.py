@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class LocalisationLevel(str, Enum):
     """
-    LocalisationLevel
+    Possible values: 'none', 'partial', 'all'
     """
 
     """

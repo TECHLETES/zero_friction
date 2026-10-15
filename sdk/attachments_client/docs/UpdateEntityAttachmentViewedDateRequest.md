@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** |  | [optional] 
-**viewed_date_time** | **datetime** |  | [optional] 
+**customer_id** | **str** |  | 
+**viewed_date_time** | **datetime** |  | 
 
 ## Example
 

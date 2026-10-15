@@ -35,22 +35,13 @@ class TestCollectionFlowStepDTO(unittest.TestCase):
         model = CollectionFlowStepDTO()
         if include_optional:
             return CollectionFlowStepDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
                 name = '',
                 trigger_days = 56,
                 step_type = 'communication',
                 charge_type = 'none',
-                charge_parameters = configuration_client.models.collection_charge_parameters_dto.CollectionChargeParametersDTO(
-                    tax_code_id = '', ),
-                communication_type = 'postal',
+                charge_parameters = configuration_client.models.collection_charge_parameters_dto.CollectionChargeParametersDTO(),
+                communication_type = 'none',
+                auto_fallback_to_postal = True,
                 message_title = '',
                 communication_level = 'collection',
                 communication_attachments = [
@@ -67,7 +58,14 @@ class TestCollectionFlowStepDTO(unittest.TestCase):
                     'key' : {
                         'key' : ''
                         }
-                    }
+                    },
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return CollectionFlowStepDTO(

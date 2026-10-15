@@ -1,5 +1,6 @@
 # CollectionStepLevel
 
+Possible values: 'collection', 'reminder', 'noticeofdefault'
 
 ## Enum
 

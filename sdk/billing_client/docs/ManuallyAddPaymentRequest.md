@@ -1,20 +1,21 @@
 # ManuallyAddPaymentRequest
 
-Represents a request to manually add a payment to the system.  This DTO is used to record payments that are not automatically processed through the banking system.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** | The ID of the customer who made the payment. | [optional] 
-**iban** | **str** | The International Bank Account Number (IBAN) from which the payment was made. | [optional] 
-**amount** | **float** | The amount of the payment. | [optional] 
-**payment_date_time** | **datetime** | The date and time when the payment was made. | [optional] 
-**company_bank_account_id** | **str** | The ID of the company bank account that received the payment. | [optional] 
-**payment_reference** | **str** | The payment reference text associated with the payment. | [optional] 
-**references** | [**List[PaymentEntityReferenceRequest]**](PaymentEntityReferenceRequest.md) | A list of references linking this payment to other entities in the system. | [optional] 
-**is_payment_reference_structured** | **bool** | Indicates whether the payment reference follows a structured format. | [optional] 
-**organization_country** | [**CountryCode**](CountryCode.md) | The country code of the organization processing the payment.  Used for validating structured payment references. | [optional] 
+**customer_id** | **str** |  | 
+**prepayment_account_id** | **str** |  | [optional] 
+**iban** | **str** |  | [optional] 
+**amount** | **float** |  | 
+**payment_date_time** | **datetime** |  | 
+**company_bank_account_id** | **str** |  | 
+**payment_reference** | **str** |  | [optional] 
+**references** | [**List[PaymentEntityReferenceRequest]**](PaymentEntityReferenceRequest.md) |  | [optional] 
+**is_payment_reference_structured** | **bool** |  | [optional] 
+**organization_country** | [**CountryCode**](CountryCode.md) |  | [optional] 
+**transaction_type** | [**TransactionType**](TransactionType.md) |  | [optional] 
 
 ## Example
 

@@ -27,8 +27,8 @@ class UpdateEntityAttachmentViewedDateRequest(BaseModel):
     """
     UpdateEntityAttachmentViewedDateRequest
     """ # noqa: E501
-    customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
-    viewed_date_time: Optional[datetime] = Field(default=None, alias="viewedDateTime")
+    customer_id: Optional[StrictStr] = Field(alias="customerId")
+    viewed_date_time: datetime = Field(alias="viewedDateTime")
     __properties: ClassVar[List[str]] = ["customerId", "viewedDateTime"]
 
     model_config = ConfigDict(

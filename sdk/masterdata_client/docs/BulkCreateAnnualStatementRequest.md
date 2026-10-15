@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**year** | **int** | The year for which the annual statement should be generated. | [optional] 
 **only_validate** | **bool** |  | [optional] 
 **var_query_params** | [**GetCustomersQueryParams**](GetCustomersQueryParams.md) |  | [optional] 
 **quick_filter** | **str** |  | [optional] 
 **only_where_latest_not_generated** | **bool** |  | [optional] 
+**year** | **int** |  | [optional] 
 
 ## Example
 

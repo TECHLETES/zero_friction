@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from masterdata_client.models.customer_communication_preferences_request import CustomerCommunicationPreferencesRequest
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class ChangeCustomerCommunicationPreferencesRequest(BaseModel):
     """
     ChangeCustomerCommunicationPreferencesRequest
     """ # noqa: E501
-    communication_preferences: Optional[CustomerCommunicationPreferencesRequest] = Field(default=None, alias="communicationPreferences")
+    communication_preferences: CustomerCommunicationPreferencesRequest = Field(alias="communicationPreferences")
     __properties: ClassVar[List[str]] = ["communicationPreferences"]
 
     model_config = ConfigDict(
@@ -72,11 +72,6 @@ class ChangeCustomerCommunicationPreferencesRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of communication_preferences
         if self.communication_preferences:
             _dict['communicationPreferences'] = self.communication_preferences.to_dict()
-        # set to None if communication_preferences (nullable) is None
-        # and model_fields_set contains the field
-        if self.communication_preferences is None and "communication_preferences" in self.model_fields_set:
-            _dict['communicationPreferences'] = None
-
         return _dict
 
     @classmethod

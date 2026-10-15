@@ -35,14 +35,15 @@ class TestCorrectionNotePdfTemplateRequest(unittest.TestCase):
         model = CorrectionNotePdfTemplateRequest()
         if include_optional:
             return CorrectionNotePdfTemplateRequest(
-                envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
-                    margin_position = null, 
-                    margin = 56, 
-                    margin_top = 56, ),
                 show_country = True,
                 show_balance = True,
                 show_vat_specs = True,
-                show_custom_information = True
+                show_custom_information = True,
+                unit_price_excl_vat_for_persons = True,
+                envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                    margin_position = 'left', 
+                    margin = 56, 
+                    margin_top = 56, )
             )
         else:
             return CorrectionNotePdfTemplateRequest(

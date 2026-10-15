@@ -6,10 +6,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **include_in_welcome_email** | **bool** |  | [optional] 
-**visibility** | [**AttachmentVisibility**](AttachmentVisibility.md) |  | [optional] 
+**visibility** | [**AttachmentVisibility**](AttachmentVisibility.md) |  | 
 **approval_required** | **bool** |  | [optional] 
 **valid_from** | **datetime** |  | [optional] 
-**valid_until** | **datetime** |  | [optional] 
+**valid_until** | **datetime** |  | 
 
 ## Example
 

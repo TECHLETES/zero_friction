@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**key** | [**ErrorCode**](ErrorCode.md) |  | [optional] 
+**key** | **int** |  | [optional] 
 **correlation_id** | **str** |  | [optional] 
 **message** | **str** |  | [optional] 
 **message_values** | [**List[LocalisedErrorDTOMessageValue]**](LocalisedErrorDTOMessageValue.md) |  | [optional] 

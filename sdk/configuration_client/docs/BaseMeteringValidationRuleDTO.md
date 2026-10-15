@@ -5,8 +5,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | **str** |  | 
+**grace_period_in_days** | **int** |  | [optional] 
 **error** | [**MeteringIssueError**](MeteringIssueError.md) |  | [optional] 
 **enabled** | **bool** |  | [optional] 
+**synchronous** | **bool** |  | [optional] 
+**supported_incrementation_types** | [**List[IncrementationType]**](IncrementationType.md) |  | [optional] 
+**evaluation_window_days** | **int** |  | [optional] 
+**grace_days_before_supply_start** | **int** |  | [optional] 
+**grace_days_after_supply_end** | **int** |  | [optional] 
+**maximum_allowed_consumption** | **float** |  | [optional] 
+**high_consumption_margin** | **float** |  | [optional] 
+**low_consumption_margin** | **float** |  | [optional] 
+**min_expected_days** | **int** |  | [optional] 
+**consumption_threshold** | **float** |  | [optional] 
+**grace_days_after_supply_start** | **int** |  | [optional] 
+**grace_days_before_supply_end** | **int** |  | [optional] 
+**auto_solve** | **bool** |  | [optional] 
+**minimum_gap_duration** | **str** |  | [optional] 
 
 ## Example
 

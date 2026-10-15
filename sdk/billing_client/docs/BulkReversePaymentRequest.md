@@ -1,15 +1,14 @@
 # BulkReversePaymentRequest
 
-Represents a bulk request to reverse multiple payments.  This DTO extends the base reversal request with bulk operation capabilities.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reversal_additional_information** | **str** | Additional information or reason for the payment reversal. | [optional] 
-**only_validate** | **bool** | Indicates whether this is a validation-only request without actual reversal. | [optional] 
-**var_query_params** | [**GetPaymentsQueryParams**](GetPaymentsQueryParams.md) | Query parameters to filter the payments to be reversed. | [optional] 
-**quick_filter** | **str** | A quick filter string to further refine the selection of payments to be reversed. | [optional] 
+**only_validate** | **bool** |  | [optional] 
+**var_query_params** | [**GetPaymentsQueryParams**](GetPaymentsQueryParams.md) |  | [optional] 
+**quick_filter** | **str** |  | [optional] 
+**reversal_additional_information** | **str** |  | [optional] 
 
 ## Example
 

@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class CustomEntityPropertyTypeTagColor(str, Enum):
     """
-    CustomEntityPropertyTypeTagColor
+    Possible values: 'blue', 'slate', 'green', 'yellow', 'orange', 'red'
     """
 
     """

@@ -1,5 +1,6 @@
 # TemplateUsecase
 
+Possible values: 'pdf', 'email'
 
 ## Enum
 

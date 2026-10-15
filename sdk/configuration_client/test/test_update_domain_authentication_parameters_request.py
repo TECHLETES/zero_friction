@@ -39,6 +39,7 @@ class TestUpdateDomainAuthenticationParametersRequest(unittest.TestCase):
             )
         else:
             return UpdateDomainAuthenticationParametersRequest(
+                domain_name = '',
         )
         """
 

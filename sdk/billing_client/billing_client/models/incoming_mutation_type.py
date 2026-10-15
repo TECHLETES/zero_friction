@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class IncomingMutationType(str, Enum):
     """
-    IncomingMutationType
+    Possible values: 'incomingtransfer', 'outgoingtransfer', 'paymentrequestreversal', 'refundreversal', 'unknown', 'paymentrequesttransactionconfirmation', 'paymentrequestmutationconfirmation', 'refundtransactionconfirmation', 'refundmutationconfirmation', 'requestconfirmation', 'refundconfirmation'
     """
 
     """

@@ -1,14 +1,13 @@
 # PaymentEntityReferenceRequest
 
-Represents a reference linking a payment to another entity in the system.  This DTO is used to establish relationships between payments and other transactions.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transaction_id** | **str** | The ID of the transaction being referenced. | [optional] 
-**reference_id** | **str** | The ID of the reference entity. | [optional] 
-**reference_type** | [**TransactionReferenceType**](TransactionReferenceType.md) | The type of reference relationship. | [optional] 
+**transaction_id** | **str** |  | 
+**reference_id** | **str** |  | 
+**reference_type** | [**TransactionReferenceType**](TransactionReferenceType.md) |  | 
 
 ## Example
 

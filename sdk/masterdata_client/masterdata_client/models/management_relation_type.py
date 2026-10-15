@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ManagementRelationType(str, Enum):
     """
-    ManagementRelationType
+    Possible values: 'owner', 'propertymanager'
     """
 
     """

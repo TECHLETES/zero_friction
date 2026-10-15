@@ -40,6 +40,8 @@ class TestUpdateEntityAttachmentViewedDateRequest(unittest.TestCase):
             )
         else:
             return UpdateEntityAttachmentViewedDateRequest(
+                customer_id = '',
+                viewed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

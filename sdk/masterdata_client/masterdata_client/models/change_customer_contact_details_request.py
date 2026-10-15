@@ -17,9 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from masterdata_client.models.contact_entry_request import ContactEntryRequest
+from masterdata_client.models.country_code import CountryCode
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +29,9 @@ class ChangeCustomerContactDetailsRequest(BaseModel):
     ChangeCustomerContactDetailsRequest
     """ # noqa: E501
     contact_entries: Optional[List[ContactEntryRequest]] = Field(default=None, alias="contactEntries")
-    __properties: ClassVar[List[str]] = ["contactEntries"]
+    country_code: Optional[CountryCode] = Field(default=None, alias="countryCode")
+    changed_by_portal: Optional[StrictBool] = Field(default=None, alias="changedByPortal")
+    __properties: ClassVar[List[str]] = ["contactEntries", "countryCode", "changedByPortal"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,6 +84,11 @@ class ChangeCustomerContactDetailsRequest(BaseModel):
         if self.contact_entries is None and "contact_entries" in self.model_fields_set:
             _dict['contactEntries'] = None
 
+        # set to None if country_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.country_code is None and "country_code" in self.model_fields_set:
+            _dict['countryCode'] = None
+
         return _dict
 
     @classmethod
@@ -93,7 +101,9 @@ class ChangeCustomerContactDetailsRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "contactEntries": [ContactEntryRequest.from_dict(_item) for _item in obj["contactEntries"]] if obj.get("contactEntries") is not None else None
+            "contactEntries": [ContactEntryRequest.from_dict(_item) for _item in obj["contactEntries"]] if obj.get("contactEntries") is not None else None,
+            "countryCode": obj.get("countryCode"),
+            "changedByPortal": obj.get("changedByPortal")
         })
         return _obj
 

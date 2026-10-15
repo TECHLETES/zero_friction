@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **value** | **float** |  | [optional] 
 **start_date_time** | **datetime** |  | [optional] 
 **end_date_time** | **datetime** |  | [optional] 
+**gaps** | [**List[DateRange]**](DateRange.md) |  | [optional] 
 
 ## Example
 

@@ -36,8 +36,11 @@ class TestChangeReminderScenarioRequest(unittest.TestCase):
         if include_optional:
             return ChangeReminderScenarioRequest(
                 pdf_template = configuration_client.models.reminder_pdf_template_request.ReminderPdfTemplateRequest(
-                    envelope_settings = null, 
-                    show_country = True, ),
+                    show_country = True, 
+                    envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                        margin_position = 'left', 
+                        margin = 56, 
+                        margin_top = 56, ), ),
                 email_template = configuration_client.models.reminder_email_template_request.ReminderEmailTemplateRequest(
                     subject = '', 
                     attachments = [
@@ -49,6 +52,20 @@ class TestChangeReminderScenarioRequest(unittest.TestCase):
             )
         else:
             return ChangeReminderScenarioRequest(
+                pdf_template = configuration_client.models.reminder_pdf_template_request.ReminderPdfTemplateRequest(
+                    show_country = True, 
+                    envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
+                        margin_position = 'left', 
+                        margin = 56, 
+                        margin_top = 56, ), ),
+                email_template = configuration_client.models.reminder_email_template_request.ReminderEmailTemplateRequest(
+                    subject = '', 
+                    attachments = [
+                        configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
+                            id = '', 
+                            internal_file_path = '', 
+                            file_name = '', )
+                        ], ),
         )
         """
 

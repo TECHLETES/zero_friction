@@ -35,14 +35,20 @@ class TestCreateBankAccountRequest(unittest.TestCase):
         model = CreateBankAccountRequest()
         if include_optional:
             return CreateBankAccountRequest(
-                iban = '',
                 account_holder = '',
-                bic = '',
                 sepa_creditor_id = '',
-                is_default = True
+                accounting_code_id_for_processed_transactions = '',
+                accounting_code_id_for_ignored_transactions = '',
+                is_default = True,
+                iban = '',
+                bic = ''
             )
         else:
             return CreateBankAccountRequest(
+                account_holder = '',
+                sepa_creditor_id = '',
+                is_default = True,
+                bic = '',
         )
         """
 

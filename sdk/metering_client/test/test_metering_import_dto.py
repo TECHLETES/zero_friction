@@ -35,16 +35,6 @@ class TestMeteringImportDTO(unittest.TestCase):
         model = MeteringImportDTO()
         if include_optional:
             return MeteringImportDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 type = 'measurements',
                 custom_file_format_id = '',
                 data_import = metering_client.models.metering_import_data_import_dto.MeteringImportDataImportDto(
@@ -76,7 +66,17 @@ class TestMeteringImportDTO(unittest.TestCase):
                 processing_result = metering_client.models.metering_import_statistic_dto.MeteringImportStatisticDTO(
                     amount_success = 56, 
                     amount_failed = 56, 
-                    amount_ignored = 56, )
+                    amount_ignored = 56, ),
+                fallback_reading_origin = 'device',
+                fallback_reading_method = 'automatic',
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return MeteringImportDTO(

@@ -37,11 +37,15 @@ class TestUpdateEntityAttachmentSignedDateRequest(unittest.TestCase):
             return UpdateEntityAttachmentSignedDateRequest(
                 customer_id = '',
                 signed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                signed_culture = ,
+                signed_culture = '',
                 signed_localised_file_name = ''
             )
         else:
             return UpdateEntityAttachmentSignedDateRequest(
+                customer_id = '',
+                signed_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                signed_culture = '',
+                signed_localised_file_name = '',
         )
         """
 

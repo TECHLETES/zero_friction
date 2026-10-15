@@ -31,8 +31,8 @@ class BucketedServiceConsumptionRequest(BaseModel):
     """ # noqa: E501
     service_location_ids: Optional[List[StrictStr]] = Field(default=None, alias="serviceLocationIds")
     buckets: Optional[List[DateRange]] = None
-    utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
-    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, alias="unitOfMeasure")
+    utility_type: UtilityType = Field(alias="utilityType")
+    unit_of_measure: UnitOfMeasure = Field(alias="unitOfMeasure")
     __properties: ClassVar[List[str]] = ["serviceLocationIds", "buckets", "utilityType", "unitOfMeasure"]
 
     model_config = ConfigDict(
@@ -90,16 +90,6 @@ class BucketedServiceConsumptionRequest(BaseModel):
         # and model_fields_set contains the field
         if self.buckets is None and "buckets" in self.model_fields_set:
             _dict['buckets'] = None
-
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if unit_of_measure (nullable) is None
-        # and model_fields_set contains the field
-        if self.unit_of_measure is None and "unit_of_measure" in self.model_fields_set:
-            _dict['unitOfMeasure'] = None
 
         return _dict
 

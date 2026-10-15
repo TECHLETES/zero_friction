@@ -1,5 +1,6 @@
 # OutgoingBankingTransactionType
 
+Possible values: 'paymentrequests', 'paymentrefunds'
 
 ## Enum
 

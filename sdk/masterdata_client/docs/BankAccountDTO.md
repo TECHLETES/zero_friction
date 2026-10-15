@@ -1,13 +1,12 @@
 # BankAccountDTO
 
-Represents a bank account associated with a customer
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iban** | **str** | International Bank Account Number (IBAN) | [optional] 
-**is_default** | **bool** | Indicates whether this is the default bank account | [optional] 
+**iban** | **str** |  | [optional] 
+**is_default** | **bool** |  | [optional] 
 
 ## Example
 

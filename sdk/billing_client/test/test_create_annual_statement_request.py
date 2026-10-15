@@ -39,6 +39,7 @@ class TestCreateAnnualStatementRequest(unittest.TestCase):
             )
         else:
             return CreateAnnualStatementRequest(
+                year = 56,
         )
         """
 

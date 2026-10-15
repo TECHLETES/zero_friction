@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class BillingCompletenessStatus(str, Enum):
     """
-    BillingCompletenessStatus
+    Possible values: 'waiting', 'gatheringinput', 'inputmissing', 'pendingcalculation', 'calculating', 'closed', 'previousnotclosed', 'manuallycorrected', 'waitingforapproval', 'manuallyclosed', 'waitingfornextestimation'
     """
 
     """

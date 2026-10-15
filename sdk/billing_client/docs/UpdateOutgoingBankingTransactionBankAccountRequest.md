@@ -1,12 +1,11 @@
 # UpdateOutgoingBankingTransactionBankAccountRequest
 
-Represents a request to update the bank account associated with an outgoing banking transaction.  This DTO is used to change which company bank account the transaction will be processed from.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**company_bank_account_id** | **str** | The ID of the company bank account to be used for the transaction. | [optional] 
+**company_bank_account_id** | **str** |  | 
 
 ## Example
 

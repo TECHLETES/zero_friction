@@ -26,13 +26,13 @@ from typing_extensions import Self
 
 class BulkBillBillingCompletenessIntermediatelyRequest(BaseModel):
     """
-    Represents a bulk request to perform intermediate billing for multiple billing completeness items
+    BulkBillBillingCompletenessIntermediatelyRequest
     """ # noqa: E501
-    end_date_time: Optional[datetime] = Field(default=None, description="Date and time when the intermediate billing period ends", alias="endDateTime")
-    only_validate: Optional[StrictBool] = Field(default=None, description="Indicates if only validation should be performed without actual billing", alias="onlyValidate")
-    var_query_params: Optional[GetBillingCompletenessQueryParams] = Field(default=None, description="Query parameters to filter the items to process", alias="queryParams")
-    quick_filter: Optional[StrictStr] = Field(default=None, description="Quick filter string to filter items", alias="quickFilter")
-    __properties: ClassVar[List[str]] = ["endDateTime", "onlyValidate", "queryParams", "quickFilter"]
+    only_validate: Optional[StrictBool] = Field(default=None, alias="onlyValidate")
+    var_query_params: Optional[GetBillingCompletenessQueryParams] = Field(default=None, alias="queryParams")
+    quick_filter: Optional[StrictStr] = Field(default=None, alias="quickFilter")
+    end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
+    __properties: ClassVar[List[str]] = ["onlyValidate", "queryParams", "quickFilter", "endDateTime"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,11 +76,6 @@ class BulkBillBillingCompletenessIntermediatelyRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
         # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
         if self.quick_filter is None and "quick_filter" in self.model_fields_set:
@@ -98,10 +93,10 @@ class BulkBillBillingCompletenessIntermediatelyRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "endDateTime": obj.get("endDateTime"),
             "onlyValidate": obj.get("onlyValidate"),
             "queryParams": GetBillingCompletenessQueryParams.from_dict(obj["queryParams"]) if obj.get("queryParams") is not None else None,
-            "quickFilter": obj.get("quickFilter")
+            "quickFilter": obj.get("quickFilter"),
+            "endDateTime": obj.get("endDateTime")
         })
         return _obj
 

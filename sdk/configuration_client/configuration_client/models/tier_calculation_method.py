@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class TierCalculationMethod(str, Enum):
     """
-    TierCalculationMethod
+    Possible values: 'invoiceperiod', 'tariffperiod'
     """
 
     """

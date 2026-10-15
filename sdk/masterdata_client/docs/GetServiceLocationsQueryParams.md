@@ -5,17 +5,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
+**has_utility_types** | **List[str]** |  | [optional] 
+**has_not_utility_types** | **List[str]** |  | [optional] 
 **customer_id** | **str** |  | [optional] 
 **property_group_ids** | **List[str]** |  | [optional] 
 **exclude_service_locations_supplied_in_contract_id** | **str** |  | [optional] 
 **exclude_service_locations_in_property_group_id** | **str** |  | [optional] 
 **reference_date_time** | **datetime** |  | [optional] 
+**exclude_archived** | **bool** |  | [optional] 
+**is_auto_restored** | **bool** |  | [optional] 
 **postal_code** | **str** |  | [optional] 
 **city** | **str** |  | [optional] 
 **street_number** | **str** |  | [optional] 
+**flex_search** | **str** |  | [optional] 
+**include_only_ids** | **List[str]** |  | [optional] 
+**exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

@@ -1,19 +1,18 @@
 # InvoiceOverviewCountDTO
 
-Represents counts of invoices in different states for overview purposes
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**require_attention** | **int** | Number of invoices requiring attention | [optional] 
-**all** | **int** | Total number of all invoices | [optional] 
-**to_approve** | **int** | Number of invoices pending approval | [optional] 
-**to_send** | **int** | Number of invoices pending sending | [optional] 
-**unpaid** | **int** | Number of unpaid invoices | [optional] 
-**overdue** | **int** | Number of overdue invoices | [optional] 
-**ready_for_payment_collection** | **int** | Number of invoices ready for payment collection | [optional] 
-**to_export** | **int** | Number of invoices pending export | [optional] 
+**require_attention** | **int** |  | [optional] 
+**all** | **int** |  | [optional] 
+**to_approve** | **int** |  | [optional] 
+**to_send** | **int** |  | [optional] 
+**unpaid** | **int** |  | [optional] 
+**overdue** | **int** |  | [optional] 
+**ready_for_payment_collection** | **int** |  | [optional] 
+**to_export** | **int** |  | [optional] 
 
 ## Example
 

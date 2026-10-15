@@ -1,35 +1,32 @@
 # OutgoingMutationDTO
 
-Represents an outgoing mutation in the banking system.  This DTO contains comprehensive information about the mutation, including its status, amount, and related transactions.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | Gets or sets the unique identifier. | [optional] 
-**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) | Gets or sets the type of the entity. | [optional] 
-**created_date_time** | **datetime** | Gets or sets the date and time when the entity was created. | [optional] 
-**discriminator** | **str** | Gets or sets the discriminator value. | [optional] 
-**etag** | **str** | Gets or sets the ETag value. | [optional] 
-**require_attention** | **bool** | Gets a value indicating whether the entity requires attention. | [optional] [readonly] 
-**has_errors** | **bool** | Gets or sets a value indicating whether the entity has errors. | [optional] 
-**has_warnings** | **bool** | Gets or sets a value indicating whether the entity has warnings. | [optional] 
-**is_read_only** | **bool** | Gets or sets a value indicating whether the entity is read-only. | [optional] 
-**organisation_id** | **str** | Gets or sets the organization identifier. | [optional] 
-**outgoing_banking_transaction_id** | **str** | The unique identifier of the associated outgoing banking transaction. | [optional] 
-**type** | [**OutgoingBankingTransactionType**](OutgoingBankingTransactionType.md) | The type of outgoing banking transaction. | [optional] 
-**amount** | **float** | The amount of the mutation. | [optional] 
-**description** | **str** | A description of the mutation. | [optional] 
-**reference_details** | [**OutgoingMutationReferenceDetailsDTO**](OutgoingMutationReferenceDetailsDTO.md) | Reference details associated with this mutation. | [optional] 
-**customer_bank_account** | [**OutgoingMutationCustomerBankAccountDTO**](OutgoingMutationCustomerBankAccountDTO.md) | Information about the customer&#39;s bank account. | [optional] 
-**status** | [**OutgoingMutationStatus**](OutgoingMutationStatus.md) | The current status of the outgoing mutation. | [optional] 
-**errors** | [**List[LocalisedErrorDTO]**](LocalisedErrorDTO.md) | List of localized errors associated with this mutation. | [optional] 
-**confirming_incoming_banking_transaction_id** | **str** | The ID of the incoming banking transaction that confirms this mutation. | [optional] 
-**confirming_incoming_banking_transaction_identification** | **str** | The identification of the incoming banking transaction that confirms this mutation. | [optional] 
-**confirming_incoming_mutation_id** | **str** | The ID of the incoming mutation that confirms this mutation. | [optional] 
-**reverting_incoming_banking_transaction_id** | **str** | The ID of the incoming banking transaction that reverts this mutation. | [optional] 
-**reverting_incoming_banking_transaction_identification** | **str** | The identification of the incoming banking transaction that reverts this mutation. | [optional] 
-**reverting_incoming_mutation_id** | **str** | The ID of the incoming mutation that reverts this mutation. | [optional] 
+**outgoing_banking_transaction_id** | **str** |  | [optional] 
+**type** | [**OutgoingBankingTransactionType**](OutgoingBankingTransactionType.md) |  | [optional] 
+**amount** | **float** |  | [optional] 
+**description** | **str** |  | [optional] 
+**reference_details** | [**OutgoingMutationReferenceDetailsDTO**](OutgoingMutationReferenceDetailsDTO.md) |  | [optional] 
+**customer_bank_account** | [**OutgoingMutationCustomerBankAccountDTO**](OutgoingMutationCustomerBankAccountDTO.md) |  | [optional] 
+**status** | [**OutgoingMutationStatus**](OutgoingMutationStatus.md) |  | [optional] 
+**errors** | [**List[LocalisedErrorDTO]**](LocalisedErrorDTO.md) |  | [optional] 
+**confirming_incoming_banking_transaction_id** | **str** |  | [optional] 
+**confirming_incoming_banking_transaction_identification** | **str** |  | [optional] 
+**confirming_incoming_mutation_id** | **str** |  | [optional] 
+**reverting_incoming_banking_transaction_id** | **str** |  | [optional] 
+**reverting_incoming_banking_transaction_identification** | **str** |  | [optional] 
+**reverting_incoming_mutation_id** | **str** |  | [optional] 
+**organisation_id** | **str** |  | [optional] 
+**id** | **str** |  | [optional] 
+**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**created_date_time** | **datetime** |  | [optional] 
+**discriminator** | **str** |  | [optional] 
+**etag** | **str** |  | [optional] 
+**has_errors** | **bool** |  | [optional] 
+**is_read_only** | **bool** |  | [optional] 
 
 ## Example
 

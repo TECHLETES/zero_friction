@@ -41,6 +41,9 @@ class TestIgnoreIncomingMutationsRequest(unittest.TestCase):
             )
         else:
             return IgnoreIncomingMutationsRequest(
+                incoming_mutation_ids = [
+                    ''
+                    ],
         )
         """
 

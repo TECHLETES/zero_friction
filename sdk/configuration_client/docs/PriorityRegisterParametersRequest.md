@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**psr_codes_custom_entity_property_type_id** | **str** |  | [optional] 
-**vr_codes_custom_entity_property_type_id** | **str** |  | [optional] 
+**psr_codes_custom_entity_property_type_id** | **str** |  | 
+**vr_codes_custom_entity_property_type_id** | **str** |  | 
 
 ## Example
 

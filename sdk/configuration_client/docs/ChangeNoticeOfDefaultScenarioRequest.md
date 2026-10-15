@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pdf_template** | [**NoticeOfDefaultPdfTemplateRequest**](NoticeOfDefaultPdfTemplateRequest.md) |  | [optional] 
-**email_template** | [**NoticeOfDefaultEmailTemplateRequest**](NoticeOfDefaultEmailTemplateRequest.md) |  | [optional] 
+**pdf_template** | [**NoticeOfDefaultPdfTemplateRequest**](NoticeOfDefaultPdfTemplateRequest.md) |  | 
+**email_template** | [**NoticeOfDefaultEmailTemplateRequest**](NoticeOfDefaultEmailTemplateRequest.md) |  | 
 
 ## Example
 

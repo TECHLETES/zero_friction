@@ -35,16 +35,6 @@ class TestInvoiceDTO(unittest.TestCase):
         model = InvoiceDTO()
         if include_optional:
             return InvoiceDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 invoice_num = '',
                 sequence_number = 56,
                 invoice_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
@@ -54,8 +44,10 @@ class TestInvoiceDTO(unittest.TestCase):
                     customer_id = '', 
                     display_name = '', 
                     customer_account_number = '', 
-                    customer_type = null, 
-                    customer_group = null, ),
+                    customer_type = 'person', 
+                    customer_group = billing_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
+                        id = '', 
+                        name = '', ), ),
                 contract_id = '',
                 contract_number = '',
                 note_to_customer = '',
@@ -67,6 +59,7 @@ class TestInvoiceDTO(unittest.TestCase):
                     billing_client.models.invoice_line_dto.InvoiceLineDTO(
                         billing_item_id = '', 
                         billing_tariff_id = '', 
+                        time_of_use = '', 
                         description = '', 
                         amount_excl_vat = 1.337, 
                         amount_incl_vat = 1.337, 
@@ -78,9 +71,9 @@ class TestInvoiceDTO(unittest.TestCase):
                         end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         tax_code_id = '', 
                         tax_rate = 1.337, 
-                        unit_of_measure = null, 
-                        utility_type = null, 
-                        line_type = null, 
+                        unit_of_measure = 'none', 
+                        utility_type = 'none', 
+                        line_type = 'advance', 
                         consumption_based = True, 
                         service_location_id = '', 
                         original_invoice_id = '', 
@@ -92,14 +85,15 @@ class TestInvoiceDTO(unittest.TestCase):
                 total_amount_excl_vat = 1.337,
                 payment_details = billing_client.models.payment_details_dto.PaymentDetailsDTO(
                     paid = True, 
-                    current_payment_status = null, 
+                    current_payment_status = 'readyforpaymentcollection', 
                     payment_reference = '', 
-                    payment_method = null, 
+                    payment_method = 'sct', 
+                    collection_details = billing_client.models.payment_collection_details_dto.PaymentCollectionDetailsDTO(), 
                     direct_debit_collection_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     amount_of_times_retried = 56, 
                     status_history = [
                         billing_client.models.payment_status_history_dto.PaymentStatusHistoryDTO(
-                            payment_status = null, 
+                            payment_status = 'readyforpaymentcollection', 
                             outgoing_banking_transaction_id = '', 
                             outgoing_banking_transaction_identification = '', 
                             outgoing_mutation_id = '', 
@@ -108,10 +102,25 @@ class TestInvoiceDTO(unittest.TestCase):
                             incoming_banking_transaction_identification = '', 
                             incoming_mutation_id = '', 
                             incoming_mutation_description = '', 
-                            reversal_reason = null, 
+                            reversal_reason = 'manualreverse', 
                             reversal_additional_information = '', 
-                            mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                        ], ),
+                            mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            payment_intent_id = '', )
+                        ], 
+                    payment_intent = billing_client.models.payment_intent_state_dto.PaymentIntentStateDTO(
+                        status = 'none', 
+                        requested_rail = 'card', 
+                        hosted_checkout_available = True, 
+                        continuation = billing_client.models.payment_intent_communication_continuation_dto.PaymentIntentCommunicationContinuationDTO(
+                            type = 'none', 
+                            bypass_idempotency = True, ), 
+                        failure_reason_code = 56, ), 
+                    psp_instrument = billing_client.models.psp_instrument_snapshot_dto.PspInstrumentSnapshotDTO(
+                        payment_method_id = '', 
+                        category = 'unknown', 
+                        last4 = '', 
+                        bank_code = '', 
+                        provider_estimated_collection_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), ),
                 attachment_id = '',
                 credited_by_invoice_id = '',
                 credited_invoice_id = '',
@@ -133,12 +142,18 @@ class TestInvoiceDTO(unittest.TestCase):
                         external_channel_identifier = '', 
                         meter_serial_number = '', 
                         time_zone = '', 
-                        utility_type = null, 
-                        metering_type = null, 
-                        unit_of_measure = null, 
+                        utility_type = 'none', 
+                        metering_type = 'none', 
+                        unit_of_measure = 'none', 
                         time_of_use = '', 
-                        first_measurement = null, 
-                        second_measurement = null, 
+                        first_measurement = billing_client.models.consumption_calculation_measurement_dto.ConsumptionCalculationMeasurementDTO(
+                            value = 1.337, 
+                            reading_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            reading_origin = 'device', 
+                            reading_method = 'automatic', ), 
+                        second_measurement = billing_client.models.consumption_calculation_measurement_dto.ConsumptionCalculationMeasurementDTO(
+                            value = 1.337, 
+                            reading_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
                         consumption_value = 1.337, 
                         start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
@@ -151,18 +166,37 @@ class TestInvoiceDTO(unittest.TestCase):
                     previous_step_id = '', 
                     previous_step_name = '', 
                     previous_step_executed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    previous_step_status = null, 
+                    previous_step_status = 'pending', 
                     next_step_id = '', 
                     next_step_name = '', 
                     next_step_execution_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
+                payment_plan_details = billing_client.models.payment_plan_details_dto.PaymentPlanDetailsDTO(
+                    payment_plan_id = '', 
+                    payment_plan_number = '', 
+                    closed = True, 
+                    status = 'draft', 
+                    total_amount = 1.337, 
+                    remaining_amount = 1.337, 
+                    number_of_installments = 56, 
+                    paid_installments_count = 56, 
+                    pending_installments_count = 56, 
+                    overdue_installments_count = 56, 
+                    next_installment_due = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    payment_frequency = 'weekly', 
+                    amount_per_installment = 1.337, 
+                    final_installment_amount = 1.337, 
+                    payment_method = 'sct', 
+                    payment_reference = '', ),
                 sent = 'notsent',
                 failure_reason_code = billing_client.models.localised_error_dto.LocalisedErrorDTO(
-                    key = null, 
+                    key = 56, 
                     correlation_id = '', 
                     message = '', 
                     message_values = [
                         billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                            data_type = null, 
+                            data_type = 'text', 
                             value = '', 
                             capitalize = True, )
                         ], ),
@@ -176,19 +210,50 @@ class TestInvoiceDTO(unittest.TestCase):
                     new_advance_amount_incl_vat = 1.337, 
                     old_advance_amount_incl_vat = 1.337, 
                     next_invoice_amount_incl_vat = 1.337, 
-                    next_invoice_amount_accuracy = null, 
-                    recalculation_type = null, 
-                    fallback_reason = null, 
-                    changed_by_user_id = '', ),
+                    next_invoice_amount_accuracy = 'low', 
+                    recalculation_type = 'none', 
+                    fallback_reason = 'na', 
+                    changed_by_user_id = '', 
+                    applied_period_percentage = 1.337, 
+                    advance_calculation_type = 'fixed', ),
                 ubl_attachment_details = billing_client.models.invoice_ubl_attachment_details_dto.InvoiceUBLAttachmentDetailsDTO(
                     errors = [
                         billing_client.models.invoice_ubl_validation_error_dto.InvoiceUBLValidationErrorDTO(
-                            originator_type = null, 
+                            originator_type = 'none', 
                             originator_id = '', 
-                            message = null, )
+                            message = billing_client.models.localised_error_dto.LocalisedErrorDTO(
+                                key = 56, 
+                                correlation_id = '', 
+                                message_values = [
+                                    billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
+                                        data_type = 'text', 
+                                        value = '', 
+                                        capitalize = True, )
+                                    ], ), )
                         ], 
                     attachment_id = '', 
-                    attachment_file_name = '', )
+                    attachment_file_name = '', ),
+                validation_result = billing_client.models.invoice_validation_result_dto.InvoiceValidationResultDTO(
+                    validated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    score = 56, 
+                    reasoning = '', 
+                    anomalies = [
+                        billing_client.models.invoice_anomaly_dto.InvoiceAnomalyDTO(
+                            type = '', 
+                            severity = '', 
+                            description = '', )
+                        ], 
+                    model_version = '', 
+                    token_count = 56, ),
+                auto_approved = True,
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return InvoiceDTO(

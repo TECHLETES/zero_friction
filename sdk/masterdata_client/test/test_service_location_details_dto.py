@@ -55,7 +55,7 @@ class TestServiceLocationDetailsDTO(unittest.TestCase):
                     customer_id = '', 
                     short_display_name = '', 
                     account_number = '', 
-                    management_relation_type = null, ),
+                    management_relation_type = 'owner', ),
                 address = masterdata_client.models.address_dto.AddressDTO(
                     street_name = '', 
                     street_number = '', 
@@ -64,25 +64,25 @@ class TestServiceLocationDetailsDTO(unittest.TestCase):
                     building_name = '', 
                     locality = '', 
                     city = '', 
-                    country = null, 
+                    country = 'aut', 
                     localized_display = '', 
                     line_one = '', 
                     line_two = '', ),
                 services = [
                     masterdata_client.models.service_location_service_details_dto.ServiceLocationServiceDetailsDTO(
                         external_identifier = '', 
-                        utility_type = null, )
+                        utility_type = 'none', )
                     ],
                 linked = True,
                 internal_id = '',
                 errors = [
                     masterdata_client.models.localised_error_dto.LocalisedErrorDTO(
-                        key = null, 
+                        key = 56, 
                         correlation_id = '', 
                         message = '', 
                         message_values = [
                             masterdata_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                data_type = null, 
+                                data_type = 'text', 
                                 value = '', 
                                 capitalize = True, )
                             ], )

@@ -35,28 +35,27 @@ class CollectionFlowStepDTO(BaseModel):
     """
     CollectionFlowStepDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
     name: Optional[StrictStr] = None
     trigger_days: Optional[StrictInt] = Field(default=None, alias="triggerDays")
     step_type: Optional[CollectionStepType] = Field(default=None, alias="stepType")
     charge_type: Optional[CollectionChargeType] = Field(default=None, alias="chargeType")
     charge_parameters: Optional[CollectionChargeParametersDTO] = Field(default=None, alias="chargeParameters")
     communication_type: Optional[CommunicationType] = Field(default=None, alias="communicationType")
+    auto_fallback_to_postal: Optional[StrictBool] = Field(default=None, alias="autoFallbackToPostal")
     message_title: Optional[StrictStr] = Field(default=None, alias="messageTitle")
     communication_level: Optional[CollectionStepLevel] = Field(default=None, alias="communicationLevel")
     communication_attachments: Optional[List[TemplateAttachmentRequest]] = Field(default=None, alias="communicationAttachments")
     localisation_level: Optional[LocalisationLevel] = Field(default=None, alias="localisationLevel")
     localised_fields: Optional[List[StrictStr]] = Field(default=None, alias="localisedFields")
-    translated_fields: Optional[Dict[str, Optional[Dict[str, StrictStr]]]] = Field(default=None, alias="translatedFields")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "name", "triggerDays", "stepType", "chargeType", "chargeParameters", "communicationType", "messageTitle", "communicationLevel", "communicationAttachments", "localisationLevel", "localisedFields", "translatedFields"]
+    translated_fields: Optional[Dict[str, Dict[str, StrictStr]]] = Field(default=None, alias="translatedFields")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["name", "triggerDays", "stepType", "chargeType", "chargeParameters", "communicationType", "autoFallbackToPostal", "messageTitle", "communicationLevel", "communicationAttachments", "localisationLevel", "localisedFields", "translatedFields", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,10 +87,8 @@ class CollectionFlowStepDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -109,80 +106,20 @@ class CollectionFlowStepDTO(BaseModel):
                 if _item_communication_attachments:
                     _items.append(_item_communication_attachments.to_dict())
             _dict['communicationAttachments'] = _items
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
-
-        # set to None if step_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.step_type is None and "step_type" in self.model_fields_set:
-            _dict['stepType'] = None
-
-        # set to None if charge_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.charge_type is None and "charge_type" in self.model_fields_set:
-            _dict['chargeType'] = None
 
         # set to None if charge_parameters (nullable) is None
         # and model_fields_set contains the field
         if self.charge_parameters is None and "charge_parameters" in self.model_fields_set:
             _dict['chargeParameters'] = None
 
-        # set to None if communication_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.communication_type is None and "communication_type" in self.model_fields_set:
-            _dict['communicationType'] = None
-
         # set to None if message_title (nullable) is None
         # and model_fields_set contains the field
         if self.message_title is None and "message_title" in self.model_fields_set:
             _dict['messageTitle'] = None
-
-        # set to None if communication_level (nullable) is None
-        # and model_fields_set contains the field
-        if self.communication_level is None and "communication_level" in self.model_fields_set:
-            _dict['communicationLevel'] = None
-
-        # set to None if communication_attachments (nullable) is None
-        # and model_fields_set contains the field
-        if self.communication_attachments is None and "communication_attachments" in self.model_fields_set:
-            _dict['communicationAttachments'] = None
-
-        # set to None if localisation_level (nullable) is None
-        # and model_fields_set contains the field
-        if self.localisation_level is None and "localisation_level" in self.model_fields_set:
-            _dict['localisationLevel'] = None
-
-        # set to None if localised_fields (nullable) is None
-        # and model_fields_set contains the field
-        if self.localised_fields is None and "localised_fields" in self.model_fields_set:
-            _dict['localisedFields'] = None
-
-        # set to None if translated_fields (nullable) is None
-        # and model_fields_set contains the field
-        if self.translated_fields is None and "translated_fields" in self.model_fields_set:
-            _dict['translatedFields'] = None
 
         return _dict
 
@@ -196,27 +133,26 @@ class CollectionFlowStepDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
             "name": obj.get("name"),
             "triggerDays": obj.get("triggerDays"),
             "stepType": obj.get("stepType"),
             "chargeType": obj.get("chargeType"),
             "chargeParameters": CollectionChargeParametersDTO.from_dict(obj["chargeParameters"]) if obj.get("chargeParameters") is not None else None,
             "communicationType": obj.get("communicationType"),
+            "autoFallbackToPostal": obj.get("autoFallbackToPostal"),
             "messageTitle": obj.get("messageTitle"),
             "communicationLevel": obj.get("communicationLevel"),
             "communicationAttachments": [TemplateAttachmentRequest.from_dict(_item) for _item in obj["communicationAttachments"]] if obj.get("communicationAttachments") is not None else None,
             "localisationLevel": obj.get("localisationLevel"),
             "localisedFields": obj.get("localisedFields"),
-            "translatedFields": obj.get("translatedFields")
+            "translatedFields": obj.get("translatedFields"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

@@ -43,12 +43,15 @@ class TestImportedMeasurementProcessingResultDTO(unittest.TestCase):
                 direction = 'offtake',
                 unit_of_measure = 'none',
                 reading_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                measurement_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 time_of_use = '',
                 reading_value = 1.337,
                 error_code = '',
                 line_number = 56,
                 processed_on = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                was_ignored = True
+                was_ignored = True,
+                reading_origin = 'device',
+                reading_method = 'automatic'
             )
         else:
             return ImportedMeasurementProcessingResultDTO(

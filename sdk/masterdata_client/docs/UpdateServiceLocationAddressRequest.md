@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
+**address** | [**AddressDTO**](AddressDTO.md) |  | 
 
 ## Example
 

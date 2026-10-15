@@ -1,12 +1,11 @@
 # SettleTransactionsRequest
 
-Represents a request to settle multiple transactions.  This DTO is used to mark multiple transactions as settled, indicating they have been processed and completed.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transaction_ids** | **List[str]** | List of transaction IDs to be marked as settled. | [optional] 
+**transaction_ids** | **List[str]** |  | 
 
 ## Example
 

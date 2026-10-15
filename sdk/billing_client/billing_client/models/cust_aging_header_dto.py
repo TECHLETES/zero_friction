@@ -27,32 +27,33 @@ from typing_extensions import Self
 
 class CustAgingHeaderDTO(BaseModel):
     """
-    Represents the header information for customer aging analysis.  This DTO contains aggregated financial information about a customer's outstanding transactions and aging buckets.
+    CustAgingHeaderDTO
     """ # noqa: E501
-    debtor: Optional[DebtorDTO] = Field(default=None, description="Information about the debtor associated with this aging analysis.")
-    last_payment_date: Optional[datetime] = Field(default=None, description="The date of the most recent payment received from the customer.", alias="lastPaymentDate")
-    oldest_open_debit_transaction_reference: Optional[StrictStr] = Field(default=None, description="Reference to the oldest open debit transaction (e.g., invoice number).", alias="oldestOpenDebitTransactionReference")
-    open_credits: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Sum of all open transactions in favor of the customer (credits).", alias="openCredits")
-    total_credit_tx_open: Optional[StrictInt] = Field(default=None, description="Total number of open credit transactions.", alias="totalCreditTxOpen")
-    open_debits: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Sum of all open transactions to be paid by the customer (debits).", alias="openDebits")
-    total_debit_tx_open: Optional[StrictInt] = Field(default=None, description="Total number of open debit transactions.", alias="totalDebitTxOpen")
-    total_open_not_overdue: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of open transactions that are not yet overdue.", alias="totalOpenNotOverdue")
-    total_open_not_overdue_tx: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total number of open transactions that are not yet overdue.", alias="totalOpenNotOverdueTx")
-    total_overdue30_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of transactions overdue between 0 and 30 days (excluding end date).", alias="totalOverdue30D")
-    total_overdue30_dtx: Optional[StrictInt] = Field(default=None, description="Total number of transactions overdue between 0 and 30 days.", alias="totalOverdue30DTx")
-    total_overdue60_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of transactions overdue between 30 and 60 days (excluding end date).", alias="totalOverdue60D")
-    total_overdue60_dtx: Optional[StrictInt] = Field(default=None, description="Total number of transactions overdue between 30 and 60 days.", alias="totalOverdue60DTx")
-    total_overdue90_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of transactions overdue between 60 and 90 days (excluding end date).", alias="totalOverdue90D")
-    total_overdue90_dtx: Optional[StrictInt] = Field(default=None, description="Total number of transactions overdue between 60 and 90 days.", alias="totalOverdue90DTx")
-    total_overdue_over90_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of transactions overdue for more than 90 days.", alias="totalOverdueOver90D")
-    total_overdue_over90_dtx: Optional[StrictInt] = Field(default=None, description="Total number of transactions overdue for more than 90 days.", alias="totalOverdueOver90DTx")
-    total_collection_costs_open: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of open collection costs, including both open and potentially overdue costs.", alias="totalCollectionCostsOpen")
-    total_collection_cost_tx: Optional[StrictInt] = Field(default=None, description="Total number of collection cost transactions.", alias="totalCollectionCostTx")
-    total_open: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of all open transactions.", alias="totalOpen")
-    total_open_tx: Optional[StrictInt] = Field(default=None, description="Total number of all open transactions.", alias="totalOpenTx")
-    flow_active: Optional[StrictBool] = Field(default=None, description="Indicates whether there is any active collection flow on any of the underlying transactions.", alias="flowActive")
-    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, description="List of property groups associated with this aging analysis.", alias="propertyGroups")
-    __properties: ClassVar[List[str]] = ["debtor", "lastPaymentDate", "oldestOpenDebitTransactionReference", "openCredits", "totalCreditTxOpen", "openDebits", "totalDebitTxOpen", "totalOpenNotOverdue", "totalOpenNotOverdueTx", "totalOverdue30D", "totalOverdue30DTx", "totalOverdue60D", "totalOverdue60DTx", "totalOverdue90D", "totalOverdue90DTx", "totalOverdueOver90D", "totalOverdueOver90DTx", "totalCollectionCostsOpen", "totalCollectionCostTx", "totalOpen", "totalOpenTx", "flowActive", "propertyGroups"]
+    debtor: Optional[DebtorDTO] = None
+    last_payment_date: Optional[datetime] = Field(default=None, alias="lastPaymentDate")
+    oldest_open_debit_transaction_reference: Optional[StrictStr] = Field(default=None, alias="oldestOpenDebitTransactionReference")
+    open_credits: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="openCredits")
+    total_credit_tx_open: Optional[StrictInt] = Field(default=None, alias="totalCreditTxOpen")
+    open_debits: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="openDebits")
+    total_debit_tx_open: Optional[StrictInt] = Field(default=None, alias="totalDebitTxOpen")
+    total_open_not_overdue: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOpenNotOverdue")
+    total_open_not_overdue_tx: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOpenNotOverdueTx")
+    total_overdue30_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOverdue30D")
+    total_overdue30_dtx: Optional[StrictInt] = Field(default=None, alias="totalOverdue30DTx")
+    total_overdue60_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOverdue60D")
+    total_overdue60_dtx: Optional[StrictInt] = Field(default=None, alias="totalOverdue60DTx")
+    total_overdue90_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOverdue90D")
+    total_overdue90_dtx: Optional[StrictInt] = Field(default=None, alias="totalOverdue90DTx")
+    total_overdue_over90_d: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOverdueOver90D")
+    total_overdue_over90_dtx: Optional[StrictInt] = Field(default=None, alias="totalOverdueOver90DTx")
+    total_collection_costs_open: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalCollectionCostsOpen")
+    total_collection_cost_tx: Optional[StrictInt] = Field(default=None, alias="totalCollectionCostTx")
+    total_open: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="totalOpen")
+    total_open_tx: Optional[StrictInt] = Field(default=None, alias="totalOpenTx")
+    flow_active: Optional[StrictBool] = Field(default=None, alias="flowActive")
+    property_groups: Optional[List[PropertyGroupReferenceDTO]] = Field(default=None, alias="propertyGroups")
+    has_active_payment_plan: Optional[StrictBool] = Field(default=None, alias="hasActivePaymentPlan")
+    __properties: ClassVar[List[str]] = ["debtor", "lastPaymentDate", "oldestOpenDebitTransactionReference", "openCredits", "totalCreditTxOpen", "openDebits", "totalDebitTxOpen", "totalOpenNotOverdue", "totalOpenNotOverdueTx", "totalOverdue30D", "totalOverdue30DTx", "totalOverdue60D", "totalOverdue60DTx", "totalOverdue90D", "totalOverdue90DTx", "totalOverdueOver90D", "totalOverdueOver90DTx", "totalCollectionCostsOpen", "totalCollectionCostTx", "totalOpen", "totalOpenTx", "flowActive", "propertyGroups", "hasActivePaymentPlan"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -152,7 +153,8 @@ class CustAgingHeaderDTO(BaseModel):
             "totalOpen": obj.get("totalOpen"),
             "totalOpenTx": obj.get("totalOpenTx"),
             "flowActive": obj.get("flowActive"),
-            "propertyGroups": [PropertyGroupReferenceDTO.from_dict(_item) for _item in obj["propertyGroups"]] if obj.get("propertyGroups") is not None else None
+            "propertyGroups": [PropertyGroupReferenceDTO.from_dict(_item) for _item in obj["propertyGroups"]] if obj.get("propertyGroups") is not None else None,
+            "hasActivePaymentPlan": obj.get("hasActivePaymentPlan")
         })
         return _obj
 

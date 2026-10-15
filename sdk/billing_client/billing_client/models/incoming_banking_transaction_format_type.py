@@ -20,13 +20,21 @@ from typing_extensions import Self
 
 class IncomingBankingTransactionFormatType(str, Enum):
     """
-    IncomingBankingTransactionFormatType
+    Possible values: 'camt', 'camt053_001_02', 'camt053_001_09', 'camt053_001_10', 'camt053_001_11', 'camt053_001_12', 'camt053_001_13', 'bacsoutputreport', 'bacsarudd'
     """
 
     """
     allowed enum values
     """
+    CAMT = 'camt'
     CAMT053_001_02 = 'camt053_001_02'
+    CAMT053_001_09 = 'camt053_001_09'
+    CAMT053_001_10 = 'camt053_001_10'
+    CAMT053_001_11 = 'camt053_001_11'
+    CAMT053_001_12 = 'camt053_001_12'
+    CAMT053_001_13 = 'camt053_001_13'
+    BACSOUTPUTREPORT = 'bacsoutputreport'
+    BACSARUDD = 'bacsarudd'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

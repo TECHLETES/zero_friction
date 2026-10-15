@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from billing_client.models.advance_frequency import AdvanceFrequency
+from billing_client.models.contract_billing_method import ContractBillingMethod
 from billing_client.models.invoice_frequency import InvoiceFrequency
 from billing_client.models.property_group_reference_dto import PropertyGroupReferenceDTO
 from typing import Optional, Set
@@ -27,17 +28,18 @@ from typing_extensions import Self
 
 class UpdatePropertyGroupBillingConfigurationRequest(BaseModel):
     """
-    Represents a request to update a property group billing configuration.  This DTO is used to modify various billing settings for a property group, including frequencies, payment terms, and bank account details.
+    UpdatePropertyGroupBillingConfigurationRequest
     """ # noqa: E501
-    property_group: Optional[PropertyGroupReferenceDTO] = Field(default=None, description="Reference to the property group being configured.", alias="propertyGroup")
-    company_bank_account_id: Optional[StrictStr] = Field(default=None, description="The ID of the company bank account to be used for billing.", alias="companyBankAccountId")
-    advance_frequency: Optional[AdvanceFrequency] = Field(default=None, description="The frequency at which advance payments will be collected.", alias="advanceFrequency")
-    invoice_frequency: Optional[InvoiceFrequency] = Field(default=None, description="The frequency at which invoices will be generated.", alias="invoiceFrequency")
-    invoice_day: Optional[StrictInt] = Field(default=None, description="The day of the month when invoices should be generated.", alias="invoiceDay")
-    invoice_month: Optional[StrictInt] = Field(default=None, description="The month when invoices should be generated (used for yearly frequency).", alias="invoiceMonth")
-    product_id: Optional[StrictStr] = Field(default=None, description="The ID of the product associated with this billing configuration.", alias="productId")
-    payment_terms_id: Optional[StrictStr] = Field(default=None, description="The ID of the payment terms to be applied.", alias="paymentTermsId")
-    __properties: ClassVar[List[str]] = ["propertyGroup", "companyBankAccountId", "advanceFrequency", "invoiceFrequency", "invoiceDay", "invoiceMonth", "productId", "paymentTermsId"]
+    property_group: Optional[PropertyGroupReferenceDTO] = Field(alias="propertyGroup")
+    company_bank_account_id: Optional[StrictStr] = Field(default=None, alias="companyBankAccountId")
+    advance_frequency: Optional[AdvanceFrequency] = Field(default=None, alias="advanceFrequency")
+    invoice_frequency: Optional[InvoiceFrequency] = Field(default=None, alias="invoiceFrequency")
+    invoice_day: Optional[StrictInt] = Field(default=None, alias="invoiceDay")
+    invoice_month: Optional[StrictInt] = Field(default=None, alias="invoiceMonth")
+    product_id: Optional[StrictStr] = Field(default=None, alias="productId")
+    payment_terms_id: Optional[StrictStr] = Field(default=None, alias="paymentTermsId")
+    default_billing_method: Optional[ContractBillingMethod] = Field(default=None, alias="defaultBillingMethod")
+    __properties: ClassVar[List[str]] = ["propertyGroup", "companyBankAccountId", "advanceFrequency", "invoiceFrequency", "invoiceDay", "invoiceMonth", "productId", "paymentTermsId", "defaultBillingMethod"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,16 +93,6 @@ class UpdatePropertyGroupBillingConfigurationRequest(BaseModel):
         if self.company_bank_account_id is None and "company_bank_account_id" in self.model_fields_set:
             _dict['companyBankAccountId'] = None
 
-        # set to None if advance_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.advance_frequency is None and "advance_frequency" in self.model_fields_set:
-            _dict['advanceFrequency'] = None
-
-        # set to None if invoice_frequency (nullable) is None
-        # and model_fields_set contains the field
-        if self.invoice_frequency is None and "invoice_frequency" in self.model_fields_set:
-            _dict['invoiceFrequency'] = None
-
         # set to None if product_id (nullable) is None
         # and model_fields_set contains the field
         if self.product_id is None and "product_id" in self.model_fields_set:
@@ -110,6 +102,11 @@ class UpdatePropertyGroupBillingConfigurationRequest(BaseModel):
         # and model_fields_set contains the field
         if self.payment_terms_id is None and "payment_terms_id" in self.model_fields_set:
             _dict['paymentTermsId'] = None
+
+        # set to None if default_billing_method (nullable) is None
+        # and model_fields_set contains the field
+        if self.default_billing_method is None and "default_billing_method" in self.model_fields_set:
+            _dict['defaultBillingMethod'] = None
 
         return _dict
 
@@ -130,7 +127,8 @@ class UpdatePropertyGroupBillingConfigurationRequest(BaseModel):
             "invoiceDay": obj.get("invoiceDay"),
             "invoiceMonth": obj.get("invoiceMonth"),
             "productId": obj.get("productId"),
-            "paymentTermsId": obj.get("paymentTermsId")
+            "paymentTermsId": obj.get("paymentTermsId"),
+            "defaultBillingMethod": obj.get("defaultBillingMethod")
         })
         return _obj
 

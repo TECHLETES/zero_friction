@@ -1,11 +1,14 @@
 # ScheduledJobRecurrence
 
+Possible values: 'none', 'pt5m', 'pt30m', 'pt1h', 'pt1d'
 
 ## Enum
 
 * `NONE` (value: `'none'`)
 
 * `PT5M` (value: `'pt5m'`)
+
+* `PT30M` (value: `'pt30m'`)
 
 * `PT1H` (value: `'pt1h'`)
 

@@ -35,20 +35,13 @@ class TestGetMeteringIssuesQueryParams(unittest.TestCase):
         model = GetMeteringIssuesQueryParams()
         if include_optional:
             return GetMeteringIssuesQueryParams(
-                flex_search = '',
-                include_only_ids = [
-                    ''
-                    ],
-                exclude_ids = [
-                    ''
-                    ],
                 meter_ids = [
                     ''
                     ],
                 noticed_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 noticed_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 statuses = [
-                    ''
+                    'unresolved'
                     ],
                 property_group_ids = [
                     ''
@@ -58,7 +51,21 @@ class TestGetMeteringIssuesQueryParams(unittest.TestCase):
                     ],
                 errors = [
                     'consumptionnegative'
-                    ]
+                    ],
+                reading_origins = [
+                    'device'
+                    ],
+                data_provider_ids = [
+                    ''
+                    ],
+                flex_search = '',
+                include_only_ids = [
+                    ''
+                    ],
+                exclude_ids = [
+                    ''
+                    ],
+                page_size = 56
             )
         else:
             return GetMeteringIssuesQueryParams(

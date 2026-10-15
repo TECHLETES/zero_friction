@@ -7,15 +7,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **contractor_id** | **str** |  | [optional] 
 **contract_number** | **str** |  | [optional] 
-**supply_start_date** | **datetime** |  | [optional] 
+**supply_start_date** | **datetime** |  | 
 **supply_end_date** | **datetime** |  | [optional] 
-**contracted_service_locations** | [**List[CreateContractServiceLocationRequest]**](CreateContractServiceLocationRequest.md) |  | [optional] 
+**contracted_service_locations** | [**List[CreateContractServiceLocationRequest]**](CreateContractServiceLocationRequest.md) |  | 
 **attachment_signatures** | [**List[AttachmentSignature]**](AttachmentSignature.md) |  | [optional] 
 **product_id** | **str** |  | [optional] 
-**use_property_group_product** | **bool** |  | [optional] 
 **invoice_address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
-**external_contract_reference** | **str** |  | [optional] 
-**billing_properties** | **object** |  | [optional] 
+**external_contract_reference** | **str** |  | 
+**billing_properties** | [**CreateContractBillingPropertiesBaseRequest**](CreateContractBillingPropertiesBaseRequest.md) |  | 
 
 ## Example
 

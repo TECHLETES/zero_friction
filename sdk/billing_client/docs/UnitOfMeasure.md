@@ -1,5 +1,6 @@
 # UnitOfMeasure
 
+Possible values: 'none', 'wh', 'kwh', 'mwh', 'gwh', 'j', 'kj', 'mj', 'gj', 'day', 'month', 'quarter', 'year', 'litre', 'm3', 'units', 'm3_h', 'celcius', 'k', 'kw'
 
 ## Enum
 
@@ -24,6 +25,8 @@
 * `DAY` (value: `'day'`)
 
 * `MONTH` (value: `'month'`)
+
+* `QUARTER` (value: `'quarter'`)
 
 * `YEAR` (value: `'year'`)
 

@@ -1,14 +1,13 @@
 # BulkReopenBillingCompletenessRequest
 
-Represents a bulk request to reopen multiple billing completeness records.  This request allows reopening multiple billing completeness records in a single operation.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**only_validate** | **bool** | Indicates if only validation should be performed without actually reopening the records.  When true, the system will only validate if the records can be reopened without making any changes. | [optional] 
-**var_query_params** | [**GetBillingCompletenessQueryParams**](GetBillingCompletenessQueryParams.md) | Query parameters to filter the billing completeness records to process.  This allows specifying which records should be included in the bulk operation. | [optional] 
-**quick_filter** | **str** | Quick filter string to filter billing completeness records.  This provides a simple way to filter records without using complex query parameters. | [optional] 
+**only_validate** | **bool** |  | [optional] 
+**var_query_params** | [**GetBillingCompletenessQueryParams**](GetBillingCompletenessQueryParams.md) |  | [optional] 
+**quick_filter** | **str** |  | [optional] 
 
 ## Example
 

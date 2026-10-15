@@ -35,11 +35,32 @@ class TestBulkCreateMutingRuleRequest(unittest.TestCase):
         model = BulkCreateMutingRuleRequest()
         if include_optional:
             return BulkCreateMutingRuleRequest(
-                error_type = 'consumptionnegative',
-                message = '',
-                time_period = 'day',
                 only_validate = True,
                 var_query_params = metering_client.models.get_meters_query_params.GetMetersQueryParams(
+                    servicelocation_ids = [
+                        ''
+                        ], 
+                    property_group_ids = [
+                        ''
+                        ], 
+                    meter_type = 'individual', 
+                    received_metering_data_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    received_metering_data_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    next_expected_reading_date_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    next_expected_reading_date_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    parent_serial_number = '', 
+                    filter_by_reading_frequency = True, 
+                    reading_frequency = 'hourly', 
+                    customer_id = '', 
+                    meter_type_group = '', 
+                    meter_serial_numbers = [
+                        ''
+                        ], 
+                    model_ids = [
+                        ''
+                        ], 
+                    meter_name = '', 
+                    show_deleted = True, 
                     flex_search = '', 
                     include_only_ids = [
                         ''
@@ -47,24 +68,11 @@ class TestBulkCreateMutingRuleRequest(unittest.TestCase):
                     exclude_ids = [
                         ''
                         ], 
-                    servicelocation_ids = [
-                        ''
-                        ], 
-                    property_group_ids = [
-                        ''
-                        ], 
-                    meter_type = null, 
-                    received_metering_data_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    received_metering_data_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    next_expected_reading_date_start = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    next_expected_reading_date_end = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    parent_serial_number = '', 
-                    filter_by_reading_frequency = True, 
-                    reading_frequency = null, 
-                    customer_id = '', 
-                    meter_type_group = '', 
-                    meter_serial_number = '', ),
-                quick_filter = ''
+                    page_size = 56, ),
+                quick_filter = '',
+                error_type = 'consumptionnegative',
+                message = '',
+                time_period = 'day'
             )
         else:
             return BulkCreateMutingRuleRequest(

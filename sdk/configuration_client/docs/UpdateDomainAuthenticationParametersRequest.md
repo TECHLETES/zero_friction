@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**domain_name** | **str** |  | [optional] 
+**domain_name** | **str** |  | 
 
 ## Example
 

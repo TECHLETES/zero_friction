@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
+**name** | **str** |  | 
 **settings** | [**CreateCustomerGroupSettingsRequest**](CreateCustomerGroupSettingsRequest.md) |  | [optional] 
+**cost_unit_id** | **str** |  | [optional] 
 
 ## Example
 

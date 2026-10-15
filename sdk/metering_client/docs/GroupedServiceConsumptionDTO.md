@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**external_identifier** | **str** | This is NOT the externalchannel identifier! | [optional] 
+**external_identifier** | **str** |  | [optional] 
 **service_location_id** | **str** |  | [optional] 
 **time_of_use** | **str** |  | [optional] 
 **utility_type** | [**UtilityType**](UtilityType.md) |  | [optional] 

@@ -35,17 +35,11 @@ class TestBulkChangeCustomerCustomerGroupRequest(unittest.TestCase):
         model = BulkChangeCustomerCustomerGroupRequest()
         if include_optional:
             return BulkChangeCustomerCustomerGroupRequest(
-                customer_group_id = '',
                 only_validate = True,
                 var_query_params = masterdata_client.models.get_customers_query_params.GetCustomersQueryParams(
-                    flex_search = '', 
-                    include_only_ids = [
+                    customer_types = [
                         ''
                         ], 
-                    exclude_ids = [
-                        ''
-                        ], 
-                    customer_type = '', 
                     default_payment_method = '', 
                     property_group_ids = [
                         ''
@@ -63,8 +57,17 @@ class TestBulkChangeCustomerCustomerGroupRequest(unittest.TestCase):
                         ], 
                     vulnerability_register_ids = [
                         ''
-                        ], ),
-                quick_filter = ''
+                        ], 
+                    flex_search = '', 
+                    include_only_ids = [
+                        ''
+                        ], 
+                    exclude_ids = [
+                        ''
+                        ], 
+                    page_size = 56, ),
+                quick_filter = '',
+                customer_group_id = ''
             )
         else:
             return BulkChangeCustomerCustomerGroupRequest(

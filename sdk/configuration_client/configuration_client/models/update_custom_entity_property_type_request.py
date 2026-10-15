@@ -82,11 +82,6 @@ class UpdateCustomEntityPropertyTypeRequest(BaseModel):
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
 
-        # set to None if tag_color (nullable) is None
-        # and model_fields_set contains the field
-        if self.tag_color is None and "tag_color" in self.model_fields_set:
-            _dict['tagColor'] = None
-
         return _dict
 
     @classmethod

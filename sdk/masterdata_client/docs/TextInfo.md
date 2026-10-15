@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ansi_code_page** | **int** |  | [optional] [readonly] 
-**oem_code_page** | **int** |  | [optional] [readonly] 
-**mac_code_page** | **int** |  | [optional] [readonly] 
-**ebcdic_code_page** | **int** |  | [optional] [readonly] 
-**lcid** | **int** |  | [optional] [readonly] 
-**culture_name** | **str** |  | [optional] [readonly] 
-**is_read_only** | **bool** |  | [optional] [readonly] 
+**ansi_code_page** | **int** |  | [optional] 
+**oem_code_page** | **int** |  | [optional] 
+**mac_code_page** | **int** |  | [optional] 
+**ebcdic_code_page** | **int** |  | [optional] 
+**lcid** | **int** |  | [optional] 
+**culture_name** | **str** |  | [optional] 
+**is_read_only** | **bool** |  | [optional] 
 **list_separator** | **str** |  | [optional] 
-**is_right_to_left** | **bool** |  | [optional] [readonly] 
+**is_right_to_left** | **bool** |  | [optional] 
 
 ## Example
 

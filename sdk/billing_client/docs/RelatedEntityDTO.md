@@ -1,13 +1,12 @@
 # RelatedEntityDTO
 
-Represents an entity related to the validation error
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) | Type of the entity subject | [optional] 
-**entity_subject_id** | **str** | Identifier of the entity subject | [optional] 
+**entity_subject_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**entity_subject_id** | **str** |  | [optional] 
 
 ## Example
 

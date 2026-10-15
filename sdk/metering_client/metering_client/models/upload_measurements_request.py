@@ -25,12 +25,12 @@ from typing_extensions import Self
 
 class UploadMeasurementsRequest(BaseModel):
     """
-    Request data to upload measurements for specific meters.
+    UploadMeasurementsRequest
     """ # noqa: E501
-    automatic_processing: Optional[StrictBool] = Field(default=None, description="Indicates if we should process the measurement automatically after validation has succeeded.  By default, this value is set to <value>true</value>.", alias="automaticProcessing")
-    source: Optional[StrictStr] = Field(default=None, description="Free text field to mark the source of the measurements.")
-    upload_identifier: Optional[StrictStr] = Field(default=None, description="Optional field which allows you to configure an identifier for the upload of measurements.", alias="uploadIdentifier")
-    channel_measurements: Optional[List[ChannelMeasurementRequest]] = Field(default=None, description="Should contain the list of measurements for a specific channel.", alias="channelMeasurements")
+    automatic_processing: Optional[StrictBool] = Field(default=None, alias="automaticProcessing")
+    source: Optional[StrictStr] = None
+    upload_identifier: Optional[StrictStr] = Field(default=None, alias="uploadIdentifier")
+    channel_measurements: Optional[List[ChannelMeasurementRequest]] = Field(alias="channelMeasurements")
     __properties: ClassVar[List[str]] = ["automaticProcessing", "source", "uploadIdentifier", "channelMeasurements"]
 
     model_config = ConfigDict(

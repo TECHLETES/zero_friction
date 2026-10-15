@@ -1,13 +1,12 @@
 # DownloadOriginalMeteringImportsRequest
 
-Represents a request to download the original metering imports.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_query_params** | [**GetMeteringImportsQueryParams**](GetMeteringImportsQueryParams.md) | Represents query parameters used to filter metering imports when downloading the original files of the metering  imports. | [optional] 
-**quick_filter** | **str** | Represents a quick filtering criterion used to refine the selection of metering imports  when processing a download request. | [optional] 
+**var_query_params** | [**GetMeteringImportsQueryParams**](GetMeteringImportsQueryParams.md) |  | [optional] 
+**quick_filter** | **str** |  | [optional] 
 
 ## Example
 

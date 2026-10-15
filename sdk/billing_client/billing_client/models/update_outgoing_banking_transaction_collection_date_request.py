@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class UpdateOutgoingBankingTransactionCollectionDateRequest(BaseModel):
     """
-    Represents a request to update the collection date of an outgoing banking transaction.  This DTO is used to modify when a transaction should be collected from the customer's account.
+    UpdateOutgoingBankingTransactionCollectionDateRequest
     """ # noqa: E501
-    collection_date: Optional[datetime] = Field(default=None, description="The new date and time when the transaction should be collected.", alias="collectionDate")
+    collection_date: Optional[datetime] = Field(default=None, alias="collectionDate")
     __properties: ClassVar[List[str]] = ["collectionDate"]
 
     model_config = ConfigDict(

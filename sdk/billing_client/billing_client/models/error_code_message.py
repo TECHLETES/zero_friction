@@ -17,9 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from billing_client.models.error_code import ErrorCode
 from billing_client.models.error_code_message_value import ErrorCodeMessageValue
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +27,7 @@ class ErrorCodeMessage(BaseModel):
     """
     ErrorCodeMessage
     """ # noqa: E501
-    error_code: Optional[ErrorCode] = Field(default=None, alias="errorCode")
+    error_code: Optional[StrictInt] = Field(default=None, alias="errorCode")
     values: Optional[List[ErrorCodeMessageValue]] = None
     __properties: ClassVar[List[str]] = ["errorCode", "values"]
 
@@ -78,11 +77,6 @@ class ErrorCodeMessage(BaseModel):
                 if _item_values:
                     _items.append(_item_values.to_dict())
             _dict['values'] = _items
-        # set to None if values (nullable) is None
-        # and model_fields_set contains the field
-        if self.values is None and "values" in self.model_fields_set:
-            _dict['values'] = None
-
         return _dict
 
     @classmethod

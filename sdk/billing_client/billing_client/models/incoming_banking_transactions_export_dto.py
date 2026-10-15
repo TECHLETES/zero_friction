@@ -28,28 +28,29 @@ from typing_extensions import Self
 
 class IncomingBankingTransactionsExportDTO(BaseModel):
     """
-    Represents an incoming banking transaction for export purposes.  This DTO contains comprehensive information about the transaction, including company, customer, and matching details.
+    IncomingBankingTransactionsExportDTO
     """ # noqa: E501
-    transaction_identification: Optional[StrictStr] = Field(default=None, description="The unique identification of the transaction.", alias="transactionIdentification")
-    opening_balance_date: Optional[datetime] = Field(default=None, description="The date and time of the opening balance.", alias="openingBalanceDate")
-    closing_balance_date: Optional[datetime] = Field(default=None, description="The date and time of the closing balance.", alias="closingBalanceDate")
-    transaction_status: Optional[IncomingBankingTransactionStatus] = Field(default=None, description="The current status of the transaction.", alias="transactionStatus")
-    company_bank_account_holder: Optional[StrictStr] = Field(default=None, description="The name of the company bank account holder.", alias="companyBankAccountHolder")
-    company_bank_account_iban: Optional[StrictStr] = Field(default=None, description="The IBAN of the company bank account.", alias="companyBankAccountIban")
-    mutation_type: Optional[IncomingMutationType] = Field(default=None, description="The type of mutation.", alias="mutationType")
-    mutation_date: Optional[datetime] = Field(default=None, description="The date and time when the mutation occurred.", alias="mutationDate")
-    mutation_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount of the mutation.", alias="mutationAmount")
-    mutation_status: Optional[IncomingMutationStatus] = Field(default=None, description="The current status of the mutation.", alias="mutationStatus")
-    mutation_reference: Optional[StrictStr] = Field(default=None, description="The reference number or description of the mutation.", alias="mutationReference")
-    account_holder: Optional[StrictStr] = Field(default=None, description="The name of the account holder.", alias="accountHolder")
-    account_iban: Optional[StrictStr] = Field(default=None, description="The IBAN of the account.", alias="accountIban")
-    customer_account_number: Optional[StrictStr] = Field(default=None, description="The account number of the customer.", alias="customerAccountNumber")
-    customer_name: Optional[StrictStr] = Field(default=None, description="The name of the customer.", alias="customerName")
-    outgoing_banking_identification: Optional[StrictStr] = Field(default=None, description="The identification of the matching outgoing banking transaction.", alias="outgoingBankingIdentification")
-    matching_outgoing_banking_mutation_identification: Optional[StrictStr] = Field(default=None, description="The identification of the matching outgoing banking mutation.", alias="matchingOutgoingBankingMutationIdentification")
-    matching_outgoing_mutation_description: Optional[StrictStr] = Field(default=None, description="The description of the matching outgoing mutation.", alias="matchingOutgoingMutationDescription")
-    is_manual_match: Optional[StrictBool] = Field(default=None, description="Indicates whether this mutation was manually matched.", alias="isManualMatch")
-    __properties: ClassVar[List[str]] = ["transactionIdentification", "openingBalanceDate", "closingBalanceDate", "transactionStatus", "companyBankAccountHolder", "companyBankAccountIban", "mutationType", "mutationDate", "mutationAmount", "mutationStatus", "mutationReference", "accountHolder", "accountIban", "customerAccountNumber", "customerName", "outgoingBankingIdentification", "matchingOutgoingBankingMutationIdentification", "matchingOutgoingMutationDescription", "isManualMatch"]
+    transaction_identification: Optional[StrictStr] = Field(default=None, alias="transactionIdentification")
+    opening_balance_date: Optional[datetime] = Field(default=None, alias="openingBalanceDate")
+    closing_balance_date: Optional[datetime] = Field(default=None, alias="closingBalanceDate")
+    transaction_status: Optional[IncomingBankingTransactionStatus] = Field(default=None, alias="transactionStatus")
+    company_bank_account_holder: Optional[StrictStr] = Field(default=None, alias="companyBankAccountHolder")
+    company_bank_account_iban: Optional[StrictStr] = Field(default=None, alias="companyBankAccountIban")
+    mutation_type: Optional[IncomingMutationType] = Field(default=None, alias="mutationType")
+    mutation_date: Optional[datetime] = Field(default=None, alias="mutationDate")
+    mutation_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="mutationAmount")
+    mutation_display_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="mutationDisplayAmount")
+    mutation_status: Optional[IncomingMutationStatus] = Field(default=None, alias="mutationStatus")
+    mutation_reference: Optional[StrictStr] = Field(default=None, alias="mutationReference")
+    account_holder: Optional[StrictStr] = Field(default=None, alias="accountHolder")
+    account_iban: Optional[StrictStr] = Field(default=None, alias="accountIban")
+    customer_account_number: Optional[StrictStr] = Field(default=None, alias="customerAccountNumber")
+    customer_name: Optional[StrictStr] = Field(default=None, alias="customerName")
+    outgoing_banking_identification: Optional[StrictStr] = Field(default=None, alias="outgoingBankingIdentification")
+    matching_outgoing_banking_mutation_identification: Optional[StrictStr] = Field(default=None, alias="matchingOutgoingBankingMutationIdentification")
+    matching_outgoing_mutation_description: Optional[StrictStr] = Field(default=None, alias="matchingOutgoingMutationDescription")
+    is_manual_match: Optional[StrictBool] = Field(default=None, alias="isManualMatch")
+    __properties: ClassVar[List[str]] = ["transactionIdentification", "openingBalanceDate", "closingBalanceDate", "transactionStatus", "companyBankAccountHolder", "companyBankAccountIban", "mutationType", "mutationDate", "mutationAmount", "mutationDisplayAmount", "mutationStatus", "mutationReference", "accountHolder", "accountIban", "customerAccountNumber", "customerName", "outgoingBankingIdentification", "matchingOutgoingBankingMutationIdentification", "matchingOutgoingMutationDescription", "isManualMatch"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,11 +96,6 @@ class IncomingBankingTransactionsExportDTO(BaseModel):
         if self.transaction_identification is None and "transaction_identification" in self.model_fields_set:
             _dict['transactionIdentification'] = None
 
-        # set to None if transaction_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.transaction_status is None and "transaction_status" in self.model_fields_set:
-            _dict['transactionStatus'] = None
-
         # set to None if company_bank_account_holder (nullable) is None
         # and model_fields_set contains the field
         if self.company_bank_account_holder is None and "company_bank_account_holder" in self.model_fields_set:
@@ -109,16 +105,6 @@ class IncomingBankingTransactionsExportDTO(BaseModel):
         # and model_fields_set contains the field
         if self.company_bank_account_iban is None and "company_bank_account_iban" in self.model_fields_set:
             _dict['companyBankAccountIban'] = None
-
-        # set to None if mutation_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.mutation_type is None and "mutation_type" in self.model_fields_set:
-            _dict['mutationType'] = None
-
-        # set to None if mutation_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.mutation_status is None and "mutation_status" in self.model_fields_set:
-            _dict['mutationStatus'] = None
 
         # set to None if mutation_reference (nullable) is None
         # and model_fields_set contains the field
@@ -181,6 +167,7 @@ class IncomingBankingTransactionsExportDTO(BaseModel):
             "mutationType": obj.get("mutationType"),
             "mutationDate": obj.get("mutationDate"),
             "mutationAmount": obj.get("mutationAmount"),
+            "mutationDisplayAmount": obj.get("mutationDisplayAmount"),
             "mutationStatus": obj.get("mutationStatus"),
             "mutationReference": obj.get("mutationReference"),
             "accountHolder": obj.get("accountHolder"),

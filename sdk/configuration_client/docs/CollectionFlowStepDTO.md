@@ -5,27 +5,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | Gets or sets the unique identifier. | [optional] 
-**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) | Gets or sets the type of the entity. | [optional] 
-**created_date_time** | **datetime** | Gets or sets the date and time when the entity was created. | [optional] 
-**discriminator** | **str** | Gets or sets the discriminator value. | [optional] 
-**etag** | **str** | Gets or sets the ETag value. | [optional] 
-**require_attention** | **bool** | Gets a value indicating whether the entity requires attention. | [optional] [readonly] 
-**has_errors** | **bool** | Gets or sets a value indicating whether the entity has errors. | [optional] 
-**has_warnings** | **bool** | Gets or sets a value indicating whether the entity has warnings. | [optional] 
-**is_read_only** | **bool** | Gets or sets a value indicating whether the entity is read-only. | [optional] 
 **name** | **str** |  | [optional] 
 **trigger_days** | **int** |  | [optional] 
 **step_type** | [**CollectionStepType**](CollectionStepType.md) |  | [optional] 
 **charge_type** | [**CollectionChargeType**](CollectionChargeType.md) |  | [optional] 
 **charge_parameters** | [**CollectionChargeParametersDTO**](CollectionChargeParametersDTO.md) |  | [optional] 
 **communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
+**auto_fallback_to_postal** | **bool** |  | [optional] 
 **message_title** | **str** |  | [optional] 
 **communication_level** | [**CollectionStepLevel**](CollectionStepLevel.md) |  | [optional] 
 **communication_attachments** | [**List[TemplateAttachmentRequest]**](TemplateAttachmentRequest.md) |  | [optional] 
 **localisation_level** | [**LocalisationLevel**](LocalisationLevel.md) |  | [optional] 
 **localised_fields** | **List[str]** |  | [optional] 
-**translated_fields** | **Dict[str, Optional[Dict[str, str]]]** |  | [optional] 
+**translated_fields** | **Dict[str, Dict[str, str]]** |  | [optional] 
+**id** | **str** |  | [optional] 
+**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**created_date_time** | **datetime** |  | [optional] 
+**discriminator** | **str** |  | [optional] 
+**etag** | **str** |  | [optional] 
+**has_errors** | **bool** |  | [optional] 
+**is_read_only** | **bool** |  | [optional] 
 
 ## Example
 

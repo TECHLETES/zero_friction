@@ -13,110 +13,122 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
+import json
 import pprint
 import re  # noqa: F401
-import json
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+from typing import Optional
+from masterdata_client.models.create_contract_service_location_request_base import CreateContractServiceLocationRequestBase
+from masterdata_client.models.create_contract_service_location_request_migrate_contract_service_location_request import CreateContractServiceLocationRequestMigrateContractServiceLocationRequest
+from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
+from typing_extensions import Literal, Self
+from pydantic import Field
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from masterdata_client.models.create_contract_service_estimated_consumption_request import CreateContractServiceEstimatedConsumptionRequest
-from masterdata_client.models.utility_type import UtilityType
-from typing import Optional, Set
-from typing_extensions import Self
+CREATECONTRACTSERVICELOCATIONREQUEST_ANY_OF_SCHEMAS = ["CreateContractServiceLocationRequestBase", "CreateContractServiceLocationRequestMigrateContractServiceLocationRequest"]
 
 class CreateContractServiceLocationRequest(BaseModel):
     """
     CreateContractServiceLocationRequest
-    """ # noqa: E501
-    service_location_id: Optional[StrictStr] = Field(default=None, alias="serviceLocationId")
-    utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
-    external_identifier: Optional[StrictStr] = Field(default=None, alias="externalIdentifier")
-    estimated_consumptions: Optional[List[CreateContractServiceEstimatedConsumptionRequest]] = Field(default=None, alias="estimatedConsumptions")
-    __properties: ClassVar[List[str]] = ["serviceLocationId", "utilityType", "externalIdentifier", "estimatedConsumptions"]
+    """
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    # data type: CreateContractServiceLocationRequestMigrateContractServiceLocationRequest
+    anyof_schema_1_validator: Optional[CreateContractServiceLocationRequestMigrateContractServiceLocationRequest] = None
+    # data type: CreateContractServiceLocationRequestBase
+    anyof_schema_2_validator: Optional[CreateContractServiceLocationRequestBase] = None
+    if TYPE_CHECKING:
+        actual_instance: Optional[Union[CreateContractServiceLocationRequestBase, CreateContractServiceLocationRequestMigrateContractServiceLocationRequest]] = None
+    else:
+        actual_instance: Any = None
+    any_of_schemas: Set[str] = { "CreateContractServiceLocationRequestBase", "CreateContractServiceLocationRequestMigrateContractServiceLocationRequest" }
 
+    model_config = {
+        "validate_assignment": True,
+        "protected_namespaces": (),
+    }
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+    def __init__(self, *args, **kwargs) -> None:
+        if args:
+            if len(args) > 1:
+                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+            if kwargs:
+                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+            super().__init__(actual_instance=args[0])
+        else:
+            super().__init__(**kwargs)
+
+    @field_validator('actual_instance')
+    def actual_instance_must_validate_anyof(cls, v):
+        instance = CreateContractServiceLocationRequest.model_construct()
+        error_messages = []
+        # validate data type: CreateContractServiceLocationRequestMigrateContractServiceLocationRequest
+        if not isinstance(v, CreateContractServiceLocationRequestMigrateContractServiceLocationRequest):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `CreateContractServiceLocationRequestMigrateContractServiceLocationRequest`")
+        else:
+            return v
+
+        # validate data type: CreateContractServiceLocationRequestBase
+        if not isinstance(v, CreateContractServiceLocationRequestBase):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `CreateContractServiceLocationRequestBase`")
+        else:
+            return v
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when setting the actual_instance in CreateContractServiceLocationRequest with anyOf schemas: CreateContractServiceLocationRequestBase, CreateContractServiceLocationRequestMigrateContractServiceLocationRequest. Details: " + ", ".join(error_messages))
+        else:
+            return v
+
+    @classmethod
+    def from_dict(cls, obj: Dict[str, Any]) -> Self:
+        return cls.from_json(json.dumps(obj))
+
+    @classmethod
+    def from_json(cls, json_str: str) -> Self:
+        """Returns the object represented by the json string"""
+        instance = cls.model_construct()
+        error_messages = []
+        # anyof_schema_1_validator: Optional[CreateContractServiceLocationRequestMigrateContractServiceLocationRequest] = None
+        try:
+            instance.actual_instance = CreateContractServiceLocationRequestMigrateContractServiceLocationRequest.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_2_validator: Optional[CreateContractServiceLocationRequestBase] = None
+        try:
+            instance.actual_instance = CreateContractServiceLocationRequestBase.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into CreateContractServiceLocationRequest with anyOf schemas: CreateContractServiceLocationRequestBase, CreateContractServiceLocationRequestMigrateContractServiceLocationRequest. Details: " + ", ".join(error_messages))
+        else:
+            return instance
 
     def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
 
-    @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateContractServiceLocationRequest from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+            return self.actual_instance.to_json()
+        else:
+            return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
-        # override the default output from pydantic by calling `to_dict()` of each item in estimated_consumptions (list)
-        _items = []
-        if self.estimated_consumptions:
-            for _item_estimated_consumptions in self.estimated_consumptions:
-                if _item_estimated_consumptions:
-                    _items.append(_item_estimated_consumptions.to_dict())
-            _dict['estimatedConsumptions'] = _items
-        # set to None if service_location_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.service_location_id is None and "service_location_id" in self.model_fields_set:
-            _dict['serviceLocationId'] = None
-
-        # set to None if utility_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.utility_type is None and "utility_type" in self.model_fields_set:
-            _dict['utilityType'] = None
-
-        # set to None if external_identifier (nullable) is None
-        # and model_fields_set contains the field
-        if self.external_identifier is None and "external_identifier" in self.model_fields_set:
-            _dict['externalIdentifier'] = None
-
-        # set to None if estimated_consumptions (nullable) is None
-        # and model_fields_set contains the field
-        if self.estimated_consumptions is None and "estimated_consumptions" in self.model_fields_set:
-            _dict['estimatedConsumptions'] = None
-
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateContractServiceLocationRequest from a dict"""
-        if obj is None:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], CreateContractServiceLocationRequestBase, CreateContractServiceLocationRequestMigrateContractServiceLocationRequest]]:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is None:
             return None
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+            return self.actual_instance.to_dict()
+        else:
+            return self.actual_instance
 
-        _obj = cls.model_validate({
-            "serviceLocationId": obj.get("serviceLocationId"),
-            "utilityType": obj.get("utilityType"),
-            "externalIdentifier": obj.get("externalIdentifier"),
-            "estimatedConsumptions": [CreateContractServiceEstimatedConsumptionRequest.from_dict(_item) for _item in obj["estimatedConsumptions"]] if obj.get("estimatedConsumptions") is not None else None
-        })
-        return _obj
+    def to_str(self) -> str:
+        """Returns the string representation of the actual instance"""
+        return pprint.pformat(self.model_dump())
 
 

@@ -1,17 +1,16 @@
 # MeteringImportOverviewCountDTO
 
-Represents an overview of metering import counts, providing information about the  total records and their respective processing statuses.  Counts take the current filter into account
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** | Total amount of metering imports. | [optional] 
-**to_process** | **int** | The total count of metering imports that still need processing. | [optional] 
-**processed** | **int** | The total count of processed metering imports, without any issue. | [optional] 
-**format_issues** | **int** | Total count of metering imports that have issues related to formatting | [optional] 
-**issues** | **int** | Total count of metering imports that have critical issues | [optional] 
-**invalid** | **int** | Total count of metering imports that have one or more invalid measurements. | [optional] 
+**all** | **int** |  | [optional] 
+**to_process** | **int** |  | [optional] 
+**processed** | **int** |  | [optional] 
+**format_issues** | **int** |  | [optional] 
+**issues** | **int** |  | [optional] 
+**invalid** | **int** |  | [optional] 
 
 ## Example
 

@@ -41,6 +41,9 @@ class TestSettleTransactionsRequest(unittest.TestCase):
             )
         else:
             return SettleTransactionsRequest(
+                transaction_ids = [
+                    ''
+                    ],
         )
         """
 

@@ -65,10 +65,29 @@ class TestCustAgingLineDTO(unittest.TestCase):
                     previous_step_id = '', 
                     previous_step_name = '', 
                     previous_step_executed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    previous_step_status = null, 
+                    previous_step_status = 'pending', 
                     next_step_id = '', 
                     next_step_name = '', 
-                    next_step_execution_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                    next_step_execution_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
+                payment_plan_details = billing_client.models.payment_plan_details_dto.PaymentPlanDetailsDTO(
+                    payment_plan_id = '', 
+                    payment_plan_number = '', 
+                    closed = True, 
+                    status = 'draft', 
+                    total_amount = 1.337, 
+                    remaining_amount = 1.337, 
+                    number_of_installments = 56, 
+                    paid_installments_count = 56, 
+                    pending_installments_count = 56, 
+                    overdue_installments_count = 56, 
+                    next_installment_due = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    payment_frequency = 'weekly', 
+                    amount_per_installment = 1.337, 
+                    final_installment_amount = 1.337, 
+                    payment_method = 'sct', 
+                    payment_reference = '', )
             )
         else:
             return CustAgingLineDTO(

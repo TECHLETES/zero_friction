@@ -1,13 +1,12 @@
 # ManagementRelationRequest
 
-Represents a request to create or update a management relation between entities
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** | The unique identifier of the customer for whom the management relation is being created | [optional] 
-**management_relation_type** | [**ManagementRelationType**](ManagementRelationType.md) | The type of management relation being established between the entities | [optional] 
+**customer_id** | **str** |  | 
+**management_relation_type** | [**ManagementRelationType**](ManagementRelationType.md) |  | 
 
 ## Example
 

@@ -36,10 +36,12 @@ class TestSignContractRequest(unittest.TestCase):
         if include_optional:
             return SignContractRequest(
                 mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                keep_existing_invoice_on_end_date = True
+                keep_existing_invoice_on_end_date = True,
+                create_billing_completenesses_from_existing_invoices = True
             )
         else:
             return SignContractRequest(
+                mutation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

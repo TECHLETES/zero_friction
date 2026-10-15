@@ -18,18 +18,20 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
-from typing_extensions import Annotated
+from typing import Any, ClassVar, Dict, List, Optional
+from configuration_client.models.external_accounting_reference_dto import ExternalAccountingReferenceDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
 class ExternalAccountingMetadataDTO(BaseModel):
     """
-    Represents metadata about an external accounting system entity.
+    ExternalAccountingMetadataDTO
     """ # noqa: E501
-    source: Annotated[str, Field(min_length=1, strict=True)] = Field(description="The source of the external accounting system.")
-    source_entity_id: StrictStr = Field(description="The unique identifier of the entity in the external accounting system.", alias="sourceEntityId")
-    __properties: ClassVar[List[str]] = ["source", "sourceEntityId"]
+    source: StrictStr
+    source_entity_id: StrictStr = Field(alias="sourceEntityId")
+    source_accounting_company_id: Optional[StrictStr] = Field(default=None, alias="sourceAccountingCompanyId")
+    source_references: Optional[List[ExternalAccountingReferenceDTO]] = Field(default=None, alias="sourceReferences")
+    __properties: ClassVar[List[str]] = ["source", "sourceEntityId", "sourceAccountingCompanyId", "sourceReferences"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,6 +72,23 @@ class ExternalAccountingMetadataDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in source_references (list)
+        _items = []
+        if self.source_references:
+            for _item_source_references in self.source_references:
+                if _item_source_references:
+                    _items.append(_item_source_references.to_dict())
+            _dict['sourceReferences'] = _items
+        # set to None if source_accounting_company_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_accounting_company_id is None and "source_accounting_company_id" in self.model_fields_set:
+            _dict['sourceAccountingCompanyId'] = None
+
+        # set to None if source_references (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_references is None and "source_references" in self.model_fields_set:
+            _dict['sourceReferences'] = None
+
         return _dict
 
     @classmethod
@@ -83,7 +102,9 @@ class ExternalAccountingMetadataDTO(BaseModel):
 
         _obj = cls.model_validate({
             "source": obj.get("source"),
-            "sourceEntityId": obj.get("sourceEntityId")
+            "sourceEntityId": obj.get("sourceEntityId"),
+            "sourceAccountingCompanyId": obj.get("sourceAccountingCompanyId"),
+            "sourceReferences": [ExternalAccountingReferenceDTO.from_dict(_item) for _item in obj["sourceReferences"]] if obj.get("sourceReferences") is not None else None
         })
         return _obj
 

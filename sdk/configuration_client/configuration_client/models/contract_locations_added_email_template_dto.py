@@ -29,15 +29,15 @@ class ContractLocationsAddedEmailTemplateDTO(BaseModel):
     """
     ContractLocationsAddedEmailTemplateDTO
     """ # noqa: E501
+    subject: Optional[StrictStr] = None
+    attachments: Optional[List[TemplateAttachmentDTO]] = None
     file_name: Optional[StrictStr] = Field(default=None, alias="fileName")
     use_case: Optional[TemplateUsecase] = Field(default=None, alias="useCase")
     use_build_in: Optional[StrictBool] = Field(default=None, alias="useBuildIn")
     custom_template_internal_file_path: Optional[StrictStr] = Field(default=None, alias="customTemplateInternalFilePath")
     custom_template_file_name: Optional[StrictStr] = Field(default=None, alias="customTemplateFileName")
     translation_status: Optional[TranslationStatus] = Field(default=None, alias="translationStatus")
-    subject: Optional[StrictStr] = None
-    attachments: Optional[List[TemplateAttachmentDTO]] = None
-    __properties: ClassVar[List[str]] = ["fileName", "useCase", "useBuildIn", "customTemplateInternalFilePath", "customTemplateFileName", "translationStatus", "subject", "attachments"]
+    __properties: ClassVar[List[str]] = ["subject", "attachments", "fileName", "useCase", "useBuildIn", "customTemplateInternalFilePath", "customTemplateFileName", "translationStatus"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,10 +69,8 @@ class ContractLocationsAddedEmailTemplateDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "use_build_in",
         ])
 
         _dict = self.model_dump(
@@ -87,15 +85,20 @@ class ContractLocationsAddedEmailTemplateDTO(BaseModel):
                 if _item_attachments:
                     _items.append(_item_attachments.to_dict())
             _dict['attachments'] = _items
+        # set to None if subject (nullable) is None
+        # and model_fields_set contains the field
+        if self.subject is None and "subject" in self.model_fields_set:
+            _dict['subject'] = None
+
+        # set to None if attachments (nullable) is None
+        # and model_fields_set contains the field
+        if self.attachments is None and "attachments" in self.model_fields_set:
+            _dict['attachments'] = None
+
         # set to None if file_name (nullable) is None
         # and model_fields_set contains the field
         if self.file_name is None and "file_name" in self.model_fields_set:
             _dict['fileName'] = None
-
-        # set to None if use_case (nullable) is None
-        # and model_fields_set contains the field
-        if self.use_case is None and "use_case" in self.model_fields_set:
-            _dict['useCase'] = None
 
         # set to None if custom_template_internal_file_path (nullable) is None
         # and model_fields_set contains the field
@@ -106,21 +109,6 @@ class ContractLocationsAddedEmailTemplateDTO(BaseModel):
         # and model_fields_set contains the field
         if self.custom_template_file_name is None and "custom_template_file_name" in self.model_fields_set:
             _dict['customTemplateFileName'] = None
-
-        # set to None if translation_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.translation_status is None and "translation_status" in self.model_fields_set:
-            _dict['translationStatus'] = None
-
-        # set to None if subject (nullable) is None
-        # and model_fields_set contains the field
-        if self.subject is None and "subject" in self.model_fields_set:
-            _dict['subject'] = None
-
-        # set to None if attachments (nullable) is None
-        # and model_fields_set contains the field
-        if self.attachments is None and "attachments" in self.model_fields_set:
-            _dict['attachments'] = None
 
         return _dict
 
@@ -134,14 +122,14 @@ class ContractLocationsAddedEmailTemplateDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "subject": obj.get("subject"),
+            "attachments": [TemplateAttachmentDTO.from_dict(_item) for _item in obj["attachments"]] if obj.get("attachments") is not None else None,
             "fileName": obj.get("fileName"),
             "useCase": obj.get("useCase"),
             "useBuildIn": obj.get("useBuildIn"),
             "customTemplateInternalFilePath": obj.get("customTemplateInternalFilePath"),
             "customTemplateFileName": obj.get("customTemplateFileName"),
-            "translationStatus": obj.get("translationStatus"),
-            "subject": obj.get("subject"),
-            "attachments": [TemplateAttachmentDTO.from_dict(_item) for _item in obj["attachments"]] if obj.get("attachments") is not None else None
+            "translationStatus": obj.get("translationStatus")
         })
         return _obj
 

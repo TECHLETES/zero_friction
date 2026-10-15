@@ -26,11 +26,11 @@ from typing_extensions import Self
 
 class IncomingBankingTransactionBankAccountInsightDTO(BaseModel):
     """
-    Provides insight information for a specific company bank account.  This DTO contains details about the account's status and last fetch time.
+    IncomingBankingTransactionBankAccountInsightDTO
     """ # noqa: E501
-    iban: Optional[StrictStr] = Field(default=None, description="The International Bank Account Number (IBAN) of the account.")
-    last_fetched_date_time: Optional[datetime] = Field(default=None, description="The date and time when transactions were last fetched for this account.", alias="lastFetchedDateTime")
-    plugin_run_status: Optional[StatusCode] = Field(default=None, description="The status of the last plugin run for this account.", alias="pluginRunStatus")
+    iban: Optional[StrictStr] = None
+    last_fetched_date_time: Optional[datetime] = Field(default=None, alias="lastFetchedDateTime")
+    plugin_run_status: Optional[StatusCode] = Field(default=None, alias="pluginRunStatus")
     __properties: ClassVar[List[str]] = ["iban", "lastFetchedDateTime", "pluginRunStatus"]
 
     model_config = ConfigDict(
@@ -81,11 +81,6 @@ class IncomingBankingTransactionBankAccountInsightDTO(BaseModel):
         # and model_fields_set contains the field
         if self.last_fetched_date_time is None and "last_fetched_date_time" in self.model_fields_set:
             _dict['lastFetchedDateTime'] = None
-
-        # set to None if plugin_run_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.plugin_run_status is None and "plugin_run_status" in self.model_fields_set:
-            _dict['pluginRunStatus'] = None
 
         return _dict
 

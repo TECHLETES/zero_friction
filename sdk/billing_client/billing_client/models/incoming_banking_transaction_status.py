@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class IncomingBankingTransactionStatus(str, Enum):
     """
-    IncomingBankingTransactionStatus
+    Possible values: 'created', 'processing', 'matching', 'resolveissues', 'readytoprocess', 'closed'
     """
 
     """

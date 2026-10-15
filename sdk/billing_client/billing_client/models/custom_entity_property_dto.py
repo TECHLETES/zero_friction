@@ -82,11 +82,6 @@ class CustomEntityPropertyDTO(BaseModel):
         if self.custom_entity_property_type_id is None and "custom_entity_property_type_id" in self.model_fields_set:
             _dict['customEntityPropertyTypeId'] = None
 
-        # set to None if values (nullable) is None
-        # and model_fields_set contains the field
-        if self.values is None and "values" in self.model_fields_set:
-            _dict['values'] = None
-
         return _dict
 
     @classmethod

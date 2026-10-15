@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**translated_fields** | **Dict[str, Optional[Dict[str, str]]]** |  | [optional] 
+**translated_fields** | **Dict[str, Dict[str, str]]** |  | 
 
 ## Example
 

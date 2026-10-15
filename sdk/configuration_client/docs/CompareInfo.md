@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] [readonly] 
-**version** | [**SortVersion**](SortVersion.md) |  | [optional] [readonly] 
-**lcid** | **int** |  | [optional] [readonly] 
+**name** | **str** |  | [optional] 
+**version** | [**SortVersion**](SortVersion.md) |  | [optional] 
+**lcid** | **int** |  | [optional] 
 
 ## Example
 

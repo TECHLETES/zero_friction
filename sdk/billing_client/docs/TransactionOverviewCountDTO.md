@@ -1,16 +1,17 @@
 # TransactionOverviewCountDTO
 
-Represents counts of transactions in different states for overview purposes
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**all** | **int** | Total number of all transactions | [optional] 
-**to_pay** | **int** | Number of transactions pending payment | [optional] 
-**to_refund** | **int** | Number of transactions pending refund | [optional] 
-**only_open** | **int** | Number of open transactions | [optional] 
-**only_closed** | **int** | Number of closed transactions | [optional] 
+**all** | **int** |  | [optional] 
+**to_pay** | **int** |  | [optional] 
+**to_refund** | **int** |  | [optional] 
+**only_open** | **int** |  | [optional] 
+**only_closed** | **int** |  | [optional] 
+**exported** | **int** |  | [optional] 
+**failed_exporting** | **int** |  | [optional] 
 
 ## Example
 

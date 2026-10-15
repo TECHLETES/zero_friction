@@ -35,19 +35,10 @@ class TestIncomingBankingTransactionDTO(unittest.TestCase):
         model = IncomingBankingTransactionDTO()
         if include_optional:
             return IncomingBankingTransactionDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 identification = '',
                 sequence_num = 56,
                 status = 'created',
+                provider_type = 'twikey',
                 file_creation_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 opening_balance = 1.337,
                 closing_balance = 1.337,
@@ -74,12 +65,12 @@ class TestIncomingBankingTransactionDTO(unittest.TestCase):
                 locked = True,
                 errors = [
                     billing_client.models.localised_error_dto.LocalisedErrorDTO(
-                        key = null, 
+                        key = 56, 
                         correlation_id = '', 
                         message = '', 
                         message_values = [
                             billing_client.models.localised_error_dto_message_value.LocalisedErrorDTOMessageValue(
-                                data_type = null, 
+                                data_type = 'text', 
                                 value = '', 
                                 capitalize = True, )
                             ], )
@@ -89,7 +80,15 @@ class TestIncomingBankingTransactionDTO(unittest.TestCase):
                     billing_client.models.incoming_banking_transaction_iban_confirmation_dto.IncomingBankingTransactionIbanConfirmationDTO(
                         customer_id = '', 
                         iban = '', )
-                    ]
+                    ],
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return IncomingBankingTransactionDTO(

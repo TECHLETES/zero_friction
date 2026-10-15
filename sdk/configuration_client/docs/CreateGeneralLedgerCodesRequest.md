@@ -1,12 +1,11 @@
 # CreateGeneralLedgerCodesRequest
 
-Request model for creating new general ledger codes.  General codes should correspond to entries in an external accounting system  to enable proper data synchronization during billing operations.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**general_ledger_codes** | [**List[CreateGeneralLedgerCodeRequest]**](CreateGeneralLedgerCodeRequest.md) | List of general ledger codes to create. | [optional] 
+**general_ledger_codes** | [**List[CreateGeneralLedgerCodeRequest]**](CreateGeneralLedgerCodeRequest.md) |  | [optional] 
 
 ## Example
 

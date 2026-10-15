@@ -40,8 +40,10 @@ class TestChangeCustomerContactDetailsRequest(unittest.TestCase):
                         value = '', 
                         description = '', 
                         primary_for_type = True, 
-                        contact_type = null, )
-                    ]
+                        contact_type = 'email', )
+                    ],
+                country_code = 'aut',
+                changed_by_portal = True
             )
         else:
             return ChangeCustomerContactDetailsRequest(

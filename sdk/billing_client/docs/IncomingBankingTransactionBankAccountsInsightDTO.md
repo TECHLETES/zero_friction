@@ -1,12 +1,11 @@
 # IncomingBankingTransactionBankAccountsInsightDTO
 
-Provides insights about company bank accounts associated with incoming banking transactions.  This DTO contains a collection of bank account insights.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**company_bank_accounts** | [**List[IncomingBankingTransactionBankAccountInsightDTO]**](IncomingBankingTransactionBankAccountInsightDTO.md) | List of insights for individual company bank accounts. | [optional] 
+**company_bank_accounts** | [**List[IncomingBankingTransactionBankAccountInsightDTO]**](IncomingBankingTransactionBankAccountInsightDTO.md) |  | [optional] 
 
 ## Example
 

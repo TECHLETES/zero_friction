@@ -35,22 +35,22 @@ class TestBankAccountDTO(unittest.TestCase):
         model = BankAccountDTO()
         if include_optional:
             return BankAccountDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
                 iban = '',
                 account_holder = '',
                 bic = '',
                 sepa_creditor_id = '',
                 is_default = True,
-                deleted = True
+                deleted = True,
+                accounting_code_id_for_processed_transactions = '',
+                accounting_code_id_for_ignored_transactions = '',
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return BankAccountDTO(

@@ -38,10 +38,13 @@ class TestUpdateDataImportFileFormatRequest(unittest.TestCase):
                 name = '',
                 description = '',
                 is_built_in = True,
-                settings = None
+                settings = configuration_client.models.base_data_import_settings_dto.BaseDataImportSettingsDTO()
             )
         else:
             return UpdateDataImportFileFormatRequest(
+                name = '',
+                description = '',
+                settings = configuration_client.models.base_data_import_settings_dto.BaseDataImportSettingsDTO(),
         )
         """
 

@@ -7,11 +7,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **product_attachment_id** | **str** |  | [optional] 
 **include_in_welcome_email** | **bool** |  | [optional] 
-**visibility** | [**AttachmentVisibility**](AttachmentVisibility.md) |  | [optional] 
+**visibility** | [**AttachmentVisibility**](AttachmentVisibility.md) |  | 
 **approval_required** | **bool** |  | [optional] 
 **valid_from** | **datetime** |  | [optional] 
-**valid_until** | **datetime** |  | [optional] 
-**attachment_files** | [**List[UpsertProductAttachmentFileRequest]**](UpsertProductAttachmentFileRequest.md) |  | [optional] 
+**valid_until** | **datetime** |  | 
+**attachment_files** | [**List[UpsertProductAttachmentFileRequest]**](UpsertProductAttachmentFileRequest.md) |  | 
 
 ## Example
 

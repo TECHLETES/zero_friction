@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class InvoiceType(str, Enum):
     """
-    InvoiceType
+    Possible values: 'advance', 'invoice', 'endnote', 'creditnote', 'incidentalnote', 'correctionnote'
     """
 
     """

@@ -1,13 +1,12 @@
 # RequiredQuantityContractGroupedDTO
 
-Represents required quantities grouped by contract
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billing_item_id** | **str** | Unique identifier of the billing item | [optional] 
-**required_quantities** | [**List[RequiredQuantityDTO]**](RequiredQuantityDTO.md) | List of required quantities for this contract | [optional] 
+**billing_item_id** | **str** |  | [optional] 
+**required_quantities** | [**List[RequiredQuantityDTO]**](RequiredQuantityDTO.md) |  | [optional] 
 
 ## Example
 

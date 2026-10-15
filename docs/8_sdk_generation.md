@@ -47,8 +47,6 @@ git switch -c chore/regenerate-sdk-v1.1
 
 Before changing the specifications, ensure the current `main` commit that represents the existing SDK has been tagged as `v1`.
 
-Then update the relevant files under `openapi_specs/` with the newly downloaded specifications from the Zero Friction developer documentation.
-
 Commit the specification files and regenerated clients together so the generated code can always be traced back to the exact specification snapshot that produced it.
 
 ## Regenerating one client
@@ -69,34 +67,25 @@ docker run --rm \
 
 The output directory is intentionally the existing generated client directory. OpenAPI Generator will update generated source files, models, API classes, documentation and generator metadata in place.
 
-## Regenerating the complete SDK
-
-For a complete Zero Friction API refresh, regenerate all eight clients from the repository root:
+After generating any client, run the repository post-generation patch from the root:
 
 ```bash
-set -euo pipefail
-
-GENERATOR_VERSION="7.13.0"
-
-while IFS='|' read -r spec output package; do
-  docker run --rm \
-    -v "$PWD:/local" \
-    "openapitools/openapi-generator-cli:v${GENERATOR_VERSION}" generate \
-    -i "/local/openapi_specs/${spec}" \
-    -g python \
-    -o "/local/sdk/${output}" \
-    --package-name "${package}"
-done <<'EOF'
-Attachments-1-0.yaml|attachments_client|attachments_client
-Billing-1-0.yaml|billing_client|billing_client
-Communication-1-0.yaml|communication_client|communication_client
-Configuration-1-0.yaml|configuration_client|configuration_client
-Forecasting-1-0.yaml|forecasting_client|forecasting_client
-Masterdata-1-0.yaml|masterdata_client|masterdata_client
-Metering-1-0.yaml|metering_client|metering_client
-RegionalRegulations-1-0.yaml|regionalregulations_client|regionalregulations_client
-EOF
+uv run python scripts/patch_api_version.py
 ```
+
+The script applies the required `api-version=1.0` query parameter to all eight generated `ApiClient` classes. It is safe to run repeatedly and fails if the generator changes the expected insertion point, so regeneration cannot silently remove this gateway requirement. Run it after every individual generation too, then validate the patch with `uv run python scripts/patch_api_version.py --check`.
+
+## Regenerating the complete SDK
+
+For a complete Zero Friction API refresh, run the canonical generation script from the repository root:
+
+```bash
+scripts/regenerate_sdk.sh
+```
+
+The script first fetches all eight raw OpenAPI exports from Zero Friction's APIM endpoint into a temporary directory and compares them byte-for-byte with `openapi_specs/`. If all match, it exits without invoking Docker; pass `--force` to regenerate unchanged specs. If any differ, it prompts before replacing the snapshots or regenerating clients. Use `scripts/regenerate_sdk.sh --yes` (or `--non-interactive`) in unattended workflows to accept fetched changes automatically; APIM `--api-version` and endpoint `--base-url` overrides are also supported. An export that only differs in YAML formatting will be reported as a change, so review the diff before accepting it. The downloaded snapshots are kept as published and should be excluded from formatting hooks that modify files.
+
+After approval, the script pins OpenAPI Generator to `7.13.0`, stages the fetched specifications and generated clients through Docker copy operations, regenerates all eight clients, applies the API Management version patch, and validates the staged output before replacing `openapi_specs/` and `sdk/`. It does not depend on the Docker daemon sharing the workspace filesystem. The bundled Masterdata specification currently has duplicate parameters in two operations (`bulkremoveservicecontext` and `bulkaddservicecontext`), so the script skips generator spec validation for that client only; generation still must succeed, and the remaining seven specifications use normal validation. The script stops on any failed fetch, generator, patch, or patch-validation command and restores the prior specs and SDK if installation fails.
 
 After generation, inspect the result before making any manual compatibility changes:
 
@@ -129,11 +118,82 @@ uv run pre-commit run --all-files
 uv run pytest
 ```
 
-Generated clients are part of the product even when root lint/type-check settings exclude some generated files. A successful generation is not enough: the unified `zero_friction/` package and repository tests must still work.
+Generated clients are part of the product even when root lint/type-check settings exclude some generated files. They are bundled into the root `zero-friction` distribution so a branch or tag always installs matching generated code. A successful generation is not enough: the unified `zero_friction/` package, wheel contents and repository tests must still work. Do not install the standalone generated client distributions alongside `zero-friction`.
 
 ## Test dependent projects before merge
 
+## Migrate a dependent project from v1 to v1.1
+
+Projects that do not want to migrate yet should pin the existing SDK explicitly:
+
+```text
+zero-friction @ git+https://github.com/TECHLETES/zero_friction.git@v1
+```
+
+To migrate to v1.1, update the dependency to the v1.1 tag after it is created:
+
+```text
+zero-friction @ git+https://github.com/TECHLETES/zero_friction.git@v1.1
+```
+
+During candidate testing, use the regeneration branch instead:
+
+```text
+zero-friction @ git+https://github.com/TECHLETES/zero_friction.git@chore/regenerate-sdk-v1.1
+```
+
+The generated clients are bundled in `zero-friction` as of this regeneration.
+Remove direct dependencies on the standalone `attachments_client`,
+`billing_client`, `communication_client`, `configuration_client`,
+`forecasting_client`, `masterdata_client`, `metering_client`, and
+`regionalregulations_client` packages. Refresh the dependent project's lockfile
+after changing the SDK reference, for example:
+
+```bash
+uv lock
+uv sync
+```
+
+Then search the project for the following compatibility-sensitive usage:
+
+1. Generated API classes and attributes. Resource-specific classes such as
+   `BillingTariffsApi`, `ContractsApi`, and `CustomersApi` were replaced by
+   `DefaultApi` in the regenerated clients. Update direct generated-client
+   usage to the relevant client's `default_api`.
+2. Generated imports. Check imports under `<client>_client.api` and
+   `<client>_client.models` for removed or renamed modules and classes.
+3. Method calls. Compare calls with the regenerated method signatures and
+   update renamed operations, newly required arguments, headers, and changed
+   response types.
+4. Models and enums. Update removed or renamed model classes, handle newly
+   added fields, and review enum handling for values that were added or
+   removed.
+5. Unified wrapper usage. Run the project's `zero_friction` wrapper tests;
+   the compatibility layer retains selected wrapper behavior, but it does not
+   make every old generated symbol or method signature available.
+
+Validate the migration in this order:
+
+```bash
+uv lock --check
+uv sync
+uv run pytest
+```
+
+Also run the dependent project's integration or API smoke tests. Do not assume
+that a successful dependency installation proves compatibility; specifically
+exercise imports, API attributes, method signatures, model construction, and
+authentication/header behavior used by the project.
+
 The regeneration branch is the integration target until all known consumers have been checked.
+
+## API Management version parameter
+
+All eight generated clients must include `api-version=1.0` on every request. The OpenAPI specifications do not declare this gateway parameter, so OpenAPI Generator cannot produce it from the schema. `scripts/patch_api_version.py` is the maintained post-generation step.
+
+The v1 baseline on `main` (tag `v1`, commit `92a5e81`) contains this behavior in all eight generated clients. The v1.1 candidate branch `chore/regenerate-sdk-v1.1` now also carries it through the post-generation step; consumers testing v1.1 should pin that branch until its merge and release tag. Do not use the earlier candidate revision `dfc4325` for this behavior.
+
+On 2026-10-14, unauthenticated GET requests were sent to the documented Configuration gateway host, `https://api.zerofriction.co/api/cfg`, both with and without `api-version=1.0`. For `/Integrations/billingTariff/import/locked` and the import-listing operation `/Integrations/billingTariff/import`, requests without the version returned HTTP 404; requests with it returned HTTP 401. This confirms the versioned paths resolve at the gateway and are protected by authorization. It does not verify the authenticated operation result; the remaining 401 requires valid tenant credentials and is not evidence of a missing route.
 
 Point a dependent project temporarily at the branch instead of `main`, for example:
 
@@ -183,6 +243,9 @@ Stable consumers should prefer a release tag instead of tracking `main`:
 ```bash
 pip install "git+https://github.com/TECHLETES/zero_friction.git@v1"
 ```
+
+Projects that are satisfied with the v1 SDK should pin `v1`; this keeps the
+bundled generated clients on v1 even after newer commits land on `main`.
 
 After the regenerated SDK is merged and tagged:
 

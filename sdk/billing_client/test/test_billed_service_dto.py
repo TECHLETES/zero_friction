@@ -37,6 +37,7 @@ class TestBilledServiceDTO(unittest.TestCase):
             return BilledServiceDTO(
                 utility_type = 'none',
                 service_location_id = '',
+                property_group_id = '',
                 supply_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 supply_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 external_identifier = ''

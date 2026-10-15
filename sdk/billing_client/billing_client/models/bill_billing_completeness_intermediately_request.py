@@ -19,15 +19,15 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
 class BillBillingCompletenessIntermediatelyRequest(BaseModel):
     """
-    Represents a request to perform intermediate billing for billing completeness
+    BillBillingCompletenessIntermediatelyRequest
     """ # noqa: E501
-    end_date_time: Optional[datetime] = Field(default=None, description="Date and time when the intermediate billing period ends", alias="endDateTime")
+    end_date_time: datetime = Field(alias="endDateTime")
     __properties: ClassVar[List[str]] = ["endDateTime"]
 
     model_config = ConfigDict(

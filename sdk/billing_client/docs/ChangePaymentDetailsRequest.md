@@ -1,13 +1,13 @@
 # ChangePaymentDetailsRequest
 
-Represents a request to change the payment details of an invoice.  This DTO is used to update the payment method and collection date for an invoice.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**new_payment_method** | [**PaymentMethod**](PaymentMethod.md) | The new payment method to be used for the invoice. | [optional] 
-**collection_date** | **datetime** | The new date when the payment should be collected. | [optional] 
+**new_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | 
+**collection_date** | **datetime** |  | [optional] 
+**psp_instrument** | [**PspInstrumentSnapshotRequest**](PspInstrumentSnapshotRequest.md) |  | [optional] 
 
 ## Example
 

@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**origin** | [**EntityAttachmentOrigin**](EntityAttachmentOrigin.md) |  | [optional] 
-**culture** | **str** |  | [optional] 
-**product_attachment_id** | **str** |  | [optional] 
-**entity_attachment_group_id** | **str** |  | [optional] 
+**origin** | [**EntityAttachmentOrigin**](EntityAttachmentOrigin.md) |  | 
+**culture** | **str** | Culture identifier (e.g., &#39;en-US&#39;, &#39;nl-NL&#39;) | 
+**product_attachment_id** | **str** |  | 
+**entity_attachment_group_id** | **str** |  | 
 **sign_date** | **datetime** |  | [optional] 
 **viewed_date** | **datetime** |  | [optional] 
 

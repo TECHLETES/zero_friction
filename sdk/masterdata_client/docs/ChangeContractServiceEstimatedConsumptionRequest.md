@@ -5,11 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**consumer_group_id** | **str** |  | [optional] 
-**value** | **float** |  | [optional] 
-**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | [optional] 
-**metering_type** | [**MeteringType**](MeteringType.md) |  | [optional] 
-**is_manual_entry** | **bool** |  | [optional] 
+**consumer_group_id** | **str** |  | 
+**unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | 
+**metering_type** | [**MeteringType**](MeteringType.md) |  | 
+**direction** | [**Direction**](Direction.md) |  | [optional] 
 
 ## Example
 

@@ -5,13 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
 **invoice_type** | **List[str]** |  | [optional] 
 **property_group_ids** | **List[str]** |  | [optional] 
-**product_id** | **str** | Filter invoices by product. | [optional] 
+**product_id** | **str** |  | [optional] 
 **customer_id** | **str** |  | [optional] 
+**customer_type** | **str** |  | [optional] 
 **contract_id** | **str** |  | [optional] 
 **invoice_status** | **List[str]** |  | [optional] 
 **payment_process_status** | **List[str]** |  | [optional] 
@@ -30,6 +28,18 @@ Name | Type | Description | Notes
 **collection_case_id** | **str** |  | [optional] 
 **customer_group_id** | **str** |  | [optional] 
 **company_bank_account_id** | **str** |  | [optional] 
+**has_attachment** | **bool** |  | [optional] 
+**payment_plan_id** | **str** |  | [optional] 
+**apply_filters_over_included_ids** | **bool** |  | [optional] 
+**only_with_estimated_origin_measurements** | **bool** |  | [optional] 
+**only_credited_invoices** | **bool** |  | [optional] 
+**auto_approved_filter** | **bool** |  | [optional] 
+**validation_score_min** | **int** |  | [optional] 
+**validation_score_max** | **int** |  | [optional] 
+**flex_search** | **str** |  | [optional] 
+**include_only_ids** | **List[str]** |  | [optional] 
+**exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

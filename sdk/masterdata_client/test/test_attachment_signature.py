@@ -35,9 +35,9 @@ class TestAttachmentSignature(unittest.TestCase):
         model = AttachmentSignature()
         if include_optional:
             return AttachmentSignature(
-                culture = ,
+                culture = '',
                 attachment_file_name = '',
-                error_code = 'ASSET_ALREADY_EXISTS',
+                error_code = 56,
                 origin = 'customer',
                 product_attachment_id = '',
                 attachment_file_id = '',
@@ -47,6 +47,11 @@ class TestAttachmentSignature(unittest.TestCase):
             )
         else:
             return AttachmentSignature(
+                culture = '',
+                attachment_file_name = '',
+                origin = 'customer',
+                attachment_file_id = '',
+                entity_attachment_group_id = '',
         )
         """
 

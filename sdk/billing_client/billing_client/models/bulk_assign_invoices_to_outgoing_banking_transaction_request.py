@@ -27,17 +27,18 @@ from typing_extensions import Self
 
 class BulkAssignInvoicesToOutgoingBankingTransactionRequest(BaseModel):
     """
-    Represents a bulk request to assign invoices to outgoing banking transactions.  This DTO extends the base assignment request with bulk operation capabilities.
+    BulkAssignInvoicesToOutgoingBankingTransactionRequest
     """ # noqa: E501
-    all_applicable: Optional[StrictBool] = Field(default=None, description="Indicates whether all applicable invoices should be assigned.  Must be true if no specific invoice IDs are provided.", alias="allApplicable")
-    outgoing_banking_transaction_type: Optional[OutgoingBankingTransactionType] = Field(default=None, description="The type of outgoing banking transaction to assign invoices to.", alias="outgoingBankingTransactionType")
-    invoice_ids: Optional[List[StrictStr]] = Field(default=None, description="A list of specific invoice IDs to assign.  Required if AllApplicable is false.", alias="invoiceIds")
-    add_to_new_outgoing_banking_transactions: Optional[StrictBool] = Field(default=None, description="Indicates whether invoices should be added to new outgoing banking transactions.", alias="addToNewOutgoingBankingTransactions")
-    overridden_collection_date: Optional[datetime] = Field(default=None, description="An optional override for the collection date of the transactions.  Can only be set when AddToNewOutgoingBankingTransactions is true.", alias="overriddenCollectionDate")
-    only_validate: Optional[StrictBool] = Field(default=None, description="Indicates whether this is a validation-only request without actual assignment.", alias="onlyValidate")
-    var_query_params: Optional[GetInvoicesQueryParams] = Field(default=None, description="Query parameters to filter the invoices to be assigned.", alias="queryParams")
-    quick_filter: Optional[StrictStr] = Field(default=None, description="A quick filter string to further refine the selection of invoices to be assigned.", alias="quickFilter")
-    __properties: ClassVar[List[str]] = ["allApplicable", "outgoingBankingTransactionType", "invoiceIds", "addToNewOutgoingBankingTransactions", "overriddenCollectionDate", "onlyValidate", "queryParams", "quickFilter"]
+    exclude_credited_invoices: Optional[StrictBool] = Field(default=None, alias="excludeCreditedInvoices")
+    only_validate: Optional[StrictBool] = Field(default=None, alias="onlyValidate")
+    var_query_params: Optional[GetInvoicesQueryParams] = Field(default=None, alias="queryParams")
+    quick_filter: Optional[StrictStr] = Field(default=None, alias="quickFilter")
+    all_applicable: Optional[StrictBool] = Field(default=None, alias="allApplicable")
+    outgoing_banking_transaction_type: Optional[OutgoingBankingTransactionType] = Field(default=None, alias="outgoingBankingTransactionType")
+    invoice_ids: Optional[List[StrictStr]] = Field(default=None, alias="invoiceIds")
+    add_to_new_outgoing_banking_transactions: Optional[StrictBool] = Field(default=None, alias="addToNewOutgoingBankingTransactions")
+    overridden_collection_date: Optional[datetime] = Field(default=None, alias="overriddenCollectionDate")
+    __properties: ClassVar[List[str]] = ["excludeCreditedInvoices", "onlyValidate", "queryParams", "quickFilter", "allApplicable", "outgoingBankingTransactionType", "invoiceIds", "addToNewOutgoingBankingTransactions", "overriddenCollectionDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,10 +82,10 @@ class BulkAssignInvoicesToOutgoingBankingTransactionRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_query_params
         if self.var_query_params:
             _dict['queryParams'] = self.var_query_params.to_dict()
-        # set to None if outgoing_banking_transaction_type (nullable) is None
+        # set to None if quick_filter (nullable) is None
         # and model_fields_set contains the field
-        if self.outgoing_banking_transaction_type is None and "outgoing_banking_transaction_type" in self.model_fields_set:
-            _dict['outgoingBankingTransactionType'] = None
+        if self.quick_filter is None and "quick_filter" in self.model_fields_set:
+            _dict['quickFilter'] = None
 
         # set to None if invoice_ids (nullable) is None
         # and model_fields_set contains the field
@@ -95,16 +96,6 @@ class BulkAssignInvoicesToOutgoingBankingTransactionRequest(BaseModel):
         # and model_fields_set contains the field
         if self.overridden_collection_date is None and "overridden_collection_date" in self.model_fields_set:
             _dict['overriddenCollectionDate'] = None
-
-        # set to None if var_query_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_query_params is None and "var_query_params" in self.model_fields_set:
-            _dict['queryParams'] = None
-
-        # set to None if quick_filter (nullable) is None
-        # and model_fields_set contains the field
-        if self.quick_filter is None and "quick_filter" in self.model_fields_set:
-            _dict['quickFilter'] = None
 
         return _dict
 
@@ -118,14 +109,15 @@ class BulkAssignInvoicesToOutgoingBankingTransactionRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "excludeCreditedInvoices": obj.get("excludeCreditedInvoices"),
+            "onlyValidate": obj.get("onlyValidate"),
+            "queryParams": GetInvoicesQueryParams.from_dict(obj["queryParams"]) if obj.get("queryParams") is not None else None,
+            "quickFilter": obj.get("quickFilter"),
             "allApplicable": obj.get("allApplicable"),
             "outgoingBankingTransactionType": obj.get("outgoingBankingTransactionType"),
             "invoiceIds": obj.get("invoiceIds"),
             "addToNewOutgoingBankingTransactions": obj.get("addToNewOutgoingBankingTransactions"),
-            "overriddenCollectionDate": obj.get("overriddenCollectionDate"),
-            "onlyValidate": obj.get("onlyValidate"),
-            "queryParams": GetInvoicesQueryParams.from_dict(obj["queryParams"]) if obj.get("queryParams") is not None else None,
-            "quickFilter": obj.get("quickFilter")
+            "overriddenCollectionDate": obj.get("overriddenCollectionDate")
         })
         return _obj
 

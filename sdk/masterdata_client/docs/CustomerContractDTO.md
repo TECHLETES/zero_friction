@@ -1,17 +1,16 @@
 # CustomerContractDTO
 
-Represents a contract associated with a customer
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**contract_id** | **str** | Unique identifier of the contract | [optional] 
-**contract_number** | **str** | Contract number for reference | [optional] 
-**supply_start_date_time** | **datetime** | Start date and time of the contract | [optional] 
-**supply_end_date_time** | **datetime** | End date and time of the contract | [optional] 
-**current_contract_status** | [**ContractStatus**](ContractStatus.md) | Current status of the contract | [optional] 
-**contract_billing_method** | [**ContractBillingMethod**](ContractBillingMethod.md) | Billing method for the contract | [optional] 
+**contract_id** | **str** |  | [optional] 
+**contract_number** | **str** |  | [optional] 
+**supply_start_date_time** | **datetime** |  | [optional] 
+**supply_end_date_time** | **datetime** |  | [optional] 
+**current_contract_status** | [**ContractStatus**](ContractStatus.md) |  | [optional] 
+**contract_billing_method** | [**ContractBillingMethod**](ContractBillingMethod.md) |  | [optional] 
 
 ## Example
 

@@ -1,13 +1,12 @@
 # ServiceStatus
 
+Possible values: 'supplied', 'unsupplied', 'removed'
 
 ## Enum
 
 * `SUPPLIED` (value: `'supplied'`)
 
 * `UNSUPPLIED` (value: `'unsupplied'`)
-
-* `REQUESTED` (value: `'requested'`)
 
 * `REMOVED` (value: `'removed'`)
 

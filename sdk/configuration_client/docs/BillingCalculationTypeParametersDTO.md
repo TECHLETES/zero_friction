@@ -5,8 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | **str** |  | 
+**utility_type** | [**UtilityType**](UtilityType.md) |  | 
+**metering_type** | [**MeteringType**](MeteringType.md) |  | 
+**direction** | [**Direction**](Direction.md) |  | [optional] 
+**billing_calculation_type** | [**BillingCalculationType**](BillingCalculationType.md) |  | [optional] 
 **unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | 
-**billing_calculation_type** | [**BillingCalculationType**](BillingCalculationType.md) |  | [optional] [readonly] 
+**scope** | [**BillingScope**](BillingScope.md) |  | 
+**custom_entity_property_type_id** | **str** |  | 
 
 ## Example
 

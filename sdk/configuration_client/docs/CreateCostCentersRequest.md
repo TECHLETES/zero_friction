@@ -1,12 +1,11 @@
 # CreateCostCentersRequest
 
-Request model for creating new cost centers.  Cost centers should correspond to entries in an external accounting system  to enable proper data synchronization during billing operations.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cost_centers** | [**List[CreateCostCenterRequest]**](CreateCostCenterRequest.md) | List of cost centers to create. | [optional] 
+**cost_centers** | [**List[CreateCostCenterRequest]**](CreateCostCenterRequest.md) |  | [optional] 
 
 ## Example
 

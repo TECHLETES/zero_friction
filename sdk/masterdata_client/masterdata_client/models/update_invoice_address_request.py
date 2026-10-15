@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from masterdata_client.models.address_dto import AddressDTO
 from typing import Optional, Set
@@ -27,8 +27,9 @@ class UpdateInvoiceAddressRequest(BaseModel):
     """
     UpdateInvoiceAddressRequest
     """ # noqa: E501
-    invoice_address: Optional[AddressDTO] = Field(default=None, alias="invoiceAddress")
-    __properties: ClassVar[List[str]] = ["invoiceAddress"]
+    invoice_address: Optional[AddressDTO] = Field(alias="invoiceAddress")
+    changed_by_portal: Optional[StrictBool] = Field(default=None, alias="changedByPortal")
+    __properties: ClassVar[List[str]] = ["invoiceAddress", "changedByPortal"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +90,8 @@ class UpdateInvoiceAddressRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "invoiceAddress": AddressDTO.from_dict(obj["invoiceAddress"]) if obj.get("invoiceAddress") is not None else None
+            "invoiceAddress": AddressDTO.from_dict(obj["invoiceAddress"]) if obj.get("invoiceAddress") is not None else None,
+            "changedByPortal": obj.get("changedByPortal")
         })
         return _obj
 

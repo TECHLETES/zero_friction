@@ -38,8 +38,25 @@ class TestGetServiceLocationMatchingConsumerGroupsDTO(unittest.TestCase):
                 matching_consumer_groups = {
                     'key' : [
                         forecasting_client.models.matching_consumer_groups_dto.MatchingConsumerGroupsDTO(
-                            suggestion = null, 
-                            consumer_group = null, )
+                            suggestion = 'frompropertygroup', 
+                            consumer_group = forecasting_client.models.consumer_group_dto.ConsumerGroupDTO(
+                                code = '', 
+                                description = '', 
+                                utility_type = 'none', 
+                                unit_of_measure = 'none', 
+                                estimated_annual_volume = 1.337, 
+                                load_profile_id = '', 
+                                origin = 'manual', 
+                                last_recalculated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                deleted = True, 
+                                organisation_id = '', 
+                                id = '', 
+                                entity_type = 'none', 
+                                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                discriminator = '', 
+                                _etag = '', 
+                                has_errors = True, 
+                                is_read_only = True, ), )
                         ]
                     }
             )

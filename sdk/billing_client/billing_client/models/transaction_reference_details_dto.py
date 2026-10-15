@@ -18,18 +18,19 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
+from billing_client.models.transaction_reference_parameters_dto import TransactionReferenceParametersDTO
 from billing_client.models.transaction_reference_type import TransactionReferenceType
 from typing import Optional, Set
 from typing_extensions import Self
 
 class TransactionReferenceDetailsDTO(BaseModel):
     """
-    Represents reference details for a transaction
+    TransactionReferenceDetailsDTO
     """ # noqa: E501
-    transaction_reference_type: Optional[TransactionReferenceType] = Field(default=None, description="Type of transaction reference", alias="transactionReferenceType")
-    transaction_reference_id: Optional[StrictStr] = Field(default=None, description="Identifier of the transaction reference", alias="transactionReferenceId")
-    parameters: Optional[Dict[str, Any]] = Field(default=None, description="Parameters for the transaction reference")
+    transaction_reference_type: TransactionReferenceType = Field(alias="transactionReferenceType")
+    transaction_reference_id: StrictStr = Field(alias="transactionReferenceId")
+    parameters: TransactionReferenceParametersDTO
     __properties: ClassVar[List[str]] = ["transactionReferenceType", "transactionReferenceId", "parameters"]
 
     model_config = ConfigDict(
@@ -71,21 +72,9 @@ class TransactionReferenceDetailsDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if transaction_reference_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.transaction_reference_type is None and "transaction_reference_type" in self.model_fields_set:
-            _dict['transactionReferenceType'] = None
-
-        # set to None if transaction_reference_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.transaction_reference_id is None and "transaction_reference_id" in self.model_fields_set:
-            _dict['transactionReferenceId'] = None
-
-        # set to None if parameters (nullable) is None
-        # and model_fields_set contains the field
-        if self.parameters is None and "parameters" in self.model_fields_set:
-            _dict['parameters'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of parameters
+        if self.parameters:
+            _dict['parameters'] = self.parameters.to_dict()
         return _dict
 
     @classmethod
@@ -100,7 +89,7 @@ class TransactionReferenceDetailsDTO(BaseModel):
         _obj = cls.model_validate({
             "transactionReferenceType": obj.get("transactionReferenceType"),
             "transactionReferenceId": obj.get("transactionReferenceId"),
-            "parameters": obj.get("parameters")
+            "parameters": TransactionReferenceParametersDTO.from_dict(obj["parameters"]) if obj.get("parameters") is not None else None
         })
         return _obj
 

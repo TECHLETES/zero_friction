@@ -36,7 +36,11 @@ class TestAssignInvoiceToCollectionCaseRequest(unittest.TestCase):
         if include_optional:
             return AssignInvoiceToCollectionCaseRequest(
                 collection_flow_id = '',
-                collection_case_number = ''
+                collection_case_number = '',
+                last_executed_step = 56,
+                last_step_executed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                status = 'active',
+                induce_charge = True
             )
         else:
             return AssignInvoiceToCollectionCaseRequest(

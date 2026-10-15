@@ -35,8 +35,17 @@ class TestEstimatedInvoiceDTO(unittest.TestCase):
         model = EstimatedInvoiceDTO()
         if include_optional:
             return EstimatedInvoiceDTO(
-                customer_id = '',
-                contract_id = '',
+                debtor = billing_client.models.debtor_dto.DebtorDTO(
+                    customer_id = '', 
+                    display_name = '', 
+                    customer_account_number = '', 
+                    customer_type = 'person', 
+                    customer_group = billing_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
+                        id = '', 
+                        name = '', ), ),
+                contract = billing_client.models.contract_reference_dto.ContractReferenceDTO(
+                    contract_id = '', 
+                    contract_number = '', ),
                 original_billing_completeness_id = '',
                 product = billing_client.models.product_reference_dto.ProductReferenceDTO(
                     id = '', 
@@ -51,31 +60,7 @@ class TestEstimatedInvoiceDTO(unittest.TestCase):
                 total_vat_amount = 1.337,
                 remaining_amount = 1.337,
                 lines = [
-                    billing_client.models.estimated_invoice_line_dto.EstimatedInvoiceLineDTO(
-                        calculation_type = null, 
-                        billing_item_reference = null, 
-                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        amount_excl_vat = 1.337, 
-                        vat = 1.337, 
-                        amount_incl_vat = 1.337, 
-                        quantity = 1.337, 
-                        raw_quantity = 1.337, 
-                        unit_price = 1.337, 
-                        vat_rate = 1.337, 
-                        unit_of_measure = null, 
-                        utility_type = null, 
-                        service_location_id = '', 
-                        billing_tariff_accuracy = null, 
-                        cost_component_accuracies = [
-                            billing_client.models.period_for_entity_dto.PeriodForEntityDTO(
-                                entity_id = '', 
-                                entity_period = null, 
-                                out_dated = True, )
-                            ], 
-                        tax_accuracy = null, 
-                        accuracy = null, 
-                        quantity_accuracy = null, )
+                    billing_client.models.estimated_invoice_line_dto.EstimatedInvoiceLineDTO()
                     ],
                 advances = [
                     billing_client.models.estimated_advance_period_dto.EstimatedAdvancePeriodDTO(
@@ -90,7 +75,15 @@ class TestEstimatedInvoiceDTO(unittest.TestCase):
                         paid = True, 
                         invoice_id = '', )
                     ],
-                accuracy = 'low'
+                accuracy = 'low',
+                organisation_id = '',
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return EstimatedInvoiceDTO(

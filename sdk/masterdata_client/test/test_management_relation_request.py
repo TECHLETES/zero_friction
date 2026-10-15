@@ -40,6 +40,8 @@ class TestManagementRelationRequest(unittest.TestCase):
             )
         else:
             return ManagementRelationRequest(
+                customer_id = '',
+                management_relation_type = 'owner',
         )
         """
 

@@ -18,10 +18,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from masterdata_client.models.address_dto import AddressDTO
 from masterdata_client.models.attachment_signature import AttachmentSignature
+from masterdata_client.models.create_contract_billing_properties_base_request import CreateContractBillingPropertiesBaseRequest
 from masterdata_client.models.create_contract_service_location_request import CreateContractServiceLocationRequest
 from typing import Optional, Set
 from typing_extensions import Self
@@ -32,16 +33,15 @@ class CreateContractRequest(BaseModel):
     """ # noqa: E501
     contractor_id: Optional[StrictStr] = Field(default=None, alias="contractorId")
     contract_number: Optional[StrictStr] = Field(default=None, alias="contractNumber")
-    supply_start_date: Optional[datetime] = Field(default=None, alias="supplyStartDate")
+    supply_start_date: datetime = Field(alias="supplyStartDate")
     supply_end_date: Optional[datetime] = Field(default=None, alias="supplyEndDate")
-    contracted_service_locations: Optional[List[CreateContractServiceLocationRequest]] = Field(default=None, alias="contractedServiceLocations")
+    contracted_service_locations: List[CreateContractServiceLocationRequest] = Field(alias="contractedServiceLocations")
     attachment_signatures: Optional[List[AttachmentSignature]] = Field(default=None, alias="attachmentSignatures")
     product_id: Optional[StrictStr] = Field(default=None, alias="productId")
-    use_property_group_product: Optional[StrictBool] = Field(default=None, alias="usePropertyGroupProduct")
     invoice_address: Optional[AddressDTO] = Field(default=None, alias="invoiceAddress")
-    external_contract_reference: Optional[StrictStr] = Field(default=None, alias="externalContractReference")
-    billing_properties: Optional[Dict[str, Any]] = Field(default=None, alias="billingProperties")
-    __properties: ClassVar[List[str]] = ["contractorId", "contractNumber", "supplyStartDate", "supplyEndDate", "contractedServiceLocations", "attachmentSignatures", "productId", "usePropertyGroupProduct", "invoiceAddress", "externalContractReference", "billingProperties"]
+    external_contract_reference: Optional[StrictStr] = Field(alias="externalContractReference")
+    billing_properties: Optional[CreateContractBillingPropertiesBaseRequest] = Field(alias="billingProperties")
+    __properties: ClassVar[List[str]] = ["contractorId", "contractNumber", "supplyStartDate", "supplyEndDate", "contractedServiceLocations", "attachmentSignatures", "productId", "invoiceAddress", "externalContractReference", "billingProperties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,6 +99,9 @@ class CreateContractRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of invoice_address
         if self.invoice_address:
             _dict['invoiceAddress'] = self.invoice_address.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of billing_properties
+        if self.billing_properties:
+            _dict['billingProperties'] = self.billing_properties.to_dict()
         # set to None if contractor_id (nullable) is None
         # and model_fields_set contains the field
         if self.contractor_id is None and "contractor_id" in self.model_fields_set:
@@ -113,11 +116,6 @@ class CreateContractRequest(BaseModel):
         # and model_fields_set contains the field
         if self.supply_end_date is None and "supply_end_date" in self.model_fields_set:
             _dict['supplyEndDate'] = None
-
-        # set to None if contracted_service_locations (nullable) is None
-        # and model_fields_set contains the field
-        if self.contracted_service_locations is None and "contracted_service_locations" in self.model_fields_set:
-            _dict['contractedServiceLocations'] = None
 
         # set to None if attachment_signatures (nullable) is None
         # and model_fields_set contains the field
@@ -163,10 +161,9 @@ class CreateContractRequest(BaseModel):
             "contractedServiceLocations": [CreateContractServiceLocationRequest.from_dict(_item) for _item in obj["contractedServiceLocations"]] if obj.get("contractedServiceLocations") is not None else None,
             "attachmentSignatures": [AttachmentSignature.from_dict(_item) for _item in obj["attachmentSignatures"]] if obj.get("attachmentSignatures") is not None else None,
             "productId": obj.get("productId"),
-            "usePropertyGroupProduct": obj.get("usePropertyGroupProduct"),
             "invoiceAddress": AddressDTO.from_dict(obj["invoiceAddress"]) if obj.get("invoiceAddress") is not None else None,
             "externalContractReference": obj.get("externalContractReference"),
-            "billingProperties": obj.get("billingProperties")
+            "billingProperties": CreateContractBillingPropertiesBaseRequest.from_dict(obj["billingProperties"]) if obj.get("billingProperties") is not None else None
         })
         return _obj
 

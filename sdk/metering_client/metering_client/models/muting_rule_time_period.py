@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MutingRuleTimePeriod(str, Enum):
     """
-    MutingRuleTimePeriod
+    Possible values: 'day', 'week', 'month'
     """
 
     """

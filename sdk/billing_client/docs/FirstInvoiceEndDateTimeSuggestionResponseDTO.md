@@ -1,12 +1,11 @@
 # FirstInvoiceEndDateTimeSuggestionResponseDTO
 
-Represents a suggested end date and time for the first invoice
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**first_invoice_end_date_time** | **datetime** | Suggested end date and time for the first invoice | [optional] 
+**first_invoice_end_date_time** | **datetime** |  | [optional] 
 
 ## Example
 

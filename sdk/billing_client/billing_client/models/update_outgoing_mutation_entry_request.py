@@ -24,11 +24,11 @@ from typing_extensions import Self
 
 class UpdateOutgoingMutationEntryRequest(BaseModel):
     """
-    Represents a request to update an existing outgoing mutation entry.  This DTO is used to modify the details of a specific entry within an outgoing banking transaction.
+    UpdateOutgoingMutationEntryRequest
     """ # noqa: E501
-    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The new amount for the mutation entry.")
-    payment_reference: Optional[StrictStr] = Field(default=None, description="The new payment reference text for the mutation entry.", alias="paymentReference")
-    iban: Optional[StrictStr] = Field(default=None, description="The new IBAN (International Bank Account Number) for the mutation entry.  This field is optional and can be null.")
+    amount: Union[StrictFloat, StrictInt]
+    payment_reference: Optional[StrictStr] = Field(alias="paymentReference")
+    iban: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["amount", "paymentReference", "iban"]
 
     model_config = ConfigDict(

@@ -1,12 +1,11 @@
 # IgnoreIncomingMutationsRequest
 
-Represents a request to ignore specific incoming banking transactions.  This DTO is used when certain incoming transactions should be marked as ignored and not processed further.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**incoming_mutation_ids** | **List[str]** | A list of IDs for the incoming mutations that should be ignored. | [optional] 
+**incoming_mutation_ids** | **List[str]** |  | 
 
 ## Example
 

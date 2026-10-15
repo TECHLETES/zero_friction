@@ -1,5 +1,6 @@
 # AdvanceRecalculationType
 
+Possible values: 'none', 'usingpreviousinvoice', 'usingestimatedinvoice'
 
 ## Enum
 

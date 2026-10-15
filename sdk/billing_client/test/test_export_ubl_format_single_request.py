@@ -40,6 +40,7 @@ class TestExportUblFormatSingleRequest(unittest.TestCase):
             )
         else:
             return ExportUblFormatSingleRequest(
+                invoice_id = '',
         )
         """
 

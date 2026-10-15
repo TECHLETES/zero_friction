@@ -35,30 +35,31 @@ class TestModelDTO(unittest.TestCase):
         model = ModelDTO()
         if include_optional:
             return ModelDTO(
-                id = '',
-                entity_type = 'none',
-                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                discriminator = '',
-                etag = '',
-                require_attention = True,
-                has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
                 name = '',
                 description = '',
                 brand_name = '',
                 channel_templates = [
                     configuration_client.models.channel_template_dto.ChannelTemplateDTO(
-                        data_frequency = null, 
-                        incrementation_type = null, 
-                        metering_type = null, 
-                        utility_type = null, 
-                        direction = null, 
-                        unit_of_measure = null, 
+                        data_frequency = 'pt1m', 
+                        incrementation_type = 'delta', 
+                        metering_type = 'none', 
+                        utility_type = 'none', 
+                        direction = 'offtake', 
+                        unit_of_measure = 'none', 
                         time_of_use = '', 
-                        description = '', )
+                        description = '', 
+                        reset_day = 56, 
+                        reset_month = 56, 
+                        reset_hour = 56, )
                     ],
-                deleted = True
+                deleted = True,
+                id = '',
+                entity_type = 'none',
+                created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                discriminator = '',
+                etag = '',
+                has_errors = True,
+                is_read_only = True
             )
         else:
             return ModelDTO(

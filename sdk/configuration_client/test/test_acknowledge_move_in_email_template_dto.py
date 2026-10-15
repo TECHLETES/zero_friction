@@ -35,19 +35,19 @@ class TestAcknowledgeMoveInEmailTemplateDTO(unittest.TestCase):
         model = AcknowledgeMoveInEmailTemplateDTO()
         if include_optional:
             return AcknowledgeMoveInEmailTemplateDTO(
-                file_name = '',
-                use_case = 'pdf',
-                use_build_in = True,
-                custom_template_internal_file_path = '',
-                custom_template_file_name = '',
-                translation_status = 'defaulttranslation',
                 subject = '',
                 attachments = [
                     configuration_client.models.template_attachment_dto.TemplateAttachmentDTO(
                         id = '', 
                         internal_file_path = '', 
                         file_name = '', )
-                    ]
+                    ],
+                file_name = '',
+                use_case = 'pdf',
+                use_build_in = True,
+                custom_template_internal_file_path = '',
+                custom_template_file_name = '',
+                translation_status = 'defaulttranslation'
             )
         else:
             return AcknowledgeMoveInEmailTemplateDTO(

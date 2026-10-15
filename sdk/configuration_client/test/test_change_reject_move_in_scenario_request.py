@@ -35,7 +35,6 @@ class TestChangeRejectMoveInScenarioRequest(unittest.TestCase):
         model = ChangeRejectMoveInScenarioRequest()
         if include_optional:
             return ChangeRejectMoveInScenarioRequest(
-                default_communication_type = 'postal',
                 email_template = configuration_client.models.reject_move_in_email_template_request.RejectMoveInEmailTemplateRequest(
                     subject = '', 
                     attachments = [
@@ -43,10 +42,21 @@ class TestChangeRejectMoveInScenarioRequest(unittest.TestCase):
                             id = '', 
                             internal_file_path = '', 
                             file_name = '', )
-                        ], )
+                        ], ),
+                default_communication_type = 'none',
+                auto_fallback_to_postal = True
             )
         else:
             return ChangeRejectMoveInScenarioRequest(
+                email_template = configuration_client.models.reject_move_in_email_template_request.RejectMoveInEmailTemplateRequest(
+                    subject = '', 
+                    attachments = [
+                        configuration_client.models.template_attachment_request.TemplateAttachmentRequest(
+                            id = '', 
+                            internal_file_path = '', 
+                            file_name = '', )
+                        ], ),
+                default_communication_type = 'none',
         )
         """
 

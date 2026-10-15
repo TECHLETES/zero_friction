@@ -5,16 +5,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flex_search** | **str** |  | [optional] 
-**include_only_ids** | **List[str]** |  | [optional] 
-**exclude_ids** | **List[str]** |  | [optional] 
 **meter_ids** | **List[str]** |  | [optional] 
 **noticed_start_date_time** | **datetime** |  | [optional] 
 **noticed_end_date_time** | **datetime** |  | [optional] 
-**statuses** | **List[str]** |  | [optional] 
+**statuses** | [**List[MeteringIssueStatus]**](MeteringIssueStatus.md) |  | [optional] 
 **property_group_ids** | **List[str]** |  | [optional] 
 **meter_model_ids** | **List[str]** |  | [optional] 
 **errors** | [**List[MeteringIssueError]**](MeteringIssueError.md) |  | [optional] 
+**reading_origins** | [**List[MeasurementReadingOrigin]**](MeasurementReadingOrigin.md) |  | [optional] 
+**data_provider_ids** | **List[str]** |  | [optional] 
+**flex_search** | **str** |  | [optional] 
+**include_only_ids** | **List[str]** |  | [optional] 
+**exclude_ids** | **List[str]** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

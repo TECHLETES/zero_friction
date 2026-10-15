@@ -1,5 +1,6 @@
 # PortalNotificationType
 
+Possible values: 'neutral', 'warning', 'important'
 
 ## Enum
 

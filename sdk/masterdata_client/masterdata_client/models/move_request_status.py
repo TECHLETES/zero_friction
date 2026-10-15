@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class MoveRequestStatus(str, Enum):
     """
-    MoveRequestStatus
+    Possible values: 'new', 'pendingatcustomer', 'pendingatsupplier', 'processed', 'rejected', 'gatheringdata'
     """
 
     """

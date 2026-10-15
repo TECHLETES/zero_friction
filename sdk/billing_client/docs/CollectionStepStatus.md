@@ -1,5 +1,6 @@
 # CollectionStepStatus
 
+Possible values: 'pending', 'waitingformanualsend', 'closed', 'inprogress', 'skipped', 'generatingdocuments', 'failed', 'printing'
 
 ## Enum
 

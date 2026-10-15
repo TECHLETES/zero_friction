@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**key** | [**SystemMessageCode**](SystemMessageCode.md) |  | [optional] 
+**key** | **int** |  | [optional] 
 **message** | **str** |  | [optional] 
 **message_values** | [**List[LocalisedSystemMessageDtoValue]**](LocalisedSystemMessageDtoValue.md) |  | [optional] 
-**level** | [**SystemMessageLevel**](SystemMessageLevel.md) |  | [optional] 
+**level** | **int** |  | [optional] 
 
 ## Example
 

@@ -1,15 +1,14 @@
 # ContactEntryDTO
 
-Represents a contact entry for a customer
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**contact_type** | [**ContactType**](ContactType.md) | Type of contact information | [optional] 
-**value** | **str** | The actual contact value | [optional] 
-**description** | **str** | Description of the contact entry | [optional] 
-**primary_for_type** | **bool** | Indicates whether this is the primary contact method for its type | [optional] 
+**contact_type** | [**ContactType**](ContactType.md) |  | [optional] 
+**value** | **str** |  | [optional] 
+**description** | **str** |  | [optional] 
+**primary_for_type** | **bool** |  | [optional] 
 
 ## Example
 

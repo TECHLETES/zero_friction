@@ -1,5 +1,6 @@
 # Level
 
+Possible values: 'low', 'moderate', 'high'
 
 ## Enum
 

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **only_validate** | **bool** |  | [optional] 
 **var_query_params** | [**GetAnnualStatementsQueryParams**](GetAnnualStatementsQueryParams.md) |  | [optional] 
 **quick_filter** | **str** |  | [optional] 
+**apply_start_communication_idempotency** | **bool** |  | [optional] 
 
 ## Example
 

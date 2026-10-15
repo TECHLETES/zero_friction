@@ -5,10 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**name_contains** | **str** |  | [optional] 
+**include_live_service_location_ids** | **bool** |  | [optional] 
 **flex_search** | **str** |  | [optional] 
 **include_only_ids** | **List[str]** |  | [optional] 
 **exclude_ids** | **List[str]** |  | [optional] 
-**name_contains** | **str** |  | [optional] 
+**page_size** | **int** |  | [optional] 
 
 ## Example
 

@@ -35,6 +35,13 @@ class TestBillingDetailsDTO(unittest.TestCase):
         model = BillingDetailsDTO()
         if include_optional:
             return BillingDetailsDTO(
+                billing_methods = [
+                    masterdata_client.models.billing_method_period_reference_dto.BillingMethodPeriodReferenceDTO(
+                        billing_method = 'credit', 
+                        start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                    ],
+                current_billing_method = 'credit',
                 billing_method = 'credit',
                 invoice_frequency = 'monthly',
                 advance_frequency = 'none',
@@ -54,13 +61,19 @@ class TestBillingDetailsDTO(unittest.TestCase):
                     building_name = '', 
                     locality = '', 
                     city = '', 
-                    country = null, 
+                    country = 'aut', 
                     localized_display = '', 
                     line_one = '', 
                     line_two = '', ),
                 first_invoice_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 first_invoice_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                blocked = True
+                blocked = True,
+                advance_calculation_type = 'fixed',
+                advance_period_percentages = [
+                    masterdata_client.models.advance_period_percentage.AdvancePeriodPercentage(
+                        period_index = 56, 
+                        percentage = 1.337, )
+                    ]
             )
         else:
             return BillingDetailsDTO(

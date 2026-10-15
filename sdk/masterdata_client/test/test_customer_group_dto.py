@@ -35,20 +35,18 @@ class TestCustomerGroupDTO(unittest.TestCase):
         model = CustomerGroupDTO()
         if include_optional:
             return CustomerGroupDTO(
+                name = '',
+                amount_of_customers = 56,
+                settings = masterdata_client.models.customer_group_settings_dto.CustomerGroupSettingsDTO(
+                    automatic_settlement = True, ),
+                organisation_id = '',
                 id = '',
                 entity_type = 'none',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 discriminator = '',
                 etag = '',
-                require_attention = True,
                 has_errors = True,
-                has_warnings = True,
-                is_read_only = True,
-                organisation_id = '',
-                name = '',
-                amount_of_customers = 56,
-                settings = masterdata_client.models.customer_group_settings_dto.CustomerGroupSettingsDTO(
-                    automatic_settlement = True, )
+                is_read_only = True
             )
         else:
             return CustomerGroupDTO(

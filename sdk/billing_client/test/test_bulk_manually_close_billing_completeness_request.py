@@ -37,13 +37,6 @@ class TestBulkManuallyCloseBillingCompletenessRequest(unittest.TestCase):
             return BulkManuallyCloseBillingCompletenessRequest(
                 only_validate = True,
                 var_query_params = billing_client.models.get_billing_completeness_query_params.GetBillingCompletenessQueryParams(
-                    flex_search = '', 
-                    include_only_ids = [
-                        ''
-                        ], 
-                    exclude_ids = [
-                        ''
-                        ], 
                     billing_relation_id = '', 
                     customer_id = '', 
                     property_group_ids = [
@@ -51,13 +44,24 @@ class TestBulkManuallyCloseBillingCompletenessRequest(unittest.TestCase):
                         ], 
                     contract_id = '', 
                     invoice_type = '', 
+                    billing_method = '', 
+                    statement_type = '', 
                     status = '', 
                     only_open = True, 
                     skip_blocked = True, 
                     period_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     period_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     invoicing_checkpoint_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    invoicing_checkpoint_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
+                    invoicing_checkpoint_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    customer_type = '', 
+                    flex_search = '', 
+                    include_only_ids = [
+                        ''
+                        ], 
+                    exclude_ids = [
+                        ''
+                        ], 
+                    page_size = 56, ),
                 quick_filter = ''
             )
         else:

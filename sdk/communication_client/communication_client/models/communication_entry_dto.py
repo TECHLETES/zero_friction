@@ -25,6 +25,7 @@ from communication_client.models.communication_target_dto import CommunicationTa
 from communication_client.models.communication_type import CommunicationType
 from communication_client.models.entity_subject_type import EntitySubjectType
 from communication_client.models.localised_error_dto import LocalisedErrorDTO
+from communication_client.models.subject_reference_parameters_dto import SubjectReferenceParametersDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,16 +33,6 @@ class CommunicationEntryDTO(BaseModel):
     """
     CommunicationEntryDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Gets or sets the unique identifier.")
-    entity_type: Optional[EntitySubjectType] = Field(default=None, description="Gets or sets the type of the entity.", alias="entityType")
-    created_date_time: Optional[datetime] = Field(default=None, description="Gets or sets the date and time when the entity was created.", alias="createdDateTime")
-    discriminator: Optional[StrictStr] = Field(default=None, description="Gets or sets the discriminator value.")
-    etag: Optional[StrictStr] = Field(default=None, description="Gets or sets the ETag value.", alias="_etag")
-    require_attention: Optional[StrictBool] = Field(default=None, description="Gets a value indicating whether the entity requires attention.", alias="requireAttention")
-    has_errors: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has errors.", alias="hasErrors")
-    has_warnings: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity has warnings.", alias="hasWarnings")
-    is_read_only: Optional[StrictBool] = Field(default=None, description="Gets or sets a value indicating whether the entity is read-only.", alias="isReadOnly")
-    organisation_id: Optional[StrictStr] = Field(default=None, description="Gets or sets the organization identifier.", alias="organisationId")
     subject_type: Optional[EntitySubjectType] = Field(default=None, alias="subjectType")
     subject_subtype: Optional[StrictStr] = Field(default=None, alias="subjectSubtype")
     subject_id: Optional[StrictStr] = Field(default=None, alias="subjectId")
@@ -55,9 +46,20 @@ class CommunicationEntryDTO(BaseModel):
     sent_date: Optional[datetime] = Field(default=None, alias="sentDate")
     finished: Optional[StrictBool] = None
     failure_reason_code: Optional[LocalisedErrorDTO] = Field(default=None, alias="failureReasonCode")
+    communication_provider_error: Optional[LocalisedErrorDTO] = Field(default=None, alias="communicationProviderError")
     failure_details: Optional[StrictStr] = Field(default=None, alias="failureDetails")
     communication_entry_status: Optional[CommunicationEntryStatus] = Field(default=None, alias="communicationEntryStatus")
-    __properties: ClassVar[List[str]] = ["id", "entityType", "createdDateTime", "discriminator", "_etag", "requireAttention", "hasErrors", "hasWarnings", "isReadOnly", "organisationId", "subjectType", "subjectSubtype", "subjectId", "reference", "communicationType", "title", "target", "sentRequested", "sentRequestId", "sent", "sentDate", "finished", "failureReasonCode", "failureDetails", "communicationEntryStatus"]
+    subject_reference_parameters: Optional[SubjectReferenceParametersDTO] = Field(default=None, alias="subjectReferenceParameters")
+    communication_entry_id: Optional[StrictStr] = Field(default=None, alias="communicationEntryId")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["subjectType", "subjectSubtype", "subjectId", "reference", "communicationType", "title", "target", "sentRequested", "sentRequestId", "sent", "sentDate", "finished", "failureReasonCode", "communicationProviderError", "failureDetails", "communicationEntryStatus", "subjectReferenceParameters", "communicationEntryId", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,10 +91,8 @@ class CommunicationEntryDTO(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "require_attention",
         ])
 
         _dict = self.model_dump(
@@ -106,31 +106,12 @@ class CommunicationEntryDTO(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of failure_reason_code
         if self.failure_reason_code:
             _dict['failureReasonCode'] = self.failure_reason_code.to_dict()
-        # set to None if id (nullable) is None
-        # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if entity_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.entity_type is None and "entity_type" in self.model_fields_set:
-            _dict['entityType'] = None
-
-        # set to None if discriminator (nullable) is None
-        # and model_fields_set contains the field
-        if self.discriminator is None and "discriminator" in self.model_fields_set:
-            _dict['discriminator'] = None
-
-        # set to None if etag (nullable) is None
-        # and model_fields_set contains the field
-        if self.etag is None and "etag" in self.model_fields_set:
-            _dict['_etag'] = None
-
-        # set to None if organisation_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.organisation_id is None and "organisation_id" in self.model_fields_set:
-            _dict['organisationId'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of communication_provider_error
+        if self.communication_provider_error:
+            _dict['communicationProviderError'] = self.communication_provider_error.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of subject_reference_parameters
+        if self.subject_reference_parameters:
+            _dict['subjectReferenceParameters'] = self.subject_reference_parameters.to_dict()
         # set to None if subject_type (nullable) is None
         # and model_fields_set contains the field
         if self.subject_type is None and "subject_type" in self.model_fields_set:
@@ -176,6 +157,11 @@ class CommunicationEntryDTO(BaseModel):
         if self.failure_reason_code is None and "failure_reason_code" in self.model_fields_set:
             _dict['failureReasonCode'] = None
 
+        # set to None if communication_provider_error (nullable) is None
+        # and model_fields_set contains the field
+        if self.communication_provider_error is None and "communication_provider_error" in self.model_fields_set:
+            _dict['communicationProviderError'] = None
+
         # set to None if failure_details (nullable) is None
         # and model_fields_set contains the field
         if self.failure_details is None and "failure_details" in self.model_fields_set:
@@ -185,6 +171,16 @@ class CommunicationEntryDTO(BaseModel):
         # and model_fields_set contains the field
         if self.communication_entry_status is None and "communication_entry_status" in self.model_fields_set:
             _dict['communicationEntryStatus'] = None
+
+        # set to None if subject_reference_parameters (nullable) is None
+        # and model_fields_set contains the field
+        if self.subject_reference_parameters is None and "subject_reference_parameters" in self.model_fields_set:
+            _dict['subjectReferenceParameters'] = None
+
+        # set to None if communication_entry_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.communication_entry_id is None and "communication_entry_id" in self.model_fields_set:
+            _dict['communicationEntryId'] = None
 
         return _dict
 
@@ -198,16 +194,6 @@ class CommunicationEntryDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "entityType": obj.get("entityType"),
-            "createdDateTime": obj.get("createdDateTime"),
-            "discriminator": obj.get("discriminator"),
-            "_etag": obj.get("_etag"),
-            "requireAttention": obj.get("requireAttention"),
-            "hasErrors": obj.get("hasErrors"),
-            "hasWarnings": obj.get("hasWarnings"),
-            "isReadOnly": obj.get("isReadOnly"),
-            "organisationId": obj.get("organisationId"),
             "subjectType": obj.get("subjectType"),
             "subjectSubtype": obj.get("subjectSubtype"),
             "subjectId": obj.get("subjectId"),
@@ -221,8 +207,19 @@ class CommunicationEntryDTO(BaseModel):
             "sentDate": obj.get("sentDate"),
             "finished": obj.get("finished"),
             "failureReasonCode": LocalisedErrorDTO.from_dict(obj["failureReasonCode"]) if obj.get("failureReasonCode") is not None else None,
+            "communicationProviderError": LocalisedErrorDTO.from_dict(obj["communicationProviderError"]) if obj.get("communicationProviderError") is not None else None,
             "failureDetails": obj.get("failureDetails"),
-            "communicationEntryStatus": obj.get("communicationEntryStatus")
+            "communicationEntryStatus": obj.get("communicationEntryStatus"),
+            "subjectReferenceParameters": SubjectReferenceParametersDTO.from_dict(obj["subjectReferenceParameters"]) if obj.get("subjectReferenceParameters") is not None else None,
+            "communicationEntryId": obj.get("communicationEntryId"),
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

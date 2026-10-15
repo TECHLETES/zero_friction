@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**rate** | **float** |  | [optional] 
-**start_date_time** | **datetime** |  | [optional] 
-**end_date_time** | **datetime** |  | [optional] 
+**rate** | **float** |  | 
+**start_date_time** | **datetime** |  | 
+**end_date_time** | **datetime** |  | 
+**date_range** | **object** |  | [optional] 
 
 ## Example
 

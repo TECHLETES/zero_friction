@@ -35,14 +35,9 @@ class TestGetCustomersQueryParams(unittest.TestCase):
         model = GetCustomersQueryParams()
         if include_optional:
             return GetCustomersQueryParams(
-                flex_search = '',
-                include_only_ids = [
+                customer_types = [
                     ''
                     ],
-                exclude_ids = [
-                    ''
-                    ],
-                customer_type = '',
                 default_payment_method = '',
                 property_group_ids = [
                     ''
@@ -60,7 +55,15 @@ class TestGetCustomersQueryParams(unittest.TestCase):
                     ],
                 vulnerability_register_ids = [
                     ''
-                    ]
+                    ],
+                flex_search = '',
+                include_only_ids = [
+                    ''
+                    ],
+                exclude_ids = [
+                    ''
+                    ],
+                page_size = 56
             )
         else:
             return GetCustomersQueryParams(

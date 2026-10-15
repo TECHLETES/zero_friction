@@ -1,5 +1,6 @@
 # AnnualStatementStatus
 
+Possible values: 'created', 'generationinprogress', 'generated', 'generationfailed'
 
 ## Enum
 

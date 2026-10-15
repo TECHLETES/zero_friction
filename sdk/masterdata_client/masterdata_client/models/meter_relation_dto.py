@@ -26,8 +26,8 @@ class MeterRelationDTO(BaseModel):
     """
     MeterRelationDTO
     """ # noqa: E501
-    meter_id: Optional[StrictStr] = Field(default=None, alias="meterId")
-    serial_number: Optional[StrictStr] = Field(default=None, alias="serialNumber")
+    meter_id: Optional[StrictStr] = Field(alias="meterId")
+    serial_number: Optional[StrictStr] = Field(alias="serialNumber")
     external_reference: Optional[StrictStr] = Field(default=None, alias="externalReference")
     __properties: ClassVar[List[str]] = ["meterId", "serialNumber", "externalReference"]
 

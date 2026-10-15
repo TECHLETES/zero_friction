@@ -29,7 +29,7 @@ class RemoveContractedServicesRequest(BaseModel):
     RemoveContractedServicesRequest
     """ # noqa: E501
     supply_end_date: Optional[datetime] = Field(default=None, alias="supplyEndDate")
-    services: Optional[List[ChangeContractServiceLocationRequest]] = None
+    services: Optional[List[ChangeContractServiceLocationRequest]]
     __properties: ClassVar[List[str]] = ["supplyEndDate", "services"]
 
     model_config = ConfigDict(

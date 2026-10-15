@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data_type** | [**DataType**](DataType.md) |  | [optional] 
-**value** | **str** |  | [optional] 
+**data_type** | [**DataType**](DataType.md) |  | 
+**value** | **str** |  | 
 **capitalize** | **bool** |  | [optional] 
 
 ## Example

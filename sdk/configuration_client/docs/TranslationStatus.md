@@ -1,5 +1,6 @@
 # TranslationStatus
 
+Possible values: 'defaulttranslation', 'missingtranslation', 'translated'
 
 ## Enum
 

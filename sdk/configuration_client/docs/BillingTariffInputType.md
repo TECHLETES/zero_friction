@@ -1,5 +1,6 @@
 # BillingTariffInputType
 
+Possible values: 'none', 'fixed', 'costcomponent'
 
 ## Enum
 

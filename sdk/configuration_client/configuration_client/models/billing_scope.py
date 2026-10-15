@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class BillingScope(str, Enum):
     """
-    BillingScope
+    Possible values: 'contract', 'location'
     """
 
     """

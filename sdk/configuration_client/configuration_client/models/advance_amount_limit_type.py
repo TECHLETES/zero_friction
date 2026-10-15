@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AdvanceAmountLimitType(str, Enum):
     """
-    AdvanceAmountLimitType
+    Possible values: 'fixed', 'percentage'
     """
 
     """

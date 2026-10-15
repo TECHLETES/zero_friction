@@ -50,6 +50,14 @@ class TestCreateInvoiceLinesRequest(unittest.TestCase):
             )
         else:
             return CreateInvoiceLinesRequest(
+                quantity = 1.337,
+                unit_of_measure = 'none',
+                unit_price = 1.337,
+                amount_incl_vat = 1.337,
+                line_type = 'advance',
+                start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                description = '',
         )
         """
 

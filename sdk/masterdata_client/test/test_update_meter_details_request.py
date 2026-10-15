@@ -41,6 +41,7 @@ class TestUpdateMeterDetailsRequest(unittest.TestCase):
             )
         else:
             return UpdateMeterDetailsRequest(
+                meter_type = 'individual',
         )
         """
 

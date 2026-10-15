@@ -43,6 +43,11 @@ class TestUpdateEntityTranslationRequest(unittest.TestCase):
             )
         else:
             return UpdateEntityTranslationRequest(
+                translated_fields = {
+                    'key' : {
+                        'key' : ''
+                        }
+                    },
         )
         """
 

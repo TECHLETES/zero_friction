@@ -30,7 +30,7 @@ class UpsertProductBillingItemsRequest(BaseModel):
     """ # noqa: E501
     billing_item_id: Optional[StrictStr] = Field(default=None, alias="billingItemId")
     order: Optional[StrictInt] = None
-    periodicity_parameters: Optional[ProductItemPeriodicityParametersDTO] = Field(default=None, alias="periodicityParameters")
+    periodicity_parameters: Optional[ProductItemPeriodicityParametersDTO] = Field(alias="periodicityParameters")
     start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
     end_date_time: Optional[datetime] = Field(default=None, alias="endDateTime")
     __properties: ClassVar[List[str]] = ["billingItemId", "order", "periodicityParameters", "startDateTime", "endDateTime"]

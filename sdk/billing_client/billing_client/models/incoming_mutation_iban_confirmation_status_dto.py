@@ -25,11 +25,11 @@ from typing_extensions import Self
 
 class IncomingMutationIbanConfirmationStatusDTO(BaseModel):
     """
-    Represents the IBAN confirmation status for an incoming mutation.  This DTO contains information about the customer's IBAN confirmation status.
+    IncomingMutationIbanConfirmationStatusDTO
     """ # noqa: E501
-    customer_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the customer.", alias="customerId")
-    iban_confirmation_status: Optional[IbanConfirmationStatus] = Field(default=None, description="The current status of the IBAN confirmation.", alias="ibanConfirmationStatus")
-    is_iban_confirmed_on_transaction: Optional[StrictBool] = Field(default=None, description="Indicates whether the IBAN is confirmed on the transaction.", alias="isIbanConfirmedOnTransaction")
+    customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
+    iban_confirmation_status: Optional[IbanConfirmationStatus] = Field(default=None, alias="ibanConfirmationStatus")
+    is_iban_confirmed_on_transaction: Optional[StrictBool] = Field(default=None, alias="isIbanConfirmedOnTransaction")
     __properties: ClassVar[List[str]] = ["customerId", "ibanConfirmationStatus", "isIbanConfirmedOnTransaction"]
 
     model_config = ConfigDict(
@@ -75,11 +75,6 @@ class IncomingMutationIbanConfirmationStatusDTO(BaseModel):
         # and model_fields_set contains the field
         if self.customer_id is None and "customer_id" in self.model_fields_set:
             _dict['customerId'] = None
-
-        # set to None if iban_confirmation_status (nullable) is None
-        # and model_fields_set contains the field
-        if self.iban_confirmation_status is None and "iban_confirmation_status" in self.model_fields_set:
-            _dict['ibanConfirmationStatus'] = None
 
         return _dict
 

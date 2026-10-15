@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class DataType(str, Enum):
     """
-    DataType
+    Possible values: 'text', 'number', 'date', 'dateandtime', 'enumeration'
     """
 
     """

@@ -30,11 +30,11 @@ class MoveRequestContractEstimationRequest(BaseModel):
     MoveRequestContractEstimationRequest
     """ # noqa: E501
     utility_type: Optional[UtilityType] = Field(default=None, alias="utilityType")
-    unit_of_measure: Optional[UnitOfMeasure] = Field(default=None, alias="unitOfMeasure")
-    metering_type: Optional[MeteringType] = Field(default=None, alias="meteringType")
-    value: Optional[Union[StrictFloat, StrictInt]] = None
+    unit_of_measure: Optional[UnitOfMeasure] = Field(alias="unitOfMeasure")
+    metering_type: Optional[MeteringType] = Field(alias="meteringType")
     consumer_group_id: Optional[StrictStr] = Field(default=None, alias="consumerGroupId")
-    __properties: ClassVar[List[str]] = ["utilityType", "unitOfMeasure", "meteringType", "value", "consumerGroupId"]
+    consumption_quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="consumptionQuantity")
+    __properties: ClassVar[List[str]] = ["utilityType", "unitOfMeasure", "meteringType", "consumerGroupId", "consumptionQuantity"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,6 +95,11 @@ class MoveRequestContractEstimationRequest(BaseModel):
         if self.consumer_group_id is None and "consumer_group_id" in self.model_fields_set:
             _dict['consumerGroupId'] = None
 
+        # set to None if consumption_quantity (nullable) is None
+        # and model_fields_set contains the field
+        if self.consumption_quantity is None and "consumption_quantity" in self.model_fields_set:
+            _dict['consumptionQuantity'] = None
+
         return _dict
 
     @classmethod
@@ -110,8 +115,8 @@ class MoveRequestContractEstimationRequest(BaseModel):
             "utilityType": obj.get("utilityType"),
             "unitOfMeasure": obj.get("unitOfMeasure"),
             "meteringType": obj.get("meteringType"),
-            "value": obj.get("value"),
-            "consumerGroupId": obj.get("consumerGroupId")
+            "consumerGroupId": obj.get("consumerGroupId"),
+            "consumptionQuantity": obj.get("consumptionQuantity")
         })
         return _obj
 
