@@ -109,6 +109,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**create_muting_rule**](docs/DefaultApi.md#create_muting_rule) | **POST** /MutingRules | Creates multiple muting rules in bulk
 *DefaultApi* | [**delete_integrations_import**](docs/DefaultApi.md#delete_integrations_import) | **DELETE** /Integrations/import | Deletes imports based on provided id&#39;s. If there are too many id&#39;s, deletes are done asynchronously
 *DefaultApi* | [**delete_integrations_import_meteringimportid**](docs/DefaultApi.md#delete_integrations_import_meteringimportid) | **DELETE** /Integrations/import/{meteringImportId} | Delete an existing import by it&#39;s identifier
+*DefaultApi* | [**delete_measurements_bulk_delete**](docs/DefaultApi.md#delete_measurements_bulk_delete) | **DELETE** /Measurements/bulk/delete | Bulk deletes measurements based on specified criteria.
 *DefaultApi* | [**delete_measurements_extchuuid_delete_measurementid**](docs/DefaultApi.md#delete_measurements_extchuuid_delete_measurementid) | **DELETE** /Measurements/{extchuuid}/delete/{measurementId} | Deletes a specific measurement from an external channel.
 *DefaultApi* | [**delete_meteringprovideraccounts_id**](docs/DefaultApi.md#delete_meteringprovideraccounts_id) | **DELETE** /MeteringProviderAccounts/{id} | Deletes a metering provider account by id.
 *DefaultApi* | [**get_all_muting_rules**](docs/DefaultApi.md#get_all_muting_rules) | **GET** /MutingRules/getall | Retrieves all muting rules with optional filtering
@@ -180,6 +181,16 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**post_serviceconsumptions_buckets**](docs/DefaultApi.md#post_serviceconsumptions_buckets) | **POST** /ServiceConsumptions/buckets | Gets consumption data for service locations grouped by provided buckets
 *DefaultApi* | [**post_serviceconsumptions_export_sum**](docs/DefaultApi.md#post_serviceconsumptions_export_sum) | **POST** /ServiceConsumptions/export/sum | Gets sum of consumption values for a list of service locations
 *DefaultApi* | [**post_serviceconsumptions_yearlyaverage**](docs/DefaultApi.md#post_serviceconsumptions_yearlyaverage) | **POST** /ServiceConsumptions/yearlyaverage | Gets yearly average consumption per service location
+*DefaultApi* | [**put_consumptions_extchuuid_recalculate**](docs/DefaultApi.md#put_consumptions_extchuuid_recalculate) | **PUT** /Consumptions/{extchuuid}/recalculate | Recalculates consumption values for a specific channel within a given date range.
+*DefaultApi* | [**put_integrations_import_process**](docs/DefaultApi.md#put_integrations_import_process) | **PUT** /Integrations/import/process | Processes all selected imports if they have the status &#39;Validation failed&#39;, &#39;To process&#39;, or &#39;Processed with issues&#39;. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since bee
+*DefaultApi* | [**put_integrations_import_process_meteringimportid**](docs/DefaultApi.md#put_integrations_import_process_meteringimportid) | **PUT** /Integrations/import/process/{meteringImportId} | Processes the import if it has the status &#39;Validation failed&#39;, &#39;To process&#39;, or &#39;Processed with issues&#39;. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the 
+*DefaultApi* | [**put_integrations_import_processall**](docs/DefaultApi.md#put_integrations_import_processall) | **PUT** /Integrations/import/processall | Processes all imports that have status &#39;To process&#39; and &#39;Processed with issues&#39;
+*DefaultApi* | [**put_meteringissues_bulk_ignore**](docs/DefaultApi.md#put_meteringissues_bulk_ignore) | **PUT** /MeteringIssues/bulk/ignore | Ignores multiple metering issues in bulk.
+*DefaultApi* | [**put_meteringissues_bulk_resolve**](docs/DefaultApi.md#put_meteringissues_bulk_resolve) | **PUT** /MeteringIssues/bulk/resolve | Resolves multiple metering issues in bulk.
+*DefaultApi* | [**put_meteringissues_issueid_ignore**](docs/DefaultApi.md#put_meteringissues_issueid_ignore) | **PUT** /MeteringIssues/{issueId}/ignore | Ignores a specific metering issue.
+*DefaultApi* | [**put_meteringissues_issueid_resolve**](docs/DefaultApi.md#put_meteringissues_issueid_resolve) | **PUT** /MeteringIssues/{issueId}/resolve | Resolves a specific metering issue.
+*DefaultApi* | [**put_meteringprovideraccounts_id**](docs/DefaultApi.md#put_meteringprovideraccounts_id) | **PUT** /MeteringProviderAccounts/{id} | Updates an existing metering provider account by id.
+*DefaultApi* | [**put_meteringprovideraccounts_id_deactivate**](docs/DefaultApi.md#put_meteringprovideraccounts_id_deactivate) | **PUT** /MeteringProviderAccounts/{id}/deactivate | Deactivates a metering provider account by id (sets status to inactive).
 
 
 ## Documentation For Models

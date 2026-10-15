@@ -36,6 +36,7 @@ class InvoicePdfTemplateDTO(BaseModel):
     show_custom_information: Optional[StrictBool] = Field(default=None, alias="showCustomInformation")
     show_price_formulae: Optional[StrictBool] = Field(default=None, alias="showPriceFormulae")
     unit_price_excl_vat_for_persons: Optional[StrictBool] = Field(default=None, alias="unitPriceExclVatForPersons")
+    show_subtotal_before_advances: Optional[StrictBool] = Field(default=None, alias="showSubtotalBeforeAdvances")
     provider_managed_template_file_name: Optional[StrictStr] = Field(default=None, alias="providerManagedTemplateFileName")
     envelope_settings: Optional[EnvelopeSettingsDTO] = Field(default=None, alias="envelopeSettings")
     render_header_footer: Optional[StrictBool] = Field(default=None, alias="renderHeaderFooter")
@@ -49,7 +50,7 @@ class InvoicePdfTemplateDTO(BaseModel):
     custom_template_internal_file_path: Optional[StrictStr] = Field(default=None, alias="customTemplateInternalFilePath")
     custom_template_file_name: Optional[StrictStr] = Field(default=None, alias="customTemplateFileName")
     translation_status: Optional[TranslationStatus] = Field(default=None, alias="translationStatus")
-    __properties: ClassVar[List[str]] = ["costAllocation", "showCountry", "showBalance", "showVatSpecs", "showCustomInformation", "showPriceFormulae", "unitPriceExclVatForPersons", "providerManagedTemplateFileName", "envelopeSettings", "renderHeaderFooter", "headerText", "footerText", "overrideExternalPrintingChecks", "supportsExternalPrinting", "fileName", "useCase", "useBuildIn", "customTemplateInternalFilePath", "customTemplateFileName", "translationStatus"]
+    __properties: ClassVar[List[str]] = ["costAllocation", "showCountry", "showBalance", "showVatSpecs", "showCustomInformation", "showPriceFormulae", "unitPriceExclVatForPersons", "showSubtotalBeforeAdvances", "providerManagedTemplateFileName", "envelopeSettings", "renderHeaderFooter", "headerText", "footerText", "overrideExternalPrintingChecks", "supportsExternalPrinting", "fileName", "useCase", "useBuildIn", "customTemplateInternalFilePath", "customTemplateFileName", "translationStatus"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -147,6 +148,7 @@ class InvoicePdfTemplateDTO(BaseModel):
             "showCustomInformation": obj.get("showCustomInformation"),
             "showPriceFormulae": obj.get("showPriceFormulae"),
             "unitPriceExclVatForPersons": obj.get("unitPriceExclVatForPersons"),
+            "showSubtotalBeforeAdvances": obj.get("showSubtotalBeforeAdvances"),
             "providerManagedTemplateFileName": obj.get("providerManagedTemplateFileName"),
             "envelopeSettings": EnvelopeSettingsDTO.from_dict(obj["envelopeSettings"]) if obj.get("envelopeSettings") is not None else None,
             "renderHeaderFooter": obj.get("renderHeaderFooter"),

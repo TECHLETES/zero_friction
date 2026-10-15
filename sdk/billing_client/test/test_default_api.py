@@ -54,6 +54,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_delete_incomingbankingtransactions_bulk_delete(self) -> None:
+        """Test case for delete_incomingbankingtransactions_bulk_delete
+
+        Bulk deletes incoming banking transactions based on the provided request.
+        """
+        pass
+
     def test_delete_incomingbankingtransactions_incomingbankingtransactionid(self) -> None:
         """Test case for delete_incomingbankingtransactions_incomingbankingtransactionid
 
@@ -68,10 +75,24 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_delete_invoices_bulk_delete(self) -> None:
+        """Test case for delete_invoices_bulk_delete
+
+        Deletes multiple invoices in bulk.
+        """
+        pass
+
     def test_delete_invoices_invoiceuuid(self) -> None:
         """Test case for delete_invoices_invoiceuuid
 
         Deletes an invoice by its UUID.
+        """
+        pass
+
+    def test_delete_outgoingbankingtransactions_bulk_delete(self) -> None:
+        """Test case for delete_outgoingbankingtransactions_bulk_delete
+
+        Bulk deletes outgoing banking transactions.
         """
         pass
 
@@ -82,10 +103,24 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_delete_outgoingmutations_bulk_delete(self) -> None:
+        """Test case for delete_outgoingmutations_bulk_delete
+
+        Bulk deletes outgoing mutations.
+        """
+        pass
+
     def test_delete_outgoingmutations_outgoingmutationid(self) -> None:
         """Test case for delete_outgoingmutations_outgoingmutationid
 
         Deletes an outgoing mutation by ID.
+        """
+        pass
+
+    def test_delete_paymentplans_bulk_delete(self) -> None:
+        """Test case for delete_paymentplans_bulk_delete
+
+        Bulk deletes payment plans based on the provided query parameters.
         """
         pass
 
@@ -691,6 +726,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_post_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation(self) -> None:
+        """Test case for post_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation
+
+        (Re)triggers invoice estimation for a specific billing completeness.
+        """
+        pass
+
     def test_post_billingcompletenesses_bulk_billintermediately(self) -> None:
         """Test case for post_billingcompletenesses_bulk_billintermediately
 
@@ -730,6 +772,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for post_billingcompletenesses_bulk_triggerbilling
 
         Triggers billing for multiple billing completenesses in bulk.
+        """
+        pass
+
+    def test_post_billingcompletenesses_bulk_triggerinvoiceestimation(self) -> None:
+        """Test case for post_billingcompletenesses_bulk_triggerinvoiceestimation
+
+        (Re)triggers invoice estimation for multiple billing completenesses in bulk.
         """
         pass
 
@@ -887,17 +936,17 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
-    def test_post_estimatedinvoices_br_billingrelationid(self) -> None:
-        """Test case for post_estimatedinvoices_br_billingrelationid
-
-        Manually triggers invoice estimation for a specific billing relation.
-        """
-        pass
-
     def test_post_estimatedinvoices_filter(self) -> None:
         """Test case for post_estimatedinvoices_filter
 
         Retrieves all estimated invoices based on the provided query parameters and filters.
+        """
+        pass
+
+    def test_post_estimatedinvoices_filter_overviewcount(self) -> None:
+        """Test case for post_estimatedinvoices_filter_overviewcount
+
+        Returns how many estimated invoices match each quick filter under the same body filters as the list.
         """
         pass
 
@@ -1729,6 +1778,706 @@ class TestDefaultApi(unittest.TestCase):
 
     def test_post_transactions_transactionuuid_undo_settlementtransactionid(self) -> None:
         """Test case for post_transactions_transactionuuid_undo_settlementtransactionid
+
+        Undoes a single settlement of a specific transaction.
+        """
+        pass
+
+    def test_put_accountingexportproviders_id(self) -> None:
+        """Test case for put_accountingexportproviders_id
+
+        Updates an existing accounting export provider account by id.
+        """
+        pass
+
+    def test_put_accountingexportproviders_id_deactivate(self) -> None:
+        """Test case for put_accountingexportproviders_id_deactivate
+
+        Deactivates an accounting export provider account by id (sets status to inactive).
+        """
+        pass
+
+    def test_put_annualstatements_annualstatementuuid_send(self) -> None:
+        """Test case for put_annualstatements_annualstatementuuid_send
+
+        Sends an annual statement via email.
+        """
+        pass
+
+    def test_put_annualstatements_annualstatementuuid_sendviapostal(self) -> None:
+        """Test case for put_annualstatements_annualstatementuuid_sendviapostal
+
+        Sends an annual statement via postal mail.
+        """
+        pass
+
+    def test_put_annualstatements_bulk_send(self) -> None:
+        """Test case for put_annualstatements_bulk_send
+
+        Sends multiple annual statements via email in bulk.
+        """
+        pass
+
+    def test_put_annualstatements_bulk_sendviapostal(self) -> None:
+        """Test case for put_annualstatements_bulk_sendviapostal
+
+        Sends multiple annual statements via postal mail in bulk.
+        """
+        pass
+
+    def test_put_billingcompletenesses_billingcompletenessid_billintermediately(self) -> None:
+        """Test case for put_billingcompletenesses_billingcompletenessid_billintermediately
+
+        Bills a specific billing completeness intermediately.
+        """
+        pass
+
+    def test_put_billingcompletenesses_billingcompletenessid_changenextinvoiceenddate(self) -> None:
+        """Test case for put_billingcompletenesses_billingcompletenessid_changenextinvoiceenddate
+
+        Changes the next invoice end date for a specific billing relation.
+        """
+        pass
+
+    def test_put_billingcompletenesses_billingcompletenessid_manuallyclose(self) -> None:
+        """Test case for put_billingcompletenesses_billingcompletenessid_manuallyclose
+
+        Manually closes a specific billing completeness.
+        """
+        pass
+
+    def test_put_billingcompletenesses_billingcompletenessid_reopen(self) -> None:
+        """Test case for put_billingcompletenesses_billingcompletenessid_reopen
+
+        Reopens a manually closed billing completeness.
+        """
+        pass
+
+    def test_put_billingcompletenesses_billingcompletenessid_skipadvanceperiod(self) -> None:
+        """Test case for put_billingcompletenesses_billingcompletenessid_skipadvanceperiod
+
+        Skips an advance period for a specific billing completeness.
+        """
+        pass
+
+    def test_put_billingcompletenesses_billingcompletenessid_triggerbilling(self) -> None:
+        """Test case for put_billingcompletenesses_billingcompletenessid_triggerbilling
+
+        Triggers billing for a specific billing completeness.
+        """
+        pass
+
+    def test_put_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation(self) -> None:
+        """Test case for put_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation
+
+        (Re)triggers invoice estimation for a specific billing completeness.
+        """
+        pass
+
+    def test_put_billingcompletenesses_bulk_billintermediately(self) -> None:
+        """Test case for put_billingcompletenesses_bulk_billintermediately
+
+        Bills multiple billing completenesses intermediately in bulk.
+        """
+        pass
+
+    def test_put_billingcompletenesses_bulk_changenextinvoiceenddate(self) -> None:
+        """Test case for put_billingcompletenesses_bulk_changenextinvoiceenddate
+
+        Changes the next invoice end date for a specific billing relation.
+        """
+        pass
+
+    def test_put_billingcompletenesses_bulk_manuallyclose(self) -> None:
+        """Test case for put_billingcompletenesses_bulk_manuallyclose
+
+        Manually closes multiple billing completenesses in bulk.
+        """
+        pass
+
+    def test_put_billingcompletenesses_bulk_reopen(self) -> None:
+        """Test case for put_billingcompletenesses_bulk_reopen
+
+        Reopens multiple manually closed billing completenesses in bulk.
+        """
+        pass
+
+    def test_put_billingcompletenesses_bulk_skipadvanceperiod(self) -> None:
+        """Test case for put_billingcompletenesses_bulk_skipadvanceperiod
+
+        Skips advance periods for multiple billing completenesses in bulk.
+        """
+        pass
+
+    def test_put_billingcompletenesses_bulk_triggerbilling(self) -> None:
+        """Test case for put_billingcompletenesses_bulk_triggerbilling
+
+        Triggers billing for multiple billing completenesses in bulk.
+        """
+        pass
+
+    def test_put_billingcompletenesses_bulk_triggerinvoiceestimation(self) -> None:
+        """Test case for put_billingcompletenesses_bulk_triggerinvoiceestimation
+
+        (Re)triggers invoice estimation for multiple billing completenesses in bulk.
+        """
+        pass
+
+    def test_put_billingrelations_b_billreluuid_changeadvanceamount(self) -> None:
+        """Test case for put_billingrelations_b_billreluuid_changeadvanceamount
+
+        Changes the advance amount for a specific billing relation.
+        """
+        pass
+
+    def test_put_billingrelations_b_billreluuid_updateadvanceperiodpercentages(self) -> None:
+        """Test case for put_billingrelations_b_billreluuid_updateadvanceperiodpercentages
+
+        Updates the advance period percentages for a billing relation with estimated invoice percentage advances.
+        """
+        pass
+
+    def test_put_collectioncases_bulk_markclosed(self) -> None:
+        """Test case for put_collectioncases_bulk_markclosed
+
+        Marks multiple collection cases as manually closed in bulk.
+        """
+        pass
+
+    def test_put_collectioncases_collectioncaseid_markclosed(self) -> None:
+        """Test case for put_collectioncases_collectioncaseid_markclosed
+
+        Marks a collection case as manually closed.
+        """
+        pass
+
+    def test_put_collectioncases_collectioncaseid_pause(self) -> None:
+        """Test case for put_collectioncases_collectioncaseid_pause
+
+        Pauses a collection case.
+        """
+        pass
+
+    def test_put_collectioncases_collectioncaseid_process(self) -> None:
+        """Test case for put_collectioncases_collectioncaseid_process
+
+        Processes the collection case
+        """
+        pass
+
+    def test_put_collectioncases_collectioncaseid_resume(self) -> None:
+        """Test case for put_collectioncases_collectioncaseid_resume
+
+        Resumes a collection case.
+        """
+        pass
+
+    def test_put_collectioncases_collectioncaseid_stepid_close(self) -> None:
+        """Test case for put_collectioncases_collectioncaseid_stepid_close
+
+        Closes a specific collection case step.
+        """
+        pass
+
+    def test_put_collectioncases_collectioncaseid_stepid_execute(self) -> None:
+        """Test case for put_collectioncases_collectioncaseid_stepid_execute
+
+        Executes a specific collection case step.
+        """
+        pass
+
+    def test_put_collectioncases_collectioncaseid_stepid_markmanualsent(self) -> None:
+        """Test case for put_collectioncases_collectioncaseid_stepid_markmanualsent
+
+        Confirms a manual (physical) communication was sent and closes the step.
+        """
+        pass
+
+    def test_put_collectioncases_collectioncaseid_stepid_retry(self) -> None:
+        """Test case for put_collectioncases_collectioncaseid_stepid_retry
+
+        Retries a specific collection case step.
+        """
+        pass
+
+    def test_put_collectioncases_collectioncaseid_stepid_sendviamail(self) -> None:
+        """Test case for put_collectioncases_collectioncaseid_stepid_sendviamail
+
+        Sends a specific collection case step via email.
+        """
+        pass
+
+    def test_put_collectioncases_collectioncaseid_stepid_sendviapostal(self) -> None:
+        """Test case for put_collectioncases_collectioncaseid_stepid_sendviapostal
+
+        Sends a specific collection case step via postal mail.
+        """
+        pass
+
+    def test_put_collectioncases_collectioncaseid_stepid_skip(self) -> None:
+        """Test case for put_collectioncases_collectioncaseid_stepid_skip
+
+        Skips a specific collection case step.
+        """
+        pass
+
+    def test_put_collectioncases_entityid_customproperties(self) -> None:
+        """Test case for put_collectioncases_entityid_customproperties
+
+        /CollectionCases/{entityId}/customproperties - PUT
+        """
+        pass
+
+    def test_put_customerbankaccounts_customerbankaccountid_confirm(self) -> None:
+        """Test case for put_customerbankaccounts_customerbankaccountid_confirm
+
+        Confirms a specific customer bank account.
+        """
+        pass
+
+    def test_put_customerbankaccounts_customerbankaccountid_update(self) -> None:
+        """Test case for put_customerbankaccounts_customerbankaccountid_update
+
+        Updates a specific customer bank account.
+        """
+        pass
+
+    def test_put_incomingbankingtransactions_bulk_process(self) -> None:
+        """Test case for put_incomingbankingtransactions_bulk_process
+
+        Bulk processes incoming banking transactions based on the provided request.
+        """
+        pass
+
+    def test_put_incomingbankingtransactions_incomingbankingtransactionid_mutations_ignor(self) -> None:
+        """Test case for put_incomingbankingtransactions_incomingbankingtransactionid_mutations_ignor
+
+        Ignores multiple incoming mutations for a specific incoming banking transaction.
+        """
+        pass
+
+    def test_put_incomingbankingtransactions_incomingbankingtransactionid_process(self) -> None:
+        """Test case for put_incomingbankingtransactions_incomingbankingtransactionid_process
+
+        Processes a specific incoming banking transaction by its ID.
+        """
+        pass
+
+    def test_put_incomingbankingtransactions_incomingbankingtransactionid_updateibanconfi(self) -> None:
+        """Test case for put_incomingbankingtransactions_incomingbankingtransactionid_updateibanconfi
+
+        Updates the IBAN confirmation of an Iban used in a specific incoming banking transaction.
+        """
+        pass
+
+    def test_put_incomingmutations_bulk_ignore(self) -> None:
+        """Test case for put_incomingmutations_bulk_ignore
+
+        Bulk ignores incoming mutations based on the provided request.
+        """
+        pass
+
+    def test_put_incomingmutations_bulk_reset(self) -> None:
+        """Test case for put_incomingmutations_bulk_reset
+
+        Bulk resets the matching status of incoming mutations based on the provided request.
+        """
+        pass
+
+    def test_put_incomingmutations_incomingmutationid_manualmatch(self) -> None:
+        """Test case for put_incomingmutations_incomingmutationid_manualmatch
+
+        Manually matches a specific incoming mutation.
+        """
+        pass
+
+    def test_put_incomingmutations_incomingmutationid_reset(self) -> None:
+        """Test case for put_incomingmutations_incomingmutationid_reset
+
+        Resets the matching status of a specific incoming mutation.
+        """
+        pass
+
+    def test_put_invoices_bulk_approve(self) -> None:
+        """Test case for put_invoices_bulk_approve
+
+        Approves multiple invoices in bulk.
+        """
+        pass
+
+    def test_put_invoices_bulk_changeexportstatus(self) -> None:
+        """Test case for put_invoices_bulk_changeexportstatus
+
+        Changes the export status of multiple invoices in bulk.
+        """
+        pass
+
+    def test_put_invoices_bulk_changepaymentdetails(self) -> None:
+        """Test case for put_invoices_bulk_changepaymentdetails
+
+        Changes the payment details of multiple invoices in bulk.
+        """
+        pass
+
+    def test_put_invoices_bulk_marksent(self) -> None:
+        """Test case for put_invoices_bulk_marksent
+
+        Marks multiple invoices as sent in bulk.
+        """
+        pass
+
+    def test_put_invoices_bulk_markskipped(self) -> None:
+        """Test case for put_invoices_bulk_markskipped
+
+        Marks multiple invoices as skipped in bulk.
+        """
+        pass
+
+    def test_put_invoices_bulk_regenerate(self) -> None:
+        """Test case for put_invoices_bulk_regenerate
+
+        Regenerates multiple invoices in bulk.
+        """
+        pass
+
+    def test_put_invoices_bulk_send(self) -> None:
+        """Test case for put_invoices_bulk_send
+
+        Sends multiple invoices via email in bulk.
+        """
+        pass
+
+    def test_put_invoices_bulk_sendviaeinvoicing(self) -> None:
+        """Test case for put_invoices_bulk_sendviaeinvoicing
+
+        Sends multiple invoices via EInvoicing in bulk.
+        """
+        pass
+
+    def test_put_invoices_bulk_sendviapostal(self) -> None:
+        """Test case for put_invoices_bulk_sendviapostal
+
+        Sends multiple invoices via postal mail in bulk.
+        """
+        pass
+
+    def test_put_invoices_invoiceuuid_approve(self) -> None:
+        """Test case for put_invoices_invoiceuuid_approve
+
+        Approves an invoice.
+        """
+        pass
+
+    def test_put_invoices_invoiceuuid_changeexportstatus(self) -> None:
+        """Test case for put_invoices_invoiceuuid_changeexportstatus
+
+        Changes the export status of an invoice.
+        """
+        pass
+
+    def test_put_invoices_invoiceuuid_changenewadvanceamount(self) -> None:
+        """Test case for put_invoices_invoiceuuid_changenewadvanceamount
+
+        Changes the new advance amount of an invoice.
+        """
+        pass
+
+    def test_put_invoices_invoiceuuid_changepaymentdetails(self) -> None:
+        """Test case for put_invoices_invoiceuuid_changepaymentdetails
+
+        Changes the payment method of an invoice.
+        """
+        pass
+
+    def test_put_invoices_invoiceuuid_marksent(self) -> None:
+        """Test case for put_invoices_invoiceuuid_marksent
+
+        Marks an invoice as sent.
+        """
+        pass
+
+    def test_put_invoices_invoiceuuid_markskipped(self) -> None:
+        """Test case for put_invoices_invoiceuuid_markskipped
+
+        Marks an invoice as skipped.
+        """
+        pass
+
+    def test_put_invoices_invoiceuuid_notetocustomer(self) -> None:
+        """Test case for put_invoices_invoiceuuid_notetocustomer
+
+        Update the note to customer from a specific invoice
+        """
+        pass
+
+    def test_put_invoices_invoiceuuid_regenerate(self) -> None:
+        """Test case for put_invoices_invoiceuuid_regenerate
+
+        Regenerates an invoice.
+        """
+        pass
+
+    def test_put_invoices_invoiceuuid_send(self) -> None:
+        """Test case for put_invoices_invoiceuuid_send
+
+        Sends an invoice via email.
+        """
+        pass
+
+    def test_put_invoices_invoiceuuid_sendviaeinvoicing(self) -> None:
+        """Test case for put_invoices_invoiceuuid_sendviaeinvoicing
+
+        Sends an invoice via EInvoicing.
+        """
+        pass
+
+    def test_put_invoices_invoiceuuid_sendviapostal(self) -> None:
+        """Test case for put_invoices_invoiceuuid_sendviapostal
+
+        Sends an invoice via postal mail.
+        """
+        pass
+
+    def test_put_outgoingbankingtransactions_bulk_manuallycancel(self) -> None:
+        """Test case for put_outgoingbankingtransactions_bulk_manuallycancel
+
+        Bulk manually cancels outgoing banking transactions.
+        """
+        pass
+
+    def test_put_outgoingbankingtransactions_bulk_manuallyconfirm(self) -> None:
+        """Test case for put_outgoingbankingtransactions_bulk_manuallyconfirm
+
+        Bulk manually confirms outgoing banking transactions.
+        """
+        pass
+
+    def test_put_outgoingbankingtransactions_bulk_send(self) -> None:
+        """Test case for put_outgoingbankingtransactions_bulk_send
+
+        Bulk sends outgoing banking transactions via the configured channel for each company bank account (active SFTP banking data provider, or Twikey when enabled and linked).
+        """
+        pass
+
+    def test_put_outgoingbankingtransactions_outgoingbankingtransactionid_bankaccount(self) -> None:
+        """Test case for put_outgoingbankingtransactions_outgoingbankingtransactionid_bankaccount
+
+        Updates the company bank account for an outgoing banking transaction.
+        """
+        pass
+
+    def test_put_outgoingbankingtransactions_outgoingbankingtransactionid_collectiondate(self) -> None:
+        """Test case for put_outgoingbankingtransactions_outgoingbankingtransactionid_collectiondate
+
+        Updates the collection date for an outgoing banking transaction.
+        """
+        pass
+
+    def test_put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallycancel(self) -> None:
+        """Test case for put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallycancel
+
+        Manually cancels an outgoing banking transaction.
+        """
+        pass
+
+    def test_put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallyconfirm(self) -> None:
+        """Test case for put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallyconfirm
+
+        Manually confirms an outgoing banking transaction.
+        """
+        pass
+
+    def test_put_outgoingmutations_outgoingmutationid(self) -> None:
+        """Test case for put_outgoingmutations_outgoingmutationid
+
+        Updates an outgoing mutation.
+        """
+        pass
+
+    def test_put_paymentplans_bulk_activate(self) -> None:
+        """Test case for put_paymentplans_bulk_activate
+
+        Bulk activates payment plans based on the provided query parameters.
+        """
+        pass
+
+    def test_put_paymentplans_bulk_cancel(self) -> None:
+        """Test case for put_paymentplans_bulk_cancel
+
+        Bulk cancels payment plans based on the provided query parameters.
+        """
+        pass
+
+    def test_put_paymentplans_bulk_collect_deferred_off_session(self) -> None:
+        """Test case for put_paymentplans_bulk_collect_deferred_off_session
+
+        Bulk collect for PSP-deferred off-session payment plans: resolves collectable installments and confirms their payment intents.
+        """
+        pass
+
+    def test_put_paymentplans_bulk_pause(self) -> None:
+        """Test case for put_paymentplans_bulk_pause
+
+        Bulk pauses payment plans based on the provided query parameters.
+        """
+        pass
+
+    def test_put_paymentplans_bulk_reopen_cancelled(self) -> None:
+        """Test case for put_paymentplans_bulk_reopen_cancelled
+
+        Bulk reopens cancelled payment plans. No customer communication is sent.
+        """
+        pass
+
+    def test_put_paymentplans_bulk_resume(self) -> None:
+        """Test case for put_paymentplans_bulk_resume
+
+        Bulk resumes payment plans based on the provided query parameters.
+        """
+        pass
+
+    def test_put_paymentplans_entityid_customproperties(self) -> None:
+        """Test case for put_paymentplans_entityid_customproperties
+
+        /PaymentPlans/{entityId}/customproperties - PUT
+        """
+        pass
+
+    def test_put_paymentplans_id(self) -> None:
+        """Test case for put_paymentplans_id
+
+        Updates an existing payment plan.
+        """
+        pass
+
+    def test_put_paymentplans_id_activate(self) -> None:
+        """Test case for put_paymentplans_id_activate
+
+        Activates a payment plan.
+        """
+        pass
+
+    def test_put_paymentplans_id_cancel(self) -> None:
+        """Test case for put_paymentplans_id_cancel
+
+        Cancels a payment plan.
+        """
+        pass
+
+    def test_put_paymentplans_id_pause(self) -> None:
+        """Test case for put_paymentplans_id_pause
+
+        Pauses a payment plan (e.g., when customer is in distress).
+        """
+        pass
+
+    def test_put_paymentplans_id_reopen_cancelled(self) -> None:
+        """Test case for put_paymentplans_id_reopen_cancelled
+
+        Reopens a cancelled payment plan: restores open installments and recalculates status from current dates. Does not send customer communication (no scenario e-mails).
+        """
+        pass
+
+    def test_put_paymentplans_id_resume(self) -> None:
+        """Test case for put_paymentplans_id_resume
+
+        Resumes a payment plan from paused status.
+        """
+        pass
+
+    def test_put_paymentplans_paymentplanid_resend_reminder(self) -> None:
+        """Test case for put_paymentplans_paymentplanid_resend_reminder
+
+        Try resending a reminder of a payment plan installment in case the generation of the payment intent failed
+        """
+        pass
+
+    def test_put_payments_bulk_reverse(self) -> None:
+        """Test case for put_payments_bulk_reverse
+
+        Bulk manually reverses payments.
+        """
+        pass
+
+    def test_put_payments_paymentid_reverse(self) -> None:
+        """Test case for put_payments_paymentid_reverse
+
+        Manually reverses a payment.
+        """
+        pass
+
+    def test_put_propertygroupbillingconfiguration(self) -> None:
+        """Test case for put_propertygroupbillingconfiguration
+
+        Updates a billing configuration for a property group.
+        """
+        pass
+
+    def test_put_propertygroupbillingconfiguration_entityid_translations(self) -> None:
+        """Test case for put_propertygroupbillingconfiguration_entityid_translations
+
+        /PropertyGroupBillingConfiguration/{entityId}/translations - PUT
+        """
+        pass
+
+    def test_put_propertygroupbillingconfiguration_propertygroupid_notetocustomer(self) -> None:
+        """Test case for put_propertygroupbillingconfiguration_propertygroupid_notetocustomer
+
+        Updates the note to customer for a specific property group.
+        """
+        pass
+
+    def test_put_propertygroupbillingconfiguration_propertygroupid_timeofusecalendars(self) -> None:
+        """Test case for put_propertygroupbillingconfiguration_propertygroupid_timeofusecalendars
+
+        Updates the per-utility Time of Use calendar assignment for a specific property group.
+        """
+        pass
+
+    def test_put_transactions_accounting_markobsolete(self) -> None:
+        """Test case for put_transactions_accounting_markobsolete
+
+        Enqueues marking of all transactions on or before the given date as obsolete for accounting. The actual processing is performed asynchronously by the BillingEngine.
+        """
+        pass
+
+    def test_put_transactions_c_customeruuid_runsettlement(self) -> None:
+        """Test case for put_transactions_c_customeruuid_runsettlement
+
+        Runs settlement for a specific customer.
+        """
+        pass
+
+    def test_put_transactions_transactionuuid_accountingexportstatus(self) -> None:
+        """Test case for put_transactions_transactionuuid_accountingexportstatus
+
+        Updates the accounting export status of a transaction.
+        """
+        pass
+
+    def test_put_transactions_transactionuuid_settle(self) -> None:
+        """Test case for put_transactions_transactionuuid_settle
+
+        Settles transactions for a specific transaction UUID.
+        """
+        pass
+
+    def test_put_transactions_transactionuuid_settle_settlementtransactionid(self) -> None:
+        """Test case for put_transactions_transactionuuid_settle_settlementtransactionid
+
+        Settles a single transaction for a specific transaction UUID.
+        """
+        pass
+
+    def test_put_transactions_transactionuuid_undo(self) -> None:
+        """Test case for put_transactions_transactionuuid_undo
+
+        Undoes all settlements of a specific transaction.
+        """
+        pass
+
+    def test_put_transactions_transactionuuid_undo_settlementtransactionid(self) -> None:
+        """Test case for put_transactions_transactionuuid_undo_settlementtransactionid
 
         Undoes a single settlement of a specific transaction.
         """

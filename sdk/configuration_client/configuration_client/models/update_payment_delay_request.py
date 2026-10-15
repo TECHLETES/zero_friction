@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
+from configuration_client.models.invoice_type import InvoiceType
 from configuration_client.models.payment_delay import PaymentDelay
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,9 +28,10 @@ class UpdatePaymentDelayRequest(BaseModel):
     """
     UpdatePaymentDelayRequest
     """ # noqa: E501
+    invoice_type: Optional[InvoiceType] = Field(default=None, alias="invoiceType")
     payment_delay: PaymentDelay = Field(alias="paymentDelay")
     value: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["paymentDelay", "value"]
+    __properties: ClassVar[List[str]] = ["invoiceType", "paymentDelay", "value"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,6 +72,11 @@ class UpdatePaymentDelayRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if invoice_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.invoice_type is None and "invoice_type" in self.model_fields_set:
+            _dict['invoiceType'] = None
+
         return _dict
 
     @classmethod
@@ -82,6 +89,7 @@ class UpdatePaymentDelayRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "invoiceType": obj.get("invoiceType"),
             "paymentDelay": obj.get("paymentDelay"),
             "value": obj.get("value")
         })

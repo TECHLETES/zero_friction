@@ -75,6 +75,8 @@ class TestMoveRequestCustomerDetails(unittest.TestCase):
                 ssin_country = 'aut',
                 customer_type = 'person',
                 company_name = '',
+                organization_number = '',
+                vat_number = '',
                 default_payment_method = 'sct',
         )
         """

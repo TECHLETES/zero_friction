@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class AccountingExportFailureReason(str, Enum):
     """
-    Possible values: 'missingcompanybankaccount', 'lostaccountingconnection', 'salesjournalnotconfigured', 'bankjournalnotconfigured', 'accountingtoolbadrequest', 'missingmapping', 'transactiondatebeforeactivationdate', 'httptimeout'
+    Possible values: 'missingcompanybankaccount', 'lostaccountingconnection', 'salesjournalnotconfigured', 'bankjournalnotconfigured', 'accountingtoolbadrequest', 'missingmapping', 'transactiondatebeforeactivationdate', 'httptimeout', 'ratelimited'
     """
 
     """
@@ -34,6 +34,7 @@ class AccountingExportFailureReason(str, Enum):
     MISSINGMAPPING = 'missingmapping'
     TRANSACTIONDATEBEFOREACTIVATIONDATE = 'transactiondatebeforeactivationdate'
     HTTPTIMEOUT = 'httptimeout'
+    RATELIMITED = 'ratelimited'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

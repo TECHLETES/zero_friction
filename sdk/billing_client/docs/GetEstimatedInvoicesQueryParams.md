@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **customer_id** | **str** |  | [optional] 
 **contract_id** | **str** |  | [optional] 
+**product_id** | **str** |  | [optional] 
 **overlapping_period_start_date_time** | **datetime** |  | [optional] 
 **overlapping_period_end_date_time** | **datetime** |  | [optional] 
 **apply_filters_over_included_ids** | **bool** |  | [optional] 

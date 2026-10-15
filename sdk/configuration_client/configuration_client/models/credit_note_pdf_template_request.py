@@ -31,8 +31,9 @@ class CreditNotePdfTemplateRequest(BaseModel):
     show_balance: Optional[StrictBool] = Field(default=None, alias="showBalance")
     show_vat_specs: Optional[StrictBool] = Field(default=None, alias="showVatSpecs")
     show_custom_information: Optional[StrictBool] = Field(default=None, alias="showCustomInformation")
+    show_subtotal_before_advances: Optional[StrictBool] = Field(default=None, alias="showSubtotalBeforeAdvances")
     envelope_settings: Optional[EnvelopeSettingsRequest] = Field(default=None, alias="envelopeSettings")
-    __properties: ClassVar[List[str]] = ["showCountry", "showBalance", "showVatSpecs", "showCustomInformation", "envelopeSettings"]
+    __properties: ClassVar[List[str]] = ["showCountry", "showBalance", "showVatSpecs", "showCustomInformation", "showSubtotalBeforeAdvances", "envelopeSettings"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,6 +98,7 @@ class CreditNotePdfTemplateRequest(BaseModel):
             "showBalance": obj.get("showBalance"),
             "showVatSpecs": obj.get("showVatSpecs"),
             "showCustomInformation": obj.get("showCustomInformation"),
+            "showSubtotalBeforeAdvances": obj.get("showSubtotalBeforeAdvances"),
             "envelopeSettings": EnvelopeSettingsRequest.from_dict(obj["envelopeSettings"]) if obj.get("envelopeSettings") is not None else None
         })
         return _obj

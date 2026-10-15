@@ -105,35 +105,65 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**delete_socialtariff_exports_delete_bulk**](docs/DefaultApi.md#delete_socialtariff_exports_delete_bulk) | **DELETE** /SocialTariff/exports/delete/bulk | Deletes multiple social tariff exports in bulk.
 *DefaultApi* | [**delete_socialtariff_exports_expuuid**](docs/DefaultApi.md#delete_socialtariff_exports_expuuid) | **DELETE** /SocialTariff/exports/{expuuid} | Deletes a specific social tariff export.
+*DefaultApi* | [**get_frenchereport_declarant_status**](docs/DefaultApi.md#get_frenchereport_declarant_status) | **GET** /FrenchEReport/declarant/status | Returns the status of the organisation&#39;s French e-reporting declarant submission.
+*DefaultApi* | [**get_frenchereport_submissions_submissionid**](docs/DefaultApi.md#get_frenchereport_submissions_submissionid) | **GET** /FrenchEReport/submissions/{submissionId} | /FrenchEReport/submissions/{submissionId} - GET
 *DefaultApi* | [**get_migrationadmin_latest_version**](docs/DefaultApi.md#get_migrationadmin_latest_version) | **GET** /MigrationAdmin/latest-version | /MigrationAdmin/latest-version - GET
 *DefaultApi* | [**get_socialtariff_exports**](docs/DefaultApi.md#get_socialtariff_exports) | **GET** /SocialTariff/exports | Retrieves a paginated list of all social tariff exports.
+*DefaultApi* | [**post_frenchereport_candidates_filter**](docs/DefaultApi.md#post_frenchereport_candidates_filter) | **POST** /FrenchEReport/candidates/filter | /FrenchEReport/candidates/filter - POST
+*DefaultApi* | [**post_frenchereport_candidates_invoiceid_recollect**](docs/DefaultApi.md#post_frenchereport_candidates_invoiceid_recollect) | **POST** /FrenchEReport/candidates/{invoiceId}/recollect | Re-requests invoice data from billing to refresh a non-submitted e-reporting candidate.
+*DefaultApi* | [**post_frenchereport_declarant_register**](docs/DefaultApi.md#post_frenchereport_declarant_register) | **POST** /FrenchEReport/declarant/register | Registers the organisation as a French e-reporting declarant with Recommand. Requires &#x60;RecommandProviderAccountId&#x60; on French regional regulations parameters (set after successful Recommand onboarding).
+*DefaultApi* | [**post_frenchereport_submissions_filter**](docs/DefaultApi.md#post_frenchereport_submissions_filter) | **POST** /FrenchEReport/submissions/filter | /FrenchEReport/submissions/filter - POST
+*DefaultApi* | [**post_frenchereport_submissions_filter_overviewcount**](docs/DefaultApi.md#post_frenchereport_submissions_filter_overviewcount) | **POST** /FrenchEReport/submissions/filter/overviewcount | Returns submission counts for each quick-filter tab for the current filter set.
+*DefaultApi* | [**post_frenchereport_submissions_submissionid_resubmit**](docs/DefaultApi.md#post_frenchereport_submissions_submissionid_resubmit) | **POST** /FrenchEReport/submissions/{submissionId}/resubmit | Re-enqueues a failed or rejected e-reporting submission for delivery to Recommand.
 *DefaultApi* | [**post_socialtariff_export_download_bulk**](docs/DefaultApi.md#post_socialtariff_export_download_bulk) | **POST** /SocialTariff/export/download/bulk | Downloads multiple social tariff exports as a ZIP archive.
 *DefaultApi* | [**post_socialtariff_exports**](docs/DefaultApi.md#post_socialtariff_exports) | **POST** /SocialTariff/exports | Legacy endpoint for creating a social tariff export. Maintained for backwards compatibility. Redirects to the CreateExportCustomerPortfolio method.
 *DefaultApi* | [**post_socialtariff_exports_claimsprotectedcustomers**](docs/DefaultApi.md#post_socialtariff_exports_claimsprotectedcustomers) | **POST** /SocialTariff/exports/claimsProtectedCustomers | Creates a social tariff export for claims protected customers.
 *DefaultApi* | [**post_socialtariff_exports_customerportfolio**](docs/DefaultApi.md#post_socialtariff_exports_customerportfolio) | **POST** /SocialTariff/exports/customerPortfolio | Creates a social tariff export for customer portfolio.
 *DefaultApi* | [**post_socialtariff_exports_expuuid_download**](docs/DefaultApi.md#post_socialtariff_exports_expuuid_download) | **POST** /SocialTariff/exports/{expuuid}/download | Downloads a specific social tariff export file.
+*DefaultApi* | [**put_frenchereport_candidates_invoiceid_recollect**](docs/DefaultApi.md#put_frenchereport_candidates_invoiceid_recollect) | **PUT** /FrenchEReport/candidates/{invoiceId}/recollect | Re-requests invoice data from billing to refresh a non-submitted e-reporting candidate.
+*DefaultApi* | [**put_frenchereport_submissions_submissionid_resubmit**](docs/DefaultApi.md#put_frenchereport_submissions_submissionid_resubmit) | **PUT** /FrenchEReport/submissions/{submissionId}/resubmit | Re-enqueues a failed or rejected e-reporting submission for delivery to Recommand.
 
 
 ## Documentation For Models
 
  - [AggregateDetailsDTO](docs/AggregateDetailsDTO.md)
  - [ApiResponseDTO](docs/ApiResponseDTO.md)
+ - [ApiResponseDTOOfFrenchEReportDeclarantStatusDTO](docs/ApiResponseDTOOfFrenchEReportDeclarantStatusDTO.md)
+ - [ApiResponseDTOOfFrenchEReportSubmissionDTO](docs/ApiResponseDTOOfFrenchEReportSubmissionDTO.md)
+ - [ApiResponseDTOOfFrenchEReportSubmissionOverviewCountDTO](docs/ApiResponseDTOOfFrenchEReportSubmissionOverviewCountDTO.md)
  - [ApiResponseDTOOfMigrationLatestVersionDTO](docs/ApiResponseDTOOfMigrationLatestVersionDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfFrenchEReportInvoiceCandidateDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfFrenchEReportInvoiceCandidateDTO.md)
+ - [ApiResponseDTOOfPagedResponseModelDTOOfFrenchEReportSubmissionDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfFrenchEReportSubmissionDTO.md)
  - [ApiResponseDTOOfPagedResponseModelDTOOfSocialTariffExportDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfSocialTariffExportDTO.md)
  - [ApiResponseDTOOfSocialTariffExportDTO](docs/ApiResponseDTOOfSocialTariffExportDTO.md)
  - [ApiResponseDTOOfboolean](docs/ApiResponseDTOOfboolean.md)
  - [BaseQueryParams](docs/BaseQueryParams.md)
  - [BulkDeleteSocialTariffsRequest](docs/BulkDeleteSocialTariffsRequest.md)
  - [BulkDownloadSocialTariffsRequest](docs/BulkDownloadSocialTariffsRequest.md)
+ - [CountryCode](docs/CountryCode.md)
  - [CreateClaimsProtectedCustomersSocialTariffExportRequest](docs/CreateClaimsProtectedCustomersSocialTariffExportRequest.md)
  - [CreateCustomerPortfolioSocialTariffExportRequest](docs/CreateCustomerPortfolioSocialTariffExportRequest.md)
+ - [CustomerType](docs/CustomerType.md)
  - [DataType](docs/DataType.md)
  - [EntitySubjectType](docs/EntitySubjectType.md)
  - [EntityTagHeaderValue](docs/EntityTagHeaderValue.md)
  - [FileStreamResult](docs/FileStreamResult.md)
+ - [FrenchEReportCandidateStatus](docs/FrenchEReportCandidateStatus.md)
+ - [FrenchEReportClassification](docs/FrenchEReportClassification.md)
+ - [FrenchEReportDeclarantStatusDTO](docs/FrenchEReportDeclarantStatusDTO.md)
+ - [FrenchEReportInvoiceCandidateDTO](docs/FrenchEReportInvoiceCandidateDTO.md)
+ - [FrenchEReportSubmissionDTO](docs/FrenchEReportSubmissionDTO.md)
+ - [FrenchEReportSubmissionOverviewCountDTO](docs/FrenchEReportSubmissionOverviewCountDTO.md)
+ - [FrenchEReportSubmissionStatus](docs/FrenchEReportSubmissionStatus.md)
+ - [FrenchEReportSubmissionType](docs/FrenchEReportSubmissionType.md)
+ - [FrenchEReportVatBreakdownLineDTO](docs/FrenchEReportVatBreakdownLineDTO.md)
+ - [GetFrenchEReportInvoiceCandidatesQueryParams](docs/GetFrenchEReportInvoiceCandidatesQueryParams.md)
+ - [GetFrenchEReportSubmissionsQueryParams](docs/GetFrenchEReportSubmissionsQueryParams.md)
  - [LocalisedErrorDTO](docs/LocalisedErrorDTO.md)
  - [LocalisedErrorDTOMessageValue](docs/LocalisedErrorDTOMessageValue.md)
  - [MigrationLatestVersionDTO](docs/MigrationLatestVersionDTO.md)
+ - [PagedResponseModelDTOOfFrenchEReportInvoiceCandidateDTO](docs/PagedResponseModelDTOOfFrenchEReportInvoiceCandidateDTO.md)
+ - [PagedResponseModelDTOOfFrenchEReportSubmissionDTO](docs/PagedResponseModelDTOOfFrenchEReportSubmissionDTO.md)
  - [PagedResponseModelDTOOfSocialTariffExportDTO](docs/PagedResponseModelDTOOfSocialTariffExportDTO.md)
  - [ProblemDetails](docs/ProblemDetails.md)
  - [ReadExportsQueryParams](docs/ReadExportsQueryParams.md)

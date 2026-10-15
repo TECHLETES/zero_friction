@@ -16,8 +16,8 @@ Name | Type | Description | Notes
 **ssin_country** | [**CountryCode**](CountryCode.md) |  | 
 **customer_type** | [**CustomerType**](CustomerType.md) |  | 
 **company_name** | **str** |  | 
-**organization_number** | **str** |  | [optional] 
-**vat_number** | **str** |  | [optional] 
+**organization_number** | **str** |  | 
+**vat_number** | **str** |  | 
 **default_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | 
 **invoice_address** | [**AddressDTO**](AddressDTO.md) |  | [optional] 
 **bank_account** | **str** |  | [optional] 

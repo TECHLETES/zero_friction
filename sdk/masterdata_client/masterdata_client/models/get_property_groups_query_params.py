@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,11 +27,12 @@ class GetPropertyGroupsQueryParams(BaseModel):
     GetPropertyGroupsQueryParams
     """ # noqa: E501
     name_contains: Optional[StrictStr] = Field(default=None, alias="nameContains")
+    include_live_service_location_ids: Optional[StrictBool] = Field(default=None, alias="includeLiveServiceLocationIds")
     flex_search: Optional[StrictStr] = Field(default=None, alias="flexSearch")
     include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
     exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
     page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
-    __properties: ClassVar[List[str]] = ["nameContains", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
+    __properties: ClassVar[List[str]] = ["nameContains", "includeLiveServiceLocationIds", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,6 +96,7 @@ class GetPropertyGroupsQueryParams(BaseModel):
 
         _obj = cls.model_validate({
             "nameContains": obj.get("nameContains"),
+            "includeLiveServiceLocationIds": obj.get("includeLiveServiceLocationIds"),
             "flexSearch": obj.get("flexSearch"),
             "includeOnlyIds": obj.get("includeOnlyIds"),
             "excludeIds": obj.get("excludeIds"),

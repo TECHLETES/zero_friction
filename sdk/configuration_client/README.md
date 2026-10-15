@@ -106,6 +106,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**add_host_name**](docs/DefaultApi.md#add_host_name) | **POST** /PortalSettings/hostname/add | adds a hostName for a specific portal.
 *DefaultApi* | [**create_payment_terms**](docs/DefaultApi.md#create_payment_terms) | **POST** /PaymentTerms | Creates a new payment term.
 *DefaultApi* | [**delete_accounting_accountingcompanies**](docs/DefaultApi.md#delete_accounting_accountingcompanies) | **DELETE** /Accounting/accountingcompanies | Deletes accounting companies and all their related entities.
+*DefaultApi* | [**delete_accounting_custom_codes_kind_id**](docs/DefaultApi.md#delete_accounting_custom_codes_kind_id) | **DELETE** /Accounting/custom-codes/{kind}/{id} | Deletes a Custom accounting code when it is not in use.
 *DefaultApi* | [**delete_bankaccounts_bankaccuuid**](docs/DefaultApi.md#delete_bankaccounts_bankaccuuid) | **DELETE** /BankAccounts/{bankaccuuid} | Deletes a bank account by its identifier.
 *DefaultApi* | [**delete_bankingdataproviders_id**](docs/DefaultApi.md#delete_bankingdataproviders_id) | **DELETE** /BankingDataProviders/{id} | Delete a banking data provider.
 *DefaultApi* | [**delete_billingitems_billingitemuuid**](docs/DefaultApi.md#delete_billingitems_billingitemuuid) | **DELETE** /BillingItems/{billingitemuuid} | Deletes a billing item by its identifier.
@@ -122,6 +123,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**delete_page_notification**](docs/DefaultApi.md#delete_page_notification) | **POST** /PortalSettings/notification/{pageIdentifier}/delete | Removes a page notification from the portal settings.
 *DefaultApi* | [**delete_payment_terms**](docs/DefaultApi.md#delete_payment_terms) | **DELETE** /PaymentTerms/{paymenttermuuid} | Deletes a payment term by its identifier.
 *DefaultApi* | [**delete_paymentdelays_paymentdelayuuid**](docs/DefaultApi.md#delete_paymentdelays_paymentdelayuuid) | **DELETE** /PaymentDelays/{paymentdelayuuid} | Deletes a payment delay setting by its identifier.
+*DefaultApi* | [**delete_portalsettings_notification_pageidentifier_delete**](docs/DefaultApi.md#delete_portalsettings_notification_pageidentifier_delete) | **DELETE** /PortalSettings/notification/{pageIdentifier}/delete | Removes a page notification from the portal settings.
 *DefaultApi* | [**delete_products_productuuid**](docs/DefaultApi.md#delete_products_productuuid) | **DELETE** /Products/{productuuid} | Deletes a product by its identifier.
 *DefaultApi* | [**delete_taxcodes_taxcodeuuid**](docs/DefaultApi.md#delete_taxcodes_taxcodeuuid) | **DELETE** /TaxCodes/{taxcodeuuid} | Deletes a tax code by its identifier.
 *DefaultApi* | [**delete_templates_entitysubjecttype_entitysubjectsubtype_templateusecase**](docs/DefaultApi.md#delete_templates_entitysubjecttype_entitysubjectsubtype_templateusecase) | **DELETE** /Templates/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase} | Removes a custom template for a specific scenario.
@@ -210,6 +212,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_products_productuuid**](docs/DefaultApi.md#get_products_productuuid) | **GET** /Products/{productuuid} | Retrieves a specific product by its identifier.
 *DefaultApi* | [**get_productusage**](docs/DefaultApi.md#get_productusage) | **GET** /ProductUsage | Gets the configuration product usage snapshot with integrations per organization.
 *DefaultApi* | [**get_regional_regulation_parameters_for_bel**](docs/DefaultApi.md#get_regional_regulation_parameters_for_bel) | **GET** /RegionalRegulations/bel | Retrieves the current regional regulations parameters specific to Belgium.
+*DefaultApi* | [**get_regional_regulation_parameters_for_fra**](docs/DefaultApi.md#get_regional_regulation_parameters_for_fra) | **GET** /RegionalRegulations/fra | Retrieves the current regional regulations parameters specific to France.
 *DefaultApi* | [**get_regional_regulation_parameters_for_gbr**](docs/DefaultApi.md#get_regional_regulation_parameters_for_gbr) | **GET** /RegionalRegulations/gbr | Retrieves the current regional regulations parameters specific to Great Britain.
 *DefaultApi* | [**get_reportingconfigurationproviders**](docs/DefaultApi.md#get_reportingconfigurationproviders) | **GET** /ReportingConfigurationProviders | Gets the reporting configuration provider status for the current organization. It returns if the reporting configuration provider is enabled for the organization and to which destination the data will be exported.
 *DefaultApi* | [**get_requiredestimations_productid**](docs/DefaultApi.md#get_requiredestimations_productid) | **GET** /RequiredEstimations/{productId} | Retrieves all required estimations for a specific product.
@@ -262,6 +265,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**post_accounting_costcenters_filter**](docs/DefaultApi.md#post_accounting_costcenters_filter) | **POST** /Accounting/costcenters/filter | Retrieves a paged list of cost centers This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
 *DefaultApi* | [**post_accounting_costunits**](docs/DefaultApi.md#post_accounting_costunits) | **POST** /Accounting/costunits | Creates or updates cost units. If a cost unit already exists in the system, it will be updated instead of creating a new one.  The system identifies existing codes by matching the SourceEntityId in the Metadata property.
 *DefaultApi* | [**post_accounting_costunits_filter**](docs/DefaultApi.md#post_accounting_costunits_filter) | **POST** /Accounting/costunits/filter | Retrieves a paged list of cost units This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+*DefaultApi* | [**post_accounting_custom_codes_kind_id_description**](docs/DefaultApi.md#post_accounting_custom_codes_kind_id_description) | **POST** /Accounting/custom-codes/{kind}/{id}/description | Updates the description of a Custom accounting code.
 *DefaultApi* | [**post_accounting_disconnect**](docs/DefaultApi.md#post_accounting_disconnect) | **POST** /Accounting/disconnect | Disconnect the configured accounting system for the organization.
 *DefaultApi* | [**post_accounting_generalledgers**](docs/DefaultApi.md#post_accounting_generalledgers) | **POST** /Accounting/generalledgers | Creates or updates general ledger codes. If a general ledger code already exists in the system, it will be updated instead of creating a new one.  The system identifies existing codes by matching the SourceEntityId in the Metadata property.
 *DefaultApi* | [**post_accounting_generalledgers_filter**](docs/DefaultApi.md#post_accounting_generalledgers_filter) | **POST** /Accounting/generalledgers/filter | Retrieves a paged list of general ledger codes, with optional filtering and sorting. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
@@ -337,10 +341,11 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**post_parameters_masterdata**](docs/DefaultApi.md#post_parameters_masterdata) | **POST** /Parameters/masterdata | Updates the master data parameters configuration.
 *DefaultApi* | [**post_parameters_metering**](docs/DefaultApi.md#post_parameters_metering) | **POST** /Parameters/metering | Updates the metering parameters configuration.
 *DefaultApi* | [**post_parameters_payment**](docs/DefaultApi.md#post_parameters_payment) | **POST** /Parameters/payment | Updates the payment parameters configuration.
+*DefaultApi* | [**post_parameters_payment_portal_collection_preferences**](docs/DefaultApi.md#post_parameters_payment_portal_collection_preferences) | **POST** /Parameters/payment/portal-collection-preferences | Updates the customer portal collection day preferences.
 *DefaultApi* | [**post_parameters_paymentplan**](docs/DefaultApi.md#post_parameters_paymentplan) | **POST** /Parameters/paymentplan | Updates the payment plan parameters configuration.
 *DefaultApi* | [**post_parameters_prepayment**](docs/DefaultApi.md#post_parameters_prepayment) | **POST** /Parameters/prepayment | Updates the prepayment parameters configuration (PrepaymentParameters).
-*DefaultApi* | [**post_paymentdelays**](docs/DefaultApi.md#post_paymentdelays) | **POST** /PaymentDelays | Creates a new payment delay setting.
-*DefaultApi* | [**post_paymentdelays_paymentdelayuuid**](docs/DefaultApi.md#post_paymentdelays_paymentdelayuuid) | **POST** /PaymentDelays/{paymentdelayuuid} | Updates an existing payment delay setting.
+*DefaultApi* | [**post_paymentdelays**](docs/DefaultApi.md#post_paymentdelays) | **POST** /PaymentDelays | Creates a new payment delay setting. Only one setting may exist per invoice type, so creating a second one for the same invoice type is rejected.
+*DefaultApi* | [**post_paymentdelays_paymentdelayuuid**](docs/DefaultApi.md#post_paymentdelays_paymentdelayuuid) | **POST** /PaymentDelays/{paymentdelayuuid} | Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
 *DefaultApi* | [**post_products**](docs/DefaultApi.md#post_products) | **POST** /Products | Creates a new product.
 *DefaultApi* | [**post_products_entityid_translations**](docs/DefaultApi.md#post_products_entityid_translations) | **POST** /Products/{entityId}/translations | /Products/{entityId}/translations - POST
 *DefaultApi* | [**post_products_productuuid**](docs/DefaultApi.md#post_products_productuuid) | **POST** /Products/{productuuid} | Updates an existing product.
@@ -361,9 +366,67 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**post_timeofusetypes**](docs/DefaultApi.md#post_timeofusetypes) | **POST** /TimeOfUseTypes | Creates a time-of-use type.
 *DefaultApi* | [**post_timeofusetypes_entityid_translations**](docs/DefaultApi.md#post_timeofusetypes_entityid_translations) | **POST** /TimeOfUseTypes/{entityId}/translations | /TimeOfUseTypes/{entityId}/translations - POST
 *DefaultApi* | [**post_timeofusetypes_id**](docs/DefaultApi.md#post_timeofusetypes_id) | **POST** /TimeOfUseTypes/{id} | Updates a time-of-use type.
+*DefaultApi* | [**put_accounting_custom_codes_kind_id_description**](docs/DefaultApi.md#put_accounting_custom_codes_kind_id_description) | **PUT** /Accounting/custom-codes/{kind}/{id}/description | Updates the description of a Custom accounting code.
+*DefaultApi* | [**put_accounting_disconnect**](docs/DefaultApi.md#put_accounting_disconnect) | **PUT** /Accounting/disconnect | Disconnect the configured accounting system for the organization.
+*DefaultApi* | [**put_accounting_sync**](docs/DefaultApi.md#put_accounting_sync) | **PUT** /Accounting/sync | Syncs accounting codes from the external accounting system
+*DefaultApi* | [**put_bankaccounts_bankaccuuid**](docs/DefaultApi.md#put_bankaccounts_bankaccuuid) | **PUT** /BankAccounts/{bankaccuuid} | Updates an existing bank account.
+*DefaultApi* | [**put_bankholidays_id_update**](docs/DefaultApi.md#put_bankholidays_id_update) | **PUT** /BankHolidays/{id}/update | Updates the organisation&#39;s bank holiday calendar in its entirety with the given list of (Date, IsActive). Returns the updated calendar.
+*DefaultApi* | [**put_bankholidays_id_update_single**](docs/DefaultApi.md#put_bankholidays_id_update_single) | **PUT** /BankHolidays/{id}/update-single | Updates the active state of a single bank holiday (by date). Returns the updated calendar.
+*DefaultApi* | [**put_bankingdataproviders_id_disable**](docs/DefaultApi.md#put_bankingdataproviders_id_disable) | **PUT** /BankingDataProviders/{id}/disable | Disable a banking data provider.
+*DefaultApi* | [**put_bankingdataproviders_id_enable**](docs/DefaultApi.md#put_bankingdataproviders_id_enable) | **PUT** /BankingDataProviders/{id}/enable | Enables a banking data provider.
+*DefaultApi* | [**put_bankingdataproviders_id_testconnection**](docs/DefaultApi.md#put_bankingdataproviders_id_testconnection) | **PUT** /BankingDataProviders/{id}/testConnection | Test the SFTP connection for a banking data provider.
+*DefaultApi* | [**put_bankingdataproviders_id_update**](docs/DefaultApi.md#put_bankingdataproviders_id_update) | **PUT** /BankingDataProviders/{id}/update | Update an existing banking data provider.
+*DefaultApi* | [**put_billingitems_billingitemuuid**](docs/DefaultApi.md#put_billingitems_billingitemuuid) | **PUT** /BillingItems/{billingitemuuid} | Updates an existing billing item.
+*DefaultApi* | [**put_billingitems_entityid_translations**](docs/DefaultApi.md#put_billingitems_entityid_translations) | **PUT** /BillingItems/{entityId}/translations | /BillingItems/{entityId}/translations - PUT
 *DefaultApi* | [**put_billingtariffs_b_billingitemid**](docs/DefaultApi.md#put_billingtariffs_b_billingitemid) | **PUT** /BillingTariffs/b/{billingItemId} | Updates an existing billing tariff tree for a specific billing item.
 *DefaultApi* | [**put_billingtariffs_b_billingitemid_period**](docs/DefaultApi.md#put_billingtariffs_b_billingitemid_period) | **PUT** /BillingTariffs/b/{billingItemId}/period | Updates the period of a billing tariff tree for a specific billing item.
+*DefaultApi* | [**put_collectionflows_id**](docs/DefaultApi.md#put_collectionflows_id) | **PUT** /CollectionFlows/{id} | Updates an existing collection flow.
+*DefaultApi* | [**put_collectionsteps_entityid_translations**](docs/DefaultApi.md#put_collectionsteps_entityid_translations) | **PUT** /CollectionSteps/{entityId}/translations | /CollectionSteps/{entityId}/translations - PUT
+*DefaultApi* | [**put_collectionsteps_id**](docs/DefaultApi.md#put_collectionsteps_id) | **PUT** /CollectionSteps/{id} | Updates an existing collection flow step.
+*DefaultApi* | [**put_costcomponents_costcomponentuuid**](docs/DefaultApi.md#put_costcomponents_costcomponentuuid) | **PUT** /CostComponents/{costcomponentuuid} | Updates an existing cost component.
+*DefaultApi* | [**put_costcomponents_entityid_translations**](docs/DefaultApi.md#put_costcomponents_entityid_translations) | **PUT** /CostComponents/{entityId}/translations | /CostComponents/{entityId}/translations - PUT
+*DefaultApi* | [**put_culturetable**](docs/DefaultApi.md#put_culturetable) | **PUT** /CultureTable | Updates the culture table.
+*DefaultApi* | [**put_customentitypropertytypes_customentitypropertytypeuuid**](docs/DefaultApi.md#put_customentitypropertytypes_customentitypropertytypeuuid) | **PUT** /CustomEntityPropertyTypes/{customentitypropertytypeuuid} | Updates an existing custom entity property type.
+*DefaultApi* | [**put_customentitypropertytypes_customentitypropertytypeuuid_options**](docs/DefaultApi.md#put_customentitypropertytypes_customentitypropertytypeuuid_options) | **PUT** /CustomEntityPropertyTypes/{customentitypropertytypeuuid}/options | Updates the dropdown options for a custom entity property type.
+*DefaultApi* | [**put_customentitypropertytypes_entityid_translations**](docs/DefaultApi.md#put_customentitypropertytypes_entityid_translations) | **PUT** /CustomEntityPropertyTypes/{entityId}/translations | /CustomEntityPropertyTypes/{entityId}/translations - PUT
+*DefaultApi* | [**put_dataexportfileformats_fileformatuuid**](docs/DefaultApi.md#put_dataexportfileformats_fileformatuuid) | **PUT** /DataExportFileFormats/{fileformatuuid} | Updates an existing data export file format.
+*DefaultApi* | [**put_dataexports_dataexportuuid**](docs/DefaultApi.md#put_dataexports_dataexportuuid) | **PUT** /DataExports/{dataexportuuid} | Updates an existing data export.
+*DefaultApi* | [**put_dataimportfileformats_fileformatuuid**](docs/DefaultApi.md#put_dataimportfileformats_fileformatuuid) | **PUT** /DataImportFileFormats/{fileformatuuid} | Updates an existing data import file format.
+*DefaultApi* | [**put_dataimports_dataimportuuid**](docs/DefaultApi.md#put_dataimports_dataimportuuid) | **PUT** /DataImports/{dataimportuuid} | Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
 *DefaultApi* | [**put_enumtranslations_enumtype_symbols_symbol**](docs/DefaultApi.md#put_enumtranslations_enumtype_symbols_symbol) | **PUT** /EnumTranslations/{enumType}/symbols/{symbol} | Updates the translation for a specific enumeration symbol.
+*DefaultApi* | [**put_enumtranslations_enumtype_symbols_symbol_reset**](docs/DefaultApi.md#put_enumtranslations_enumtype_symbols_symbol_reset) | **PUT** /EnumTranslations/{enumType}/symbols/{symbol}/reset | Resets the translation for a specific enumeration symbol to its default value.
+*DefaultApi* | [**put_integrations_billingtariff_import_importid_undo**](docs/DefaultApi.md#put_integrations_billingtariff_import_importid_undo) | **PUT** /Integrations/billingTariff/import/{importId}/undo | Undoes a previous billing tariff import operation.
+*DefaultApi* | [**put_integrations_billingtariff_import_importid_unlock**](docs/DefaultApi.md#put_integrations_billingtariff_import_importid_unlock) | **PUT** /Integrations/billingTariff/import/{importId}/unlock | Unlocks a billing tariff import operation that was previously locked.
+*DefaultApi* | [**put_models_modeluuid**](docs/DefaultApi.md#put_models_modeluuid) | **PUT** /Models/{modeluuid} | Updates an existing device model.
+*DefaultApi* | [**put_numbersequences_numbersequenceuuid**](docs/DefaultApi.md#put_numbersequences_numbersequenceuuid) | **PUT** /NumberSequences/{numbersequenceuuid} | Updates an existing number sequence configuration.
+*DefaultApi* | [**put_organizations_organizationuuid**](docs/DefaultApi.md#put_organizations_organizationuuid) | **PUT** /Organizations/{organizationuuid} | Updates an existing organization.
+*DefaultApi* | [**put_organizations_organizationuuid_initialize**](docs/DefaultApi.md#put_organizations_organizationuuid_initialize) | **PUT** /Organizations/{organizationuuid}/initialize | Initializes an organization with default settings and configurations.
+*DefaultApi* | [**put_parameters_billing**](docs/DefaultApi.md#put_parameters_billing) | **PUT** /Parameters/billing | Updates the billing parameters configuration.
+*DefaultApi* | [**put_parameters_communication**](docs/DefaultApi.md#put_parameters_communication) | **PUT** /Parameters/communication | Updates the communication parameters configuration.
+*DefaultApi* | [**put_parameters_communication_domainauthentication**](docs/DefaultApi.md#put_parameters_communication_domainauthentication) | **PUT** /Parameters/communication/domainauthentication | Updates the domain authentication parameters for communication.
+*DefaultApi* | [**put_parameters_communication_domainauthentication_eu_accept**](docs/DefaultApi.md#put_parameters_communication_domainauthentication_eu_accept) | **PUT** /Parameters/communication/domainauthentication/eu/accept | Accepts EU cutover when AcceptAllowed: promotes EuRecords to Records and enqueues residency Eu.
+*DefaultApi* | [**put_parameters_communication_domainauthentication_eu_migrate**](docs/DefaultApi.md#put_parameters_communication_domainauthentication_eu_migrate) | **PUT** /Parameters/communication/domainauthentication/eu/migrate | Starts EU SendGrid domain migrate prep (writes EuRecords only; does not flip residency).
+*DefaultApi* | [**put_parameters_communication_domainauthentication_eu_verify**](docs/DefaultApi.md#put_parameters_communication_domainauthentication_eu_verify) | **PUT** /Parameters/communication/domainauthentication/eu/verify | Verifies EU migrate prep DNS (updates EuRecords only; does not flip residency).
+*DefaultApi* | [**put_parameters_communication_domainauthentication_verify**](docs/DefaultApi.md#put_parameters_communication_domainauthentication_verify) | **PUT** /Parameters/communication/domainauthentication/verify | Verifies the current domain authentication parameters.
+*DefaultApi* | [**put_parameters_masterdata**](docs/DefaultApi.md#put_parameters_masterdata) | **PUT** /Parameters/masterdata | Updates the master data parameters configuration.
+*DefaultApi* | [**put_parameters_metering**](docs/DefaultApi.md#put_parameters_metering) | **PUT** /Parameters/metering | Updates the metering parameters configuration.
+*DefaultApi* | [**put_parameters_payment**](docs/DefaultApi.md#put_parameters_payment) | **PUT** /Parameters/payment | Updates the payment parameters configuration.
+*DefaultApi* | [**put_parameters_payment_portal_collection_preferences**](docs/DefaultApi.md#put_parameters_payment_portal_collection_preferences) | **PUT** /Parameters/payment/portal-collection-preferences | Updates the customer portal collection day preferences.
+*DefaultApi* | [**put_parameters_paymentplan**](docs/DefaultApi.md#put_parameters_paymentplan) | **PUT** /Parameters/paymentplan | Updates the payment plan parameters configuration.
+*DefaultApi* | [**put_parameters_prepayment**](docs/DefaultApi.md#put_parameters_prepayment) | **PUT** /Parameters/prepayment | Updates the prepayment parameters configuration (PrepaymentParameters).
+*DefaultApi* | [**put_paymentdelays_paymentdelayuuid**](docs/DefaultApi.md#put_paymentdelays_paymentdelayuuid) | **PUT** /PaymentDelays/{paymentdelayuuid} | Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
+*DefaultApi* | [**put_paymentterms_paymenttermuuid**](docs/DefaultApi.md#put_paymentterms_paymenttermuuid) | **PUT** /PaymentTerms/{paymenttermuuid} | Updates an existing payment term.
+*DefaultApi* | [**put_portalsettings**](docs/DefaultApi.md#put_portalsettings) | **PUT** /PortalSettings | Updates portal settings configuration.
+*DefaultApi* | [**put_portalsettings_hostname_add**](docs/DefaultApi.md#put_portalsettings_hostname_add) | **PUT** /PortalSettings/hostname/add | adds a hostName for a specific portal.
+*DefaultApi* | [**put_portalsettings_hostname_validate**](docs/DefaultApi.md#put_portalsettings_hostname_validate) | **PUT** /PortalSettings/hostname/validate | Validates DNS records for a pending portal hostname.
+*DefaultApi* | [**put_portalsettings_notification**](docs/DefaultApi.md#put_portalsettings_notification) | **PUT** /PortalSettings/notification | Upserts a page notification to the portal settings.
+*DefaultApi* | [**put_products_entityid_translations**](docs/DefaultApi.md#put_products_entityid_translations) | **PUT** /Products/{entityId}/translations | /Products/{entityId}/translations - PUT
+*DefaultApi* | [**put_products_productuuid**](docs/DefaultApi.md#put_products_productuuid) | **PUT** /Products/{productuuid} | Updates an existing product.
+*DefaultApi* | [**put_regionalregulations_bel**](docs/DefaultApi.md#put_regionalregulations_bel) | **PUT** /RegionalRegulations/bel | Updates regional regulations parameters specific to Belgium.
+*DefaultApi* | [**put_regionalregulations_gbr**](docs/DefaultApi.md#put_regionalregulations_gbr) | **PUT** /RegionalRegulations/gbr | Updates regional regulations parameters specific to Geat Britain.
+*DefaultApi* | [**put_reportingconfigurationproviders_activate**](docs/DefaultApi.md#put_reportingconfigurationproviders_activate) | **PUT** /ReportingConfigurationProviders/activate | Activates reporting integration for the current organization. Creates a Microsoft Fabric cloud connection to the customer Azure Data Lake Storage Gen2 account using the supplied service principal credentials. The client secret is sent to Fabric only and is not stored in the database. Requires the Mi
+*DefaultApi* | [**put_reportingconfigurationproviders_deactivate**](docs/DefaultApi.md#put_reportingconfigurationproviders_deactivate) | **PUT** /ReportingConfigurationProviders/deactivate | Deactivates reporting integration for the current organization.
+*DefaultApi* | [**put_reportingconfigurationproviders_settings**](docs/DefaultApi.md#put_reportingconfigurationproviders_settings) | **PUT** /ReportingConfigurationProviders/settings | Updates reporting configuration (export location, Microsoft Entra ID tenant id, service principal application id). While the integration is active, changing any of those values or rotating the client secret requires supplying the client secret again so the Microsoft Fabric connection can be recreate
 *DefaultApi* | [**put_scenarios_billingrelation_advanceamountchanged**](docs/DefaultApi.md#put_scenarios_billingrelation_advanceamountchanged) | **PUT** /Scenarios/billingrelation/advanceamountchanged | Updates the advance amount changed scenario configuration.
 *DefaultApi* | [**put_scenarios_collectioncase_collection**](docs/DefaultApi.md#put_scenarios_collectioncase_collection) | **PUT** /Scenarios/collectioncase/collection | Updates the collection scenario configuration.
 *DefaultApi* | [**put_scenarios_collectioncase_noticeofdefault**](docs/DefaultApi.md#put_scenarios_collectioncase_noticeofdefault) | **PUT** /Scenarios/collectioncase/noticeofdefault | Updates the notice of default scenario configuration.
@@ -389,7 +452,13 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**put_scenarios_paymentplan_recalculated**](docs/DefaultApi.md#put_scenarios_paymentplan_recalculated) | **PUT** /Scenarios/paymentplan/recalculated | Updates the payment plan recalculated scenario configuration.
 *DefaultApi* | [**put_scenarios_paymentplan_reminder**](docs/DefaultApi.md#put_scenarios_paymentplan_reminder) | **PUT** /Scenarios/paymentplan/reminder | Updates the payment plan reminder scenario configuration.
 *DefaultApi* | [**put_scenarios_paymentplan_requested**](docs/DefaultApi.md#put_scenarios_paymentplan_requested) | **PUT** /Scenarios/paymentplan/requested | Updates the payment plan requested scenario configuration.
+*DefaultApi* | [**put_scenariotranslations_translationname_reset**](docs/DefaultApi.md#put_scenariotranslations_translationname_reset) | **PUT** /ScenarioTranslations/{translationName}/reset | Resets a specific scenario translation to its default value.
+*DefaultApi* | [**put_scenariotranslations_translationname_update**](docs/DefaultApi.md#put_scenariotranslations_translationname_update) | **PUT** /ScenarioTranslations/{translationName}/update | Updates a specific scenario translation.
+*DefaultApi* | [**put_taxcodes_taxcodeuuid**](docs/DefaultApi.md#put_taxcodes_taxcodeuuid) | **PUT** /TaxCodes/{taxcodeuuid} | Updates an existing tax code.
 *DefaultApi* | [**put_templates_entitysubjecttype_entitysubjectsubtype_templateusecase**](docs/DefaultApi.md#put_templates_entitysubjecttype_entitysubjectsubtype_templateusecase) | **PUT** /Templates/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase} | Uploads a custom template for a specific scenario.
+*DefaultApi* | [**put_timeofusecalendars_id**](docs/DefaultApi.md#put_timeofusecalendars_id) | **PUT** /TimeOfUseCalendars/{id} | Updates calendar weekdays (and display-only code). Same &#x60;weekdays&#x60; shape as create.
+*DefaultApi* | [**put_timeofusetypes_entityid_translations**](docs/DefaultApi.md#put_timeofusetypes_entityid_translations) | **PUT** /TimeOfUseTypes/{entityId}/translations | /TimeOfUseTypes/{entityId}/translations - PUT
+*DefaultApi* | [**put_timeofusetypes_id**](docs/DefaultApi.md#put_timeofusetypes_id) | **PUT** /TimeOfUseTypes/{id} | Updates a time-of-use type.
 *DefaultApi* | [**update_payment_terms**](docs/DefaultApi.md#update_payment_terms) | **POST** /PaymentTerms/{paymenttermuuid} | Updates an existing payment term.
 *DefaultApi* | [**update_portal_settings**](docs/DefaultApi.md#update_portal_settings) | **POST** /PortalSettings | Updates portal settings configuration.
 *DefaultApi* | [**update_regional_regulation_parameters_for_bel**](docs/DefaultApi.md#update_regional_regulation_parameters_for_bel) | **POST** /RegionalRegulations/bel | Updates regional regulations parameters specific to Belgium.
@@ -471,6 +540,7 @@ Class | Method | HTTP request | Description
  - [ApiResponseDTOOfDomainAuthenticationParametersDTO](docs/ApiResponseDTOOfDomainAuthenticationParametersDTO.md)
  - [ApiResponseDTOOfEndNoteScenarioDTO](docs/ApiResponseDTOOfEndNoteScenarioDTO.md)
  - [ApiResponseDTOOfEnumSymbolTranslationsDTO](docs/ApiResponseDTOOfEnumSymbolTranslationsDTO.md)
+ - [ApiResponseDTOOfFRARegionalRegulationsConfigurationDTO](docs/ApiResponseDTOOfFRARegionalRegulationsConfigurationDTO.md)
  - [ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO](docs/ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO.md)
  - [ApiResponseDTOOfIScenarioDTO](docs/ApiResponseDTOOfIScenarioDTO.md)
  - [ApiResponseDTOOfIncidentalNoteScenarioDTO](docs/ApiResponseDTOOfIncidentalNoteScenarioDTO.md)
@@ -594,6 +664,9 @@ Class | Method | HTTP request | Description
  - [BaseEmailTemplateDTO](docs/BaseEmailTemplateDTO.md)
  - [BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO](docs/BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO.md)
  - [BaseEmailTemplateDTOBase](docs/BaseEmailTemplateDTOBase.md)
+ - [BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO](docs/BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO.md)
+ - [BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO](docs/BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO.md)
+ - [BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO](docs/BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO.md)
  - [BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO](docs/BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO.md)
  - [BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO](docs/BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO.md)
  - [BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO](docs/BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO.md)
@@ -603,6 +676,9 @@ Class | Method | HTTP request | Description
  - [BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO](docs/BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO.md)
  - [BaseEmailTemplateRequest](docs/BaseEmailTemplateRequest.md)
  - [BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest.md)
+ - [BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest.md)
+ - [BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest.md)
+ - [BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest.md)
  - [BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest.md)
  - [BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest.md)
  - [BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest](docs/BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest.md)
@@ -848,8 +924,11 @@ Class | Method | HTTP request | Description
  - [ExternalAccountingMetadataRequest](docs/ExternalAccountingMetadataRequest.md)
  - [ExternalAccountingReferenceDTO](docs/ExternalAccountingReferenceDTO.md)
  - [ExternalIntegrationStatus](docs/ExternalIntegrationStatus.md)
+ - [FRARegionalRegulationsConfigurationDTO](docs/FRARegionalRegulationsConfigurationDTO.md)
  - [FileContentResult](docs/FileContentResult.md)
  - [FileStreamResult](docs/FileStreamResult.md)
+ - [FrenchEReportB2CCategoryCode](docs/FrenchEReportB2CCategoryCode.md)
+ - [FrenchEReportParametersDTO](docs/FrenchEReportParametersDTO.md)
  - [FtpProtocol](docs/FtpProtocol.md)
  - [GBRRegionalRegulationsConfigurationDTO](docs/GBRRegionalRegulationsConfigurationDTO.md)
  - [GeneralLedgerCategory](docs/GeneralLedgerCategory.md)
@@ -1109,6 +1188,7 @@ Class | Method | HTTP request | Description
  - [TimeOfUseTypeDTO](docs/TimeOfUseTypeDTO.md)
  - [TranslationStatus](docs/TranslationStatus.md)
  - [UnitOfMeasure](docs/UnitOfMeasure.md)
+ - [UpdateAccountingCodeDescriptionRequest](docs/UpdateAccountingCodeDescriptionRequest.md)
  - [UpdateAdvanceCalculationParametersRequest](docs/UpdateAdvanceCalculationParametersRequest.md)
  - [UpdateAdvanceFrequencyPercentagesRequest](docs/UpdateAdvanceFrequencyPercentagesRequest.md)
  - [UpdateAdvancePercentageParametersRequest](docs/UpdateAdvancePercentageParametersRequest.md)
@@ -1140,6 +1220,7 @@ Class | Method | HTTP request | Description
  - [UpdatePaymentDelayRequest](docs/UpdatePaymentDelayRequest.md)
  - [UpdatePaymentParametersRequest](docs/UpdatePaymentParametersRequest.md)
  - [UpdatePaymentPlanParametersRequest](docs/UpdatePaymentPlanParametersRequest.md)
+ - [UpdatePortalCollectionDayPreferencesRequest](docs/UpdatePortalCollectionDayPreferencesRequest.md)
  - [UpdatePortalSettingsRequest](docs/UpdatePortalSettingsRequest.md)
  - [UpdateRegionalRegulationsParametersForBELRequest](docs/UpdateRegionalRegulationsParametersForBELRequest.md)
  - [UpdateRegionalRegulationsParametersForGBRRequest](docs/UpdateRegionalRegulationsParametersForGBRRequest.md)

@@ -37,11 +37,11 @@ class UpdatePaymentParametersRequest(BaseModel):
     block_automatic_refunding: Optional[StrictBool] = Field(default=None, alias="blockAutomaticRefunding")
     default_collection_delay: PaymentDelay = Field(alias="defaultCollectionDelay")
     default_collection_delay_value: Optional[StrictInt] = Field(default=None, alias="defaultCollectionDelayValue")
-    allow_resident_to_choose_collection_day: Optional[StrictBool] = Field(default=None, alias="allowResidentToChooseCollectionDay")
     allow_customer_collection_day_override: Optional[StrictBool] = Field(default=None, alias="allowCustomerCollectionDayOverride")
-    selectable_collection_days: List[StrictInt] = Field(alias="selectableCollectionDays")
     matching_rules: Optional[List[BaseBankStatementMatchingRuleDTO]] = Field(default=None, alias="matchingRules")
-    __properties: ClassVar[List[str]] = ["retryParameters", "refundPaymentDelayInDays", "paymentTermsId", "defaultCollectionFlowId", "onlyUseInvoiceNumberInPaymentReferences", "blockAutomaticRefunding", "defaultCollectionDelay", "defaultCollectionDelayValue", "allowResidentToChooseCollectionDay", "allowCustomerCollectionDayOverride", "selectableCollectionDays", "matchingRules"]
+    allow_resident_to_choose_collection_day: Optional[StrictBool] = Field(default=None, alias="allowResidentToChooseCollectionDay")
+    selectable_collection_days: Optional[List[StrictInt]] = Field(default=None, alias="selectableCollectionDays")
+    __properties: ClassVar[List[str]] = ["retryParameters", "refundPaymentDelayInDays", "paymentTermsId", "defaultCollectionFlowId", "onlyUseInvoiceNumberInPaymentReferences", "blockAutomaticRefunding", "defaultCollectionDelay", "defaultCollectionDelayValue", "allowCustomerCollectionDayOverride", "matchingRules", "allowResidentToChooseCollectionDay", "selectableCollectionDays"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -136,10 +136,10 @@ class UpdatePaymentParametersRequest(BaseModel):
             "blockAutomaticRefunding": obj.get("blockAutomaticRefunding"),
             "defaultCollectionDelay": obj.get("defaultCollectionDelay"),
             "defaultCollectionDelayValue": obj.get("defaultCollectionDelayValue"),
-            "allowResidentToChooseCollectionDay": obj.get("allowResidentToChooseCollectionDay"),
             "allowCustomerCollectionDayOverride": obj.get("allowCustomerCollectionDayOverride"),
-            "selectableCollectionDays": obj.get("selectableCollectionDays"),
-            "matchingRules": [BaseBankStatementMatchingRuleDTO.from_dict(_item) for _item in obj["matchingRules"]] if obj.get("matchingRules") is not None else None
+            "matchingRules": [BaseBankStatementMatchingRuleDTO.from_dict(_item) for _item in obj["matchingRules"]] if obj.get("matchingRules") is not None else None,
+            "allowResidentToChooseCollectionDay": obj.get("allowResidentToChooseCollectionDay"),
+            "selectableCollectionDays": obj.get("selectableCollectionDays")
         })
         return _obj
 

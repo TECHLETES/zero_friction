@@ -64,14 +64,14 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationEntriesQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
-              entitySubjectType: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
+              entitySubjectType: { }
               subjectSubType: string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -85,14 +85,14 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationEntriesQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
-              entitySubjectType: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
+              entitySubjectType: { }
               subjectSubType: string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -106,14 +106,14 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationEntriesQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
-              entitySubjectType: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
+              entitySubjectType: { }
               subjectSubType: string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -132,84 +132,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationEntryDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationEntryDTO'
               example:
-                data:
-                  results:
-                    - subjectType: string
-                      subjectSubtype: string
-                      subjectId: string
-                      reference: string
-                      communicationType: string
-                      title: string
-                      target:
-                        customerId: string
-                        customerDisplayName: string
-                        customerAccountNumber: string
-                        address:
-                          streetName: string
-                          streetNumber: string
-                          streetNumberAddition: string
-                          postalCode: string
-                          buildingName: string
-                          locality: string
-                          city: string
-                          country: aut
-                          localizedDisplay: string
-                          lineOne: string
-                          lineTwo: string
-                        email: string
-                        preferredCommunicationType: string
-                        mobilePhoneNumber: string
-                      sentRequested: true
-                      sentRequestId: string
-                      sent: true
-                      sentDate: string
-                      finished: true
-                      failureReasonCode:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      communicationProviderError:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      failureDetails: string
-                      communicationEntryStatus: string
-                      subjectReferenceParameters:
-                        type: Invoice
-                        invoiceNum: string
-                        invoiceType: string
-                      communicationEntryId: string
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -227,79 +155,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationEntryDTO'
               example:
-                data:
-                  results:
-                    - subjectType: string
-                      subjectSubtype: string
-                      subjectId: string
-                      reference: string
-                      communicationType: string
-                      title: string
-                      target:
-                        customerId: string
-                        customerDisplayName: string
-                        customerAccountNumber: string
-                        address:
-                          streetName: string
-                          streetNumber: string
-                          streetNumberAddition: string
-                          postalCode: string
-                          buildingName: string
-                          locality: string
-                          city: string
-                          country: aut
-                          localizedDisplay: string
-                          lineOne: string
-                          lineTwo: string
-                        email: string
-                        preferredCommunicationType: string
-                        mobilePhoneNumber: string
-                      sentRequested: true
-                      sentRequestId: string
-                      sent: true
-                      sentDate: string
-                      finished: true
-                      failureReasonCode:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      communicationProviderError:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      failureDetails: string
-                      communicationEntryStatus: string
-                      subjectReferenceParameters:
-                        type: Invoice
-                        invoiceNum: string
-                        invoiceType: string
-                      communicationEntryId: string
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -352,14 +208,14 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationEntriesQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
-              entitySubjectType: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
+              entitySubjectType: { }
               subjectSubType: string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -373,14 +229,14 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationEntriesQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
-              entitySubjectType: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
+              entitySubjectType: { }
               subjectSubType: string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -394,14 +250,14 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationEntriesQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
-              entitySubjectType: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
+              entitySubjectType: { }
               subjectSubType: string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -420,17 +276,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationEntryOverviewCountDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationEntryOverviewCountDTO'
               example:
-                data:
-                  all: 0
-                  failed: 0
-                  sent: 0
-                  notSent: 0
-                  inTransit: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -448,12 +299,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationEntryOverviewCountDTO'
               example:
-                data:
-                  all: 0
-                  failed: 0
-                  sent: 0
-                  notSent: 0
-                  inTransit: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -502,25 +348,8 @@ paths:
             example:
               communicationEntryIds:
                 - string
-              queryParams:
-                communicationType: string
-                excludeCommunicationType: string
-                excludeCommunicationEntryStatus: string
-                communicationEntryStatus: string
-                entitySubjectType: string
-                subjectSubType: string
-                entitySubjectId: string
-                failureReasonCode: 0
-                sentStartDateTimeOffset: string
-                sentEndDateTimeOffset: string
-                customerId: string
-                flexSearch: string
-                includeOnlyIds:
-                  - string
-                excludeIds:
-                  - string
-                pageSize: 0
-              quickFilter: string
+              queryParams: { }
+              quickFilter: { }
               excludedIds:
                 - string
           text/json:
@@ -529,25 +358,8 @@ paths:
             example:
               communicationEntryIds:
                 - string
-              queryParams:
-                communicationType: string
-                excludeCommunicationType: string
-                excludeCommunicationEntryStatus: string
-                communicationEntryStatus: string
-                entitySubjectType: string
-                subjectSubType: string
-                entitySubjectId: string
-                failureReasonCode: 0
-                sentStartDateTimeOffset: string
-                sentEndDateTimeOffset: string
-                customerId: string
-                flexSearch: string
-                includeOnlyIds:
-                  - string
-                excludeIds:
-                  - string
-                pageSize: 0
-              quickFilter: string
+              queryParams: { }
+              quickFilter: { }
               excludedIds:
                 - string
           application/*+json:
@@ -556,25 +368,8 @@ paths:
             example:
               communicationEntryIds:
                 - string
-              queryParams:
-                communicationType: string
-                excludeCommunicationType: string
-                excludeCommunicationEntryStatus: string
-                communicationEntryStatus: string
-                entitySubjectType: string
-                subjectSubType: string
-                entitySubjectId: string
-                failureReasonCode: 0
-                sentStartDateTimeOffset: string
-                sentEndDateTimeOffset: string
-                customerId: string
-                flexSearch: string
-                includeOnlyIds:
-                  - string
-                excludeIds:
-                  - string
-                pageSize: 0
-              quickFilter: string
+              queryParams: { }
+              quickFilter: { }
               excludedIds:
                 - string
       responses:
@@ -586,7 +381,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -613,7 +408,7 @@ paths:
                 $ref: '#/components/schemas/FileStreamResult'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/FileStreamResult'
@@ -622,14 +417,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
             text/json:
               schema:
@@ -639,14 +427,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
   /Webhook/email/sendgrid:
     post:
@@ -664,7 +445,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -709,7 +490,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -760,7 +541,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -805,7 +586,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -875,7 +656,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -920,7 +701,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -992,7 +773,7 @@ paths:
               subjectId: string
               subjectType: none
               subjectSubtype: string
-              forcedCommunicationType: string
+              forcedCommunicationType: { }
           text/json:
             schema:
               $ref: '#/components/schemas/ResendCommunicationEntryRequest'
@@ -1001,7 +782,7 @@ paths:
               subjectId: string
               subjectType: none
               subjectSubtype: string
-              forcedCommunicationType: string
+              forcedCommunicationType: { }
           application/*+json:
             schema:
               $ref: '#/components/schemas/ResendCommunicationEntryRequest'
@@ -1010,7 +791,7 @@ paths:
               subjectId: string
               subjectType: none
               subjectSubtype: string
-              forcedCommunicationType: string
+              forcedCommunicationType: { }
       responses:
         '200':
           description: OK
@@ -1020,7 +801,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -1065,7 +846,151 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+    put:
+      tags:
+        - Default
+      summary: Resends a communication entry using the same settings as the original.
+      description: Resends a communication entry using the same settings as the original.
+      operationId: put-communicationentries-resend
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      requestBody:
+        description: The cancellation token.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendCommunicationEntryRequest'
+            example:
+              communicationEntryId: string
+              subjectId: string
+              subjectType: none
+              subjectSubtype: string
+              forcedCommunicationType: { }
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ResendCommunicationEntryRequest'
+            example:
+              communicationEntryId: string
+              subjectId: string
+              subjectType: none
+              subjectSubtype: string
+              forcedCommunicationType: { }
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ResendCommunicationEntryRequest'
+            example:
+              communicationEntryId: string
+              subjectId: string
+              subjectType: none
+              subjectSubtype: string
+              forcedCommunicationType: { }
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1152,14 +1077,14 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationEntriesQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
-              entitySubjectType: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
+              entitySubjectType: { }
               subjectSubType: string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -1173,14 +1098,14 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationEntriesQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
-              entitySubjectType: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
+              entitySubjectType: { }
               subjectSubType: string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -1194,14 +1119,14 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationEntriesQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
-              entitySubjectType: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
+              entitySubjectType: { }
               subjectSubType: string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -1220,84 +1145,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationEntryDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationEntryDTO'
               example:
-                data:
-                  results:
-                    - subjectType: string
-                      subjectSubtype: string
-                      subjectId: string
-                      reference: string
-                      communicationType: string
-                      title: string
-                      target:
-                        customerId: string
-                        customerDisplayName: string
-                        customerAccountNumber: string
-                        address:
-                          streetName: string
-                          streetNumber: string
-                          streetNumberAddition: string
-                          postalCode: string
-                          buildingName: string
-                          locality: string
-                          city: string
-                          country: aut
-                          localizedDisplay: string
-                          lineOne: string
-                          lineTwo: string
-                        email: string
-                        preferredCommunicationType: string
-                        mobilePhoneNumber: string
-                      sentRequested: true
-                      sentRequestId: string
-                      sent: true
-                      sentDate: string
-                      finished: true
-                      failureReasonCode:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      communicationProviderError:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      failureDetails: string
-                      communicationEntryStatus: string
-                      subjectReferenceParameters:
-                        type: Invoice
-                        invoiceNum: string
-                        invoiceType: string
-                      communicationEntryId: string
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1315,79 +1168,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationEntryDTO'
               example:
-                data:
-                  results:
-                    - subjectType: string
-                      subjectSubtype: string
-                      subjectId: string
-                      reference: string
-                      communicationType: string
-                      title: string
-                      target:
-                        customerId: string
-                        customerDisplayName: string
-                        customerAccountNumber: string
-                        address:
-                          streetName: string
-                          streetNumber: string
-                          streetNumberAddition: string
-                          postalCode: string
-                          buildingName: string
-                          locality: string
-                          city: string
-                          country: aut
-                          localizedDisplay: string
-                          lineOne: string
-                          lineTwo: string
-                        email: string
-                        preferredCommunicationType: string
-                        mobilePhoneNumber: string
-                      sentRequested: true
-                      sentRequestId: string
-                      sent: true
-                      sentDate: string
-                      finished: true
-                      failureReasonCode:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      communicationProviderError:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      failureDetails: string
-                      communicationEntryStatus: string
-                      subjectReferenceParameters:
-                        type: Invoice
-                        invoiceNum: string
-                        invoiceType: string
-                      communicationEntryId: string
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1434,14 +1215,14 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationEntriesQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
-              entitySubjectType: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
+              entitySubjectType: { }
               subjectSubType: string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -1455,14 +1236,14 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationEntriesQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
-              entitySubjectType: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
+              entitySubjectType: { }
               subjectSubType: string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -1476,14 +1257,14 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationEntriesQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
-              entitySubjectType: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
+              entitySubjectType: { }
               subjectSubType: string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -1502,17 +1283,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationEntryOverviewCountDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationEntryOverviewCountDTO'
               example:
-                data:
-                  all: 0
-                  failed: 0
-                  sent: 0
-                  notSent: 0
-                  inTransit: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1530,12 +1306,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationEntryOverviewCountDTO'
               example:
-                data:
-                  all: 0
-                  failed: 0
-                  sent: 0
-                  notSent: 0
-                  inTransit: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1596,59 +1367,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationSubjectDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationSubjectDTO'
               example:
-                data:
-                  results:
-                    - id: string
-                      subjectType: string
-                      subjectSubType: string
-                      subjectId: string
-                      customerId: string
-                      customerDisplayName: string
-                      customerAccountNumber: string
-                      communicationEntryId: string
-                      title: string
-                      communicationType: string
-                      sent: true
-                      isIgnored: true
-                      sentDate: string
-                      communicationEntryStatus: string
-                      failureReasonCode:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      communicationProviderError:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      failureDetails: string
-                      createdDateTime: string
-                      subjectReferenceParameters:
-                        type: Invoice
-                        invoiceNum: string
-                        invoiceType: string
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1666,54 +1390,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationSubjectDTO'
               example:
-                data:
-                  results:
-                    - id: string
-                      subjectType: string
-                      subjectSubType: string
-                      subjectId: string
-                      customerId: string
-                      customerDisplayName: string
-                      customerAccountNumber: string
-                      communicationEntryId: string
-                      title: string
-                      communicationType: string
-                      sent: true
-                      isIgnored: true
-                      sentDate: string
-                      communicationEntryStatus: string
-                      failureReasonCode:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      communicationProviderError:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      failureDetails: string
-                      createdDateTime: string
-                      subjectReferenceParameters:
-                        type: Invoice
-                        invoiceNum: string
-                        invoiceType: string
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1779,16 +1456,16 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationSubjectsQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
               entitySubjectTypes:
                 - string
               entitySubjectSubTypes:
                 - string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -1804,16 +1481,16 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationSubjectsQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
               entitySubjectTypes:
                 - string
               entitySubjectSubTypes:
                 - string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -1829,16 +1506,16 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationSubjectsQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
               entitySubjectTypes:
                 - string
               entitySubjectSubTypes:
                 - string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -1859,59 +1536,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationSubjectDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationSubjectDTO'
               example:
-                data:
-                  results:
-                    - id: string
-                      subjectType: string
-                      subjectSubType: string
-                      subjectId: string
-                      customerId: string
-                      customerDisplayName: string
-                      customerAccountNumber: string
-                      communicationEntryId: string
-                      title: string
-                      communicationType: string
-                      sent: true
-                      isIgnored: true
-                      sentDate: string
-                      communicationEntryStatus: string
-                      failureReasonCode:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      communicationProviderError:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      failureDetails: string
-                      createdDateTime: string
-                      subjectReferenceParameters:
-                        type: Invoice
-                        invoiceNum: string
-                        invoiceType: string
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1929,54 +1559,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationSubjectDTO'
               example:
-                data:
-                  results:
-                    - id: string
-                      subjectType: string
-                      subjectSubType: string
-                      subjectId: string
-                      customerId: string
-                      customerDisplayName: string
-                      customerAccountNumber: string
-                      communicationEntryId: string
-                      title: string
-                      communicationType: string
-                      sent: true
-                      isIgnored: true
-                      sentDate: string
-                      communicationEntryStatus: string
-                      failureReasonCode:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      communicationProviderError:
-                        key: 0
-                        correlationId: string
-                        message: string
-                        messageValues:
-                          - dataType: text
-                            value: string
-                            capitalize: true
-                      failureDetails: string
-                      createdDateTime: string
-                      subjectReferenceParameters:
-                        type: Invoice
-                        invoiceNum: string
-                        invoiceType: string
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2023,16 +1606,16 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationSubjectsQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
               entitySubjectTypes:
                 - string
               entitySubjectSubTypes:
                 - string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -2048,16 +1631,16 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationSubjectsQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
               entitySubjectTypes:
                 - string
               entitySubjectSubTypes:
                 - string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -2073,16 +1656,16 @@ paths:
             schema:
               $ref: '#/components/schemas/GetCommunicationSubjectsQueryParams'
             example:
-              communicationType: string
-              excludeCommunicationType: string
-              excludeCommunicationEntryStatus: string
-              communicationEntryStatus: string
+              communicationType: { }
+              excludeCommunicationType: { }
+              excludeCommunicationEntryStatus: { }
+              communicationEntryStatus: { }
               entitySubjectTypes:
                 - string
               entitySubjectSubTypes:
                 - string
               entitySubjectId: string
-              failureReasonCode: 0
+              failureReasonCode: { }
               sentStartDateTimeOffset: string
               sentEndDateTimeOffset: string
               customerId: string
@@ -2103,16 +1686,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationSubjectOverviewCountDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationSubjectOverviewCountDTO'
               example:
-                data:
-                  all: 0
-                  failed: 0
-                  sent: 0
-                  notSent: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2130,11 +1709,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationSubjectOverviewCountDTO'
               example:
-                data:
-                  all: 0
-                  failed: 0
-                  sent: 0
-                  notSent: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2201,22 +1776,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationProviderAccountDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationProviderAccountDTO'
               example:
-                data:
-                  provider: sendgridemail
-                  status: active
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2234,17 +1799,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationProviderAccountDTO'
               example:
-                data:
-                  provider: sendgridemail
-                  status: active
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2266,7 +1821,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -2391,33 +1946,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationProviderAccountDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationProviderAccountDTO'
               example:
-                data:
-                  results:
-                    - provider: sendgridemail
-                      status: active
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2435,28 +1969,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationProviderAccountDTO'
               example:
-                data:
-                  results:
-                    - provider: sendgridemail
-                      status: active
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2511,22 +2024,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationProviderAccountDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationProviderAccountDTO'
               example:
-                data:
-                  provider: sendgridemail
-                  status: active
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2544,17 +2047,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationProviderAccountDTO'
               example:
-                data:
-                  provider: sendgridemail
-                  status: active
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2576,7 +2069,127 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+    put:
+      tags:
+        - Default
+      summary: Disconnect a communication provider account and set it to inactive status.
+      description: Disconnect a communication provider account and set it to inactive status.
+      operationId: put-communicationprovideraccounts-id-disconnect
+      parameters:
+        - name: id
+          in: path
+          description: The communication provider account ID to disconnect
+          required: true
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfCommunicationProviderAccountDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfCommunicationProviderAccountDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfCommunicationProviderAccountDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -2646,16 +2259,16 @@ paths:
             example:
               onlyValidate: true
               queryParams:
-                communicationType: string
-                excludeCommunicationType: string
-                excludeCommunicationEntryStatus: string
-                communicationEntryStatus: string
+                communicationType: { }
+                excludeCommunicationType: { }
+                excludeCommunicationEntryStatus: { }
+                communicationEntryStatus: { }
                 entitySubjectTypes:
                   - string
                 entitySubjectSubTypes:
                   - string
                 entitySubjectId: string
-                failureReasonCode: 0
+                failureReasonCode: { }
                 sentStartDateTimeOffset: string
                 sentEndDateTimeOffset: string
                 customerId: string
@@ -2668,23 +2281,23 @@ paths:
                   - string
                 pageSize: 0
               quickFilter: string
-              forcedCommunicationType: string
+              forcedCommunicationType: { }
           text/json:
             schema:
               $ref: '#/components/schemas/BulkSendCommunicationSubjectsViaRequest'
             example:
               onlyValidate: true
               queryParams:
-                communicationType: string
-                excludeCommunicationType: string
-                excludeCommunicationEntryStatus: string
-                communicationEntryStatus: string
+                communicationType: { }
+                excludeCommunicationType: { }
+                excludeCommunicationEntryStatus: { }
+                communicationEntryStatus: { }
                 entitySubjectTypes:
                   - string
                 entitySubjectSubTypes:
                   - string
                 entitySubjectId: string
-                failureReasonCode: 0
+                failureReasonCode: { }
                 sentStartDateTimeOffset: string
                 sentEndDateTimeOffset: string
                 customerId: string
@@ -2697,23 +2310,23 @@ paths:
                   - string
                 pageSize: 0
               quickFilter: string
-              forcedCommunicationType: string
+              forcedCommunicationType: { }
           application/*+json:
             schema:
               $ref: '#/components/schemas/BulkSendCommunicationSubjectsViaRequest'
             example:
               onlyValidate: true
               queryParams:
-                communicationType: string
-                excludeCommunicationType: string
-                excludeCommunicationEntryStatus: string
-                communicationEntryStatus: string
+                communicationType: { }
+                excludeCommunicationType: { }
+                excludeCommunicationEntryStatus: { }
+                communicationEntryStatus: { }
                 entitySubjectTypes:
                   - string
                 entitySubjectSubTypes:
                   - string
                 entitySubjectId: string
-                failureReasonCode: 0
+                failureReasonCode: { }
                 sentStartDateTimeOffset: string
                 sentEndDateTimeOffset: string
                 customerId: string
@@ -2726,7 +2339,7 @@ paths:
                   - string
                 pageSize: 0
               quickFilter: string
-              forcedCommunicationType: string
+              forcedCommunicationType: { }
       responses:
         '200':
           description: OK
@@ -2736,48 +2349,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationSubjectDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationSubjectDTO'
               example:
-                data:
-                  id: string
-                  subjectType: string
-                  subjectSubType: string
-                  subjectId: string
-                  customerId: string
-                  customerDisplayName: string
-                  customerAccountNumber: string
-                  communicationEntryId: string
-                  title: string
-                  communicationType: string
-                  sent: true
-                  isIgnored: true
-                  sentDate: string
-                  communicationEntryStatus: string
-                  failureReasonCode:
-                    key: 0
-                    correlationId: string
-                    message: string
-                    messageValues:
-                      - dataType: text
-                        value: string
-                        capitalize: true
-                  communicationProviderError:
-                    key: 0
-                    correlationId: string
-                    message: string
-                    messageValues:
-                      - dataType: text
-                        value: string
-                        capitalize: true
-                  failureDetails: string
-                  createdDateTime: string
-                  subjectReferenceParameters:
-                    type: Invoice
-                    invoiceNum: string
-                    invoiceType: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2795,43 +2372,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationSubjectDTO'
               example:
-                data:
-                  id: string
-                  subjectType: string
-                  subjectSubType: string
-                  subjectId: string
-                  customerId: string
-                  customerDisplayName: string
-                  customerAccountNumber: string
-                  communicationEntryId: string
-                  title: string
-                  communicationType: string
-                  sent: true
-                  isIgnored: true
-                  sentDate: string
-                  communicationEntryStatus: string
-                  failureReasonCode:
-                    key: 0
-                    correlationId: string
-                    message: string
-                    messageValues:
-                      - dataType: text
-                        value: string
-                        capitalize: true
-                  communicationProviderError:
-                    key: 0
-                    correlationId: string
-                    message: string
-                    messageValues:
-                      - dataType: text
-                        value: string
-                        capitalize: true
-                  failureDetails: string
-                  createdDateTime: string
-                  subjectReferenceParameters:
-                    type: Invoice
-                    invoiceNum: string
-                    invoiceType: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2853,7 +2394,211 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+    put:
+      tags:
+        - Default
+      summary: Sends communication subjects via a method in bulk.
+      description: Sends communication subjects via a method in bulk.
+      operationId: put-communicationsubjects-bulk-sendvia
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkSendCommunicationSubjectsViaRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                communicationType: { }
+                excludeCommunicationType: { }
+                excludeCommunicationEntryStatus: { }
+                communicationEntryStatus: { }
+                entitySubjectTypes:
+                  - string
+                entitySubjectSubTypes:
+                  - string
+                entitySubjectId: string
+                failureReasonCode: { }
+                sentStartDateTimeOffset: string
+                sentEndDateTimeOffset: string
+                customerId: string
+                applyFiltersOverIncludedIds: true
+                showIgnored: true
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+                pageSize: 0
+              quickFilter: string
+              forcedCommunicationType: { }
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BulkSendCommunicationSubjectsViaRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                communicationType: { }
+                excludeCommunicationType: { }
+                excludeCommunicationEntryStatus: { }
+                communicationEntryStatus: { }
+                entitySubjectTypes:
+                  - string
+                entitySubjectSubTypes:
+                  - string
+                entitySubjectId: string
+                failureReasonCode: { }
+                sentStartDateTimeOffset: string
+                sentEndDateTimeOffset: string
+                customerId: string
+                applyFiltersOverIncludedIds: true
+                showIgnored: true
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+                pageSize: 0
+              quickFilter: string
+              forcedCommunicationType: { }
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BulkSendCommunicationSubjectsViaRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                communicationType: { }
+                excludeCommunicationType: { }
+                excludeCommunicationEntryStatus: { }
+                communicationEntryStatus: { }
+                entitySubjectTypes:
+                  - string
+                entitySubjectSubTypes:
+                  - string
+                entitySubjectId: string
+                failureReasonCode: { }
+                sentStartDateTimeOffset: string
+                sentEndDateTimeOffset: string
+                customerId: string
+                applyFiltersOverIncludedIds: true
+                showIgnored: true
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+                pageSize: 0
+              quickFilter: string
+              forcedCommunicationType: { }
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfCommunicationSubjectDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfCommunicationSubjectDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfCommunicationSubjectDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -2923,16 +2668,16 @@ paths:
             example:
               onlyValidate: true
               queryParams:
-                communicationType: string
-                excludeCommunicationType: string
-                excludeCommunicationEntryStatus: string
-                communicationEntryStatus: string
+                communicationType: { }
+                excludeCommunicationType: { }
+                excludeCommunicationEntryStatus: { }
+                communicationEntryStatus: { }
                 entitySubjectTypes:
                   - string
                 entitySubjectSubTypes:
                   - string
                 entitySubjectId: string
-                failureReasonCode: 0
+                failureReasonCode: { }
                 sentStartDateTimeOffset: string
                 sentEndDateTimeOffset: string
                 customerId: string
@@ -2951,16 +2696,16 @@ paths:
             example:
               onlyValidate: true
               queryParams:
-                communicationType: string
-                excludeCommunicationType: string
-                excludeCommunicationEntryStatus: string
-                communicationEntryStatus: string
+                communicationType: { }
+                excludeCommunicationType: { }
+                excludeCommunicationEntryStatus: { }
+                communicationEntryStatus: { }
                 entitySubjectTypes:
                   - string
                 entitySubjectSubTypes:
                   - string
                 entitySubjectId: string
-                failureReasonCode: 0
+                failureReasonCode: { }
                 sentStartDateTimeOffset: string
                 sentEndDateTimeOffset: string
                 customerId: string
@@ -2979,16 +2724,16 @@ paths:
             example:
               onlyValidate: true
               queryParams:
-                communicationType: string
-                excludeCommunicationType: string
-                excludeCommunicationEntryStatus: string
-                communicationEntryStatus: string
+                communicationType: { }
+                excludeCommunicationType: { }
+                excludeCommunicationEntryStatus: { }
+                communicationEntryStatus: { }
                 entitySubjectTypes:
                   - string
                 entitySubjectSubTypes:
                   - string
                 entitySubjectId: string
-                failureReasonCode: 0
+                failureReasonCode: { }
                 sentStartDateTimeOffset: string
                 sentEndDateTimeOffset: string
                 customerId: string
@@ -3010,7 +2755,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -3053,7 +2798,206 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+    put:
+      tags:
+        - Default
+      summary: Ignores communication subjects in bulk.
+      description: Ignores communication subjects in bulk.
+      operationId: put-communicationsubjects-bulk-ignore
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      requestBody:
+        description: The cancellation token.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkIgnoreCommunicationSubjectsRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                communicationType: { }
+                excludeCommunicationType: { }
+                excludeCommunicationEntryStatus: { }
+                communicationEntryStatus: { }
+                entitySubjectTypes:
+                  - string
+                entitySubjectSubTypes:
+                  - string
+                entitySubjectId: string
+                failureReasonCode: { }
+                sentStartDateTimeOffset: string
+                sentEndDateTimeOffset: string
+                customerId: string
+                applyFiltersOverIncludedIds: true
+                showIgnored: true
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+                pageSize: 0
+              quickFilter: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BulkIgnoreCommunicationSubjectsRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                communicationType: { }
+                excludeCommunicationType: { }
+                excludeCommunicationEntryStatus: { }
+                communicationEntryStatus: { }
+                entitySubjectTypes:
+                  - string
+                entitySubjectSubTypes:
+                  - string
+                entitySubjectId: string
+                failureReasonCode: { }
+                sentStartDateTimeOffset: string
+                sentEndDateTimeOffset: string
+                customerId: string
+                applyFiltersOverIncludedIds: true
+                showIgnored: true
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+                pageSize: 0
+              quickFilter: string
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BulkIgnoreCommunicationSubjectsRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                communicationType: { }
+                excludeCommunicationType: { }
+                excludeCommunicationEntryStatus: { }
+                communicationEntryStatus: { }
+                entitySubjectTypes:
+                  - string
+                entitySubjectSubTypes:
+                  - string
+                entitySubjectId: string
+                failureReasonCode: { }
+                sentStartDateTimeOffset: string
+                sentEndDateTimeOffset: string
+                customerId: string
+                applyFiltersOverIncludedIds: true
+                showIgnored: true
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+                pageSize: 0
+              quickFilter: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -3114,19 +3058,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationProductUsageResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationProductUsageResponseDTO'
               example:
-                data:
-                  organizationIntegrations:
-                    - organizationId: string
-                      organizationCode: string
-                      organizationName: string
-                      integrations:
-                        - integrationType: string
-                          active: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -3144,14 +3081,617 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfCommunicationProductUsageResponseDTO'
               example:
-                data:
-                  organizationIntegrations:
-                    - organizationId: string
-                      organizationCode: string
-                      organizationName: string
-                      integrations:
-                        - integrationType: string
-                          active: true
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  /CommunicationProviderAccounts/type/startonboarding:
+    post:
+      tags:
+        - Default
+      summary: Starts synchronous onboarding for a communication provider account and returns the verification URL.
+      description: Starts synchronous onboarding for a communication provider account and returns the verification URL.
+      operationId: post-communicationprovideraccounts-type-startonboarding
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      requestBody:
+        description: Propagates notification that operations should be canceled.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartCommunicationProviderOnboardingRequest'
+            example:
+              providerType: sendgridemail
+          text/json:
+            schema:
+              $ref: '#/components/schemas/StartCommunicationProviderOnboardingRequest'
+            example:
+              providerType: sendgridemail
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/StartCommunicationProviderOnboardingRequest'
+            example:
+              providerType: sendgridemail
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfstring'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfstring'
+              example:
+                data: string
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfstring'
+              example:
+                data: string
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  '/CommunicationProviderAccounts/{id}/resumeonboarding':
+    post:
+      tags:
+        - Default
+      summary: Resumes Suspended provider onboarding and returns a new verification URL.
+      description: Resumes Suspended provider onboarding and returns a new verification URL.
+      operationId: post-communicationprovideraccounts-id-resumeonboarding
+      parameters:
+        - name: id
+          in: path
+          description: The communication provider account ID.
+          required: true
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfstring'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfstring'
+              example:
+                data: string
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfstring'
+              example:
+                data: string
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+    put:
+      tags:
+        - Default
+      summary: Resumes Suspended provider onboarding and returns a new verification URL.
+      description: Resumes Suspended provider onboarding and returns a new verification URL.
+      operationId: put-communicationprovideraccounts-id-resumeonboarding
+      parameters:
+        - name: id
+          in: path
+          description: The communication provider account ID.
+          required: true
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfstring'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfstring'
+              example:
+                data: string
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfstring'
+              example:
+                data: string
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  /Webhook/einvoicing/recommand:
+    post:
+      tags:
+        - Default
+      summary: Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
+      description: Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
+      operationId: post-webhook-einvoicing-recommand
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  /MigrationAdmin/latest-version:
+    get:
+      tags:
+        - Default
+      summary: /MigrationAdmin/latest-version - GET
+      operationId: get-migrationadmin-latest-version
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfMigrationLatestVersionDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfMigrationLatestVersionDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfMigrationLatestVersionDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  /CommunicationProviderAccounts/type/prevalidateonboarding:
+    post:
+      tags:
+        - Default
+      summary: "Soft-gates organisation identifiers for provider onboarding without starting onboarding.\nAlways returns HTTP 200; Success=false when identifiers are invalid (no DomainNotification toasts)."
+      description: "Soft-gates organisation identifiers for provider onboarding without starting onboarding.\nAlways returns HTTP 200; Success=false when identifiers are invalid (no DomainNotification toasts)."
+      operationId: post-communicationprovideraccounts-type-prevalidateonboarding
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      requestBody:
+        description: Propagates notification that operations should be canceled.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartCommunicationProviderOnboardingRequest'
+            example:
+              providerType: sendgridemail
+          text/json:
+            schema:
+              $ref: '#/components/schemas/StartCommunicationProviderOnboardingRequest'
+            example:
+              providerType: sendgridemail
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/StartCommunicationProviderOnboardingRequest'
+            example:
+              providerType: sendgridemail
+      responses:
+        '200':
+          description: Success=true when identifiers are valid; Success=false when invalid.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
                 errors:
                   - key: 0
                     correlationId: string
@@ -3253,10 +3793,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationEntryOverviewCountDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -3278,10 +3819,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationProductUsageResponseDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -3303,10 +3845,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationProviderAccountDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -3328,10 +3871,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationSubjectDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -3353,10 +3897,37 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationSubjectOverviewCountDTO'
-          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalisedErrorDTO'
+        success:
+          type: boolean
+        applicableEntitiesCount:
+          type: integer
+          format: int32
+        requestedEntitiesCount:
+          type: integer
+          format: int32
+        succeededEntitiesCount:
+          type: integer
+          format: int32
+        isSynchronous:
+          type: boolean
+    ApiResponseDTOOfMigrationLatestVersionDTO:
+      type: object
+      properties:
+        data:
+          oneOf:
+            - enum:
+                - 
+              nullable: true
+            - $ref: '#/components/schemas/MigrationLatestVersionDTO'
         errors:
           type: array
           items:
@@ -3378,10 +3949,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/PagedResponseModelDTOOfCommunicationEntryDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -3403,10 +3975,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/PagedResponseModelDTOOfCommunicationProviderAccountDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -3428,9 +4001,33 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/PagedResponseModelDTOOfCommunicationSubjectDTO'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalisedErrorDTO'
+        success:
+          type: boolean
+        applicableEntitiesCount:
+          type: integer
+          format: int32
+        requestedEntitiesCount:
+          type: integer
+          format: int32
+        succeededEntitiesCount:
+          type: integer
+          format: int32
+        isSynchronous:
+          type: boolean
+    ApiResponseDTOOfstring:
+      type: object
+      properties:
+        data:
+          type: string
           nullable: true
         errors:
           type: array
@@ -3470,18 +4067,20 @@ components:
           type: string
           nullable: true
         forcedCommunicationType:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationType'
-          nullable: true
     CommunicationEntryDTO:
       type: object
       properties:
         subjectType:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/EntitySubjectType'
-          nullable: true
         subjectSubtype:
           type: string
           nullable: true
@@ -3492,18 +4091,20 @@ components:
           type: string
           nullable: true
         communicationType:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationType'
-          nullable: true
         title:
           type: string
           nullable: true
         target:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationTargetDTO'
-          nullable: true
         sentRequested:
           type: boolean
         sentRequestId:
@@ -3517,28 +4118,32 @@ components:
         finished:
           type: boolean
         failureReasonCode:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/LocalisedErrorDTO'
-          nullable: true
         communicationProviderError:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/LocalisedErrorDTO'
-          nullable: true
         failureDetails:
           type: string
           nullable: true
         communicationEntryStatus:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationEntryStatus'
-          nullable: true
         subjectReferenceParameters:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/SubjectReferenceParametersDTO'
-          nullable: true
         communicationEntryId:
           type: string
           nullable: true
@@ -3663,8 +4268,9 @@ components:
         - pingenpostal
         - chorusproeinvoicing
         - peppoleinvoicing
+        - recommandeinvoicing
       type: string
-      description: 'Possible values: ''sendgridemail'', ''twiliosms'', ''pingenpostal'', ''chorusproeinvoicing'', ''peppoleinvoicing'''
+      description: 'Possible values: ''sendgridemail'', ''twiliosms'', ''pingenpostal'', ''chorusproeinvoicing'', ''peppoleinvoicing'', ''recommandeinvoicing'''
     CommunicationSubjectDTO:
       type: object
       properties:
@@ -3672,10 +4278,11 @@ components:
           type: string
           nullable: true
         subjectType:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/EntitySubjectType'
-          nullable: true
         subjectSubType:
           type: string
           nullable: true
@@ -3698,10 +4305,11 @@ components:
           type: string
           nullable: true
         communicationType:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationType'
-          nullable: true
         sent:
           type: boolean
         isIgnored:
@@ -3711,20 +4319,23 @@ components:
           format: date-time
           nullable: true
         communicationEntryStatus:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationEntryStatus'
-          nullable: true
         failureReasonCode:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/LocalisedErrorDTO'
-          nullable: true
         communicationProviderError:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/LocalisedErrorDTO'
-          nullable: true
         failureDetails:
           type: string
           nullable: true
@@ -3732,10 +4343,11 @@ components:
           type: string
           format: date-time
         subjectReferenceParameters:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/SubjectReferenceParametersDTO'
-          nullable: true
     CommunicationSubjectOverviewCountDTO:
       type: object
       properties:
@@ -3764,19 +4376,24 @@ components:
           type: string
           nullable: true
         address:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/AddressDTO'
-          nullable: true
         email:
           type: string
           nullable: true
         preferredCommunicationType:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationType'
-          nullable: true
         mobilePhoneNumber:
+          type: string
+          nullable: true
+        recipientAddress:
           type: string
           nullable: true
     CommunicationType:
@@ -4068,15 +4685,17 @@ components:
           items:
             type: string
         queryParams:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/GetCommunicationEntriesQueryParams'
-          nullable: true
         quickFilter:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationEntryQuickFilter'
-          nullable: true
         excludedIds:
           type: array
           items:
@@ -4248,11 +4867,16 @@ components:
         - crmcustomer
         - ticket
         - ticketconversation
+        - defaultenabledfeatureflags
+        - customerloadprofile
+        - featureflagchange
         - socialtariffexport
         - socialtariffimportheader
         - socialtariffimportline
+        - frenchereportinvoicecandidate
+        - frenchereportsubmission
       type: string
-      description: 'Possible values: ''none'', ''customer'', ''contract'', ''meter'', ''servicelocation'', ''invoice'', ''importjob'', ''propertygroup'', ''payment'', ''communicationentry'', ''exportjob'', ''dataexport'', ''dataimport'', ''asset'', ''bankaccount'', ''billingitem'', ''billingtariff'', ''costcomponent'', ''costcomponentvalue'', ''model'', ''numbersequence'', ''billingparameters'', ''product'', ''taxcode'', ''template'', ''billingrelation'', ''transaction'', ''dataimportfileformat'', ''dataexportfileformat'', ''tenant'', ''consumption'', ''attachment'', ''exportjobline'', ''culturetable'', ''collectioncase'', ''collectionflowstep'', ''incominginvoice'', ''moverequest'', ''activityentry'', ''commententry'', ''problem'', ''relatedentity'', ''customeragingreport'', ''billingcompleteness'', ''propertygroupbillingconfiguration'', ''propertygroupbillingperiod'', ''collectionflow'', ''configuredplugin'', ''organizationscenarios'', ''paymentterms'', ''paymentdelaysetting'', ''paymentparameters'', ''domainauthenticationparameters'', ''communicationparameters'', ''organization'', ''incominginvoicecomponent'', ''costallocationcomponent'', ''scheduledattempt'', ''plugintrigger'', ''exportentitycontainer'', ''externalbankstatement'', ''externalbanktransaction'', ''externalmeasurement'', ''importjobentityissue'', ''intermediateexportformat'', ''consumptionunit'', ''calculatedconsumption'', ''propertygroupmeteringconfiguration'', ''measurement'', ''externalchannel'', ''serviceconsumption'', ''purgerequest'', ''migrationversion'', ''formulaconsumption'', ''templatedataobject'', ''dataupgradebaseline'', ''processrequest'', ''validationrequest'', ''postprocessrequest'', ''outgoingbankingtransaction'', ''incomingmutation'', ''outgoingmutation'', ''incomingbankingtransaction'', ''customerbankaccount'', ''pluginmanualtrigger'', ''billingcustomer'', ''enumsymboltranslation'', ''scenariotranslation'', ''syntheticloadprofile'', ''consumergroup'', ''estimablecontract'', ''plugininboundwebhooktrigger'', ''pluginmappingentry'', ''eavestimationrun'', ''customentitypropertytype'', ''customentityproperty'', ''pluginfeedentry'', ''regionalregulationsconfiguration'', ''entityattachment'', ''entityattachmentgroup'', ''propertygroupforecastingconfiguration'', ''prepaymenttransaction'', ''customeragingheader'', ''estimatedbillingcompleteness'', ''estimatedinvoice'', ''customergroup'', ''meteringissue'', ''meteringparameters'', ''mutingrule'', ''reportmappingentry'', ''meteringimport'', ''prepaymentaccount'', ''baseimport'', ''systemusagerecord'', ''portalsettings'', ''organizationscenario'', ''tenantrole'', ''useraccessentry'', ''annualstatement'', ''accounting'', ''externalintegrationauthorization'', ''customerportal'', ''paymentintent'', ''paymentprovideraccount'', ''paymentserviceproviderevent'', ''bankingdataprovider'', ''communicationevent'', ''paymentplan'', ''paymentplanparameters'', ''communicationsubject'', ''communicationprovideraccount'', ''paymentprovideraccountregistry'', ''prepaymentaccountissue'', ''prepaymentdevice'', ''prepaymentconfiguration'', ''serviceconsumptioncost'', ''prepaymentcost'', ''prepaymentprofile'', ''propertygroupprepaymentconfiguration'', ''bankholidaycalendar'', ''friendlycreditwindow'', ''billingprepaymentaccount'', ''meteringprovideraccount'', ''meteringproviderrun'', ''masterdataparameters'', ''prepaymentbalanceprocessedevent'', ''prepaymentstatement'', ''outgoingmandateexportrecord'', ''outgoingmandateexportgroup'', ''prepaymentparameters'', ''accountingexportprovider'', ''accountingexportrun'', ''prepaymentcustomer'', ''timeofusetype'', ''timeofusecalendar'', ''reportingprovider'', ''paymentprovidercustomer'', ''reportingconfigurationprovider'', ''servicelocationsuppliedservices'', ''prepaymentdeviceprovideraccount'', ''psprefund'', ''betaenvironmentprovider'', ''crmcustomer'', ''ticket'', ''ticketconversation'', ''socialtariffexport'', ''socialtariffimportheader'', ''socialtariffimportline'''
+      description: 'Possible values: ''none'', ''customer'', ''contract'', ''meter'', ''servicelocation'', ''invoice'', ''importjob'', ''propertygroup'', ''payment'', ''communicationentry'', ''exportjob'', ''dataexport'', ''dataimport'', ''asset'', ''bankaccount'', ''billingitem'', ''billingtariff'', ''costcomponent'', ''costcomponentvalue'', ''model'', ''numbersequence'', ''billingparameters'', ''product'', ''taxcode'', ''template'', ''billingrelation'', ''transaction'', ''dataimportfileformat'', ''dataexportfileformat'', ''tenant'', ''consumption'', ''attachment'', ''exportjobline'', ''culturetable'', ''collectioncase'', ''collectionflowstep'', ''incominginvoice'', ''moverequest'', ''activityentry'', ''commententry'', ''problem'', ''relatedentity'', ''customeragingreport'', ''billingcompleteness'', ''propertygroupbillingconfiguration'', ''propertygroupbillingperiod'', ''collectionflow'', ''configuredplugin'', ''organizationscenarios'', ''paymentterms'', ''paymentdelaysetting'', ''paymentparameters'', ''domainauthenticationparameters'', ''communicationparameters'', ''organization'', ''incominginvoicecomponent'', ''costallocationcomponent'', ''scheduledattempt'', ''plugintrigger'', ''exportentitycontainer'', ''externalbankstatement'', ''externalbanktransaction'', ''externalmeasurement'', ''importjobentityissue'', ''intermediateexportformat'', ''consumptionunit'', ''calculatedconsumption'', ''propertygroupmeteringconfiguration'', ''measurement'', ''externalchannel'', ''serviceconsumption'', ''purgerequest'', ''migrationversion'', ''formulaconsumption'', ''templatedataobject'', ''dataupgradebaseline'', ''processrequest'', ''validationrequest'', ''postprocessrequest'', ''outgoingbankingtransaction'', ''incomingmutation'', ''outgoingmutation'', ''incomingbankingtransaction'', ''customerbankaccount'', ''pluginmanualtrigger'', ''billingcustomer'', ''enumsymboltranslation'', ''scenariotranslation'', ''syntheticloadprofile'', ''consumergroup'', ''estimablecontract'', ''plugininboundwebhooktrigger'', ''pluginmappingentry'', ''eavestimationrun'', ''customentitypropertytype'', ''customentityproperty'', ''pluginfeedentry'', ''regionalregulationsconfiguration'', ''entityattachment'', ''entityattachmentgroup'', ''propertygroupforecastingconfiguration'', ''prepaymenttransaction'', ''customeragingheader'', ''estimatedbillingcompleteness'', ''estimatedinvoice'', ''customergroup'', ''meteringissue'', ''meteringparameters'', ''mutingrule'', ''reportmappingentry'', ''meteringimport'', ''prepaymentaccount'', ''baseimport'', ''systemusagerecord'', ''portalsettings'', ''organizationscenario'', ''tenantrole'', ''useraccessentry'', ''annualstatement'', ''accounting'', ''externalintegrationauthorization'', ''customerportal'', ''paymentintent'', ''paymentprovideraccount'', ''paymentserviceproviderevent'', ''bankingdataprovider'', ''communicationevent'', ''paymentplan'', ''paymentplanparameters'', ''communicationsubject'', ''communicationprovideraccount'', ''paymentprovideraccountregistry'', ''prepaymentaccountissue'', ''prepaymentdevice'', ''prepaymentconfiguration'', ''serviceconsumptioncost'', ''prepaymentcost'', ''prepaymentprofile'', ''propertygroupprepaymentconfiguration'', ''bankholidaycalendar'', ''friendlycreditwindow'', ''billingprepaymentaccount'', ''meteringprovideraccount'', ''meteringproviderrun'', ''masterdataparameters'', ''prepaymentbalanceprocessedevent'', ''prepaymentstatement'', ''outgoingmandateexportrecord'', ''outgoingmandateexportgroup'', ''prepaymentparameters'', ''accountingexportprovider'', ''accountingexportrun'', ''prepaymentcustomer'', ''timeofusetype'', ''timeofusecalendar'', ''reportingprovider'', ''paymentprovidercustomer'', ''reportingconfigurationprovider'', ''servicelocationsuppliedservices'', ''prepaymentdeviceprovideraccount'', ''psprefund'', ''betaenvironmentprovider'', ''crmcustomer'', ''ticket'', ''ticketconversation'', ''defaultenabledfeatureflags'', ''customerloadprofile'', ''featureflagchange'', ''socialtariffexport'', ''socialtariffimportheader'', ''socialtariffimportline'', ''frenchereportinvoicecandidate'', ''frenchereportsubmission'''
     EntityTagHeaderValue:
       type: object
       properties:
@@ -4278,40 +4902,46 @@ components:
           format: date-time
           nullable: true
         entityTag:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/EntityTagHeaderValue'
-          nullable: true
         enableRangeProcessing:
           type: boolean
     GetCommunicationEntriesQueryParams:
       type: object
       properties:
         communicationType:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationType'
-          nullable: true
         excludeCommunicationType:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationType'
-          nullable: true
         excludeCommunicationEntryStatus:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationEntryStatus'
-          nullable: true
         communicationEntryStatus:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationEntryStatus'
-          nullable: true
         entitySubjectType:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/EntitySubjectType'
-          nullable: true
         subjectSubType:
           type: string
           nullable: true
@@ -4319,10 +4949,11 @@ components:
           type: string
           nullable: true
         failureReasonCode:
-          type: integer
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/ErrorCode'
-          nullable: true
         sentStartDateTimeOffset:
           type: string
           format: date-time
@@ -4379,25 +5010,29 @@ components:
       type: object
       properties:
         communicationType:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationType'
-          nullable: true
         excludeCommunicationType:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationType'
-          nullable: true
         excludeCommunicationEntryStatus:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationEntryStatus'
-          nullable: true
         communicationEntryStatus:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationEntryStatus'
-          nullable: true
         entitySubjectTypes:
           type: array
           items:
@@ -4410,10 +5045,11 @@ components:
           type: string
           nullable: true
         failureReasonCode:
-          type: integer
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/ErrorCode'
-          nullable: true
         sentStartDateTimeOffset:
           type: string
           format: date-time
@@ -4476,6 +5112,15 @@ components:
           type: string
         capitalize:
           type: boolean
+    MigrationLatestVersionDTO:
+      type: object
+      properties:
+        namespace:
+          type: string
+          nullable: true
+        latestVersion:
+          type: integer
+          format: int32
     MoveRequestType:
       enum:
         - movein
@@ -4582,10 +5227,16 @@ components:
           type: string
           nullable: true
         forcedCommunicationType:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/CommunicationType'
-          nullable: true
+    StartCommunicationProviderOnboardingRequest:
+      type: object
+      properties:
+        providerType:
+          $ref: '#/components/schemas/CommunicationProviderType'
     Stream:
       type: string
       format: binary
@@ -4679,10 +5330,11 @@ components:
           type: string
           nullable: true
         invoiceType:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/InvoiceType'
-          nullable: true
     SubjectReferenceParametersDTOMoveRequestSubjectReferenceParametersDTO:
       properties:
         type:
@@ -4729,3 +5381,4 @@ tags:
   - name: CommunicationSubjects
   - name: Webhook
   - name: ProductUsage
+  - name: MigrationAdmin

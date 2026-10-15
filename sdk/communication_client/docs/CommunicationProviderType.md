@@ -1,6 +1,6 @@
 # CommunicationProviderType
 
-Possible values: 'sendgridemail', 'twiliosms', 'pingenpostal', 'chorusproeinvoicing', 'peppoleinvoicing'
+Possible values: 'sendgridemail', 'twiliosms', 'pingenpostal', 'chorusproeinvoicing', 'peppoleinvoicing', 'recommandeinvoicing'
 
 ## Enum
 
@@ -13,6 +13,8 @@ Possible values: 'sendgridemail', 'twiliosms', 'pingenpostal', 'chorusproeinvoic
 * `CHORUSPROEINVOICING` (value: `'chorusproeinvoicing'`)
 
 * `PEPPOLEINVOICING` (value: `'peppoleinvoicing'`)
+
+* `RECOMMANDEINVOICING` (value: `'recommandeinvoicing'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

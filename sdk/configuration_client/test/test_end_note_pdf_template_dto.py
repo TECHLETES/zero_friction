@@ -42,6 +42,7 @@ class TestEndNotePdfTemplateDTO(unittest.TestCase):
                 show_custom_information = True,
                 show_price_formulae = True,
                 unit_price_excl_vat_for_persons = True,
+                show_subtotal_before_advances = True,
                 provider_managed_template_file_name = '',
                 envelope_settings = configuration_client.models.envelope_settings_dto.EnvelopeSettingsDTO(
                     margin_position = 'left', 

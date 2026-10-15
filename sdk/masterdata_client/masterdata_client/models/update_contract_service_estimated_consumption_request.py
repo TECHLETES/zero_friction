@@ -29,7 +29,7 @@ class UpdateContractServiceEstimatedConsumptionRequest(BaseModel):
     """
     UpdateContractServiceEstimatedConsumptionRequest
     """ # noqa: E501
-    consumer_group_id: Optional[StrictStr] = Field(alias="consumerGroupId")
+    consumer_group_id: Optional[StrictStr] = Field(default=None, alias="consumerGroupId")
     unit_of_measure: UnitOfMeasure = Field(alias="unitOfMeasure")
     consumption_quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="consumptionQuantity")
     start_date: Optional[datetime] = Field(default=None, alias="startDate")

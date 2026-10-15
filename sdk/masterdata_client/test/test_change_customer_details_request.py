@@ -60,6 +60,8 @@ class TestChangeCustomerDetailsRequest(unittest.TestCase):
                 ssin = '',
                 ssin_country = 'aut',
                 company_name = '',
+                organization_number = '',
+                vat_number = '',
         )
         """
 

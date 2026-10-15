@@ -18,7 +18,6 @@ Name | Type | Description | Notes
 **budget_code** | **str** |  | [optional] 
 **structure_code** | **str** |  | [optional] 
 **movement_code** | **str** |  | [optional] 
-**custom_entity_property_settings** | [**BergerLevraultCustomEntityPropertySettingsDTO**](BergerLevraultCustomEntityPropertySettingsDTO.md) |  | [optional] 
 **status** | [**AccountingExportProviderStatus**](AccountingExportProviderStatus.md) |  | [optional] 
 **organisation_id** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 

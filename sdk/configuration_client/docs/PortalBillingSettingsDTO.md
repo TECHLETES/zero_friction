@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **hide_invoice_section** | **bool** |  | [optional] 
 **hide_payment_reference** | **bool** |  | [optional] 
 **require_birth_date_for_persons** | **bool** |  | [optional] 
+**hide_estimated_invoice** | **bool** |  | [optional] 
 
 ## Example
 

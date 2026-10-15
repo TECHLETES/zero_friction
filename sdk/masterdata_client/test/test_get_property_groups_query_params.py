@@ -36,6 +36,7 @@ class TestGetPropertyGroupsQueryParams(unittest.TestCase):
         if include_optional:
             return GetPropertyGroupsQueryParams(
                 name_contains = '',
+                include_live_service_location_ids = True,
                 flex_search = '',
                 include_only_ids = [
                     ''

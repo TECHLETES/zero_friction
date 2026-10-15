@@ -47,7 +47,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -74,7 +74,7 @@ paths:
                 $ref: '#/components/schemas/FileStreamResult'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/FileStreamResult'
@@ -83,14 +83,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
             text/json:
               schema:
@@ -100,14 +93,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
   /Attachments/downloadzip:
     post:
@@ -165,7 +151,7 @@ paths:
                 $ref: '#/components/schemas/FileStreamResult'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/FileStreamResult'
@@ -174,14 +160,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
             text/json:
               schema:
@@ -191,14 +170,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
   '/Attachments/{subjectType}/{subjectId}':
     get:
@@ -257,36 +229,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfAttachmentDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfAttachmentDTO'
               example:
-                data:
-                  results:
-                    - description: string
-                      subjectType: string
-                      userId: string
-                      fileName: string
-                      internalFilePath: string
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -304,31 +252,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfAttachmentDTO'
               example:
-                data:
-                  results:
-                    - description: string
-                      subjectType: string
-                      userId: string
-                      fileName: string
-                      internalFilePath: string
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -392,25 +316,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfAttachmentDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfAttachmentDTO'
               example:
-                data:
-                  description: string
-                  subjectType: string
-                  userId: string
-                  fileName: string
-                  internalFilePath: string
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -428,20 +339,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfAttachmentDTO'
               example:
-                data:
-                  description: string
-                  subjectType: string
-                  userId: string
-                  fileName: string
-                  internalFilePath: string
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -463,7 +361,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -551,7 +449,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -596,7 +494,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -690,7 +588,7 @@ paths:
                 $ref: '#/components/schemas/FileStreamResult'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/FileStreamResult'
@@ -699,14 +597,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
             text/json:
               schema:
@@ -716,14 +607,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
         '400':
           description: If the merge request is invalid.
@@ -733,7 +617,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -839,7 +723,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -866,7 +750,7 @@ paths:
                 $ref: '#/components/schemas/FileStreamResult'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/FileStreamResult'
@@ -875,14 +759,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
             text/json:
               schema:
@@ -892,14 +769,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
   /EntityAttachmentGroups/download:
     post:
@@ -960,7 +830,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -987,7 +857,7 @@ paths:
                 $ref: '#/components/schemas/FileStreamResult'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/FileStreamResult'
@@ -996,14 +866,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
             text/json:
               schema:
@@ -1013,14 +876,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
   '/EntityAttachmentGroups/{subjectType}/{subjectId}/{eauuid}':
     get:
@@ -1075,33 +931,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupDTO'
               example:
-                data:
-                  entitySubjectType: none
-                  entitySubjectId: string
-                  entitySubjectDisplayName: string
-                  localisedAttachmentFiles:
-                    - fileName: string
-                      localisedFileName: string
-                      culture: string
-                  includeInWelcomeEmail: true
-                  visibility: internal
-                  approvalRequired: true
-                  validity:
-                    startDateTime: string
-                    endDateTime: string
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1119,28 +954,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupDTO'
               example:
-                data:
-                  entitySubjectType: none
-                  entitySubjectId: string
-                  entitySubjectDisplayName: string
-                  localisedAttachmentFiles:
-                    - fileName: string
-                      localisedFileName: string
-                      culture: string
-                  includeInWelcomeEmail: true
-                  visibility: internal
-                  approvalRequired: true
-                  validity:
-                    startDateTime: string
-                    endDateTime: string
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1162,7 +976,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1279,33 +1093,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupDTO'
               example:
-                data:
-                  entitySubjectType: none
-                  entitySubjectId: string
-                  entitySubjectDisplayName: string
-                  localisedAttachmentFiles:
-                    - fileName: string
-                      localisedFileName: string
-                      culture: string
-                  includeInWelcomeEmail: true
-                  visibility: internal
-                  approvalRequired: true
-                  validity:
-                    startDateTime: string
-                    endDateTime: string
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1323,28 +1116,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupDTO'
               example:
-                data:
-                  entitySubjectType: none
-                  entitySubjectId: string
-                  entitySubjectDisplayName: string
-                  localisedAttachmentFiles:
-                    - fileName: string
-                      localisedFileName: string
-                      culture: string
-                  includeInWelcomeEmail: true
-                  visibility: internal
-                  approvalRequired: true
-                  validity:
-                    startDateTime: string
-                    endDateTime: string
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1366,7 +1138,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1453,7 +1225,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -1498,7 +1270,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1574,33 +1346,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupDTO'
               example:
-                data:
-                  entitySubjectType: none
-                  entitySubjectId: string
-                  entitySubjectDisplayName: string
-                  localisedAttachmentFiles:
-                    - fileName: string
-                      localisedFileName: string
-                      culture: string
-                  includeInWelcomeEmail: true
-                  visibility: internal
-                  approvalRequired: true
-                  validity:
-                    startDateTime: string
-                    endDateTime: string
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1618,28 +1369,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupDTO'
               example:
-                data:
-                  entitySubjectType: none
-                  entitySubjectId: string
-                  entitySubjectDisplayName: string
-                  localisedAttachmentFiles:
-                    - fileName: string
-                      localisedFileName: string
-                      culture: string
-                  includeInWelcomeEmail: true
-                  visibility: internal
-                  approvalRequired: true
-                  validity:
-                    startDateTime: string
-                    endDateTime: string
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1661,7 +1391,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1816,44 +1546,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfEntityAttachmentGroupDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfEntityAttachmentGroupDTO'
               example:
-                data:
-                  results:
-                    - entitySubjectType: none
-                      entitySubjectId: string
-                      entitySubjectDisplayName: string
-                      localisedAttachmentFiles:
-                        - fileName: string
-                          localisedFileName: string
-                          culture: string
-                      includeInWelcomeEmail: true
-                      visibility: internal
-                      approvalRequired: true
-                      validity:
-                        startDateTime: string
-                        endDateTime: string
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1871,39 +1569,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfEntityAttachmentGroupDTO'
               example:
-                data:
-                  results:
-                    - entitySubjectType: none
-                      entitySubjectId: string
-                      entitySubjectDisplayName: string
-                      localisedAttachmentFiles:
-                        - fileName: string
-                          localisedFileName: string
-                          culture: string
-                      includeInWelcomeEmail: true
-                      visibility: internal
-                      approvalRequired: true
-                      validity:
-                        startDateTime: string
-                        endDateTime: string
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1986,33 +1652,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupDTO'
               example:
-                data:
-                  entitySubjectType: none
-                  entitySubjectId: string
-                  entitySubjectDisplayName: string
-                  localisedAttachmentFiles:
-                    - fileName: string
-                      localisedFileName: string
-                      culture: string
-                  includeInWelcomeEmail: true
-                  visibility: internal
-                  approvalRequired: true
-                  validity:
-                    startDateTime: string
-                    endDateTime: string
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2030,28 +1675,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupDTO'
               example:
-                data:
-                  entitySubjectType: none
-                  entitySubjectId: string
-                  entitySubjectDisplayName: string
-                  localisedAttachmentFiles:
-                    - fileName: string
-                      localisedFileName: string
-                      culture: string
-                  includeInWelcomeEmail: true
-                  visibility: internal
-                  approvalRequired: true
-                  validity:
-                    startDateTime: string
-                    endDateTime: string
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2073,7 +1697,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -2209,13 +1833,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupOverviewCountDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupOverviewCountDTO'
               example:
-                data:
-                  all: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2233,8 +1856,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentGroupOverviewCountDTO'
               example:
-                data:
-                  all: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2349,7 +1971,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -2376,7 +1998,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -2421,7 +2043,214 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+    delete:
+      tags:
+        - Default
+      summary: Bulk deletes entity attachment groups.
+      description: Bulk deletes entity attachment groups.
+      operationId: delete-entityattachmentgroups-bulk-delete
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      requestBody:
+        description: A token to monitor for cancellation requests.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkDeleteEntityAttachmentGroupRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                subjectType: string
+                subjectId: string
+                viewed: true
+                visibilities:
+                  - string
+                createdStartDateTime: string
+                createdEndDateTime: string
+                validityDate: string
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+                pageSize: 0
+              quickFilter: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BulkDeleteEntityAttachmentGroupRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                subjectType: string
+                subjectId: string
+                viewed: true
+                visibilities:
+                  - string
+                createdStartDateTime: string
+                createdEndDateTime: string
+                validityDate: string
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+                pageSize: 0
+              quickFilter: string
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BulkDeleteEntityAttachmentGroupRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                subjectType: string
+                subjectId: string
+                viewed: true
+                visibilities:
+                  - string
+                createdStartDateTime: string
+                createdEndDateTime: string
+                validityDate: string
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+                pageSize: 0
+              quickFilter: string
+      responses:
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+        '204':
+          description: No Content
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -2518,7 +2347,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -2545,7 +2374,7 @@ paths:
                 $ref: '#/components/schemas/FileStreamResult'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/FileStreamResult'
@@ -2554,14 +2383,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
             text/json:
               schema:
@@ -2571,14 +2393,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
   '/EntityAttachments/{eauuid}':
     get:
@@ -2621,31 +2436,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  customerId: string
-                  origin: customer
-                  parameters:
-                    type: Customer
-                    file:
-                      fileName: string
-                      localisedFileName: string
-                      culture: string
-                  visibility: internal
-                  includeInWelcomeEmail: true
-                  approvalRequired: true
-                  viewedDateTime: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2663,26 +2459,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  customerId: string
-                  origin: customer
-                  parameters:
-                    type: Customer
-                    file:
-                      fileName: string
-                      localisedFileName: string
-                      culture: string
-                  visibility: internal
-                  includeInWelcomeEmail: true
-                  approvalRequired: true
-                  viewedDateTime: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2704,7 +2481,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -2797,7 +2574,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -2842,7 +2619,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -2980,42 +2757,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfEntityAttachmentDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  results:
-                    - customerId: string
-                      origin: customer
-                      parameters:
-                        type: Customer
-                        file:
-                          fileName: string
-                          localisedFileName: string
-                          culture: string
-                      visibility: internal
-                      includeInWelcomeEmail: true
-                      approvalRequired: true
-                      viewedDateTime: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -3033,37 +2780,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  results:
-                    - customerId: string
-                      origin: customer
-                      parameters:
-                        type: Customer
-                        file:
-                          fileName: string
-                          localisedFileName: string
-                          culture: string
-                      visibility: internal
-                      includeInWelcomeEmail: true
-                      approvalRequired: true
-                      viewedDateTime: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -3161,14 +2878,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentOverviewCountDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentOverviewCountDTO'
               example:
-                data:
-                  all: 0
-                  visibleForCustomer: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -3186,9 +2901,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentOverviewCountDTO'
               example:
-                data:
-                  all: 0
-                  visibleForCustomer: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -3264,31 +2977,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  customerId: string
-                  origin: customer
-                  parameters:
-                    type: Customer
-                    file:
-                      fileName: string
-                      localisedFileName: string
-                      culture: string
-                  visibility: internal
-                  includeInWelcomeEmail: true
-                  approvalRequired: true
-                  viewedDateTime: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -3306,26 +3000,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  customerId: string
-                  origin: customer
-                  parameters:
-                    type: Customer
-                    file:
-                      fileName: string
-                      localisedFileName: string
-                      culture: string
-                  visibility: internal
-                  includeInWelcomeEmail: true
-                  approvalRequired: true
-                  viewedDateTime: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -3347,7 +3022,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -3450,31 +3125,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  customerId: string
-                  origin: customer
-                  parameters:
-                    type: Customer
-                    file:
-                      fileName: string
-                      localisedFileName: string
-                      culture: string
-                  visibility: internal
-                  includeInWelcomeEmail: true
-                  approvalRequired: true
-                  viewedDateTime: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -3492,26 +3148,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  customerId: string
-                  origin: customer
-                  parameters:
-                    type: Customer
-                    file:
-                      fileName: string
-                      localisedFileName: string
-                      culture: string
-                  visibility: internal
-                  includeInWelcomeEmail: true
-                  approvalRequired: true
-                  viewedDateTime: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -3533,7 +3170,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -3630,31 +3267,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  customerId: string
-                  origin: customer
-                  parameters:
-                    type: Customer
-                    file:
-                      fileName: string
-                      localisedFileName: string
-                      culture: string
-                  visibility: internal
-                  includeInWelcomeEmail: true
-                  approvalRequired: true
-                  viewedDateTime: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -3672,26 +3290,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  customerId: string
-                  origin: customer
-                  parameters:
-                    type: Customer
-                    file:
-                      fileName: string
-                      localisedFileName: string
-                      culture: string
-                  visibility: internal
-                  includeInWelcomeEmail: true
-                  approvalRequired: true
-                  viewedDateTime: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -3713,7 +3312,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -3849,7 +3448,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -3876,7 +3475,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -3921,7 +3520,214 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+    delete:
+      tags:
+        - Default
+      summary: Bulk deletes entity attachments.
+      description: Bulk deletes entity attachments.
+      operationId: delete-entityattachments-bulk-delete
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      requestBody:
+        description: A token to monitor for cancellation requests.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkDeleteEntityAttachmentRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                customerId: string
+                contractId: string
+                viewed: true
+                visibilities:
+                  - string
+                createdStartDateTime: string
+                createdEndDateTime: string
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+                pageSize: 0
+              quickFilter: string
+              customerId: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BulkDeleteEntityAttachmentRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                customerId: string
+                contractId: string
+                viewed: true
+                visibilities:
+                  - string
+                createdStartDateTime: string
+                createdEndDateTime: string
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+                pageSize: 0
+              quickFilter: string
+              customerId: string
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BulkDeleteEntityAttachmentRequest'
+            example:
+              onlyValidate: true
+              queryParams:
+                customerId: string
+                contractId: string
+                viewed: true
+                visibilities:
+                  - string
+                createdStartDateTime: string
+                createdEndDateTime: string
+                flexSearch: string
+                includeOnlyIds:
+                  - string
+                excludeIds:
+                  - string
+                pageSize: 0
+              quickFilter: string
+              customerId: string
+      responses:
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+        '204':
+          description: No Content
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -3995,31 +3801,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  customerId: string
-                  origin: customer
-                  parameters:
-                    type: Customer
-                    file:
-                      fileName: string
-                      localisedFileName: string
-                      culture: string
-                  visibility: internal
-                  includeInWelcomeEmail: true
-                  approvalRequired: true
-                  viewedDateTime: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -4037,26 +3824,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  customerId: string
-                  origin: customer
-                  parameters:
-                    type: Customer
-                    file:
-                      fileName: string
-                      localisedFileName: string
-                      culture: string
-                  visibility: internal
-                  includeInWelcomeEmail: true
-                  approvalRequired: true
-                  viewedDateTime: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -4078,7 +3846,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -4152,31 +3920,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  customerId: string
-                  origin: customer
-                  parameters:
-                    type: Customer
-                    file:
-                      fileName: string
-                      localisedFileName: string
-                      culture: string
-                  visibility: internal
-                  includeInWelcomeEmail: true
-                  approvalRequired: true
-                  viewedDateTime: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -4194,26 +3943,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  customerId: string
-                  origin: customer
-                  parameters:
-                    type: Customer
-                    file:
-                      fileName: string
-                      localisedFileName: string
-                      culture: string
-                  visibility: internal
-                  includeInWelcomeEmail: true
-                  approvalRequired: true
-                  viewedDateTime: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -4235,7 +3965,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -4378,42 +4108,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfEntityAttachmentDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  results:
-                    - customerId: string
-                      origin: customer
-                      parameters:
-                        type: Customer
-                        file:
-                          fileName: string
-                          localisedFileName: string
-                          culture: string
-                      visibility: internal
-                      includeInWelcomeEmail: true
-                      approvalRequired: true
-                      viewedDateTime: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -4431,37 +4131,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfEntityAttachmentDTO'
               example:
-                data:
-                  results:
-                    - customerId: string
-                      origin: customer
-                      parameters:
-                        type: Customer
-                        file:
-                          fileName: string
-                          localisedFileName: string
-                          culture: string
-                      visibility: internal
-                      includeInWelcomeEmail: true
-                      approvalRequired: true
-                      viewedDateTime: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -4564,14 +4234,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentOverviewCountDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentOverviewCountDTO'
               example:
-                data:
-                  all: 0
-                  visibleForCustomer: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -4589,9 +4257,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEntityAttachmentOverviewCountDTO'
               example:
-                data:
-                  all: 0
-                  visibleForCustomer: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -4646,10 +4312,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/AttachmentDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -4693,10 +4360,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/EntityAttachmentDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -4718,10 +4386,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/EntityAttachmentGroupDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -4743,10 +4412,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/EntityAttachmentGroupOverviewCountDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -4768,10 +4438,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/EntityAttachmentOverviewCountDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -4793,10 +4464,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/PagedResponseModelDTOOfAttachmentDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -4818,10 +4490,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/PagedResponseModelDTOOfEntityAttachmentDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -4843,10 +4516,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/PagedResponseModelDTOOfEntityAttachmentGroupDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -4931,10 +4605,11 @@ components:
         contract:
           $ref: '#/components/schemas/ContractReference'
         file:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/EntityAttachmentFileDTO'
-          nullable: true
     BaseEntityReferenceParametersDTOCustomerReferenceParametersDTO:
       properties:
         type:
@@ -4942,10 +4617,11 @@ components:
             - Customer
           type: string
         file:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/EntityAttachmentFileDTO'
-          nullable: true
     BaseEntityReferenceParametersDTOEntityAttachmentGroupReferenceParametersDTO:
       properties:
         type:
@@ -4984,10 +4660,11 @@ components:
         contract:
           $ref: '#/components/schemas/ContractReference'
         product:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/ProductReferenceDTO'
-          nullable: true
         productAttachmentId:
           type: string
           nullable: true
@@ -4997,10 +4674,11 @@ components:
             $ref: '#/components/schemas/EntityAttachmentFileDTO'
           nullable: true
         signedFile:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/SignedEntityAttachmentFileReferenceDTO'
-          nullable: true
         validity:
           $ref: '#/components/schemas/DateRange'
     BulkDeleteEntityAttachmentGroupRequest:
@@ -5225,10 +4903,11 @@ components:
         origin:
           $ref: '#/components/schemas/EntityAttachmentOrigin'
         parameters:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/BaseEntityReferenceParametersDTO'
-          nullable: true
         visibility:
           $ref: '#/components/schemas/AttachmentVisibility'
         includeInWelcomeEmail:
@@ -5496,11 +5175,16 @@ components:
         - crmcustomer
         - ticket
         - ticketconversation
+        - defaultenabledfeatureflags
+        - customerloadprofile
+        - featureflagchange
         - socialtariffexport
         - socialtariffimportheader
         - socialtariffimportline
+        - frenchereportinvoicecandidate
+        - frenchereportsubmission
       type: string
-      description: 'Possible values: ''none'', ''customer'', ''contract'', ''meter'', ''servicelocation'', ''invoice'', ''importjob'', ''propertygroup'', ''payment'', ''communicationentry'', ''exportjob'', ''dataexport'', ''dataimport'', ''asset'', ''bankaccount'', ''billingitem'', ''billingtariff'', ''costcomponent'', ''costcomponentvalue'', ''model'', ''numbersequence'', ''billingparameters'', ''product'', ''taxcode'', ''template'', ''billingrelation'', ''transaction'', ''dataimportfileformat'', ''dataexportfileformat'', ''tenant'', ''consumption'', ''attachment'', ''exportjobline'', ''culturetable'', ''collectioncase'', ''collectionflowstep'', ''incominginvoice'', ''moverequest'', ''activityentry'', ''commententry'', ''problem'', ''relatedentity'', ''customeragingreport'', ''billingcompleteness'', ''propertygroupbillingconfiguration'', ''propertygroupbillingperiod'', ''collectionflow'', ''configuredplugin'', ''organizationscenarios'', ''paymentterms'', ''paymentdelaysetting'', ''paymentparameters'', ''domainauthenticationparameters'', ''communicationparameters'', ''organization'', ''incominginvoicecomponent'', ''costallocationcomponent'', ''scheduledattempt'', ''plugintrigger'', ''exportentitycontainer'', ''externalbankstatement'', ''externalbanktransaction'', ''externalmeasurement'', ''importjobentityissue'', ''intermediateexportformat'', ''consumptionunit'', ''calculatedconsumption'', ''propertygroupmeteringconfiguration'', ''measurement'', ''externalchannel'', ''serviceconsumption'', ''purgerequest'', ''migrationversion'', ''formulaconsumption'', ''templatedataobject'', ''dataupgradebaseline'', ''processrequest'', ''validationrequest'', ''postprocessrequest'', ''outgoingbankingtransaction'', ''incomingmutation'', ''outgoingmutation'', ''incomingbankingtransaction'', ''customerbankaccount'', ''pluginmanualtrigger'', ''billingcustomer'', ''enumsymboltranslation'', ''scenariotranslation'', ''syntheticloadprofile'', ''consumergroup'', ''estimablecontract'', ''plugininboundwebhooktrigger'', ''pluginmappingentry'', ''eavestimationrun'', ''customentitypropertytype'', ''customentityproperty'', ''pluginfeedentry'', ''regionalregulationsconfiguration'', ''entityattachment'', ''entityattachmentgroup'', ''propertygroupforecastingconfiguration'', ''prepaymenttransaction'', ''customeragingheader'', ''estimatedbillingcompleteness'', ''estimatedinvoice'', ''customergroup'', ''meteringissue'', ''meteringparameters'', ''mutingrule'', ''reportmappingentry'', ''meteringimport'', ''prepaymentaccount'', ''baseimport'', ''systemusagerecord'', ''portalsettings'', ''organizationscenario'', ''tenantrole'', ''useraccessentry'', ''annualstatement'', ''accounting'', ''externalintegrationauthorization'', ''customerportal'', ''paymentintent'', ''paymentprovideraccount'', ''paymentserviceproviderevent'', ''bankingdataprovider'', ''communicationevent'', ''paymentplan'', ''paymentplanparameters'', ''communicationsubject'', ''communicationprovideraccount'', ''paymentprovideraccountregistry'', ''prepaymentaccountissue'', ''prepaymentdevice'', ''prepaymentconfiguration'', ''serviceconsumptioncost'', ''prepaymentcost'', ''prepaymentprofile'', ''propertygroupprepaymentconfiguration'', ''bankholidaycalendar'', ''friendlycreditwindow'', ''billingprepaymentaccount'', ''meteringprovideraccount'', ''meteringproviderrun'', ''masterdataparameters'', ''prepaymentbalanceprocessedevent'', ''prepaymentstatement'', ''outgoingmandateexportrecord'', ''outgoingmandateexportgroup'', ''prepaymentparameters'', ''accountingexportprovider'', ''accountingexportrun'', ''prepaymentcustomer'', ''timeofusetype'', ''timeofusecalendar'', ''reportingprovider'', ''paymentprovidercustomer'', ''reportingconfigurationprovider'', ''servicelocationsuppliedservices'', ''prepaymentdeviceprovideraccount'', ''psprefund'', ''betaenvironmentprovider'', ''crmcustomer'', ''ticket'', ''ticketconversation'', ''socialtariffexport'', ''socialtariffimportheader'', ''socialtariffimportline'''
+      description: 'Possible values: ''none'', ''customer'', ''contract'', ''meter'', ''servicelocation'', ''invoice'', ''importjob'', ''propertygroup'', ''payment'', ''communicationentry'', ''exportjob'', ''dataexport'', ''dataimport'', ''asset'', ''bankaccount'', ''billingitem'', ''billingtariff'', ''costcomponent'', ''costcomponentvalue'', ''model'', ''numbersequence'', ''billingparameters'', ''product'', ''taxcode'', ''template'', ''billingrelation'', ''transaction'', ''dataimportfileformat'', ''dataexportfileformat'', ''tenant'', ''consumption'', ''attachment'', ''exportjobline'', ''culturetable'', ''collectioncase'', ''collectionflowstep'', ''incominginvoice'', ''moverequest'', ''activityentry'', ''commententry'', ''problem'', ''relatedentity'', ''customeragingreport'', ''billingcompleteness'', ''propertygroupbillingconfiguration'', ''propertygroupbillingperiod'', ''collectionflow'', ''configuredplugin'', ''organizationscenarios'', ''paymentterms'', ''paymentdelaysetting'', ''paymentparameters'', ''domainauthenticationparameters'', ''communicationparameters'', ''organization'', ''incominginvoicecomponent'', ''costallocationcomponent'', ''scheduledattempt'', ''plugintrigger'', ''exportentitycontainer'', ''externalbankstatement'', ''externalbanktransaction'', ''externalmeasurement'', ''importjobentityissue'', ''intermediateexportformat'', ''consumptionunit'', ''calculatedconsumption'', ''propertygroupmeteringconfiguration'', ''measurement'', ''externalchannel'', ''serviceconsumption'', ''purgerequest'', ''migrationversion'', ''formulaconsumption'', ''templatedataobject'', ''dataupgradebaseline'', ''processrequest'', ''validationrequest'', ''postprocessrequest'', ''outgoingbankingtransaction'', ''incomingmutation'', ''outgoingmutation'', ''incomingbankingtransaction'', ''customerbankaccount'', ''pluginmanualtrigger'', ''billingcustomer'', ''enumsymboltranslation'', ''scenariotranslation'', ''syntheticloadprofile'', ''consumergroup'', ''estimablecontract'', ''plugininboundwebhooktrigger'', ''pluginmappingentry'', ''eavestimationrun'', ''customentitypropertytype'', ''customentityproperty'', ''pluginfeedentry'', ''regionalregulationsconfiguration'', ''entityattachment'', ''entityattachmentgroup'', ''propertygroupforecastingconfiguration'', ''prepaymenttransaction'', ''customeragingheader'', ''estimatedbillingcompleteness'', ''estimatedinvoice'', ''customergroup'', ''meteringissue'', ''meteringparameters'', ''mutingrule'', ''reportmappingentry'', ''meteringimport'', ''prepaymentaccount'', ''baseimport'', ''systemusagerecord'', ''portalsettings'', ''organizationscenario'', ''tenantrole'', ''useraccessentry'', ''annualstatement'', ''accounting'', ''externalintegrationauthorization'', ''customerportal'', ''paymentintent'', ''paymentprovideraccount'', ''paymentserviceproviderevent'', ''bankingdataprovider'', ''communicationevent'', ''paymentplan'', ''paymentplanparameters'', ''communicationsubject'', ''communicationprovideraccount'', ''paymentprovideraccountregistry'', ''prepaymentaccountissue'', ''prepaymentdevice'', ''prepaymentconfiguration'', ''serviceconsumptioncost'', ''prepaymentcost'', ''prepaymentprofile'', ''propertygroupprepaymentconfiguration'', ''bankholidaycalendar'', ''friendlycreditwindow'', ''billingprepaymentaccount'', ''meteringprovideraccount'', ''meteringproviderrun'', ''masterdataparameters'', ''prepaymentbalanceprocessedevent'', ''prepaymentstatement'', ''outgoingmandateexportrecord'', ''outgoingmandateexportgroup'', ''prepaymentparameters'', ''accountingexportprovider'', ''accountingexportrun'', ''prepaymentcustomer'', ''timeofusetype'', ''timeofusecalendar'', ''reportingprovider'', ''paymentprovidercustomer'', ''reportingconfigurationprovider'', ''servicelocationsuppliedservices'', ''prepaymentdeviceprovideraccount'', ''psprefund'', ''betaenvironmentprovider'', ''crmcustomer'', ''ticket'', ''ticketconversation'', ''defaultenabledfeatureflags'', ''customerloadprofile'', ''featureflagchange'', ''socialtariffexport'', ''socialtariffimportheader'', ''socialtariffimportline'', ''frenchereportinvoicecandidate'', ''frenchereportsubmission'''
     EntityTagHeaderValue:
       type: object
       properties:
@@ -5526,10 +5210,11 @@ components:
           format: date-time
           nullable: true
         entityTag:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/EntityTagHeaderValue'
-          nullable: true
         enableRangeProcessing:
           type: boolean
     GetEntityAttachmentGroupQueryParams:
@@ -5834,10 +5519,11 @@ components:
       type: object
       properties:
         signedFile:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/SignedEntityAttachmentFileReferenceDTO'
-          nullable: true
         contractId:
           type: string
           nullable: true

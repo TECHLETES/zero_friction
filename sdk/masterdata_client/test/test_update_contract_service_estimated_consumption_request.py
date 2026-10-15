@@ -43,7 +43,6 @@ class TestUpdateContractServiceEstimatedConsumptionRequest(unittest.TestCase):
             )
         else:
             return UpdateContractServiceEstimatedConsumptionRequest(
-                consumer_group_id = '',
                 unit_of_measure = 'none',
         )
         """

@@ -47,6 +47,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_delete_accounting_custom_codes_kind_id(self) -> None:
+        """Test case for delete_accounting_custom_codes_kind_id
+
+        Deletes a Custom accounting code when it is not in use.
+        """
+        pass
+
     def test_delete_bankaccounts_bankaccuuid(self) -> None:
         """Test case for delete_bankaccounts_bankaccuuid
 
@@ -156,6 +163,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for delete_paymentdelays_paymentdelayuuid
 
         Deletes a payment delay setting by its identifier.
+        """
+        pass
+
+    def test_delete_portalsettings_notification_pageidentifier_delete(self) -> None:
+        """Test case for delete_portalsettings_notification_pageidentifier_delete
+
+        Removes a page notification from the portal settings.
         """
         pass
 
@@ -775,6 +789,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_regional_regulation_parameters_for_fra(self) -> None:
+        """Test case for get_regional_regulation_parameters_for_fra
+
+        Retrieves the current regional regulations parameters specific to France.
+        """
+        pass
+
     def test_get_regional_regulation_parameters_for_gbr(self) -> None:
         """Test case for get_regional_regulation_parameters_for_gbr
 
@@ -1136,6 +1157,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for post_accounting_costunits_filter
 
         Retrieves a paged list of cost units This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+        """
+        pass
+
+    def test_post_accounting_custom_codes_kind_id_description(self) -> None:
+        """Test case for post_accounting_custom_codes_kind_id_description
+
+        Updates the description of a Custom accounting code.
         """
         pass
 
@@ -1664,6 +1692,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_post_parameters_payment_portal_collection_preferences(self) -> None:
+        """Test case for post_parameters_payment_portal_collection_preferences
+
+        Updates the customer portal collection day preferences.
+        """
+        pass
+
     def test_post_parameters_paymentplan(self) -> None:
         """Test case for post_parameters_paymentplan
 
@@ -1681,14 +1716,14 @@ class TestDefaultApi(unittest.TestCase):
     def test_post_paymentdelays(self) -> None:
         """Test case for post_paymentdelays
 
-        Creates a new payment delay setting.
+        Creates a new payment delay setting. Only one setting may exist per invoice type, so creating a second one for the same invoice type is rejected.
         """
         pass
 
     def test_post_paymentdelays_paymentdelayuuid(self) -> None:
         """Test case for post_paymentdelays_paymentdelayuuid
 
-        Updates an existing payment delay setting.
+        Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
         """
         pass
 
@@ -1832,6 +1867,90 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_put_accounting_custom_codes_kind_id_description(self) -> None:
+        """Test case for put_accounting_custom_codes_kind_id_description
+
+        Updates the description of a Custom accounting code.
+        """
+        pass
+
+    def test_put_accounting_disconnect(self) -> None:
+        """Test case for put_accounting_disconnect
+
+        Disconnect the configured accounting system for the organization.
+        """
+        pass
+
+    def test_put_accounting_sync(self) -> None:
+        """Test case for put_accounting_sync
+
+        Syncs accounting codes from the external accounting system
+        """
+        pass
+
+    def test_put_bankaccounts_bankaccuuid(self) -> None:
+        """Test case for put_bankaccounts_bankaccuuid
+
+        Updates an existing bank account.
+        """
+        pass
+
+    def test_put_bankholidays_id_update(self) -> None:
+        """Test case for put_bankholidays_id_update
+
+        Updates the organisation's bank holiday calendar in its entirety with the given list of (Date, IsActive). Returns the updated calendar.
+        """
+        pass
+
+    def test_put_bankholidays_id_update_single(self) -> None:
+        """Test case for put_bankholidays_id_update_single
+
+        Updates the active state of a single bank holiday (by date). Returns the updated calendar.
+        """
+        pass
+
+    def test_put_bankingdataproviders_id_disable(self) -> None:
+        """Test case for put_bankingdataproviders_id_disable
+
+        Disable a banking data provider.
+        """
+        pass
+
+    def test_put_bankingdataproviders_id_enable(self) -> None:
+        """Test case for put_bankingdataproviders_id_enable
+
+        Enables a banking data provider.
+        """
+        pass
+
+    def test_put_bankingdataproviders_id_testconnection(self) -> None:
+        """Test case for put_bankingdataproviders_id_testconnection
+
+        Test the SFTP connection for a banking data provider.
+        """
+        pass
+
+    def test_put_bankingdataproviders_id_update(self) -> None:
+        """Test case for put_bankingdataproviders_id_update
+
+        Update an existing banking data provider.
+        """
+        pass
+
+    def test_put_billingitems_billingitemuuid(self) -> None:
+        """Test case for put_billingitems_billingitemuuid
+
+        Updates an existing billing item.
+        """
+        pass
+
+    def test_put_billingitems_entityid_translations(self) -> None:
+        """Test case for put_billingitems_entityid_translations
+
+        /BillingItems/{entityId}/translations - PUT
+        """
+        pass
+
     def test_put_billingtariffs_b_billingitemid(self) -> None:
         """Test case for put_billingtariffs_b_billingitemid
 
@@ -1846,10 +1965,332 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_put_collectionflows_id(self) -> None:
+        """Test case for put_collectionflows_id
+
+        Updates an existing collection flow.
+        """
+        pass
+
+    def test_put_collectionsteps_entityid_translations(self) -> None:
+        """Test case for put_collectionsteps_entityid_translations
+
+        /CollectionSteps/{entityId}/translations - PUT
+        """
+        pass
+
+    def test_put_collectionsteps_id(self) -> None:
+        """Test case for put_collectionsteps_id
+
+        Updates an existing collection flow step.
+        """
+        pass
+
+    def test_put_costcomponents_costcomponentuuid(self) -> None:
+        """Test case for put_costcomponents_costcomponentuuid
+
+        Updates an existing cost component.
+        """
+        pass
+
+    def test_put_costcomponents_entityid_translations(self) -> None:
+        """Test case for put_costcomponents_entityid_translations
+
+        /CostComponents/{entityId}/translations - PUT
+        """
+        pass
+
+    def test_put_culturetable(self) -> None:
+        """Test case for put_culturetable
+
+        Updates the culture table.
+        """
+        pass
+
+    def test_put_customentitypropertytypes_customentitypropertytypeuuid(self) -> None:
+        """Test case for put_customentitypropertytypes_customentitypropertytypeuuid
+
+        Updates an existing custom entity property type.
+        """
+        pass
+
+    def test_put_customentitypropertytypes_customentitypropertytypeuuid_options(self) -> None:
+        """Test case for put_customentitypropertytypes_customentitypropertytypeuuid_options
+
+        Updates the dropdown options for a custom entity property type.
+        """
+        pass
+
+    def test_put_customentitypropertytypes_entityid_translations(self) -> None:
+        """Test case for put_customentitypropertytypes_entityid_translations
+
+        /CustomEntityPropertyTypes/{entityId}/translations - PUT
+        """
+        pass
+
+    def test_put_dataexportfileformats_fileformatuuid(self) -> None:
+        """Test case for put_dataexportfileformats_fileformatuuid
+
+        Updates an existing data export file format.
+        """
+        pass
+
+    def test_put_dataexports_dataexportuuid(self) -> None:
+        """Test case for put_dataexports_dataexportuuid
+
+        Updates an existing data export.
+        """
+        pass
+
+    def test_put_dataimportfileformats_fileformatuuid(self) -> None:
+        """Test case for put_dataimportfileformats_fileformatuuid
+
+        Updates an existing data import file format.
+        """
+        pass
+
+    def test_put_dataimports_dataimportuuid(self) -> None:
+        """Test case for put_dataimports_dataimportuuid
+
+        Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
+        """
+        pass
+
     def test_put_enumtranslations_enumtype_symbols_symbol(self) -> None:
         """Test case for put_enumtranslations_enumtype_symbols_symbol
 
         Updates the translation for a specific enumeration symbol.
+        """
+        pass
+
+    def test_put_enumtranslations_enumtype_symbols_symbol_reset(self) -> None:
+        """Test case for put_enumtranslations_enumtype_symbols_symbol_reset
+
+        Resets the translation for a specific enumeration symbol to its default value.
+        """
+        pass
+
+    def test_put_integrations_billingtariff_import_importid_undo(self) -> None:
+        """Test case for put_integrations_billingtariff_import_importid_undo
+
+        Undoes a previous billing tariff import operation.
+        """
+        pass
+
+    def test_put_integrations_billingtariff_import_importid_unlock(self) -> None:
+        """Test case for put_integrations_billingtariff_import_importid_unlock
+
+        Unlocks a billing tariff import operation that was previously locked.
+        """
+        pass
+
+    def test_put_models_modeluuid(self) -> None:
+        """Test case for put_models_modeluuid
+
+        Updates an existing device model.
+        """
+        pass
+
+    def test_put_numbersequences_numbersequenceuuid(self) -> None:
+        """Test case for put_numbersequences_numbersequenceuuid
+
+        Updates an existing number sequence configuration.
+        """
+        pass
+
+    def test_put_organizations_organizationuuid(self) -> None:
+        """Test case for put_organizations_organizationuuid
+
+        Updates an existing organization.
+        """
+        pass
+
+    def test_put_organizations_organizationuuid_initialize(self) -> None:
+        """Test case for put_organizations_organizationuuid_initialize
+
+        Initializes an organization with default settings and configurations.
+        """
+        pass
+
+    def test_put_parameters_billing(self) -> None:
+        """Test case for put_parameters_billing
+
+        Updates the billing parameters configuration.
+        """
+        pass
+
+    def test_put_parameters_communication(self) -> None:
+        """Test case for put_parameters_communication
+
+        Updates the communication parameters configuration.
+        """
+        pass
+
+    def test_put_parameters_communication_domainauthentication(self) -> None:
+        """Test case for put_parameters_communication_domainauthentication
+
+        Updates the domain authentication parameters for communication.
+        """
+        pass
+
+    def test_put_parameters_communication_domainauthentication_eu_accept(self) -> None:
+        """Test case for put_parameters_communication_domainauthentication_eu_accept
+
+        Accepts EU cutover when AcceptAllowed: promotes EuRecords to Records and enqueues residency Eu.
+        """
+        pass
+
+    def test_put_parameters_communication_domainauthentication_eu_migrate(self) -> None:
+        """Test case for put_parameters_communication_domainauthentication_eu_migrate
+
+        Starts EU SendGrid domain migrate prep (writes EuRecords only; does not flip residency).
+        """
+        pass
+
+    def test_put_parameters_communication_domainauthentication_eu_verify(self) -> None:
+        """Test case for put_parameters_communication_domainauthentication_eu_verify
+
+        Verifies EU migrate prep DNS (updates EuRecords only; does not flip residency).
+        """
+        pass
+
+    def test_put_parameters_communication_domainauthentication_verify(self) -> None:
+        """Test case for put_parameters_communication_domainauthentication_verify
+
+        Verifies the current domain authentication parameters.
+        """
+        pass
+
+    def test_put_parameters_masterdata(self) -> None:
+        """Test case for put_parameters_masterdata
+
+        Updates the master data parameters configuration.
+        """
+        pass
+
+    def test_put_parameters_metering(self) -> None:
+        """Test case for put_parameters_metering
+
+        Updates the metering parameters configuration.
+        """
+        pass
+
+    def test_put_parameters_payment(self) -> None:
+        """Test case for put_parameters_payment
+
+        Updates the payment parameters configuration.
+        """
+        pass
+
+    def test_put_parameters_payment_portal_collection_preferences(self) -> None:
+        """Test case for put_parameters_payment_portal_collection_preferences
+
+        Updates the customer portal collection day preferences.
+        """
+        pass
+
+    def test_put_parameters_paymentplan(self) -> None:
+        """Test case for put_parameters_paymentplan
+
+        Updates the payment plan parameters configuration.
+        """
+        pass
+
+    def test_put_parameters_prepayment(self) -> None:
+        """Test case for put_parameters_prepayment
+
+        Updates the prepayment parameters configuration (PrepaymentParameters).
+        """
+        pass
+
+    def test_put_paymentdelays_paymentdelayuuid(self) -> None:
+        """Test case for put_paymentdelays_paymentdelayuuid
+
+        Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
+        """
+        pass
+
+    def test_put_paymentterms_paymenttermuuid(self) -> None:
+        """Test case for put_paymentterms_paymenttermuuid
+
+        Updates an existing payment term.
+        """
+        pass
+
+    def test_put_portalsettings(self) -> None:
+        """Test case for put_portalsettings
+
+        Updates portal settings configuration.
+        """
+        pass
+
+    def test_put_portalsettings_hostname_add(self) -> None:
+        """Test case for put_portalsettings_hostname_add
+
+        adds a hostName for a specific portal.
+        """
+        pass
+
+    def test_put_portalsettings_hostname_validate(self) -> None:
+        """Test case for put_portalsettings_hostname_validate
+
+        Validates DNS records for a pending portal hostname.
+        """
+        pass
+
+    def test_put_portalsettings_notification(self) -> None:
+        """Test case for put_portalsettings_notification
+
+        Upserts a page notification to the portal settings.
+        """
+        pass
+
+    def test_put_products_entityid_translations(self) -> None:
+        """Test case for put_products_entityid_translations
+
+        /Products/{entityId}/translations - PUT
+        """
+        pass
+
+    def test_put_products_productuuid(self) -> None:
+        """Test case for put_products_productuuid
+
+        Updates an existing product.
+        """
+        pass
+
+    def test_put_regionalregulations_bel(self) -> None:
+        """Test case for put_regionalregulations_bel
+
+        Updates regional regulations parameters specific to Belgium.
+        """
+        pass
+
+    def test_put_regionalregulations_gbr(self) -> None:
+        """Test case for put_regionalregulations_gbr
+
+        Updates regional regulations parameters specific to Geat Britain.
+        """
+        pass
+
+    def test_put_reportingconfigurationproviders_activate(self) -> None:
+        """Test case for put_reportingconfigurationproviders_activate
+
+        Activates reporting integration for the current organization. Creates a Microsoft Fabric cloud connection to the customer Azure Data Lake Storage Gen2 account using the supplied service principal credentials. The client secret is sent to Fabric only and is not stored in the database. Requires the Mi
+        """
+        pass
+
+    def test_put_reportingconfigurationproviders_deactivate(self) -> None:
+        """Test case for put_reportingconfigurationproviders_deactivate
+
+        Deactivates reporting integration for the current organization.
+        """
+        pass
+
+    def test_put_reportingconfigurationproviders_settings(self) -> None:
+        """Test case for put_reportingconfigurationproviders_settings
+
+        Updates reporting configuration (export location, Microsoft Entra ID tenant id, service principal application id). While the integration is active, changing any of those values or rotating the client secret requires supplying the client secret again so the Microsoft Fabric connection can be recreate
         """
         pass
 
@@ -2028,10 +2469,52 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_put_scenariotranslations_translationname_reset(self) -> None:
+        """Test case for put_scenariotranslations_translationname_reset
+
+        Resets a specific scenario translation to its default value.
+        """
+        pass
+
+    def test_put_scenariotranslations_translationname_update(self) -> None:
+        """Test case for put_scenariotranslations_translationname_update
+
+        Updates a specific scenario translation.
+        """
+        pass
+
+    def test_put_taxcodes_taxcodeuuid(self) -> None:
+        """Test case for put_taxcodes_taxcodeuuid
+
+        Updates an existing tax code.
+        """
+        pass
+
     def test_put_templates_entitysubjecttype_entitysubjectsubtype_templateusecase(self) -> None:
         """Test case for put_templates_entitysubjecttype_entitysubjectsubtype_templateusecase
 
         Uploads a custom template for a specific scenario.
+        """
+        pass
+
+    def test_put_timeofusecalendars_id(self) -> None:
+        """Test case for put_timeofusecalendars_id
+
+        Updates calendar weekdays (and display-only code). Same `weekdays` shape as create.
+        """
+        pass
+
+    def test_put_timeofusetypes_entityid_translations(self) -> None:
+        """Test case for put_timeofusetypes_entityid_translations
+
+        /TimeOfUseTypes/{entityId}/translations - PUT
+        """
+        pass
+
+    def test_put_timeofusetypes_id(self) -> None:
+        """Test case for put_timeofusetypes_id
+
+        Updates a time-of-use type.
         """
         pass
 

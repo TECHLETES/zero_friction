@@ -55,12 +55,16 @@ class TestUpdatePortalSettingsRequest(unittest.TestCase):
                     allow_customer_to_change_invoice_address = True, 
                     hide_invoice_section = True, 
                     hide_payment_reference = True, 
-                    require_birth_date_for_persons = True, ),
+                    require_birth_date_for_persons = True, 
+                    hide_estimated_invoice = True, ),
                 move_in_move_out_settings = configuration_client.models.portal_move_in_move_out_settings_request.PortalMoveInMoveOutSettingsRequest(
                     is_disabled = True, ),
                 self_service_options = configuration_client.models.portal_self_service_options_request.PortalSelfServiceOptionsRequest(
                     allow_edit_communication_details = True, 
-                    allow_edit_personal_information = True, )
+                    allow_change_communication_language = True, 
+                    allow_edit_personal_information = True, 
+                    allow_change_banking_details = True, 
+                    allow_sdd_to_sct = True, )
             )
         else:
             return UpdatePortalSettingsRequest(
@@ -78,10 +82,14 @@ class TestUpdatePortalSettingsRequest(unittest.TestCase):
                     allow_customer_to_change_invoice_address = True, 
                     hide_invoice_section = True, 
                     hide_payment_reference = True, 
-                    require_birth_date_for_persons = True, ),
+                    require_birth_date_for_persons = True, 
+                    hide_estimated_invoice = True, ),
                 self_service_options = configuration_client.models.portal_self_service_options_request.PortalSelfServiceOptionsRequest(
                     allow_edit_communication_details = True, 
-                    allow_edit_personal_information = True, ),
+                    allow_change_communication_language = True, 
+                    allow_edit_personal_information = True, 
+                    allow_change_banking_details = True, 
+                    allow_sdd_to_sct = True, ),
         )
         """
 

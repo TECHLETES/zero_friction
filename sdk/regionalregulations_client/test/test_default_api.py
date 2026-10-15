@@ -40,6 +40,20 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_frenchereport_declarant_status(self) -> None:
+        """Test case for get_frenchereport_declarant_status
+
+        Returns the status of the organisation's French e-reporting declarant submission.
+        """
+        pass
+
+    def test_get_frenchereport_submissions_submissionid(self) -> None:
+        """Test case for get_frenchereport_submissions_submissionid
+
+        /FrenchEReport/submissions/{submissionId} - GET
+        """
+        pass
+
     def test_get_migrationadmin_latest_version(self) -> None:
         """Test case for get_migrationadmin_latest_version
 
@@ -51,6 +65,48 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for get_socialtariff_exports
 
         Retrieves a paginated list of all social tariff exports.
+        """
+        pass
+
+    def test_post_frenchereport_candidates_filter(self) -> None:
+        """Test case for post_frenchereport_candidates_filter
+
+        /FrenchEReport/candidates/filter - POST
+        """
+        pass
+
+    def test_post_frenchereport_candidates_invoiceid_recollect(self) -> None:
+        """Test case for post_frenchereport_candidates_invoiceid_recollect
+
+        Re-requests invoice data from billing to refresh a non-submitted e-reporting candidate.
+        """
+        pass
+
+    def test_post_frenchereport_declarant_register(self) -> None:
+        """Test case for post_frenchereport_declarant_register
+
+        Registers the organisation as a French e-reporting declarant with Recommand. Requires `RecommandProviderAccountId` on French regional regulations parameters (set after successful Recommand onboarding).
+        """
+        pass
+
+    def test_post_frenchereport_submissions_filter(self) -> None:
+        """Test case for post_frenchereport_submissions_filter
+
+        /FrenchEReport/submissions/filter - POST
+        """
+        pass
+
+    def test_post_frenchereport_submissions_filter_overviewcount(self) -> None:
+        """Test case for post_frenchereport_submissions_filter_overviewcount
+
+        Returns submission counts for each quick-filter tab for the current filter set.
+        """
+        pass
+
+    def test_post_frenchereport_submissions_submissionid_resubmit(self) -> None:
+        """Test case for post_frenchereport_submissions_submissionid_resubmit
+
+        Re-enqueues a failed or rejected e-reporting submission for delivery to Recommand.
         """
         pass
 
@@ -86,6 +142,20 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for post_socialtariff_exports_expuuid_download
 
         Downloads a specific social tariff export file.
+        """
+        pass
+
+    def test_put_frenchereport_candidates_invoiceid_recollect(self) -> None:
+        """Test case for put_frenchereport_candidates_invoiceid_recollect
+
+        Re-requests invoice data from billing to refresh a non-submitted e-reporting candidate.
+        """
+        pass
+
+    def test_put_frenchereport_submissions_submissionid_resubmit(self) -> None:
+        """Test case for put_frenchereport_submissions_submissionid_resubmit
+
+        Re-enqueues a failed or rejected e-reporting submission for delivery to Recommand.
         """
         pass
 

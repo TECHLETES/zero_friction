@@ -65,27 +65,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfSocialTariffExportDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfSocialTariffExportDTO'
               example:
-                data:
-                  startDateTime: string
-                  endDateTime: string
-                  generated: true
-                  internalFilePath: string
-                  filename: string
-                  type: string
-                  onlyMutations: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -103,22 +88,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfSocialTariffExportDTO'
               example:
-                data:
-                  startDateTime: string
-                  endDateTime: string
-                  generated: true
-                  internalFilePath: string
-                  filename: string
-                  type: string
-                  onlyMutations: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -140,7 +110,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -234,27 +204,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfSocialTariffExportDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfSocialTariffExportDTO'
               example:
-                data:
-                  startDateTime: string
-                  endDateTime: string
-                  generated: true
-                  internalFilePath: string
-                  filename: string
-                  type: string
-                  onlyMutations: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -272,22 +227,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfSocialTariffExportDTO'
               example:
-                data:
-                  startDateTime: string
-                  endDateTime: string
-                  generated: true
-                  internalFilePath: string
-                  filename: string
-                  type: string
-                  onlyMutations: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -309,7 +249,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -388,38 +328,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfSocialTariffExportDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfSocialTariffExportDTO'
               example:
-                data:
-                  results:
-                    - startDateTime: string
-                      endDateTime: string
-                      generated: true
-                      internalFilePath: string
-                      filename: string
-                      type: string
-                      onlyMutations: true
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -437,33 +351,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfSocialTariffExportDTO'
               example:
-                data:
-                  results:
-                    - startDateTime: string
-                      endDateTime: string
-                      generated: true
-                      internalFilePath: string
-                      filename: string
-                      type: string
-                      onlyMutations: true
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -530,27 +418,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfSocialTariffExportDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfSocialTariffExportDTO'
               example:
-                data:
-                  startDateTime: string
-                  endDateTime: string
-                  generated: true
-                  internalFilePath: string
-                  filename: string
-                  type: string
-                  onlyMutations: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -568,22 +441,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfSocialTariffExportDTO'
               example:
-                data:
-                  startDateTime: string
-                  endDateTime: string
-                  generated: true
-                  internalFilePath: string
-                  filename: string
-                  type: string
-                  onlyMutations: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -605,7 +463,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -681,7 +539,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -708,7 +566,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -753,7 +611,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -829,7 +687,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -856,7 +714,7 @@ paths:
                 $ref: '#/components/schemas/FileStreamResult'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/FileStreamResult'
@@ -865,14 +723,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
             text/json:
               schema:
@@ -882,14 +733,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
   /SocialTariff/exports/delete/bulk:
     delete:
@@ -968,7 +812,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1011,7 +855,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1129,7 +973,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -1156,7 +1000,7 @@ paths:
                 $ref: '#/components/schemas/FileStreamResult'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/FileStreamResult'
@@ -1165,14 +1009,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
             text/json:
               schema:
@@ -1182,14 +1019,7 @@ paths:
                 contentType: string
                 fileDownloadName: string
                 lastModified: string
-                entityTag:
-                  tag:
-                    buffer: string
-                    offset: 0
-                    length: 0
-                    value: string
-                    hasValue: true
-                  isWeak: true
+                entityTag: { }
                 enableRangeProcessing: true
   /MigrationAdmin/latest-version:
     get:
@@ -1206,14 +1036,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfMigrationLatestVersionDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfMigrationLatestVersionDTO'
               example:
-                data:
-                  namespace: string
-                  latestVersion: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1231,9 +1059,937 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfMigrationLatestVersionDTO'
               example:
-                data:
-                  namespace: string
-                  latestVersion: 0
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  /FrenchEReport/declarant/register:
+    post:
+      tags:
+        - Default
+      summary: "Registers the organisation as a French e-reporting declarant with Recommand.\nRequires `RecommandProviderAccountId` on French regional regulations parameters\n(set after successful Recommand onboarding)."
+      description: "Registers the organisation as a French e-reporting declarant with Recommand.\nRequires `RecommandProviderAccountId` on French regional regulations parameters\n(set after successful Recommand onboarding)."
+      operationId: post-frenchereport-declarant-register
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      responses:
+        '200':
+          description: Success=true when declarant registration was enqueued.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  /FrenchEReport/declarant/status:
+    get:
+      tags:
+        - Default
+      summary: Returns the status of the organisation's French e-reporting declarant submission.
+      description: Returns the status of the organisation's French e-reporting declarant submission.
+      operationId: get-frenchereport-declarant-status
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfFrenchEReportDeclarantStatusDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfFrenchEReportDeclarantStatusDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfFrenchEReportDeclarantStatusDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  '/FrenchEReport/submissions/{submissionId}':
+    get:
+      tags:
+        - Default
+      summary: '/FrenchEReport/submissions/{submissionId} - GET'
+      operationId: get-frenchereport-submissions-submissionid
+      parameters:
+        - name: submissionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfFrenchEReportSubmissionDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfFrenchEReportSubmissionDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfFrenchEReportSubmissionDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  /FrenchEReport/submissions/filter:
+    post:
+      tags:
+        - Default
+      summary: /FrenchEReport/submissions/filter - POST
+      operationId: post-frenchereport-submissions-filter
+      parameters:
+        - name: Name
+          in: query
+          schema:
+            type: string
+        - name: Id
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: orderBy
+          in: query
+          schema:
+            type: string
+        - name: continuationToken
+          in: header
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetFrenchEReportSubmissionsQueryParams'
+            example:
+              status: { }
+              type: { }
+              onlyCount: true
+              applyFiltersOverIncludedIds: true
+              flexSearch: string
+              includeOnlyIds:
+                - string
+              excludeIds:
+                - string
+              pageSize: 0
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GetFrenchEReportSubmissionsQueryParams'
+            example:
+              status: { }
+              type: { }
+              onlyCount: true
+              applyFiltersOverIncludedIds: true
+              flexSearch: string
+              includeOnlyIds:
+                - string
+              excludeIds:
+                - string
+              pageSize: 0
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GetFrenchEReportSubmissionsQueryParams'
+            example:
+              status: { }
+              type: { }
+              onlyCount: true
+              applyFiltersOverIncludedIds: true
+              flexSearch: string
+              includeOnlyIds:
+                - string
+              excludeIds:
+                - string
+              pageSize: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfFrenchEReportSubmissionDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfFrenchEReportSubmissionDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfFrenchEReportSubmissionDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  /FrenchEReport/submissions/filter/overviewcount:
+    post:
+      tags:
+        - Default
+      summary: Returns submission counts for each quick-filter tab for the current filter set.
+      description: Returns submission counts for each quick-filter tab for the current filter set.
+      operationId: post-frenchereport-submissions-filter-overviewcount
+      parameters:
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetFrenchEReportSubmissionsQueryParams'
+            example:
+              status: { }
+              type: { }
+              onlyCount: true
+              applyFiltersOverIncludedIds: true
+              flexSearch: string
+              includeOnlyIds:
+                - string
+              excludeIds:
+                - string
+              pageSize: 0
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GetFrenchEReportSubmissionsQueryParams'
+            example:
+              status: { }
+              type: { }
+              onlyCount: true
+              applyFiltersOverIncludedIds: true
+              flexSearch: string
+              includeOnlyIds:
+                - string
+              excludeIds:
+                - string
+              pageSize: 0
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GetFrenchEReportSubmissionsQueryParams'
+            example:
+              status: { }
+              type: { }
+              onlyCount: true
+              applyFiltersOverIncludedIds: true
+              flexSearch: string
+              includeOnlyIds:
+                - string
+              excludeIds:
+                - string
+              pageSize: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfFrenchEReportSubmissionOverviewCountDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfFrenchEReportSubmissionOverviewCountDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfFrenchEReportSubmissionOverviewCountDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  '/FrenchEReport/submissions/{submissionId}/resubmit':
+    post:
+      tags:
+        - Default
+      summary: Re-enqueues a failed or rejected e-reporting submission for delivery to Recommand.
+      description: Re-enqueues a failed or rejected e-reporting submission for delivery to Recommand.
+      operationId: post-frenchereport-submissions-submissionid-resubmit
+      parameters:
+        - name: submissionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+    put:
+      tags:
+        - Default
+      summary: Re-enqueues a failed or rejected e-reporting submission for delivery to Recommand.
+      description: Re-enqueues a failed or rejected e-reporting submission for delivery to Recommand.
+      operationId: put-frenchereport-submissions-submissionid-resubmit
+      parameters:
+        - name: submissionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  '/FrenchEReport/candidates/{invoiceId}/recollect':
+    post:
+      tags:
+        - Default
+      summary: Re-requests invoice data from billing to refresh a non-submitted e-reporting candidate.
+      description: Re-requests invoice data from billing to refresh a non-submitted e-reporting candidate.
+      operationId: post-frenchereport-candidates-invoiceid-recollect
+      parameters:
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+    put:
+      tags:
+        - Default
+      summary: Re-requests invoice data from billing to refresh a non-submitted e-reporting candidate.
+      description: Re-requests invoice data from billing to refresh a non-submitted e-reporting candidate.
+      operationId: put-frenchereport-candidates-invoiceid-recollect
+      parameters:
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+  /FrenchEReport/candidates/filter:
+    post:
+      tags:
+        - Default
+      summary: /FrenchEReport/candidates/filter - POST
+      operationId: post-frenchereport-candidates-filter
+      parameters:
+        - name: orderBy
+          in: query
+          schema:
+            type: string
+        - name: continuationToken
+          in: header
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetFrenchEReportInvoiceCandidatesQueryParams'
+            example:
+              submissionId: string
+              reportingDate: string
+              status: { }
+              applyFiltersOverIncludedIds: true
+              flexSearch: string
+              includeOnlyIds:
+                - string
+              excludeIds:
+                - string
+              pageSize: 0
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GetFrenchEReportInvoiceCandidatesQueryParams'
+            example:
+              submissionId: string
+              reportingDate: string
+              status: { }
+              applyFiltersOverIncludedIds: true
+              flexSearch: string
+              includeOnlyIds:
+                - string
+              excludeIds:
+                - string
+              pageSize: 0
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GetFrenchEReportInvoiceCandidatesQueryParams'
+            example:
+              submissionId: string
+              reportingDate: string
+              status: { }
+              applyFiltersOverIncludedIds: true
+              flexSearch: string
+              includeOnlyIds:
+                - string
+              excludeIds:
+                - string
+              pageSize: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfFrenchEReportInvoiceCandidateDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfFrenchEReportInvoiceCandidateDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfFrenchEReportInvoiceCandidateDTO'
+              example:
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1306,14 +2062,145 @@ components:
           format: int32
         isSynchronous:
           type: boolean
+    ApiResponseDTOOfFrenchEReportDeclarantStatusDTO:
+      type: object
+      properties:
+        data:
+          oneOf:
+            - enum:
+                - 
+              nullable: true
+            - $ref: '#/components/schemas/FrenchEReportDeclarantStatusDTO'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalisedErrorDTO'
+        success:
+          type: boolean
+        applicableEntitiesCount:
+          type: integer
+          format: int32
+        requestedEntitiesCount:
+          type: integer
+          format: int32
+        succeededEntitiesCount:
+          type: integer
+          format: int32
+        isSynchronous:
+          type: boolean
+    ApiResponseDTOOfFrenchEReportSubmissionDTO:
+      type: object
+      properties:
+        data:
+          oneOf:
+            - enum:
+                - 
+              nullable: true
+            - $ref: '#/components/schemas/FrenchEReportSubmissionDTO'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalisedErrorDTO'
+        success:
+          type: boolean
+        applicableEntitiesCount:
+          type: integer
+          format: int32
+        requestedEntitiesCount:
+          type: integer
+          format: int32
+        succeededEntitiesCount:
+          type: integer
+          format: int32
+        isSynchronous:
+          type: boolean
+    ApiResponseDTOOfFrenchEReportSubmissionOverviewCountDTO:
+      type: object
+      properties:
+        data:
+          oneOf:
+            - enum:
+                - 
+              nullable: true
+            - $ref: '#/components/schemas/FrenchEReportSubmissionOverviewCountDTO'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalisedErrorDTO'
+        success:
+          type: boolean
+        applicableEntitiesCount:
+          type: integer
+          format: int32
+        requestedEntitiesCount:
+          type: integer
+          format: int32
+        succeededEntitiesCount:
+          type: integer
+          format: int32
+        isSynchronous:
+          type: boolean
     ApiResponseDTOOfMigrationLatestVersionDTO:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/MigrationLatestVersionDTO'
-          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalisedErrorDTO'
+        success:
+          type: boolean
+        applicableEntitiesCount:
+          type: integer
+          format: int32
+        requestedEntitiesCount:
+          type: integer
+          format: int32
+        succeededEntitiesCount:
+          type: integer
+          format: int32
+        isSynchronous:
+          type: boolean
+    ApiResponseDTOOfPagedResponseModelDTOOfFrenchEReportInvoiceCandidateDTO:
+      type: object
+      properties:
+        data:
+          oneOf:
+            - enum:
+                - 
+              nullable: true
+            - $ref: '#/components/schemas/PagedResponseModelDTOOfFrenchEReportInvoiceCandidateDTO'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalisedErrorDTO'
+        success:
+          type: boolean
+        applicableEntitiesCount:
+          type: integer
+          format: int32
+        requestedEntitiesCount:
+          type: integer
+          format: int32
+        succeededEntitiesCount:
+          type: integer
+          format: int32
+        isSynchronous:
+          type: boolean
+    ApiResponseDTOOfPagedResponseModelDTOOfFrenchEReportSubmissionDTO:
+      type: object
+      properties:
+        data:
+          oneOf:
+            - enum:
+                - 
+              nullable: true
+            - $ref: '#/components/schemas/PagedResponseModelDTOOfFrenchEReportSubmissionDTO'
         errors:
           type: array
           items:
@@ -1335,10 +2222,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/PagedResponseModelDTOOfSocialTariffExportDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -1360,10 +2248,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/SocialTariffExportDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -1423,6 +2312,259 @@ components:
           type: array
           items:
             type: string
+    CountryCode:
+      enum:
+        - aut
+        - bel
+        - bgr
+        - cyp
+        - cze
+        - dnk
+        - est
+        - fin
+        - fra
+        - deu
+        - grc
+        - hun
+        - irl
+        - ita
+        - lva
+        - ltu
+        - lux
+        - mlt
+        - nld
+        - pol
+        - prt
+        - rou
+        - svk
+        - esp
+        - swe
+        - gbr
+        - che
+        - isl
+        - nor
+        - rus
+        - blr
+        - ukr
+        - mda
+        - srb
+        - alb
+        - mne
+        - mkd
+        - tur
+        - lie
+        - smr
+        - and
+        - mco
+        - bih
+        - bra
+        - usa
+        - sgp
+        - zaf
+        - cuw
+        - abw
+        - afg
+        - ago
+        - aia
+        - ala
+        - are
+        - arg
+        - arm
+        - asm
+        - ata
+        - atf
+        - atg
+        - aus
+        - aze
+        - bdi
+        - ben
+        - bes
+        - bfa
+        - bgd
+        - bhr
+        - bhs
+        - blm
+        - blz
+        - bmu
+        - bol
+        - brb
+        - brn
+        - btn
+        - bvt
+        - bwa
+        - caf
+        - can
+        - cck
+        - chl
+        - chn
+        - civ
+        - cmr
+        - cod
+        - cog
+        - cok
+        - col
+        - com
+        - cpv
+        - cri
+        - cub
+        - cxr
+        - cym
+        - dji
+        - dma
+        - dom
+        - dza
+        - ecu
+        - egy
+        - eri
+        - esh
+        - eth
+        - fji
+        - flk
+        - fro
+        - fsm
+        - gab
+        - geo
+        - ggy
+        - gha
+        - gib
+        - gin
+        - glp
+        - gmb
+        - gnb
+        - gnq
+        - grd
+        - grl
+        - gtm
+        - guf
+        - gum
+        - guy
+        - hkg
+        - hmd
+        - hnd
+        - hrv
+        - hti
+        - idn
+        - imn
+        - ind
+        - iot
+        - irn
+        - irq
+        - isr
+        - jam
+        - jey
+        - jor
+        - jpn
+        - kaz
+        - ken
+        - kgz
+        - khm
+        - kir
+        - kna
+        - kor
+        - kwt
+        - lao
+        - lbn
+        - lbr
+        - lby
+        - lca
+        - lka
+        - lso
+        - mac
+        - maf
+        - mar
+        - mdg
+        - mdv
+        - mex
+        - mhl
+        - mli
+        - mmr
+        - mng
+        - mnp
+        - moz
+        - mrt
+        - msr
+        - mtq
+        - mus
+        - mwi
+        - mys
+        - myt
+        - nam
+        - ncl
+        - ner
+        - nfk
+        - nga
+        - nic
+        - niu
+        - npl
+        - nru
+        - nzl
+        - omn
+        - pak
+        - pan
+        - pcn
+        - per
+        - phl
+        - plw
+        - png
+        - pri
+        - prk
+        - pry
+        - pse
+        - pyf
+        - qat
+        - reu
+        - rwa
+        - sau
+        - sdn
+        - sen
+        - sgs
+        - shn
+        - sjm
+        - slb
+        - sle
+        - slv
+        - som
+        - spm
+        - ssd
+        - stp
+        - sur
+        - svn
+        - swz
+        - sxm
+        - syc
+        - syr
+        - tca
+        - tcd
+        - tgo
+        - tha
+        - tjk
+        - tkl
+        - tkm
+        - tls
+        - ton
+        - tto
+        - tun
+        - tuv
+        - twn
+        - tza
+        - uga
+        - umi
+        - ury
+        - uzb
+        - vat
+        - vct
+        - ven
+        - vgb
+        - vir
+        - vnm
+        - vut
+        - wlf
+        - wsm
+        - yem
+        - zmb
+        - zwe
+      type: string
+      description: 'Possible values: ''aut'', ''bel'', ''bgr'', ''cyp'', ''cze'', ''dnk'', ''est'', ''fin'', ''fra'', ''deu'', ''grc'', ''hun'', ''irl'', ''ita'', ''lva'', ''ltu'', ''lux'', ''mlt'', ''nld'', ''pol'', ''prt'', ''rou'', ''svk'', ''esp'', ''swe'', ''gbr'', ''che'', ''isl'', ''nor'', ''rus'', ''blr'', ''ukr'', ''mda'', ''srb'', ''alb'', ''mne'', ''mkd'', ''tur'', ''lie'', ''smr'', ''and'', ''mco'', ''bih'', ''bra'', ''usa'', ''sgp'', ''zaf'', ''cuw'', ''abw'', ''afg'', ''ago'', ''aia'', ''ala'', ''are'', ''arg'', ''arm'', ''asm'', ''ata'', ''atf'', ''atg'', ''aus'', ''aze'', ''bdi'', ''ben'', ''bes'', ''bfa'', ''bgd'', ''bhr'', ''bhs'', ''blm'', ''blz'', ''bmu'', ''bol'', ''brb'', ''brn'', ''btn'', ''bvt'', ''bwa'', ''caf'', ''can'', ''cck'', ''chl'', ''chn'', ''civ'', ''cmr'', ''cod'', ''cog'', ''cok'', ''col'', ''com'', ''cpv'', ''cri'', ''cub'', ''cxr'', ''cym'', ''dji'', ''dma'', ''dom'', ''dza'', ''ecu'', ''egy'', ''eri'', ''esh'', ''eth'', ''fji'', ''flk'', ''fro'', ''fsm'', ''gab'', ''geo'', ''ggy'', ''gha'', ''gib'', ''gin'', ''glp'', ''gmb'', ''gnb'', ''gnq'', ''grd'', ''grl'', ''gtm'', ''guf'', ''gum'', ''guy'', ''hkg'', ''hmd'', ''hnd'', ''hrv'', ''hti'', ''idn'', ''imn'', ''ind'', ''iot'', ''irn'', ''irq'', ''isr'', ''jam'', ''jey'', ''jor'', ''jpn'', ''kaz'', ''ken'', ''kgz'', ''khm'', ''kir'', ''kna'', ''kor'', ''kwt'', ''lao'', ''lbn'', ''lbr'', ''lby'', ''lca'', ''lka'', ''lso'', ''mac'', ''maf'', ''mar'', ''mdg'', ''mdv'', ''mex'', ''mhl'', ''mli'', ''mmr'', ''mng'', ''mnp'', ''moz'', ''mrt'', ''msr'', ''mtq'', ''mus'', ''mwi'', ''mys'', ''myt'', ''nam'', ''ncl'', ''ner'', ''nfk'', ''nga'', ''nic'', ''niu'', ''npl'', ''nru'', ''nzl'', ''omn'', ''pak'', ''pan'', ''pcn'', ''per'', ''phl'', ''plw'', ''png'', ''pri'', ''prk'', ''pry'', ''pse'', ''pyf'', ''qat'', ''reu'', ''rwa'', ''sau'', ''sdn'', ''sen'', ''sgs'', ''shn'', ''sjm'', ''slb'', ''sle'', ''slv'', ''som'', ''spm'', ''ssd'', ''stp'', ''sur'', ''svn'', ''swz'', ''sxm'', ''syc'', ''syr'', ''tca'', ''tcd'', ''tgo'', ''tha'', ''tjk'', ''tkl'', ''tkm'', ''tls'', ''ton'', ''tto'', ''tun'', ''tuv'', ''twn'', ''tza'', ''uga'', ''umi'', ''ury'', ''uzb'', ''vat'', ''vct'', ''ven'', ''vgb'', ''vir'', ''vnm'', ''vut'', ''wlf'', ''wsm'', ''yem'', ''zmb'', ''zwe'''
     CreateClaimsProtectedCustomersSocialTariffExportRequest:
       type: object
       properties:
@@ -1440,6 +2582,14 @@ components:
           format: date-time
         onlyMutations:
           type: boolean
+    CustomerType:
+      enum:
+        - person
+        - organization
+        - supplier
+        - government
+      type: string
+      description: 'Possible values: ''person'', ''organization'', ''supplier'', ''government'''
     DataType:
       enum:
         - text
@@ -1616,11 +2766,16 @@ components:
         - crmcustomer
         - ticket
         - ticketconversation
+        - defaultenabledfeatureflags
+        - customerloadprofile
+        - featureflagchange
         - socialtariffexport
         - socialtariffimportheader
         - socialtariffimportline
+        - frenchereportinvoicecandidate
+        - frenchereportsubmission
       type: string
-      description: 'Possible values: ''none'', ''customer'', ''contract'', ''meter'', ''servicelocation'', ''invoice'', ''importjob'', ''propertygroup'', ''payment'', ''communicationentry'', ''exportjob'', ''dataexport'', ''dataimport'', ''asset'', ''bankaccount'', ''billingitem'', ''billingtariff'', ''costcomponent'', ''costcomponentvalue'', ''model'', ''numbersequence'', ''billingparameters'', ''product'', ''taxcode'', ''template'', ''billingrelation'', ''transaction'', ''dataimportfileformat'', ''dataexportfileformat'', ''tenant'', ''consumption'', ''attachment'', ''exportjobline'', ''culturetable'', ''collectioncase'', ''collectionflowstep'', ''incominginvoice'', ''moverequest'', ''activityentry'', ''commententry'', ''problem'', ''relatedentity'', ''customeragingreport'', ''billingcompleteness'', ''propertygroupbillingconfiguration'', ''propertygroupbillingperiod'', ''collectionflow'', ''configuredplugin'', ''organizationscenarios'', ''paymentterms'', ''paymentdelaysetting'', ''paymentparameters'', ''domainauthenticationparameters'', ''communicationparameters'', ''organization'', ''incominginvoicecomponent'', ''costallocationcomponent'', ''scheduledattempt'', ''plugintrigger'', ''exportentitycontainer'', ''externalbankstatement'', ''externalbanktransaction'', ''externalmeasurement'', ''importjobentityissue'', ''intermediateexportformat'', ''consumptionunit'', ''calculatedconsumption'', ''propertygroupmeteringconfiguration'', ''measurement'', ''externalchannel'', ''serviceconsumption'', ''purgerequest'', ''migrationversion'', ''formulaconsumption'', ''templatedataobject'', ''dataupgradebaseline'', ''processrequest'', ''validationrequest'', ''postprocessrequest'', ''outgoingbankingtransaction'', ''incomingmutation'', ''outgoingmutation'', ''incomingbankingtransaction'', ''customerbankaccount'', ''pluginmanualtrigger'', ''billingcustomer'', ''enumsymboltranslation'', ''scenariotranslation'', ''syntheticloadprofile'', ''consumergroup'', ''estimablecontract'', ''plugininboundwebhooktrigger'', ''pluginmappingentry'', ''eavestimationrun'', ''customentitypropertytype'', ''customentityproperty'', ''pluginfeedentry'', ''regionalregulationsconfiguration'', ''entityattachment'', ''entityattachmentgroup'', ''propertygroupforecastingconfiguration'', ''prepaymenttransaction'', ''customeragingheader'', ''estimatedbillingcompleteness'', ''estimatedinvoice'', ''customergroup'', ''meteringissue'', ''meteringparameters'', ''mutingrule'', ''reportmappingentry'', ''meteringimport'', ''prepaymentaccount'', ''baseimport'', ''systemusagerecord'', ''portalsettings'', ''organizationscenario'', ''tenantrole'', ''useraccessentry'', ''annualstatement'', ''accounting'', ''externalintegrationauthorization'', ''customerportal'', ''paymentintent'', ''paymentprovideraccount'', ''paymentserviceproviderevent'', ''bankingdataprovider'', ''communicationevent'', ''paymentplan'', ''paymentplanparameters'', ''communicationsubject'', ''communicationprovideraccount'', ''paymentprovideraccountregistry'', ''prepaymentaccountissue'', ''prepaymentdevice'', ''prepaymentconfiguration'', ''serviceconsumptioncost'', ''prepaymentcost'', ''prepaymentprofile'', ''propertygroupprepaymentconfiguration'', ''bankholidaycalendar'', ''friendlycreditwindow'', ''billingprepaymentaccount'', ''meteringprovideraccount'', ''meteringproviderrun'', ''masterdataparameters'', ''prepaymentbalanceprocessedevent'', ''prepaymentstatement'', ''outgoingmandateexportrecord'', ''outgoingmandateexportgroup'', ''prepaymentparameters'', ''accountingexportprovider'', ''accountingexportrun'', ''prepaymentcustomer'', ''timeofusetype'', ''timeofusecalendar'', ''reportingprovider'', ''paymentprovidercustomer'', ''reportingconfigurationprovider'', ''servicelocationsuppliedservices'', ''prepaymentdeviceprovideraccount'', ''psprefund'', ''betaenvironmentprovider'', ''crmcustomer'', ''ticket'', ''ticketconversation'', ''socialtariffexport'', ''socialtariffimportheader'', ''socialtariffimportline'''
+      description: 'Possible values: ''none'', ''customer'', ''contract'', ''meter'', ''servicelocation'', ''invoice'', ''importjob'', ''propertygroup'', ''payment'', ''communicationentry'', ''exportjob'', ''dataexport'', ''dataimport'', ''asset'', ''bankaccount'', ''billingitem'', ''billingtariff'', ''costcomponent'', ''costcomponentvalue'', ''model'', ''numbersequence'', ''billingparameters'', ''product'', ''taxcode'', ''template'', ''billingrelation'', ''transaction'', ''dataimportfileformat'', ''dataexportfileformat'', ''tenant'', ''consumption'', ''attachment'', ''exportjobline'', ''culturetable'', ''collectioncase'', ''collectionflowstep'', ''incominginvoice'', ''moverequest'', ''activityentry'', ''commententry'', ''problem'', ''relatedentity'', ''customeragingreport'', ''billingcompleteness'', ''propertygroupbillingconfiguration'', ''propertygroupbillingperiod'', ''collectionflow'', ''configuredplugin'', ''organizationscenarios'', ''paymentterms'', ''paymentdelaysetting'', ''paymentparameters'', ''domainauthenticationparameters'', ''communicationparameters'', ''organization'', ''incominginvoicecomponent'', ''costallocationcomponent'', ''scheduledattempt'', ''plugintrigger'', ''exportentitycontainer'', ''externalbankstatement'', ''externalbanktransaction'', ''externalmeasurement'', ''importjobentityissue'', ''intermediateexportformat'', ''consumptionunit'', ''calculatedconsumption'', ''propertygroupmeteringconfiguration'', ''measurement'', ''externalchannel'', ''serviceconsumption'', ''purgerequest'', ''migrationversion'', ''formulaconsumption'', ''templatedataobject'', ''dataupgradebaseline'', ''processrequest'', ''validationrequest'', ''postprocessrequest'', ''outgoingbankingtransaction'', ''incomingmutation'', ''outgoingmutation'', ''incomingbankingtransaction'', ''customerbankaccount'', ''pluginmanualtrigger'', ''billingcustomer'', ''enumsymboltranslation'', ''scenariotranslation'', ''syntheticloadprofile'', ''consumergroup'', ''estimablecontract'', ''plugininboundwebhooktrigger'', ''pluginmappingentry'', ''eavestimationrun'', ''customentitypropertytype'', ''customentityproperty'', ''pluginfeedentry'', ''regionalregulationsconfiguration'', ''entityattachment'', ''entityattachmentgroup'', ''propertygroupforecastingconfiguration'', ''prepaymenttransaction'', ''customeragingheader'', ''estimatedbillingcompleteness'', ''estimatedinvoice'', ''customergroup'', ''meteringissue'', ''meteringparameters'', ''mutingrule'', ''reportmappingentry'', ''meteringimport'', ''prepaymentaccount'', ''baseimport'', ''systemusagerecord'', ''portalsettings'', ''organizationscenario'', ''tenantrole'', ''useraccessentry'', ''annualstatement'', ''accounting'', ''externalintegrationauthorization'', ''customerportal'', ''paymentintent'', ''paymentprovideraccount'', ''paymentserviceproviderevent'', ''bankingdataprovider'', ''communicationevent'', ''paymentplan'', ''paymentplanparameters'', ''communicationsubject'', ''communicationprovideraccount'', ''paymentprovideraccountregistry'', ''prepaymentaccountissue'', ''prepaymentdevice'', ''prepaymentconfiguration'', ''serviceconsumptioncost'', ''prepaymentcost'', ''prepaymentprofile'', ''propertygroupprepaymentconfiguration'', ''bankholidaycalendar'', ''friendlycreditwindow'', ''billingprepaymentaccount'', ''meteringprovideraccount'', ''meteringproviderrun'', ''masterdataparameters'', ''prepaymentbalanceprocessedevent'', ''prepaymentstatement'', ''outgoingmandateexportrecord'', ''outgoingmandateexportgroup'', ''prepaymentparameters'', ''accountingexportprovider'', ''accountingexportrun'', ''prepaymentcustomer'', ''timeofusetype'', ''timeofusecalendar'', ''reportingprovider'', ''paymentprovidercustomer'', ''reportingconfigurationprovider'', ''servicelocationsuppliedservices'', ''prepaymentdeviceprovideraccount'', ''psprefund'', ''betaenvironmentprovider'', ''crmcustomer'', ''ticket'', ''ticketconversation'', ''defaultenabledfeatureflags'', ''customerloadprofile'', ''featureflagchange'', ''socialtariffexport'', ''socialtariffimportheader'', ''socialtariffimportline'', ''frenchereportinvoicecandidate'', ''frenchereportsubmission'''
     EntityTagHeaderValue:
       type: object
       properties:
@@ -1646,12 +2801,262 @@ components:
           format: date-time
           nullable: true
         entityTag:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/EntityTagHeaderValue'
-          nullable: true
         enableRangeProcessing:
           type: boolean
+    FrenchEReportCandidateStatus:
+      enum:
+        - pending
+        - submitted
+        - failed
+        - excluded
+      type: string
+      description: 'Possible values: ''pending'', ''submitted'', ''failed'', ''excluded'''
+    FrenchEReportClassification:
+      enum:
+        - none
+        - b2c
+        - b2bi
+      type: string
+      description: 'Possible values: ''none'', ''b2c'', ''b2bi'''
+    FrenchEReportDeclarantStatusDTO:
+      type: object
+      properties:
+        status:
+          oneOf:
+            - enum:
+                - 
+              nullable: true
+            - $ref: '#/components/schemas/FrenchEReportSubmissionStatus'
+        submissionStartDate:
+          type: string
+          format: date
+          nullable: true
+    FrenchEReportInvoiceCandidateDTO:
+      type: object
+      properties:
+        invoiceId:
+          type: string
+        invoiceNumber:
+          type: string
+        classification:
+          $ref: '#/components/schemas/FrenchEReportClassification'
+        reportingDate:
+          type: string
+          format: date
+        categoryCode:
+          type: string
+        currency:
+          type: string
+        amountExVat:
+          type: number
+          format: double
+        vatAmount:
+          type: number
+          format: double
+        amountIncVat:
+          type: number
+          format: double
+        vatBreakdown:
+          type: array
+          items:
+            $ref: '#/components/schemas/FrenchEReportVatBreakdownLineDTO'
+        buyerCountry:
+          $ref: '#/components/schemas/CountryCode'
+        customerType:
+          $ref: '#/components/schemas/CustomerType'
+        status:
+          $ref: '#/components/schemas/FrenchEReportCandidateStatus'
+        submissionId:
+          type: string
+          nullable: true
+        organisationId:
+          type: string
+        id:
+          type: string
+        entityType:
+          $ref: '#/components/schemas/EntitySubjectType'
+        createdDateTime:
+          type: string
+          format: date-time
+        discriminator:
+          type: string
+        _etag:
+          type: string
+        hasErrors:
+          type: boolean
+        isReadOnly:
+          type: boolean
+    FrenchEReportSubmissionDTO:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FrenchEReportSubmissionType'
+        reference:
+          type: string
+        reportingDate:
+          type: string
+          format: date
+        status:
+          $ref: '#/components/schemas/FrenchEReportSubmissionStatus'
+        recommandExternalId:
+          type: string
+          nullable: true
+        currency:
+          type: string
+        categoryCode:
+          type: string
+          nullable: true
+        totalAmountExVat:
+          type: number
+          format: double
+        totalVatAmount:
+          type: number
+          format: double
+        totalAmountIncVat:
+          type: number
+          format: double
+        invoiceCount:
+          type: integer
+          format: int32
+        errorMessage:
+          type: string
+          nullable: true
+        organisationId:
+          type: string
+        id:
+          type: string
+        entityType:
+          $ref: '#/components/schemas/EntitySubjectType'
+        createdDateTime:
+          type: string
+          format: date-time
+        discriminator:
+          type: string
+        _etag:
+          type: string
+        hasErrors:
+          type: boolean
+        isReadOnly:
+          type: boolean
+    FrenchEReportSubmissionOverviewCountDTO:
+      type: object
+      properties:
+        all:
+          type: integer
+          format: int32
+        failed:
+          type: integer
+          format: int32
+        pending:
+          type: integer
+          format: int32
+        successful:
+          type: integer
+          format: int32
+    FrenchEReportSubmissionStatus:
+      enum:
+        - pending
+        - accepted
+        - filed
+        - rejected
+        - failed
+        - pending_rectificative
+        - filed_rectificative
+        - superseded
+      type: string
+      description: 'Possible values: ''pending'', ''accepted'', ''filed'', ''rejected'', ''failed'', ''pending_rectificative'', ''filed_rectificative'', ''superseded'''
+    FrenchEReportSubmissionType:
+      enum:
+        - b2c
+        - b2biinvoice
+        - b2bipayment
+        - declarant
+      type: string
+      description: 'Possible values: ''b2c'', ''b2biinvoice'', ''b2bipayment'', ''declarant'''
+    FrenchEReportVatBreakdownLineDTO:
+      type: object
+      properties:
+        vatRate:
+          type: number
+          format: double
+        amountExVat:
+          type: number
+          format: double
+        vatAmount:
+          type: number
+          format: double
+    GetFrenchEReportInvoiceCandidatesQueryParams:
+      type: object
+      properties:
+        submissionId:
+          type: string
+          nullable: true
+        reportingDate:
+          type: string
+          format: date
+          nullable: true
+        status:
+          oneOf:
+            - enum:
+                - 
+              nullable: true
+            - $ref: '#/components/schemas/FrenchEReportCandidateStatus'
+        applyFiltersOverIncludedIds:
+          type: boolean
+        flexSearch:
+          type: string
+          nullable: true
+        includeOnlyIds:
+          type: array
+          items:
+            type: string
+        excludeIds:
+          type: array
+          items:
+            type: string
+        pageSize:
+          type: integer
+          format: int32
+          nullable: true
+    GetFrenchEReportSubmissionsQueryParams:
+      type: object
+      properties:
+        status:
+          oneOf:
+            - enum:
+                - 
+              nullable: true
+            - $ref: '#/components/schemas/FrenchEReportSubmissionStatus'
+        type:
+          oneOf:
+            - enum:
+                - 
+              nullable: true
+            - $ref: '#/components/schemas/FrenchEReportSubmissionType'
+        onlyCount:
+          type: boolean
+        applyFiltersOverIncludedIds:
+          type: boolean
+        flexSearch:
+          type: string
+          nullable: true
+        includeOnlyIds:
+          type: array
+          items:
+            type: string
+        excludeIds:
+          type: array
+          items:
+            type: string
+        pageSize:
+          type: integer
+          format: int32
+          nullable: true
     LocalisedErrorDTO:
       type: object
       properties:
@@ -1683,6 +3088,50 @@ components:
         latestVersion:
           type: integer
           format: int32
+    PagedResponseModelDTOOfFrenchEReportInvoiceCandidateDTO:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FrenchEReportInvoiceCandidateDTO'
+        hasNextPage:
+          type: boolean
+        nextPageToken:
+          type: string
+        totalRecords:
+          type: integer
+          format: int32
+        sortableFields:
+          type: array
+          items:
+            type: string
+        aggregateDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/AggregateDetailsDTO'
+    PagedResponseModelDTOOfFrenchEReportSubmissionDTO:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FrenchEReportSubmissionDTO'
+        hasNextPage:
+          type: boolean
+        nextPageToken:
+          type: string
+        totalRecords:
+          type: integer
+          format: int32
+        sortableFields:
+          type: array
+          items:
+            type: string
+        aggregateDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/AggregateDetailsDTO'
     PagedResponseModelDTOOfSocialTariffExportDTO:
       type: object
       properties:
@@ -1760,10 +3209,11 @@ components:
           type: string
           nullable: true
         type:
-          type: string
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/SocialTariffExportType'
-          nullable: true
         onlyMutations:
           type: boolean
         organisationId:
@@ -1824,3 +3274,4 @@ security:
 tags:
   - name: SocialTariff
   - name: MigrationAdmin
+  - name: FrenchEReport

@@ -49,13 +49,7 @@ class TestUpdateAccountingExportProviderRequest(unittest.TestCase):
                     unc = '', 
                     budget_code = '', 
                     structure_code = '', 
-                    movement_code = '', 
-                    custom_entity_property_settings = billing_client.models.berger_levrault_custom_entity_property_settings_request_dto.BergerLevraultCustomEntityPropertySettingsRequestDTO(
-                        customer_nature_cepid = '', 
-                        customer_category_cepid = '', 
-                        property_group_e_cadre_budgetaire_cepid = '', 
-                        property_group_sector_code_cepid = '', 
-                        property_group_budgeting_framework_cepid = '', ), )
+                    movement_code = '', )
             )
         else:
             return UpdateAccountingExportProviderRequest(
@@ -73,13 +67,7 @@ class TestUpdateAccountingExportProviderRequest(unittest.TestCase):
                     unc = '', 
                     budget_code = '', 
                     structure_code = '', 
-                    movement_code = '', 
-                    custom_entity_property_settings = billing_client.models.berger_levrault_custom_entity_property_settings_request_dto.BergerLevraultCustomEntityPropertySettingsRequestDTO(
-                        customer_nature_cepid = '', 
-                        customer_category_cepid = '', 
-                        property_group_e_cadre_budgetaire_cepid = '', 
-                        property_group_sector_code_cepid = '', 
-                        property_group_budgeting_framework_cepid = '', ), ),
+                    movement_code = '', ),
         )
         """
 

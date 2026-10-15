@@ -58,6 +58,7 @@ from configuration_client.models.api_response_dtoof_data_import_file_format_dto 
 from configuration_client.models.api_response_dtoof_domain_authentication_parameters_dto import ApiResponseDTOOfDomainAuthenticationParametersDTO
 from configuration_client.models.api_response_dtoof_end_note_scenario_dto import ApiResponseDTOOfEndNoteScenarioDTO
 from configuration_client.models.api_response_dtoof_enum_symbol_translations_dto import ApiResponseDTOOfEnumSymbolTranslationsDTO
+from configuration_client.models.api_response_dtoof_fra_regional_regulations_configuration_dto import ApiResponseDTOOfFRARegionalRegulationsConfigurationDTO
 from configuration_client.models.api_response_dtoof_gbr_regional_regulations_configuration_dto import ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO
 from configuration_client.models.api_response_dtoof_i_scenario_dto import ApiResponseDTOOfIScenarioDTO
 from configuration_client.models.api_response_dtoof_incidental_note_scenario_dto import ApiResponseDTOOfIncidentalNoteScenarioDTO
@@ -231,6 +232,7 @@ from configuration_client.models.payment_terms_request import PaymentTermsReques
 from configuration_client.models.reset_translation_request import ResetTranslationRequest
 from configuration_client.models.tariff_import_query_params import TariffImportQueryParams
 from configuration_client.models.test_reporting_configuration_provider_connection_request import TestReportingConfigurationProviderConnectionRequest
+from configuration_client.models.update_accounting_code_description_request import UpdateAccountingCodeDescriptionRequest
 from configuration_client.models.update_bank_account_request import UpdateBankAccountRequest
 from configuration_client.models.update_bank_holiday_request import UpdateBankHolidayRequest
 from configuration_client.models.update_bank_holidays_request import UpdateBankHolidaysRequest
@@ -258,6 +260,7 @@ from configuration_client.models.update_organization_scenario_request import Upd
 from configuration_client.models.update_payment_delay_request import UpdatePaymentDelayRequest
 from configuration_client.models.update_payment_parameters_request import UpdatePaymentParametersRequest
 from configuration_client.models.update_payment_plan_parameters_request import UpdatePaymentPlanParametersRequest
+from configuration_client.models.update_portal_collection_day_preferences_request import UpdatePortalCollectionDayPreferencesRequest
 from configuration_client.models.update_portal_settings_request import UpdatePortalSettingsRequest
 from configuration_client.models.update_regional_regulations_parameters_for_bel_request import UpdateRegionalRegulationsParametersForBELRequest
 from configuration_client.models.update_regional_regulations_parameters_for_gbr_request import UpdateRegionalRegulationsParametersForGBRRequest
@@ -1211,6 +1214,318 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='DELETE',
             resource_path='/Accounting/accountingcompanies',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def delete_accounting_custom_codes_kind_id(
+        self,
+        kind: Annotated[StrictInt, Field(description="The kind of accounting code.")],
+        id: Annotated[StrictStr, Field(description="The identifier of the accounting code.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """Deletes a Custom accounting code when it is not in use.
+
+        Deletes a Custom accounting code when it is not in use.
+
+        :param kind: The kind of accounting code. (required)
+        :type kind: int
+        :param id: The identifier of the accounting code. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_accounting_custom_codes_kind_id_serialize(
+            kind=kind,
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_accounting_custom_codes_kind_id_with_http_info(
+        self,
+        kind: Annotated[StrictInt, Field(description="The kind of accounting code.")],
+        id: Annotated[StrictStr, Field(description="The identifier of the accounting code.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """Deletes a Custom accounting code when it is not in use.
+
+        Deletes a Custom accounting code when it is not in use.
+
+        :param kind: The kind of accounting code. (required)
+        :type kind: int
+        :param id: The identifier of the accounting code. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_accounting_custom_codes_kind_id_serialize(
+            kind=kind,
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_accounting_custom_codes_kind_id_without_preload_content(
+        self,
+        kind: Annotated[StrictInt, Field(description="The kind of accounting code.")],
+        id: Annotated[StrictStr, Field(description="The identifier of the accounting code.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Deletes a Custom accounting code when it is not in use.
+
+        Deletes a Custom accounting code when it is not in use.
+
+        :param kind: The kind of accounting code. (required)
+        :type kind: int
+        :param id: The identifier of the accounting code. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_accounting_custom_codes_kind_id_serialize(
+            kind=kind,
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_accounting_custom_codes_kind_id_serialize(
+        self,
+        kind,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if kind is not None:
+            _path_params['kind'] = kind
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/Accounting/custom-codes/{kind}/{id}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -6002,6 +6317,306 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='DELETE',
             resource_path='/PaymentDelays/{paymentdelayuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def delete_portalsettings_notification_pageidentifier_delete(
+        self,
+        page_identifier: Annotated[StrictStr, Field(description="The identifier of the portal page")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfPortalSettingsDTO:
+        """Removes a page notification from the portal settings.
+
+        Removes a page notification from the portal settings.
+
+        :param page_identifier: The identifier of the portal page (required)
+        :type page_identifier: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_portalsettings_notification_pageidentifier_delete_serialize(
+            page_identifier=page_identifier,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPortalSettingsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_portalsettings_notification_pageidentifier_delete_with_http_info(
+        self,
+        page_identifier: Annotated[StrictStr, Field(description="The identifier of the portal page")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfPortalSettingsDTO]:
+        """Removes a page notification from the portal settings.
+
+        Removes a page notification from the portal settings.
+
+        :param page_identifier: The identifier of the portal page (required)
+        :type page_identifier: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_portalsettings_notification_pageidentifier_delete_serialize(
+            page_identifier=page_identifier,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPortalSettingsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_portalsettings_notification_pageidentifier_delete_without_preload_content(
+        self,
+        page_identifier: Annotated[StrictStr, Field(description="The identifier of the portal page")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Removes a page notification from the portal settings.
+
+        Removes a page notification from the portal settings.
+
+        :param page_identifier: The identifier of the portal page (required)
+        :type page_identifier: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_portalsettings_notification_pageidentifier_delete_serialize(
+            page_identifier=page_identifier,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPortalSettingsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_portalsettings_notification_pageidentifier_delete_serialize(
+        self,
+        page_identifier,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if page_identifier is not None:
+            _path_params['pageIdentifier'] = page_identifier
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/PortalSettings/notification/{pageIdentifier}/delete',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -32482,6 +33097,255 @@ class DefaultApi:
 
 
     @validate_call
+    def get_regional_regulation_parameters_for_fra(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfFRARegionalRegulationsConfigurationDTO:
+        """Retrieves the current regional regulations parameters specific to France.
+
+        Retrieves the current regional regulations parameters specific to France.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_regional_regulation_parameters_for_fra_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfFRARegionalRegulationsConfigurationDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_regional_regulation_parameters_for_fra_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfFRARegionalRegulationsConfigurationDTO]:
+        """Retrieves the current regional regulations parameters specific to France.
+
+        Retrieves the current regional regulations parameters specific to France.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_regional_regulation_parameters_for_fra_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfFRARegionalRegulationsConfigurationDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_regional_regulation_parameters_for_fra_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Retrieves the current regional regulations parameters specific to France.
+
+        Retrieves the current regional regulations parameters specific to France.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_regional_regulation_parameters_for_fra_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfFRARegionalRegulationsConfigurationDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_regional_regulation_parameters_for_fra_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/RegionalRegulations/fra',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_regional_regulation_parameters_for_gbr(
         self,
         _request_timeout: Union[
@@ -46953,8 +47817,352 @@ class DefaultApi:
 
 
     @validate_call
+    def post_accounting_custom_codes_kind_id_description(
+        self,
+        kind: Annotated[StrictInt, Field(description="The kind of accounting code.")],
+        id: Annotated[StrictStr, Field(description="The identifier of the accounting code.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_accounting_code_description_request: Annotated[Optional[UpdateAccountingCodeDescriptionRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """Updates the description of a Custom accounting code.
+
+        Updates the description of a Custom accounting code.
+
+        :param kind: The kind of accounting code. (required)
+        :type kind: int
+        :param id: The identifier of the accounting code. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_accounting_code_description_request: Propagates notification that operations should be canceled.
+        :type update_accounting_code_description_request: UpdateAccountingCodeDescriptionRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_accounting_custom_codes_kind_id_description_serialize(
+            kind=kind,
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_accounting_code_description_request=update_accounting_code_description_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def post_accounting_custom_codes_kind_id_description_with_http_info(
+        self,
+        kind: Annotated[StrictInt, Field(description="The kind of accounting code.")],
+        id: Annotated[StrictStr, Field(description="The identifier of the accounting code.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_accounting_code_description_request: Annotated[Optional[UpdateAccountingCodeDescriptionRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """Updates the description of a Custom accounting code.
+
+        Updates the description of a Custom accounting code.
+
+        :param kind: The kind of accounting code. (required)
+        :type kind: int
+        :param id: The identifier of the accounting code. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_accounting_code_description_request: Propagates notification that operations should be canceled.
+        :type update_accounting_code_description_request: UpdateAccountingCodeDescriptionRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_accounting_custom_codes_kind_id_description_serialize(
+            kind=kind,
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_accounting_code_description_request=update_accounting_code_description_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def post_accounting_custom_codes_kind_id_description_without_preload_content(
+        self,
+        kind: Annotated[StrictInt, Field(description="The kind of accounting code.")],
+        id: Annotated[StrictStr, Field(description="The identifier of the accounting code.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_accounting_code_description_request: Annotated[Optional[UpdateAccountingCodeDescriptionRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the description of a Custom accounting code.
+
+        Updates the description of a Custom accounting code.
+
+        :param kind: The kind of accounting code. (required)
+        :type kind: int
+        :param id: The identifier of the accounting code. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_accounting_code_description_request: Propagates notification that operations should be canceled.
+        :type update_accounting_code_description_request: UpdateAccountingCodeDescriptionRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_accounting_custom_codes_kind_id_description_serialize(
+            kind=kind,
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_accounting_code_description_request=update_accounting_code_description_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _post_accounting_custom_codes_kind_id_description_serialize(
+        self,
+        kind,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        update_accounting_code_description_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if kind is not None:
+            _path_params['kind'] = kind
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_accounting_code_description_request is not None:
+            _body_params = update_accounting_code_description_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/Accounting/custom-codes/{kind}/{id}/description',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def post_accounting_disconnect(
         self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -46972,6 +48180,10 @@ class DefaultApi:
 
         Disconnect the configured accounting system for the organization.
 
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -46995,6 +48207,8 @@ class DefaultApi:
         """ # noqa: E501
 
         _param = self._post_accounting_disconnect_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -47019,6 +48233,8 @@ class DefaultApi:
     @validate_call
     def post_accounting_disconnect_with_http_info(
         self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -47036,6 +48252,10 @@ class DefaultApi:
 
         Disconnect the configured accounting system for the organization.
 
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -47059,6 +48279,8 @@ class DefaultApi:
         """ # noqa: E501
 
         _param = self._post_accounting_disconnect_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -47083,6 +48305,8 @@ class DefaultApi:
     @validate_call
     def post_accounting_disconnect_without_preload_content(
         self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -47100,6 +48324,10 @@ class DefaultApi:
 
         Disconnect the configured accounting system for the organization.
 
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -47123,6 +48351,8 @@ class DefaultApi:
         """ # noqa: E501
 
         _param = self._post_accounting_disconnect_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -47142,6 +48372,8 @@ class DefaultApi:
 
     def _post_accounting_disconnect_serialize(
         self,
+        zf_tuuid,
+        zf_ouuid,
         _request_auth,
         _content_type,
         _headers,
@@ -47165,6 +48397,10 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
         # process the form parameters
         # process the body parameter
 
@@ -55812,6 +57048,8 @@ class DefaultApi:
     def post_billingtariffs_b_billingitemid(
         self,
         billing_item_id: Annotated[StrictStr, Field(description="The identifier of the billing item to create tariffs for.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
         create_billing_tariff_tree_request: Annotated[Optional[CreateBillingTariffTreeRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
         _request_timeout: Union[
             None,
@@ -55832,6 +57070,10 @@ class DefaultApi:
 
         :param billing_item_id: The identifier of the billing item to create tariffs for. (required)
         :type billing_item_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
         :param create_billing_tariff_tree_request: Propagates notification that operations should be canceled.
         :type create_billing_tariff_tree_request: CreateBillingTariffTreeRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -55858,6 +57100,8 @@ class DefaultApi:
 
         _param = self._post_billingtariffs_b_billingitemid_serialize(
             billing_item_id=billing_item_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
             create_billing_tariff_tree_request=create_billing_tariff_tree_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -55884,6 +57128,8 @@ class DefaultApi:
     def post_billingtariffs_b_billingitemid_with_http_info(
         self,
         billing_item_id: Annotated[StrictStr, Field(description="The identifier of the billing item to create tariffs for.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
         create_billing_tariff_tree_request: Annotated[Optional[CreateBillingTariffTreeRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
         _request_timeout: Union[
             None,
@@ -55904,6 +57150,10 @@ class DefaultApi:
 
         :param billing_item_id: The identifier of the billing item to create tariffs for. (required)
         :type billing_item_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
         :param create_billing_tariff_tree_request: Propagates notification that operations should be canceled.
         :type create_billing_tariff_tree_request: CreateBillingTariffTreeRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -55930,6 +57180,8 @@ class DefaultApi:
 
         _param = self._post_billingtariffs_b_billingitemid_serialize(
             billing_item_id=billing_item_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
             create_billing_tariff_tree_request=create_billing_tariff_tree_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -55956,6 +57208,8 @@ class DefaultApi:
     def post_billingtariffs_b_billingitemid_without_preload_content(
         self,
         billing_item_id: Annotated[StrictStr, Field(description="The identifier of the billing item to create tariffs for.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
         create_billing_tariff_tree_request: Annotated[Optional[CreateBillingTariffTreeRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
         _request_timeout: Union[
             None,
@@ -55976,6 +57230,10 @@ class DefaultApi:
 
         :param billing_item_id: The identifier of the billing item to create tariffs for. (required)
         :type billing_item_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
         :param create_billing_tariff_tree_request: Propagates notification that operations should be canceled.
         :type create_billing_tariff_tree_request: CreateBillingTariffTreeRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -56002,6 +57260,8 @@ class DefaultApi:
 
         _param = self._post_billingtariffs_b_billingitemid_serialize(
             billing_item_id=billing_item_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
             create_billing_tariff_tree_request=create_billing_tariff_tree_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -56023,6 +57283,8 @@ class DefaultApi:
     def _post_billingtariffs_b_billingitemid_serialize(
         self,
         billing_item_id,
+        zf_tuuid,
+        zf_ouuid,
         create_billing_tariff_tree_request,
         _request_auth,
         _content_type,
@@ -56049,6 +57311,10 @@ class DefaultApi:
             _path_params['billingItemId'] = billing_item_id
         # process the query parameters
         # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
         # process the form parameters
         # process the body parameter
         if create_billing_tariff_tree_request is not None:
@@ -70494,6 +71760,318 @@ class DefaultApi:
 
 
     @validate_call
+    def post_parameters_payment_portal_collection_preferences(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_portal_collection_day_preferences_request: Annotated[Optional[UpdatePortalCollectionDayPreferencesRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfPaymentParametersDTO:
+        """Updates the customer portal collection day preferences.
+
+        Updates the customer portal collection day preferences.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_portal_collection_day_preferences_request: Propagates notification that operations should be canceled.
+        :type update_portal_collection_day_preferences_request: UpdatePortalCollectionDayPreferencesRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_parameters_payment_portal_collection_preferences_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_portal_collection_day_preferences_request=update_portal_collection_day_preferences_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def post_parameters_payment_portal_collection_preferences_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_portal_collection_day_preferences_request: Annotated[Optional[UpdatePortalCollectionDayPreferencesRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfPaymentParametersDTO]:
+        """Updates the customer portal collection day preferences.
+
+        Updates the customer portal collection day preferences.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_portal_collection_day_preferences_request: Propagates notification that operations should be canceled.
+        :type update_portal_collection_day_preferences_request: UpdatePortalCollectionDayPreferencesRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_parameters_payment_portal_collection_preferences_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_portal_collection_day_preferences_request=update_portal_collection_day_preferences_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def post_parameters_payment_portal_collection_preferences_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_portal_collection_day_preferences_request: Annotated[Optional[UpdatePortalCollectionDayPreferencesRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the customer portal collection day preferences.
+
+        Updates the customer portal collection day preferences.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_portal_collection_day_preferences_request: Propagates notification that operations should be canceled.
+        :type update_portal_collection_day_preferences_request: UpdatePortalCollectionDayPreferencesRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_parameters_payment_portal_collection_preferences_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_portal_collection_day_preferences_request=update_portal_collection_day_preferences_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _post_parameters_payment_portal_collection_preferences_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_portal_collection_day_preferences_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_portal_collection_day_preferences_request is not None:
+            _body_params = update_portal_collection_day_preferences_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/Parameters/payment/portal-collection-preferences',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def post_parameters_paymentplan(
         self,
         zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
@@ -71136,9 +72714,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseDTOOfPaymentDelaySettingDTO:
-        """Creates a new payment delay setting.
+        """Creates a new payment delay setting. Only one setting may exist per invoice type, so creating a second one for the same invoice type is rejected.
 
-        Creates a new payment delay setting.
+        Creates a new payment delay setting. Only one setting may exist per invoice type, so creating a second one for the same invoice type is rejected.
 
         :param zf_tuuid: Tenant ID (required)
         :type zf_tuuid: str
@@ -71213,9 +72791,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseDTOOfPaymentDelaySettingDTO]:
-        """Creates a new payment delay setting.
+        """Creates a new payment delay setting. Only one setting may exist per invoice type, so creating a second one for the same invoice type is rejected.
 
-        Creates a new payment delay setting.
+        Creates a new payment delay setting. Only one setting may exist per invoice type, so creating a second one for the same invoice type is rejected.
 
         :param zf_tuuid: Tenant ID (required)
         :type zf_tuuid: str
@@ -71290,9 +72868,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Creates a new payment delay setting.
+        """Creates a new payment delay setting. Only one setting may exist per invoice type, so creating a second one for the same invoice type is rejected.
 
-        Creates a new payment delay setting.
+        Creates a new payment delay setting. Only one setting may exist per invoice type, so creating a second one for the same invoice type is rejected.
 
         :param zf_tuuid: Tenant ID (required)
         :type zf_tuuid: str
@@ -71452,9 +73030,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseDTOOfPaymentDelaySettingDTO:
-        """Updates an existing payment delay setting.
+        """Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
 
-        Updates an existing payment delay setting.
+        Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
 
         :param paymentdelayuuid: The unique identifier of the payment delay setting to update. (required)
         :type paymentdelayuuid: str
@@ -71533,9 +73111,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseDTOOfPaymentDelaySettingDTO]:
-        """Updates an existing payment delay setting.
+        """Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
 
-        Updates an existing payment delay setting.
+        Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
 
         :param paymentdelayuuid: The unique identifier of the payment delay setting to update. (required)
         :type paymentdelayuuid: str
@@ -71614,9 +73192,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Updates an existing payment delay setting.
+        """Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
 
-        Updates an existing payment delay setting.
+        Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
 
         :param paymentdelayuuid: The unique identifier of the payment delay setting to update. (required)
         :type paymentdelayuuid: str
@@ -75251,6 +76829,8 @@ class DefaultApi:
         entity_subject_type: Annotated[StrictStr, Field(description="The type of entity subject.")],
         entity_subject_sub_type: Annotated[StrictStr, Field(description="The subtype of entity subject.")],
         culture: Annotated[StrictStr, Field(description="The culture information for localization.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
         email_receiver: Annotated[Optional[StrictStr], Field(description="The email address of the recipient.")] = None,
         payment_method: Optional[StrictStr] = None,
         has_active_payment_provider: Optional[StrictBool] = None,
@@ -75284,6 +76864,10 @@ class DefaultApi:
         :type entity_subject_sub_type: str
         :param culture: The culture information for localization. (required)
         :type culture: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
         :param email_receiver: The email address of the recipient.
         :type email_receiver: str
         :param payment_method:
@@ -75330,6 +76914,8 @@ class DefaultApi:
             entity_subject_type=entity_subject_type,
             entity_subject_sub_type=entity_subject_sub_type,
             culture=culture,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
             email_receiver=email_receiver,
             payment_method=payment_method,
             has_active_payment_provider=has_active_payment_provider,
@@ -75367,6 +76953,8 @@ class DefaultApi:
         entity_subject_type: Annotated[StrictStr, Field(description="The type of entity subject.")],
         entity_subject_sub_type: Annotated[StrictStr, Field(description="The subtype of entity subject.")],
         culture: Annotated[StrictStr, Field(description="The culture information for localization.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
         email_receiver: Annotated[Optional[StrictStr], Field(description="The email address of the recipient.")] = None,
         payment_method: Optional[StrictStr] = None,
         has_active_payment_provider: Optional[StrictBool] = None,
@@ -75400,6 +76988,10 @@ class DefaultApi:
         :type entity_subject_sub_type: str
         :param culture: The culture information for localization. (required)
         :type culture: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
         :param email_receiver: The email address of the recipient.
         :type email_receiver: str
         :param payment_method:
@@ -75446,6 +77038,8 @@ class DefaultApi:
             entity_subject_type=entity_subject_type,
             entity_subject_sub_type=entity_subject_sub_type,
             culture=culture,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
             email_receiver=email_receiver,
             payment_method=payment_method,
             has_active_payment_provider=has_active_payment_provider,
@@ -75483,6 +77077,8 @@ class DefaultApi:
         entity_subject_type: Annotated[StrictStr, Field(description="The type of entity subject.")],
         entity_subject_sub_type: Annotated[StrictStr, Field(description="The subtype of entity subject.")],
         culture: Annotated[StrictStr, Field(description="The culture information for localization.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
         email_receiver: Annotated[Optional[StrictStr], Field(description="The email address of the recipient.")] = None,
         payment_method: Optional[StrictStr] = None,
         has_active_payment_provider: Optional[StrictBool] = None,
@@ -75516,6 +77112,10 @@ class DefaultApi:
         :type entity_subject_sub_type: str
         :param culture: The culture information for localization. (required)
         :type culture: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
         :param email_receiver: The email address of the recipient.
         :type email_receiver: str
         :param payment_method:
@@ -75562,6 +77162,8 @@ class DefaultApi:
             entity_subject_type=entity_subject_type,
             entity_subject_sub_type=entity_subject_sub_type,
             culture=culture,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
             email_receiver=email_receiver,
             payment_method=payment_method,
             has_active_payment_provider=has_active_payment_provider,
@@ -75594,6 +77196,8 @@ class DefaultApi:
         entity_subject_type,
         entity_subject_sub_type,
         culture,
+        zf_tuuid,
+        zf_ouuid,
         email_receiver,
         payment_method,
         has_active_payment_provider,
@@ -75673,6 +77277,10 @@ class DefaultApi:
             _query_params.append(('AdvanceCalculationType', advance_calculation_type))
             
         # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
         # process the form parameters
         # process the body parameter
 
@@ -78591,6 +80199,3771 @@ class DefaultApi:
 
 
     @validate_call
+    def put_accounting_custom_codes_kind_id_description(
+        self,
+        kind: Annotated[StrictInt, Field(description="The kind of accounting code.")],
+        id: Annotated[StrictStr, Field(description="The identifier of the accounting code.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_accounting_code_description_request: Annotated[Optional[UpdateAccountingCodeDescriptionRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """Updates the description of a Custom accounting code.
+
+        Updates the description of a Custom accounting code.
+
+        :param kind: The kind of accounting code. (required)
+        :type kind: int
+        :param id: The identifier of the accounting code. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_accounting_code_description_request: Propagates notification that operations should be canceled.
+        :type update_accounting_code_description_request: UpdateAccountingCodeDescriptionRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_accounting_custom_codes_kind_id_description_serialize(
+            kind=kind,
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_accounting_code_description_request=update_accounting_code_description_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_accounting_custom_codes_kind_id_description_with_http_info(
+        self,
+        kind: Annotated[StrictInt, Field(description="The kind of accounting code.")],
+        id: Annotated[StrictStr, Field(description="The identifier of the accounting code.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_accounting_code_description_request: Annotated[Optional[UpdateAccountingCodeDescriptionRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """Updates the description of a Custom accounting code.
+
+        Updates the description of a Custom accounting code.
+
+        :param kind: The kind of accounting code. (required)
+        :type kind: int
+        :param id: The identifier of the accounting code. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_accounting_code_description_request: Propagates notification that operations should be canceled.
+        :type update_accounting_code_description_request: UpdateAccountingCodeDescriptionRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_accounting_custom_codes_kind_id_description_serialize(
+            kind=kind,
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_accounting_code_description_request=update_accounting_code_description_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_accounting_custom_codes_kind_id_description_without_preload_content(
+        self,
+        kind: Annotated[StrictInt, Field(description="The kind of accounting code.")],
+        id: Annotated[StrictStr, Field(description="The identifier of the accounting code.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_accounting_code_description_request: Annotated[Optional[UpdateAccountingCodeDescriptionRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the description of a Custom accounting code.
+
+        Updates the description of a Custom accounting code.
+
+        :param kind: The kind of accounting code. (required)
+        :type kind: int
+        :param id: The identifier of the accounting code. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_accounting_code_description_request: Propagates notification that operations should be canceled.
+        :type update_accounting_code_description_request: UpdateAccountingCodeDescriptionRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_accounting_custom_codes_kind_id_description_serialize(
+            kind=kind,
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_accounting_code_description_request=update_accounting_code_description_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_accounting_custom_codes_kind_id_description_serialize(
+        self,
+        kind,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        update_accounting_code_description_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if kind is not None:
+            _path_params['kind'] = kind
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_accounting_code_description_request is not None:
+            _body_params = update_accounting_code_description_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Accounting/custom-codes/{kind}/{id}/description',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_accounting_disconnect(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Disconnect the configured accounting system for the organization.
+
+        Disconnect the configured accounting system for the organization.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_accounting_disconnect_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_accounting_disconnect_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Disconnect the configured accounting system for the organization.
+
+        Disconnect the configured accounting system for the organization.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_accounting_disconnect_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_accounting_disconnect_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Disconnect the configured accounting system for the organization.
+
+        Disconnect the configured accounting system for the organization.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_accounting_disconnect_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_accounting_disconnect_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Accounting/disconnect',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_accounting_sync(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """Syncs accounting codes from the external accounting system
+
+        Syncs accounting codes from the external accounting system
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_accounting_sync_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_accounting_sync_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """Syncs accounting codes from the external accounting system
+
+        Syncs accounting codes from the external accounting system
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_accounting_sync_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_accounting_sync_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Syncs accounting codes from the external accounting system
+
+        Syncs accounting codes from the external accounting system
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_accounting_sync_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_accounting_sync_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Accounting/sync',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_bankaccounts_bankaccuuid(
+        self,
+        bankaccuuid: Annotated[StrictStr, Field(description="The unique identifier of the bank account to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_bank_account_request: Annotated[Optional[UpdateBankAccountRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfBankAccountDTO:
+        """Updates an existing bank account.
+
+        Updates an existing bank account.
+
+        :param bankaccuuid: The unique identifier of the bank account to update. (required)
+        :type bankaccuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_bank_account_request: Propagates notification that operations should be canceled.
+        :type update_bank_account_request: UpdateBankAccountRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankaccounts_bankaccuuid_serialize(
+            bankaccuuid=bankaccuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_bank_account_request=update_bank_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankAccountDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_bankaccounts_bankaccuuid_with_http_info(
+        self,
+        bankaccuuid: Annotated[StrictStr, Field(description="The unique identifier of the bank account to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_bank_account_request: Annotated[Optional[UpdateBankAccountRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfBankAccountDTO]:
+        """Updates an existing bank account.
+
+        Updates an existing bank account.
+
+        :param bankaccuuid: The unique identifier of the bank account to update. (required)
+        :type bankaccuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_bank_account_request: Propagates notification that operations should be canceled.
+        :type update_bank_account_request: UpdateBankAccountRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankaccounts_bankaccuuid_serialize(
+            bankaccuuid=bankaccuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_bank_account_request=update_bank_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankAccountDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_bankaccounts_bankaccuuid_without_preload_content(
+        self,
+        bankaccuuid: Annotated[StrictStr, Field(description="The unique identifier of the bank account to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_bank_account_request: Annotated[Optional[UpdateBankAccountRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing bank account.
+
+        Updates an existing bank account.
+
+        :param bankaccuuid: The unique identifier of the bank account to update. (required)
+        :type bankaccuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_bank_account_request: Propagates notification that operations should be canceled.
+        :type update_bank_account_request: UpdateBankAccountRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankaccounts_bankaccuuid_serialize(
+            bankaccuuid=bankaccuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_bank_account_request=update_bank_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankAccountDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_bankaccounts_bankaccuuid_serialize(
+        self,
+        bankaccuuid,
+        zf_tuuid,
+        zf_ouuid,
+        update_bank_account_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if bankaccuuid is not None:
+            _path_params['bankaccuuid'] = bankaccuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_bank_account_request is not None:
+            _body_params = update_bank_account_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/BankAccounts/{bankaccuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_bankholidays_id_update(
+        self,
+        id: Annotated[StrictStr, Field(description="The bank holiday calendar id (e.g. organisation id or calendar document id).")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_bank_holidays_request: Annotated[Optional[UpdateBankHolidaysRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfBankHolidayCalendarDTO:
+        """Updates the organisation's bank holiday calendar in its entirety with the given list of (Date, IsActive). Returns the updated calendar.
+
+        Updates the organisation's bank holiday calendar in its entirety with the given list of (Date, IsActive). Returns the updated calendar.
+
+        :param id: The bank holiday calendar id (e.g. organisation id or calendar document id). (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_bank_holidays_request: Propagates notification that operations should be canceled.
+        :type update_bank_holidays_request: UpdateBankHolidaysRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankholidays_id_update_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_bank_holidays_request=update_bank_holidays_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankHolidayCalendarDTO",
+            '404': "ProblemDetails",
+            '400': "ProblemDetails",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_bankholidays_id_update_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The bank holiday calendar id (e.g. organisation id or calendar document id).")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_bank_holidays_request: Annotated[Optional[UpdateBankHolidaysRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfBankHolidayCalendarDTO]:
+        """Updates the organisation's bank holiday calendar in its entirety with the given list of (Date, IsActive). Returns the updated calendar.
+
+        Updates the organisation's bank holiday calendar in its entirety with the given list of (Date, IsActive). Returns the updated calendar.
+
+        :param id: The bank holiday calendar id (e.g. organisation id or calendar document id). (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_bank_holidays_request: Propagates notification that operations should be canceled.
+        :type update_bank_holidays_request: UpdateBankHolidaysRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankholidays_id_update_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_bank_holidays_request=update_bank_holidays_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankHolidayCalendarDTO",
+            '404': "ProblemDetails",
+            '400': "ProblemDetails",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_bankholidays_id_update_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The bank holiday calendar id (e.g. organisation id or calendar document id).")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_bank_holidays_request: Annotated[Optional[UpdateBankHolidaysRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the organisation's bank holiday calendar in its entirety with the given list of (Date, IsActive). Returns the updated calendar.
+
+        Updates the organisation's bank holiday calendar in its entirety with the given list of (Date, IsActive). Returns the updated calendar.
+
+        :param id: The bank holiday calendar id (e.g. organisation id or calendar document id). (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_bank_holidays_request: Propagates notification that operations should be canceled.
+        :type update_bank_holidays_request: UpdateBankHolidaysRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankholidays_id_update_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_bank_holidays_request=update_bank_holidays_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankHolidayCalendarDTO",
+            '404': "ProblemDetails",
+            '400': "ProblemDetails",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_bankholidays_id_update_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        update_bank_holidays_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_bank_holidays_request is not None:
+            _body_params = update_bank_holidays_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/BankHolidays/{id}/update',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_bankholidays_id_update_single(
+        self,
+        id: Annotated[StrictStr, Field(description="The bank holiday calendar id (e.g. organisation id or calendar document id).")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_bank_holiday_request: Annotated[Optional[UpdateBankHolidayRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfBankHolidayCalendarDTO:
+        """Updates the active state of a single bank holiday (by date). Returns the updated calendar.
+
+        Updates the active state of a single bank holiday (by date). Returns the updated calendar.
+
+        :param id: The bank holiday calendar id (e.g. organisation id or calendar document id). (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_bank_holiday_request: Propagates notification that operations should be canceled.
+        :type update_bank_holiday_request: UpdateBankHolidayRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankholidays_id_update_single_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_bank_holiday_request=update_bank_holiday_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankHolidayCalendarDTO",
+            '404': "ProblemDetails",
+            '400': "ProblemDetails",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_bankholidays_id_update_single_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The bank holiday calendar id (e.g. organisation id or calendar document id).")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_bank_holiday_request: Annotated[Optional[UpdateBankHolidayRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfBankHolidayCalendarDTO]:
+        """Updates the active state of a single bank holiday (by date). Returns the updated calendar.
+
+        Updates the active state of a single bank holiday (by date). Returns the updated calendar.
+
+        :param id: The bank holiday calendar id (e.g. organisation id or calendar document id). (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_bank_holiday_request: Propagates notification that operations should be canceled.
+        :type update_bank_holiday_request: UpdateBankHolidayRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankholidays_id_update_single_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_bank_holiday_request=update_bank_holiday_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankHolidayCalendarDTO",
+            '404': "ProblemDetails",
+            '400': "ProblemDetails",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_bankholidays_id_update_single_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The bank holiday calendar id (e.g. organisation id or calendar document id).")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_bank_holiday_request: Annotated[Optional[UpdateBankHolidayRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the active state of a single bank holiday (by date). Returns the updated calendar.
+
+        Updates the active state of a single bank holiday (by date). Returns the updated calendar.
+
+        :param id: The bank holiday calendar id (e.g. organisation id or calendar document id). (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_bank_holiday_request: Propagates notification that operations should be canceled.
+        :type update_bank_holiday_request: UpdateBankHolidayRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankholidays_id_update_single_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_bank_holiday_request=update_bank_holiday_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankHolidayCalendarDTO",
+            '404': "ProblemDetails",
+            '400': "ProblemDetails",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_bankholidays_id_update_single_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        update_bank_holiday_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_bank_holiday_request is not None:
+            _body_params = update_bank_holiday_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/BankHolidays/{id}/update-single',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_bankingdataproviders_id_disable(
+        self,
+        id: Annotated[StrictStr, Field(description="The banking data provider ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfBankingDataProviderDTO:
+        """Disable a banking data provider.
+
+        Disable a banking data provider.
+
+        :param id: The banking data provider ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankingdataproviders_id_disable_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankingDataProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_bankingdataproviders_id_disable_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The banking data provider ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfBankingDataProviderDTO]:
+        """Disable a banking data provider.
+
+        Disable a banking data provider.
+
+        :param id: The banking data provider ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankingdataproviders_id_disable_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankingDataProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_bankingdataproviders_id_disable_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The banking data provider ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Disable a banking data provider.
+
+        Disable a banking data provider.
+
+        :param id: The banking data provider ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankingdataproviders_id_disable_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankingDataProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_bankingdataproviders_id_disable_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/BankingDataProviders/{id}/disable',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_bankingdataproviders_id_enable(
+        self,
+        id: Annotated[StrictStr, Field(description="The banking data provider ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfBankingDataProviderDTO:
+        """Enables a banking data provider.
+
+        Enables a banking data provider.
+
+        :param id: The banking data provider ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankingdataproviders_id_enable_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankingDataProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_bankingdataproviders_id_enable_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The banking data provider ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfBankingDataProviderDTO]:
+        """Enables a banking data provider.
+
+        Enables a banking data provider.
+
+        :param id: The banking data provider ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankingdataproviders_id_enable_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankingDataProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_bankingdataproviders_id_enable_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The banking data provider ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Enables a banking data provider.
+
+        Enables a banking data provider.
+
+        :param id: The banking data provider ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankingdataproviders_id_enable_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankingDataProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_bankingdataproviders_id_enable_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/BankingDataProviders/{id}/enable',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_bankingdataproviders_id_testconnection(
+        self,
+        id: Annotated[StrictStr, Field(description="The banking data provider ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfBankingDataProviderDTO:
+        """Test the SFTP connection for a banking data provider.
+
+        Test the SFTP connection for a banking data provider.
+
+        :param id: The banking data provider ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankingdataproviders_id_testconnection_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankingDataProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_bankingdataproviders_id_testconnection_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The banking data provider ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfBankingDataProviderDTO]:
+        """Test the SFTP connection for a banking data provider.
+
+        Test the SFTP connection for a banking data provider.
+
+        :param id: The banking data provider ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankingdataproviders_id_testconnection_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankingDataProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_bankingdataproviders_id_testconnection_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The banking data provider ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Test the SFTP connection for a banking data provider.
+
+        Test the SFTP connection for a banking data provider.
+
+        :param id: The banking data provider ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankingdataproviders_id_testconnection_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankingDataProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_bankingdataproviders_id_testconnection_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/BankingDataProviders/{id}/testConnection',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_bankingdataproviders_id_update(
+        self,
+        id: Annotated[StrictStr, Field(description="The banking data provider ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        upsert_banking_data_provider_request: Annotated[Optional[UpsertBankingDataProviderRequest], Field(description="The cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfBankingDataProviderDTO:
+        """Update an existing banking data provider.
+
+        Update an existing banking data provider.
+
+        :param id: The banking data provider ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param upsert_banking_data_provider_request: The cancellation token.
+        :type upsert_banking_data_provider_request: UpsertBankingDataProviderRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankingdataproviders_id_update_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            upsert_banking_data_provider_request=upsert_banking_data_provider_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankingDataProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_bankingdataproviders_id_update_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The banking data provider ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        upsert_banking_data_provider_request: Annotated[Optional[UpsertBankingDataProviderRequest], Field(description="The cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfBankingDataProviderDTO]:
+        """Update an existing banking data provider.
+
+        Update an existing banking data provider.
+
+        :param id: The banking data provider ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param upsert_banking_data_provider_request: The cancellation token.
+        :type upsert_banking_data_provider_request: UpsertBankingDataProviderRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankingdataproviders_id_update_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            upsert_banking_data_provider_request=upsert_banking_data_provider_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankingDataProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_bankingdataproviders_id_update_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The banking data provider ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        upsert_banking_data_provider_request: Annotated[Optional[UpsertBankingDataProviderRequest], Field(description="The cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update an existing banking data provider.
+
+        Update an existing banking data provider.
+
+        :param id: The banking data provider ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param upsert_banking_data_provider_request: The cancellation token.
+        :type upsert_banking_data_provider_request: UpsertBankingDataProviderRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_bankingdataproviders_id_update_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            upsert_banking_data_provider_request=upsert_banking_data_provider_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBankingDataProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_bankingdataproviders_id_update_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        upsert_banking_data_provider_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if upsert_banking_data_provider_request is not None:
+            _body_params = upsert_banking_data_provider_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/BankingDataProviders/{id}/update',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_billingitems_billingitemuuid(
+        self,
+        billingitemuuid: Annotated[StrictStr, Field(description="The unique identifier of the billing item to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_billing_item_request: Annotated[Optional[UpdateBillingItemRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfBillingItemDTO:
+        """Updates an existing billing item.
+
+        Updates an existing billing item.
+
+        :param billingitemuuid: The unique identifier of the billing item to update. (required)
+        :type billingitemuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_billing_item_request: Propagates notification that operations should be canceled.
+        :type update_billing_item_request: UpdateBillingItemRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_billingitems_billingitemuuid_serialize(
+            billingitemuuid=billingitemuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_billing_item_request=update_billing_item_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfBillingItemDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_billingitems_billingitemuuid_with_http_info(
+        self,
+        billingitemuuid: Annotated[StrictStr, Field(description="The unique identifier of the billing item to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_billing_item_request: Annotated[Optional[UpdateBillingItemRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfBillingItemDTO]:
+        """Updates an existing billing item.
+
+        Updates an existing billing item.
+
+        :param billingitemuuid: The unique identifier of the billing item to update. (required)
+        :type billingitemuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_billing_item_request: Propagates notification that operations should be canceled.
+        :type update_billing_item_request: UpdateBillingItemRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_billingitems_billingitemuuid_serialize(
+            billingitemuuid=billingitemuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_billing_item_request=update_billing_item_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfBillingItemDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_billingitems_billingitemuuid_without_preload_content(
+        self,
+        billingitemuuid: Annotated[StrictStr, Field(description="The unique identifier of the billing item to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_billing_item_request: Annotated[Optional[UpdateBillingItemRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing billing item.
+
+        Updates an existing billing item.
+
+        :param billingitemuuid: The unique identifier of the billing item to update. (required)
+        :type billingitemuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_billing_item_request: Propagates notification that operations should be canceled.
+        :type update_billing_item_request: UpdateBillingItemRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_billingitems_billingitemuuid_serialize(
+            billingitemuuid=billingitemuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_billing_item_request=update_billing_item_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfBillingItemDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_billingitems_billingitemuuid_serialize(
+        self,
+        billingitemuuid,
+        zf_tuuid,
+        zf_ouuid,
+        update_billing_item_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if billingitemuuid is not None:
+            _path_params['billingitemuuid'] = billingitemuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_billing_item_request is not None:
+            _body_params = update_billing_item_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/BillingItems/{billingitemuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_billingitems_entityid_translations(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """/BillingItems/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_billingitems_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_billingitems_entityid_translations_with_http_info(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """/BillingItems/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_billingitems_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_billingitems_entityid_translations_without_preload_content(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """/BillingItems/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_billingitems_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_billingitems_entityid_translations_serialize(
+        self,
+        entity_id,
+        zf_tuuid,
+        zf_ouuid,
+        update_entity_translation_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if entity_id is not None:
+            _path_params['entityId'] = entity_id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_entity_translation_request is not None:
+            _body_params = update_entity_translation_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/BillingItems/{entityId}/translations',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def put_billingtariffs_b_billingitemid(
         self,
         billing_item_id: Annotated[StrictStr, Field(description="The identifier of the billing item whose tariff tree to update.")],
@@ -79251,6 +84624,4263 @@ class DefaultApi:
 
 
     @validate_call
+    def put_collectionflows_id(
+        self,
+        id: Annotated[StrictStr, Field(description="The unique identifier of the collection flow to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        create_update_collection_flow_request: Annotated[Optional[CreateUpdateCollectionFlowRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfCollectionFlowDTO:
+        """Updates an existing collection flow.
+
+        Updates an existing collection flow.
+
+        :param id: The unique identifier of the collection flow to update. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param create_update_collection_flow_request: Propagates notification that operations should be canceled.
+        :type create_update_collection_flow_request: CreateUpdateCollectionFlowRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_collectionflows_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            create_update_collection_flow_request=create_update_collection_flow_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCollectionFlowDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_collectionflows_id_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The unique identifier of the collection flow to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        create_update_collection_flow_request: Annotated[Optional[CreateUpdateCollectionFlowRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfCollectionFlowDTO]:
+        """Updates an existing collection flow.
+
+        Updates an existing collection flow.
+
+        :param id: The unique identifier of the collection flow to update. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param create_update_collection_flow_request: Propagates notification that operations should be canceled.
+        :type create_update_collection_flow_request: CreateUpdateCollectionFlowRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_collectionflows_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            create_update_collection_flow_request=create_update_collection_flow_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCollectionFlowDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_collectionflows_id_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The unique identifier of the collection flow to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        create_update_collection_flow_request: Annotated[Optional[CreateUpdateCollectionFlowRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing collection flow.
+
+        Updates an existing collection flow.
+
+        :param id: The unique identifier of the collection flow to update. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param create_update_collection_flow_request: Propagates notification that operations should be canceled.
+        :type create_update_collection_flow_request: CreateUpdateCollectionFlowRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_collectionflows_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            create_update_collection_flow_request=create_update_collection_flow_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCollectionFlowDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_collectionflows_id_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        create_update_collection_flow_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if create_update_collection_flow_request is not None:
+            _body_params = create_update_collection_flow_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CollectionFlows/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_collectionsteps_entityid_translations(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """/CollectionSteps/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_collectionsteps_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_collectionsteps_entityid_translations_with_http_info(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """/CollectionSteps/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_collectionsteps_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_collectionsteps_entityid_translations_without_preload_content(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """/CollectionSteps/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_collectionsteps_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_collectionsteps_entityid_translations_serialize(
+        self,
+        entity_id,
+        zf_tuuid,
+        zf_ouuid,
+        update_entity_translation_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if entity_id is not None:
+            _path_params['entityId'] = entity_id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_entity_translation_request is not None:
+            _body_params = update_entity_translation_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CollectionSteps/{entityId}/translations',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_collectionsteps_id(
+        self,
+        id: Annotated[StrictStr, Field(description="The unique identifier of the collection flow step to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        collection_flow_step_request: Annotated[Optional[CollectionFlowStepRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfCollectionFlowStepDTO:
+        """Updates an existing collection flow step.
+
+        Updates an existing collection flow step.
+
+        :param id: The unique identifier of the collection flow step to update. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param collection_flow_step_request: Propagates notification that operations should be canceled.
+        :type collection_flow_step_request: CollectionFlowStepRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_collectionsteps_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            collection_flow_step_request=collection_flow_step_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCollectionFlowStepDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_collectionsteps_id_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The unique identifier of the collection flow step to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        collection_flow_step_request: Annotated[Optional[CollectionFlowStepRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfCollectionFlowStepDTO]:
+        """Updates an existing collection flow step.
+
+        Updates an existing collection flow step.
+
+        :param id: The unique identifier of the collection flow step to update. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param collection_flow_step_request: Propagates notification that operations should be canceled.
+        :type collection_flow_step_request: CollectionFlowStepRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_collectionsteps_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            collection_flow_step_request=collection_flow_step_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCollectionFlowStepDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_collectionsteps_id_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The unique identifier of the collection flow step to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        collection_flow_step_request: Annotated[Optional[CollectionFlowStepRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing collection flow step.
+
+        Updates an existing collection flow step.
+
+        :param id: The unique identifier of the collection flow step to update. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param collection_flow_step_request: Propagates notification that operations should be canceled.
+        :type collection_flow_step_request: CollectionFlowStepRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_collectionsteps_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            collection_flow_step_request=collection_flow_step_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCollectionFlowStepDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_collectionsteps_id_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        collection_flow_step_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if collection_flow_step_request is not None:
+            _body_params = collection_flow_step_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CollectionSteps/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_costcomponents_costcomponentuuid(
+        self,
+        costcomponentuuid: Annotated[StrictStr, Field(description="The unique identifier of the cost component to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        create_or_update_cost_component_request: Annotated[Optional[CreateOrUpdateCostComponentRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfCostComponentDTO:
+        """Updates an existing cost component.
+
+        Updates an existing cost component.
+
+        :param costcomponentuuid: The unique identifier of the cost component to update. (required)
+        :type costcomponentuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param create_or_update_cost_component_request: Propagates notification that operations should be canceled.
+        :type create_or_update_cost_component_request: CreateOrUpdateCostComponentRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_costcomponents_costcomponentuuid_serialize(
+            costcomponentuuid=costcomponentuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            create_or_update_cost_component_request=create_or_update_cost_component_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCostComponentDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_costcomponents_costcomponentuuid_with_http_info(
+        self,
+        costcomponentuuid: Annotated[StrictStr, Field(description="The unique identifier of the cost component to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        create_or_update_cost_component_request: Annotated[Optional[CreateOrUpdateCostComponentRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfCostComponentDTO]:
+        """Updates an existing cost component.
+
+        Updates an existing cost component.
+
+        :param costcomponentuuid: The unique identifier of the cost component to update. (required)
+        :type costcomponentuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param create_or_update_cost_component_request: Propagates notification that operations should be canceled.
+        :type create_or_update_cost_component_request: CreateOrUpdateCostComponentRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_costcomponents_costcomponentuuid_serialize(
+            costcomponentuuid=costcomponentuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            create_or_update_cost_component_request=create_or_update_cost_component_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCostComponentDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_costcomponents_costcomponentuuid_without_preload_content(
+        self,
+        costcomponentuuid: Annotated[StrictStr, Field(description="The unique identifier of the cost component to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        create_or_update_cost_component_request: Annotated[Optional[CreateOrUpdateCostComponentRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing cost component.
+
+        Updates an existing cost component.
+
+        :param costcomponentuuid: The unique identifier of the cost component to update. (required)
+        :type costcomponentuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param create_or_update_cost_component_request: Propagates notification that operations should be canceled.
+        :type create_or_update_cost_component_request: CreateOrUpdateCostComponentRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_costcomponents_costcomponentuuid_serialize(
+            costcomponentuuid=costcomponentuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            create_or_update_cost_component_request=create_or_update_cost_component_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCostComponentDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_costcomponents_costcomponentuuid_serialize(
+        self,
+        costcomponentuuid,
+        zf_tuuid,
+        zf_ouuid,
+        create_or_update_cost_component_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if costcomponentuuid is not None:
+            _path_params['costcomponentuuid'] = costcomponentuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if create_or_update_cost_component_request is not None:
+            _body_params = create_or_update_cost_component_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CostComponents/{costcomponentuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_costcomponents_entityid_translations(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """/CostComponents/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_costcomponents_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_costcomponents_entityid_translations_with_http_info(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """/CostComponents/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_costcomponents_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_costcomponents_entityid_translations_without_preload_content(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """/CostComponents/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_costcomponents_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_costcomponents_entityid_translations_serialize(
+        self,
+        entity_id,
+        zf_tuuid,
+        zf_ouuid,
+        update_entity_translation_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if entity_id is not None:
+            _path_params['entityId'] = entity_id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_entity_translation_request is not None:
+            _body_params = update_entity_translation_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CostComponents/{entityId}/translations',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_culturetable(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_culture_table_request: Annotated[Optional[UpdateCultureTableRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfCultureTableDTO:
+        """Updates the culture table.
+
+        Updates the culture table.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_culture_table_request: Propagates notification that operations should be canceled.
+        :type update_culture_table_request: UpdateCultureTableRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_culturetable_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_culture_table_request=update_culture_table_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCultureTableDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_culturetable_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_culture_table_request: Annotated[Optional[UpdateCultureTableRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfCultureTableDTO]:
+        """Updates the culture table.
+
+        Updates the culture table.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_culture_table_request: Propagates notification that operations should be canceled.
+        :type update_culture_table_request: UpdateCultureTableRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_culturetable_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_culture_table_request=update_culture_table_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCultureTableDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_culturetable_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_culture_table_request: Annotated[Optional[UpdateCultureTableRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the culture table.
+
+        Updates the culture table.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_culture_table_request: Propagates notification that operations should be canceled.
+        :type update_culture_table_request: UpdateCultureTableRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_culturetable_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_culture_table_request=update_culture_table_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCultureTableDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_culturetable_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_culture_table_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_culture_table_request is not None:
+            _body_params = update_culture_table_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CultureTable',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_customentitypropertytypes_customentitypropertytypeuuid(
+        self,
+        customentitypropertytypeuuid: Annotated[StrictStr, Field(description="The unique identifier of the custom entity property type to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_custom_entity_property_type_request: Annotated[Optional[UpdateCustomEntityPropertyTypeRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfCustomEntityPropertyTypeDTO:
+        """Updates an existing custom entity property type.
+
+        Updates an existing custom entity property type.
+
+        :param customentitypropertytypeuuid: The unique identifier of the custom entity property type to update. (required)
+        :type customentitypropertytypeuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_custom_entity_property_type_request: Propagates notification that operations should be canceled.
+        :type update_custom_entity_property_type_request: UpdateCustomEntityPropertyTypeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_customentitypropertytypes_customentitypropertytypeuuid_serialize(
+            customentitypropertytypeuuid=customentitypropertytypeuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_custom_entity_property_type_request=update_custom_entity_property_type_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCustomEntityPropertyTypeDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_customentitypropertytypes_customentitypropertytypeuuid_with_http_info(
+        self,
+        customentitypropertytypeuuid: Annotated[StrictStr, Field(description="The unique identifier of the custom entity property type to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_custom_entity_property_type_request: Annotated[Optional[UpdateCustomEntityPropertyTypeRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfCustomEntityPropertyTypeDTO]:
+        """Updates an existing custom entity property type.
+
+        Updates an existing custom entity property type.
+
+        :param customentitypropertytypeuuid: The unique identifier of the custom entity property type to update. (required)
+        :type customentitypropertytypeuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_custom_entity_property_type_request: Propagates notification that operations should be canceled.
+        :type update_custom_entity_property_type_request: UpdateCustomEntityPropertyTypeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_customentitypropertytypes_customentitypropertytypeuuid_serialize(
+            customentitypropertytypeuuid=customentitypropertytypeuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_custom_entity_property_type_request=update_custom_entity_property_type_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCustomEntityPropertyTypeDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_customentitypropertytypes_customentitypropertytypeuuid_without_preload_content(
+        self,
+        customentitypropertytypeuuid: Annotated[StrictStr, Field(description="The unique identifier of the custom entity property type to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_custom_entity_property_type_request: Annotated[Optional[UpdateCustomEntityPropertyTypeRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing custom entity property type.
+
+        Updates an existing custom entity property type.
+
+        :param customentitypropertytypeuuid: The unique identifier of the custom entity property type to update. (required)
+        :type customentitypropertytypeuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_custom_entity_property_type_request: Propagates notification that operations should be canceled.
+        :type update_custom_entity_property_type_request: UpdateCustomEntityPropertyTypeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_customentitypropertytypes_customentitypropertytypeuuid_serialize(
+            customentitypropertytypeuuid=customentitypropertytypeuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_custom_entity_property_type_request=update_custom_entity_property_type_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfCustomEntityPropertyTypeDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_customentitypropertytypes_customentitypropertytypeuuid_serialize(
+        self,
+        customentitypropertytypeuuid,
+        zf_tuuid,
+        zf_ouuid,
+        update_custom_entity_property_type_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if customentitypropertytypeuuid is not None:
+            _path_params['customentitypropertytypeuuid'] = customentitypropertytypeuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_custom_entity_property_type_request is not None:
+            _body_params = update_custom_entity_property_type_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CustomEntityPropertyTypes/{customentitypropertytypeuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_customentitypropertytypes_customentitypropertytypeuuid_options(
+        self,
+        customentitypropertytypeuuid: Annotated[StrictStr, Field(description="The unique identifier of the custom entity property type.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_custom_entity_property_dropdown_options_request: Annotated[Optional[UpdateCustomEntityPropertyDropdownOptionsRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Updates the dropdown options for a custom entity property type.
+
+        Updates the dropdown options for a custom entity property type.
+
+        :param customentitypropertytypeuuid: The unique identifier of the custom entity property type. (required)
+        :type customentitypropertytypeuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_custom_entity_property_dropdown_options_request: Propagates notification that operations should be canceled.
+        :type update_custom_entity_property_dropdown_options_request: UpdateCustomEntityPropertyDropdownOptionsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_customentitypropertytypes_customentitypropertytypeuuid_options_serialize(
+            customentitypropertytypeuuid=customentitypropertytypeuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_custom_entity_property_dropdown_options_request=update_custom_entity_property_dropdown_options_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_customentitypropertytypes_customentitypropertytypeuuid_options_with_http_info(
+        self,
+        customentitypropertytypeuuid: Annotated[StrictStr, Field(description="The unique identifier of the custom entity property type.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_custom_entity_property_dropdown_options_request: Annotated[Optional[UpdateCustomEntityPropertyDropdownOptionsRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Updates the dropdown options for a custom entity property type.
+
+        Updates the dropdown options for a custom entity property type.
+
+        :param customentitypropertytypeuuid: The unique identifier of the custom entity property type. (required)
+        :type customentitypropertytypeuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_custom_entity_property_dropdown_options_request: Propagates notification that operations should be canceled.
+        :type update_custom_entity_property_dropdown_options_request: UpdateCustomEntityPropertyDropdownOptionsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_customentitypropertytypes_customentitypropertytypeuuid_options_serialize(
+            customentitypropertytypeuuid=customentitypropertytypeuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_custom_entity_property_dropdown_options_request=update_custom_entity_property_dropdown_options_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_customentitypropertytypes_customentitypropertytypeuuid_options_without_preload_content(
+        self,
+        customentitypropertytypeuuid: Annotated[StrictStr, Field(description="The unique identifier of the custom entity property type.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_custom_entity_property_dropdown_options_request: Annotated[Optional[UpdateCustomEntityPropertyDropdownOptionsRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the dropdown options for a custom entity property type.
+
+        Updates the dropdown options for a custom entity property type.
+
+        :param customentitypropertytypeuuid: The unique identifier of the custom entity property type. (required)
+        :type customentitypropertytypeuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_custom_entity_property_dropdown_options_request: Propagates notification that operations should be canceled.
+        :type update_custom_entity_property_dropdown_options_request: UpdateCustomEntityPropertyDropdownOptionsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_customentitypropertytypes_customentitypropertytypeuuid_options_serialize(
+            customentitypropertytypeuuid=customentitypropertytypeuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_custom_entity_property_dropdown_options_request=update_custom_entity_property_dropdown_options_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_customentitypropertytypes_customentitypropertytypeuuid_options_serialize(
+        self,
+        customentitypropertytypeuuid,
+        zf_tuuid,
+        zf_ouuid,
+        update_custom_entity_property_dropdown_options_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if customentitypropertytypeuuid is not None:
+            _path_params['customentitypropertytypeuuid'] = customentitypropertytypeuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_custom_entity_property_dropdown_options_request is not None:
+            _body_params = update_custom_entity_property_dropdown_options_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CustomEntityPropertyTypes/{customentitypropertytypeuuid}/options',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_customentitypropertytypes_entityid_translations(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """/CustomEntityPropertyTypes/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_customentitypropertytypes_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_customentitypropertytypes_entityid_translations_with_http_info(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """/CustomEntityPropertyTypes/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_customentitypropertytypes_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_customentitypropertytypes_entityid_translations_without_preload_content(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """/CustomEntityPropertyTypes/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_customentitypropertytypes_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_customentitypropertytypes_entityid_translations_serialize(
+        self,
+        entity_id,
+        zf_tuuid,
+        zf_ouuid,
+        update_entity_translation_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if entity_id is not None:
+            _path_params['entityId'] = entity_id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_entity_translation_request is not None:
+            _body_params = update_entity_translation_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CustomEntityPropertyTypes/{entityId}/translations',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_dataexportfileformats_fileformatuuid(
+        self,
+        fileformatuuid: Annotated[StrictStr, Field(description="The unique identifier of the data export file format to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_data_export_file_format_request: Annotated[Optional[UpdateDataExportFileFormatRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfDataExportFileFormatDTO:
+        """Updates an existing data export file format.
+
+        Updates an existing data export file format.
+
+        :param fileformatuuid: The unique identifier of the data export file format to update. (required)
+        :type fileformatuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_data_export_file_format_request: Propagates notification that operations should be canceled.
+        :type update_data_export_file_format_request: UpdateDataExportFileFormatRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_dataexportfileformats_fileformatuuid_serialize(
+            fileformatuuid=fileformatuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_data_export_file_format_request=update_data_export_file_format_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfDataExportFileFormatDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_dataexportfileformats_fileformatuuid_with_http_info(
+        self,
+        fileformatuuid: Annotated[StrictStr, Field(description="The unique identifier of the data export file format to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_data_export_file_format_request: Annotated[Optional[UpdateDataExportFileFormatRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfDataExportFileFormatDTO]:
+        """Updates an existing data export file format.
+
+        Updates an existing data export file format.
+
+        :param fileformatuuid: The unique identifier of the data export file format to update. (required)
+        :type fileformatuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_data_export_file_format_request: Propagates notification that operations should be canceled.
+        :type update_data_export_file_format_request: UpdateDataExportFileFormatRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_dataexportfileformats_fileformatuuid_serialize(
+            fileformatuuid=fileformatuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_data_export_file_format_request=update_data_export_file_format_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfDataExportFileFormatDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_dataexportfileformats_fileformatuuid_without_preload_content(
+        self,
+        fileformatuuid: Annotated[StrictStr, Field(description="The unique identifier of the data export file format to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_data_export_file_format_request: Annotated[Optional[UpdateDataExportFileFormatRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing data export file format.
+
+        Updates an existing data export file format.
+
+        :param fileformatuuid: The unique identifier of the data export file format to update. (required)
+        :type fileformatuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_data_export_file_format_request: Propagates notification that operations should be canceled.
+        :type update_data_export_file_format_request: UpdateDataExportFileFormatRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_dataexportfileformats_fileformatuuid_serialize(
+            fileformatuuid=fileformatuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_data_export_file_format_request=update_data_export_file_format_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfDataExportFileFormatDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_dataexportfileformats_fileformatuuid_serialize(
+        self,
+        fileformatuuid,
+        zf_tuuid,
+        zf_ouuid,
+        update_data_export_file_format_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if fileformatuuid is not None:
+            _path_params['fileformatuuid'] = fileformatuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_data_export_file_format_request is not None:
+            _body_params = update_data_export_file_format_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/DataExportFileFormats/{fileformatuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_dataexports_dataexportuuid(
+        self,
+        dataexportuuid: Annotated[StrictStr, Field(description="The unique identifier of the data export to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_data_export_request: Annotated[Optional[UpdateDataExportRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfDataExportDTO:
+        """Updates an existing data export.
+
+        Updates an existing data export.
+
+        :param dataexportuuid: The unique identifier of the data export to update. (required)
+        :type dataexportuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_data_export_request: Propagates notification that operations should be canceled.
+        :type update_data_export_request: UpdateDataExportRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_dataexports_dataexportuuid_serialize(
+            dataexportuuid=dataexportuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_data_export_request=update_data_export_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfDataExportDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_dataexports_dataexportuuid_with_http_info(
+        self,
+        dataexportuuid: Annotated[StrictStr, Field(description="The unique identifier of the data export to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_data_export_request: Annotated[Optional[UpdateDataExportRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfDataExportDTO]:
+        """Updates an existing data export.
+
+        Updates an existing data export.
+
+        :param dataexportuuid: The unique identifier of the data export to update. (required)
+        :type dataexportuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_data_export_request: Propagates notification that operations should be canceled.
+        :type update_data_export_request: UpdateDataExportRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_dataexports_dataexportuuid_serialize(
+            dataexportuuid=dataexportuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_data_export_request=update_data_export_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfDataExportDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_dataexports_dataexportuuid_without_preload_content(
+        self,
+        dataexportuuid: Annotated[StrictStr, Field(description="The unique identifier of the data export to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_data_export_request: Annotated[Optional[UpdateDataExportRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing data export.
+
+        Updates an existing data export.
+
+        :param dataexportuuid: The unique identifier of the data export to update. (required)
+        :type dataexportuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_data_export_request: Propagates notification that operations should be canceled.
+        :type update_data_export_request: UpdateDataExportRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_dataexports_dataexportuuid_serialize(
+            dataexportuuid=dataexportuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_data_export_request=update_data_export_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfDataExportDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_dataexports_dataexportuuid_serialize(
+        self,
+        dataexportuuid,
+        zf_tuuid,
+        zf_ouuid,
+        update_data_export_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if dataexportuuid is not None:
+            _path_params['dataexportuuid'] = dataexportuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_data_export_request is not None:
+            _body_params = update_data_export_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/DataExports/{dataexportuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_dataimportfileformats_fileformatuuid(
+        self,
+        fileformatuuid: Annotated[StrictStr, Field(description="The unique identifier of the data import file format to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_data_import_file_format_request: Annotated[Optional[UpdateDataImportFileFormatRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfDataImportFileFormatDTO:
+        """Updates an existing data import file format.
+
+        Updates an existing data import file format.
+
+        :param fileformatuuid: The unique identifier of the data import file format to update. (required)
+        :type fileformatuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_data_import_file_format_request: Propagates notification that operations should be canceled.
+        :type update_data_import_file_format_request: UpdateDataImportFileFormatRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_dataimportfileformats_fileformatuuid_serialize(
+            fileformatuuid=fileformatuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_data_import_file_format_request=update_data_import_file_format_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfDataImportFileFormatDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_dataimportfileformats_fileformatuuid_with_http_info(
+        self,
+        fileformatuuid: Annotated[StrictStr, Field(description="The unique identifier of the data import file format to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_data_import_file_format_request: Annotated[Optional[UpdateDataImportFileFormatRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfDataImportFileFormatDTO]:
+        """Updates an existing data import file format.
+
+        Updates an existing data import file format.
+
+        :param fileformatuuid: The unique identifier of the data import file format to update. (required)
+        :type fileformatuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_data_import_file_format_request: Propagates notification that operations should be canceled.
+        :type update_data_import_file_format_request: UpdateDataImportFileFormatRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_dataimportfileformats_fileformatuuid_serialize(
+            fileformatuuid=fileformatuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_data_import_file_format_request=update_data_import_file_format_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfDataImportFileFormatDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_dataimportfileformats_fileformatuuid_without_preload_content(
+        self,
+        fileformatuuid: Annotated[StrictStr, Field(description="The unique identifier of the data import file format to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_data_import_file_format_request: Annotated[Optional[UpdateDataImportFileFormatRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing data import file format.
+
+        Updates an existing data import file format.
+
+        :param fileformatuuid: The unique identifier of the data import file format to update. (required)
+        :type fileformatuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_data_import_file_format_request: Propagates notification that operations should be canceled.
+        :type update_data_import_file_format_request: UpdateDataImportFileFormatRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_dataimportfileformats_fileformatuuid_serialize(
+            fileformatuuid=fileformatuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_data_import_file_format_request=update_data_import_file_format_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfDataImportFileFormatDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_dataimportfileformats_fileformatuuid_serialize(
+        self,
+        fileformatuuid,
+        zf_tuuid,
+        zf_ouuid,
+        update_data_import_file_format_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if fileformatuuid is not None:
+            _path_params['fileformatuuid'] = fileformatuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_data_import_file_format_request is not None:
+            _body_params = update_data_import_file_format_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/DataImportFileFormats/{fileformatuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_dataimports_dataimportuuid(
+        self,
+        dataimportuuid: Annotated[StrictStr, Field(description="The unique identifier of the data import to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_data_import_request: Annotated[Optional[UpdateDataImportRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfDataImportDTO:
+        """Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
+
+        Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
+
+        :param dataimportuuid: The unique identifier of the data import to update. (required)
+        :type dataimportuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_data_import_request: Propagates notification that operations should be canceled.
+        :type update_data_import_request: UpdateDataImportRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_dataimports_dataimportuuid_serialize(
+            dataimportuuid=dataimportuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_data_import_request=update_data_import_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfDataImportDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_dataimports_dataimportuuid_with_http_info(
+        self,
+        dataimportuuid: Annotated[StrictStr, Field(description="The unique identifier of the data import to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_data_import_request: Annotated[Optional[UpdateDataImportRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfDataImportDTO]:
+        """Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
+
+        Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
+
+        :param dataimportuuid: The unique identifier of the data import to update. (required)
+        :type dataimportuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_data_import_request: Propagates notification that operations should be canceled.
+        :type update_data_import_request: UpdateDataImportRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_dataimports_dataimportuuid_serialize(
+            dataimportuuid=dataimportuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_data_import_request=update_data_import_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfDataImportDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_dataimports_dataimportuuid_without_preload_content(
+        self,
+        dataimportuuid: Annotated[StrictStr, Field(description="The unique identifier of the data import to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_data_import_request: Annotated[Optional[UpdateDataImportRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
+
+        Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
+
+        :param dataimportuuid: The unique identifier of the data import to update. (required)
+        :type dataimportuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_data_import_request: Propagates notification that operations should be canceled.
+        :type update_data_import_request: UpdateDataImportRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_dataimports_dataimportuuid_serialize(
+            dataimportuuid=dataimportuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_data_import_request=update_data_import_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfDataImportDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_dataimports_dataimportuuid_serialize(
+        self,
+        dataimportuuid,
+        zf_tuuid,
+        zf_ouuid,
+        update_data_import_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if dataimportuuid is not None:
+            _path_params['dataimportuuid'] = dataimportuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_data_import_request is not None:
+            _body_params = update_data_import_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/DataImports/{dataimportuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def put_enumtranslations_enumtype_symbols_symbol(
         self,
         enum_type: Annotated[StrictStr, Field(description="The name of the enumeration type.")],
@@ -79580,6 +89210,10272 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='PUT',
             resource_path='/EnumTranslations/{enumType}/symbols/{symbol}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_enumtranslations_enumtype_symbols_symbol_reset(
+        self,
+        enum_type: Annotated[StrictStr, Field(description="The name of the enumeration type.")],
+        symbol: Annotated[StrictStr, Field(description="The symbol within the enumeration type to reset.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfEnumSymbolTranslationsDTO:
+        """Resets the translation for a specific enumeration symbol to its default value.
+
+        Resets the translation for a specific enumeration symbol to its default value.
+
+        :param enum_type: The name of the enumeration type. (required)
+        :type enum_type: str
+        :param symbol: The symbol within the enumeration type to reset. (required)
+        :type symbol: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_enumtranslations_enumtype_symbols_symbol_reset_serialize(
+            enum_type=enum_type,
+            symbol=symbol,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfEnumSymbolTranslationsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_enumtranslations_enumtype_symbols_symbol_reset_with_http_info(
+        self,
+        enum_type: Annotated[StrictStr, Field(description="The name of the enumeration type.")],
+        symbol: Annotated[StrictStr, Field(description="The symbol within the enumeration type to reset.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfEnumSymbolTranslationsDTO]:
+        """Resets the translation for a specific enumeration symbol to its default value.
+
+        Resets the translation for a specific enumeration symbol to its default value.
+
+        :param enum_type: The name of the enumeration type. (required)
+        :type enum_type: str
+        :param symbol: The symbol within the enumeration type to reset. (required)
+        :type symbol: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_enumtranslations_enumtype_symbols_symbol_reset_serialize(
+            enum_type=enum_type,
+            symbol=symbol,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfEnumSymbolTranslationsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_enumtranslations_enumtype_symbols_symbol_reset_without_preload_content(
+        self,
+        enum_type: Annotated[StrictStr, Field(description="The name of the enumeration type.")],
+        symbol: Annotated[StrictStr, Field(description="The symbol within the enumeration type to reset.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Resets the translation for a specific enumeration symbol to its default value.
+
+        Resets the translation for a specific enumeration symbol to its default value.
+
+        :param enum_type: The name of the enumeration type. (required)
+        :type enum_type: str
+        :param symbol: The symbol within the enumeration type to reset. (required)
+        :type symbol: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_enumtranslations_enumtype_symbols_symbol_reset_serialize(
+            enum_type=enum_type,
+            symbol=symbol,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfEnumSymbolTranslationsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_enumtranslations_enumtype_symbols_symbol_reset_serialize(
+        self,
+        enum_type,
+        symbol,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if enum_type is not None:
+            _path_params['enumType'] = enum_type
+        if symbol is not None:
+            _path_params['symbol'] = symbol
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/EnumTranslations/{enumType}/symbols/{symbol}/reset',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_integrations_billingtariff_import_importid_undo(
+        self,
+        import_id: Annotated[StrictStr, Field(description="The unique identifier of the import operation to undo.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Undoes a previous billing tariff import operation.
+
+        Undoes a previous billing tariff import operation.
+
+        :param import_id: The unique identifier of the import operation to undo. (required)
+        :type import_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_billingtariff_import_importid_undo_serialize(
+            import_id=import_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_integrations_billingtariff_import_importid_undo_with_http_info(
+        self,
+        import_id: Annotated[StrictStr, Field(description="The unique identifier of the import operation to undo.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Undoes a previous billing tariff import operation.
+
+        Undoes a previous billing tariff import operation.
+
+        :param import_id: The unique identifier of the import operation to undo. (required)
+        :type import_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_billingtariff_import_importid_undo_serialize(
+            import_id=import_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_integrations_billingtariff_import_importid_undo_without_preload_content(
+        self,
+        import_id: Annotated[StrictStr, Field(description="The unique identifier of the import operation to undo.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Undoes a previous billing tariff import operation.
+
+        Undoes a previous billing tariff import operation.
+
+        :param import_id: The unique identifier of the import operation to undo. (required)
+        :type import_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_billingtariff_import_importid_undo_serialize(
+            import_id=import_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_integrations_billingtariff_import_importid_undo_serialize(
+        self,
+        import_id,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if import_id is not None:
+            _path_params['importId'] = import_id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Integrations/billingTariff/import/{importId}/undo',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_integrations_billingtariff_import_importid_unlock(
+        self,
+        import_id: Annotated[StrictStr, Field(description="The unique identifier of the import operation to unlock.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Unlocks a billing tariff import operation that was previously locked.
+
+        Unlocks a billing tariff import operation that was previously locked.
+
+        :param import_id: The unique identifier of the import operation to unlock. (required)
+        :type import_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_billingtariff_import_importid_unlock_serialize(
+            import_id=import_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_integrations_billingtariff_import_importid_unlock_with_http_info(
+        self,
+        import_id: Annotated[StrictStr, Field(description="The unique identifier of the import operation to unlock.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Unlocks a billing tariff import operation that was previously locked.
+
+        Unlocks a billing tariff import operation that was previously locked.
+
+        :param import_id: The unique identifier of the import operation to unlock. (required)
+        :type import_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_billingtariff_import_importid_unlock_serialize(
+            import_id=import_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_integrations_billingtariff_import_importid_unlock_without_preload_content(
+        self,
+        import_id: Annotated[StrictStr, Field(description="The unique identifier of the import operation to unlock.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Unlocks a billing tariff import operation that was previously locked.
+
+        Unlocks a billing tariff import operation that was previously locked.
+
+        :param import_id: The unique identifier of the import operation to unlock. (required)
+        :type import_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_billingtariff_import_importid_unlock_serialize(
+            import_id=import_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_integrations_billingtariff_import_importid_unlock_serialize(
+        self,
+        import_id,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if import_id is not None:
+            _path_params['importId'] = import_id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Integrations/billingTariff/import/{importId}/unlock',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_models_modeluuid(
+        self,
+        modeluuid: Annotated[StrictStr, Field(description="The unique identifier of the device model to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_model_request: Annotated[Optional[UpdateModelRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfModelDTO:
+        """Updates an existing device model.
+
+        Updates an existing device model.
+
+        :param modeluuid: The unique identifier of the device model to update. (required)
+        :type modeluuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_model_request: Propagates notification that operations should be canceled.
+        :type update_model_request: UpdateModelRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_models_modeluuid_serialize(
+            modeluuid=modeluuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_model_request=update_model_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfModelDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_models_modeluuid_with_http_info(
+        self,
+        modeluuid: Annotated[StrictStr, Field(description="The unique identifier of the device model to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_model_request: Annotated[Optional[UpdateModelRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfModelDTO]:
+        """Updates an existing device model.
+
+        Updates an existing device model.
+
+        :param modeluuid: The unique identifier of the device model to update. (required)
+        :type modeluuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_model_request: Propagates notification that operations should be canceled.
+        :type update_model_request: UpdateModelRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_models_modeluuid_serialize(
+            modeluuid=modeluuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_model_request=update_model_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfModelDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_models_modeluuid_without_preload_content(
+        self,
+        modeluuid: Annotated[StrictStr, Field(description="The unique identifier of the device model to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_model_request: Annotated[Optional[UpdateModelRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing device model.
+
+        Updates an existing device model.
+
+        :param modeluuid: The unique identifier of the device model to update. (required)
+        :type modeluuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_model_request: Propagates notification that operations should be canceled.
+        :type update_model_request: UpdateModelRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_models_modeluuid_serialize(
+            modeluuid=modeluuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_model_request=update_model_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfModelDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_models_modeluuid_serialize(
+        self,
+        modeluuid,
+        zf_tuuid,
+        zf_ouuid,
+        update_model_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if modeluuid is not None:
+            _path_params['modeluuid'] = modeluuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_model_request is not None:
+            _body_params = update_model_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Models/{modeluuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_numbersequences_numbersequenceuuid(
+        self,
+        numbersequenceuuid: Annotated[StrictStr, Field(description="The unique identifier of the number sequence to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_number_sequence_request: Annotated[Optional[UpdateNumberSequenceRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfNumberSequenceDTO:
+        """Updates an existing number sequence configuration.
+
+        Updates an existing number sequence configuration.
+
+        :param numbersequenceuuid: The unique identifier of the number sequence to update. (required)
+        :type numbersequenceuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_number_sequence_request: Propagates notification that operations should be canceled.
+        :type update_number_sequence_request: UpdateNumberSequenceRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_numbersequences_numbersequenceuuid_serialize(
+            numbersequenceuuid=numbersequenceuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_number_sequence_request=update_number_sequence_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfNumberSequenceDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_numbersequences_numbersequenceuuid_with_http_info(
+        self,
+        numbersequenceuuid: Annotated[StrictStr, Field(description="The unique identifier of the number sequence to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_number_sequence_request: Annotated[Optional[UpdateNumberSequenceRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfNumberSequenceDTO]:
+        """Updates an existing number sequence configuration.
+
+        Updates an existing number sequence configuration.
+
+        :param numbersequenceuuid: The unique identifier of the number sequence to update. (required)
+        :type numbersequenceuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_number_sequence_request: Propagates notification that operations should be canceled.
+        :type update_number_sequence_request: UpdateNumberSequenceRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_numbersequences_numbersequenceuuid_serialize(
+            numbersequenceuuid=numbersequenceuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_number_sequence_request=update_number_sequence_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfNumberSequenceDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_numbersequences_numbersequenceuuid_without_preload_content(
+        self,
+        numbersequenceuuid: Annotated[StrictStr, Field(description="The unique identifier of the number sequence to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_number_sequence_request: Annotated[Optional[UpdateNumberSequenceRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing number sequence configuration.
+
+        Updates an existing number sequence configuration.
+
+        :param numbersequenceuuid: The unique identifier of the number sequence to update. (required)
+        :type numbersequenceuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_number_sequence_request: Propagates notification that operations should be canceled.
+        :type update_number_sequence_request: UpdateNumberSequenceRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_numbersequences_numbersequenceuuid_serialize(
+            numbersequenceuuid=numbersequenceuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_number_sequence_request=update_number_sequence_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfNumberSequenceDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_numbersequences_numbersequenceuuid_serialize(
+        self,
+        numbersequenceuuid,
+        zf_tuuid,
+        zf_ouuid,
+        update_number_sequence_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if numbersequenceuuid is not None:
+            _path_params['numbersequenceuuid'] = numbersequenceuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_number_sequence_request is not None:
+            _body_params = update_number_sequence_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/NumberSequences/{numbersequenceuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_organizations_organizationuuid(
+        self,
+        organizationuuid: Annotated[StrictStr, Field(description="The unique identifier of the organization to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_organization_request: Annotated[Optional[UpdateOrganizationRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfOrganizationDTO:
+        """Updates an existing organization.
+
+        TODO validate organizationuuid should be same as header organization id
+
+        :param organizationuuid: The unique identifier of the organization to update. (required)
+        :type organizationuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_organization_request: Propagates notification that operations should be canceled.
+        :type update_organization_request: UpdateOrganizationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_organizations_organizationuuid_serialize(
+            organizationuuid=organizationuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_organization_request=update_organization_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfOrganizationDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_organizations_organizationuuid_with_http_info(
+        self,
+        organizationuuid: Annotated[StrictStr, Field(description="The unique identifier of the organization to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_organization_request: Annotated[Optional[UpdateOrganizationRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfOrganizationDTO]:
+        """Updates an existing organization.
+
+        TODO validate organizationuuid should be same as header organization id
+
+        :param organizationuuid: The unique identifier of the organization to update. (required)
+        :type organizationuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_organization_request: Propagates notification that operations should be canceled.
+        :type update_organization_request: UpdateOrganizationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_organizations_organizationuuid_serialize(
+            organizationuuid=organizationuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_organization_request=update_organization_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfOrganizationDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_organizations_organizationuuid_without_preload_content(
+        self,
+        organizationuuid: Annotated[StrictStr, Field(description="The unique identifier of the organization to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_organization_request: Annotated[Optional[UpdateOrganizationRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing organization.
+
+        TODO validate organizationuuid should be same as header organization id
+
+        :param organizationuuid: The unique identifier of the organization to update. (required)
+        :type organizationuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_organization_request: Propagates notification that operations should be canceled.
+        :type update_organization_request: UpdateOrganizationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_organizations_organizationuuid_serialize(
+            organizationuuid=organizationuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_organization_request=update_organization_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfOrganizationDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_organizations_organizationuuid_serialize(
+        self,
+        organizationuuid,
+        zf_tuuid,
+        zf_ouuid,
+        update_organization_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organizationuuid is not None:
+            _path_params['organizationuuid'] = organizationuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_organization_request is not None:
+            _body_params = update_organization_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Organizations/{organizationuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_organizations_organizationuuid_initialize(
+        self,
+        organizationuuid: Annotated[StrictStr, Field(description="The unique identifier of the organization to initialize.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfOrganizationDTO:
+        """Initializes an organization with default settings and configurations.
+
+        Initializes an organization with default settings and configurations.
+
+        :param organizationuuid: The unique identifier of the organization to initialize. (required)
+        :type organizationuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_organizations_organizationuuid_initialize_serialize(
+            organizationuuid=organizationuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfOrganizationDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_organizations_organizationuuid_initialize_with_http_info(
+        self,
+        organizationuuid: Annotated[StrictStr, Field(description="The unique identifier of the organization to initialize.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfOrganizationDTO]:
+        """Initializes an organization with default settings and configurations.
+
+        Initializes an organization with default settings and configurations.
+
+        :param organizationuuid: The unique identifier of the organization to initialize. (required)
+        :type organizationuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_organizations_organizationuuid_initialize_serialize(
+            organizationuuid=organizationuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfOrganizationDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_organizations_organizationuuid_initialize_without_preload_content(
+        self,
+        organizationuuid: Annotated[StrictStr, Field(description="The unique identifier of the organization to initialize.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Initializes an organization with default settings and configurations.
+
+        Initializes an organization with default settings and configurations.
+
+        :param organizationuuid: The unique identifier of the organization to initialize. (required)
+        :type organizationuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_organizations_organizationuuid_initialize_serialize(
+            organizationuuid=organizationuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfOrganizationDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_organizations_organizationuuid_initialize_serialize(
+        self,
+        organizationuuid,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organizationuuid is not None:
+            _path_params['organizationuuid'] = organizationuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Organizations/{organizationuuid}/initialize',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_parameters_billing(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_billing_parameters_request: Annotated[Optional[UpdateBillingParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfBillingParametersDTO:
+        """Updates the billing parameters configuration.
+
+        Updates the billing parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_billing_parameters_request: Propagates notification that operations should be canceled.
+        :type update_billing_parameters_request: UpdateBillingParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_billing_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_billing_parameters_request=update_billing_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBillingParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_parameters_billing_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_billing_parameters_request: Annotated[Optional[UpdateBillingParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfBillingParametersDTO]:
+        """Updates the billing parameters configuration.
+
+        Updates the billing parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_billing_parameters_request: Propagates notification that operations should be canceled.
+        :type update_billing_parameters_request: UpdateBillingParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_billing_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_billing_parameters_request=update_billing_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBillingParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_parameters_billing_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_billing_parameters_request: Annotated[Optional[UpdateBillingParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the billing parameters configuration.
+
+        Updates the billing parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_billing_parameters_request: Propagates notification that operations should be canceled.
+        :type update_billing_parameters_request: UpdateBillingParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_billing_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_billing_parameters_request=update_billing_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBillingParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_parameters_billing_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_billing_parameters_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_billing_parameters_request is not None:
+            _body_params = update_billing_parameters_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Parameters/billing',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_parameters_communication(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_communication_parameters_request: Annotated[Optional[UpdateCommunicationParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfCommunicationParametersDTO:
+        """Updates the communication parameters configuration.
+
+        Updates the communication parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_communication_parameters_request: Propagates notification that operations should be canceled.
+        :type update_communication_parameters_request: UpdateCommunicationParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_communication_parameters_request=update_communication_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfCommunicationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_parameters_communication_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_communication_parameters_request: Annotated[Optional[UpdateCommunicationParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfCommunicationParametersDTO]:
+        """Updates the communication parameters configuration.
+
+        Updates the communication parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_communication_parameters_request: Propagates notification that operations should be canceled.
+        :type update_communication_parameters_request: UpdateCommunicationParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_communication_parameters_request=update_communication_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfCommunicationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_parameters_communication_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_communication_parameters_request: Annotated[Optional[UpdateCommunicationParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the communication parameters configuration.
+
+        Updates the communication parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_communication_parameters_request: Propagates notification that operations should be canceled.
+        :type update_communication_parameters_request: UpdateCommunicationParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_communication_parameters_request=update_communication_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfCommunicationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_parameters_communication_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_communication_parameters_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_communication_parameters_request is not None:
+            _body_params = update_communication_parameters_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Parameters/communication',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_domain_authentication_parameters_request: Annotated[Optional[UpdateDomainAuthenticationParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfDomainAuthenticationParametersDTO:
+        """Updates the domain authentication parameters for communication.
+
+        Updates the domain authentication parameters for communication.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_domain_authentication_parameters_request: Propagates notification that operations should be canceled.
+        :type update_domain_authentication_parameters_request: UpdateDomainAuthenticationParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_domain_authentication_parameters_request=update_domain_authentication_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_domain_authentication_parameters_request: Annotated[Optional[UpdateDomainAuthenticationParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfDomainAuthenticationParametersDTO]:
+        """Updates the domain authentication parameters for communication.
+
+        Updates the domain authentication parameters for communication.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_domain_authentication_parameters_request: Propagates notification that operations should be canceled.
+        :type update_domain_authentication_parameters_request: UpdateDomainAuthenticationParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_domain_authentication_parameters_request=update_domain_authentication_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_domain_authentication_parameters_request: Annotated[Optional[UpdateDomainAuthenticationParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the domain authentication parameters for communication.
+
+        Updates the domain authentication parameters for communication.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_domain_authentication_parameters_request: Propagates notification that operations should be canceled.
+        :type update_domain_authentication_parameters_request: UpdateDomainAuthenticationParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_domain_authentication_parameters_request=update_domain_authentication_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_parameters_communication_domainauthentication_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_domain_authentication_parameters_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_domain_authentication_parameters_request is not None:
+            _body_params = update_domain_authentication_parameters_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Parameters/communication/domainauthentication',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_eu_accept(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfDomainAuthenticationParametersDTO:
+        """Accepts EU cutover when AcceptAllowed: promotes EuRecords to Records and enqueues residency Eu.
+
+        Accepts EU cutover when AcceptAllowed: promotes EuRecords to Records and enqueues residency Eu.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_eu_accept_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_eu_accept_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfDomainAuthenticationParametersDTO]:
+        """Accepts EU cutover when AcceptAllowed: promotes EuRecords to Records and enqueues residency Eu.
+
+        Accepts EU cutover when AcceptAllowed: promotes EuRecords to Records and enqueues residency Eu.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_eu_accept_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_eu_accept_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Accepts EU cutover when AcceptAllowed: promotes EuRecords to Records and enqueues residency Eu.
+
+        Accepts EU cutover when AcceptAllowed: promotes EuRecords to Records and enqueues residency Eu.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_eu_accept_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_parameters_communication_domainauthentication_eu_accept_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Parameters/communication/domainauthentication/eu/accept',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_eu_migrate(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfDomainAuthenticationParametersDTO:
+        """Starts EU SendGrid domain migrate prep (writes EuRecords only; does not flip residency).
+
+        Starts EU SendGrid domain migrate prep (writes EuRecords only; does not flip residency).
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_eu_migrate_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+            '409': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_eu_migrate_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfDomainAuthenticationParametersDTO]:
+        """Starts EU SendGrid domain migrate prep (writes EuRecords only; does not flip residency).
+
+        Starts EU SendGrid domain migrate prep (writes EuRecords only; does not flip residency).
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_eu_migrate_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+            '409': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_eu_migrate_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Starts EU SendGrid domain migrate prep (writes EuRecords only; does not flip residency).
+
+        Starts EU SendGrid domain migrate prep (writes EuRecords only; does not flip residency).
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_eu_migrate_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+            '409': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_parameters_communication_domainauthentication_eu_migrate_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Parameters/communication/domainauthentication/eu/migrate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_eu_verify(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfDomainAuthenticationParametersDTO:
+        """Verifies EU migrate prep DNS (updates EuRecords only; does not flip residency).
+
+        Verifies EU migrate prep DNS (updates EuRecords only; does not flip residency).
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_eu_verify_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_eu_verify_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfDomainAuthenticationParametersDTO]:
+        """Verifies EU migrate prep DNS (updates EuRecords only; does not flip residency).
+
+        Verifies EU migrate prep DNS (updates EuRecords only; does not flip residency).
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_eu_verify_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_eu_verify_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Verifies EU migrate prep DNS (updates EuRecords only; does not flip residency).
+
+        Verifies EU migrate prep DNS (updates EuRecords only; does not flip residency).
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_eu_verify_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_parameters_communication_domainauthentication_eu_verify_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Parameters/communication/domainauthentication/eu/verify',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_verify(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfDomainAuthenticationParametersDTO:
+        """Verifies the current domain authentication parameters.
+
+        Verifies the current domain authentication parameters.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_verify_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_verify_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfDomainAuthenticationParametersDTO]:
+        """Verifies the current domain authentication parameters.
+
+        Verifies the current domain authentication parameters.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_verify_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_parameters_communication_domainauthentication_verify_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Verifies the current domain authentication parameters.
+
+        Verifies the current domain authentication parameters.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_communication_domainauthentication_verify_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfDomainAuthenticationParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_parameters_communication_domainauthentication_verify_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Parameters/communication/domainauthentication/verify',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_parameters_masterdata(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_master_data_parameters_request: Annotated[Optional[UpdateMasterDataParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfMasterDataParametersDTO:
+        """Updates the master data parameters configuration.
+
+        Updates the master data parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_master_data_parameters_request: Propagates notification that operations should be canceled.
+        :type update_master_data_parameters_request: UpdateMasterDataParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_masterdata_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_master_data_parameters_request=update_master_data_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMasterDataParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_parameters_masterdata_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_master_data_parameters_request: Annotated[Optional[UpdateMasterDataParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfMasterDataParametersDTO]:
+        """Updates the master data parameters configuration.
+
+        Updates the master data parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_master_data_parameters_request: Propagates notification that operations should be canceled.
+        :type update_master_data_parameters_request: UpdateMasterDataParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_masterdata_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_master_data_parameters_request=update_master_data_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMasterDataParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_parameters_masterdata_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_master_data_parameters_request: Annotated[Optional[UpdateMasterDataParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the master data parameters configuration.
+
+        Updates the master data parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_master_data_parameters_request: Propagates notification that operations should be canceled.
+        :type update_master_data_parameters_request: UpdateMasterDataParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_masterdata_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_master_data_parameters_request=update_master_data_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMasterDataParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_parameters_masterdata_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_master_data_parameters_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_master_data_parameters_request is not None:
+            _body_params = update_master_data_parameters_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Parameters/masterdata',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_parameters_metering(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_metering_parameters_request: Annotated[Optional[UpdateMeteringParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfMeteringParametersDTO:
+        """Updates the metering parameters configuration.
+
+        Updates the metering parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_metering_parameters_request: Propagates notification that operations should be canceled.
+        :type update_metering_parameters_request: UpdateMeteringParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_metering_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_metering_parameters_request=update_metering_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMeteringParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_parameters_metering_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_metering_parameters_request: Annotated[Optional[UpdateMeteringParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfMeteringParametersDTO]:
+        """Updates the metering parameters configuration.
+
+        Updates the metering parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_metering_parameters_request: Propagates notification that operations should be canceled.
+        :type update_metering_parameters_request: UpdateMeteringParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_metering_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_metering_parameters_request=update_metering_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMeteringParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_parameters_metering_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_metering_parameters_request: Annotated[Optional[UpdateMeteringParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the metering parameters configuration.
+
+        Updates the metering parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_metering_parameters_request: Propagates notification that operations should be canceled.
+        :type update_metering_parameters_request: UpdateMeteringParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_metering_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_metering_parameters_request=update_metering_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMeteringParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_parameters_metering_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_metering_parameters_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_metering_parameters_request is not None:
+            _body_params = update_metering_parameters_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Parameters/metering',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_parameters_payment(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_payment_parameters_request: Annotated[Optional[UpdatePaymentParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfPaymentParametersDTO:
+        """Updates the payment parameters configuration.
+
+        Updates the payment parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_payment_parameters_request: Propagates notification that operations should be canceled.
+        :type update_payment_parameters_request: UpdatePaymentParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_payment_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_payment_parameters_request=update_payment_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_parameters_payment_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_payment_parameters_request: Annotated[Optional[UpdatePaymentParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfPaymentParametersDTO]:
+        """Updates the payment parameters configuration.
+
+        Updates the payment parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_payment_parameters_request: Propagates notification that operations should be canceled.
+        :type update_payment_parameters_request: UpdatePaymentParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_payment_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_payment_parameters_request=update_payment_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_parameters_payment_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_payment_parameters_request: Annotated[Optional[UpdatePaymentParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the payment parameters configuration.
+
+        Updates the payment parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_payment_parameters_request: Propagates notification that operations should be canceled.
+        :type update_payment_parameters_request: UpdatePaymentParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_payment_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_payment_parameters_request=update_payment_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_parameters_payment_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_payment_parameters_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_payment_parameters_request is not None:
+            _body_params = update_payment_parameters_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Parameters/payment',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_parameters_payment_portal_collection_preferences(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_portal_collection_day_preferences_request: Annotated[Optional[UpdatePortalCollectionDayPreferencesRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfPaymentParametersDTO:
+        """Updates the customer portal collection day preferences.
+
+        Updates the customer portal collection day preferences.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_portal_collection_day_preferences_request: Propagates notification that operations should be canceled.
+        :type update_portal_collection_day_preferences_request: UpdatePortalCollectionDayPreferencesRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_payment_portal_collection_preferences_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_portal_collection_day_preferences_request=update_portal_collection_day_preferences_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_parameters_payment_portal_collection_preferences_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_portal_collection_day_preferences_request: Annotated[Optional[UpdatePortalCollectionDayPreferencesRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfPaymentParametersDTO]:
+        """Updates the customer portal collection day preferences.
+
+        Updates the customer portal collection day preferences.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_portal_collection_day_preferences_request: Propagates notification that operations should be canceled.
+        :type update_portal_collection_day_preferences_request: UpdatePortalCollectionDayPreferencesRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_payment_portal_collection_preferences_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_portal_collection_day_preferences_request=update_portal_collection_day_preferences_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_parameters_payment_portal_collection_preferences_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_portal_collection_day_preferences_request: Annotated[Optional[UpdatePortalCollectionDayPreferencesRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the customer portal collection day preferences.
+
+        Updates the customer portal collection day preferences.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_portal_collection_day_preferences_request: Propagates notification that operations should be canceled.
+        :type update_portal_collection_day_preferences_request: UpdatePortalCollectionDayPreferencesRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_payment_portal_collection_preferences_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_portal_collection_day_preferences_request=update_portal_collection_day_preferences_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_parameters_payment_portal_collection_preferences_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_portal_collection_day_preferences_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_portal_collection_day_preferences_request is not None:
+            _body_params = update_portal_collection_day_preferences_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Parameters/payment/portal-collection-preferences',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_parameters_paymentplan(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_payment_plan_parameters_request: Annotated[Optional[UpdatePaymentPlanParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfPaymentPlanParametersDTO:
+        """Updates the payment plan parameters configuration.
+
+        Updates the payment plan parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_payment_plan_parameters_request: Propagates notification that operations should be canceled.
+        :type update_payment_plan_parameters_request: UpdatePaymentPlanParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_paymentplan_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_payment_plan_parameters_request=update_payment_plan_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentPlanParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_parameters_paymentplan_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_payment_plan_parameters_request: Annotated[Optional[UpdatePaymentPlanParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfPaymentPlanParametersDTO]:
+        """Updates the payment plan parameters configuration.
+
+        Updates the payment plan parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_payment_plan_parameters_request: Propagates notification that operations should be canceled.
+        :type update_payment_plan_parameters_request: UpdatePaymentPlanParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_paymentplan_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_payment_plan_parameters_request=update_payment_plan_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentPlanParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_parameters_paymentplan_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_payment_plan_parameters_request: Annotated[Optional[UpdatePaymentPlanParametersRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the payment plan parameters configuration.
+
+        Updates the payment plan parameters configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_payment_plan_parameters_request: Propagates notification that operations should be canceled.
+        :type update_payment_plan_parameters_request: UpdatePaymentPlanParametersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_paymentplan_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_payment_plan_parameters_request=update_payment_plan_parameters_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentPlanParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_parameters_paymentplan_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_payment_plan_parameters_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_payment_plan_parameters_request is not None:
+            _body_params = update_payment_plan_parameters_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Parameters/paymentplan',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_parameters_prepayment(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        body: Annotated[Optional[Dict[str, Any]], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfPrepaymentParametersDTO:
+        """Updates the prepayment parameters configuration (PrepaymentParameters).
+
+        Updates the prepayment parameters configuration (PrepaymentParameters).
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param body: Propagates notification that operations should be canceled.
+        :type body: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_prepayment_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPrepaymentParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_parameters_prepayment_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        body: Annotated[Optional[Dict[str, Any]], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfPrepaymentParametersDTO]:
+        """Updates the prepayment parameters configuration (PrepaymentParameters).
+
+        Updates the prepayment parameters configuration (PrepaymentParameters).
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param body: Propagates notification that operations should be canceled.
+        :type body: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_prepayment_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPrepaymentParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_parameters_prepayment_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        body: Annotated[Optional[Dict[str, Any]], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the prepayment parameters configuration (PrepaymentParameters).
+
+        Updates the prepayment parameters configuration (PrepaymentParameters).
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param body: Propagates notification that operations should be canceled.
+        :type body: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_parameters_prepayment_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPrepaymentParametersDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_parameters_prepayment_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Parameters/prepayment',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_paymentdelays_paymentdelayuuid(
+        self,
+        paymentdelayuuid: Annotated[StrictStr, Field(description="The unique identifier of the payment delay setting to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_payment_delay_request: Annotated[Optional[UpdatePaymentDelayRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfPaymentDelaySettingDTO:
+        """Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
+
+        Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
+
+        :param paymentdelayuuid: The unique identifier of the payment delay setting to update. (required)
+        :type paymentdelayuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_payment_delay_request: Propagates notification that operations should be canceled.
+        :type update_payment_delay_request: UpdatePaymentDelayRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_paymentdelays_paymentdelayuuid_serialize(
+            paymentdelayuuid=paymentdelayuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_payment_delay_request=update_payment_delay_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPaymentDelaySettingDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_paymentdelays_paymentdelayuuid_with_http_info(
+        self,
+        paymentdelayuuid: Annotated[StrictStr, Field(description="The unique identifier of the payment delay setting to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_payment_delay_request: Annotated[Optional[UpdatePaymentDelayRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfPaymentDelaySettingDTO]:
+        """Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
+
+        Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
+
+        :param paymentdelayuuid: The unique identifier of the payment delay setting to update. (required)
+        :type paymentdelayuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_payment_delay_request: Propagates notification that operations should be canceled.
+        :type update_payment_delay_request: UpdatePaymentDelayRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_paymentdelays_paymentdelayuuid_serialize(
+            paymentdelayuuid=paymentdelayuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_payment_delay_request=update_payment_delay_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPaymentDelaySettingDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_paymentdelays_paymentdelayuuid_without_preload_content(
+        self,
+        paymentdelayuuid: Annotated[StrictStr, Field(description="The unique identifier of the payment delay setting to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_payment_delay_request: Annotated[Optional[UpdatePaymentDelayRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
+
+        Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
+
+        :param paymentdelayuuid: The unique identifier of the payment delay setting to update. (required)
+        :type paymentdelayuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_payment_delay_request: Propagates notification that operations should be canceled.
+        :type update_payment_delay_request: UpdatePaymentDelayRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_paymentdelays_paymentdelayuuid_serialize(
+            paymentdelayuuid=paymentdelayuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_payment_delay_request=update_payment_delay_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPaymentDelaySettingDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_paymentdelays_paymentdelayuuid_serialize(
+        self,
+        paymentdelayuuid,
+        zf_tuuid,
+        zf_ouuid,
+        update_payment_delay_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if paymentdelayuuid is not None:
+            _path_params['paymentdelayuuid'] = paymentdelayuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_payment_delay_request is not None:
+            _body_params = update_payment_delay_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/PaymentDelays/{paymentdelayuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_paymentterms_paymenttermuuid(
+        self,
+        paymenttermuuid: Annotated[StrictStr, Field(description="The unique identifier of the payment term to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        payment_terms_request: Annotated[Optional[PaymentTermsRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfPaymentTermsDTO:
+        """Updates an existing payment term.
+
+        Updates an existing payment term.
+
+        :param paymenttermuuid: The unique identifier of the payment term to update. (required)
+        :type paymenttermuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param payment_terms_request: Propagates notification that operations should be canceled.
+        :type payment_terms_request: PaymentTermsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_paymentterms_paymenttermuuid_serialize(
+            paymenttermuuid=paymenttermuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            payment_terms_request=payment_terms_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentTermsDTO",
+            '404': "ProblemDetails",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_paymentterms_paymenttermuuid_with_http_info(
+        self,
+        paymenttermuuid: Annotated[StrictStr, Field(description="The unique identifier of the payment term to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        payment_terms_request: Annotated[Optional[PaymentTermsRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfPaymentTermsDTO]:
+        """Updates an existing payment term.
+
+        Updates an existing payment term.
+
+        :param paymenttermuuid: The unique identifier of the payment term to update. (required)
+        :type paymenttermuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param payment_terms_request: Propagates notification that operations should be canceled.
+        :type payment_terms_request: PaymentTermsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_paymentterms_paymenttermuuid_serialize(
+            paymenttermuuid=paymenttermuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            payment_terms_request=payment_terms_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentTermsDTO",
+            '404': "ProblemDetails",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_paymentterms_paymenttermuuid_without_preload_content(
+        self,
+        paymenttermuuid: Annotated[StrictStr, Field(description="The unique identifier of the payment term to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        payment_terms_request: Annotated[Optional[PaymentTermsRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing payment term.
+
+        Updates an existing payment term.
+
+        :param paymenttermuuid: The unique identifier of the payment term to update. (required)
+        :type paymenttermuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param payment_terms_request: Propagates notification that operations should be canceled.
+        :type payment_terms_request: PaymentTermsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_paymentterms_paymenttermuuid_serialize(
+            paymenttermuuid=paymenttermuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            payment_terms_request=payment_terms_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfPaymentTermsDTO",
+            '404': "ProblemDetails",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_paymentterms_paymenttermuuid_serialize(
+        self,
+        paymenttermuuid,
+        zf_tuuid,
+        zf_ouuid,
+        payment_terms_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if paymenttermuuid is not None:
+            _path_params['paymenttermuuid'] = paymenttermuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if payment_terms_request is not None:
+            _body_params = payment_terms_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/PaymentTerms/{paymenttermuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_portalsettings(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_portal_settings_request: Annotated[Optional[UpdatePortalSettingsRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfPortalSettingsDTO:
+        """Updates portal settings configuration.
+
+        Updates portal settings configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_portal_settings_request: Propagates notification that operations should be canceled.
+        :type update_portal_settings_request: UpdatePortalSettingsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_portalsettings_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_portal_settings_request=update_portal_settings_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPortalSettingsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_portalsettings_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_portal_settings_request: Annotated[Optional[UpdatePortalSettingsRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfPortalSettingsDTO]:
+        """Updates portal settings configuration.
+
+        Updates portal settings configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_portal_settings_request: Propagates notification that operations should be canceled.
+        :type update_portal_settings_request: UpdatePortalSettingsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_portalsettings_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_portal_settings_request=update_portal_settings_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPortalSettingsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_portalsettings_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_portal_settings_request: Annotated[Optional[UpdatePortalSettingsRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates portal settings configuration.
+
+        Updates portal settings configuration.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_portal_settings_request: Propagates notification that operations should be canceled.
+        :type update_portal_settings_request: UpdatePortalSettingsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_portalsettings_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_portal_settings_request=update_portal_settings_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPortalSettingsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_portalsettings_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_portal_settings_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_portal_settings_request is not None:
+            _body_params = update_portal_settings_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/PortalSettings',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_portalsettings_hostname_add(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        add_portal_host_name_request: Annotated[Optional[AddPortalHostNameRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfPortalSettingsDTO:
+        """adds a hostName for a specific portal.
+
+        adds a hostName for a specific portal.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param add_portal_host_name_request: Propagates notification that operations should be canceled.
+        :type add_portal_host_name_request: AddPortalHostNameRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_portalsettings_hostname_add_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            add_portal_host_name_request=add_portal_host_name_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPortalSettingsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_portalsettings_hostname_add_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        add_portal_host_name_request: Annotated[Optional[AddPortalHostNameRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfPortalSettingsDTO]:
+        """adds a hostName for a specific portal.
+
+        adds a hostName for a specific portal.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param add_portal_host_name_request: Propagates notification that operations should be canceled.
+        :type add_portal_host_name_request: AddPortalHostNameRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_portalsettings_hostname_add_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            add_portal_host_name_request=add_portal_host_name_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPortalSettingsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_portalsettings_hostname_add_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        add_portal_host_name_request: Annotated[Optional[AddPortalHostNameRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """adds a hostName for a specific portal.
+
+        adds a hostName for a specific portal.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param add_portal_host_name_request: Propagates notification that operations should be canceled.
+        :type add_portal_host_name_request: AddPortalHostNameRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_portalsettings_hostname_add_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            add_portal_host_name_request=add_portal_host_name_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPortalSettingsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_portalsettings_hostname_add_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        add_portal_host_name_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if add_portal_host_name_request is not None:
+            _body_params = add_portal_host_name_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/PortalSettings/hostname/add',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_portalsettings_hostname_validate(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        add_portal_host_name_request: Annotated[Optional[AddPortalHostNameRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfValidatePortalHostNameResponse:
+        """Validates DNS records for a pending portal hostname.
+
+        Validates DNS records for a pending portal hostname.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param add_portal_host_name_request: Propagates notification that operations should be canceled.
+        :type add_portal_host_name_request: AddPortalHostNameRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_portalsettings_hostname_validate_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            add_portal_host_name_request=add_portal_host_name_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfValidatePortalHostNameResponse",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_portalsettings_hostname_validate_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        add_portal_host_name_request: Annotated[Optional[AddPortalHostNameRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfValidatePortalHostNameResponse]:
+        """Validates DNS records for a pending portal hostname.
+
+        Validates DNS records for a pending portal hostname.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param add_portal_host_name_request: Propagates notification that operations should be canceled.
+        :type add_portal_host_name_request: AddPortalHostNameRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_portalsettings_hostname_validate_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            add_portal_host_name_request=add_portal_host_name_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfValidatePortalHostNameResponse",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_portalsettings_hostname_validate_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        add_portal_host_name_request: Annotated[Optional[AddPortalHostNameRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Validates DNS records for a pending portal hostname.
+
+        Validates DNS records for a pending portal hostname.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param add_portal_host_name_request: Propagates notification that operations should be canceled.
+        :type add_portal_host_name_request: AddPortalHostNameRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_portalsettings_hostname_validate_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            add_portal_host_name_request=add_portal_host_name_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfValidatePortalHostNameResponse",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_portalsettings_hostname_validate_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        add_portal_host_name_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if add_portal_host_name_request is not None:
+            _body_params = add_portal_host_name_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/PortalSettings/hostname/validate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_portalsettings_notification(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        upsert_portal_page_notification_request: Annotated[Optional[UpsertPortalPageNotificationRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfPortalSettingsDTO:
+        """Upserts a page notification to the portal settings.
+
+        Upserts a page notification to the portal settings.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param upsert_portal_page_notification_request: Propagates notification that operations should be canceled.
+        :type upsert_portal_page_notification_request: UpsertPortalPageNotificationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_portalsettings_notification_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            upsert_portal_page_notification_request=upsert_portal_page_notification_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPortalSettingsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_portalsettings_notification_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        upsert_portal_page_notification_request: Annotated[Optional[UpsertPortalPageNotificationRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfPortalSettingsDTO]:
+        """Upserts a page notification to the portal settings.
+
+        Upserts a page notification to the portal settings.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param upsert_portal_page_notification_request: Propagates notification that operations should be canceled.
+        :type upsert_portal_page_notification_request: UpsertPortalPageNotificationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_portalsettings_notification_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            upsert_portal_page_notification_request=upsert_portal_page_notification_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPortalSettingsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_portalsettings_notification_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        upsert_portal_page_notification_request: Annotated[Optional[UpsertPortalPageNotificationRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Upserts a page notification to the portal settings.
+
+        Upserts a page notification to the portal settings.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param upsert_portal_page_notification_request: Propagates notification that operations should be canceled.
+        :type upsert_portal_page_notification_request: UpsertPortalPageNotificationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_portalsettings_notification_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            upsert_portal_page_notification_request=upsert_portal_page_notification_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfPortalSettingsDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_portalsettings_notification_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        upsert_portal_page_notification_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if upsert_portal_page_notification_request is not None:
+            _body_params = upsert_portal_page_notification_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/PortalSettings/notification',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_products_entityid_translations(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """/Products/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_products_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_products_entityid_translations_with_http_info(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """/Products/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_products_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_products_entityid_translations_without_preload_content(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """/Products/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_products_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_products_entityid_translations_serialize(
+        self,
+        entity_id,
+        zf_tuuid,
+        zf_ouuid,
+        update_entity_translation_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if entity_id is not None:
+            _path_params['entityId'] = entity_id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_entity_translation_request is not None:
+            _body_params = update_entity_translation_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Products/{entityId}/translations',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_products_productuuid(
+        self,
+        productuuid: Annotated[StrictStr, Field(description="The unique identifier of the product to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        upsert_product_request: Annotated[Optional[UpsertProductRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfProductDTO:
+        """Updates an existing product.
+
+        Updates an existing product.
+
+        :param productuuid: The unique identifier of the product to update. (required)
+        :type productuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param upsert_product_request: Propagates notification that operations should be canceled.
+        :type upsert_product_request: UpsertProductRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_products_productuuid_serialize(
+            productuuid=productuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            upsert_product_request=upsert_product_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfProductDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_products_productuuid_with_http_info(
+        self,
+        productuuid: Annotated[StrictStr, Field(description="The unique identifier of the product to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        upsert_product_request: Annotated[Optional[UpsertProductRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfProductDTO]:
+        """Updates an existing product.
+
+        Updates an existing product.
+
+        :param productuuid: The unique identifier of the product to update. (required)
+        :type productuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param upsert_product_request: Propagates notification that operations should be canceled.
+        :type upsert_product_request: UpsertProductRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_products_productuuid_serialize(
+            productuuid=productuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            upsert_product_request=upsert_product_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfProductDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_products_productuuid_without_preload_content(
+        self,
+        productuuid: Annotated[StrictStr, Field(description="The unique identifier of the product to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        upsert_product_request: Annotated[Optional[UpsertProductRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing product.
+
+        Updates an existing product.
+
+        :param productuuid: The unique identifier of the product to update. (required)
+        :type productuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param upsert_product_request: Propagates notification that operations should be canceled.
+        :type upsert_product_request: UpsertProductRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_products_productuuid_serialize(
+            productuuid=productuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            upsert_product_request=upsert_product_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfProductDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_products_productuuid_serialize(
+        self,
+        productuuid,
+        zf_tuuid,
+        zf_ouuid,
+        upsert_product_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if productuuid is not None:
+            _path_params['productuuid'] = productuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if upsert_product_request is not None:
+            _body_params = upsert_product_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Products/{productuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_regionalregulations_bel(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_regional_regulations_parameters_for_bel_request: Annotated[Optional[UpdateRegionalRegulationsParametersForBELRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfBELRegionalRegulationsConfigurationDTO:
+        """Updates regional regulations parameters specific to Belgium.
+
+        Updates regional regulations parameters specific to Belgium.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_regional_regulations_parameters_for_bel_request: Propagates notification that operations should be canceled.
+        :type update_regional_regulations_parameters_for_bel_request: UpdateRegionalRegulationsParametersForBELRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_regionalregulations_bel_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_regional_regulations_parameters_for_bel_request=update_regional_regulations_parameters_for_bel_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBELRegionalRegulationsConfigurationDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_regionalregulations_bel_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_regional_regulations_parameters_for_bel_request: Annotated[Optional[UpdateRegionalRegulationsParametersForBELRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfBELRegionalRegulationsConfigurationDTO]:
+        """Updates regional regulations parameters specific to Belgium.
+
+        Updates regional regulations parameters specific to Belgium.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_regional_regulations_parameters_for_bel_request: Propagates notification that operations should be canceled.
+        :type update_regional_regulations_parameters_for_bel_request: UpdateRegionalRegulationsParametersForBELRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_regionalregulations_bel_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_regional_regulations_parameters_for_bel_request=update_regional_regulations_parameters_for_bel_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBELRegionalRegulationsConfigurationDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_regionalregulations_bel_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_regional_regulations_parameters_for_bel_request: Annotated[Optional[UpdateRegionalRegulationsParametersForBELRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates regional regulations parameters specific to Belgium.
+
+        Updates regional regulations parameters specific to Belgium.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_regional_regulations_parameters_for_bel_request: Propagates notification that operations should be canceled.
+        :type update_regional_regulations_parameters_for_bel_request: UpdateRegionalRegulationsParametersForBELRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_regionalregulations_bel_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_regional_regulations_parameters_for_bel_request=update_regional_regulations_parameters_for_bel_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfBELRegionalRegulationsConfigurationDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_regionalregulations_bel_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_regional_regulations_parameters_for_bel_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_regional_regulations_parameters_for_bel_request is not None:
+            _body_params = update_regional_regulations_parameters_for_bel_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/RegionalRegulations/bel',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_regionalregulations_gbr(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_regional_regulations_parameters_for_gbr_request: Annotated[Optional[UpdateRegionalRegulationsParametersForGBRRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO:
+        """Updates regional regulations parameters specific to Geat Britain.
+
+        Updates regional regulations parameters specific to Geat Britain.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_regional_regulations_parameters_for_gbr_request: Propagates notification that operations should be canceled.
+        :type update_regional_regulations_parameters_for_gbr_request: UpdateRegionalRegulationsParametersForGBRRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_regionalregulations_gbr_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_regional_regulations_parameters_for_gbr_request=update_regional_regulations_parameters_for_gbr_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_regionalregulations_gbr_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_regional_regulations_parameters_for_gbr_request: Annotated[Optional[UpdateRegionalRegulationsParametersForGBRRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO]:
+        """Updates regional regulations parameters specific to Geat Britain.
+
+        Updates regional regulations parameters specific to Geat Britain.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_regional_regulations_parameters_for_gbr_request: Propagates notification that operations should be canceled.
+        :type update_regional_regulations_parameters_for_gbr_request: UpdateRegionalRegulationsParametersForGBRRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_regionalregulations_gbr_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_regional_regulations_parameters_for_gbr_request=update_regional_regulations_parameters_for_gbr_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_regionalregulations_gbr_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_regional_regulations_parameters_for_gbr_request: Annotated[Optional[UpdateRegionalRegulationsParametersForGBRRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates regional regulations parameters specific to Geat Britain.
+
+        Updates regional regulations parameters specific to Geat Britain.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_regional_regulations_parameters_for_gbr_request: Propagates notification that operations should be canceled.
+        :type update_regional_regulations_parameters_for_gbr_request: UpdateRegionalRegulationsParametersForGBRRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_regionalregulations_gbr_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_regional_regulations_parameters_for_gbr_request=update_regional_regulations_parameters_for_gbr_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_regionalregulations_gbr_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_regional_regulations_parameters_for_gbr_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_regional_regulations_parameters_for_gbr_request is not None:
+            _body_params = update_regional_regulations_parameters_for_gbr_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/RegionalRegulations/gbr',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_reportingconfigurationproviders_activate(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        activate_reporting_configuration_provider_request: Optional[ActivateReportingConfigurationProviderRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfReportingConfigurationProviderDTO:
+        """Activates reporting integration for the current organization. Creates a Microsoft Fabric cloud connection to the customer Azure Data Lake Storage Gen2 account using the supplied service principal credentials. The client secret is sent to Fabric only and is not stored in the database. Requires the Mi
+
+        Activates reporting integration for the current organization. Creates a Microsoft Fabric cloud connection to the customer Azure Data Lake Storage Gen2 account using the supplied service principal credentials. The client secret is sent to Fabric only and is not stored in the database. Requires the Microsoft Entra ID tenant id, service principal application id, and client secret.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param activate_reporting_configuration_provider_request:
+        :type activate_reporting_configuration_provider_request: ActivateReportingConfigurationProviderRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_reportingconfigurationproviders_activate_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            activate_reporting_configuration_provider_request=activate_reporting_configuration_provider_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfReportingConfigurationProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_reportingconfigurationproviders_activate_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        activate_reporting_configuration_provider_request: Optional[ActivateReportingConfigurationProviderRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfReportingConfigurationProviderDTO]:
+        """Activates reporting integration for the current organization. Creates a Microsoft Fabric cloud connection to the customer Azure Data Lake Storage Gen2 account using the supplied service principal credentials. The client secret is sent to Fabric only and is not stored in the database. Requires the Mi
+
+        Activates reporting integration for the current organization. Creates a Microsoft Fabric cloud connection to the customer Azure Data Lake Storage Gen2 account using the supplied service principal credentials. The client secret is sent to Fabric only and is not stored in the database. Requires the Microsoft Entra ID tenant id, service principal application id, and client secret.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param activate_reporting_configuration_provider_request:
+        :type activate_reporting_configuration_provider_request: ActivateReportingConfigurationProviderRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_reportingconfigurationproviders_activate_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            activate_reporting_configuration_provider_request=activate_reporting_configuration_provider_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfReportingConfigurationProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_reportingconfigurationproviders_activate_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        activate_reporting_configuration_provider_request: Optional[ActivateReportingConfigurationProviderRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Activates reporting integration for the current organization. Creates a Microsoft Fabric cloud connection to the customer Azure Data Lake Storage Gen2 account using the supplied service principal credentials. The client secret is sent to Fabric only and is not stored in the database. Requires the Mi
+
+        Activates reporting integration for the current organization. Creates a Microsoft Fabric cloud connection to the customer Azure Data Lake Storage Gen2 account using the supplied service principal credentials. The client secret is sent to Fabric only and is not stored in the database. Requires the Microsoft Entra ID tenant id, service principal application id, and client secret.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param activate_reporting_configuration_provider_request:
+        :type activate_reporting_configuration_provider_request: ActivateReportingConfigurationProviderRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_reportingconfigurationproviders_activate_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            activate_reporting_configuration_provider_request=activate_reporting_configuration_provider_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfReportingConfigurationProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_reportingconfigurationproviders_activate_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        activate_reporting_configuration_provider_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if activate_reporting_configuration_provider_request is not None:
+            _body_params = activate_reporting_configuration_provider_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/ReportingConfigurationProviders/activate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_reportingconfigurationproviders_deactivate(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        body: Optional[Dict[str, Any]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfReportingConfigurationProviderDTO:
+        """Deactivates reporting integration for the current organization.
+
+        Deactivates reporting integration for the current organization.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param body:
+        :type body: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_reportingconfigurationproviders_deactivate_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfReportingConfigurationProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_reportingconfigurationproviders_deactivate_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        body: Optional[Dict[str, Any]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfReportingConfigurationProviderDTO]:
+        """Deactivates reporting integration for the current organization.
+
+        Deactivates reporting integration for the current organization.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param body:
+        :type body: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_reportingconfigurationproviders_deactivate_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfReportingConfigurationProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_reportingconfigurationproviders_deactivate_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        body: Optional[Dict[str, Any]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Deactivates reporting integration for the current organization.
+
+        Deactivates reporting integration for the current organization.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param body:
+        :type body: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_reportingconfigurationproviders_deactivate_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfReportingConfigurationProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_reportingconfigurationproviders_deactivate_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/ReportingConfigurationProviders/deactivate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_reportingconfigurationproviders_settings(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_reporting_configuration_provider_request: Optional[UpdateReportingConfigurationProviderRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfReportingConfigurationProviderDTO:
+        """Updates reporting configuration (export location, Microsoft Entra ID tenant id, service principal application id). While the integration is active, changing any of those values or rotating the client secret requires supplying the client secret again so the Microsoft Fabric connection can be recreate
+
+        Updates reporting configuration (export location, Microsoft Entra ID tenant id, service principal application id). While the integration is active, changing any of those values or rotating the client secret requires supplying the client secret again so the Microsoft Fabric connection can be recreated.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_reporting_configuration_provider_request:
+        :type update_reporting_configuration_provider_request: UpdateReportingConfigurationProviderRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_reportingconfigurationproviders_settings_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_reporting_configuration_provider_request=update_reporting_configuration_provider_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfReportingConfigurationProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_reportingconfigurationproviders_settings_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_reporting_configuration_provider_request: Optional[UpdateReportingConfigurationProviderRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfReportingConfigurationProviderDTO]:
+        """Updates reporting configuration (export location, Microsoft Entra ID tenant id, service principal application id). While the integration is active, changing any of those values or rotating the client secret requires supplying the client secret again so the Microsoft Fabric connection can be recreate
+
+        Updates reporting configuration (export location, Microsoft Entra ID tenant id, service principal application id). While the integration is active, changing any of those values or rotating the client secret requires supplying the client secret again so the Microsoft Fabric connection can be recreated.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_reporting_configuration_provider_request:
+        :type update_reporting_configuration_provider_request: UpdateReportingConfigurationProviderRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_reportingconfigurationproviders_settings_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_reporting_configuration_provider_request=update_reporting_configuration_provider_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfReportingConfigurationProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_reportingconfigurationproviders_settings_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_reporting_configuration_provider_request: Optional[UpdateReportingConfigurationProviderRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates reporting configuration (export location, Microsoft Entra ID tenant id, service principal application id). While the integration is active, changing any of those values or rotating the client secret requires supplying the client secret again so the Microsoft Fabric connection can be recreate
+
+        Updates reporting configuration (export location, Microsoft Entra ID tenant id, service principal application id). While the integration is active, changing any of those values or rotating the client secret requires supplying the client secret again so the Microsoft Fabric connection can be recreated.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_reporting_configuration_provider_request:
+        :type update_reporting_configuration_provider_request: UpdateReportingConfigurationProviderRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_reportingconfigurationproviders_settings_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_reporting_configuration_provider_request=update_reporting_configuration_provider_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfReportingConfigurationProviderDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_reportingconfigurationproviders_settings_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        update_reporting_configuration_provider_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_reporting_configuration_provider_request is not None:
+            _body_params = update_reporting_configuration_provider_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/ReportingConfigurationProviders/settings',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -87501,6 +107397,981 @@ class DefaultApi:
 
 
     @validate_call
+    def put_scenariotranslations_translationname_reset(
+        self,
+        translation_name: Annotated[StrictStr, Field(description="The name of the translation to reset.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        reset_translation_request: Annotated[Optional[ResetTranslationRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfScenarioTranslationDTO:
+        """Resets a specific scenario translation to its default value.
+
+        Resets a specific scenario translation to its default value.
+
+        :param translation_name: The name of the translation to reset. (required)
+        :type translation_name: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param reset_translation_request: Propagates notification that operations should be canceled.
+        :type reset_translation_request: ResetTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_scenariotranslations_translationname_reset_serialize(
+            translation_name=translation_name,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            reset_translation_request=reset_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ProblemDetails",
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfScenarioTranslationDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_scenariotranslations_translationname_reset_with_http_info(
+        self,
+        translation_name: Annotated[StrictStr, Field(description="The name of the translation to reset.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        reset_translation_request: Annotated[Optional[ResetTranslationRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfScenarioTranslationDTO]:
+        """Resets a specific scenario translation to its default value.
+
+        Resets a specific scenario translation to its default value.
+
+        :param translation_name: The name of the translation to reset. (required)
+        :type translation_name: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param reset_translation_request: Propagates notification that operations should be canceled.
+        :type reset_translation_request: ResetTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_scenariotranslations_translationname_reset_serialize(
+            translation_name=translation_name,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            reset_translation_request=reset_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ProblemDetails",
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfScenarioTranslationDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_scenariotranslations_translationname_reset_without_preload_content(
+        self,
+        translation_name: Annotated[StrictStr, Field(description="The name of the translation to reset.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        reset_translation_request: Annotated[Optional[ResetTranslationRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Resets a specific scenario translation to its default value.
+
+        Resets a specific scenario translation to its default value.
+
+        :param translation_name: The name of the translation to reset. (required)
+        :type translation_name: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param reset_translation_request: Propagates notification that operations should be canceled.
+        :type reset_translation_request: ResetTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_scenariotranslations_translationname_reset_serialize(
+            translation_name=translation_name,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            reset_translation_request=reset_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ProblemDetails",
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfScenarioTranslationDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_scenariotranslations_translationname_reset_serialize(
+        self,
+        translation_name,
+        zf_tuuid,
+        zf_ouuid,
+        reset_translation_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if translation_name is not None:
+            _path_params['translationName'] = translation_name
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if reset_translation_request is not None:
+            _body_params = reset_translation_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/ScenarioTranslations/{translationName}/reset',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_scenariotranslations_translationname_update(
+        self,
+        translation_name: Annotated[StrictStr, Field(description="The name of the translation to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_translation_request: Annotated[Optional[UpdateTranslationRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfScenarioTranslationDTO:
+        """Updates a specific scenario translation.
+
+        Updates a specific scenario translation.
+
+        :param translation_name: The name of the translation to update. (required)
+        :type translation_name: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_translation_request: Propagates notification that operations should be canceled.
+        :type update_translation_request: UpdateTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_scenariotranslations_translationname_update_serialize(
+            translation_name=translation_name,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_translation_request=update_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ProblemDetails",
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfScenarioTranslationDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_scenariotranslations_translationname_update_with_http_info(
+        self,
+        translation_name: Annotated[StrictStr, Field(description="The name of the translation to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_translation_request: Annotated[Optional[UpdateTranslationRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfScenarioTranslationDTO]:
+        """Updates a specific scenario translation.
+
+        Updates a specific scenario translation.
+
+        :param translation_name: The name of the translation to update. (required)
+        :type translation_name: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_translation_request: Propagates notification that operations should be canceled.
+        :type update_translation_request: UpdateTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_scenariotranslations_translationname_update_serialize(
+            translation_name=translation_name,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_translation_request=update_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ProblemDetails",
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfScenarioTranslationDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_scenariotranslations_translationname_update_without_preload_content(
+        self,
+        translation_name: Annotated[StrictStr, Field(description="The name of the translation to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_translation_request: Annotated[Optional[UpdateTranslationRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates a specific scenario translation.
+
+        Updates a specific scenario translation.
+
+        :param translation_name: The name of the translation to update. (required)
+        :type translation_name: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_translation_request: Propagates notification that operations should be canceled.
+        :type update_translation_request: UpdateTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_scenariotranslations_translationname_update_serialize(
+            translation_name=translation_name,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_translation_request=update_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ProblemDetails",
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfScenarioTranslationDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_scenariotranslations_translationname_update_serialize(
+        self,
+        translation_name,
+        zf_tuuid,
+        zf_ouuid,
+        update_translation_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if translation_name is not None:
+            _path_params['translationName'] = translation_name
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_translation_request is not None:
+            _body_params = update_translation_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/ScenarioTranslations/{translationName}/update',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_taxcodes_taxcodeuuid(
+        self,
+        taxcodeuuid: Annotated[StrictStr, Field(description="The unique identifier of the tax code to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        create_tax_code_request: Annotated[Optional[CreateTaxCodeRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfTaxCodeDTO:
+        """Updates an existing tax code.
+
+        Updates an existing tax code.
+
+        :param taxcodeuuid: The unique identifier of the tax code to update. (required)
+        :type taxcodeuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param create_tax_code_request: Propagates notification that operations should be canceled.
+        :type create_tax_code_request: CreateTaxCodeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_taxcodes_taxcodeuuid_serialize(
+            taxcodeuuid=taxcodeuuid,
+            zf_tuuid=zf_tuuid,
+            create_tax_code_request=create_tax_code_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfTaxCodeDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_taxcodes_taxcodeuuid_with_http_info(
+        self,
+        taxcodeuuid: Annotated[StrictStr, Field(description="The unique identifier of the tax code to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        create_tax_code_request: Annotated[Optional[CreateTaxCodeRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfTaxCodeDTO]:
+        """Updates an existing tax code.
+
+        Updates an existing tax code.
+
+        :param taxcodeuuid: The unique identifier of the tax code to update. (required)
+        :type taxcodeuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param create_tax_code_request: Propagates notification that operations should be canceled.
+        :type create_tax_code_request: CreateTaxCodeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_taxcodes_taxcodeuuid_serialize(
+            taxcodeuuid=taxcodeuuid,
+            zf_tuuid=zf_tuuid,
+            create_tax_code_request=create_tax_code_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfTaxCodeDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_taxcodes_taxcodeuuid_without_preload_content(
+        self,
+        taxcodeuuid: Annotated[StrictStr, Field(description="The unique identifier of the tax code to update.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        create_tax_code_request: Annotated[Optional[CreateTaxCodeRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing tax code.
+
+        Updates an existing tax code.
+
+        :param taxcodeuuid: The unique identifier of the tax code to update. (required)
+        :type taxcodeuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param create_tax_code_request: Propagates notification that operations should be canceled.
+        :type create_tax_code_request: CreateTaxCodeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_taxcodes_taxcodeuuid_serialize(
+            taxcodeuuid=taxcodeuuid,
+            zf_tuuid=zf_tuuid,
+            create_tax_code_request=create_tax_code_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '404': "ProblemDetails",
+            '200': "ApiResponseDTOOfTaxCodeDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_taxcodes_taxcodeuuid_serialize(
+        self,
+        taxcodeuuid,
+        zf_tuuid,
+        create_tax_code_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if taxcodeuuid is not None:
+            _path_params['taxcodeuuid'] = taxcodeuuid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        # process the form parameters
+        # process the body parameter
+        if create_tax_code_request is not None:
+            _body_params = create_tax_code_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/TaxCodes/{taxcodeuuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def put_templates_entitysubjecttype_entitysubjectsubtype_templateusecase(
         self,
         entity_subject_type: Annotated[StrictStr, Field(description="The type of entity subject.")],
@@ -87840,6 +108711,984 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='PUT',
             resource_path='/Templates/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_timeofusecalendars_id(
+        self,
+        id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_time_of_use_calendar_request: Optional[UpdateTimeOfUseCalendarRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfTimeOfUseCalendarDTO:
+        """Updates calendar weekdays (and display-only code). Same `weekdays` shape as create.
+
+        Updates calendar weekdays (and display-only code). Same `weekdays` shape as create.
+
+        :param id: (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_time_of_use_calendar_request:
+        :type update_time_of_use_calendar_request: UpdateTimeOfUseCalendarRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_timeofusecalendars_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_time_of_use_calendar_request=update_time_of_use_calendar_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfTimeOfUseCalendarDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_timeofusecalendars_id_with_http_info(
+        self,
+        id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_time_of_use_calendar_request: Optional[UpdateTimeOfUseCalendarRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfTimeOfUseCalendarDTO]:
+        """Updates calendar weekdays (and display-only code). Same `weekdays` shape as create.
+
+        Updates calendar weekdays (and display-only code). Same `weekdays` shape as create.
+
+        :param id: (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_time_of_use_calendar_request:
+        :type update_time_of_use_calendar_request: UpdateTimeOfUseCalendarRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_timeofusecalendars_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_time_of_use_calendar_request=update_time_of_use_calendar_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfTimeOfUseCalendarDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_timeofusecalendars_id_without_preload_content(
+        self,
+        id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_time_of_use_calendar_request: Optional[UpdateTimeOfUseCalendarRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates calendar weekdays (and display-only code). Same `weekdays` shape as create.
+
+        Updates calendar weekdays (and display-only code). Same `weekdays` shape as create.
+
+        :param id: (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_time_of_use_calendar_request:
+        :type update_time_of_use_calendar_request: UpdateTimeOfUseCalendarRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_timeofusecalendars_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_time_of_use_calendar_request=update_time_of_use_calendar_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfTimeOfUseCalendarDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_timeofusecalendars_id_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        update_time_of_use_calendar_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_time_of_use_calendar_request is not None:
+            _body_params = update_time_of_use_calendar_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/TimeOfUseCalendars/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_timeofusetypes_entityid_translations(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """/TimeOfUseTypes/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_timeofusetypes_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_timeofusetypes_entityid_translations_with_http_info(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """/TimeOfUseTypes/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_timeofusetypes_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_timeofusetypes_entityid_translations_without_preload_content(
+        self,
+        entity_id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_entity_translation_request: Optional[UpdateEntityTranslationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """/TimeOfUseTypes/{entityId}/translations - PUT
+
+
+        :param entity_id: (required)
+        :type entity_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_entity_translation_request:
+        :type update_entity_translation_request: UpdateEntityTranslationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_timeofusetypes_entityid_translations_serialize(
+            entity_id=entity_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_entity_translation_request=update_entity_translation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_timeofusetypes_entityid_translations_serialize(
+        self,
+        entity_id,
+        zf_tuuid,
+        zf_ouuid,
+        update_entity_translation_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if entity_id is not None:
+            _path_params['entityId'] = entity_id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_entity_translation_request is not None:
+            _body_params = update_entity_translation_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/TimeOfUseTypes/{entityId}/translations',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_timeofusetypes_id(
+        self,
+        id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_time_of_use_type_request: Optional[UpdateTimeOfUseTypeRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfTimeOfUseTypeDTO:
+        """Updates a time-of-use type.
+
+        Updates a time-of-use type.
+
+        :param id: (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_time_of_use_type_request:
+        :type update_time_of_use_type_request: UpdateTimeOfUseTypeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_timeofusetypes_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_time_of_use_type_request=update_time_of_use_type_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfTimeOfUseTypeDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_timeofusetypes_id_with_http_info(
+        self,
+        id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_time_of_use_type_request: Optional[UpdateTimeOfUseTypeRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfTimeOfUseTypeDTO]:
+        """Updates a time-of-use type.
+
+        Updates a time-of-use type.
+
+        :param id: (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_time_of_use_type_request:
+        :type update_time_of_use_type_request: UpdateTimeOfUseTypeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_timeofusetypes_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_time_of_use_type_request=update_time_of_use_type_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfTimeOfUseTypeDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_timeofusetypes_id_without_preload_content(
+        self,
+        id: StrictStr,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_time_of_use_type_request: Optional[UpdateTimeOfUseTypeRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates a time-of-use type.
+
+        Updates a time-of-use type.
+
+        :param id: (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_time_of_use_type_request:
+        :type update_time_of_use_type_request: UpdateTimeOfUseTypeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_timeofusetypes_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_time_of_use_type_request=update_time_of_use_type_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfTimeOfUseTypeDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_timeofusetypes_id_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        update_time_of_use_type_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_time_of_use_type_request is not None:
+            _body_params = update_time_of_use_type_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/TimeOfUseTypes/{id}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

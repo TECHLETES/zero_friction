@@ -68,6 +68,20 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_delete_entityattachmentgroups_bulk_delete(self) -> None:
+        """Test case for delete_entityattachmentgroups_bulk_delete
+
+        Bulk deletes entity attachment groups.
+        """
+        pass
+
+    def test_delete_entityattachments_bulk_delete(self) -> None:
+        """Test case for delete_entityattachments_bulk_delete
+
+        Bulk deletes entity attachments.
+        """
+        pass
+
     def test_download_entity_attachment_groups(self) -> None:
         """Test case for download_entity_attachment_groups
 

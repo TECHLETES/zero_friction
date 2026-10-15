@@ -57,16 +57,6 @@ class TestCostCenterDTO(unittest.TestCase):
             )
         else:
             return CostCenterDTO(
-                code = '',
-                external_accounting_metadata = configuration_client.models.external_accounting_metadata_dto.ExternalAccountingMetadataDTO(
-                    source = '', 
-                    source_entity_id = '', 
-                    source_accounting_company_id = '', 
-                    source_references = [
-                        configuration_client.models.external_accounting_reference_dto.ExternalAccountingReferenceDTO(
-                            source_entity_id = '', 
-                            source_accounting_company_id = '', )
-                        ], ),
         )
         """
 

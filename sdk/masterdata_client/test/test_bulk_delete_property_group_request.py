@@ -38,6 +38,7 @@ class TestBulkDeletePropertyGroupRequest(unittest.TestCase):
                 only_validate = True,
                 var_query_params = masterdata_client.models.get_property_groups_query_params.GetPropertyGroupsQueryParams(
                     name_contains = '', 
+                    include_live_service_location_ids = True, 
                     flex_search = '', 
                     include_only_ids = [
                         ''

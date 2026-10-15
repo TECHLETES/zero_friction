@@ -6,7 +6,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **allow_edit_communication_details** | **bool** |  | [optional] 
+**allow_change_communication_language** | **bool** |  | [optional] 
 **allow_edit_personal_information** | **bool** |  | [optional] 
+**allow_change_banking_details** | **bool** |  | [optional] 
+**allow_sdd_to_sct** | **bool** |  | [optional] 
 
 ## Example
 

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **show_vat_specs** | **bool** |  | [optional] 
 **show_custom_information** | **bool** |  | [optional] 
 **unit_price_excl_vat_for_persons** | **bool** |  | [optional] 
+**show_subtotal_before_advances** | **bool** |  | [optional] 
 **envelope_settings** | [**EnvelopeSettingsRequest**](EnvelopeSettingsRequest.md) |  | [optional] 
 
 ## Example

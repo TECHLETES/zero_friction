@@ -5676,6 +5676,1239 @@ class DefaultApi:
 
 
     @validate_call
+    def put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate(
+        self,
+        estimablecontractid: Annotated[StrictStr, Field(description="the unique identifier of the estimable contract")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Starts the estimation of the annual volume for the current and next year of the specified estimable contract
+
+        Starts the estimation of the annual volume for the current and next year of the specified estimable contract
+
+        :param estimablecontractid: the unique identifier of the estimable contract (required)
+        :type estimablecontractid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate_serialize(
+            estimablecontractid=estimablecontractid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate_with_http_info(
+        self,
+        estimablecontractid: Annotated[StrictStr, Field(description="the unique identifier of the estimable contract")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Starts the estimation of the annual volume for the current and next year of the specified estimable contract
+
+        Starts the estimation of the annual volume for the current and next year of the specified estimable contract
+
+        :param estimablecontractid: the unique identifier of the estimable contract (required)
+        :type estimablecontractid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate_serialize(
+            estimablecontractid=estimablecontractid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate_without_preload_content(
+        self,
+        estimablecontractid: Annotated[StrictStr, Field(description="the unique identifier of the estimable contract")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Starts the estimation of the annual volume for the current and next year of the specified estimable contract
+
+        Starts the estimation of the annual volume for the current and next year of the specified estimable contract
+
+        :param estimablecontractid: the unique identifier of the estimable contract (required)
+        :type estimablecontractid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate_serialize(
+            estimablecontractid=estimablecontractid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate_serialize(
+        self,
+        estimablecontractid,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if estimablecontractid is not None:
+            _path_params['estimablecontractid'] = estimablecontractid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/EstimableContracts/{estimablecontractid}/eav/currentandnextyear/estimate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_estimablecontracts_estimablecontractid_eav_year_estimate(
+        self,
+        estimablecontractid: Annotated[StrictStr, Field(description="the unique identifier of the estimable contract")],
+        year: Annotated[StrictInt, Field(description="The applicable year for the estimation")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Starts the estimation of the annual volume for a specific year of the specified estimable contract
+
+        Starts the estimation of the annual volume for a specific year of the specified estimable contract
+
+        :param estimablecontractid: the unique identifier of the estimable contract (required)
+        :type estimablecontractid: str
+        :param year: The applicable year for the estimation (required)
+        :type year: int
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_estimablecontracts_estimablecontractid_eav_year_estimate_serialize(
+            estimablecontractid=estimablecontractid,
+            year=year,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_estimablecontracts_estimablecontractid_eav_year_estimate_with_http_info(
+        self,
+        estimablecontractid: Annotated[StrictStr, Field(description="the unique identifier of the estimable contract")],
+        year: Annotated[StrictInt, Field(description="The applicable year for the estimation")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Starts the estimation of the annual volume for a specific year of the specified estimable contract
+
+        Starts the estimation of the annual volume for a specific year of the specified estimable contract
+
+        :param estimablecontractid: the unique identifier of the estimable contract (required)
+        :type estimablecontractid: str
+        :param year: The applicable year for the estimation (required)
+        :type year: int
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_estimablecontracts_estimablecontractid_eav_year_estimate_serialize(
+            estimablecontractid=estimablecontractid,
+            year=year,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_estimablecontracts_estimablecontractid_eav_year_estimate_without_preload_content(
+        self,
+        estimablecontractid: Annotated[StrictStr, Field(description="the unique identifier of the estimable contract")],
+        year: Annotated[StrictInt, Field(description="The applicable year for the estimation")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Starts the estimation of the annual volume for a specific year of the specified estimable contract
+
+        Starts the estimation of the annual volume for a specific year of the specified estimable contract
+
+        :param estimablecontractid: the unique identifier of the estimable contract (required)
+        :type estimablecontractid: str
+        :param year: The applicable year for the estimation (required)
+        :type year: int
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_estimablecontracts_estimablecontractid_eav_year_estimate_serialize(
+            estimablecontractid=estimablecontractid,
+            year=year,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_estimablecontracts_estimablecontractid_eav_year_estimate_serialize(
+        self,
+        estimablecontractid,
+        year,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if estimablecontractid is not None:
+            _path_params['estimablecontractid'] = estimablecontractid
+        if year is not None:
+            _path_params['year'] = year
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/EstimableContracts/{estimablecontractid}/eav/{year}/estimate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext(
+        self,
+        servicelocationid: Annotated[StrictStr, Field(description="the unique identifier of the estimable service location")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Starts the estimation of the annual volume for the current and next year of the specified service location
+
+        Starts the estimation of the annual volume for the current and next year of the specified service location
+
+        :param servicelocationid: the unique identifier of the estimable service location (required)
+        :type servicelocationid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext_serialize(
+            servicelocationid=servicelocationid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext_with_http_info(
+        self,
+        servicelocationid: Annotated[StrictStr, Field(description="the unique identifier of the estimable service location")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Starts the estimation of the annual volume for the current and next year of the specified service location
+
+        Starts the estimation of the annual volume for the current and next year of the specified service location
+
+        :param servicelocationid: the unique identifier of the estimable service location (required)
+        :type servicelocationid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext_serialize(
+            servicelocationid=servicelocationid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext_without_preload_content(
+        self,
+        servicelocationid: Annotated[StrictStr, Field(description="the unique identifier of the estimable service location")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Starts the estimation of the annual volume for the current and next year of the specified service location
+
+        Starts the estimation of the annual volume for the current and next year of the specified service location
+
+        :param servicelocationid: the unique identifier of the estimable service location (required)
+        :type servicelocationid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext_serialize(
+            servicelocationid=servicelocationid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext_serialize(
+        self,
+        servicelocationid,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if servicelocationid is not None:
+            _path_params['servicelocationid'] = servicelocationid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/EstimableContracts/servicelocations/{servicelocationid}/eav/currentandnextyear/estimate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_propertygroupforecastingconfiguration_propertygroupid_consumergroups(
+        self,
+        propertygroupid: Annotated[StrictStr, Field(description="The unique identifier of the property group to update consumer group configuration on")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_property_group_forecasting_config_consumer_groups_request: Annotated[Optional[UpdatePropertyGroupForecastingConfigConsumerGroupsRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO:
+        """Updates consumer group configuration an existing property group
+
+        Updates consumer group configuration an existing property group
+
+        :param propertygroupid: The unique identifier of the property group to update consumer group configuration on (required)
+        :type propertygroupid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_property_group_forecasting_config_consumer_groups_request: Propagates notification that operations should be canceled.
+        :type update_property_group_forecasting_config_consumer_groups_request: UpdatePropertyGroupForecastingConfigConsumerGroupsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_propertygroupforecastingconfiguration_propertygroupid_consumergroups_serialize(
+            propertygroupid=propertygroupid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_property_group_forecasting_config_consumer_groups_request=update_property_group_forecasting_config_consumer_groups_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ApiResponseDTO",
+            '200': "ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_propertygroupforecastingconfiguration_propertygroupid_consumergroups_with_http_info(
+        self,
+        propertygroupid: Annotated[StrictStr, Field(description="The unique identifier of the property group to update consumer group configuration on")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_property_group_forecasting_config_consumer_groups_request: Annotated[Optional[UpdatePropertyGroupForecastingConfigConsumerGroupsRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO]:
+        """Updates consumer group configuration an existing property group
+
+        Updates consumer group configuration an existing property group
+
+        :param propertygroupid: The unique identifier of the property group to update consumer group configuration on (required)
+        :type propertygroupid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_property_group_forecasting_config_consumer_groups_request: Propagates notification that operations should be canceled.
+        :type update_property_group_forecasting_config_consumer_groups_request: UpdatePropertyGroupForecastingConfigConsumerGroupsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_propertygroupforecastingconfiguration_propertygroupid_consumergroups_serialize(
+            propertygroupid=propertygroupid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_property_group_forecasting_config_consumer_groups_request=update_property_group_forecasting_config_consumer_groups_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ApiResponseDTO",
+            '200': "ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_propertygroupforecastingconfiguration_propertygroupid_consumergroups_without_preload_content(
+        self,
+        propertygroupid: Annotated[StrictStr, Field(description="The unique identifier of the property group to update consumer group configuration on")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_property_group_forecasting_config_consumer_groups_request: Annotated[Optional[UpdatePropertyGroupForecastingConfigConsumerGroupsRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates consumer group configuration an existing property group
+
+        Updates consumer group configuration an existing property group
+
+        :param propertygroupid: The unique identifier of the property group to update consumer group configuration on (required)
+        :type propertygroupid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_property_group_forecasting_config_consumer_groups_request: Propagates notification that operations should be canceled.
+        :type update_property_group_forecasting_config_consumer_groups_request: UpdatePropertyGroupForecastingConfigConsumerGroupsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_propertygroupforecastingconfiguration_propertygroupid_consumergroups_serialize(
+            propertygroupid=propertygroupid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_property_group_forecasting_config_consumer_groups_request=update_property_group_forecasting_config_consumer_groups_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ApiResponseDTO",
+            '200': "ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_propertygroupforecastingconfiguration_propertygroupid_consumergroups_serialize(
+        self,
+        propertygroupid,
+        zf_tuuid,
+        zf_ouuid,
+        update_property_group_forecasting_config_consumer_groups_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if propertygroupid is not None:
+            _path_params['propertygroupid'] = propertygroupid
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_property_group_forecasting_config_consumer_groups_request is not None:
+            _body_params = update_property_group_forecasting_config_consumer_groups_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/PropertyGroupForecastingConfiguration/{propertygroupid}/consumergroups',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def update_consumer_group(
         self,
         consumergroupid: Annotated[StrictStr, Field(description="The unique identifier of the consumer group to update")],

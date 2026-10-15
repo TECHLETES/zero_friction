@@ -86,7 +86,7 @@ with masterdata_client.ApiClient(configuration) as api_client:
     contract_id = 'contract_id_example' # str | 
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    add_contract_service_request = {"utilityType":"none","estimatedConsumption":{"consumerGroupId":"string","unitOfMeasure":"none","meteringType":"none","direction":"offtake"}} # AddContractServiceRequest |  (optional)
+    add_contract_service_request = {"utilityType":"none","estimatedConsumption":{}} # AddContractServiceRequest |  (optional)
 
     try:
         # AddContractService
@@ -108,17 +108,20 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**add_contracted_services**](docs/DefaultApi.md#add_contracted_services) | **PUT** /Contracts/{contractuuid}/services/add | Add locations and/or services to be supplied on a contract.
 *DefaultApi* | [**bulk_add_contract_service**](docs/DefaultApi.md#bulk_add_contract_service) | **POST** /Contracts/bulk/addservice | BulkAddContractService
 *DefaultApi* | [**bulk_change_customer_group**](docs/DefaultApi.md#bulk_change_customer_group) | **POST** /Customers/bulk/customergroup | Move multiple customers to customer group in bulk.
+*DefaultApi* | [**bulk_change_customer_invoice_communication_preferences**](docs/DefaultApi.md#bulk_change_customer_invoice_communication_preferences) | **POST** /Customers/bulk/communicationpreferences | Replace invoice sending methods for multiple customers. A null communication type follows the organisation default. Culture, collection flow, and statement preferences are left unchanged.
 *DefaultApi* | [**bulk_remove_contract_service**](docs/DefaultApi.md#bulk_remove_contract_service) | **POST** /Contracts/bulk/removeservice | BulkRemoveContractService
 *DefaultApi* | [**bulk_update_service_location_product**](docs/DefaultApi.md#bulk_update_service_location_product) | **POST** /ServiceLocations/bulk/updateproduct | Update product for multiple locations in bulk.
 *DefaultApi* | [**bulk_update_service_location_services**](docs/DefaultApi.md#bulk_update_service_location_services) | **POST** /ServiceLocations/bulk/updateservices | Update which services are enabled on multiple service locations in bulk.
 *DefaultApi* | [**change_customer_billing_details**](docs/DefaultApi.md#change_customer_billing_details) | **POST** /Customers/{customeruuid}/billingdetails | Update billing details of a customer.
 *DefaultApi* | [**change_customer_collection_day**](docs/DefaultApi.md#change_customer_collection_day) | **POST** /Customers/{customeruuid}/collectionday | Update only the Direct Debit collection day of a customer. Narrow, single-purpose endpoint used by the resident portal self-service so residents can hold a minimal collection-day permission rather than the broad billing-details one (which also changes payment terms and default payment method).
+*DefaultApi* | [**change_customer_communication_language**](docs/DefaultApi.md#change_customer_communication_language) | **POST** /Customers/{customeruuid}/communicationlanguage | Update only the communication language of a customer. Narrow, single-purpose endpoint used by the resident portal self-service so residents can change culture without replacing invoice communication preferences.
 *DefaultApi* | [**change_customer_communication_preferences**](docs/DefaultApi.md#change_customer_communication_preferences) | **POST** /Customers/{customeruuid}/communicationpreferences | Update communication preferences of a customer.
 *DefaultApi* | [**change_customer_contact_details**](docs/DefaultApi.md#change_customer_contact_details) | **POST** /Customers/{customeruuid}/contactdetails | Update contact details of a customer.
 *DefaultApi* | [**change_customer_details**](docs/DefaultApi.md#change_customer_details) | **POST** /Customers/{customeruuid}/details | Update details of a customer.
 *DefaultApi* | [**change_customer_e_invoicing_settings**](docs/DefaultApi.md#change_customer_e_invoicing_settings) | **POST** /Customers/{customeruuid}/einvoicingsettings | Update e-invoicing settings of a customer.
 *DefaultApi* | [**change_customer_group**](docs/DefaultApi.md#change_customer_group) | **POST** /Customers/{customeruuid}/customergroup | Move customer to a different customer group.
 *DefaultApi* | [**change_customer_invoice_address**](docs/DefaultApi.md#change_customer_invoice_address) | **POST** /Customers/{customeruuid}/invoiceaddress | Update invoice address of a customer.
+*DefaultApi* | [**change_customer_payment_method**](docs/DefaultApi.md#change_customer_payment_method) | **POST** /Customers/{customeruuid}/paymentmethod | Update only the default payment method of a customer. Narrow, single-purpose endpoint used by the resident portal self-service so residents can hold a minimal payment-method permission rather than the broad billing-details one (which also changes payment terms).
 *DefaultApi* | [**change_portal_details**](docs/DefaultApi.md#change_portal_details) | **POST** /Customers/{customeruuid}/portaldetails | Update customer portal details of a customer.
 *DefaultApi* | [**confirm_customer_portal_account**](docs/DefaultApi.md#confirm_customer_portal_account) | **POST** /Customers/{customeruuid}/portal/confirm | Confirm portal account of a customer
 *DefaultApi* | [**create_customer**](docs/DefaultApi.md#create_customer) | **POST** /Customers | Create new customer.
@@ -128,6 +131,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**delete_customergroups_uuid**](docs/DefaultApi.md#delete_customergroups_uuid) | **DELETE** /CustomerGroups/{uuid} | Delete customer group.
 *DefaultApi* | [**delete_customers_bulk**](docs/DefaultApi.md#delete_customers_bulk) | **DELETE** /Customers/bulk | Delete multiple customers in bulk.
 *DefaultApi* | [**delete_customers_customeruuid**](docs/DefaultApi.md#delete_customers_customeruuid) | **DELETE** /Customers/{customeruuid} | Delete a customer.
+*DefaultApi* | [**delete_meters_bulk_delete**](docs/DefaultApi.md#delete_meters_bulk_delete) | **DELETE** /Meters/bulk/delete | Soft-delete multiple meters in bulk.
+*DefaultApi* | [**delete_meters_meteruuid_delete**](docs/DefaultApi.md#delete_meters_meteruuid_delete) | **DELETE** /Meters/{meteruuid}/delete | Soft-delete a meter that was never installed, freeing its serial number for reuse.
 *DefaultApi* | [**delete_moverequests**](docs/DefaultApi.md#delete_moverequests) | **DELETE** /MoveRequests | Delete multiple move requests in bulk.
 *DefaultApi* | [**delete_moverequests_moverequestuuid**](docs/DefaultApi.md#delete_moverequests_moverequestuuid) | **DELETE** /MoveRequests/{moverequestuuid} | Delete move request.
 *DefaultApi* | [**delete_propertygroups_bulk**](docs/DefaultApi.md#delete_propertygroups_bulk) | **DELETE** /PropertyGroups/bulk | Delete multiple location groups in bulk.
@@ -188,6 +193,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**post_contracts_bulk_estimate**](docs/DefaultApi.md#post_contracts_bulk_estimate) | **POST** /Contracts/bulk/estimate | Trigger recalculation of EAV for multiple contracts in bulk.
 *DefaultApi* | [**post_contracts_bulk_sign**](docs/DefaultApi.md#post_contracts_bulk_sign) | **POST** /Contracts/bulk/sign | Sign multiple contracts in bulk.
 *DefaultApi* | [**post_contracts_bulk_terminate**](docs/DefaultApi.md#post_contracts_bulk_terminate) | **POST** /Contracts/bulk/terminate | Terminate multiple signed contracts in bulk.
+*DefaultApi* | [**post_contracts_bulk_triggerinvoiceestimation**](docs/DefaultApi.md#post_contracts_bulk_triggerinvoiceestimation) | **POST** /Contracts/bulk/triggerinvoiceestimation | Trigger invoice estimation for the open billing period on multiple contracts in bulk.
 *DefaultApi* | [**post_contracts_bulk_unblock**](docs/DefaultApi.md#post_contracts_bulk_unblock) | **POST** /Contracts/bulk/unblock | Mark multiple contracts as unblocked in bulk.
 *DefaultApi* | [**post_contracts_bulk_updateconsumptiongroups**](docs/DefaultApi.md#post_contracts_bulk_updateconsumptiongroups) | **POST** /Contracts/bulk/updateConsumptionGroups | Update consumptiongroup on multiple contracts in bulk.
 *DefaultApi* | [**post_contracts_bulk_updateproduct**](docs/DefaultApi.md#post_contracts_bulk_updateproduct) | **POST** /Contracts/bulk/updateproduct | Update product on multiple contracts in bulk.
@@ -196,6 +202,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**post_contracts_contractuuid_consumptiongroups**](docs/DefaultApi.md#post_contracts_contractuuid_consumptiongroups) | **POST** /Contracts/{contractuuid}/consumptiongroups | Updates the consumption groups and their estimated values for services provided on a contract.
 *DefaultApi* | [**post_contracts_contractuuid_sign**](docs/DefaultApi.md#post_contracts_contractuuid_sign) | **POST** /Contracts/{contractuuid}/sign | Sign a contract.
 *DefaultApi* | [**post_contracts_contractuuid_terminate**](docs/DefaultApi.md#post_contracts_contractuuid_terminate) | **POST** /Contracts/{contractuuid}/terminate | Terminate a signed contract.
+*DefaultApi* | [**post_contracts_contractuuid_triggerinvoiceestimation**](docs/DefaultApi.md#post_contracts_contractuuid_triggerinvoiceestimation) | **POST** /Contracts/{contractuuid}/triggerinvoiceestimation | Trigger invoice estimation for the open billing period of a contract.
 *DefaultApi* | [**post_contracts_contractuuid_unblock**](docs/DefaultApi.md#post_contracts_contractuuid_unblock) | **POST** /Contracts/{contractuuid}/unblock | Mark a contract as unblocked for billing.
 *DefaultApi* | [**post_contracts_contractuuid_updatebillingdetails**](docs/DefaultApi.md#post_contracts_contractuuid_updatebillingdetails) | **POST** /Contracts/{contractuuid}/updatebillingdetails | Update billing details of a contract.
 *DefaultApi* | [**post_contracts_contractuuid_updateexternalcontractreference**](docs/DefaultApi.md#post_contracts_contractuuid_updateexternalcontractreference) | **POST** /Contracts/{contractuuid}/updateexternalcontractreference | Update the external contract reference.
@@ -256,6 +263,87 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**post_servicelocations_bulk_recalculateeav**](docs/DefaultApi.md#post_servicelocations_bulk_recalculateeav) | **POST** /ServiceLocations/bulk/recalculateeav | Trigger recalculation of EAV for multiple locations in bulk.
 *DefaultApi* | [**post_servicelocations_bulk_restore**](docs/DefaultApi.md#post_servicelocations_bulk_restore) | **POST** /ServiceLocations/bulk/restore | Restore multiple archived service locations in bulk.
 *DefaultApi* | [**post_servicelocations_entityid_customproperties**](docs/DefaultApi.md#post_servicelocations_entityid_customproperties) | **POST** /ServiceLocations/{entityId}/customproperties | /ServiceLocations/{entityId}/customproperties - POST
+*DefaultApi* | [**put_contracts_bulk_addservice**](docs/DefaultApi.md#put_contracts_bulk_addservice) | **PUT** /Contracts/bulk/addservice | /Contracts/bulk/addservice - PUT
+*DefaultApi* | [**put_contracts_bulk_block**](docs/DefaultApi.md#put_contracts_bulk_block) | **PUT** /Contracts/bulk/block | Mark multiple contracts as blocked in bulk.
+*DefaultApi* | [**put_contracts_bulk_estimate**](docs/DefaultApi.md#put_contracts_bulk_estimate) | **PUT** /Contracts/bulk/estimate | Trigger recalculation of EAV for multiple contracts in bulk.
+*DefaultApi* | [**put_contracts_bulk_removeservice**](docs/DefaultApi.md#put_contracts_bulk_removeservice) | **PUT** /Contracts/bulk/removeservice | /Contracts/bulk/removeservice - PUT
+*DefaultApi* | [**put_contracts_bulk_sign**](docs/DefaultApi.md#put_contracts_bulk_sign) | **PUT** /Contracts/bulk/sign | Sign multiple contracts in bulk.
+*DefaultApi* | [**put_contracts_bulk_terminate**](docs/DefaultApi.md#put_contracts_bulk_terminate) | **PUT** /Contracts/bulk/terminate | Terminate multiple signed contracts in bulk.
+*DefaultApi* | [**put_contracts_bulk_triggerinvoiceestimation**](docs/DefaultApi.md#put_contracts_bulk_triggerinvoiceestimation) | **PUT** /Contracts/bulk/triggerinvoiceestimation | Trigger invoice estimation for the open billing period on multiple contracts in bulk.
+*DefaultApi* | [**put_contracts_bulk_unblock**](docs/DefaultApi.md#put_contracts_bulk_unblock) | **PUT** /Contracts/bulk/unblock | Mark multiple contracts as unblocked in bulk.
+*DefaultApi* | [**put_contracts_bulk_updateconsumptiongroups**](docs/DefaultApi.md#put_contracts_bulk_updateconsumptiongroups) | **PUT** /Contracts/bulk/updateConsumptionGroups | Update consumptiongroup on multiple contracts in bulk.
+*DefaultApi* | [**put_contracts_bulk_updateproduct**](docs/DefaultApi.md#put_contracts_bulk_updateproduct) | **PUT** /Contracts/bulk/updateproduct | Update product on multiple contracts in bulk.
+*DefaultApi* | [**put_contracts_contractid_addservice**](docs/DefaultApi.md#put_contracts_contractid_addservice) | **PUT** /Contracts/{contractId}/addservice | /Contracts/{contractId}/addservice - PUT
+*DefaultApi* | [**put_contracts_contractid_removeservice**](docs/DefaultApi.md#put_contracts_contractid_removeservice) | **PUT** /Contracts/{contractId}/removeservice | /Contracts/{contractId}/removeservice - PUT
+*DefaultApi* | [**put_contracts_contractuuid_block**](docs/DefaultApi.md#put_contracts_contractuuid_block) | **PUT** /Contracts/{contractuuid}/block | Mark a contract as blocked for billing.
+*DefaultApi* | [**put_contracts_contractuuid_changeadvanceamount**](docs/DefaultApi.md#put_contracts_contractuuid_changeadvanceamount) | **PUT** /Contracts/{contractuuid}/changeadvanceamount | Update the advance amount for a draft contract.
+*DefaultApi* | [**put_contracts_contractuuid_consumptiongroups**](docs/DefaultApi.md#put_contracts_contractuuid_consumptiongroups) | **PUT** /Contracts/{contractuuid}/consumptiongroups | Updates the consumption groups and their estimated values for services provided on a contract.
+*DefaultApi* | [**put_contracts_contractuuid_sign**](docs/DefaultApi.md#put_contracts_contractuuid_sign) | **PUT** /Contracts/{contractuuid}/sign | Sign a contract.
+*DefaultApi* | [**put_contracts_contractuuid_terminate**](docs/DefaultApi.md#put_contracts_contractuuid_terminate) | **PUT** /Contracts/{contractuuid}/terminate | Terminate a signed contract.
+*DefaultApi* | [**put_contracts_contractuuid_triggerinvoiceestimation**](docs/DefaultApi.md#put_contracts_contractuuid_triggerinvoiceestimation) | **PUT** /Contracts/{contractuuid}/triggerinvoiceestimation | Trigger invoice estimation for the open billing period of a contract.
+*DefaultApi* | [**put_contracts_contractuuid_unblock**](docs/DefaultApi.md#put_contracts_contractuuid_unblock) | **PUT** /Contracts/{contractuuid}/unblock | Mark a contract as unblocked for billing.
+*DefaultApi* | [**put_contracts_contractuuid_updatebillingdetails**](docs/DefaultApi.md#put_contracts_contractuuid_updatebillingdetails) | **PUT** /Contracts/{contractuuid}/updatebillingdetails | Update billing details of a contract.
+*DefaultApi* | [**put_contracts_contractuuid_updateexternalcontractreference**](docs/DefaultApi.md#put_contracts_contractuuid_updateexternalcontractreference) | **PUT** /Contracts/{contractuuid}/updateexternalcontractreference | Update the external contract reference.
+*DefaultApi* | [**put_contracts_contractuuid_updateproduct**](docs/DefaultApi.md#put_contracts_contractuuid_updateproduct) | **PUT** /Contracts/{contractuuid}/updateproduct | Update product of a contract.
+*DefaultApi* | [**put_contracts_entityid_customproperties**](docs/DefaultApi.md#put_contracts_entityid_customproperties) | **PUT** /Contracts/{entityId}/customproperties | /Contracts/{entityId}/customproperties - PUT
+*DefaultApi* | [**put_customergroups_uuid_settings_automaticsettlement**](docs/DefaultApi.md#put_customergroups_uuid_settings_automaticsettlement) | **PUT** /CustomerGroups/{uuid}/settings/automaticsettlement | Update auto-settlement settings of customer group.
+*DefaultApi* | [**put_customergroups_uuid_updatename**](docs/DefaultApi.md#put_customergroups_uuid_updatename) | **PUT** /CustomerGroups/{uuid}/updatename | Update name of customer group.
+*DefaultApi* | [**put_customers_bulk_communicationpreferences**](docs/DefaultApi.md#put_customers_bulk_communicationpreferences) | **PUT** /Customers/bulk/communicationpreferences | Replace invoice sending methods for multiple customers. A null communication type follows the organisation default. Culture, collection flow, and statement preferences are left unchanged.
+*DefaultApi* | [**put_customers_bulk_customergroup**](docs/DefaultApi.md#put_customers_bulk_customergroup) | **PUT** /Customers/bulk/customergroup | Move multiple customers to customer group in bulk.
+*DefaultApi* | [**put_customers_customeruuid_billingdetails**](docs/DefaultApi.md#put_customers_customeruuid_billingdetails) | **PUT** /Customers/{customeruuid}/billingdetails | Update billing details of a customer.
+*DefaultApi* | [**put_customers_customeruuid_collectionday**](docs/DefaultApi.md#put_customers_customeruuid_collectionday) | **PUT** /Customers/{customeruuid}/collectionday | Update only the Direct Debit collection day of a customer. Narrow, single-purpose endpoint used by the resident portal self-service so residents can hold a minimal collection-day permission rather than the broad billing-details one (which also changes payment terms and default payment method).
+*DefaultApi* | [**put_customers_customeruuid_communicationlanguage**](docs/DefaultApi.md#put_customers_customeruuid_communicationlanguage) | **PUT** /Customers/{customeruuid}/communicationlanguage | Update only the communication language of a customer. Narrow, single-purpose endpoint used by the resident portal self-service so residents can change culture without replacing invoice communication preferences.
+*DefaultApi* | [**put_customers_customeruuid_communicationpreferences**](docs/DefaultApi.md#put_customers_customeruuid_communicationpreferences) | **PUT** /Customers/{customeruuid}/communicationpreferences | Update communication preferences of a customer.
+*DefaultApi* | [**put_customers_customeruuid_contactdetails**](docs/DefaultApi.md#put_customers_customeruuid_contactdetails) | **PUT** /Customers/{customeruuid}/contactdetails | Update contact details of a customer.
+*DefaultApi* | [**put_customers_customeruuid_customergroup**](docs/DefaultApi.md#put_customers_customeruuid_customergroup) | **PUT** /Customers/{customeruuid}/customergroup | Move customer to a different customer group.
+*DefaultApi* | [**put_customers_customeruuid_details**](docs/DefaultApi.md#put_customers_customeruuid_details) | **PUT** /Customers/{customeruuid}/details | Update details of a customer.
+*DefaultApi* | [**put_customers_customeruuid_einvoicingsettings**](docs/DefaultApi.md#put_customers_customeruuid_einvoicingsettings) | **PUT** /Customers/{customeruuid}/einvoicingsettings | Update e-invoicing settings of a customer.
+*DefaultApi* | [**put_customers_customeruuid_invoiceaddress**](docs/DefaultApi.md#put_customers_customeruuid_invoiceaddress) | **PUT** /Customers/{customeruuid}/invoiceaddress | Update invoice address of a customer.
+*DefaultApi* | [**put_customers_customeruuid_paymentmethod**](docs/DefaultApi.md#put_customers_customeruuid_paymentmethod) | **PUT** /Customers/{customeruuid}/paymentmethod | Update only the default payment method of a customer. Narrow, single-purpose endpoint used by the resident portal self-service so residents can hold a minimal payment-method permission rather than the broad billing-details one (which also changes payment terms).
+*DefaultApi* | [**put_customers_customeruuid_portal_confirm**](docs/DefaultApi.md#put_customers_customeruuid_portal_confirm) | **PUT** /Customers/{customeruuid}/portal/confirm | Confirm portal account of a customer
+*DefaultApi* | [**put_customers_customeruuid_portal_reset**](docs/DefaultApi.md#put_customers_customeruuid_portal_reset) | **PUT** /Customers/{customeruuid}/portal/reset | Reset portal account of a customer, which will delete the customer portal account and reset the portal properties.
+*DefaultApi* | [**put_customers_customeruuid_portaldetails**](docs/DefaultApi.md#put_customers_customeruuid_portaldetails) | **PUT** /Customers/{customeruuid}/portaldetails | Update customer portal details of a customer.
+*DefaultApi* | [**put_customers_customeruuid_send_subtype**](docs/DefaultApi.md#put_customers_customeruuid_send_subtype) | **PUT** /Customers/{customeruuid}/send/{subType} | Send email to a customer.
+*DefaultApi* | [**put_customers_entityid_customproperties**](docs/DefaultApi.md#put_customers_entityid_customproperties) | **PUT** /Customers/{entityId}/customproperties | /Customers/{entityId}/customproperties - PUT
+*DefaultApi* | [**put_meters_bulk_reconfigure_from_model**](docs/DefaultApi.md#put_meters_bulk_reconfigure_from_model) | **PUT** /Meters/bulk/reconfigure-from-model | Reconfigure multiple meters from a model&#39;s channel templates in bulk.
+*DefaultApi* | [**put_meters_bulk_uninstall**](docs/DefaultApi.md#put_meters_bulk_uninstall) | **PUT** /Meters/bulk/uninstall | Uninstall multiple installed meters in bulk.
+*DefaultApi* | [**put_meters_entityid_customproperties**](docs/DefaultApi.md#put_meters_entityid_customproperties) | **PUT** /Meters/{entityId}/customproperties | /Meters/{entityId}/customproperties - PUT
+*DefaultApi* | [**put_meters_meteruuid_channels**](docs/DefaultApi.md#put_meters_meteruuid_channels) | **PUT** /Meters/{meteruuid}/channels | Update channels configured on a meter.
+*DefaultApi* | [**put_meters_meteruuid_details**](docs/DefaultApi.md#put_meters_meteruuid_details) | **PUT** /Meters/{meteruuid}/details | Update details of a meter.
+*DefaultApi* | [**put_meters_meteruuid_install**](docs/DefaultApi.md#put_meters_meteruuid_install) | **PUT** /Meters/{meteruuid}/install | Install an uninstalled meter.
+*DefaultApi* | [**put_meters_meteruuid_metertag**](docs/DefaultApi.md#put_meters_meteruuid_metertag) | **PUT** /Meters/{meteruuid}/metertag | Update meter tag.
+*DefaultApi* | [**put_meters_meteruuid_submeter_add**](docs/DefaultApi.md#put_meters_meteruuid_submeter_add) | **PUT** /Meters/{meteruuid}/submeter/add | Set this meter as a parent meter of another meter.
+*DefaultApi* | [**put_meters_meteruuid_uninstall**](docs/DefaultApi.md#put_meters_meteruuid_uninstall) | **PUT** /Meters/{meteruuid}/uninstall | Uninstall an installed meter.
+*DefaultApi* | [**put_meters_meteruuid_updateparentrelation**](docs/DefaultApi.md#put_meters_meteruuid_updateparentrelation) | **PUT** /Meters/{meteruuid}/updateparentrelation | Set this meter as a sub-meter of another meter.
+*DefaultApi* | [**put_meters_meteruuid_validate**](docs/DefaultApi.md#put_meters_meteruuid_validate) | **PUT** /Meters/{meteruuid}/validate | Trigger meter validation.
+*DefaultApi* | [**put_moverequests_bulk_reject**](docs/DefaultApi.md#put_moverequests_bulk_reject) | **PUT** /MoveRequests/bulk/reject | Reject multiple uncompleted move requests in bulk.
+*DefaultApi* | [**put_moverequests_bulk_setnew**](docs/DefaultApi.md#put_moverequests_bulk_setnew) | **PUT** /MoveRequests/bulk/setnew | Mark multiple uncompleted move requests as new in bulk.
+*DefaultApi* | [**put_moverequests_bulk_setpending**](docs/DefaultApi.md#put_moverequests_bulk_setpending) | **PUT** /MoveRequests/bulk/setpending | Mark multiple uncompleted move requests as pending in bulk.
+*DefaultApi* | [**put_moverequests_moverequestuuid_process**](docs/DefaultApi.md#put_moverequests_moverequestuuid_process) | **PUT** /MoveRequests/{moverequestuuid}/process | Process uncompleted move request.
+*DefaultApi* | [**put_moverequests_moverequestuuid_reject**](docs/DefaultApi.md#put_moverequests_moverequestuuid_reject) | **PUT** /MoveRequests/{moverequestuuid}/reject | Reject uncompleted move request.
+*DefaultApi* | [**put_moverequests_moverequestuuid_setnew**](docs/DefaultApi.md#put_moverequests_moverequestuuid_setnew) | **PUT** /MoveRequests/{moverequestuuid}/setnew | Mark uncompleted move request as new.
+*DefaultApi* | [**put_moverequests_moverequestuuid_setpending**](docs/DefaultApi.md#put_moverequests_moverequestuuid_setpending) | **PUT** /MoveRequests/{moverequestuuid}/setpending | Mark uncompleted move request as pending.
+*DefaultApi* | [**put_moverequests_moverequestuuid_updatecustomerdetails**](docs/DefaultApi.md#put_moverequests_moverequestuuid_updatecustomerdetails) | **PUT** /MoveRequests/{moverequestuuid}/updatecustomerdetails | Update customer details of a move request.
+*DefaultApi* | [**put_moverequests_moverequestuuid_updatedetails**](docs/DefaultApi.md#put_moverequests_moverequestuuid_updatedetails) | **PUT** /MoveRequests/{moverequestuuid}/updatedetails | Update details of a move request.
+*DefaultApi* | [**put_moverequests_moverequestuuid_updatemeasurementdetails**](docs/DefaultApi.md#put_moverequests_moverequestuuid_updatemeasurementdetails) | **PUT** /MoveRequests/{moverequestuuid}/updatemeasurementdetails | Update measurement details of a move request.
+*DefaultApi* | [**put_moverequests_moverequestuuid_updatemutationdatetime**](docs/DefaultApi.md#put_moverequests_moverequestuuid_updatemutationdatetime) | **PUT** /MoveRequests/{moverequestuuid}/updateMutationDateTime | Update mutation date of a move request.
+*DefaultApi* | [**put_moverequests_moverequestuuid_updateservicelocationdetails**](docs/DefaultApi.md#put_moverequests_moverequestuuid_updateservicelocationdetails) | **PUT** /MoveRequests/{moverequestuuid}/updateservicelocationdetails | Update location details of a move request.
+*DefaultApi* | [**put_propertygroups_entityid_customproperties**](docs/DefaultApi.md#put_propertygroups_entityid_customproperties) | **PUT** /PropertyGroups/{entityId}/customproperties | /PropertyGroups/{entityId}/customproperties - PUT
+*DefaultApi* | [**put_propertygroups_propertygroupuuid**](docs/DefaultApi.md#put_propertygroups_propertygroupuuid) | **PUT** /PropertyGroups/{propertygroupuuid} | Update details of a location group.
+*DefaultApi* | [**put_propertygroups_propertygroupuuid_communicationconfiguration**](docs/DefaultApi.md#put_propertygroups_propertygroupuuid_communicationconfiguration) | **PUT** /PropertyGroups/{propertygroupuuid}/communicationconfiguration | Update communication configuration of a location group.
+*DefaultApi* | [**put_propertygroups_propertygroupuuid_managementrelations**](docs/DefaultApi.md#put_propertygroups_propertygroupuuid_managementrelations) | **PUT** /PropertyGroups/{propertygroupuuid}/managementrelations | Update management relations of a location group.
+*DefaultApi* | [**put_propertygroups_propertygroupuuid_servicelocations**](docs/DefaultApi.md#put_propertygroups_propertygroupuuid_servicelocations) | **PUT** /PropertyGroups/{propertygroupuuid}/servicelocations | Add locations to a location group.
+*DefaultApi* | [**put_servicelocations_bulk_archive**](docs/DefaultApi.md#put_servicelocations_bulk_archive) | **PUT** /ServiceLocations/bulk/archive | Archive multiple service locations in bulk.
+*DefaultApi* | [**put_servicelocations_bulk_recalculateeav**](docs/DefaultApi.md#put_servicelocations_bulk_recalculateeav) | **PUT** /ServiceLocations/bulk/recalculateeav | Trigger recalculation of EAV for multiple locations in bulk.
+*DefaultApi* | [**put_servicelocations_bulk_restore**](docs/DefaultApi.md#put_servicelocations_bulk_restore) | **PUT** /ServiceLocations/bulk/restore | Restore multiple archived service locations in bulk.
+*DefaultApi* | [**put_servicelocations_bulk_updateproduct**](docs/DefaultApi.md#put_servicelocations_bulk_updateproduct) | **PUT** /ServiceLocations/bulk/updateproduct | Update product for multiple locations in bulk.
+*DefaultApi* | [**put_servicelocations_bulk_updateservices**](docs/DefaultApi.md#put_servicelocations_bulk_updateservices) | **PUT** /ServiceLocations/bulk/updateservices | Update which services are enabled on multiple service locations in bulk.
+*DefaultApi* | [**put_servicelocations_entityid_customproperties**](docs/DefaultApi.md#put_servicelocations_entityid_customproperties) | **PUT** /ServiceLocations/{entityId}/customproperties | /ServiceLocations/{entityId}/customproperties - PUT
+*DefaultApi* | [**put_servicelocations_servicelocationuuid_updateaddress**](docs/DefaultApi.md#put_servicelocations_servicelocationuuid_updateaddress) | **PUT** /ServiceLocations/{servicelocationuuid}/updateaddress | Update addres of a location.
+*DefaultApi* | [**put_servicelocations_servicelocationuuid_updateexternalid**](docs/DefaultApi.md#put_servicelocations_servicelocationuuid_updateexternalid) | **PUT** /ServiceLocations/{servicelocationuuid}/updateexternalid | Update external ID of a location.
+*DefaultApi* | [**put_servicelocations_servicelocationuuid_updatemanagementdetails**](docs/DefaultApi.md#put_servicelocations_servicelocationuuid_updatemanagementdetails) | **PUT** /ServiceLocations/{servicelocationuuid}/updatemanagementdetails | Update management relations of a location.
+*DefaultApi* | [**put_servicelocations_servicelocationuuid_updateproduct**](docs/DefaultApi.md#put_servicelocations_servicelocationuuid_updateproduct) | **PUT** /ServiceLocations/{servicelocationuuid}/updateproduct | Update product for a location.
+*DefaultApi* | [**put_servicelocations_servicelocationuuid_updateservices**](docs/DefaultApi.md#put_servicelocations_servicelocationuuid_updateservices) | **PUT** /ServiceLocations/{servicelocationuuid}/updateservices | Update which services are enabled on the service location. Only services that were never supplied can be removed.
 *DefaultApi* | [**remove_contract_service**](docs/DefaultApi.md#remove_contract_service) | **POST** /Contracts/{contractId}/removeservice | RemoveContractService
 *DefaultApi* | [**remove_contracted_services**](docs/DefaultApi.md#remove_contracted_services) | **PUT** /Contracts/{contractuuid}/services/remove | Remove locations and/or services from being supplied on a contract.
 *DefaultApi* | [**reset_customer_portal_account**](docs/DefaultApi.md#reset_customer_portal_account) | **POST** /Customers/{customeruuid}/portal/reset | Reset portal account of a customer, which will delete the customer portal account and reset the portal properties.
@@ -332,6 +420,7 @@ Class | Method | HTTP request | Description
  - [BulkArchiveServiceLocationRequest](docs/BulkArchiveServiceLocationRequest.md)
  - [BulkBlockContractRequest](docs/BulkBlockContractRequest.md)
  - [BulkChangeCustomerCustomerGroupRequest](docs/BulkChangeCustomerCustomerGroupRequest.md)
+ - [BulkChangeCustomerInvoiceCommunicationPreferencesRequest](docs/BulkChangeCustomerInvoiceCommunicationPreferencesRequest.md)
  - [BulkCreateAnnualStatementRequest](docs/BulkCreateAnnualStatementRequest.md)
  - [BulkDeleteMeterRequest](docs/BulkDeleteMeterRequest.md)
  - [BulkDeleteMoveRequestRequest](docs/BulkDeleteMoveRequestRequest.md)
@@ -353,6 +442,7 @@ Class | Method | HTTP request | Description
  - [BulkSetMoveRequestToPendingRequest](docs/BulkSetMoveRequestToPendingRequest.md)
  - [BulkSignContractRequest](docs/BulkSignContractRequest.md)
  - [BulkTerminateContractRequest](docs/BulkTerminateContractRequest.md)
+ - [BulkTriggerInvoiceEstimationForContractRequest](docs/BulkTriggerInvoiceEstimationForContractRequest.md)
  - [BulkUnblockContractRequest](docs/BulkUnblockContractRequest.md)
  - [BulkUninstallMeterRequest](docs/BulkUninstallMeterRequest.md)
  - [BulkUpdateContractConsumptionGroupForUtilityRequest](docs/BulkUpdateContractConsumptionGroupForUtilityRequest.md)
@@ -577,6 +667,8 @@ Class | Method | HTTP request | Description
  - [UpdateMoveRequestRequest](docs/UpdateMoveRequestRequest.md)
  - [UpdateMoveRequestServiceLocationDetailsRequest](docs/UpdateMoveRequestServiceLocationDetailsRequest.md)
  - [UpdateParentRelationRequest](docs/UpdateParentRelationRequest.md)
+ - [UpdatePortalCommunicationLanguageRequest](docs/UpdatePortalCommunicationLanguageRequest.md)
+ - [UpdatePortalPaymentMethodRequest](docs/UpdatePortalPaymentMethodRequest.md)
  - [UpdatePropertyGroupCommunicationConfigurationRequest](docs/UpdatePropertyGroupCommunicationConfigurationRequest.md)
  - [UpdatePropertyGroupManagementRelationsRequest](docs/UpdatePropertyGroupManagementRelationsRequest.md)
  - [UpdatePropertyGroupRequest](docs/UpdatePropertyGroupRequest.md)

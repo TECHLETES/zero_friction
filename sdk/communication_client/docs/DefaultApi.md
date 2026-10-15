@@ -5,6 +5,7 @@ All URIs are relative to *https://api.zerofriction.co/api/comm*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_communicationsubjects_entitysubjecttype_subjectid**](DefaultApi.md#get_communicationsubjects_entitysubjecttype_subjectid) | **GET** /CommunicationSubjects/{entitySubjectType}/{subjectId} | Retrieves all CommunicationSubjects for a subject
+[**get_migrationadmin_latest_version**](DefaultApi.md#get_migrationadmin_latest_version) | **GET** /MigrationAdmin/latest-version | /MigrationAdmin/latest-version - GET
 [**get_productusage**](DefaultApi.md#get_productusage) | **GET** /ProductUsage | Gets the communication product usage snapshot with integrations per organization.
 [**post_communicationentries_downloadzip**](DefaultApi.md#post_communicationentries_downloadzip) | **POST** /CommunicationEntries/downloadzip | Downloads a zip file containing the specified communication entries.
 [**post_communicationentries_filter**](DefaultApi.md#post_communicationentries_filter) | **POST** /CommunicationEntries/filter | Retrieves communication entries across the organization based on the provided query parameters and filters.
@@ -15,13 +16,22 @@ Method | HTTP request | Description
 [**post_communicationprovideraccounts**](DefaultApi.md#post_communicationprovideraccounts) | **POST** /CommunicationProviderAccounts | Create a new communication provider account.
 [**post_communicationprovideraccounts_filter**](DefaultApi.md#post_communicationprovideraccounts_filter) | **POST** /CommunicationProviderAccounts/filter | Retrieve communication provider accounts based on the provided query parameters.
 [**post_communicationprovideraccounts_id_disconnect**](DefaultApi.md#post_communicationprovideraccounts_id_disconnect) | **POST** /CommunicationProviderAccounts/{id}/disconnect | Disconnect a communication provider account and set it to inactive status.
+[**post_communicationprovideraccounts_id_resumeonboarding**](DefaultApi.md#post_communicationprovideraccounts_id_resumeonboarding) | **POST** /CommunicationProviderAccounts/{id}/resumeonboarding | Resumes Suspended provider onboarding and returns a new verification URL.
+[**post_communicationprovideraccounts_type_prevalidateonboarding**](DefaultApi.md#post_communicationprovideraccounts_type_prevalidateonboarding) | **POST** /CommunicationProviderAccounts/type/prevalidateonboarding | Soft-gates organisation identifiers for provider onboarding without starting onboarding. Always returns HTTP 200; Success&#x3D;false when identifiers are invalid (no DomainNotification toasts).
+[**post_communicationprovideraccounts_type_startonboarding**](DefaultApi.md#post_communicationprovideraccounts_type_startonboarding) | **POST** /CommunicationProviderAccounts/type/startonboarding | Starts synchronous onboarding for a communication provider account and returns the verification URL.
 [**post_communicationsubjects_bulk_ignore**](DefaultApi.md#post_communicationsubjects_bulk_ignore) | **POST** /CommunicationSubjects/bulk/ignore | Ignores communication subjects in bulk.
 [**post_communicationsubjects_bulk_sendvia**](DefaultApi.md#post_communicationsubjects_bulk_sendvia) | **POST** /CommunicationSubjects/bulk/sendvia | Sends communication subjects via a method in bulk.
 [**post_communicationsubjects_filter**](DefaultApi.md#post_communicationsubjects_filter) | **POST** /CommunicationSubjects/filter | Retrieves communication entries across the organization based on the provided query parameters and filters.
 [**post_communicationsubjects_filter_overviewcount**](DefaultApi.md#post_communicationsubjects_filter_overviewcount) | **POST** /CommunicationSubjects/filter/overviewcount | Retrieves the overview count of communication entries across the organization.
+[**post_webhook_einvoicing_recommand**](DefaultApi.md#post_webhook_einvoicing_recommand) | **POST** /Webhook/einvoicing/recommand | Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
 [**post_webhook_email_sendgrid**](DefaultApi.md#post_webhook_email_sendgrid) | **POST** /Webhook/email/sendgrid | Handles SendGrid webhook events and triggers transformation and queueing.
 [**post_webhook_postal_pingen**](DefaultApi.md#post_webhook_postal_pingen) | **POST** /Webhook/postal/pingen | Handles Pingen webhook events (postal) and triggers transformation and queueing.
 [**post_webhook_sms_twilio_tenantid_organisationid_communicationentryid**](DefaultApi.md#post_webhook_sms_twilio_tenantid_organisationid_communicationentryid) | **POST** /Webhook/sms/twilio/{tenantId}/{organisationId}/{communicationEntryId} | Handles SMS delivery status callbacks from Twilio.
+[**put_communicationentries_resend**](DefaultApi.md#put_communicationentries_resend) | **PUT** /CommunicationEntries/resend | Resends a communication entry using the same settings as the original.
+[**put_communicationprovideraccounts_id_disconnect**](DefaultApi.md#put_communicationprovideraccounts_id_disconnect) | **PUT** /CommunicationProviderAccounts/{id}/disconnect | Disconnect a communication provider account and set it to inactive status.
+[**put_communicationprovideraccounts_id_resumeonboarding**](DefaultApi.md#put_communicationprovideraccounts_id_resumeonboarding) | **PUT** /CommunicationProviderAccounts/{id}/resumeonboarding | Resumes Suspended provider onboarding and returns a new verification URL.
+[**put_communicationsubjects_bulk_ignore**](DefaultApi.md#put_communicationsubjects_bulk_ignore) | **PUT** /CommunicationSubjects/bulk/ignore | Ignores communication subjects in bulk.
+[**put_communicationsubjects_bulk_sendvia**](DefaultApi.md#put_communicationsubjects_bulk_sendvia) | **PUT** /CommunicationSubjects/bulk/sendvia | Sends communication subjects via a method in bulk.
 
 
 # **get_communicationsubjects_entitysubjecttype_subjectid**
@@ -113,6 +123,86 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The overview count of communication entries. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_migrationadmin_latest_version**
+> ApiResponseDTOOfMigrationLatestVersionDTO get_migrationadmin_latest_version()
+
+/MigrationAdmin/latest-version - GET
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import communication_client
+from communication_client.models.api_response_dtoof_migration_latest_version_dto import ApiResponseDTOOfMigrationLatestVersionDTO
+from communication_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/comm
+# See configuration.py for a list of all supported configuration parameters.
+configuration = communication_client.Configuration(
+    host = "https://api.zerofriction.co/api/comm"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with communication_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = communication_client.DefaultApi(api_client)
+
+    try:
+        # /MigrationAdmin/latest-version - GET
+        api_response = api_instance.get_migrationadmin_latest_version()
+        print("The response of DefaultApi->get_migrationadmin_latest_version:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_migrationadmin_latest_version: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ApiResponseDTOOfMigrationLatestVersionDTO**](ApiResponseDTOOfMigrationLatestVersionDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -250,7 +340,7 @@ with communication_client.ApiClient(configuration) as api_client:
     api_instance = communication_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    download_communication_entries_zip_request = {"communicationEntryIds":["string"],"queryParams":{"communicationType":"string","excludeCommunicationType":"string","excludeCommunicationEntryStatus":"string","communicationEntryStatus":"string","entitySubjectType":"string","subjectSubType":"string","entitySubjectId":"string","failureReasonCode":0,"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","excludedIds":["string"]} # DownloadCommunicationEntriesZipRequest | The request containing the IDs of the communication entries to include in the zip file. (optional)
+    download_communication_entries_zip_request = {"communicationEntryIds":["string"],"queryParams":{},"quickFilter":{},"excludedIds":["string"]} # DownloadCommunicationEntriesZipRequest | The request containing the IDs of the communication entries to include in the zip file. (optional)
 
     try:
         # Downloads a zip file containing the specified communication entries.
@@ -346,7 +436,7 @@ with communication_client.ApiClient(configuration) as api_client:
     id = 56 # int |  (optional)
     order_by = 'order_by_example' # str | The order by clause. (optional)
     continuation_token = 'continuation_token_example' # str | The continuation token for pagination. (optional)
-    get_communication_entries_query_params = {"communicationType":"string","excludeCommunicationType":"string","excludeCommunicationEntryStatus":"string","communicationEntryStatus":"string","entitySubjectType":"string","subjectSubType":"string","entitySubjectId":"string","failureReasonCode":0,"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetCommunicationEntriesQueryParams | The cancellation token. (optional)
+    get_communication_entries_query_params = {"communicationType":{},"excludeCommunicationType":{},"excludeCommunicationEntryStatus":{},"communicationEntryStatus":{},"entitySubjectType":{},"subjectSubType":"string","entitySubjectId":"string","failureReasonCode":{},"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetCommunicationEntriesQueryParams | The cancellation token. (optional)
 
     try:
         # Retrieves communication entries across the organization based on the provided query parameters and filters.
@@ -446,7 +536,7 @@ with communication_client.ApiClient(configuration) as api_client:
     id = 56 # int |  (optional)
     order_by = 'order_by_example' # str | The order by clause. (optional)
     continuation_token = 'continuation_token_example' # str | The continuation token for pagination. (optional)
-    get_communication_entries_query_params = {"communicationType":"string","excludeCommunicationType":"string","excludeCommunicationEntryStatus":"string","communicationEntryStatus":"string","entitySubjectType":"string","subjectSubType":"string","entitySubjectId":"string","failureReasonCode":0,"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetCommunicationEntriesQueryParams | The cancellation token. (optional)
+    get_communication_entries_query_params = {"communicationType":{},"excludeCommunicationType":{},"excludeCommunicationEntryStatus":{},"communicationEntryStatus":{},"entitySubjectType":{},"subjectSubType":"string","entitySubjectId":"string","failureReasonCode":{},"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetCommunicationEntriesQueryParams | The cancellation token. (optional)
 
     try:
         # Retrieves communication entries for a specific customer based on the provided query parameters and filters.
@@ -543,7 +633,7 @@ with communication_client.ApiClient(configuration) as api_client:
     customer_id = 'customer_id_example' # str | The ID of the customer.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    get_communication_entries_query_params = {"communicationType":"string","excludeCommunicationType":"string","excludeCommunicationEntryStatus":"string","communicationEntryStatus":"string","entitySubjectType":"string","subjectSubType":"string","entitySubjectId":"string","failureReasonCode":0,"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetCommunicationEntriesQueryParams | The cancellation token. (optional)
+    get_communication_entries_query_params = {"communicationType":{},"excludeCommunicationType":{},"excludeCommunicationEntryStatus":{},"communicationEntryStatus":{},"entitySubjectType":{},"subjectSubType":"string","entitySubjectId":"string","failureReasonCode":{},"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetCommunicationEntriesQueryParams | The cancellation token. (optional)
 
     try:
         # Retrieves the overview count of communication entries for a specific customer.
@@ -635,7 +725,7 @@ with communication_client.ApiClient(configuration) as api_client:
     api_instance = communication_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    get_communication_entries_query_params = {"communicationType":"string","excludeCommunicationType":"string","excludeCommunicationEntryStatus":"string","communicationEntryStatus":"string","entitySubjectType":"string","subjectSubType":"string","entitySubjectId":"string","failureReasonCode":0,"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetCommunicationEntriesQueryParams | The cancellation token. (optional)
+    get_communication_entries_query_params = {"communicationType":{},"excludeCommunicationType":{},"excludeCommunicationEntryStatus":{},"communicationEntryStatus":{},"entitySubjectType":{},"subjectSubType":"string","entitySubjectId":"string","failureReasonCode":{},"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetCommunicationEntriesQueryParams | The cancellation token. (optional)
 
     try:
         # Retrieves the overview count of communication entries across the organization.
@@ -726,7 +816,7 @@ with communication_client.ApiClient(configuration) as api_client:
     api_instance = communication_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    resend_communication_entry_request = {"communicationEntryId":"string","subjectId":"string","subjectType":"none","subjectSubtype":"string","forcedCommunicationType":"string"} # ResendCommunicationEntryRequest | The cancellation token. (optional)
+    resend_communication_entry_request = {"communicationEntryId":"string","subjectId":"string","subjectType":"none","subjectSubtype":"string","forcedCommunicationType":{}} # ResendCommunicationEntryRequest | The cancellation token. (optional)
 
     try:
         # Resends a communication entry using the same settings as the original.
@@ -1048,6 +1138,281 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **post_communicationprovideraccounts_id_resumeonboarding**
+> ApiResponseDTOOfstring post_communicationprovideraccounts_id_resumeonboarding(id, zf_tuuid, zf_ouuid)
+
+Resumes Suspended provider onboarding and returns a new verification URL.
+
+Resumes Suspended provider onboarding and returns a new verification URL.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import communication_client
+from communication_client.models.api_response_dto_ofstring import ApiResponseDTOOfstring
+from communication_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/comm
+# See configuration.py for a list of all supported configuration parameters.
+configuration = communication_client.Configuration(
+    host = "https://api.zerofriction.co/api/comm"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with communication_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = communication_client.DefaultApi(api_client)
+    id = 'id_example' # str | The communication provider account ID.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Resumes Suspended provider onboarding and returns a new verification URL.
+        api_response = api_instance.post_communicationprovideraccounts_id_resumeonboarding(id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->post_communicationprovideraccounts_id_resumeonboarding:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->post_communicationprovideraccounts_id_resumeonboarding: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The communication provider account ID. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfstring**](ApiResponseDTOOfstring.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_communicationprovideraccounts_type_prevalidateonboarding**
+> ApiResponseDTO post_communicationprovideraccounts_type_prevalidateonboarding(zf_tuuid, zf_ouuid, start_communication_provider_onboarding_request=start_communication_provider_onboarding_request)
+
+Soft-gates organisation identifiers for provider onboarding without starting onboarding. Always returns HTTP 200; Success=false when identifiers are invalid (no DomainNotification toasts).
+
+Soft-gates organisation identifiers for provider onboarding without starting onboarding.
+Always returns HTTP 200; Success=false when identifiers are invalid (no DomainNotification toasts).
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import communication_client
+from communication_client.models.api_response_dto import ApiResponseDTO
+from communication_client.models.start_communication_provider_onboarding_request import StartCommunicationProviderOnboardingRequest
+from communication_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/comm
+# See configuration.py for a list of all supported configuration parameters.
+configuration = communication_client.Configuration(
+    host = "https://api.zerofriction.co/api/comm"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with communication_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = communication_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    start_communication_provider_onboarding_request = {"providerType":"sendgridemail"} # StartCommunicationProviderOnboardingRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Soft-gates organisation identifiers for provider onboarding without starting onboarding. Always returns HTTP 200; Success=false when identifiers are invalid (no DomainNotification toasts).
+        api_response = api_instance.post_communicationprovideraccounts_type_prevalidateonboarding(zf_tuuid, zf_ouuid, start_communication_provider_onboarding_request=start_communication_provider_onboarding_request)
+        print("The response of DefaultApi->post_communicationprovideraccounts_type_prevalidateonboarding:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->post_communicationprovideraccounts_type_prevalidateonboarding: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **start_communication_provider_onboarding_request** | [**StartCommunicationProviderOnboardingRequest**](StartCommunicationProviderOnboardingRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success&#x3D;true when identifiers are valid; Success&#x3D;false when invalid. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_communicationprovideraccounts_type_startonboarding**
+> ApiResponseDTOOfstring post_communicationprovideraccounts_type_startonboarding(zf_tuuid, zf_ouuid, start_communication_provider_onboarding_request=start_communication_provider_onboarding_request)
+
+Starts synchronous onboarding for a communication provider account and returns the verification URL.
+
+Starts synchronous onboarding for a communication provider account and returns the verification URL.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import communication_client
+from communication_client.models.api_response_dto_ofstring import ApiResponseDTOOfstring
+from communication_client.models.start_communication_provider_onboarding_request import StartCommunicationProviderOnboardingRequest
+from communication_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/comm
+# See configuration.py for a list of all supported configuration parameters.
+configuration = communication_client.Configuration(
+    host = "https://api.zerofriction.co/api/comm"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with communication_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = communication_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    start_communication_provider_onboarding_request = {"providerType":"sendgridemail"} # StartCommunicationProviderOnboardingRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Starts synchronous onboarding for a communication provider account and returns the verification URL.
+        api_response = api_instance.post_communicationprovideraccounts_type_startonboarding(zf_tuuid, zf_ouuid, start_communication_provider_onboarding_request=start_communication_provider_onboarding_request)
+        print("The response of DefaultApi->post_communicationprovideraccounts_type_startonboarding:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->post_communicationprovideraccounts_type_startonboarding: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **start_communication_provider_onboarding_request** | [**StartCommunicationProviderOnboardingRequest**](StartCommunicationProviderOnboardingRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfstring**](ApiResponseDTOOfstring.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **post_communicationsubjects_bulk_ignore**
 > ApiResponseDTO post_communicationsubjects_bulk_ignore(zf_tuuid, zf_ouuid, bulk_ignore_communication_subjects_request=bulk_ignore_communication_subjects_request)
 
@@ -1096,7 +1461,7 @@ with communication_client.ApiClient(configuration) as api_client:
     api_instance = communication_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_ignore_communication_subjects_request = {"onlyValidate":true,"queryParams":{"communicationType":"string","excludeCommunicationType":"string","excludeCommunicationEntryStatus":"string","communicationEntryStatus":"string","entitySubjectTypes":["string"],"entitySubjectSubTypes":["string"],"entitySubjectId":"string","failureReasonCode":0,"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","applyFiltersOverIncludedIds":true,"showIgnored":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkIgnoreCommunicationSubjectsRequest | The cancellation token. (optional)
+    bulk_ignore_communication_subjects_request = {"onlyValidate":true,"queryParams":{"communicationType":{},"excludeCommunicationType":{},"excludeCommunicationEntryStatus":{},"communicationEntryStatus":{},"entitySubjectTypes":["string"],"entitySubjectSubTypes":["string"],"entitySubjectId":"string","failureReasonCode":{},"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","applyFiltersOverIncludedIds":true,"showIgnored":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkIgnoreCommunicationSubjectsRequest | The cancellation token. (optional)
 
     try:
         # Ignores communication subjects in bulk.
@@ -1188,7 +1553,7 @@ with communication_client.ApiClient(configuration) as api_client:
     api_instance = communication_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_send_communication_subjects_via_request = {"onlyValidate":true,"queryParams":{"communicationType":"string","excludeCommunicationType":"string","excludeCommunicationEntryStatus":"string","communicationEntryStatus":"string","entitySubjectTypes":["string"],"entitySubjectSubTypes":["string"],"entitySubjectId":"string","failureReasonCode":0,"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","applyFiltersOverIncludedIds":true,"showIgnored":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","forcedCommunicationType":"string"} # BulkSendCommunicationSubjectsViaRequest |  (optional)
+    bulk_send_communication_subjects_via_request = {"onlyValidate":true,"queryParams":{"communicationType":{},"excludeCommunicationType":{},"excludeCommunicationEntryStatus":{},"communicationEntryStatus":{},"entitySubjectTypes":["string"],"entitySubjectSubTypes":["string"],"entitySubjectId":"string","failureReasonCode":{},"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","applyFiltersOverIncludedIds":true,"showIgnored":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","forcedCommunicationType":{}} # BulkSendCommunicationSubjectsViaRequest |  (optional)
 
     try:
         # Sends communication subjects via a method in bulk.
@@ -1284,7 +1649,7 @@ with communication_client.ApiClient(configuration) as api_client:
     id = 56 # int |  (optional)
     order_by = 'order_by_example' # str | The order by clause. (optional)
     continuation_token = 'continuation_token_example' # str | The continuation token for pagination. (optional)
-    get_communication_subjects_query_params = {"communicationType":"string","excludeCommunicationType":"string","excludeCommunicationEntryStatus":"string","communicationEntryStatus":"string","entitySubjectTypes":["string"],"entitySubjectSubTypes":["string"],"entitySubjectId":"string","failureReasonCode":0,"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","applyFiltersOverIncludedIds":true,"showIgnored":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetCommunicationSubjectsQueryParams | The cancellation token. (optional)
+    get_communication_subjects_query_params = {"communicationType":{},"excludeCommunicationType":{},"excludeCommunicationEntryStatus":{},"communicationEntryStatus":{},"entitySubjectTypes":["string"],"entitySubjectSubTypes":["string"],"entitySubjectId":"string","failureReasonCode":{},"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","applyFiltersOverIncludedIds":true,"showIgnored":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetCommunicationSubjectsQueryParams | The cancellation token. (optional)
 
     try:
         # Retrieves communication entries across the organization based on the provided query parameters and filters.
@@ -1379,7 +1744,7 @@ with communication_client.ApiClient(configuration) as api_client:
     api_instance = communication_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    get_communication_subjects_query_params = {"communicationType":"string","excludeCommunicationType":"string","excludeCommunicationEntryStatus":"string","communicationEntryStatus":"string","entitySubjectTypes":["string"],"entitySubjectSubTypes":["string"],"entitySubjectId":"string","failureReasonCode":0,"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","applyFiltersOverIncludedIds":true,"showIgnored":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetCommunicationSubjectsQueryParams | The cancellation token. (optional)
+    get_communication_subjects_query_params = {"communicationType":{},"excludeCommunicationType":{},"excludeCommunicationEntryStatus":{},"communicationEntryStatus":{},"entitySubjectTypes":["string"],"entitySubjectSubTypes":["string"],"entitySubjectId":"string","failureReasonCode":{},"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","applyFiltersOverIncludedIds":true,"showIgnored":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetCommunicationSubjectsQueryParams | The cancellation token. (optional)
 
     try:
         # Retrieves the overview count of communication entries across the organization.
@@ -1419,6 +1784,89 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The overview count of communication entries. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_webhook_einvoicing_recommand**
+> ApiResponseDTOOfboolean post_webhook_einvoicing_recommand()
+
+Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
+
+Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import communication_client
+from communication_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from communication_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/comm
+# See configuration.py for a list of all supported configuration parameters.
+configuration = communication_client.Configuration(
+    host = "https://api.zerofriction.co/api/comm"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with communication_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = communication_client.DefaultApi(api_client)
+
+    try:
+        # Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
+        api_response = api_instance.post_webhook_einvoicing_recommand()
+        print("The response of DefaultApi->post_webhook_einvoicing_recommand:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->post_webhook_einvoicing_recommand: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1668,6 +2116,464 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_communicationentries_resend**
+> ApiResponseDTOOfboolean put_communicationentries_resend(zf_tuuid, zf_ouuid, resend_communication_entry_request=resend_communication_entry_request)
+
+Resends a communication entry using the same settings as the original.
+
+Resends a communication entry using the same settings as the original.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import communication_client
+from communication_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from communication_client.models.resend_communication_entry_request import ResendCommunicationEntryRequest
+from communication_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/comm
+# See configuration.py for a list of all supported configuration parameters.
+configuration = communication_client.Configuration(
+    host = "https://api.zerofriction.co/api/comm"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with communication_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = communication_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    resend_communication_entry_request = {"communicationEntryId":"string","subjectId":"string","subjectType":"none","subjectSubtype":"string","forcedCommunicationType":{}} # ResendCommunicationEntryRequest | The cancellation token. (optional)
+
+    try:
+        # Resends a communication entry using the same settings as the original.
+        api_response = api_instance.put_communicationentries_resend(zf_tuuid, zf_ouuid, resend_communication_entry_request=resend_communication_entry_request)
+        print("The response of DefaultApi->put_communicationentries_resend:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_communicationentries_resend: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **resend_communication_entry_request** | [**ResendCommunicationEntryRequest**](ResendCommunicationEntryRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_communicationprovideraccounts_id_disconnect**
+> ApiResponseDTOOfCommunicationProviderAccountDTO put_communicationprovideraccounts_id_disconnect(id, zf_tuuid, zf_ouuid)
+
+Disconnect a communication provider account and set it to inactive status.
+
+Disconnect a communication provider account and set it to inactive status.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import communication_client
+from communication_client.models.api_response_dtoof_communication_provider_account_dto import ApiResponseDTOOfCommunicationProviderAccountDTO
+from communication_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/comm
+# See configuration.py for a list of all supported configuration parameters.
+configuration = communication_client.Configuration(
+    host = "https://api.zerofriction.co/api/comm"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with communication_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = communication_client.DefaultApi(api_client)
+    id = 'id_example' # str | The communication provider account ID to disconnect
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Disconnect a communication provider account and set it to inactive status.
+        api_response = api_instance.put_communicationprovideraccounts_id_disconnect(id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_communicationprovideraccounts_id_disconnect:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_communicationprovideraccounts_id_disconnect: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The communication provider account ID to disconnect | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfCommunicationProviderAccountDTO**](ApiResponseDTOOfCommunicationProviderAccountDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_communicationprovideraccounts_id_resumeonboarding**
+> ApiResponseDTOOfstring put_communicationprovideraccounts_id_resumeonboarding(id, zf_tuuid, zf_ouuid)
+
+Resumes Suspended provider onboarding and returns a new verification URL.
+
+Resumes Suspended provider onboarding and returns a new verification URL.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import communication_client
+from communication_client.models.api_response_dto_ofstring import ApiResponseDTOOfstring
+from communication_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/comm
+# See configuration.py for a list of all supported configuration parameters.
+configuration = communication_client.Configuration(
+    host = "https://api.zerofriction.co/api/comm"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with communication_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = communication_client.DefaultApi(api_client)
+    id = 'id_example' # str | The communication provider account ID.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Resumes Suspended provider onboarding and returns a new verification URL.
+        api_response = api_instance.put_communicationprovideraccounts_id_resumeonboarding(id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_communicationprovideraccounts_id_resumeonboarding:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_communicationprovideraccounts_id_resumeonboarding: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The communication provider account ID. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfstring**](ApiResponseDTOOfstring.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_communicationsubjects_bulk_ignore**
+> ApiResponseDTO put_communicationsubjects_bulk_ignore(zf_tuuid, zf_ouuid, bulk_ignore_communication_subjects_request=bulk_ignore_communication_subjects_request)
+
+Ignores communication subjects in bulk.
+
+Ignores communication subjects in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import communication_client
+from communication_client.models.api_response_dto import ApiResponseDTO
+from communication_client.models.bulk_ignore_communication_subjects_request import BulkIgnoreCommunicationSubjectsRequest
+from communication_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/comm
+# See configuration.py for a list of all supported configuration parameters.
+configuration = communication_client.Configuration(
+    host = "https://api.zerofriction.co/api/comm"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with communication_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = communication_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_ignore_communication_subjects_request = {"onlyValidate":true,"queryParams":{"communicationType":{},"excludeCommunicationType":{},"excludeCommunicationEntryStatus":{},"communicationEntryStatus":{},"entitySubjectTypes":["string"],"entitySubjectSubTypes":["string"],"entitySubjectId":"string","failureReasonCode":{},"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","applyFiltersOverIncludedIds":true,"showIgnored":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkIgnoreCommunicationSubjectsRequest | The cancellation token. (optional)
+
+    try:
+        # Ignores communication subjects in bulk.
+        api_response = api_instance.put_communicationsubjects_bulk_ignore(zf_tuuid, zf_ouuid, bulk_ignore_communication_subjects_request=bulk_ignore_communication_subjects_request)
+        print("The response of DefaultApi->put_communicationsubjects_bulk_ignore:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_communicationsubjects_bulk_ignore: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_ignore_communication_subjects_request** | [**BulkIgnoreCommunicationSubjectsRequest**](BulkIgnoreCommunicationSubjectsRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_communicationsubjects_bulk_sendvia**
+> ApiResponseDTOOfCommunicationSubjectDTO put_communicationsubjects_bulk_sendvia(zf_tuuid, zf_ouuid, bulk_send_communication_subjects_via_request=bulk_send_communication_subjects_via_request)
+
+Sends communication subjects via a method in bulk.
+
+Sends communication subjects via a method in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import communication_client
+from communication_client.models.api_response_dtoof_communication_subject_dto import ApiResponseDTOOfCommunicationSubjectDTO
+from communication_client.models.bulk_send_communication_subjects_via_request import BulkSendCommunicationSubjectsViaRequest
+from communication_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/comm
+# See configuration.py for a list of all supported configuration parameters.
+configuration = communication_client.Configuration(
+    host = "https://api.zerofriction.co/api/comm"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with communication_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = communication_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_send_communication_subjects_via_request = {"onlyValidate":true,"queryParams":{"communicationType":{},"excludeCommunicationType":{},"excludeCommunicationEntryStatus":{},"communicationEntryStatus":{},"entitySubjectTypes":["string"],"entitySubjectSubTypes":["string"],"entitySubjectId":"string","failureReasonCode":{},"sentStartDateTimeOffset":"string","sentEndDateTimeOffset":"string","customerId":"string","applyFiltersOverIncludedIds":true,"showIgnored":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","forcedCommunicationType":{}} # BulkSendCommunicationSubjectsViaRequest |  (optional)
+
+    try:
+        # Sends communication subjects via a method in bulk.
+        api_response = api_instance.put_communicationsubjects_bulk_sendvia(zf_tuuid, zf_ouuid, bulk_send_communication_subjects_via_request=bulk_send_communication_subjects_via_request)
+        print("The response of DefaultApi->put_communicationsubjects_bulk_sendvia:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_communicationsubjects_bulk_sendvia: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_send_communication_subjects_via_request** | [**BulkSendCommunicationSubjectsViaRequest**](BulkSendCommunicationSubjectsViaRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfCommunicationSubjectDTO**](ApiResponseDTOOfCommunicationSubjectDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
  - **Accept**: text/plain, application/json, text/json
 
 ### HTTP response details

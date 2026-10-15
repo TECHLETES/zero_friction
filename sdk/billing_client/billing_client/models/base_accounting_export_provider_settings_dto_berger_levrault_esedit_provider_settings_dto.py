@@ -20,7 +20,6 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from billing_client.models.accounting_export_provider_type import AccountingExportProviderType
-from billing_client.models.berger_levrault_custom_entity_property_settings_request_dto import BergerLevraultCustomEntityPropertySettingsRequestDTO
 from billing_client.models.ssh_authentication_method import SshAuthenticationMethod
 from typing import Optional, Set
 from typing_extensions import Self
@@ -42,8 +41,7 @@ class BaseAccountingExportProviderSettingsDTOBergerLevraultEseditProviderSetting
     budget_code: Optional[StrictStr] = Field(alias="budgetCode")
     structure_code: Optional[StrictStr] = Field(alias="structureCode")
     movement_code: Optional[StrictStr] = Field(alias="movementCode")
-    custom_entity_property_settings: Optional[BergerLevraultCustomEntityPropertySettingsRequestDTO] = Field(default=None, alias="customEntityPropertySettings")
-    __properties: ClassVar[List[str]] = ["__type", "providerType", "host", "port", "userName", "password", "directory", "authenticationMethod", "publicKey", "unc", "budgetCode", "structureCode", "movementCode", "customEntityPropertySettings"]
+    __properties: ClassVar[List[str]] = ["__type", "providerType", "host", "port", "userName", "password", "directory", "authenticationMethod", "publicKey", "unc", "budgetCode", "structureCode", "movementCode"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -94,9 +92,6 @@ class BaseAccountingExportProviderSettingsDTOBergerLevraultEseditProviderSetting
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of custom_entity_property_settings
-        if self.custom_entity_property_settings:
-            _dict['customEntityPropertySettings'] = self.custom_entity_property_settings.to_dict()
         # set to None if host (nullable) is None
         # and model_fields_set contains the field
         if self.host is None and "host" in self.model_fields_set:
@@ -142,11 +137,6 @@ class BaseAccountingExportProviderSettingsDTOBergerLevraultEseditProviderSetting
         if self.movement_code is None and "movement_code" in self.model_fields_set:
             _dict['movementCode'] = None
 
-        # set to None if custom_entity_property_settings (nullable) is None
-        # and model_fields_set contains the field
-        if self.custom_entity_property_settings is None and "custom_entity_property_settings" in self.model_fields_set:
-            _dict['customEntityPropertySettings'] = None
-
         return _dict
 
     @classmethod
@@ -171,8 +161,7 @@ class BaseAccountingExportProviderSettingsDTOBergerLevraultEseditProviderSetting
             "unc": obj.get("unc"),
             "budgetCode": obj.get("budgetCode"),
             "structureCode": obj.get("structureCode"),
-            "movementCode": obj.get("movementCode"),
-            "customEntityPropertySettings": BergerLevraultCustomEntityPropertySettingsRequestDTO.from_dict(obj["customEntityPropertySettings"]) if obj.get("customEntityPropertySettings") is not None else None
+            "movementCode": obj.get("movementCode")
         })
         return _obj
 

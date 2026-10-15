@@ -33,6 +33,7 @@ class CreditNotePdfTemplateDTO(BaseModel):
     show_balance: Optional[StrictBool] = Field(default=None, alias="showBalance")
     show_vat_specs: Optional[StrictBool] = Field(default=None, alias="showVatSpecs")
     show_custom_information: Optional[StrictBool] = Field(default=None, alias="showCustomInformation")
+    show_subtotal_before_advances: Optional[StrictBool] = Field(default=None, alias="showSubtotalBeforeAdvances")
     provider_managed_template_file_name: Optional[StrictStr] = Field(default=None, alias="providerManagedTemplateFileName")
     envelope_settings: Optional[EnvelopeSettingsDTO] = Field(default=None, alias="envelopeSettings")
     render_header_footer: Optional[StrictBool] = Field(default=None, alias="renderHeaderFooter")
@@ -46,7 +47,7 @@ class CreditNotePdfTemplateDTO(BaseModel):
     custom_template_internal_file_path: Optional[StrictStr] = Field(default=None, alias="customTemplateInternalFilePath")
     custom_template_file_name: Optional[StrictStr] = Field(default=None, alias="customTemplateFileName")
     translation_status: Optional[TranslationStatus] = Field(default=None, alias="translationStatus")
-    __properties: ClassVar[List[str]] = ["showCountry", "showBalance", "showVatSpecs", "showCustomInformation", "providerManagedTemplateFileName", "envelopeSettings", "renderHeaderFooter", "headerText", "footerText", "overrideExternalPrintingChecks", "supportsExternalPrinting", "fileName", "useCase", "useBuildIn", "customTemplateInternalFilePath", "customTemplateFileName", "translationStatus"]
+    __properties: ClassVar[List[str]] = ["showCountry", "showBalance", "showVatSpecs", "showCustomInformation", "showSubtotalBeforeAdvances", "providerManagedTemplateFileName", "envelopeSettings", "renderHeaderFooter", "headerText", "footerText", "overrideExternalPrintingChecks", "supportsExternalPrinting", "fileName", "useCase", "useBuildIn", "customTemplateInternalFilePath", "customTemplateFileName", "translationStatus"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -141,6 +142,7 @@ class CreditNotePdfTemplateDTO(BaseModel):
             "showBalance": obj.get("showBalance"),
             "showVatSpecs": obj.get("showVatSpecs"),
             "showCustomInformation": obj.get("showCustomInformation"),
+            "showSubtotalBeforeAdvances": obj.get("showSubtotalBeforeAdvances"),
             "providerManagedTemplateFileName": obj.get("providerManagedTemplateFileName"),
             "envelopeSettings": EnvelopeSettingsDTO.from_dict(obj["envelopeSettings"]) if obj.get("envelopeSettings") is not None else None,
             "renderHeaderFooter": obj.get("renderHeaderFooter"),

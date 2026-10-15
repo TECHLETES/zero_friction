@@ -54,6 +54,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_bulk_change_customer_invoice_communication_preferences(self) -> None:
+        """Test case for bulk_change_customer_invoice_communication_preferences
+
+        Replace invoice sending methods for multiple customers. A null communication type follows the organisation default. Culture, collection flow, and statement preferences are left unchanged.
+        """
+        pass
+
     def test_bulk_remove_contract_service(self) -> None:
         """Test case for bulk_remove_contract_service
 
@@ -86,6 +93,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for change_customer_collection_day
 
         Update only the Direct Debit collection day of a customer. Narrow, single-purpose endpoint used by the resident portal self-service so residents can hold a minimal collection-day permission rather than the broad billing-details one (which also changes payment terms and default payment method).
+        """
+        pass
+
+    def test_change_customer_communication_language(self) -> None:
+        """Test case for change_customer_communication_language
+
+        Update only the communication language of a customer. Narrow, single-purpose endpoint used by the resident portal self-service so residents can change culture without replacing invoice communication preferences.
         """
         pass
 
@@ -128,6 +142,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for change_customer_invoice_address
 
         Update invoice address of a customer.
+        """
+        pass
+
+    def test_change_customer_payment_method(self) -> None:
+        """Test case for change_customer_payment_method
+
+        Update only the default payment method of a customer. Narrow, single-purpose endpoint used by the resident portal self-service so residents can hold a minimal payment-method permission rather than the broad billing-details one (which also changes payment terms).
         """
         pass
 
@@ -191,6 +212,20 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for delete_customers_customeruuid
 
         Delete a customer.
+        """
+        pass
+
+    def test_delete_meters_bulk_delete(self) -> None:
+        """Test case for delete_meters_bulk_delete
+
+        Soft-delete multiple meters in bulk.
+        """
+        pass
+
+    def test_delete_meters_meteruuid_delete(self) -> None:
+        """Test case for delete_meters_meteruuid_delete
+
+        Soft-delete a meter that was never installed, freeing its serial number for reuse.
         """
         pass
 
@@ -614,6 +649,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_post_contracts_bulk_triggerinvoiceestimation(self) -> None:
+        """Test case for post_contracts_bulk_triggerinvoiceestimation
+
+        Trigger invoice estimation for the open billing period on multiple contracts in bulk.
+        """
+        pass
+
     def test_post_contracts_bulk_unblock(self) -> None:
         """Test case for post_contracts_bulk_unblock
 
@@ -667,6 +709,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for post_contracts_contractuuid_terminate
 
         Terminate a signed contract.
+        """
+        pass
+
+    def test_post_contracts_contractuuid_triggerinvoiceestimation(self) -> None:
+        """Test case for post_contracts_contractuuid_triggerinvoiceestimation
+
+        Trigger invoice estimation for the open billing period of a contract.
         """
         pass
 
@@ -1087,6 +1136,573 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for post_servicelocations_entityid_customproperties
 
         /ServiceLocations/{entityId}/customproperties - POST
+        """
+        pass
+
+    def test_put_contracts_bulk_addservice(self) -> None:
+        """Test case for put_contracts_bulk_addservice
+
+        /Contracts/bulk/addservice - PUT
+        """
+        pass
+
+    def test_put_contracts_bulk_block(self) -> None:
+        """Test case for put_contracts_bulk_block
+
+        Mark multiple contracts as blocked in bulk.
+        """
+        pass
+
+    def test_put_contracts_bulk_estimate(self) -> None:
+        """Test case for put_contracts_bulk_estimate
+
+        Trigger recalculation of EAV for multiple contracts in bulk.
+        """
+        pass
+
+    def test_put_contracts_bulk_removeservice(self) -> None:
+        """Test case for put_contracts_bulk_removeservice
+
+        /Contracts/bulk/removeservice - PUT
+        """
+        pass
+
+    def test_put_contracts_bulk_sign(self) -> None:
+        """Test case for put_contracts_bulk_sign
+
+        Sign multiple contracts in bulk.
+        """
+        pass
+
+    def test_put_contracts_bulk_terminate(self) -> None:
+        """Test case for put_contracts_bulk_terminate
+
+        Terminate multiple signed contracts in bulk.
+        """
+        pass
+
+    def test_put_contracts_bulk_triggerinvoiceestimation(self) -> None:
+        """Test case for put_contracts_bulk_triggerinvoiceestimation
+
+        Trigger invoice estimation for the open billing period on multiple contracts in bulk.
+        """
+        pass
+
+    def test_put_contracts_bulk_unblock(self) -> None:
+        """Test case for put_contracts_bulk_unblock
+
+        Mark multiple contracts as unblocked in bulk.
+        """
+        pass
+
+    def test_put_contracts_bulk_updateconsumptiongroups(self) -> None:
+        """Test case for put_contracts_bulk_updateconsumptiongroups
+
+        Update consumptiongroup on multiple contracts in bulk.
+        """
+        pass
+
+    def test_put_contracts_bulk_updateproduct(self) -> None:
+        """Test case for put_contracts_bulk_updateproduct
+
+        Update product on multiple contracts in bulk.
+        """
+        pass
+
+    def test_put_contracts_contractid_addservice(self) -> None:
+        """Test case for put_contracts_contractid_addservice
+
+        /Contracts/{contractId}/addservice - PUT
+        """
+        pass
+
+    def test_put_contracts_contractid_removeservice(self) -> None:
+        """Test case for put_contracts_contractid_removeservice
+
+        /Contracts/{contractId}/removeservice - PUT
+        """
+        pass
+
+    def test_put_contracts_contractuuid_block(self) -> None:
+        """Test case for put_contracts_contractuuid_block
+
+        Mark a contract as blocked for billing.
+        """
+        pass
+
+    def test_put_contracts_contractuuid_changeadvanceamount(self) -> None:
+        """Test case for put_contracts_contractuuid_changeadvanceamount
+
+        Update the advance amount for a draft contract.
+        """
+        pass
+
+    def test_put_contracts_contractuuid_consumptiongroups(self) -> None:
+        """Test case for put_contracts_contractuuid_consumptiongroups
+
+        Updates the consumption groups and their estimated values for services provided on a contract.
+        """
+        pass
+
+    def test_put_contracts_contractuuid_sign(self) -> None:
+        """Test case for put_contracts_contractuuid_sign
+
+        Sign a contract.
+        """
+        pass
+
+    def test_put_contracts_contractuuid_terminate(self) -> None:
+        """Test case for put_contracts_contractuuid_terminate
+
+        Terminate a signed contract.
+        """
+        pass
+
+    def test_put_contracts_contractuuid_triggerinvoiceestimation(self) -> None:
+        """Test case for put_contracts_contractuuid_triggerinvoiceestimation
+
+        Trigger invoice estimation for the open billing period of a contract.
+        """
+        pass
+
+    def test_put_contracts_contractuuid_unblock(self) -> None:
+        """Test case for put_contracts_contractuuid_unblock
+
+        Mark a contract as unblocked for billing.
+        """
+        pass
+
+    def test_put_contracts_contractuuid_updatebillingdetails(self) -> None:
+        """Test case for put_contracts_contractuuid_updatebillingdetails
+
+        Update billing details of a contract.
+        """
+        pass
+
+    def test_put_contracts_contractuuid_updateexternalcontractreference(self) -> None:
+        """Test case for put_contracts_contractuuid_updateexternalcontractreference
+
+        Update the external contract reference.
+        """
+        pass
+
+    def test_put_contracts_contractuuid_updateproduct(self) -> None:
+        """Test case for put_contracts_contractuuid_updateproduct
+
+        Update product of a contract.
+        """
+        pass
+
+    def test_put_contracts_entityid_customproperties(self) -> None:
+        """Test case for put_contracts_entityid_customproperties
+
+        /Contracts/{entityId}/customproperties - PUT
+        """
+        pass
+
+    def test_put_customergroups_uuid_settings_automaticsettlement(self) -> None:
+        """Test case for put_customergroups_uuid_settings_automaticsettlement
+
+        Update auto-settlement settings of customer group.
+        """
+        pass
+
+    def test_put_customergroups_uuid_updatename(self) -> None:
+        """Test case for put_customergroups_uuid_updatename
+
+        Update name of customer group.
+        """
+        pass
+
+    def test_put_customers_bulk_communicationpreferences(self) -> None:
+        """Test case for put_customers_bulk_communicationpreferences
+
+        Replace invoice sending methods for multiple customers. A null communication type follows the organisation default. Culture, collection flow, and statement preferences are left unchanged.
+        """
+        pass
+
+    def test_put_customers_bulk_customergroup(self) -> None:
+        """Test case for put_customers_bulk_customergroup
+
+        Move multiple customers to customer group in bulk.
+        """
+        pass
+
+    def test_put_customers_customeruuid_billingdetails(self) -> None:
+        """Test case for put_customers_customeruuid_billingdetails
+
+        Update billing details of a customer.
+        """
+        pass
+
+    def test_put_customers_customeruuid_collectionday(self) -> None:
+        """Test case for put_customers_customeruuid_collectionday
+
+        Update only the Direct Debit collection day of a customer. Narrow, single-purpose endpoint used by the resident portal self-service so residents can hold a minimal collection-day permission rather than the broad billing-details one (which also changes payment terms and default payment method).
+        """
+        pass
+
+    def test_put_customers_customeruuid_communicationlanguage(self) -> None:
+        """Test case for put_customers_customeruuid_communicationlanguage
+
+        Update only the communication language of a customer. Narrow, single-purpose endpoint used by the resident portal self-service so residents can change culture without replacing invoice communication preferences.
+        """
+        pass
+
+    def test_put_customers_customeruuid_communicationpreferences(self) -> None:
+        """Test case for put_customers_customeruuid_communicationpreferences
+
+        Update communication preferences of a customer.
+        """
+        pass
+
+    def test_put_customers_customeruuid_contactdetails(self) -> None:
+        """Test case for put_customers_customeruuid_contactdetails
+
+        Update contact details of a customer.
+        """
+        pass
+
+    def test_put_customers_customeruuid_customergroup(self) -> None:
+        """Test case for put_customers_customeruuid_customergroup
+
+        Move customer to a different customer group.
+        """
+        pass
+
+    def test_put_customers_customeruuid_details(self) -> None:
+        """Test case for put_customers_customeruuid_details
+
+        Update details of a customer.
+        """
+        pass
+
+    def test_put_customers_customeruuid_einvoicingsettings(self) -> None:
+        """Test case for put_customers_customeruuid_einvoicingsettings
+
+        Update e-invoicing settings of a customer.
+        """
+        pass
+
+    def test_put_customers_customeruuid_invoiceaddress(self) -> None:
+        """Test case for put_customers_customeruuid_invoiceaddress
+
+        Update invoice address of a customer.
+        """
+        pass
+
+    def test_put_customers_customeruuid_paymentmethod(self) -> None:
+        """Test case for put_customers_customeruuid_paymentmethod
+
+        Update only the default payment method of a customer. Narrow, single-purpose endpoint used by the resident portal self-service so residents can hold a minimal payment-method permission rather than the broad billing-details one (which also changes payment terms).
+        """
+        pass
+
+    def test_put_customers_customeruuid_portal_confirm(self) -> None:
+        """Test case for put_customers_customeruuid_portal_confirm
+
+        Confirm portal account of a customer
+        """
+        pass
+
+    def test_put_customers_customeruuid_portal_reset(self) -> None:
+        """Test case for put_customers_customeruuid_portal_reset
+
+        Reset portal account of a customer, which will delete the customer portal account and reset the portal properties.
+        """
+        pass
+
+    def test_put_customers_customeruuid_portaldetails(self) -> None:
+        """Test case for put_customers_customeruuid_portaldetails
+
+        Update customer portal details of a customer.
+        """
+        pass
+
+    def test_put_customers_customeruuid_send_subtype(self) -> None:
+        """Test case for put_customers_customeruuid_send_subtype
+
+        Send email to a customer.
+        """
+        pass
+
+    def test_put_customers_entityid_customproperties(self) -> None:
+        """Test case for put_customers_entityid_customproperties
+
+        /Customers/{entityId}/customproperties - PUT
+        """
+        pass
+
+    def test_put_meters_bulk_reconfigure_from_model(self) -> None:
+        """Test case for put_meters_bulk_reconfigure_from_model
+
+        Reconfigure multiple meters from a model's channel templates in bulk.
+        """
+        pass
+
+    def test_put_meters_bulk_uninstall(self) -> None:
+        """Test case for put_meters_bulk_uninstall
+
+        Uninstall multiple installed meters in bulk.
+        """
+        pass
+
+    def test_put_meters_entityid_customproperties(self) -> None:
+        """Test case for put_meters_entityid_customproperties
+
+        /Meters/{entityId}/customproperties - PUT
+        """
+        pass
+
+    def test_put_meters_meteruuid_channels(self) -> None:
+        """Test case for put_meters_meteruuid_channels
+
+        Update channels configured on a meter.
+        """
+        pass
+
+    def test_put_meters_meteruuid_details(self) -> None:
+        """Test case for put_meters_meteruuid_details
+
+        Update details of a meter.
+        """
+        pass
+
+    def test_put_meters_meteruuid_install(self) -> None:
+        """Test case for put_meters_meteruuid_install
+
+        Install an uninstalled meter.
+        """
+        pass
+
+    def test_put_meters_meteruuid_metertag(self) -> None:
+        """Test case for put_meters_meteruuid_metertag
+
+        Update meter tag.
+        """
+        pass
+
+    def test_put_meters_meteruuid_submeter_add(self) -> None:
+        """Test case for put_meters_meteruuid_submeter_add
+
+        Set this meter as a parent meter of another meter.
+        """
+        pass
+
+    def test_put_meters_meteruuid_uninstall(self) -> None:
+        """Test case for put_meters_meteruuid_uninstall
+
+        Uninstall an installed meter.
+        """
+        pass
+
+    def test_put_meters_meteruuid_updateparentrelation(self) -> None:
+        """Test case for put_meters_meteruuid_updateparentrelation
+
+        Set this meter as a sub-meter of another meter.
+        """
+        pass
+
+    def test_put_meters_meteruuid_validate(self) -> None:
+        """Test case for put_meters_meteruuid_validate
+
+        Trigger meter validation.
+        """
+        pass
+
+    def test_put_moverequests_bulk_reject(self) -> None:
+        """Test case for put_moverequests_bulk_reject
+
+        Reject multiple uncompleted move requests in bulk.
+        """
+        pass
+
+    def test_put_moverequests_bulk_setnew(self) -> None:
+        """Test case for put_moverequests_bulk_setnew
+
+        Mark multiple uncompleted move requests as new in bulk.
+        """
+        pass
+
+    def test_put_moverequests_bulk_setpending(self) -> None:
+        """Test case for put_moverequests_bulk_setpending
+
+        Mark multiple uncompleted move requests as pending in bulk.
+        """
+        pass
+
+    def test_put_moverequests_moverequestuuid_process(self) -> None:
+        """Test case for put_moverequests_moverequestuuid_process
+
+        Process uncompleted move request.
+        """
+        pass
+
+    def test_put_moverequests_moverequestuuid_reject(self) -> None:
+        """Test case for put_moverequests_moverequestuuid_reject
+
+        Reject uncompleted move request.
+        """
+        pass
+
+    def test_put_moverequests_moverequestuuid_setnew(self) -> None:
+        """Test case for put_moverequests_moverequestuuid_setnew
+
+        Mark uncompleted move request as new.
+        """
+        pass
+
+    def test_put_moverequests_moverequestuuid_setpending(self) -> None:
+        """Test case for put_moverequests_moverequestuuid_setpending
+
+        Mark uncompleted move request as pending.
+        """
+        pass
+
+    def test_put_moverequests_moverequestuuid_updatecustomerdetails(self) -> None:
+        """Test case for put_moverequests_moverequestuuid_updatecustomerdetails
+
+        Update customer details of a move request.
+        """
+        pass
+
+    def test_put_moverequests_moverequestuuid_updatedetails(self) -> None:
+        """Test case for put_moverequests_moverequestuuid_updatedetails
+
+        Update details of a move request.
+        """
+        pass
+
+    def test_put_moverequests_moverequestuuid_updatemeasurementdetails(self) -> None:
+        """Test case for put_moverequests_moverequestuuid_updatemeasurementdetails
+
+        Update measurement details of a move request.
+        """
+        pass
+
+    def test_put_moverequests_moverequestuuid_updatemutationdatetime(self) -> None:
+        """Test case for put_moverequests_moverequestuuid_updatemutationdatetime
+
+        Update mutation date of a move request.
+        """
+        pass
+
+    def test_put_moverequests_moverequestuuid_updateservicelocationdetails(self) -> None:
+        """Test case for put_moverequests_moverequestuuid_updateservicelocationdetails
+
+        Update location details of a move request.
+        """
+        pass
+
+    def test_put_propertygroups_entityid_customproperties(self) -> None:
+        """Test case for put_propertygroups_entityid_customproperties
+
+        /PropertyGroups/{entityId}/customproperties - PUT
+        """
+        pass
+
+    def test_put_propertygroups_propertygroupuuid(self) -> None:
+        """Test case for put_propertygroups_propertygroupuuid
+
+        Update details of a location group.
+        """
+        pass
+
+    def test_put_propertygroups_propertygroupuuid_communicationconfiguration(self) -> None:
+        """Test case for put_propertygroups_propertygroupuuid_communicationconfiguration
+
+        Update communication configuration of a location group.
+        """
+        pass
+
+    def test_put_propertygroups_propertygroupuuid_managementrelations(self) -> None:
+        """Test case for put_propertygroups_propertygroupuuid_managementrelations
+
+        Update management relations of a location group.
+        """
+        pass
+
+    def test_put_propertygroups_propertygroupuuid_servicelocations(self) -> None:
+        """Test case for put_propertygroups_propertygroupuuid_servicelocations
+
+        Add locations to a location group.
+        """
+        pass
+
+    def test_put_servicelocations_bulk_archive(self) -> None:
+        """Test case for put_servicelocations_bulk_archive
+
+        Archive multiple service locations in bulk.
+        """
+        pass
+
+    def test_put_servicelocations_bulk_recalculateeav(self) -> None:
+        """Test case for put_servicelocations_bulk_recalculateeav
+
+        Trigger recalculation of EAV for multiple locations in bulk.
+        """
+        pass
+
+    def test_put_servicelocations_bulk_restore(self) -> None:
+        """Test case for put_servicelocations_bulk_restore
+
+        Restore multiple archived service locations in bulk.
+        """
+        pass
+
+    def test_put_servicelocations_bulk_updateproduct(self) -> None:
+        """Test case for put_servicelocations_bulk_updateproduct
+
+        Update product for multiple locations in bulk.
+        """
+        pass
+
+    def test_put_servicelocations_bulk_updateservices(self) -> None:
+        """Test case for put_servicelocations_bulk_updateservices
+
+        Update which services are enabled on multiple service locations in bulk.
+        """
+        pass
+
+    def test_put_servicelocations_entityid_customproperties(self) -> None:
+        """Test case for put_servicelocations_entityid_customproperties
+
+        /ServiceLocations/{entityId}/customproperties - PUT
+        """
+        pass
+
+    def test_put_servicelocations_servicelocationuuid_updateaddress(self) -> None:
+        """Test case for put_servicelocations_servicelocationuuid_updateaddress
+
+        Update addres of a location.
+        """
+        pass
+
+    def test_put_servicelocations_servicelocationuuid_updateexternalid(self) -> None:
+        """Test case for put_servicelocations_servicelocationuuid_updateexternalid
+
+        Update external ID of a location.
+        """
+        pass
+
+    def test_put_servicelocations_servicelocationuuid_updatemanagementdetails(self) -> None:
+        """Test case for put_servicelocations_servicelocationuuid_updatemanagementdetails
+
+        Update management relations of a location.
+        """
+        pass
+
+    def test_put_servicelocations_servicelocationuuid_updateproduct(self) -> None:
+        """Test case for put_servicelocations_servicelocationuuid_updateproduct
+
+        Update product for a location.
+        """
+        pass
+
+    def test_put_servicelocations_servicelocationuuid_updateservices(self) -> None:
+        """Test case for put_servicelocations_servicelocationuuid_updateservices
+
+        Update which services are enabled on the service location. Only services that were never supplied can be removed.
         """
         pass
 

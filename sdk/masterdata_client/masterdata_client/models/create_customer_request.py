@@ -44,7 +44,7 @@ class CreateCustomerRequest(BaseModel):
     ssin_country: CountryCode = Field(alias="ssinCountry")
     customer_type: CustomerType = Field(alias="customerType")
     company_name: Optional[StrictStr] = Field(alias="companyName")
-    vat_number: Optional[StrictStr] = Field(default=None, alias="vatNumber")
+    vat_number: Optional[StrictStr] = Field(alias="vatNumber")
     organization_number: Optional[StrictStr] = Field(alias="organizationNumber")
     payment_terms_id: Optional[StrictStr] = Field(default=None, alias="paymentTermsId")
     default_payment_method: PaymentMethod = Field(alias="defaultPaymentMethod")

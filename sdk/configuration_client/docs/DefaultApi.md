@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**add_host_name**](DefaultApi.md#add_host_name) | **POST** /PortalSettings/hostname/add | adds a hostName for a specific portal.
 [**create_payment_terms**](DefaultApi.md#create_payment_terms) | **POST** /PaymentTerms | Creates a new payment term.
 [**delete_accounting_accountingcompanies**](DefaultApi.md#delete_accounting_accountingcompanies) | **DELETE** /Accounting/accountingcompanies | Deletes accounting companies and all their related entities.
+[**delete_accounting_custom_codes_kind_id**](DefaultApi.md#delete_accounting_custom_codes_kind_id) | **DELETE** /Accounting/custom-codes/{kind}/{id} | Deletes a Custom accounting code when it is not in use.
 [**delete_bankaccounts_bankaccuuid**](DefaultApi.md#delete_bankaccounts_bankaccuuid) | **DELETE** /BankAccounts/{bankaccuuid} | Deletes a bank account by its identifier.
 [**delete_bankingdataproviders_id**](DefaultApi.md#delete_bankingdataproviders_id) | **DELETE** /BankingDataProviders/{id} | Delete a banking data provider.
 [**delete_billingitems_billingitemuuid**](DefaultApi.md#delete_billingitems_billingitemuuid) | **DELETE** /BillingItems/{billingitemuuid} | Deletes a billing item by its identifier.
@@ -23,6 +24,7 @@ Method | HTTP request | Description
 [**delete_page_notification**](DefaultApi.md#delete_page_notification) | **POST** /PortalSettings/notification/{pageIdentifier}/delete | Removes a page notification from the portal settings.
 [**delete_payment_terms**](DefaultApi.md#delete_payment_terms) | **DELETE** /PaymentTerms/{paymenttermuuid} | Deletes a payment term by its identifier.
 [**delete_paymentdelays_paymentdelayuuid**](DefaultApi.md#delete_paymentdelays_paymentdelayuuid) | **DELETE** /PaymentDelays/{paymentdelayuuid} | Deletes a payment delay setting by its identifier.
+[**delete_portalsettings_notification_pageidentifier_delete**](DefaultApi.md#delete_portalsettings_notification_pageidentifier_delete) | **DELETE** /PortalSettings/notification/{pageIdentifier}/delete | Removes a page notification from the portal settings.
 [**delete_products_productuuid**](DefaultApi.md#delete_products_productuuid) | **DELETE** /Products/{productuuid} | Deletes a product by its identifier.
 [**delete_taxcodes_taxcodeuuid**](DefaultApi.md#delete_taxcodes_taxcodeuuid) | **DELETE** /TaxCodes/{taxcodeuuid} | Deletes a tax code by its identifier.
 [**delete_templates_entitysubjecttype_entitysubjectsubtype_templateusecase**](DefaultApi.md#delete_templates_entitysubjecttype_entitysubjectsubtype_templateusecase) | **DELETE** /Templates/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase} | Removes a custom template for a specific scenario.
@@ -111,6 +113,7 @@ Method | HTTP request | Description
 [**get_products_productuuid**](DefaultApi.md#get_products_productuuid) | **GET** /Products/{productuuid} | Retrieves a specific product by its identifier.
 [**get_productusage**](DefaultApi.md#get_productusage) | **GET** /ProductUsage | Gets the configuration product usage snapshot with integrations per organization.
 [**get_regional_regulation_parameters_for_bel**](DefaultApi.md#get_regional_regulation_parameters_for_bel) | **GET** /RegionalRegulations/bel | Retrieves the current regional regulations parameters specific to Belgium.
+[**get_regional_regulation_parameters_for_fra**](DefaultApi.md#get_regional_regulation_parameters_for_fra) | **GET** /RegionalRegulations/fra | Retrieves the current regional regulations parameters specific to France.
 [**get_regional_regulation_parameters_for_gbr**](DefaultApi.md#get_regional_regulation_parameters_for_gbr) | **GET** /RegionalRegulations/gbr | Retrieves the current regional regulations parameters specific to Great Britain.
 [**get_reportingconfigurationproviders**](DefaultApi.md#get_reportingconfigurationproviders) | **GET** /ReportingConfigurationProviders | Gets the reporting configuration provider status for the current organization. It returns if the reporting configuration provider is enabled for the organization and to which destination the data will be exported.
 [**get_requiredestimations_productid**](DefaultApi.md#get_requiredestimations_productid) | **GET** /RequiredEstimations/{productId} | Retrieves all required estimations for a specific product.
@@ -163,6 +166,7 @@ Method | HTTP request | Description
 [**post_accounting_costcenters_filter**](DefaultApi.md#post_accounting_costcenters_filter) | **POST** /Accounting/costcenters/filter | Retrieves a paged list of cost centers This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
 [**post_accounting_costunits**](DefaultApi.md#post_accounting_costunits) | **POST** /Accounting/costunits | Creates or updates cost units. If a cost unit already exists in the system, it will be updated instead of creating a new one.  The system identifies existing codes by matching the SourceEntityId in the Metadata property.
 [**post_accounting_costunits_filter**](DefaultApi.md#post_accounting_costunits_filter) | **POST** /Accounting/costunits/filter | Retrieves a paged list of cost units This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
+[**post_accounting_custom_codes_kind_id_description**](DefaultApi.md#post_accounting_custom_codes_kind_id_description) | **POST** /Accounting/custom-codes/{kind}/{id}/description | Updates the description of a Custom accounting code.
 [**post_accounting_disconnect**](DefaultApi.md#post_accounting_disconnect) | **POST** /Accounting/disconnect | Disconnect the configured accounting system for the organization.
 [**post_accounting_generalledgers**](DefaultApi.md#post_accounting_generalledgers) | **POST** /Accounting/generalledgers | Creates or updates general ledger codes. If a general ledger code already exists in the system, it will be updated instead of creating a new one.  The system identifies existing codes by matching the SourceEntityId in the Metadata property.
 [**post_accounting_generalledgers_filter**](DefaultApi.md#post_accounting_generalledgers_filter) | **POST** /Accounting/generalledgers/filter | Retrieves a paged list of general ledger codes, with optional filtering and sorting. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
@@ -238,10 +242,11 @@ Method | HTTP request | Description
 [**post_parameters_masterdata**](DefaultApi.md#post_parameters_masterdata) | **POST** /Parameters/masterdata | Updates the master data parameters configuration.
 [**post_parameters_metering**](DefaultApi.md#post_parameters_metering) | **POST** /Parameters/metering | Updates the metering parameters configuration.
 [**post_parameters_payment**](DefaultApi.md#post_parameters_payment) | **POST** /Parameters/payment | Updates the payment parameters configuration.
+[**post_parameters_payment_portal_collection_preferences**](DefaultApi.md#post_parameters_payment_portal_collection_preferences) | **POST** /Parameters/payment/portal-collection-preferences | Updates the customer portal collection day preferences.
 [**post_parameters_paymentplan**](DefaultApi.md#post_parameters_paymentplan) | **POST** /Parameters/paymentplan | Updates the payment plan parameters configuration.
 [**post_parameters_prepayment**](DefaultApi.md#post_parameters_prepayment) | **POST** /Parameters/prepayment | Updates the prepayment parameters configuration (PrepaymentParameters).
-[**post_paymentdelays**](DefaultApi.md#post_paymentdelays) | **POST** /PaymentDelays | Creates a new payment delay setting.
-[**post_paymentdelays_paymentdelayuuid**](DefaultApi.md#post_paymentdelays_paymentdelayuuid) | **POST** /PaymentDelays/{paymentdelayuuid} | Updates an existing payment delay setting.
+[**post_paymentdelays**](DefaultApi.md#post_paymentdelays) | **POST** /PaymentDelays | Creates a new payment delay setting. Only one setting may exist per invoice type, so creating a second one for the same invoice type is rejected.
+[**post_paymentdelays_paymentdelayuuid**](DefaultApi.md#post_paymentdelays_paymentdelayuuid) | **POST** /PaymentDelays/{paymentdelayuuid} | Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
 [**post_products**](DefaultApi.md#post_products) | **POST** /Products | Creates a new product.
 [**post_products_entityid_translations**](DefaultApi.md#post_products_entityid_translations) | **POST** /Products/{entityId}/translations | /Products/{entityId}/translations - POST
 [**post_products_productuuid**](DefaultApi.md#post_products_productuuid) | **POST** /Products/{productuuid} | Updates an existing product.
@@ -262,9 +267,67 @@ Method | HTTP request | Description
 [**post_timeofusetypes**](DefaultApi.md#post_timeofusetypes) | **POST** /TimeOfUseTypes | Creates a time-of-use type.
 [**post_timeofusetypes_entityid_translations**](DefaultApi.md#post_timeofusetypes_entityid_translations) | **POST** /TimeOfUseTypes/{entityId}/translations | /TimeOfUseTypes/{entityId}/translations - POST
 [**post_timeofusetypes_id**](DefaultApi.md#post_timeofusetypes_id) | **POST** /TimeOfUseTypes/{id} | Updates a time-of-use type.
+[**put_accounting_custom_codes_kind_id_description**](DefaultApi.md#put_accounting_custom_codes_kind_id_description) | **PUT** /Accounting/custom-codes/{kind}/{id}/description | Updates the description of a Custom accounting code.
+[**put_accounting_disconnect**](DefaultApi.md#put_accounting_disconnect) | **PUT** /Accounting/disconnect | Disconnect the configured accounting system for the organization.
+[**put_accounting_sync**](DefaultApi.md#put_accounting_sync) | **PUT** /Accounting/sync | Syncs accounting codes from the external accounting system
+[**put_bankaccounts_bankaccuuid**](DefaultApi.md#put_bankaccounts_bankaccuuid) | **PUT** /BankAccounts/{bankaccuuid} | Updates an existing bank account.
+[**put_bankholidays_id_update**](DefaultApi.md#put_bankholidays_id_update) | **PUT** /BankHolidays/{id}/update | Updates the organisation&#39;s bank holiday calendar in its entirety with the given list of (Date, IsActive). Returns the updated calendar.
+[**put_bankholidays_id_update_single**](DefaultApi.md#put_bankholidays_id_update_single) | **PUT** /BankHolidays/{id}/update-single | Updates the active state of a single bank holiday (by date). Returns the updated calendar.
+[**put_bankingdataproviders_id_disable**](DefaultApi.md#put_bankingdataproviders_id_disable) | **PUT** /BankingDataProviders/{id}/disable | Disable a banking data provider.
+[**put_bankingdataproviders_id_enable**](DefaultApi.md#put_bankingdataproviders_id_enable) | **PUT** /BankingDataProviders/{id}/enable | Enables a banking data provider.
+[**put_bankingdataproviders_id_testconnection**](DefaultApi.md#put_bankingdataproviders_id_testconnection) | **PUT** /BankingDataProviders/{id}/testConnection | Test the SFTP connection for a banking data provider.
+[**put_bankingdataproviders_id_update**](DefaultApi.md#put_bankingdataproviders_id_update) | **PUT** /BankingDataProviders/{id}/update | Update an existing banking data provider.
+[**put_billingitems_billingitemuuid**](DefaultApi.md#put_billingitems_billingitemuuid) | **PUT** /BillingItems/{billingitemuuid} | Updates an existing billing item.
+[**put_billingitems_entityid_translations**](DefaultApi.md#put_billingitems_entityid_translations) | **PUT** /BillingItems/{entityId}/translations | /BillingItems/{entityId}/translations - PUT
 [**put_billingtariffs_b_billingitemid**](DefaultApi.md#put_billingtariffs_b_billingitemid) | **PUT** /BillingTariffs/b/{billingItemId} | Updates an existing billing tariff tree for a specific billing item.
 [**put_billingtariffs_b_billingitemid_period**](DefaultApi.md#put_billingtariffs_b_billingitemid_period) | **PUT** /BillingTariffs/b/{billingItemId}/period | Updates the period of a billing tariff tree for a specific billing item.
+[**put_collectionflows_id**](DefaultApi.md#put_collectionflows_id) | **PUT** /CollectionFlows/{id} | Updates an existing collection flow.
+[**put_collectionsteps_entityid_translations**](DefaultApi.md#put_collectionsteps_entityid_translations) | **PUT** /CollectionSteps/{entityId}/translations | /CollectionSteps/{entityId}/translations - PUT
+[**put_collectionsteps_id**](DefaultApi.md#put_collectionsteps_id) | **PUT** /CollectionSteps/{id} | Updates an existing collection flow step.
+[**put_costcomponents_costcomponentuuid**](DefaultApi.md#put_costcomponents_costcomponentuuid) | **PUT** /CostComponents/{costcomponentuuid} | Updates an existing cost component.
+[**put_costcomponents_entityid_translations**](DefaultApi.md#put_costcomponents_entityid_translations) | **PUT** /CostComponents/{entityId}/translations | /CostComponents/{entityId}/translations - PUT
+[**put_culturetable**](DefaultApi.md#put_culturetable) | **PUT** /CultureTable | Updates the culture table.
+[**put_customentitypropertytypes_customentitypropertytypeuuid**](DefaultApi.md#put_customentitypropertytypes_customentitypropertytypeuuid) | **PUT** /CustomEntityPropertyTypes/{customentitypropertytypeuuid} | Updates an existing custom entity property type.
+[**put_customentitypropertytypes_customentitypropertytypeuuid_options**](DefaultApi.md#put_customentitypropertytypes_customentitypropertytypeuuid_options) | **PUT** /CustomEntityPropertyTypes/{customentitypropertytypeuuid}/options | Updates the dropdown options for a custom entity property type.
+[**put_customentitypropertytypes_entityid_translations**](DefaultApi.md#put_customentitypropertytypes_entityid_translations) | **PUT** /CustomEntityPropertyTypes/{entityId}/translations | /CustomEntityPropertyTypes/{entityId}/translations - PUT
+[**put_dataexportfileformats_fileformatuuid**](DefaultApi.md#put_dataexportfileformats_fileformatuuid) | **PUT** /DataExportFileFormats/{fileformatuuid} | Updates an existing data export file format.
+[**put_dataexports_dataexportuuid**](DefaultApi.md#put_dataexports_dataexportuuid) | **PUT** /DataExports/{dataexportuuid} | Updates an existing data export.
+[**put_dataimportfileformats_fileformatuuid**](DefaultApi.md#put_dataimportfileformats_fileformatuuid) | **PUT** /DataImportFileFormats/{fileformatuuid} | Updates an existing data import file format.
+[**put_dataimports_dataimportuuid**](DefaultApi.md#put_dataimports_dataimportuuid) | **PUT** /DataImports/{dataimportuuid} | Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
 [**put_enumtranslations_enumtype_symbols_symbol**](DefaultApi.md#put_enumtranslations_enumtype_symbols_symbol) | **PUT** /EnumTranslations/{enumType}/symbols/{symbol} | Updates the translation for a specific enumeration symbol.
+[**put_enumtranslations_enumtype_symbols_symbol_reset**](DefaultApi.md#put_enumtranslations_enumtype_symbols_symbol_reset) | **PUT** /EnumTranslations/{enumType}/symbols/{symbol}/reset | Resets the translation for a specific enumeration symbol to its default value.
+[**put_integrations_billingtariff_import_importid_undo**](DefaultApi.md#put_integrations_billingtariff_import_importid_undo) | **PUT** /Integrations/billingTariff/import/{importId}/undo | Undoes a previous billing tariff import operation.
+[**put_integrations_billingtariff_import_importid_unlock**](DefaultApi.md#put_integrations_billingtariff_import_importid_unlock) | **PUT** /Integrations/billingTariff/import/{importId}/unlock | Unlocks a billing tariff import operation that was previously locked.
+[**put_models_modeluuid**](DefaultApi.md#put_models_modeluuid) | **PUT** /Models/{modeluuid} | Updates an existing device model.
+[**put_numbersequences_numbersequenceuuid**](DefaultApi.md#put_numbersequences_numbersequenceuuid) | **PUT** /NumberSequences/{numbersequenceuuid} | Updates an existing number sequence configuration.
+[**put_organizations_organizationuuid**](DefaultApi.md#put_organizations_organizationuuid) | **PUT** /Organizations/{organizationuuid} | Updates an existing organization.
+[**put_organizations_organizationuuid_initialize**](DefaultApi.md#put_organizations_organizationuuid_initialize) | **PUT** /Organizations/{organizationuuid}/initialize | Initializes an organization with default settings and configurations.
+[**put_parameters_billing**](DefaultApi.md#put_parameters_billing) | **PUT** /Parameters/billing | Updates the billing parameters configuration.
+[**put_parameters_communication**](DefaultApi.md#put_parameters_communication) | **PUT** /Parameters/communication | Updates the communication parameters configuration.
+[**put_parameters_communication_domainauthentication**](DefaultApi.md#put_parameters_communication_domainauthentication) | **PUT** /Parameters/communication/domainauthentication | Updates the domain authentication parameters for communication.
+[**put_parameters_communication_domainauthentication_eu_accept**](DefaultApi.md#put_parameters_communication_domainauthentication_eu_accept) | **PUT** /Parameters/communication/domainauthentication/eu/accept | Accepts EU cutover when AcceptAllowed: promotes EuRecords to Records and enqueues residency Eu.
+[**put_parameters_communication_domainauthentication_eu_migrate**](DefaultApi.md#put_parameters_communication_domainauthentication_eu_migrate) | **PUT** /Parameters/communication/domainauthentication/eu/migrate | Starts EU SendGrid domain migrate prep (writes EuRecords only; does not flip residency).
+[**put_parameters_communication_domainauthentication_eu_verify**](DefaultApi.md#put_parameters_communication_domainauthentication_eu_verify) | **PUT** /Parameters/communication/domainauthentication/eu/verify | Verifies EU migrate prep DNS (updates EuRecords only; does not flip residency).
+[**put_parameters_communication_domainauthentication_verify**](DefaultApi.md#put_parameters_communication_domainauthentication_verify) | **PUT** /Parameters/communication/domainauthentication/verify | Verifies the current domain authentication parameters.
+[**put_parameters_masterdata**](DefaultApi.md#put_parameters_masterdata) | **PUT** /Parameters/masterdata | Updates the master data parameters configuration.
+[**put_parameters_metering**](DefaultApi.md#put_parameters_metering) | **PUT** /Parameters/metering | Updates the metering parameters configuration.
+[**put_parameters_payment**](DefaultApi.md#put_parameters_payment) | **PUT** /Parameters/payment | Updates the payment parameters configuration.
+[**put_parameters_payment_portal_collection_preferences**](DefaultApi.md#put_parameters_payment_portal_collection_preferences) | **PUT** /Parameters/payment/portal-collection-preferences | Updates the customer portal collection day preferences.
+[**put_parameters_paymentplan**](DefaultApi.md#put_parameters_paymentplan) | **PUT** /Parameters/paymentplan | Updates the payment plan parameters configuration.
+[**put_parameters_prepayment**](DefaultApi.md#put_parameters_prepayment) | **PUT** /Parameters/prepayment | Updates the prepayment parameters configuration (PrepaymentParameters).
+[**put_paymentdelays_paymentdelayuuid**](DefaultApi.md#put_paymentdelays_paymentdelayuuid) | **PUT** /PaymentDelays/{paymentdelayuuid} | Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
+[**put_paymentterms_paymenttermuuid**](DefaultApi.md#put_paymentterms_paymenttermuuid) | **PUT** /PaymentTerms/{paymenttermuuid} | Updates an existing payment term.
+[**put_portalsettings**](DefaultApi.md#put_portalsettings) | **PUT** /PortalSettings | Updates portal settings configuration.
+[**put_portalsettings_hostname_add**](DefaultApi.md#put_portalsettings_hostname_add) | **PUT** /PortalSettings/hostname/add | adds a hostName for a specific portal.
+[**put_portalsettings_hostname_validate**](DefaultApi.md#put_portalsettings_hostname_validate) | **PUT** /PortalSettings/hostname/validate | Validates DNS records for a pending portal hostname.
+[**put_portalsettings_notification**](DefaultApi.md#put_portalsettings_notification) | **PUT** /PortalSettings/notification | Upserts a page notification to the portal settings.
+[**put_products_entityid_translations**](DefaultApi.md#put_products_entityid_translations) | **PUT** /Products/{entityId}/translations | /Products/{entityId}/translations - PUT
+[**put_products_productuuid**](DefaultApi.md#put_products_productuuid) | **PUT** /Products/{productuuid} | Updates an existing product.
+[**put_regionalregulations_bel**](DefaultApi.md#put_regionalregulations_bel) | **PUT** /RegionalRegulations/bel | Updates regional regulations parameters specific to Belgium.
+[**put_regionalregulations_gbr**](DefaultApi.md#put_regionalregulations_gbr) | **PUT** /RegionalRegulations/gbr | Updates regional regulations parameters specific to Geat Britain.
+[**put_reportingconfigurationproviders_activate**](DefaultApi.md#put_reportingconfigurationproviders_activate) | **PUT** /ReportingConfigurationProviders/activate | Activates reporting integration for the current organization. Creates a Microsoft Fabric cloud connection to the customer Azure Data Lake Storage Gen2 account using the supplied service principal credentials. The client secret is sent to Fabric only and is not stored in the database. Requires the Mi
+[**put_reportingconfigurationproviders_deactivate**](DefaultApi.md#put_reportingconfigurationproviders_deactivate) | **PUT** /ReportingConfigurationProviders/deactivate | Deactivates reporting integration for the current organization.
+[**put_reportingconfigurationproviders_settings**](DefaultApi.md#put_reportingconfigurationproviders_settings) | **PUT** /ReportingConfigurationProviders/settings | Updates reporting configuration (export location, Microsoft Entra ID tenant id, service principal application id). While the integration is active, changing any of those values or rotating the client secret requires supplying the client secret again so the Microsoft Fabric connection can be recreate
 [**put_scenarios_billingrelation_advanceamountchanged**](DefaultApi.md#put_scenarios_billingrelation_advanceamountchanged) | **PUT** /Scenarios/billingrelation/advanceamountchanged | Updates the advance amount changed scenario configuration.
 [**put_scenarios_collectioncase_collection**](DefaultApi.md#put_scenarios_collectioncase_collection) | **PUT** /Scenarios/collectioncase/collection | Updates the collection scenario configuration.
 [**put_scenarios_collectioncase_noticeofdefault**](DefaultApi.md#put_scenarios_collectioncase_noticeofdefault) | **PUT** /Scenarios/collectioncase/noticeofdefault | Updates the notice of default scenario configuration.
@@ -290,7 +353,13 @@ Method | HTTP request | Description
 [**put_scenarios_paymentplan_recalculated**](DefaultApi.md#put_scenarios_paymentplan_recalculated) | **PUT** /Scenarios/paymentplan/recalculated | Updates the payment plan recalculated scenario configuration.
 [**put_scenarios_paymentplan_reminder**](DefaultApi.md#put_scenarios_paymentplan_reminder) | **PUT** /Scenarios/paymentplan/reminder | Updates the payment plan reminder scenario configuration.
 [**put_scenarios_paymentplan_requested**](DefaultApi.md#put_scenarios_paymentplan_requested) | **PUT** /Scenarios/paymentplan/requested | Updates the payment plan requested scenario configuration.
+[**put_scenariotranslations_translationname_reset**](DefaultApi.md#put_scenariotranslations_translationname_reset) | **PUT** /ScenarioTranslations/{translationName}/reset | Resets a specific scenario translation to its default value.
+[**put_scenariotranslations_translationname_update**](DefaultApi.md#put_scenariotranslations_translationname_update) | **PUT** /ScenarioTranslations/{translationName}/update | Updates a specific scenario translation.
+[**put_taxcodes_taxcodeuuid**](DefaultApi.md#put_taxcodes_taxcodeuuid) | **PUT** /TaxCodes/{taxcodeuuid} | Updates an existing tax code.
 [**put_templates_entitysubjecttype_entitysubjectsubtype_templateusecase**](DefaultApi.md#put_templates_entitysubjecttype_entitysubjectsubtype_templateusecase) | **PUT** /Templates/{entitySubjectType}/{entitySubjectSubType}/{templateUsecase} | Uploads a custom template for a specific scenario.
+[**put_timeofusecalendars_id**](DefaultApi.md#put_timeofusecalendars_id) | **PUT** /TimeOfUseCalendars/{id} | Updates calendar weekdays (and display-only code). Same &#x60;weekdays&#x60; shape as create.
+[**put_timeofusetypes_entityid_translations**](DefaultApi.md#put_timeofusetypes_entityid_translations) | **PUT** /TimeOfUseTypes/{entityId}/translations | /TimeOfUseTypes/{entityId}/translations - PUT
+[**put_timeofusetypes_id**](DefaultApi.md#put_timeofusetypes_id) | **PUT** /TimeOfUseTypes/{id} | Updates a time-of-use type.
 [**update_payment_terms**](DefaultApi.md#update_payment_terms) | **POST** /PaymentTerms/{paymenttermuuid} | Updates an existing payment term.
 [**update_portal_settings**](DefaultApi.md#update_portal_settings) | **POST** /PortalSettings | Updates portal settings configuration.
 [**update_regional_regulation_parameters_for_bel**](DefaultApi.md#update_regional_regulation_parameters_for_bel) | **POST** /RegionalRegulations/bel | Updates regional regulations parameters specific to Belgium.
@@ -565,6 +634,99 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_accounting_custom_codes_kind_id**
+> ApiResponseDTO delete_accounting_custom_codes_kind_id(kind, id, zf_tuuid, zf_ouuid)
+
+Deletes a Custom accounting code when it is not in use.
+
+Deletes a Custom accounting code when it is not in use.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto import ApiResponseDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    kind = 56 # int | The kind of accounting code.
+    id = 'id_example' # str | The identifier of the accounting code.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Deletes a Custom accounting code when it is not in use.
+        api_response = api_instance.delete_accounting_custom_codes_kind_id(kind, id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->delete_accounting_custom_codes_kind_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->delete_accounting_custom_codes_kind_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **kind** | **int**| The kind of accounting code. | 
+ **id** | **str**| The identifier of the accounting code. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: text/plain, application/json, text/json
 
 ### HTTP response details
@@ -2034,6 +2196,98 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_portalsettings_notification_pageidentifier_delete**
+> ApiResponseDTOOfPortalSettingsDTO delete_portalsettings_notification_pageidentifier_delete(page_identifier, zf_tuuid, zf_ouuid)
+
+Removes a page notification from the portal settings.
+
+Removes a page notification from the portal settings.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_portal_settings_dto import ApiResponseDTOOfPortalSettingsDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    page_identifier = 'page_identifier_example' # str | The identifier of the portal page
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Removes a page notification from the portal settings.
+        api_response = api_instance.delete_portalsettings_notification_pageidentifier_delete(page_identifier, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->delete_portalsettings_notification_pageidentifier_delete:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->delete_portalsettings_notification_pageidentifier_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page_identifier** | **str**| The identifier of the portal page | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfPortalSettingsDTO**](ApiResponseDTOOfPortalSettingsDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
 **400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -9956,6 +10210,88 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_regional_regulation_parameters_for_fra**
+> ApiResponseDTOOfFRARegionalRegulationsConfigurationDTO get_regional_regulation_parameters_for_fra()
+
+Retrieves the current regional regulations parameters specific to France.
+
+Retrieves the current regional regulations parameters specific to France.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_fra_regional_regulations_configuration_dto import ApiResponseDTOOfFRARegionalRegulationsConfigurationDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+
+    try:
+        # Retrieves the current regional regulations parameters specific to France.
+        api_response = api_instance.get_regional_regulation_parameters_for_fra()
+        print("The response of DefaultApi->get_regional_regulation_parameters_for_fra:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_regional_regulation_parameters_for_fra: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ApiResponseDTOOfFRARegionalRegulationsConfigurationDTO**](ApiResponseDTOOfFRARegionalRegulationsConfigurationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_regional_regulation_parameters_for_gbr**
 > ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO get_regional_regulation_parameters_for_gbr()
 
@@ -14162,7 +14498,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_cost_centers_request = {"costCenters":[{"code":"string","description":"string","metadata":{"source":"string","sourceEntityId":"string","sourceAccountingCompanyId":"string"}}]} # CreateCostCentersRequest | Propagates notification that operations should be canceled. (optional)
+    create_cost_centers_request = {"costCenters":[{"code":"string","description":"string","metadata":{}}]} # CreateCostCentersRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates or updates cost centers. If a cost center already exists in the system, it will be updated instead of creating a new one.  The system identifies existing codes by matching the SourceEntityId in the Metadata property.
@@ -14353,7 +14689,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_cost_units_request = {"costUnits":[{"code":"string","description":"string","metadata":{"source":"string","sourceEntityId":"string","sourceAccountingCompanyId":"string"}}]} # CreateCostUnitsRequest | Propagates notification that operations should be canceled. (optional)
+    create_cost_units_request = {"costUnits":[{"code":"string","description":"string","metadata":{}}]} # CreateCostUnitsRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates or updates cost units. If a cost unit already exists in the system, it will be updated instead of creating a new one.  The system identifies existing codes by matching the SourceEntityId in the Metadata property.
@@ -14493,8 +14829,104 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **post_accounting_custom_codes_kind_id_description**
+> ApiResponseDTO post_accounting_custom_codes_kind_id_description(kind, id, zf_tuuid, zf_ouuid, update_accounting_code_description_request=update_accounting_code_description_request)
+
+Updates the description of a Custom accounting code.
+
+Updates the description of a Custom accounting code.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto import ApiResponseDTO
+from configuration_client.models.update_accounting_code_description_request import UpdateAccountingCodeDescriptionRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    kind = 56 # int | The kind of accounting code.
+    id = 'id_example' # str | The identifier of the accounting code.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_accounting_code_description_request = {"description":"string"} # UpdateAccountingCodeDescriptionRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the description of a Custom accounting code.
+        api_response = api_instance.post_accounting_custom_codes_kind_id_description(kind, id, zf_tuuid, zf_ouuid, update_accounting_code_description_request=update_accounting_code_description_request)
+        print("The response of DefaultApi->post_accounting_custom_codes_kind_id_description:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->post_accounting_custom_codes_kind_id_description: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **kind** | **int**| The kind of accounting code. | 
+ **id** | **str**| The identifier of the accounting code. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_accounting_code_description_request** | [**UpdateAccountingCodeDescriptionRequest**](UpdateAccountingCodeDescriptionRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **post_accounting_disconnect**
-> ApiResponseDTOOfboolean post_accounting_disconnect()
+> ApiResponseDTOOfboolean post_accounting_disconnect(zf_tuuid, zf_ouuid)
 
 Disconnect the configured accounting system for the organization.
 
@@ -14538,10 +14970,12 @@ configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
 with configuration_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
 
     try:
         # Disconnect the configured accounting system for the organization.
-        api_response = api_instance.post_accounting_disconnect()
+        api_response = api_instance.post_accounting_disconnect(zf_tuuid, zf_ouuid)
         print("The response of DefaultApi->post_accounting_disconnect:\n")
         pprint(api_response)
     except Exception as e:
@@ -14552,7 +14986,11 @@ with configuration_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
 
 ### Return type
 
@@ -14627,7 +15065,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_general_ledger_codes_request = {"generalLedgerCodes":[{"code":"string","description":"string","metadata":{"source":"string","sourceEntityId":"string","sourceAccountingCompanyId":"string"}}]} # CreateGeneralLedgerCodesRequest | Propagates notification that operations should be canceled. (optional)
+    create_general_ledger_codes_request = {"generalLedgerCodes":[{"code":"string","description":"string","metadata":{}}]} # CreateGeneralLedgerCodesRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates or updates general ledger codes. If a general ledger code already exists in the system, it will be updated instead of creating a new one.  The system identifies existing codes by matching the SourceEntityId in the Metadata property.
@@ -14906,7 +15344,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_item_codes_request = {"itemCodes":[{"code":"string","description":"string","metadata":{"source":"string","sourceEntityId":"string","sourceAccountingCompanyId":"string"}}]} # CreateItemCodesRequest | Propagates notification that operations should be canceled. (optional)
+    create_item_codes_request = {"itemCodes":[{"code":"string","description":"string","metadata":{}}]} # CreateItemCodesRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates new item codes based on the provided request data.
@@ -15094,7 +15532,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_journals_request = {"journals":[{"code":"string","description":"string","metadata":{"source":"string","sourceEntityId":"string","sourceAccountingCompanyId":"string"}}]} # CreateJournalsRequest | Propagates notification that operations should be canceled. (optional)
+    create_journals_request = {"journals":[{"code":"string","description":"string","metadata":{}}]} # CreateJournalsRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates a journal based on the provided request data.
@@ -15283,7 +15721,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_project_codes_request = {"projectCodes":[{"code":"string","description":"string","metadata":{"source":"string","sourceEntityId":"string","sourceAccountingCompanyId":"string"}}]} # CreateProjectCodesRequest | Propagates notification that operations should be canceled. (optional)
+    create_project_codes_request = {"projectCodes":[{"code":"string","description":"string","metadata":{}}]} # CreateProjectCodesRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates new project codes based on the provided request data.
@@ -15563,7 +16001,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_vat_codes_request = {"vatCodes":[{"code":"string","description":"string","metadata":{"source":"string","sourceEntityId":"string","sourceAccountingCompanyId":"string"}}]} # CreateVatCodesRequest | Propagates notification that operations should be canceled. (optional)
+    create_vat_codes_request = {"vatCodes":[{"code":"string","description":"string","metadata":{}}]} # CreateVatCodesRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates or updates VAT codes. If a VAT code already exists in the system, it will be updated instead of creating a new one.  The system identifies existing codes by matching the SourceEntityId in the Metadata property.
@@ -16218,7 +16656,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    upsert_banking_data_provider_request = {"providerName":"string","parameters":{"type":"bankingdataProviderParameterType.sftp","host":"string","port":0,"userName":"string","password":"string","publicKey":"string","directory":"string","authenticationMethod":"password","incomingDirectory":"string","outgoingDirectory":"string","archiveDirectory":"string","incomingBankStatementFormatType":"string","recurrence":"none","lastRunDateTime":"string","nextRunDateTime":"string","encryptionSettings":{"type":"ingcms","privateKey":"string","certificate":"string","publicCertificate":"string","containsPrivateKey":true,"containsCertificate":true,"containsPublicCertificate":true,"isEnabled":true,"encryptionType":"ingcms"}},"direction":"incoming","bankAccountIds":["string"],"applyToNewBankAccounts":true} # UpsertBankingDataProviderRequest | The cancellation token. (optional)
+    upsert_banking_data_provider_request = {"providerName":"string","parameters":{},"direction":"incoming","bankAccountIds":["string"],"applyToNewBankAccounts":true} # UpsertBankingDataProviderRequest | The cancellation token. (optional)
 
     try:
         # Create a new banking data provider.
@@ -16313,7 +16751,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     show_deleted = False # bool | Whether to include deleted items. (optional) (default to False)
     skip_paging = False # bool | Whether to skip paging. (optional) (default to False)
     continuation_token = 'continuation_token_example' # str | The continuation token for pagination. (optional)
-    paged_banking_data_providers_query_params = {"status":["string"],"direction":"string","bankAccountId":"string","applyToNewBankAccounts":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # PagedBankingDataProvidersQueryParams | The cancellation token. (optional)
+    paged_banking_data_providers_query_params = {"status":["string"],"direction":{},"bankAccountId":"string","applyToNewBankAccounts":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # PagedBankingDataProvidersQueryParams | The cancellation token. (optional)
 
     try:
         # Get a paged list of banking data providers. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
@@ -16681,7 +17119,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The banking data provider ID.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    upsert_banking_data_provider_request = {"providerName":"string","parameters":{"type":"bankingdataProviderParameterType.sftp","host":"string","port":0,"userName":"string","password":"string","publicKey":"string","directory":"string","authenticationMethod":"password","incomingDirectory":"string","outgoingDirectory":"string","archiveDirectory":"string","incomingBankStatementFormatType":"string","recurrence":"none","lastRunDateTime":"string","nextRunDateTime":"string","encryptionSettings":{"type":"ingcms","privateKey":"string","certificate":"string","publicCertificate":"string","containsPrivateKey":true,"containsCertificate":true,"containsPublicCertificate":true,"isEnabled":true,"encryptionType":"ingcms"}},"direction":"incoming","bankAccountIds":["string"],"applyToNewBankAccounts":true} # UpsertBankingDataProviderRequest | The cancellation token. (optional)
+    upsert_banking_data_provider_request = {"providerName":"string","parameters":{},"direction":"incoming","bankAccountIds":["string"],"applyToNewBankAccounts":true} # UpsertBankingDataProviderRequest | The cancellation token. (optional)
 
     try:
         # Update an existing banking data provider.
@@ -16774,7 +17212,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_billing_item_request = {"name":"string","description":"string","personTaxCodeId":"string","organisationTaxCodeId":"string","hideWhenZero":true,"isPrepaymentEligible":true,"accountingCodeId":"string","tierCalculationMethod":"invoiceperiod","calculationParameters":{"type":"consumption","utilityType":"none","meteringType":"none","direction":"offtake","billingCalculationType":"consumption","unitOfMeasure":"none"}} # CreateBillingItemRequest | Propagates notification that operations should be canceled. (optional)
+    create_billing_item_request = {"name":"string","description":"string","personTaxCodeId":"string","organisationTaxCodeId":"string","hideWhenZero":true,"isPrepaymentEligible":true,"accountingCodeId":"string","tierCalculationMethod":"invoiceperiod","calculationParameters":{}} # CreateBillingItemRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates a new billing item.
@@ -16867,7 +17305,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     billingitemuuid = 'billingitemuuid_example' # str | The unique identifier of the billing item to update.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_billing_item_request = {"name":"string","description":"string","personTaxCodeId":"string","organisationTaxCodeId":"string","accountingCodeId":"string","hideWhenZero":true,"isPrepaymentEligible":true,"tierCalculationMethod":"invoiceperiod","calculationParameters":{"type":"consumption","utilityType":"none","meteringType":"none","direction":"offtake","billingCalculationType":"consumption","unitOfMeasure":"none"}} # UpdateBillingItemRequest | Propagates notification that operations should be canceled. (optional)
+    update_billing_item_request = {"name":"string","description":"string","personTaxCodeId":"string","organisationTaxCodeId":"string","accountingCodeId":"string","hideWhenZero":true,"isPrepaymentEligible":true,"tierCalculationMethod":"invoiceperiod","calculationParameters":{}} # UpdateBillingItemRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates an existing billing item.
@@ -17098,7 +17536,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_billingtariffs_b_billingitemid**
-> ApiResponseDTOOfboolean post_billingtariffs_b_billingitemid(billing_item_id, create_billing_tariff_tree_request=create_billing_tariff_tree_request)
+> ApiResponseDTOOfboolean post_billingtariffs_b_billingitemid(billing_item_id, zf_tuuid, zf_ouuid, create_billing_tariff_tree_request=create_billing_tariff_tree_request)
 
 Creates a billing tariff tree for a specific billing item.
 
@@ -17144,11 +17582,13 @@ with configuration_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = configuration_client.DefaultApi(api_client)
     billing_item_id = 'billing_item_id_example' # str | The identifier of the billing item to create tariffs for.
-    create_billing_tariff_tree_request = {"id":"string","productId":"string","activityPeriod":{"startDateTime":"string","endDateTime":"string"},"nodes":[{"calculationParameters":{"type":"volume","calculationType":"unitprice","slices":[{"from":0,"formulaBased":true,"inputParameters":[{"identifier":"string","inputType":"none","inputReference":"string","value":0}],"unitTariff":0,"expression":"string"}]},"condition":{"type":"tariffconditiontypeparametersdto.customentitypropertytype","customEntityPropertyTypeId":"string","customEntityPropertyTypeName":"string","valueString":"string","valueBoolean":true,"valueNumber":0,"valueDecimal":0}}]} # CreateBillingTariffTreeRequest | Propagates notification that operations should be canceled. (optional)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    create_billing_tariff_tree_request = {"id":"string","productId":"string","activityPeriod":{"startDateTime":"string","endDateTime":"string"},"nodes":[{"calculationParameters":{},"condition":{}}]} # CreateBillingTariffTreeRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates a billing tariff tree for a specific billing item.
-        api_response = api_instance.post_billingtariffs_b_billingitemid(billing_item_id, create_billing_tariff_tree_request=create_billing_tariff_tree_request)
+        api_response = api_instance.post_billingtariffs_b_billingitemid(billing_item_id, zf_tuuid, zf_ouuid, create_billing_tariff_tree_request=create_billing_tariff_tree_request)
         print("The response of DefaultApi->post_billingtariffs_b_billingitemid:\n")
         pprint(api_response)
     except Exception as e:
@@ -17163,6 +17603,8 @@ with configuration_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **billing_item_id** | **str**| The identifier of the billing item to create tariffs for. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
  **create_billing_tariff_tree_request** | [**CreateBillingTariffTreeRequest**](CreateBillingTariffTreeRequest.md)| Propagates notification that operations should be canceled. | [optional] 
 
 ### Return type
@@ -17423,7 +17865,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    collection_flow_step_request = {"id":"string","name":"string","triggerDays":0,"stepType":"communication","chargeType":"none","chargeParameters":{"type":"FixedCollectionChargeParametersRequestDTO","amountExclVAT":0,"taxCodeId":"string"},"communicationType":"none","autoFallbackToPostal":true,"messageTitle":"string","communicationLevel":"collection","communicationAttachments":[{"id":"string","internalFilePath":"string","fileName":"string"}],"localisationLevel":"none","localisedFields":["string"],"translatedFields":{}} # CollectionFlowStepRequest | Propagates notification that operations should be canceled. (optional)
+    collection_flow_step_request = {"id":"string","name":"string","triggerDays":0,"stepType":"communication","chargeType":"none","chargeParameters":{},"communicationType":"none","autoFallbackToPostal":true,"messageTitle":"string","communicationLevel":"collection","communicationAttachments":[{"id":"string","internalFilePath":"string","fileName":"string"}],"localisationLevel":"none","localisedFields":["string"],"translatedFields":{}} # CollectionFlowStepRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates a new collection flow step.
@@ -17609,7 +18051,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier of the collection flow step to update.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    collection_flow_step_request = {"id":"string","name":"string","triggerDays":0,"stepType":"communication","chargeType":"none","chargeParameters":{"type":"FixedCollectionChargeParametersRequestDTO","amountExclVAT":0,"taxCodeId":"string"},"communicationType":"none","autoFallbackToPostal":true,"messageTitle":"string","communicationLevel":"collection","communicationAttachments":[{"id":"string","internalFilePath":"string","fileName":"string"}],"localisationLevel":"none","localisedFields":["string"],"translatedFields":{}} # CollectionFlowStepRequest | Propagates notification that operations should be canceled. (optional)
+    collection_flow_step_request = {"id":"string","name":"string","triggerDays":0,"stepType":"communication","chargeType":"none","chargeParameters":{},"communicationType":"none","autoFallbackToPostal":true,"messageTitle":"string","communicationLevel":"collection","communicationAttachments":[{"id":"string","internalFilePath":"string","fileName":"string"}],"localisationLevel":"none","localisedFields":["string"],"translatedFields":{}} # CollectionFlowStepRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates an existing collection flow step.
@@ -18075,7 +18517,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_custom_entity_property_type_request = {"entitySubjectType":"none","valueType":{"type":"string"},"name":"string","description":"string","showInHeader":true,"tagColor":"blue"} # CreateCustomEntityPropertyTypeRequest | Propagates notification that operations should be canceled. (optional)
+    create_custom_entity_property_type_request = {"entitySubjectType":"none","valueType":{},"name":"string","description":"string","showInHeader":true,"tagColor":"blue"} # CreateCustomEntityPropertyTypeRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates a new custom entity property type.
@@ -18449,7 +18891,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_data_export_file_format_request = {"name":"string","description":"string","settings":{"type":"invoice","format":{"type":"bdo"}}} # CreateDataExportFileFormatRequest | Propagates notification that operations should be canceled. (optional)
+    create_data_export_file_format_request = {"name":"string","description":"string","settings":{}} # CreateDataExportFileFormatRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates a new data export file format.
@@ -18542,7 +18984,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     fileformatuuid = 'fileformatuuid_example' # str | The unique identifier of the data export file format to update.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_data_export_file_format_request = {"name":"string","description":"string","settings":{"type":"invoice","format":{"type":"bdo"}}} # UpdateDataExportFileFormatRequest | Propagates notification that operations should be canceled. (optional)
+    update_data_export_file_format_request = {"name":"string","description":"string","settings":{}} # UpdateDataExportFileFormatRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates an existing data export file format.
@@ -18915,7 +19357,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_data_import_file_format_request = {"name":"string","description":"string","settings":{"type":"metering","format":{"type":"cadis","numberThousandsSeperator":"string","delimiter":";","dateTimeFormat":"dd/MM/yyyy HH:mm","timeZone":"W. Europe Standard Time","culture":"string","numberDecimalSeperator":","}}} # CreateDataImportFileFormatRequest | Propagates notification that operations should be canceled. (optional)
+    create_data_import_file_format_request = {"name":"string","description":"string","settings":{}} # CreateDataImportFileFormatRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates a new data import file format.
@@ -19008,7 +19450,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     fileformatuuid = 'fileformatuuid_example' # str | The unique identifier of the data import file format to update.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_data_import_file_format_request = {"name":"string","description":"string","isBuiltIn":true,"settings":{"type":"metering","format":{"type":"cadis","numberThousandsSeperator":"string","delimiter":";","dateTimeFormat":"dd/MM/yyyy HH:mm","timeZone":"W. Europe Standard Time","culture":"string","numberDecimalSeperator":","}}} # UpdateDataImportFileFormatRequest | Propagates notification that operations should be canceled. (optional)
+    update_data_import_file_format_request = {"name":"string","description":"string","isBuiltIn":true,"settings":{}} # UpdateDataImportFileFormatRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates an existing data import file format.
@@ -19102,7 +19544,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_data_import_request = {"name":"string","disabled":true,"automaticProcessing":true,"customFileFormatId":"string","meteringFormatType":"elvaco_1104","parameters":{"type":"inboundemail","emailAddressKey":"string"}} # CreateDataImportRequest | Propagates notification that operations should be canceled. (optional)
+    create_data_import_request = {"name":"string","disabled":true,"automaticProcessing":true,"customFileFormatId":"string","meteringFormatType":"elvaco_1104","parameters":{}} # CreateDataImportRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates a new data provider of the type FTP, FTPS, SFTP or mail.
@@ -19195,7 +19637,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     dataimportuuid = 'dataimportuuid_example' # str | The unique identifier of the data import to update.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_data_import_request = {"disabled":true,"automaticProcessing":true,"customFileFormatId":"string","meteringFormatType":"elvaco_1104","parameters":{"type":"inboundemail","emailAddressKey":"string"}} # UpdateDataImportRequest | Propagates notification that operations should be canceled. (optional)
+    update_data_import_request = {"disabled":true,"automaticProcessing":true,"customFileFormatId":"string","meteringFormatType":"elvaco_1104","parameters":{}} # UpdateDataImportRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
@@ -20300,7 +20742,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     organizationuuid = 'organizationuuid_example' # str | The unique identifier of the organization to update.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_organization_request = {"vatAccountNumber":"string","companyAccountNumber":"string","logo":"string","primaryColor":"string","secondaryColor":"string","address":{"streetName":"string","streetNumber":"string","streetNumberAddition":"string","postalCode":"string","buildingName":"string","locality":"string","city":"string","country":"aut","localizedDisplay":"string","lineOne":"string","lineTwo":"string"},"contactDetails":{"emailAddress":"string","telephone":"string","website":"string","telephoneInterruptions":"string","support":"string"},"manuallySetCustomerNumber":true,"manuallySetContractNumber":true} # UpdateOrganizationRequest | Propagates notification that operations should be canceled. (optional)
+    update_organization_request = {"vatAccountNumber":"string","companyAccountNumber":"string","logo":"string","primaryColor":"string","secondaryColor":"string","address":{},"contactDetails":{},"manuallySetCustomerNumber":true,"manuallySetContractNumber":true} # UpdateOrganizationRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates an existing organization.
@@ -20486,7 +20928,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_billing_parameters_request = {"skipApproval":true,"skipPayment":true,"enableUBL":true,"disableAutomaticBillingProcesses":true,"daysAfterInvoiceCheckpointDateToCreateInvoice":0,"daysBeforeAdvanceStartDateToCreateAdvance":0,"enableInvoiceCollection":true,"collectionBorderInvoiceCreatedDateTime":"string","collectionWriteOffHandling":"nowriteoff","groupInvoiceCollectionByCustomer":true,"doNotCreditAdvancesWhenUnpaid":true,"advanceAmountLowerThreshold":0,"defaultTaxCodeForPersonAdvances":"string","defaultTaxCodeForOrganisationAdvances":"string","estimatedMeasurementsEnabled":true,"enableAutomaticEstimatedMeasurement":true,"daysAfterCheckpointAutomaticEstimatedMeasurement":0,"consumptionInvoiceEndDateDeviationLocalDays":0,"aiInvoiceValidationIntegrationEnabled":true,"aiInvoiceValidationAutoApproveMinScoreInvoice":0,"aiInvoiceValidationAutoApproveMinScoreEndNote":0,"aiInvoiceValidationAutoApproveMinScoreAdvance":0,"advanceCalculationParameters":{"recalculationType":"none","advanceLimitType":"fixed","advanceLimitLowerThreshold":0,"advanceLimitUpperThreshold":0,"minimumAccuracy":"low"},"advancePercentageParameters":{"monthly":{"percentages":[0]},"quarterly":{"percentages":[0]},"halfYearly":{"percentages":[0]}}} # UpdateBillingParametersRequest | Propagates notification that operations should be canceled. (optional)
+    update_billing_parameters_request = {"skipApproval":true,"skipPayment":true,"enableUBL":true,"disableAutomaticBillingProcesses":true,"daysAfterInvoiceCheckpointDateToCreateInvoice":0,"daysBeforeAdvanceStartDateToCreateAdvance":0,"enableInvoiceCollection":true,"collectionBorderInvoiceCreatedDateTime":"string","collectionWriteOffHandling":"nowriteoff","groupInvoiceCollectionByCustomer":true,"doNotCreditAdvancesWhenUnpaid":true,"advanceAmountLowerThreshold":0,"defaultTaxCodeForPersonAdvances":"string","defaultTaxCodeForOrganisationAdvances":"string","estimatedMeasurementsEnabled":true,"enableAutomaticEstimatedMeasurement":true,"daysAfterCheckpointAutomaticEstimatedMeasurement":0,"consumptionInvoiceEndDateDeviationLocalDays":0,"aiInvoiceValidationIntegrationEnabled":true,"aiInvoiceValidationAutoApproveMinScoreInvoice":0,"aiInvoiceValidationAutoApproveMinScoreEndNote":0,"aiInvoiceValidationAutoApproveMinScoreAdvance":0,"advanceCalculationParameters":{},"advancePercentageParameters":{"monthly":{"percentages":[0]},"quarterly":{"percentages":[0]},"halfYearly":{"percentages":[0]}}} # UpdateBillingParametersRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the billing parameters configuration.
@@ -21394,7 +21836,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_payment_parameters_request = {"retryParameters":[{"retryAttempt":0,"retryAction":"retryonfixedday","value":0}],"refundPaymentDelayInDays":0,"paymentTermsId":"string","defaultCollectionFlowId":"string","onlyUseInvoiceNumberInPaymentReferences":true,"blockAutomaticRefunding":true,"defaultCollectionDelay":"delayuntilfixeddayofmonth","defaultCollectionDelayValue":0,"allowResidentToChooseCollectionDay":true,"allowCustomerCollectionDayOverride":true,"selectableCollectionDays":[0],"matchingRules":[{"__type":"AutoConfirmIbanOnHighConfidenceMatchRule","kind":"string","enabled":true}]} # UpdatePaymentParametersRequest | Propagates notification that operations should be canceled. (optional)
+    update_payment_parameters_request = {"retryParameters":[{"retryAttempt":0,"retryAction":"retryonfixedday","value":0}],"refundPaymentDelayInDays":0,"paymentTermsId":"string","defaultCollectionFlowId":"string","onlyUseInvoiceNumberInPaymentReferences":true,"blockAutomaticRefunding":true,"defaultCollectionDelay":"delayuntilfixeddayofmonth","defaultCollectionDelayValue":0,"allowCustomerCollectionDayOverride":true,"matchingRules":[{"__type":"AutoConfirmIbanOnHighConfidenceMatchRule","kind":"string","enabled":true}],"allowResidentToChooseCollectionDay":true,"selectableCollectionDays":[0]} # UpdatePaymentParametersRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the payment parameters configuration.
@@ -21415,6 +21857,98 @@ Name | Type | Description  | Notes
  **zf_tuuid** | **str**| Tenant ID | 
  **zf_ouuid** | **str**| Organisation ID | 
  **update_payment_parameters_request** | [**UpdatePaymentParametersRequest**](UpdatePaymentParametersRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentParametersDTO**](ApiResponseDTOOfPaymentParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_parameters_payment_portal_collection_preferences**
+> ApiResponseDTOOfPaymentParametersDTO post_parameters_payment_portal_collection_preferences(zf_tuuid, zf_ouuid, update_portal_collection_day_preferences_request=update_portal_collection_day_preferences_request)
+
+Updates the customer portal collection day preferences.
+
+Updates the customer portal collection day preferences.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_payment_parameters_dto import ApiResponseDTOOfPaymentParametersDTO
+from configuration_client.models.update_portal_collection_day_preferences_request import UpdatePortalCollectionDayPreferencesRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_portal_collection_day_preferences_request = {"allowResidentToChooseCollectionDay":true,"selectableCollectionDays":[0]} # UpdatePortalCollectionDayPreferencesRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the customer portal collection day preferences.
+        api_response = api_instance.post_parameters_payment_portal_collection_preferences(zf_tuuid, zf_ouuid, update_portal_collection_day_preferences_request=update_portal_collection_day_preferences_request)
+        print("The response of DefaultApi->post_parameters_payment_portal_collection_preferences:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->post_parameters_payment_portal_collection_preferences: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_portal_collection_day_preferences_request** | [**UpdatePortalCollectionDayPreferencesRequest**](UpdatePortalCollectionDayPreferencesRequest.md)| Propagates notification that operations should be canceled. | [optional] 
 
 ### Return type
 
@@ -21624,9 +22158,10 @@ Name | Type | Description  | Notes
 # **post_paymentdelays**
 > ApiResponseDTOOfPaymentDelaySettingDTO post_paymentdelays(zf_tuuid, zf_ouuid, create_payment_delay_request=create_payment_delay_request)
 
-Creates a new payment delay setting.
+Creates a new payment delay setting. Only one setting may exist per invoice type, so creating a second one for the same invoice type is rejected.
 
-Creates a new payment delay setting.
+Creates a new payment delay setting. Only one setting may exist per invoice type, so creating a second
+one for the same invoice type is rejected.
 
 ### Example
 
@@ -21672,7 +22207,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     create_payment_delay_request = {"invoiceType":"advance","paymentDelay":"delayuntilfixeddayofmonth","value":0} # CreatePaymentDelayRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
-        # Creates a new payment delay setting.
+        # Creates a new payment delay setting. Only one setting may exist per invoice type, so creating a second one for the same invoice type is rejected.
         api_response = api_instance.post_paymentdelays(zf_tuuid, zf_ouuid, create_payment_delay_request=create_payment_delay_request)
         print("The response of DefaultApi->post_paymentdelays:\n")
         pprint(api_response)
@@ -21717,9 +22252,10 @@ Name | Type | Description  | Notes
 # **post_paymentdelays_paymentdelayuuid**
 > ApiResponseDTOOfPaymentDelaySettingDTO post_paymentdelays_paymentdelayuuid(paymentdelayuuid, zf_tuuid, zf_ouuid, update_payment_delay_request=update_payment_delay_request)
 
-Updates an existing payment delay setting.
+Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
 
-Updates an existing payment delay setting.
+Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a
+setting to an invoice type that already has one is rejected.
 
 ### Example
 
@@ -21763,10 +22299,10 @@ with configuration_client.ApiClient(configuration) as api_client:
     paymentdelayuuid = 'paymentdelayuuid_example' # str | The unique identifier of the payment delay setting to update.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_payment_delay_request = {"paymentDelay":"delayuntilfixeddayofmonth","value":0} # UpdatePaymentDelayRequest | Propagates notification that operations should be canceled. (optional)
+    update_payment_delay_request = {"invoiceType":{},"paymentDelay":"delayuntilfixeddayofmonth","value":0} # UpdatePaymentDelayRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
-        # Updates an existing payment delay setting.
+        # Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
         api_response = api_instance.post_paymentdelays_paymentdelayuuid(paymentdelayuuid, zf_tuuid, zf_ouuid, update_payment_delay_request=update_payment_delay_request)
         print("The response of DefaultApi->post_paymentdelays_paymentdelayuuid:\n")
         pprint(api_response)
@@ -21857,7 +22393,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    upsert_product_request = {"name":"string","billingItems":[{"billingItemId":"string","order":0,"periodicityParameters":{"type":"fixedamount","amount":0,"periodicityType":"regular"},"startDateTime":"string","endDateTime":"string"}],"attachments":[{"productAttachmentId":"string","includeInWelcomeEmail":true,"visibility":"internal","approvalRequired":true,"validFrom":"string","validUntil":"string","attachmentFiles":[{"culture":"string","fileName":"string","internalFileName":"string","attachmentId":"string"}]}],"invoiceUpfront":true,"isPrepaymentEligible":true,"accountingCodeId":"string"} # UpsertProductRequest | Propagates notification that operations should be canceled. (optional)
+    upsert_product_request = {"name":"string","billingItems":[{"billingItemId":"string","order":0,"periodicityParameters":{},"startDateTime":"string","endDateTime":"string"}],"attachments":[{"productAttachmentId":"string","includeInWelcomeEmail":true,"visibility":"internal","approvalRequired":true,"validFrom":"string","validUntil":"string","attachmentFiles":[{"culture":"string","fileName":"string","internalFileName":"string","attachmentId":"string"}]}],"invoiceUpfront":true,"isPrepaymentEligible":true,"accountingCodeId":"string"} # UpsertProductRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Creates a new product.
@@ -22042,7 +22578,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     productuuid = 'productuuid_example' # str | The unique identifier of the product to update.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    upsert_product_request = {"name":"string","billingItems":[{"billingItemId":"string","order":0,"periodicityParameters":{"type":"fixedamount","amount":0,"periodicityType":"regular"},"startDateTime":"string","endDateTime":"string"}],"attachments":[{"productAttachmentId":"string","includeInWelcomeEmail":true,"visibility":"internal","approvalRequired":true,"validFrom":"string","validUntil":"string","attachmentFiles":[{"culture":"string","fileName":"string","internalFileName":"string","attachmentId":"string"}]}],"invoiceUpfront":true,"isPrepaymentEligible":true,"accountingCodeId":"string"} # UpsertProductRequest | Propagates notification that operations should be canceled. (optional)
+    upsert_product_request = {"name":"string","billingItems":[{"billingItemId":"string","order":0,"periodicityParameters":{},"startDateTime":"string","endDateTime":"string"}],"attachments":[{"productAttachmentId":"string","includeInWelcomeEmail":true,"visibility":"internal","approvalRequired":true,"validFrom":"string","validUntil":"string","attachmentFiles":[{"culture":"string","fileName":"string","internalFileName":"string","attachmentId":"string"}]}],"invoiceUpfront":true,"isPrepaymentEligible":true,"accountingCodeId":"string"} # UpsertProductRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates an existing product.
@@ -22833,7 +23369,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_templates_entitysubjecttype_entitysubjectsubtype_email_culture_send**
-> ApiResponseDTOOfboolean post_templates_entitysubjecttype_entitysubjectsubtype_email_culture_send(entity_subject_type, entity_subject_sub_type, culture, email_receiver=email_receiver, payment_method=payment_method, has_active_payment_provider=has_active_payment_provider, auto_settlement=auto_settlement, customer_balance=customer_balance, invoice_amount=invoice_amount, number_of_addresses=number_of_addresses, number_of_prepayment_accounts=number_of_prepayment_accounts, invoice_frequency=invoice_frequency, advance_calculation_type=advance_calculation_type)
+> ApiResponseDTOOfboolean post_templates_entitysubjecttype_entitysubjectsubtype_email_culture_send(entity_subject_type, entity_subject_sub_type, culture, zf_tuuid, zf_ouuid, email_receiver=email_receiver, payment_method=payment_method, has_active_payment_provider=has_active_payment_provider, auto_settlement=auto_settlement, customer_balance=customer_balance, invoice_amount=invoice_amount, number_of_addresses=number_of_addresses, number_of_prepayment_accounts=number_of_prepayment_accounts, invoice_frequency=invoice_frequency, advance_calculation_type=advance_calculation_type)
 
 Send a test mail using a template.
 
@@ -22880,6 +23416,8 @@ with configuration_client.ApiClient(configuration) as api_client:
     entity_subject_type = 'entity_subject_type_example' # str | The type of entity subject.
     entity_subject_sub_type = 'entity_subject_sub_type_example' # str | The subtype of entity subject.
     culture = 'culture_example' # str | The culture information for localization.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
     email_receiver = 'email_receiver_example' # str | The email address of the recipient. (optional)
     payment_method = 'payment_method_example' # str |  (optional)
     has_active_payment_provider = True # bool |  (optional)
@@ -22893,7 +23431,7 @@ with configuration_client.ApiClient(configuration) as api_client:
 
     try:
         # Send a test mail using a template.
-        api_response = api_instance.post_templates_entitysubjecttype_entitysubjectsubtype_email_culture_send(entity_subject_type, entity_subject_sub_type, culture, email_receiver=email_receiver, payment_method=payment_method, has_active_payment_provider=has_active_payment_provider, auto_settlement=auto_settlement, customer_balance=customer_balance, invoice_amount=invoice_amount, number_of_addresses=number_of_addresses, number_of_prepayment_accounts=number_of_prepayment_accounts, invoice_frequency=invoice_frequency, advance_calculation_type=advance_calculation_type)
+        api_response = api_instance.post_templates_entitysubjecttype_entitysubjectsubtype_email_culture_send(entity_subject_type, entity_subject_sub_type, culture, zf_tuuid, zf_ouuid, email_receiver=email_receiver, payment_method=payment_method, has_active_payment_provider=has_active_payment_provider, auto_settlement=auto_settlement, customer_balance=customer_balance, invoice_amount=invoice_amount, number_of_addresses=number_of_addresses, number_of_prepayment_accounts=number_of_prepayment_accounts, invoice_frequency=invoice_frequency, advance_calculation_type=advance_calculation_type)
         print("The response of DefaultApi->post_templates_entitysubjecttype_entitysubjectsubtype_email_culture_send:\n")
         pprint(api_response)
     except Exception as e:
@@ -22910,6 +23448,8 @@ Name | Type | Description  | Notes
  **entity_subject_type** | **str**| The type of entity subject. | 
  **entity_subject_sub_type** | **str**| The subtype of entity subject. | 
  **culture** | **str**| The culture information for localization. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
  **email_receiver** | **str**| The email address of the recipient. | [optional] 
  **payment_method** | **str**|  | [optional] 
  **has_active_payment_provider** | **bool**|  | [optional] 
@@ -23726,6 +24266,1118 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **put_accounting_custom_codes_kind_id_description**
+> ApiResponseDTO put_accounting_custom_codes_kind_id_description(kind, id, zf_tuuid, zf_ouuid, update_accounting_code_description_request=update_accounting_code_description_request)
+
+Updates the description of a Custom accounting code.
+
+Updates the description of a Custom accounting code.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto import ApiResponseDTO
+from configuration_client.models.update_accounting_code_description_request import UpdateAccountingCodeDescriptionRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    kind = 56 # int | The kind of accounting code.
+    id = 'id_example' # str | The identifier of the accounting code.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_accounting_code_description_request = {"description":"string"} # UpdateAccountingCodeDescriptionRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the description of a Custom accounting code.
+        api_response = api_instance.put_accounting_custom_codes_kind_id_description(kind, id, zf_tuuid, zf_ouuid, update_accounting_code_description_request=update_accounting_code_description_request)
+        print("The response of DefaultApi->put_accounting_custom_codes_kind_id_description:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_accounting_custom_codes_kind_id_description: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **kind** | **int**| The kind of accounting code. | 
+ **id** | **str**| The identifier of the accounting code. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_accounting_code_description_request** | [**UpdateAccountingCodeDescriptionRequest**](UpdateAccountingCodeDescriptionRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_accounting_disconnect**
+> ApiResponseDTOOfboolean put_accounting_disconnect(zf_tuuid, zf_ouuid)
+
+Disconnect the configured accounting system for the organization.
+
+Disconnect the configured accounting system for the organization.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Disconnect the configured accounting system for the organization.
+        api_response = api_instance.put_accounting_disconnect(zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_accounting_disconnect:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_accounting_disconnect: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_accounting_sync**
+> ApiResponseDTO put_accounting_sync(zf_tuuid, zf_ouuid)
+
+Syncs accounting codes from the external accounting system
+
+Syncs accounting codes from the external accounting system
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto import ApiResponseDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Syncs accounting codes from the external accounting system
+        api_response = api_instance.put_accounting_sync(zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_accounting_sync:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_accounting_sync: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_bankaccounts_bankaccuuid**
+> ApiResponseDTOOfBankAccountDTO put_bankaccounts_bankaccuuid(bankaccuuid, zf_tuuid, zf_ouuid, update_bank_account_request=update_bank_account_request)
+
+Updates an existing bank account.
+
+Updates an existing bank account.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_bank_account_dto import ApiResponseDTOOfBankAccountDTO
+from configuration_client.models.update_bank_account_request import UpdateBankAccountRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    bankaccuuid = 'bankaccuuid_example' # str | The unique identifier of the bank account to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_bank_account_request = {"accountHolder":"string","sepaCreditorId":"string","accountingCodeIdForProcessedTransactions":"string","accountingCodeIdForIgnoredTransactions":"string","isDefault":true,"iban":"string","bic":"string"} # UpdateBankAccountRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing bank account.
+        api_response = api_instance.put_bankaccounts_bankaccuuid(bankaccuuid, zf_tuuid, zf_ouuid, update_bank_account_request=update_bank_account_request)
+        print("The response of DefaultApi->put_bankaccounts_bankaccuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_bankaccounts_bankaccuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bankaccuuid** | **str**| The unique identifier of the bank account to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_bank_account_request** | [**UpdateBankAccountRequest**](UpdateBankAccountRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfBankAccountDTO**](ApiResponseDTOOfBankAccountDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_bankholidays_id_update**
+> ApiResponseDTOOfBankHolidayCalendarDTO put_bankholidays_id_update(id, zf_tuuid, zf_ouuid, update_bank_holidays_request=update_bank_holidays_request)
+
+Updates the organisation's bank holiday calendar in its entirety with the given list of (Date, IsActive). Returns the updated calendar.
+
+Updates the organisation's bank holiday calendar in its entirety with the given list of (Date, IsActive). Returns the updated calendar.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_bank_holiday_calendar_dto import ApiResponseDTOOfBankHolidayCalendarDTO
+from configuration_client.models.update_bank_holidays_request import UpdateBankHolidaysRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    id = 'id_example' # str | The bank holiday calendar id (e.g. organisation id or calendar document id).
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_bank_holidays_request = {"excludeByName":true,"excludedNames":["string"],"holidays":[{"date":"string","name":"string","isActive":true}]} # UpdateBankHolidaysRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the organisation's bank holiday calendar in its entirety with the given list of (Date, IsActive). Returns the updated calendar.
+        api_response = api_instance.put_bankholidays_id_update(id, zf_tuuid, zf_ouuid, update_bank_holidays_request=update_bank_holidays_request)
+        print("The response of DefaultApi->put_bankholidays_id_update:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_bankholidays_id_update: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The bank holiday calendar id (e.g. organisation id or calendar document id). | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_bank_holidays_request** | [**UpdateBankHolidaysRequest**](UpdateBankHolidaysRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfBankHolidayCalendarDTO**](ApiResponseDTOOfBankHolidayCalendarDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**404** | Not Found |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_bankholidays_id_update_single**
+> ApiResponseDTOOfBankHolidayCalendarDTO put_bankholidays_id_update_single(id, zf_tuuid, zf_ouuid, update_bank_holiday_request=update_bank_holiday_request)
+
+Updates the active state of a single bank holiday (by date). Returns the updated calendar.
+
+Updates the active state of a single bank holiday (by date). Returns the updated calendar.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_bank_holiday_calendar_dto import ApiResponseDTOOfBankHolidayCalendarDTO
+from configuration_client.models.update_bank_holiday_request import UpdateBankHolidayRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    id = 'id_example' # str | The bank holiday calendar id (e.g. organisation id or calendar document id).
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_bank_holiday_request = {"date":"string","name":"string","isActive":true} # UpdateBankHolidayRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the active state of a single bank holiday (by date). Returns the updated calendar.
+        api_response = api_instance.put_bankholidays_id_update_single(id, zf_tuuid, zf_ouuid, update_bank_holiday_request=update_bank_holiday_request)
+        print("The response of DefaultApi->put_bankholidays_id_update_single:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_bankholidays_id_update_single: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The bank holiday calendar id (e.g. organisation id or calendar document id). | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_bank_holiday_request** | [**UpdateBankHolidayRequest**](UpdateBankHolidayRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfBankHolidayCalendarDTO**](ApiResponseDTOOfBankHolidayCalendarDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**404** | Not Found |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_bankingdataproviders_id_disable**
+> ApiResponseDTOOfBankingDataProviderDTO put_bankingdataproviders_id_disable(id, zf_tuuid, zf_ouuid)
+
+Disable a banking data provider.
+
+Disable a banking data provider.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_banking_data_provider_dto import ApiResponseDTOOfBankingDataProviderDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    id = 'id_example' # str | The banking data provider ID.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Disable a banking data provider.
+        api_response = api_instance.put_bankingdataproviders_id_disable(id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_bankingdataproviders_id_disable:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_bankingdataproviders_id_disable: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The banking data provider ID. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfBankingDataProviderDTO**](ApiResponseDTOOfBankingDataProviderDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_bankingdataproviders_id_enable**
+> ApiResponseDTOOfBankingDataProviderDTO put_bankingdataproviders_id_enable(id, zf_tuuid, zf_ouuid)
+
+Enables a banking data provider.
+
+Enables a banking data provider.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_banking_data_provider_dto import ApiResponseDTOOfBankingDataProviderDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    id = 'id_example' # str | The banking data provider ID.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Enables a banking data provider.
+        api_response = api_instance.put_bankingdataproviders_id_enable(id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_bankingdataproviders_id_enable:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_bankingdataproviders_id_enable: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The banking data provider ID. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfBankingDataProviderDTO**](ApiResponseDTOOfBankingDataProviderDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_bankingdataproviders_id_testconnection**
+> ApiResponseDTOOfBankingDataProviderDTO put_bankingdataproviders_id_testconnection(id, zf_tuuid, zf_ouuid)
+
+Test the SFTP connection for a banking data provider.
+
+Test the SFTP connection for a banking data provider.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_banking_data_provider_dto import ApiResponseDTOOfBankingDataProviderDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    id = 'id_example' # str | The banking data provider ID.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Test the SFTP connection for a banking data provider.
+        api_response = api_instance.put_bankingdataproviders_id_testconnection(id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_bankingdataproviders_id_testconnection:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_bankingdataproviders_id_testconnection: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The banking data provider ID. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfBankingDataProviderDTO**](ApiResponseDTOOfBankingDataProviderDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_bankingdataproviders_id_update**
+> ApiResponseDTOOfBankingDataProviderDTO put_bankingdataproviders_id_update(id, zf_tuuid, zf_ouuid, upsert_banking_data_provider_request=upsert_banking_data_provider_request)
+
+Update an existing banking data provider.
+
+Update an existing banking data provider.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_banking_data_provider_dto import ApiResponseDTOOfBankingDataProviderDTO
+from configuration_client.models.upsert_banking_data_provider_request import UpsertBankingDataProviderRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    id = 'id_example' # str | The banking data provider ID.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    upsert_banking_data_provider_request = {"providerName":"string","parameters":{},"direction":"incoming","bankAccountIds":["string"],"applyToNewBankAccounts":true} # UpsertBankingDataProviderRequest | The cancellation token. (optional)
+
+    try:
+        # Update an existing banking data provider.
+        api_response = api_instance.put_bankingdataproviders_id_update(id, zf_tuuid, zf_ouuid, upsert_banking_data_provider_request=upsert_banking_data_provider_request)
+        print("The response of DefaultApi->put_bankingdataproviders_id_update:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_bankingdataproviders_id_update: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The banking data provider ID. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **upsert_banking_data_provider_request** | [**UpsertBankingDataProviderRequest**](UpsertBankingDataProviderRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfBankingDataProviderDTO**](ApiResponseDTOOfBankingDataProviderDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingitems_billingitemuuid**
+> ApiResponseDTOOfBillingItemDTO put_billingitems_billingitemuuid(billingitemuuid, zf_tuuid, zf_ouuid, update_billing_item_request=update_billing_item_request)
+
+Updates an existing billing item.
+
+Updates an existing billing item.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_billing_item_dto import ApiResponseDTOOfBillingItemDTO
+from configuration_client.models.update_billing_item_request import UpdateBillingItemRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    billingitemuuid = 'billingitemuuid_example' # str | The unique identifier of the billing item to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_billing_item_request = {"name":"string","description":"string","personTaxCodeId":"string","organisationTaxCodeId":"string","accountingCodeId":"string","hideWhenZero":true,"isPrepaymentEligible":true,"tierCalculationMethod":"invoiceperiod","calculationParameters":{}} # UpdateBillingItemRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing billing item.
+        api_response = api_instance.put_billingitems_billingitemuuid(billingitemuuid, zf_tuuid, zf_ouuid, update_billing_item_request=update_billing_item_request)
+        print("The response of DefaultApi->put_billingitems_billingitemuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingitems_billingitemuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **billingitemuuid** | **str**| The unique identifier of the billing item to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_billing_item_request** | [**UpdateBillingItemRequest**](UpdateBillingItemRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfBillingItemDTO**](ApiResponseDTOOfBillingItemDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingitems_entityid_translations**
+> ApiResponseDTO put_billingitems_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+
+/BillingItems/{entityId}/translations - PUT
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto import ApiResponseDTO
+from configuration_client.models.update_entity_translation_request import UpdateEntityTranslationRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    entity_id = 'entity_id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_entity_translation_request = {"translatedFields":{}} # UpdateEntityTranslationRequest |  (optional)
+
+    try:
+        # /BillingItems/{entityId}/translations - PUT
+        api_response = api_instance.put_billingitems_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+        print("The response of DefaultApi->put_billingitems_entityid_translations:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingitems_entityid_translations: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_entity_translation_request** | [**UpdateEntityTranslationRequest**](UpdateEntityTranslationRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **put_billingtariffs_b_billingitemid**
 > ApiResponseDTOOfboolean put_billingtariffs_b_billingitemid(billing_item_id, zf_tuuid, zf_ouuid, update_billing_tariff_tree_request=update_billing_tariff_tree_request)
 
@@ -23775,7 +25427,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     billing_item_id = 'billing_item_id_example' # str | The identifier of the billing item whose tariff tree to update.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_billing_tariff_tree_request = {"productId":"string","activityPeriod":{"startDateTime":"string","endDateTime":"string"},"deletedBillingTariffIds":["string"],"nodes":[{"billingTariffId":"string","calculationParameters":{"type":"volume","calculationType":"unitprice","slices":[{"from":0,"formulaBased":true,"inputParameters":[{"identifier":"string","inputType":"none","inputReference":"string","value":0}],"unitTariff":0,"expression":"string"}]},"condition":{"type":"tariffconditiontypeparametersdto.customentitypropertytype","customEntityPropertyTypeId":"string","customEntityPropertyTypeName":"string","valueString":"string","valueBoolean":true,"valueNumber":0,"valueDecimal":0}}]} # UpdateBillingTariffTreeRequest | Propagates notification that operations should be canceled. (optional)
+    update_billing_tariff_tree_request = {"productId":"string","activityPeriod":{"startDateTime":"string","endDateTime":"string"},"deletedBillingTariffIds":["string"],"nodes":[{"billingTariffId":"string","calculationParameters":{},"condition":{}}]} # UpdateBillingTariffTreeRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates an existing billing tariff tree for a specific billing item.
@@ -23916,6 +25568,1230 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **put_collectionflows_id**
+> ApiResponseDTOOfCollectionFlowDTO put_collectionflows_id(id, zf_tuuid, zf_ouuid, create_update_collection_flow_request=create_update_collection_flow_request)
+
+Updates an existing collection flow.
+
+Updates an existing collection flow.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_collection_flow_dto import ApiResponseDTOOfCollectionFlowDTO
+from configuration_client.models.create_update_collection_flow_request import CreateUpdateCollectionFlowRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    id = 'id_example' # str | The unique identifier of the collection flow to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    create_update_collection_flow_request = {"name":"string","daysAfterInvoiceDue":0,"stepIds":["string"]} # CreateUpdateCollectionFlowRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing collection flow.
+        api_response = api_instance.put_collectionflows_id(id, zf_tuuid, zf_ouuid, create_update_collection_flow_request=create_update_collection_flow_request)
+        print("The response of DefaultApi->put_collectionflows_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectionflows_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the collection flow to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **create_update_collection_flow_request** | [**CreateUpdateCollectionFlowRequest**](CreateUpdateCollectionFlowRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionFlowDTO**](ApiResponseDTOOfCollectionFlowDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectionsteps_entityid_translations**
+> ApiResponseDTO put_collectionsteps_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+
+/CollectionSteps/{entityId}/translations - PUT
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto import ApiResponseDTO
+from configuration_client.models.update_entity_translation_request import UpdateEntityTranslationRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    entity_id = 'entity_id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_entity_translation_request = {"translatedFields":{}} # UpdateEntityTranslationRequest |  (optional)
+
+    try:
+        # /CollectionSteps/{entityId}/translations - PUT
+        api_response = api_instance.put_collectionsteps_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+        print("The response of DefaultApi->put_collectionsteps_entityid_translations:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectionsteps_entityid_translations: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_entity_translation_request** | [**UpdateEntityTranslationRequest**](UpdateEntityTranslationRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectionsteps_id**
+> ApiResponseDTOOfCollectionFlowStepDTO put_collectionsteps_id(id, zf_tuuid, zf_ouuid, collection_flow_step_request=collection_flow_step_request)
+
+Updates an existing collection flow step.
+
+Updates an existing collection flow step.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_collection_flow_step_dto import ApiResponseDTOOfCollectionFlowStepDTO
+from configuration_client.models.collection_flow_step_request import CollectionFlowStepRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    id = 'id_example' # str | The unique identifier of the collection flow step to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    collection_flow_step_request = {"id":"string","name":"string","triggerDays":0,"stepType":"communication","chargeType":"none","chargeParameters":{},"communicationType":"none","autoFallbackToPostal":true,"messageTitle":"string","communicationLevel":"collection","communicationAttachments":[{"id":"string","internalFilePath":"string","fileName":"string"}],"localisationLevel":"none","localisedFields":["string"],"translatedFields":{}} # CollectionFlowStepRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing collection flow step.
+        api_response = api_instance.put_collectionsteps_id(id, zf_tuuid, zf_ouuid, collection_flow_step_request=collection_flow_step_request)
+        print("The response of DefaultApi->put_collectionsteps_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectionsteps_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the collection flow step to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **collection_flow_step_request** | [**CollectionFlowStepRequest**](CollectionFlowStepRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionFlowStepDTO**](ApiResponseDTOOfCollectionFlowStepDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_costcomponents_costcomponentuuid**
+> ApiResponseDTOOfCostComponentDTO put_costcomponents_costcomponentuuid(costcomponentuuid, zf_tuuid, zf_ouuid, create_or_update_cost_component_request=create_or_update_cost_component_request)
+
+Updates an existing cost component.
+
+Updates an existing cost component.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_cost_component_dto import ApiResponseDTOOfCostComponentDTO
+from configuration_client.models.create_or_update_cost_component_request import CreateOrUpdateCostComponentRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    costcomponentuuid = 'costcomponentuuid_example' # str | The unique identifier of the cost component to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    create_or_update_cost_component_request = {"name":"string","description":"string","costComponentValues":[{"existingId":"string","startDateTime":"string","endDateTime":"string","value":0,"dateRange":{}}]} # CreateOrUpdateCostComponentRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing cost component.
+        api_response = api_instance.put_costcomponents_costcomponentuuid(costcomponentuuid, zf_tuuid, zf_ouuid, create_or_update_cost_component_request=create_or_update_cost_component_request)
+        print("The response of DefaultApi->put_costcomponents_costcomponentuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_costcomponents_costcomponentuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **costcomponentuuid** | **str**| The unique identifier of the cost component to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **create_or_update_cost_component_request** | [**CreateOrUpdateCostComponentRequest**](CreateOrUpdateCostComponentRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfCostComponentDTO**](ApiResponseDTOOfCostComponentDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_costcomponents_entityid_translations**
+> ApiResponseDTO put_costcomponents_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+
+/CostComponents/{entityId}/translations - PUT
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto import ApiResponseDTO
+from configuration_client.models.update_entity_translation_request import UpdateEntityTranslationRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    entity_id = 'entity_id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_entity_translation_request = {"translatedFields":{}} # UpdateEntityTranslationRequest |  (optional)
+
+    try:
+        # /CostComponents/{entityId}/translations - PUT
+        api_response = api_instance.put_costcomponents_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+        print("The response of DefaultApi->put_costcomponents_entityid_translations:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_costcomponents_entityid_translations: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_entity_translation_request** | [**UpdateEntityTranslationRequest**](UpdateEntityTranslationRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_culturetable**
+> ApiResponseDTOOfCultureTableDTO put_culturetable(zf_tuuid, zf_ouuid, update_culture_table_request=update_culture_table_request)
+
+Updates the culture table.
+
+Updates the culture table.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_culture_table_dto import ApiResponseDTOOfCultureTableDTO
+from configuration_client.models.update_culture_table_request import UpdateCultureTableRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_culture_table_request = {"defaultCultureName":"string","supportedCultureNames":["string"]} # UpdateCultureTableRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the culture table.
+        api_response = api_instance.put_culturetable(zf_tuuid, zf_ouuid, update_culture_table_request=update_culture_table_request)
+        print("The response of DefaultApi->put_culturetable:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_culturetable: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_culture_table_request** | [**UpdateCultureTableRequest**](UpdateCultureTableRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfCultureTableDTO**](ApiResponseDTOOfCultureTableDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_customentitypropertytypes_customentitypropertytypeuuid**
+> ApiResponseDTOOfCustomEntityPropertyTypeDTO put_customentitypropertytypes_customentitypropertytypeuuid(customentitypropertytypeuuid, zf_tuuid, zf_ouuid, update_custom_entity_property_type_request=update_custom_entity_property_type_request)
+
+Updates an existing custom entity property type.
+
+Updates an existing custom entity property type.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_custom_entity_property_type_dto import ApiResponseDTOOfCustomEntityPropertyTypeDTO
+from configuration_client.models.update_custom_entity_property_type_request import UpdateCustomEntityPropertyTypeRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    customentitypropertytypeuuid = 'customentitypropertytypeuuid_example' # str | The unique identifier of the custom entity property type to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_custom_entity_property_type_request = {"name":"string","description":"string","showInHeader":true,"tagColor":"blue"} # UpdateCustomEntityPropertyTypeRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing custom entity property type.
+        api_response = api_instance.put_customentitypropertytypes_customentitypropertytypeuuid(customentitypropertytypeuuid, zf_tuuid, zf_ouuid, update_custom_entity_property_type_request=update_custom_entity_property_type_request)
+        print("The response of DefaultApi->put_customentitypropertytypes_customentitypropertytypeuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_customentitypropertytypes_customentitypropertytypeuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customentitypropertytypeuuid** | **str**| The unique identifier of the custom entity property type to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_custom_entity_property_type_request** | [**UpdateCustomEntityPropertyTypeRequest**](UpdateCustomEntityPropertyTypeRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfCustomEntityPropertyTypeDTO**](ApiResponseDTOOfCustomEntityPropertyTypeDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_customentitypropertytypes_customentitypropertytypeuuid_options**
+> ApiResponseDTOOfboolean put_customentitypropertytypes_customentitypropertytypeuuid_options(customentitypropertytypeuuid, zf_tuuid, zf_ouuid, update_custom_entity_property_dropdown_options_request=update_custom_entity_property_dropdown_options_request)
+
+Updates the dropdown options for a custom entity property type.
+
+Updates the dropdown options for a custom entity property type.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from configuration_client.models.update_custom_entity_property_dropdown_options_request import UpdateCustomEntityPropertyDropdownOptionsRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    customentitypropertytypeuuid = 'customentitypropertytypeuuid_example' # str | The unique identifier of the custom entity property type.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_custom_entity_property_dropdown_options_request = {"customEntityPropertyTypeId":"string","options":[{"id":"string","option":"string","deleted":true}]} # UpdateCustomEntityPropertyDropdownOptionsRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the dropdown options for a custom entity property type.
+        api_response = api_instance.put_customentitypropertytypes_customentitypropertytypeuuid_options(customentitypropertytypeuuid, zf_tuuid, zf_ouuid, update_custom_entity_property_dropdown_options_request=update_custom_entity_property_dropdown_options_request)
+        print("The response of DefaultApi->put_customentitypropertytypes_customentitypropertytypeuuid_options:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_customentitypropertytypes_customentitypropertytypeuuid_options: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customentitypropertytypeuuid** | **str**| The unique identifier of the custom entity property type. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_custom_entity_property_dropdown_options_request** | [**UpdateCustomEntityPropertyDropdownOptionsRequest**](UpdateCustomEntityPropertyDropdownOptionsRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_customentitypropertytypes_entityid_translations**
+> ApiResponseDTO put_customentitypropertytypes_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+
+/CustomEntityPropertyTypes/{entityId}/translations - PUT
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto import ApiResponseDTO
+from configuration_client.models.update_entity_translation_request import UpdateEntityTranslationRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    entity_id = 'entity_id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_entity_translation_request = {"translatedFields":{}} # UpdateEntityTranslationRequest |  (optional)
+
+    try:
+        # /CustomEntityPropertyTypes/{entityId}/translations - PUT
+        api_response = api_instance.put_customentitypropertytypes_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+        print("The response of DefaultApi->put_customentitypropertytypes_entityid_translations:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_customentitypropertytypes_entityid_translations: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_entity_translation_request** | [**UpdateEntityTranslationRequest**](UpdateEntityTranslationRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_dataexportfileformats_fileformatuuid**
+> ApiResponseDTOOfDataExportFileFormatDTO put_dataexportfileformats_fileformatuuid(fileformatuuid, zf_tuuid, zf_ouuid, update_data_export_file_format_request=update_data_export_file_format_request)
+
+Updates an existing data export file format.
+
+Updates an existing data export file format.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_data_export_file_format_dto import ApiResponseDTOOfDataExportFileFormatDTO
+from configuration_client.models.update_data_export_file_format_request import UpdateDataExportFileFormatRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    fileformatuuid = 'fileformatuuid_example' # str | The unique identifier of the data export file format to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_data_export_file_format_request = {"name":"string","description":"string","settings":{}} # UpdateDataExportFileFormatRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing data export file format.
+        api_response = api_instance.put_dataexportfileformats_fileformatuuid(fileformatuuid, zf_tuuid, zf_ouuid, update_data_export_file_format_request=update_data_export_file_format_request)
+        print("The response of DefaultApi->put_dataexportfileformats_fileformatuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_dataexportfileformats_fileformatuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fileformatuuid** | **str**| The unique identifier of the data export file format to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_data_export_file_format_request** | [**UpdateDataExportFileFormatRequest**](UpdateDataExportFileFormatRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfDataExportFileFormatDTO**](ApiResponseDTOOfDataExportFileFormatDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_dataexports_dataexportuuid**
+> ApiResponseDTOOfDataExportDTO put_dataexports_dataexportuuid(dataexportuuid, zf_tuuid, zf_ouuid, update_data_export_request=update_data_export_request)
+
+Updates an existing data export.
+
+Updates an existing data export.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_data_export_dto import ApiResponseDTOOfDataExportDTO
+from configuration_client.models.update_data_export_request import UpdateDataExportRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    dataexportuuid = 'dataexportuuid_example' # str | The unique identifier of the data export to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_data_export_request = {"fileFormatId":"string","parameters":{"type":"ftp","host":"string","port":21,"userName":"string","password":"string","directory":"string","autoMoveAfterGeneration":true,"zipFiles":true,"autoAssignEntitiesToExport":true}} # UpdateDataExportRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing data export.
+        api_response = api_instance.put_dataexports_dataexportuuid(dataexportuuid, zf_tuuid, zf_ouuid, update_data_export_request=update_data_export_request)
+        print("The response of DefaultApi->put_dataexports_dataexportuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_dataexports_dataexportuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **dataexportuuid** | **str**| The unique identifier of the data export to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_data_export_request** | [**UpdateDataExportRequest**](UpdateDataExportRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfDataExportDTO**](ApiResponseDTOOfDataExportDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_dataimportfileformats_fileformatuuid**
+> ApiResponseDTOOfDataImportFileFormatDTO put_dataimportfileformats_fileformatuuid(fileformatuuid, zf_tuuid, zf_ouuid, update_data_import_file_format_request=update_data_import_file_format_request)
+
+Updates an existing data import file format.
+
+Updates an existing data import file format.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_data_import_file_format_dto import ApiResponseDTOOfDataImportFileFormatDTO
+from configuration_client.models.update_data_import_file_format_request import UpdateDataImportFileFormatRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    fileformatuuid = 'fileformatuuid_example' # str | The unique identifier of the data import file format to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_data_import_file_format_request = {"name":"string","description":"string","isBuiltIn":true,"settings":{}} # UpdateDataImportFileFormatRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing data import file format.
+        api_response = api_instance.put_dataimportfileformats_fileformatuuid(fileformatuuid, zf_tuuid, zf_ouuid, update_data_import_file_format_request=update_data_import_file_format_request)
+        print("The response of DefaultApi->put_dataimportfileformats_fileformatuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_dataimportfileformats_fileformatuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fileformatuuid** | **str**| The unique identifier of the data import file format to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_data_import_file_format_request** | [**UpdateDataImportFileFormatRequest**](UpdateDataImportFileFormatRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfDataImportFileFormatDTO**](ApiResponseDTOOfDataImportFileFormatDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_dataimports_dataimportuuid**
+> ApiResponseDTOOfDataImportDTO put_dataimports_dataimportuuid(dataimportuuid, zf_tuuid, zf_ouuid, update_data_import_request=update_data_import_request)
+
+Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
+
+Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_data_import_dto import ApiResponseDTOOfDataImportDTO
+from configuration_client.models.update_data_import_request import UpdateDataImportRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    dataimportuuid = 'dataimportuuid_example' # str | The unique identifier of the data import to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_data_import_request = {"disabled":true,"automaticProcessing":true,"customFileFormatId":"string","meteringFormatType":"elvaco_1104","parameters":{}} # UpdateDataImportRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the properties of a data provider (FTP, FTPS, SFTP or mail).
+        api_response = api_instance.put_dataimports_dataimportuuid(dataimportuuid, zf_tuuid, zf_ouuid, update_data_import_request=update_data_import_request)
+        print("The response of DefaultApi->put_dataimports_dataimportuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_dataimports_dataimportuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **dataimportuuid** | **str**| The unique identifier of the data import to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_data_import_request** | [**UpdateDataImportRequest**](UpdateDataImportRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfDataImportDTO**](ApiResponseDTOOfDataImportDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **put_enumtranslations_enumtype_symbols_symbol**
 > ApiResponseDTOOfEnumSymbolTranslationsDTO put_enumtranslations_enumtype_symbols_symbol(enum_type, symbol, zf_tuuid, zf_ouuid, update_enum_symbol_translation_request=update_enum_symbol_translation_request)
 
@@ -24013,6 +26889,3054 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **put_enumtranslations_enumtype_symbols_symbol_reset**
+> ApiResponseDTOOfEnumSymbolTranslationsDTO put_enumtranslations_enumtype_symbols_symbol_reset(enum_type, symbol, zf_tuuid, zf_ouuid)
+
+Resets the translation for a specific enumeration symbol to its default value.
+
+Resets the translation for a specific enumeration symbol to its default value.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_enum_symbol_translations_dto import ApiResponseDTOOfEnumSymbolTranslationsDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    enum_type = 'enum_type_example' # str | The name of the enumeration type.
+    symbol = 'symbol_example' # str | The symbol within the enumeration type to reset.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Resets the translation for a specific enumeration symbol to its default value.
+        api_response = api_instance.put_enumtranslations_enumtype_symbols_symbol_reset(enum_type, symbol, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_enumtranslations_enumtype_symbols_symbol_reset:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_enumtranslations_enumtype_symbols_symbol_reset: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **enum_type** | **str**| The name of the enumeration type. | 
+ **symbol** | **str**| The symbol within the enumeration type to reset. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfEnumSymbolTranslationsDTO**](ApiResponseDTOOfEnumSymbolTranslationsDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_integrations_billingtariff_import_importid_undo**
+> ApiResponseDTOOfboolean put_integrations_billingtariff_import_importid_undo(import_id, zf_tuuid, zf_ouuid)
+
+Undoes a previous billing tariff import operation.
+
+Undoes a previous billing tariff import operation.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    import_id = 'import_id_example' # str | The unique identifier of the import operation to undo.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Undoes a previous billing tariff import operation.
+        api_response = api_instance.put_integrations_billingtariff_import_importid_undo(import_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_integrations_billingtariff_import_importid_undo:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_integrations_billingtariff_import_importid_undo: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **import_id** | **str**| The unique identifier of the import operation to undo. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_integrations_billingtariff_import_importid_unlock**
+> ApiResponseDTOOfboolean put_integrations_billingtariff_import_importid_unlock(import_id, zf_tuuid, zf_ouuid)
+
+Unlocks a billing tariff import operation that was previously locked.
+
+Unlocks a billing tariff import operation that was previously locked.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    import_id = 'import_id_example' # str | The unique identifier of the import operation to unlock.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Unlocks a billing tariff import operation that was previously locked.
+        api_response = api_instance.put_integrations_billingtariff_import_importid_unlock(import_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_integrations_billingtariff_import_importid_unlock:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_integrations_billingtariff_import_importid_unlock: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **import_id** | **str**| The unique identifier of the import operation to unlock. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_models_modeluuid**
+> ApiResponseDTOOfModelDTO put_models_modeluuid(modeluuid, zf_tuuid, zf_ouuid, update_model_request=update_model_request)
+
+Updates an existing device model.
+
+Updates an existing device model.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_model_dto import ApiResponseDTOOfModelDTO
+from configuration_client.models.update_model_request import UpdateModelRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    modeluuid = 'modeluuid_example' # str | The unique identifier of the device model to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_model_request = {"name":"string","description":"string","brandName":"string","channelTemplates":[{"dataFrequency":"pt1m","meteringType":"none","utilityType":"none","direction":"offtake","incrementationType":"delta","timeOfUse":"string","unitOfMeasure":"none","description":"string","resetDay":0,"resetMonth":0,"resetHour":0}]} # UpdateModelRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing device model.
+        api_response = api_instance.put_models_modeluuid(modeluuid, zf_tuuid, zf_ouuid, update_model_request=update_model_request)
+        print("The response of DefaultApi->put_models_modeluuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_models_modeluuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **modeluuid** | **str**| The unique identifier of the device model to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_model_request** | [**UpdateModelRequest**](UpdateModelRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfModelDTO**](ApiResponseDTOOfModelDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_numbersequences_numbersequenceuuid**
+> ApiResponseDTOOfNumberSequenceDTO put_numbersequences_numbersequenceuuid(numbersequenceuuid, zf_tuuid, zf_ouuid, update_number_sequence_request=update_number_sequence_request)
+
+Updates an existing number sequence configuration.
+
+Updates an existing number sequence configuration.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_number_sequence_dto import ApiResponseDTOOfNumberSequenceDTO
+from configuration_client.models.update_number_sequence_request import UpdateNumberSequenceRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    numbersequenceuuid = 'numbersequenceuuid_example' # str | The unique identifier of the number sequence to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_number_sequence_request = {"lastValue":0,"segments":[{"segmentType":"constant","segmentLookupValues":{}}],"formatString":"string","referenceEntity":"customer"} # UpdateNumberSequenceRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing number sequence configuration.
+        api_response = api_instance.put_numbersequences_numbersequenceuuid(numbersequenceuuid, zf_tuuid, zf_ouuid, update_number_sequence_request=update_number_sequence_request)
+        print("The response of DefaultApi->put_numbersequences_numbersequenceuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_numbersequences_numbersequenceuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **numbersequenceuuid** | **str**| The unique identifier of the number sequence to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_number_sequence_request** | [**UpdateNumberSequenceRequest**](UpdateNumberSequenceRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfNumberSequenceDTO**](ApiResponseDTOOfNumberSequenceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_organizations_organizationuuid**
+> ApiResponseDTOOfOrganizationDTO put_organizations_organizationuuid(organizationuuid, zf_tuuid, zf_ouuid, update_organization_request=update_organization_request)
+
+Updates an existing organization.
+
+TODO validate organizationuuid should be same as header organization id
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_organization_dto import ApiResponseDTOOfOrganizationDTO
+from configuration_client.models.update_organization_request import UpdateOrganizationRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    organizationuuid = 'organizationuuid_example' # str | The unique identifier of the organization to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_organization_request = {"vatAccountNumber":"string","companyAccountNumber":"string","logo":"string","primaryColor":"string","secondaryColor":"string","address":{},"contactDetails":{},"manuallySetCustomerNumber":true,"manuallySetContractNumber":true} # UpdateOrganizationRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing organization.
+        api_response = api_instance.put_organizations_organizationuuid(organizationuuid, zf_tuuid, zf_ouuid, update_organization_request=update_organization_request)
+        print("The response of DefaultApi->put_organizations_organizationuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_organizations_organizationuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationuuid** | **str**| The unique identifier of the organization to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_organization_request** | [**UpdateOrganizationRequest**](UpdateOrganizationRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfOrganizationDTO**](ApiResponseDTOOfOrganizationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_organizations_organizationuuid_initialize**
+> ApiResponseDTOOfOrganizationDTO put_organizations_organizationuuid_initialize(organizationuuid, zf_tuuid, zf_ouuid)
+
+Initializes an organization with default settings and configurations.
+
+Initializes an organization with default settings and configurations.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_organization_dto import ApiResponseDTOOfOrganizationDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    organizationuuid = 'organizationuuid_example' # str | The unique identifier of the organization to initialize.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Initializes an organization with default settings and configurations.
+        api_response = api_instance.put_organizations_organizationuuid_initialize(organizationuuid, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_organizations_organizationuuid_initialize:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_organizations_organizationuuid_initialize: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organizationuuid** | **str**| The unique identifier of the organization to initialize. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfOrganizationDTO**](ApiResponseDTOOfOrganizationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_parameters_billing**
+> ApiResponseDTOOfBillingParametersDTO put_parameters_billing(zf_tuuid, zf_ouuid, update_billing_parameters_request=update_billing_parameters_request)
+
+Updates the billing parameters configuration.
+
+Updates the billing parameters configuration.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_billing_parameters_dto import ApiResponseDTOOfBillingParametersDTO
+from configuration_client.models.update_billing_parameters_request import UpdateBillingParametersRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_billing_parameters_request = {"skipApproval":true,"skipPayment":true,"enableUBL":true,"disableAutomaticBillingProcesses":true,"daysAfterInvoiceCheckpointDateToCreateInvoice":0,"daysBeforeAdvanceStartDateToCreateAdvance":0,"enableInvoiceCollection":true,"collectionBorderInvoiceCreatedDateTime":"string","collectionWriteOffHandling":"nowriteoff","groupInvoiceCollectionByCustomer":true,"doNotCreditAdvancesWhenUnpaid":true,"advanceAmountLowerThreshold":0,"defaultTaxCodeForPersonAdvances":"string","defaultTaxCodeForOrganisationAdvances":"string","estimatedMeasurementsEnabled":true,"enableAutomaticEstimatedMeasurement":true,"daysAfterCheckpointAutomaticEstimatedMeasurement":0,"consumptionInvoiceEndDateDeviationLocalDays":0,"aiInvoiceValidationIntegrationEnabled":true,"aiInvoiceValidationAutoApproveMinScoreInvoice":0,"aiInvoiceValidationAutoApproveMinScoreEndNote":0,"aiInvoiceValidationAutoApproveMinScoreAdvance":0,"advanceCalculationParameters":{},"advancePercentageParameters":{"monthly":{"percentages":[0]},"quarterly":{"percentages":[0]},"halfYearly":{"percentages":[0]}}} # UpdateBillingParametersRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the billing parameters configuration.
+        api_response = api_instance.put_parameters_billing(zf_tuuid, zf_ouuid, update_billing_parameters_request=update_billing_parameters_request)
+        print("The response of DefaultApi->put_parameters_billing:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_parameters_billing: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_billing_parameters_request** | [**UpdateBillingParametersRequest**](UpdateBillingParametersRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfBillingParametersDTO**](ApiResponseDTOOfBillingParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_parameters_communication**
+> ApiResponseDTOOfCommunicationParametersDTO put_parameters_communication(zf_tuuid, zf_ouuid, update_communication_parameters_request=update_communication_parameters_request)
+
+Updates the communication parameters configuration.
+
+Updates the communication parameters configuration.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_communication_parameters_dto import ApiResponseDTOOfCommunicationParametersDTO
+from configuration_client.models.update_communication_parameters_request import UpdateCommunicationParametersRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_communication_parameters_request = {"enabled":true,"senderEmailAddress":"string","senderName":"string","replyToEmailAddress":"string","replyToName":"string","isSandboxed":true,"sandboxRecipientEmail":"string","sandboxRecipientPhoneNumber":"string"} # UpdateCommunicationParametersRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the communication parameters configuration.
+        api_response = api_instance.put_parameters_communication(zf_tuuid, zf_ouuid, update_communication_parameters_request=update_communication_parameters_request)
+        print("The response of DefaultApi->put_parameters_communication:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_parameters_communication: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_communication_parameters_request** | [**UpdateCommunicationParametersRequest**](UpdateCommunicationParametersRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfCommunicationParametersDTO**](ApiResponseDTOOfCommunicationParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_parameters_communication_domainauthentication**
+> ApiResponseDTOOfDomainAuthenticationParametersDTO put_parameters_communication_domainauthentication(zf_tuuid, zf_ouuid, update_domain_authentication_parameters_request=update_domain_authentication_parameters_request)
+
+Updates the domain authentication parameters for communication.
+
+Updates the domain authentication parameters for communication.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_domain_authentication_parameters_dto import ApiResponseDTOOfDomainAuthenticationParametersDTO
+from configuration_client.models.update_domain_authentication_parameters_request import UpdateDomainAuthenticationParametersRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_domain_authentication_parameters_request = {"domainName":"string"} # UpdateDomainAuthenticationParametersRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the domain authentication parameters for communication.
+        api_response = api_instance.put_parameters_communication_domainauthentication(zf_tuuid, zf_ouuid, update_domain_authentication_parameters_request=update_domain_authentication_parameters_request)
+        print("The response of DefaultApi->put_parameters_communication_domainauthentication:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_parameters_communication_domainauthentication: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_domain_authentication_parameters_request** | [**UpdateDomainAuthenticationParametersRequest**](UpdateDomainAuthenticationParametersRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfDomainAuthenticationParametersDTO**](ApiResponseDTOOfDomainAuthenticationParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_parameters_communication_domainauthentication_eu_accept**
+> ApiResponseDTOOfDomainAuthenticationParametersDTO put_parameters_communication_domainauthentication_eu_accept(zf_tuuid, zf_ouuid)
+
+Accepts EU cutover when AcceptAllowed: promotes EuRecords to Records and enqueues residency Eu.
+
+Accepts EU cutover when AcceptAllowed: promotes EuRecords to Records and enqueues residency Eu.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_domain_authentication_parameters_dto import ApiResponseDTOOfDomainAuthenticationParametersDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Accepts EU cutover when AcceptAllowed: promotes EuRecords to Records and enqueues residency Eu.
+        api_response = api_instance.put_parameters_communication_domainauthentication_eu_accept(zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_parameters_communication_domainauthentication_eu_accept:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_parameters_communication_domainauthentication_eu_accept: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfDomainAuthenticationParametersDTO**](ApiResponseDTOOfDomainAuthenticationParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_parameters_communication_domainauthentication_eu_migrate**
+> ApiResponseDTOOfDomainAuthenticationParametersDTO put_parameters_communication_domainauthentication_eu_migrate(zf_tuuid, zf_ouuid)
+
+Starts EU SendGrid domain migrate prep (writes EuRecords only; does not flip residency).
+
+Starts EU SendGrid domain migrate prep (writes EuRecords only; does not flip residency).
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_domain_authentication_parameters_dto import ApiResponseDTOOfDomainAuthenticationParametersDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Starts EU SendGrid domain migrate prep (writes EuRecords only; does not flip residency).
+        api_response = api_instance.put_parameters_communication_domainauthentication_eu_migrate(zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_parameters_communication_domainauthentication_eu_migrate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_parameters_communication_domainauthentication_eu_migrate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfDomainAuthenticationParametersDTO**](ApiResponseDTOOfDomainAuthenticationParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**409** | Conflict |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_parameters_communication_domainauthentication_eu_verify**
+> ApiResponseDTOOfDomainAuthenticationParametersDTO put_parameters_communication_domainauthentication_eu_verify(zf_tuuid, zf_ouuid)
+
+Verifies EU migrate prep DNS (updates EuRecords only; does not flip residency).
+
+Verifies EU migrate prep DNS (updates EuRecords only; does not flip residency).
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_domain_authentication_parameters_dto import ApiResponseDTOOfDomainAuthenticationParametersDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Verifies EU migrate prep DNS (updates EuRecords only; does not flip residency).
+        api_response = api_instance.put_parameters_communication_domainauthentication_eu_verify(zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_parameters_communication_domainauthentication_eu_verify:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_parameters_communication_domainauthentication_eu_verify: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfDomainAuthenticationParametersDTO**](ApiResponseDTOOfDomainAuthenticationParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_parameters_communication_domainauthentication_verify**
+> ApiResponseDTOOfDomainAuthenticationParametersDTO put_parameters_communication_domainauthentication_verify(zf_tuuid, zf_ouuid)
+
+Verifies the current domain authentication parameters.
+
+Verifies the current domain authentication parameters.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_domain_authentication_parameters_dto import ApiResponseDTOOfDomainAuthenticationParametersDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Verifies the current domain authentication parameters.
+        api_response = api_instance.put_parameters_communication_domainauthentication_verify(zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_parameters_communication_domainauthentication_verify:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_parameters_communication_domainauthentication_verify: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfDomainAuthenticationParametersDTO**](ApiResponseDTOOfDomainAuthenticationParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_parameters_masterdata**
+> ApiResponseDTOOfMasterDataParametersDTO put_parameters_masterdata(zf_tuuid, zf_ouuid, update_master_data_parameters_request=update_master_data_parameters_request)
+
+Updates the master data parameters configuration.
+
+Updates the master data parameters configuration.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_master_data_parameters_dto import ApiResponseDTOOfMasterDataParametersDTO
+from configuration_client.models.update_master_data_parameters_request import UpdateMasterDataParametersRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_master_data_parameters_request = {"excludedUtilityTypes":["none"]} # UpdateMasterDataParametersRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the master data parameters configuration.
+        api_response = api_instance.put_parameters_masterdata(zf_tuuid, zf_ouuid, update_master_data_parameters_request=update_master_data_parameters_request)
+        print("The response of DefaultApi->put_parameters_masterdata:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_parameters_masterdata: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_master_data_parameters_request** | [**UpdateMasterDataParametersRequest**](UpdateMasterDataParametersRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfMasterDataParametersDTO**](ApiResponseDTOOfMasterDataParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_parameters_metering**
+> ApiResponseDTOOfMeteringParametersDTO put_parameters_metering(zf_tuuid, zf_ouuid, update_metering_parameters_request=update_metering_parameters_request)
+
+Updates the metering parameters configuration.
+
+Updates the metering parameters configuration.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_metering_parameters_dto import ApiResponseDTOOfMeteringParametersDTO
+from configuration_client.models.update_metering_parameters_request import UpdateMeteringParametersRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_metering_parameters_request = {"meteringValidationEnabled":true,"measurementOriginEnabled":true,"validationRules":[{"type":"BaseMeteringValidationRuleDTO:MeasurementFrequencyTooLow","gracePeriodInDays":0,"error":"consumptionnegative","enabled":true,"synchronous":true,"supportedIncrementationTypes":["delta"]}]} # UpdateMeteringParametersRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the metering parameters configuration.
+        api_response = api_instance.put_parameters_metering(zf_tuuid, zf_ouuid, update_metering_parameters_request=update_metering_parameters_request)
+        print("The response of DefaultApi->put_parameters_metering:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_parameters_metering: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_metering_parameters_request** | [**UpdateMeteringParametersRequest**](UpdateMeteringParametersRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfMeteringParametersDTO**](ApiResponseDTOOfMeteringParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_parameters_payment**
+> ApiResponseDTOOfPaymentParametersDTO put_parameters_payment(zf_tuuid, zf_ouuid, update_payment_parameters_request=update_payment_parameters_request)
+
+Updates the payment parameters configuration.
+
+Updates the payment parameters configuration.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_payment_parameters_dto import ApiResponseDTOOfPaymentParametersDTO
+from configuration_client.models.update_payment_parameters_request import UpdatePaymentParametersRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_payment_parameters_request = {"retryParameters":[{"retryAttempt":0,"retryAction":"retryonfixedday","value":0}],"refundPaymentDelayInDays":0,"paymentTermsId":"string","defaultCollectionFlowId":"string","onlyUseInvoiceNumberInPaymentReferences":true,"blockAutomaticRefunding":true,"defaultCollectionDelay":"delayuntilfixeddayofmonth","defaultCollectionDelayValue":0,"allowCustomerCollectionDayOverride":true,"matchingRules":[{"__type":"AutoConfirmIbanOnHighConfidenceMatchRule","kind":"string","enabled":true}],"allowResidentToChooseCollectionDay":true,"selectableCollectionDays":[0]} # UpdatePaymentParametersRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the payment parameters configuration.
+        api_response = api_instance.put_parameters_payment(zf_tuuid, zf_ouuid, update_payment_parameters_request=update_payment_parameters_request)
+        print("The response of DefaultApi->put_parameters_payment:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_parameters_payment: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_payment_parameters_request** | [**UpdatePaymentParametersRequest**](UpdatePaymentParametersRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentParametersDTO**](ApiResponseDTOOfPaymentParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_parameters_payment_portal_collection_preferences**
+> ApiResponseDTOOfPaymentParametersDTO put_parameters_payment_portal_collection_preferences(zf_tuuid, zf_ouuid, update_portal_collection_day_preferences_request=update_portal_collection_day_preferences_request)
+
+Updates the customer portal collection day preferences.
+
+Updates the customer portal collection day preferences.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_payment_parameters_dto import ApiResponseDTOOfPaymentParametersDTO
+from configuration_client.models.update_portal_collection_day_preferences_request import UpdatePortalCollectionDayPreferencesRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_portal_collection_day_preferences_request = {"allowResidentToChooseCollectionDay":true,"selectableCollectionDays":[0]} # UpdatePortalCollectionDayPreferencesRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the customer portal collection day preferences.
+        api_response = api_instance.put_parameters_payment_portal_collection_preferences(zf_tuuid, zf_ouuid, update_portal_collection_day_preferences_request=update_portal_collection_day_preferences_request)
+        print("The response of DefaultApi->put_parameters_payment_portal_collection_preferences:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_parameters_payment_portal_collection_preferences: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_portal_collection_day_preferences_request** | [**UpdatePortalCollectionDayPreferencesRequest**](UpdatePortalCollectionDayPreferencesRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentParametersDTO**](ApiResponseDTOOfPaymentParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_parameters_paymentplan**
+> ApiResponseDTOOfPaymentPlanParametersDTO put_parameters_paymentplan(zf_tuuid, zf_ouuid, update_payment_plan_parameters_request=update_payment_plan_parameters_request)
+
+Updates the payment plan parameters configuration.
+
+Updates the payment plan parameters configuration.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_payment_plan_parameters_dto import ApiResponseDTOOfPaymentPlanParametersDTO
+from configuration_client.models.update_payment_plan_parameters_request import UpdatePaymentPlanParametersRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_payment_plan_parameters_request = {"requireApproval":true,"autoCancellation":true,"enableAutoRecalculation":true,"sendRecalculationCommunication":true,"minimumAmount":0,"maximumPeriodInMonths":0,"defaultOverdueDays":0,"minimumFinalInstallmentAmount":0,"fallbackDefaultDuration":0,"sddCollectionDaysBeforeDue":0,"reminderDaysAfterDue":0} # UpdatePaymentPlanParametersRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the payment plan parameters configuration.
+        api_response = api_instance.put_parameters_paymentplan(zf_tuuid, zf_ouuid, update_payment_plan_parameters_request=update_payment_plan_parameters_request)
+        print("The response of DefaultApi->put_parameters_paymentplan:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_parameters_paymentplan: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_payment_plan_parameters_request** | [**UpdatePaymentPlanParametersRequest**](UpdatePaymentPlanParametersRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentPlanParametersDTO**](ApiResponseDTOOfPaymentPlanParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_parameters_prepayment**
+> ApiResponseDTOOfPrepaymentParametersDTO put_parameters_prepayment(zf_tuuid, zf_ouuid, body=body)
+
+Updates the prepayment parameters configuration (PrepaymentParameters).
+
+Updates the prepayment parameters configuration (PrepaymentParameters).
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_prepayment_parameters_dto import ApiResponseDTOOfPrepaymentParametersDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    body = None # object | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates the prepayment parameters configuration (PrepaymentParameters).
+        api_response = api_instance.put_parameters_prepayment(zf_tuuid, zf_ouuid, body=body)
+        print("The response of DefaultApi->put_parameters_prepayment:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_parameters_prepayment: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **body** | **object**| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPrepaymentParametersDTO**](ApiResponseDTOOfPrepaymentParametersDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentdelays_paymentdelayuuid**
+> ApiResponseDTOOfPaymentDelaySettingDTO put_paymentdelays_paymentdelayuuid(paymentdelayuuid, zf_tuuid, zf_ouuid, update_payment_delay_request=update_payment_delay_request)
+
+Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
+
+Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a
+setting to an invoice type that already has one is rejected.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_payment_delay_setting_dto import ApiResponseDTOOfPaymentDelaySettingDTO
+from configuration_client.models.update_payment_delay_request import UpdatePaymentDelayRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    paymentdelayuuid = 'paymentdelayuuid_example' # str | The unique identifier of the payment delay setting to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_payment_delay_request = {"invoiceType":{},"paymentDelay":"delayuntilfixeddayofmonth","value":0} # UpdatePaymentDelayRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing payment delay setting. Only one setting may exist per invoice type, so moving a setting to an invoice type that already has one is rejected.
+        api_response = api_instance.put_paymentdelays_paymentdelayuuid(paymentdelayuuid, zf_tuuid, zf_ouuid, update_payment_delay_request=update_payment_delay_request)
+        print("The response of DefaultApi->put_paymentdelays_paymentdelayuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentdelays_paymentdelayuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **paymentdelayuuid** | **str**| The unique identifier of the payment delay setting to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_payment_delay_request** | [**UpdatePaymentDelayRequest**](UpdatePaymentDelayRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentDelaySettingDTO**](ApiResponseDTOOfPaymentDelaySettingDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentterms_paymenttermuuid**
+> ApiResponseDTOOfPaymentTermsDTO put_paymentterms_paymenttermuuid(paymenttermuuid, zf_tuuid, zf_ouuid, payment_terms_request=payment_terms_request)
+
+Updates an existing payment term.
+
+Updates an existing payment term.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_payment_terms_dto import ApiResponseDTOOfPaymentTermsDTO
+from configuration_client.models.payment_terms_request import PaymentTermsRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    paymenttermuuid = 'paymenttermuuid_example' # str | The unique identifier of the payment term to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    payment_terms_request = {"name":"string","amount":0,"paymentTermsFrequency":"day"} # PaymentTermsRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing payment term.
+        api_response = api_instance.put_paymentterms_paymenttermuuid(paymenttermuuid, zf_tuuid, zf_ouuid, payment_terms_request=payment_terms_request)
+        print("The response of DefaultApi->put_paymentterms_paymenttermuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentterms_paymenttermuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **paymenttermuuid** | **str**| The unique identifier of the payment term to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **payment_terms_request** | [**PaymentTermsRequest**](PaymentTermsRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentTermsDTO**](ApiResponseDTOOfPaymentTermsDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**404** | Not Found |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_portalsettings**
+> ApiResponseDTOOfPortalSettingsDTO put_portalsettings(zf_tuuid, zf_ouuid, update_portal_settings_request=update_portal_settings_request)
+
+Updates portal settings configuration.
+
+Updates portal settings configuration.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_portal_settings_dto import ApiResponseDTOOfPortalSettingsDTO
+from configuration_client.models.update_portal_settings_request import UpdatePortalSettingsRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_portal_settings_request = {"favIcon":"string","logo":"string","pwaInstallIcon512":"string","pwaInstallIcon192":"string","pwaAppleTouchIcon180":"string","primaryColor":"string","secondaryColor":"string","persistLogoFromOrganization":true,"persistColorFromOrganization":true,"showVko":true,"pwaEnabled":true,"advanceChangeLimit":{},"billingSettings":{},"moveInMoveOutSettings":{"isDisabled":true},"selfServiceOptions":{"allowEditCommunicationDetails":true,"allowChangeCommunicationLanguage":true,"allowEditPersonalInformation":true,"allowChangeBankingDetails":true,"allowSddToSct":true}} # UpdatePortalSettingsRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates portal settings configuration.
+        api_response = api_instance.put_portalsettings(zf_tuuid, zf_ouuid, update_portal_settings_request=update_portal_settings_request)
+        print("The response of DefaultApi->put_portalsettings:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_portalsettings: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_portal_settings_request** | [**UpdatePortalSettingsRequest**](UpdatePortalSettingsRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPortalSettingsDTO**](ApiResponseDTOOfPortalSettingsDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_portalsettings_hostname_add**
+> ApiResponseDTOOfPortalSettingsDTO put_portalsettings_hostname_add(zf_tuuid, zf_ouuid, add_portal_host_name_request=add_portal_host_name_request)
+
+adds a hostName for a specific portal.
+
+adds a hostName for a specific portal.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.add_portal_host_name_request import AddPortalHostNameRequest
+from configuration_client.models.api_response_dtoof_portal_settings_dto import ApiResponseDTOOfPortalSettingsDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    add_portal_host_name_request = {"hostName":"string"} # AddPortalHostNameRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # adds a hostName for a specific portal.
+        api_response = api_instance.put_portalsettings_hostname_add(zf_tuuid, zf_ouuid, add_portal_host_name_request=add_portal_host_name_request)
+        print("The response of DefaultApi->put_portalsettings_hostname_add:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_portalsettings_hostname_add: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **add_portal_host_name_request** | [**AddPortalHostNameRequest**](AddPortalHostNameRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPortalSettingsDTO**](ApiResponseDTOOfPortalSettingsDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_portalsettings_hostname_validate**
+> ApiResponseDTOOfValidatePortalHostNameResponse put_portalsettings_hostname_validate(zf_tuuid, zf_ouuid, add_portal_host_name_request=add_portal_host_name_request)
+
+Validates DNS records for a pending portal hostname.
+
+Validates DNS records for a pending portal hostname.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.add_portal_host_name_request import AddPortalHostNameRequest
+from configuration_client.models.api_response_dtoof_validate_portal_host_name_response import ApiResponseDTOOfValidatePortalHostNameResponse
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    add_portal_host_name_request = {"hostName":"string"} # AddPortalHostNameRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Validates DNS records for a pending portal hostname.
+        api_response = api_instance.put_portalsettings_hostname_validate(zf_tuuid, zf_ouuid, add_portal_host_name_request=add_portal_host_name_request)
+        print("The response of DefaultApi->put_portalsettings_hostname_validate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_portalsettings_hostname_validate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **add_portal_host_name_request** | [**AddPortalHostNameRequest**](AddPortalHostNameRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfValidatePortalHostNameResponse**](ApiResponseDTOOfValidatePortalHostNameResponse.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_portalsettings_notification**
+> ApiResponseDTOOfPortalSettingsDTO put_portalsettings_notification(zf_tuuid, zf_ouuid, upsert_portal_page_notification_request=upsert_portal_page_notification_request)
+
+Upserts a page notification to the portal settings.
+
+Upserts a page notification to the portal settings.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_portal_settings_dto import ApiResponseDTOOfPortalSettingsDTO
+from configuration_client.models.upsert_portal_page_notification_request import UpsertPortalPageNotificationRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    upsert_portal_page_notification_request = {"pageIdentifier":"startpage","notificationType":"neutral","startDateTime":"string","endDateTime":"string","translatedContent":{}} # UpsertPortalPageNotificationRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Upserts a page notification to the portal settings.
+        api_response = api_instance.put_portalsettings_notification(zf_tuuid, zf_ouuid, upsert_portal_page_notification_request=upsert_portal_page_notification_request)
+        print("The response of DefaultApi->put_portalsettings_notification:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_portalsettings_notification: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **upsert_portal_page_notification_request** | [**UpsertPortalPageNotificationRequest**](UpsertPortalPageNotificationRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPortalSettingsDTO**](ApiResponseDTOOfPortalSettingsDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_products_entityid_translations**
+> ApiResponseDTO put_products_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+
+/Products/{entityId}/translations - PUT
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto import ApiResponseDTO
+from configuration_client.models.update_entity_translation_request import UpdateEntityTranslationRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    entity_id = 'entity_id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_entity_translation_request = {"translatedFields":{}} # UpdateEntityTranslationRequest |  (optional)
+
+    try:
+        # /Products/{entityId}/translations - PUT
+        api_response = api_instance.put_products_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+        print("The response of DefaultApi->put_products_entityid_translations:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_products_entityid_translations: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_entity_translation_request** | [**UpdateEntityTranslationRequest**](UpdateEntityTranslationRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_products_productuuid**
+> ApiResponseDTOOfProductDTO put_products_productuuid(productuuid, zf_tuuid, zf_ouuid, upsert_product_request=upsert_product_request)
+
+Updates an existing product.
+
+Updates an existing product.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_product_dto import ApiResponseDTOOfProductDTO
+from configuration_client.models.upsert_product_request import UpsertProductRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    productuuid = 'productuuid_example' # str | The unique identifier of the product to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    upsert_product_request = {"name":"string","billingItems":[{"billingItemId":"string","order":0,"periodicityParameters":{},"startDateTime":"string","endDateTime":"string"}],"attachments":[{"productAttachmentId":"string","includeInWelcomeEmail":true,"visibility":"internal","approvalRequired":true,"validFrom":"string","validUntil":"string","attachmentFiles":[{"culture":"string","fileName":"string","internalFileName":"string","attachmentId":"string"}]}],"invoiceUpfront":true,"isPrepaymentEligible":true,"accountingCodeId":"string"} # UpsertProductRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing product.
+        api_response = api_instance.put_products_productuuid(productuuid, zf_tuuid, zf_ouuid, upsert_product_request=upsert_product_request)
+        print("The response of DefaultApi->put_products_productuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_products_productuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **productuuid** | **str**| The unique identifier of the product to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **upsert_product_request** | [**UpsertProductRequest**](UpsertProductRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfProductDTO**](ApiResponseDTOOfProductDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_regionalregulations_bel**
+> ApiResponseDTOOfBELRegionalRegulationsConfigurationDTO put_regionalregulations_bel(zf_tuuid, zf_ouuid, update_regional_regulations_parameters_for_bel_request=update_regional_regulations_parameters_for_bel_request)
+
+Updates regional regulations parameters specific to Belgium.
+
+Updates regional regulations parameters specific to Belgium.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_bel_regional_regulations_configuration_dto import ApiResponseDTOOfBELRegionalRegulationsConfigurationDTO
+from configuration_client.models.update_regional_regulations_parameters_for_bel_request import UpdateRegionalRegulationsParametersForBELRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_regional_regulations_parameters_for_bel_request = {"socialTariffParameters":{}} # UpdateRegionalRegulationsParametersForBELRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates regional regulations parameters specific to Belgium.
+        api_response = api_instance.put_regionalregulations_bel(zf_tuuid, zf_ouuid, update_regional_regulations_parameters_for_bel_request=update_regional_regulations_parameters_for_bel_request)
+        print("The response of DefaultApi->put_regionalregulations_bel:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_regionalregulations_bel: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_regional_regulations_parameters_for_bel_request** | [**UpdateRegionalRegulationsParametersForBELRequest**](UpdateRegionalRegulationsParametersForBELRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfBELRegionalRegulationsConfigurationDTO**](ApiResponseDTOOfBELRegionalRegulationsConfigurationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_regionalregulations_gbr**
+> ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO put_regionalregulations_gbr(zf_tuuid, zf_ouuid, update_regional_regulations_parameters_for_gbr_request=update_regional_regulations_parameters_for_gbr_request)
+
+Updates regional regulations parameters specific to Geat Britain.
+
+Updates regional regulations parameters specific to Geat Britain.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_gbr_regional_regulations_configuration_dto import ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO
+from configuration_client.models.update_regional_regulations_parameters_for_gbr_request import UpdateRegionalRegulationsParametersForGBRRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_regional_regulations_parameters_for_gbr_request = {"priorityRegisterParameters":{}} # UpdateRegionalRegulationsParametersForGBRRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates regional regulations parameters specific to Geat Britain.
+        api_response = api_instance.put_regionalregulations_gbr(zf_tuuid, zf_ouuid, update_regional_regulations_parameters_for_gbr_request=update_regional_regulations_parameters_for_gbr_request)
+        print("The response of DefaultApi->put_regionalregulations_gbr:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_regionalregulations_gbr: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_regional_regulations_parameters_for_gbr_request** | [**UpdateRegionalRegulationsParametersForGBRRequest**](UpdateRegionalRegulationsParametersForGBRRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO**](ApiResponseDTOOfGBRRegionalRegulationsConfigurationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_reportingconfigurationproviders_activate**
+> ApiResponseDTOOfReportingConfigurationProviderDTO put_reportingconfigurationproviders_activate(zf_tuuid, zf_ouuid, activate_reporting_configuration_provider_request=activate_reporting_configuration_provider_request)
+
+Activates reporting integration for the current organization. Creates a Microsoft Fabric cloud connection to the customer Azure Data Lake Storage Gen2 account using the supplied service principal credentials. The client secret is sent to Fabric only and is not stored in the database. Requires the Mi
+
+Activates reporting integration for the current organization.
+Creates a Microsoft Fabric cloud connection to the customer Azure Data Lake Storage Gen2 account using the supplied service principal credentials.
+The client secret is sent to Fabric only and is not stored in the database.
+Requires the Microsoft Entra ID tenant id, service principal application id, and client secret.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.activate_reporting_configuration_provider_request import ActivateReportingConfigurationProviderRequest
+from configuration_client.models.api_response_dtoof_reporting_configuration_provider_dto import ApiResponseDTOOfReportingConfigurationProviderDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    activate_reporting_configuration_provider_request = {"storageAccountUri":"string","storageAccountContainerPath":"string","entraIdTenantId":"string","servicePrincipalApplicationId":"string","servicePrincipalClientSecret":"string"} # ActivateReportingConfigurationProviderRequest |  (optional)
+
+    try:
+        # Activates reporting integration for the current organization. Creates a Microsoft Fabric cloud connection to the customer Azure Data Lake Storage Gen2 account using the supplied service principal credentials. The client secret is sent to Fabric only and is not stored in the database. Requires the Mi
+        api_response = api_instance.put_reportingconfigurationproviders_activate(zf_tuuid, zf_ouuid, activate_reporting_configuration_provider_request=activate_reporting_configuration_provider_request)
+        print("The response of DefaultApi->put_reportingconfigurationproviders_activate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_reportingconfigurationproviders_activate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **activate_reporting_configuration_provider_request** | [**ActivateReportingConfigurationProviderRequest**](ActivateReportingConfigurationProviderRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfReportingConfigurationProviderDTO**](ApiResponseDTOOfReportingConfigurationProviderDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_reportingconfigurationproviders_deactivate**
+> ApiResponseDTOOfReportingConfigurationProviderDTO put_reportingconfigurationproviders_deactivate(zf_tuuid, zf_ouuid, body=body)
+
+Deactivates reporting integration for the current organization.
+
+Deactivates reporting integration for the current organization.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_reporting_configuration_provider_dto import ApiResponseDTOOfReportingConfigurationProviderDTO
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    body = None # object |  (optional)
+
+    try:
+        # Deactivates reporting integration for the current organization.
+        api_response = api_instance.put_reportingconfigurationproviders_deactivate(zf_tuuid, zf_ouuid, body=body)
+        print("The response of DefaultApi->put_reportingconfigurationproviders_deactivate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_reportingconfigurationproviders_deactivate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **body** | **object**|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfReportingConfigurationProviderDTO**](ApiResponseDTOOfReportingConfigurationProviderDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_reportingconfigurationproviders_settings**
+> ApiResponseDTOOfReportingConfigurationProviderDTO put_reportingconfigurationproviders_settings(zf_tuuid, zf_ouuid, update_reporting_configuration_provider_request=update_reporting_configuration_provider_request)
+
+Updates reporting configuration (export location, Microsoft Entra ID tenant id, service principal application id). While the integration is active, changing any of those values or rotating the client secret requires supplying the client secret again so the Microsoft Fabric connection can be recreate
+
+Updates reporting configuration (export location, Microsoft Entra ID tenant id, service principal application id).
+While the integration is active, changing any of those values or rotating the client secret requires supplying the client secret again so the Microsoft Fabric connection can be recreated.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_reporting_configuration_provider_dto import ApiResponseDTOOfReportingConfigurationProviderDTO
+from configuration_client.models.update_reporting_configuration_provider_request import UpdateReportingConfigurationProviderRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_reporting_configuration_provider_request = {"storageAccountUri":"string","storageAccountContainerPath":"string","entraIdTenantId":"string","servicePrincipalApplicationId":"string","servicePrincipalClientSecret":"string"} # UpdateReportingConfigurationProviderRequest |  (optional)
+
+    try:
+        # Updates reporting configuration (export location, Microsoft Entra ID tenant id, service principal application id). While the integration is active, changing any of those values or rotating the client secret requires supplying the client secret again so the Microsoft Fabric connection can be recreate
+        api_response = api_instance.put_reportingconfigurationproviders_settings(zf_tuuid, zf_ouuid, update_reporting_configuration_provider_request=update_reporting_configuration_provider_request)
+        print("The response of DefaultApi->put_reportingconfigurationproviders_settings:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_reportingconfigurationproviders_settings: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_reporting_configuration_provider_request** | [**UpdateReportingConfigurationProviderRequest**](UpdateReportingConfigurationProviderRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfReportingConfigurationProviderDTO**](ApiResponseDTOOfReportingConfigurationProviderDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **put_scenarios_billingrelation_advanceamountchanged**
 > ApiResponseDTOOfAdvanceAmountChangedScenarioDTO put_scenarios_billingrelation_advanceamountchanged(zf_tuuid, zf_ouuid, change_advance_amount_changed_scenario_request=change_advance_amount_changed_scenario_request)
 
@@ -24061,7 +29985,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_advance_amount_changed_scenario_request = {"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeAdvanceAmountChangedScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_advance_amount_changed_scenario_request = {"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeAdvanceAmountChangedScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the advance amount changed scenario configuration.
@@ -24154,7 +30078,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_collection_scenario_request = {"pdfTemplate":{"showCountry":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]}} # ChangeCollectionScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_collection_scenario_request = {"pdfTemplate":{},"emailTemplate":{}} # ChangeCollectionScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the collection scenario configuration.
@@ -24247,7 +30171,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_notice_of_default_scenario_request = {"pdfTemplate":{"showCountry":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]}} # ChangeNoticeOfDefaultScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_notice_of_default_scenario_request = {"pdfTemplate":{},"emailTemplate":{}} # ChangeNoticeOfDefaultScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the notice of default scenario configuration.
@@ -24340,7 +30264,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_reminder_scenario_request = {"pdfTemplate":{"showCountry":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]}} # ChangeReminderScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_reminder_scenario_request = {"pdfTemplate":{},"emailTemplate":{}} # ChangeReminderScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the reminder scenario configuration.
@@ -24433,7 +30357,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_contract_locations_added_scenario_request = {"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeContractLocationsAddedScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_contract_locations_added_scenario_request = {"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeContractLocationsAddedScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the contract locations added scenario configuration.
@@ -24526,7 +30450,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_contract_locations_removed_scenario_request = {"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeContractLocationsRemovedScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_contract_locations_removed_scenario_request = {"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeContractLocationsRemovedScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the contract locations removed scenario configuration.
@@ -24619,7 +30543,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_contract_termination_scenario_request = {"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeContractTerminationScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_contract_termination_scenario_request = {"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeContractTerminationScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the contract termination scenario configuration.
@@ -24712,7 +30636,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_contract_welcome_scenario_request = {"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeContractWelcomeScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_contract_welcome_scenario_request = {"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeContractWelcomeScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the contract welcome scenario configuration.
@@ -24807,7 +30731,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     entity_subject_sub_type = 'entity_subject_sub_type_example' # str | 
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_organization_scenario_request = {"emailTemplate":{"type":"UpdatePortalCustomerAccountConfirmationEmailTemplateRequest","subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"pdfTemplate":{"type":"UpdateAnnualStatementPdfTemplateRequest","showCountry":true,"showBalance":true,"showVatSpecs":true,"showCustomInformation":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"defaultCommunicationType":"none","autoFallbackToPostal":true} # UpdateOrganizationScenarioRequest |  (optional)
+    update_organization_scenario_request = {"emailTemplate":{},"pdfTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # UpdateOrganizationScenarioRequest |  (optional)
 
     try:
         # Update a scenario that is not available in OrganizationScenarios
@@ -24902,7 +30826,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_advance_scenario_request = {"pdfTemplate":{"showCountry":true,"showBalance":true,"showVatSpecs":true,"showCustomInformation":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeAdvanceScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_advance_scenario_request = {"pdfTemplate":{},"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeAdvanceScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the advance scenario configuration.
@@ -24995,7 +30919,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_correction_note_scenario_request = {"pdfTemplate":{"showCountry":true,"showBalance":true,"showVatSpecs":true,"showCustomInformation":true,"unitPriceExclVatForPersons":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeCorrectionNoteScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_correction_note_scenario_request = {"pdfTemplate":{},"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeCorrectionNoteScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the correction note scenario configuration.
@@ -25088,7 +31012,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_credit_note_scenario_request = {"pdfTemplate":{"showCountry":true,"showBalance":true,"showVatSpecs":true,"showCustomInformation":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeCreditNoteScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_credit_note_scenario_request = {"pdfTemplate":{},"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeCreditNoteScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the credit note scenario configuration.
@@ -25181,7 +31105,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_end_note_scenario_request = {"pdfTemplate":{"costAllocation":true,"showCountry":true,"showPriceFormulae":true,"showBalance":true,"showVatSpecs":true,"showCustomInformation":true,"unitPriceExclVatForPersons":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeEndNoteScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_end_note_scenario_request = {"pdfTemplate":{},"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeEndNoteScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the end note scenario configuration.
@@ -25274,7 +31198,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_incidental_note_scenario_request = {"pdfTemplate":{"showCountry":true,"showBalance":true,"showVatSpecs":true,"showCustomInformation":true,"unitPriceExclVatForPersons":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeIncidentalNoteScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_incidental_note_scenario_request = {"pdfTemplate":{},"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeIncidentalNoteScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the incidental note scenario configuration.
@@ -25367,7 +31291,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_invoice_scenario_request = {"pdfTemplate":{"costAllocation":true,"showCountry":true,"showPriceFormulae":true,"showBalance":true,"showVatSpecs":true,"showCustomInformation":true,"unitPriceExclVatForPersons":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeInvoiceScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_invoice_scenario_request = {"pdfTemplate":{},"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeInvoiceScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the invoice scenario configuration.
@@ -25460,7 +31384,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_acknowledge_move_in_scenario_request = {"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeAcknowledgeMoveInScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_acknowledge_move_in_scenario_request = {"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeAcknowledgeMoveInScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the acknowledge move in scenario configuration.
@@ -25553,7 +31477,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_acknowledge_move_out_scenario_request = {"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeAcknowledgeMoveOutScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_acknowledge_move_out_scenario_request = {"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeAcknowledgeMoveOutScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the acknowledge move out scenario configuration.
@@ -25646,7 +31570,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_reject_move_in_scenario_request = {"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeRejectMoveInScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_reject_move_in_scenario_request = {"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeRejectMoveInScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the reject move in scenario configuration.
@@ -25739,7 +31663,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_reject_move_out_scenario_request = {"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeRejectMoveOutScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_reject_move_out_scenario_request = {"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangeRejectMoveOutScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the reject move out scenario configuration.
@@ -25832,7 +31756,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_payment_plan_activated_scenario_request = {"pdfTemplate":{"showCountry":true,"showInstallmentDetails":true,"showPaymentInstructions":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangePaymentPlanActivatedScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_payment_plan_activated_scenario_request = {"pdfTemplate":{},"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangePaymentPlanActivatedScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the payment plan activated scenario configuration.
@@ -25925,7 +31849,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_payment_plan_cancelled_scenario_request = {"pdfTemplate":{"showCountry":true,"showInstallmentDetails":true,"showPaymentInstructions":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangePaymentPlanCancelledScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_payment_plan_cancelled_scenario_request = {"pdfTemplate":{},"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangePaymentPlanCancelledScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the payment plan cancelled scenario configuration.
@@ -26018,7 +31942,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_payment_plan_completed_scenario_request = {"pdfTemplate":{"showCountry":true,"showInstallmentDetails":true,"showPaymentInstructions":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangePaymentPlanCompletedScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_payment_plan_completed_scenario_request = {"pdfTemplate":{},"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangePaymentPlanCompletedScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the payment plan completed scenario configuration.
@@ -26111,7 +32035,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_payment_plan_recalculated_scenario_request = {"pdfTemplate":{"showCountry":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangePaymentPlanRecalculatedScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_payment_plan_recalculated_scenario_request = {"pdfTemplate":{},"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangePaymentPlanRecalculatedScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the payment plan recalculated scenario configuration.
@@ -26204,7 +32128,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_payment_plan_reminder_scenario_request = {"pdfTemplate":{"showCountry":true,"showInstallmentDetails":true,"showPaymentInstructions":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangePaymentPlanReminderScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_payment_plan_reminder_scenario_request = {"pdfTemplate":{},"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangePaymentPlanReminderScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the payment plan reminder scenario configuration.
@@ -26297,7 +32221,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_payment_plan_requested_scenario_request = {"pdfTemplate":{"showCountry":true,"showInstallmentDetails":true,"showPaymentInstructions":true,"envelopeSettings":{"marginPosition":"left","margin":0,"marginTop":0}},"emailTemplate":{"subject":"string","attachments":[{"id":"string","internalFilePath":"string","fileName":"string"}]},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangePaymentPlanRequestedScenarioRequest | Propagates notification that operations should be canceled. (optional)
+    change_payment_plan_requested_scenario_request = {"pdfTemplate":{},"emailTemplate":{},"defaultCommunicationType":"none","autoFallbackToPostal":true} # ChangePaymentPlanRequestedScenarioRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates the payment plan requested scenario configuration.
@@ -26322,6 +32246,289 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ApiResponseDTOOfPaymentPlanRequestedScenarioDTO**](ApiResponseDTOOfPaymentPlanRequestedScenarioDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_scenariotranslations_translationname_reset**
+> ApiResponseDTOOfScenarioTranslationDTO put_scenariotranslations_translationname_reset(translation_name, zf_tuuid, zf_ouuid, reset_translation_request=reset_translation_request)
+
+Resets a specific scenario translation to its default value.
+
+Resets a specific scenario translation to its default value.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_scenario_translation_dto import ApiResponseDTOOfScenarioTranslationDTO
+from configuration_client.models.reset_translation_request import ResetTranslationRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    translation_name = 'translation_name_example' # str | The name of the translation to reset.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    reset_translation_request = {"updateAllScenarios":true,"entitySubjectType":"none","entitySubjectSubType":"string"} # ResetTranslationRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Resets a specific scenario translation to its default value.
+        api_response = api_instance.put_scenariotranslations_translationname_reset(translation_name, zf_tuuid, zf_ouuid, reset_translation_request=reset_translation_request)
+        print("The response of DefaultApi->put_scenariotranslations_translationname_reset:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_scenariotranslations_translationname_reset: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **translation_name** | **str**| The name of the translation to reset. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **reset_translation_request** | [**ResetTranslationRequest**](ResetTranslationRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfScenarioTranslationDTO**](ApiResponseDTOOfScenarioTranslationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_scenariotranslations_translationname_update**
+> ApiResponseDTOOfScenarioTranslationDTO put_scenariotranslations_translationname_update(translation_name, zf_tuuid, zf_ouuid, update_translation_request=update_translation_request)
+
+Updates a specific scenario translation.
+
+Updates a specific scenario translation.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_scenario_translation_dto import ApiResponseDTOOfScenarioTranslationDTO
+from configuration_client.models.update_translation_request import UpdateTranslationRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    translation_name = 'translation_name_example' # str | The name of the translation to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_translation_request = {"updateAllScenarios":true,"translations":{},"entitySubjectType":"none","entitySubjectSubType":"string"} # UpdateTranslationRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates a specific scenario translation.
+        api_response = api_instance.put_scenariotranslations_translationname_update(translation_name, zf_tuuid, zf_ouuid, update_translation_request=update_translation_request)
+        print("The response of DefaultApi->put_scenariotranslations_translationname_update:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_scenariotranslations_translationname_update: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **translation_name** | **str**| The name of the translation to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_translation_request** | [**UpdateTranslationRequest**](UpdateTranslationRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfScenarioTranslationDTO**](ApiResponseDTOOfScenarioTranslationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_taxcodes_taxcodeuuid**
+> ApiResponseDTOOfTaxCodeDTO put_taxcodes_taxcodeuuid(taxcodeuuid, zf_tuuid, create_tax_code_request=create_tax_code_request)
+
+Updates an existing tax code.
+
+Updates an existing tax code.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_tax_code_dto import ApiResponseDTOOfTaxCodeDTO
+from configuration_client.models.create_tax_code_request import CreateTaxCodeRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    taxcodeuuid = 'taxcodeuuid_example' # str | The unique identifier of the tax code to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    create_tax_code_request = {"name":"string","accountingCodeId":"string","rates":[{"rate":0,"startDateTime":"string","endDateTime":"string","dateRange":{}}]} # CreateTaxCodeRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates an existing tax code.
+        api_response = api_instance.put_taxcodes_taxcodeuuid(taxcodeuuid, zf_tuuid, create_tax_code_request=create_tax_code_request)
+        print("The response of DefaultApi->put_taxcodes_taxcodeuuid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_taxcodes_taxcodeuuid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **taxcodeuuid** | **str**| The unique identifier of the tax code to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **create_tax_code_request** | [**CreateTaxCodeRequest**](CreateTaxCodeRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfTaxCodeDTO**](ApiResponseDTOOfTaxCodeDTO.md)
 
 ### Authorization
 
@@ -26436,6 +32643,286 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **400** | Bad Request |  -  |
 **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_timeofusecalendars_id**
+> ApiResponseDTOOfTimeOfUseCalendarDTO put_timeofusecalendars_id(id, zf_tuuid, zf_ouuid, update_time_of_use_calendar_request=update_time_of_use_calendar_request)
+
+Updates calendar weekdays (and display-only code). Same `weekdays` shape as create.
+
+Updates calendar weekdays (and display-only code). Same `weekdays` shape as create.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_time_of_use_calendar_dto import ApiResponseDTOOfTimeOfUseCalendarDTO
+from configuration_client.models.update_time_of_use_calendar_request import UpdateTimeOfUseCalendarRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    id = 'id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_time_of_use_calendar_request = {"code":"string","weekdays":[{"weekdayIndex":0,"intervals":[{"beginMinuteOfDay":0,"endMinuteOfDay":0,"timeOfUseTypeCode":"string"}]}]} # UpdateTimeOfUseCalendarRequest |  (optional)
+
+    try:
+        # Updates calendar weekdays (and display-only code). Same `weekdays` shape as create.
+        api_response = api_instance.put_timeofusecalendars_id(id, zf_tuuid, zf_ouuid, update_time_of_use_calendar_request=update_time_of_use_calendar_request)
+        print("The response of DefaultApi->put_timeofusecalendars_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_timeofusecalendars_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_time_of_use_calendar_request** | [**UpdateTimeOfUseCalendarRequest**](UpdateTimeOfUseCalendarRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfTimeOfUseCalendarDTO**](ApiResponseDTOOfTimeOfUseCalendarDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_timeofusetypes_entityid_translations**
+> ApiResponseDTO put_timeofusetypes_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+
+/TimeOfUseTypes/{entityId}/translations - PUT
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dto import ApiResponseDTO
+from configuration_client.models.update_entity_translation_request import UpdateEntityTranslationRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    entity_id = 'entity_id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_entity_translation_request = {"translatedFields":{}} # UpdateEntityTranslationRequest |  (optional)
+
+    try:
+        # /TimeOfUseTypes/{entityId}/translations - PUT
+        api_response = api_instance.put_timeofusetypes_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+        print("The response of DefaultApi->put_timeofusetypes_entityid_translations:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_timeofusetypes_entityid_translations: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_entity_translation_request** | [**UpdateEntityTranslationRequest**](UpdateEntityTranslationRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_timeofusetypes_id**
+> ApiResponseDTOOfTimeOfUseTypeDTO put_timeofusetypes_id(id, zf_tuuid, zf_ouuid, update_time_of_use_type_request=update_time_of_use_type_request)
+
+Updates a time-of-use type.
+
+Updates a time-of-use type.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import configuration_client
+from configuration_client.models.api_response_dtoof_time_of_use_type_dto import ApiResponseDTOOfTimeOfUseTypeDTO
+from configuration_client.models.update_time_of_use_type_request import UpdateTimeOfUseTypeRequest
+from configuration_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/cfg
+# See configuration.py for a list of all supported configuration parameters.
+configuration = configuration_client.Configuration(
+    host = "https://api.zerofriction.co/api/cfg"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with configuration_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = configuration_client.DefaultApi(api_client)
+    id = 'id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_time_of_use_type_request = {"code":"string","description":"string"} # UpdateTimeOfUseTypeRequest |  (optional)
+
+    try:
+        # Updates a time-of-use type.
+        api_response = api_instance.put_timeofusetypes_id(id, zf_tuuid, zf_ouuid, update_time_of_use_type_request=update_time_of_use_type_request)
+        print("The response of DefaultApi->put_timeofusetypes_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_timeofusetypes_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_time_of_use_type_request** | [**UpdateTimeOfUseTypeRequest**](UpdateTimeOfUseTypeRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfTimeOfUseTypeDTO**](ApiResponseDTOOfTimeOfUseTypeDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -26582,7 +33069,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_portal_settings_request = {"favIcon":"string","logo":"string","pwaInstallIcon512":"string","pwaInstallIcon192":"string","pwaAppleTouchIcon180":"string","primaryColor":"string","secondaryColor":"string","persistLogoFromOrganization":true,"persistColorFromOrganization":true,"showVko":true,"pwaEnabled":true,"advanceChangeLimit":{"rangeMin":0,"rangeMax":0,"type":"fixed"},"billingSettings":{"allowCustomerToChangeAdvanceAmount":true,"allowCustomerToChangeInvoiceAddress":true,"hideInvoiceSection":true,"hidePaymentReference":true,"requireBirthDateForPersons":true},"moveInMoveOutSettings":{"isDisabled":true},"selfServiceOptions":{"allowEditCommunicationDetails":true,"allowEditPersonalInformation":true}} # UpdatePortalSettingsRequest | Propagates notification that operations should be canceled. (optional)
+    update_portal_settings_request = {"favIcon":"string","logo":"string","pwaInstallIcon512":"string","pwaInstallIcon192":"string","pwaAppleTouchIcon180":"string","primaryColor":"string","secondaryColor":"string","persistLogoFromOrganization":true,"persistColorFromOrganization":true,"showVko":true,"pwaEnabled":true,"advanceChangeLimit":{},"billingSettings":{},"moveInMoveOutSettings":{"isDisabled":true},"selfServiceOptions":{"allowEditCommunicationDetails":true,"allowChangeCommunicationLanguage":true,"allowEditPersonalInformation":true,"allowChangeBankingDetails":true,"allowSddToSct":true}} # UpdatePortalSettingsRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates portal settings configuration.
@@ -26675,7 +33162,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_regional_regulations_parameters_for_bel_request = {"socialTariffParameters":{"kboNumber":"string","glnId":"string","supplierAddress":{"streetName":"string","streetNumber":"string","streetNumberAddition":"string","postalCode":"string","buildingName":"string","locality":"string","city":"string","country":"aut","localizedDisplay":"string","lineOne":"string","lineTwo":"string"},"contactEmailAddress":"string","contactTelephoneNumber":"string","contactFaxNumber":"string","contactLastName":"string","contactFirstName":"string","socialTariffCustomEntityPropertyId":"string","sharePropsWithGovernmentCustomEntityPropertyId":"string","bimCustomEntityPropertyId":"string"}} # UpdateRegionalRegulationsParametersForBELRequest | Propagates notification that operations should be canceled. (optional)
+    update_regional_regulations_parameters_for_bel_request = {"socialTariffParameters":{}} # UpdateRegionalRegulationsParametersForBELRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates regional regulations parameters specific to Belgium.
@@ -26767,7 +33254,7 @@ with configuration_client.ApiClient(configuration) as api_client:
     api_instance = configuration_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_regional_regulations_parameters_for_gbr_request = {"priorityRegisterParameters":{"psrCodesCustomEntityPropertyTypeId":"string","vrCodesCustomEntityPropertyTypeId":"string"}} # UpdateRegionalRegulationsParametersForGBRRequest | Propagates notification that operations should be canceled. (optional)
+    update_regional_regulations_parameters_for_gbr_request = {"priorityRegisterParameters":{}} # UpdateRegionalRegulationsParametersForGBRRequest | Propagates notification that operations should be canceled. (optional)
 
     try:
         # Updates regional regulations parameters specific to Geat Britain.

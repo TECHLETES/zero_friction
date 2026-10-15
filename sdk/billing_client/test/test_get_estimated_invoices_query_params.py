@@ -37,6 +37,7 @@ class TestGetEstimatedInvoicesQueryParams(unittest.TestCase):
             return GetEstimatedInvoicesQueryParams(
                 customer_id = '',
                 contract_id = '',
+                product_id = '',
                 overlapping_period_start_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 overlapping_period_end_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 apply_filters_over_included_ids = True,

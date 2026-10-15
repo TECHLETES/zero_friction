@@ -5,9 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
-**code** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
+**code** | **str** |  | [optional] 
+**external_accounting_metadata** | [**ExternalAccountingMetadataDTO**](ExternalAccountingMetadataDTO.md) |  | [optional] 
+**organisation_id** | **str** |  | [optional] 
+**id** | **str** |  | [optional] 
+**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**created_date_time** | **datetime** |  | [optional] 
+**discriminator** | **str** |  | [optional] 
+**etag** | **str** |  | [optional] 
+**has_errors** | **bool** |  | [optional] 
+**is_read_only** | **bool** |  | [optional] 
 
 ## Example
 

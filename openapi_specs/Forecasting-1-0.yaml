@@ -71,40 +71,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfConsumerGroupDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfConsumerGroupDTO'
               example:
-                data:
-                  results:
-                    - code: string
-                      description: string
-                      utilityType: none
-                      unitOfMeasure: none
-                      estimatedAnnualVolume: 0
-                      loadProfileId: string
-                      origin: manual
-                      lastRecalculated: string
-                      deleted: true
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -122,35 +94,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfConsumerGroupDTO'
               example:
-                data:
-                  results:
-                    - code: string
-                      description: string
-                      utilityType: none
-                      unitOfMeasure: none
-                      estimatedAnnualVolume: 0
-                      loadProfileId: string
-                      origin: manual
-                      lastRecalculated: string
-                      deleted: true
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -228,29 +172,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfConsumerGroupDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfConsumerGroupDTO'
               example:
-                data:
-                  code: string
-                  description: string
-                  utilityType: none
-                  unitOfMeasure: none
-                  estimatedAnnualVolume: 0
-                  loadProfileId: string
-                  origin: manual
-                  lastRecalculated: string
-                  deleted: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -268,24 +195,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfConsumerGroupDTO'
               example:
-                data:
-                  code: string
-                  description: string
-                  utilityType: none
-                  unitOfMeasure: none
-                  estimatedAnnualVolume: 0
-                  loadProfileId: string
-                  origin: manual
-                  lastRecalculated: string
-                  deleted: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -307,7 +217,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -367,7 +277,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -394,29 +304,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfConsumerGroupDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfConsumerGroupDTO'
               example:
-                data:
-                  code: string
-                  description: string
-                  utilityType: none
-                  unitOfMeasure: none
-                  estimatedAnnualVolume: 0
-                  loadProfileId: string
-                  origin: manual
-                  lastRecalculated: string
-                  deleted: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -434,24 +327,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfConsumerGroupDTO'
               example:
-                data:
-                  code: string
-                  description: string
-                  utilityType: none
-                  unitOfMeasure: none
-                  estimatedAnnualVolume: 0
-                  loadProfileId: string
-                  origin: manual
-                  lastRecalculated: string
-                  deleted: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -535,29 +411,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfConsumerGroupDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfConsumerGroupDTO'
               example:
-                data:
-                  code: string
-                  description: string
-                  utilityType: none
-                  unitOfMeasure: none
-                  estimatedAnnualVolume: 0
-                  loadProfileId: string
-                  origin: manual
-                  lastRecalculated: string
-                  deleted: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -575,24 +434,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfConsumerGroupDTO'
               example:
-                data:
-                  code: string
-                  description: string
-                  utilityType: none
-                  unitOfMeasure: none
-                  estimatedAnnualVolume: 0
-                  loadProfileId: string
-                  origin: manual
-                  lastRecalculated: string
-                  deleted: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -614,7 +456,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -641,7 +483,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -700,7 +542,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -745,7 +587,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -772,7 +614,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -838,7 +680,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -865,29 +707,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfConsumerGroupDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfConsumerGroupDTO'
               example:
-                data:
-                  code: string
-                  description: string
-                  utilityType: none
-                  unitOfMeasure: none
-                  estimatedAnnualVolume: 0
-                  loadProfileId: string
-                  origin: manual
-                  lastRecalculated: string
-                  deleted: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -905,24 +730,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfConsumerGroupDTO'
               example:
-                data:
-                  code: string
-                  description: string
-                  utilityType: none
-                  unitOfMeasure: none
-                  estimatedAnnualVolume: 0
-                  loadProfileId: string
-                  origin: manual
-                  lastRecalculated: string
-                  deleted: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -971,24 +779,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfUtilityType'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfUtilityType'
               example:
-                data:
-                  results:
-                    - none
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1006,19 +802,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfUtilityType'
               example:
-                data:
-                  results:
-                    - none
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1091,13 +875,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfGetServiceLocationMatchingConsumerGroupsDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfGetServiceLocationMatchingConsumerGroupsDTO'
               example:
-                data:
-                  matchingConsumerGroups: { }
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1115,8 +898,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfGetServiceLocationMatchingConsumerGroupsDTO'
               example:
-                data:
-                  matchingConsumerGroups: { }
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1171,7 +953,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -1198,53 +980,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfEstimableContractDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEstimableContractDTO'
               example:
-                data:
-                  contractStatus: draft
-                  supplyStartDateTime: string
-                  supplyEndDateTime: string
-                  supplyStartYear: 0
-                  supplyEndYear: 0
-                  contractServices:
-                    - serviceLocationId: string
-                      propertyGroupId: string
-                      utilityType: none
-                      meteringType: none
-                      unitOfMeasure: none
-                      externalIdentifier: string
-                      consumerGroupId: string
-                      supplyStartDateTime: string
-                      supplyEndDateTime: string
-                      supplyStartYear: 0
-                      supplyEndYear: 0
-                      estimatedAnnualVolumes:
-                        - year: 0
-                          value: 0
-                          origin: manual
-                          lastRecalculated: string
-                  calculationYearsInProgress:
-                    - 0
-                  customerId: string
-                  products:
-                    - productId: string
-                      productName: string
-                      startDateTime: string
-                      endDateTime: string
-                  timeZone: string
-                  isEstimationInProgress: true
-                  isInvoiceEstimationInProgress: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1262,48 +1003,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfEstimableContractDTO'
               example:
-                data:
-                  contractStatus: draft
-                  supplyStartDateTime: string
-                  supplyEndDateTime: string
-                  supplyStartYear: 0
-                  supplyEndYear: 0
-                  contractServices:
-                    - serviceLocationId: string
-                      propertyGroupId: string
-                      utilityType: none
-                      meteringType: none
-                      unitOfMeasure: none
-                      externalIdentifier: string
-                      consumerGroupId: string
-                      supplyStartDateTime: string
-                      supplyEndDateTime: string
-                      supplyStartYear: 0
-                      supplyEndYear: 0
-                      estimatedAnnualVolumes:
-                        - year: 0
-                          value: 0
-                          origin: manual
-                          lastRecalculated: string
-                  calculationYearsInProgress:
-                    - 0
-                  customerId: string
-                  products:
-                    - productId: string
-                      productName: string
-                      startDateTime: string
-                      endDateTime: string
-                  timeZone: string
-                  isEstimationInProgress: true
-                  isInvoiceEstimationInProgress: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1365,7 +1065,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -1410,7 +1110,134 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+    put:
+      tags:
+        - Default
+      summary: Starts the estimation of the annual volume for a specific year of the specified estimable contract
+      description: Starts the estimation of the annual volume for a specific year of the specified estimable contract
+      operationId: put-estimablecontracts-estimablecontractid-eav-year-estimate
+      parameters:
+        - name: estimablecontractid
+          in: path
+          description: the unique identifier of the estimable contract
+          required: true
+          schema:
+            type: string
+        - name: year
+          in: path
+          description: The applicable year for the estimation
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1486,7 +1313,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -1531,7 +1358,127 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+    put:
+      tags:
+        - Default
+      summary: Starts the estimation of the annual volume for the current and next year of the specified estimable contract
+      description: Starts the estimation of the annual volume for the current and next year of the specified estimable contract
+      operationId: put-estimablecontracts-estimablecontractid-eav-currentandnextyear-estimate
+      parameters:
+        - name: estimablecontractid
+          in: path
+          description: the unique identifier of the estimable contract
+          required: true
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1607,7 +1554,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfboolean'
@@ -1652,7 +1599,127 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+    put:
+      tags:
+        - Default
+      summary: Starts the estimation of the annual volume for the current and next year of the specified service location
+      description: Starts the estimation of the annual volume for the current and next year of the specified service location
+      operationId: put-estimablecontracts-servicelocations-servicelocationid-eav-currentandnext
+      parameters:
+        - name: servicelocationid
+          in: path
+          description: the unique identifier of the estimable service location
+          required: true
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfboolean'
+              example:
+                data: true
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1755,7 +1822,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -1782,7 +1849,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfListOfEstimatedConsumptionDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfListOfEstimatedConsumptionDTO'
@@ -1892,7 +1959,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -1935,21 +2002,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO'
               example:
-                data:
-                  consumerGroups: { }
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -1967,16 +2025,145 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO'
               example:
-                data:
-                  consumerGroups: { }
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+    put:
+      tags:
+        - Default
+      summary: Updates consumer group configuration an existing property group
+      description: Updates consumer group configuration an existing property group
+      operationId: put-propertygroupforecastingconfiguration-propertygroupid-consumergroups
+      parameters:
+        - name: propertygroupid
+          in: path
+          description: The unique identifier of the property group to update consumer group configuration on
+          required: true
+          schema:
+            type: string
+        - name: zf-tuuid
+          in: header
+          description: Tenant ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Tenant ID: '{{zf-tuuid}}'
+        - name: zf-ouuid
+          in: header
+          description: Organisation ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example:
+            Organisation ID: '{{zf-ouuid}}'
+      requestBody:
+        description: Propagates notification that operations should be canceled.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePropertyGroupForecastingConfigConsumerGroupsRequest'
+            example:
+              consumerGroups: { }
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePropertyGroupForecastingConfigConsumerGroupsRequest'
+            example:
+              consumerGroups: { }
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdatePropertyGroupForecastingConfigConsumerGroupsRequest'
+            example:
+              consumerGroups: { }
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTO'
+              example:
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO'
+              examples:
+                default:
+                  value: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO'
+              example:
+                data: { }
+                errors:
+                  - key: 0
+                    correlationId: string
+                    message: string
+                    messageValues:
+                      - dataType: text
+                        value: string
+                        capitalize: true
+                success: true
+                applicableEntitiesCount: 0
+                requestedEntitiesCount: 0
+                succeededEntitiesCount: 0
+                isSynchronous: true
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO'
+              example:
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2031,7 +2218,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -2074,21 +2261,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO'
               example:
-                data:
-                  consumerGroups: { }
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2106,16 +2284,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO'
               example:
-                data:
-                  consumerGroups: { }
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2184,35 +2353,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfSyntheticLoadProfileDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfSyntheticLoadProfileDTO'
               example:
-                data:
-                  results:
-                    - code: string
-                      description: string
-                      origin: manual
-                      deleted: true
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2230,30 +2376,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfPagedResponseModelDTOOfSyntheticLoadProfileDTO'
               example:
-                data:
-                  results:
-                    - code: string
-                      description: string
-                      origin: manual
-                      deleted: true
-                      organisationId: string
-                      id: string
-                      entityType: none
-                      createdDateTime: string
-                      discriminator: string
-                      _etag: string
-                      hasErrors: true
-                      isReadOnly: true
-                  hasNextPage: true
-                  nextPageToken: string
-                  totalRecords: 0
-                  sortableFields:
-                    - string
-                  aggregateDetails:
-                    - code: string
-                      translation: string
-                      value: 0
-                      valueDate: string
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2313,7 +2436,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -2340,24 +2463,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfSyntheticLoadProfileDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfSyntheticLoadProfileDTO'
               example:
-                data:
-                  code: string
-                  description: string
-                  origin: manual
-                  deleted: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2375,19 +2486,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfSyntheticLoadProfileDTO'
               example:
-                data:
-                  code: string
-                  description: string
-                  origin: manual
-                  deleted: true
-                  organisationId: string
-                  id: string
-                  entityType: none
-                  createdDateTime: string
-                  discriminator: string
-                  _etag: string
-                  hasErrors: true
-                  isReadOnly: true
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2475,7 +2574,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -2502,7 +2601,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfListOfEstimatedConsumptionBucketDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfListOfEstimatedConsumptionBucketDTO'
@@ -2613,7 +2712,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfListOfConsumerGroupConsumptionBucketDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfListOfConsumerGroupConsumptionBucketDTO'
@@ -2664,7 +2763,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTO'
@@ -2714,14 +2813,12 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDTOOfMigrationLatestVersionDTO'
               examples:
                 default:
-                  value:
+                  value: 
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfMigrationLatestVersionDTO'
               example:
-                data:
-                  namespace: string
-                  latestVersion: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2739,9 +2836,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponseDTOOfMigrationLatestVersionDTO'
               example:
-                data:
-                  namespace: string
-                  latestVersion: 0
+                data: { }
                 errors:
                   - key: 0
                     correlationId: string
@@ -2818,10 +2913,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/ConsumerGroupDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -2843,10 +2939,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/EstimableContractDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -2868,10 +2965,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/GetServiceLocationMatchingConsumerGroupsDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -2968,10 +3066,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/MigrationLatestVersionDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -2993,10 +3092,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/PagedResponseModelDTOOfConsumerGroupDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -3018,10 +3118,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/PagedResponseModelDTOOfSyntheticLoadProfileDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -3043,10 +3144,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/PagedResponseModelDTOOfUtilityType'
-          nullable: true
         errors:
           type: array
           items:
@@ -3068,10 +3170,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/PropertyGroupForecastingConfigurationDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -3093,10 +3196,11 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/SyntheticLoadProfileDTO'
-          nullable: true
         errors:
           type: array
           items:
@@ -3448,11 +3552,16 @@ components:
         - crmcustomer
         - ticket
         - ticketconversation
+        - defaultenabledfeatureflags
+        - customerloadprofile
+        - featureflagchange
         - socialtariffexport
         - socialtariffimportheader
         - socialtariffimportline
+        - frenchereportinvoicecandidate
+        - frenchereportsubmission
       type: string
-      description: 'Possible values: ''none'', ''customer'', ''contract'', ''meter'', ''servicelocation'', ''invoice'', ''importjob'', ''propertygroup'', ''payment'', ''communicationentry'', ''exportjob'', ''dataexport'', ''dataimport'', ''asset'', ''bankaccount'', ''billingitem'', ''billingtariff'', ''costcomponent'', ''costcomponentvalue'', ''model'', ''numbersequence'', ''billingparameters'', ''product'', ''taxcode'', ''template'', ''billingrelation'', ''transaction'', ''dataimportfileformat'', ''dataexportfileformat'', ''tenant'', ''consumption'', ''attachment'', ''exportjobline'', ''culturetable'', ''collectioncase'', ''collectionflowstep'', ''incominginvoice'', ''moverequest'', ''activityentry'', ''commententry'', ''problem'', ''relatedentity'', ''customeragingreport'', ''billingcompleteness'', ''propertygroupbillingconfiguration'', ''propertygroupbillingperiod'', ''collectionflow'', ''configuredplugin'', ''organizationscenarios'', ''paymentterms'', ''paymentdelaysetting'', ''paymentparameters'', ''domainauthenticationparameters'', ''communicationparameters'', ''organization'', ''incominginvoicecomponent'', ''costallocationcomponent'', ''scheduledattempt'', ''plugintrigger'', ''exportentitycontainer'', ''externalbankstatement'', ''externalbanktransaction'', ''externalmeasurement'', ''importjobentityissue'', ''intermediateexportformat'', ''consumptionunit'', ''calculatedconsumption'', ''propertygroupmeteringconfiguration'', ''measurement'', ''externalchannel'', ''serviceconsumption'', ''purgerequest'', ''migrationversion'', ''formulaconsumption'', ''templatedataobject'', ''dataupgradebaseline'', ''processrequest'', ''validationrequest'', ''postprocessrequest'', ''outgoingbankingtransaction'', ''incomingmutation'', ''outgoingmutation'', ''incomingbankingtransaction'', ''customerbankaccount'', ''pluginmanualtrigger'', ''billingcustomer'', ''enumsymboltranslation'', ''scenariotranslation'', ''syntheticloadprofile'', ''consumergroup'', ''estimablecontract'', ''plugininboundwebhooktrigger'', ''pluginmappingentry'', ''eavestimationrun'', ''customentitypropertytype'', ''customentityproperty'', ''pluginfeedentry'', ''regionalregulationsconfiguration'', ''entityattachment'', ''entityattachmentgroup'', ''propertygroupforecastingconfiguration'', ''prepaymenttransaction'', ''customeragingheader'', ''estimatedbillingcompleteness'', ''estimatedinvoice'', ''customergroup'', ''meteringissue'', ''meteringparameters'', ''mutingrule'', ''reportmappingentry'', ''meteringimport'', ''prepaymentaccount'', ''baseimport'', ''systemusagerecord'', ''portalsettings'', ''organizationscenario'', ''tenantrole'', ''useraccessentry'', ''annualstatement'', ''accounting'', ''externalintegrationauthorization'', ''customerportal'', ''paymentintent'', ''paymentprovideraccount'', ''paymentserviceproviderevent'', ''bankingdataprovider'', ''communicationevent'', ''paymentplan'', ''paymentplanparameters'', ''communicationsubject'', ''communicationprovideraccount'', ''paymentprovideraccountregistry'', ''prepaymentaccountissue'', ''prepaymentdevice'', ''prepaymentconfiguration'', ''serviceconsumptioncost'', ''prepaymentcost'', ''prepaymentprofile'', ''propertygroupprepaymentconfiguration'', ''bankholidaycalendar'', ''friendlycreditwindow'', ''billingprepaymentaccount'', ''meteringprovideraccount'', ''meteringproviderrun'', ''masterdataparameters'', ''prepaymentbalanceprocessedevent'', ''prepaymentstatement'', ''outgoingmandateexportrecord'', ''outgoingmandateexportgroup'', ''prepaymentparameters'', ''accountingexportprovider'', ''accountingexportrun'', ''prepaymentcustomer'', ''timeofusetype'', ''timeofusecalendar'', ''reportingprovider'', ''paymentprovidercustomer'', ''reportingconfigurationprovider'', ''servicelocationsuppliedservices'', ''prepaymentdeviceprovideraccount'', ''psprefund'', ''betaenvironmentprovider'', ''crmcustomer'', ''ticket'', ''ticketconversation'', ''socialtariffexport'', ''socialtariffimportheader'', ''socialtariffimportline'''
+      description: 'Possible values: ''none'', ''customer'', ''contract'', ''meter'', ''servicelocation'', ''invoice'', ''importjob'', ''propertygroup'', ''payment'', ''communicationentry'', ''exportjob'', ''dataexport'', ''dataimport'', ''asset'', ''bankaccount'', ''billingitem'', ''billingtariff'', ''costcomponent'', ''costcomponentvalue'', ''model'', ''numbersequence'', ''billingparameters'', ''product'', ''taxcode'', ''template'', ''billingrelation'', ''transaction'', ''dataimportfileformat'', ''dataexportfileformat'', ''tenant'', ''consumption'', ''attachment'', ''exportjobline'', ''culturetable'', ''collectioncase'', ''collectionflowstep'', ''incominginvoice'', ''moverequest'', ''activityentry'', ''commententry'', ''problem'', ''relatedentity'', ''customeragingreport'', ''billingcompleteness'', ''propertygroupbillingconfiguration'', ''propertygroupbillingperiod'', ''collectionflow'', ''configuredplugin'', ''organizationscenarios'', ''paymentterms'', ''paymentdelaysetting'', ''paymentparameters'', ''domainauthenticationparameters'', ''communicationparameters'', ''organization'', ''incominginvoicecomponent'', ''costallocationcomponent'', ''scheduledattempt'', ''plugintrigger'', ''exportentitycontainer'', ''externalbankstatement'', ''externalbanktransaction'', ''externalmeasurement'', ''importjobentityissue'', ''intermediateexportformat'', ''consumptionunit'', ''calculatedconsumption'', ''propertygroupmeteringconfiguration'', ''measurement'', ''externalchannel'', ''serviceconsumption'', ''purgerequest'', ''migrationversion'', ''formulaconsumption'', ''templatedataobject'', ''dataupgradebaseline'', ''processrequest'', ''validationrequest'', ''postprocessrequest'', ''outgoingbankingtransaction'', ''incomingmutation'', ''outgoingmutation'', ''incomingbankingtransaction'', ''customerbankaccount'', ''pluginmanualtrigger'', ''billingcustomer'', ''enumsymboltranslation'', ''scenariotranslation'', ''syntheticloadprofile'', ''consumergroup'', ''estimablecontract'', ''plugininboundwebhooktrigger'', ''pluginmappingentry'', ''eavestimationrun'', ''customentitypropertytype'', ''customentityproperty'', ''pluginfeedentry'', ''regionalregulationsconfiguration'', ''entityattachment'', ''entityattachmentgroup'', ''propertygroupforecastingconfiguration'', ''prepaymenttransaction'', ''customeragingheader'', ''estimatedbillingcompleteness'', ''estimatedinvoice'', ''customergroup'', ''meteringissue'', ''meteringparameters'', ''mutingrule'', ''reportmappingentry'', ''meteringimport'', ''prepaymentaccount'', ''baseimport'', ''systemusagerecord'', ''portalsettings'', ''organizationscenario'', ''tenantrole'', ''useraccessentry'', ''annualstatement'', ''accounting'', ''externalintegrationauthorization'', ''customerportal'', ''paymentintent'', ''paymentprovideraccount'', ''paymentserviceproviderevent'', ''bankingdataprovider'', ''communicationevent'', ''paymentplan'', ''paymentplanparameters'', ''communicationsubject'', ''communicationprovideraccount'', ''paymentprovideraccountregistry'', ''prepaymentaccountissue'', ''prepaymentdevice'', ''prepaymentconfiguration'', ''serviceconsumptioncost'', ''prepaymentcost'', ''prepaymentprofile'', ''propertygroupprepaymentconfiguration'', ''bankholidaycalendar'', ''friendlycreditwindow'', ''billingprepaymentaccount'', ''meteringprovideraccount'', ''meteringproviderrun'', ''masterdataparameters'', ''prepaymentbalanceprocessedevent'', ''prepaymentstatement'', ''outgoingmandateexportrecord'', ''outgoingmandateexportgroup'', ''prepaymentparameters'', ''accountingexportprovider'', ''accountingexportrun'', ''prepaymentcustomer'', ''timeofusetype'', ''timeofusecalendar'', ''reportingprovider'', ''paymentprovidercustomer'', ''reportingconfigurationprovider'', ''servicelocationsuppliedservices'', ''prepaymentdeviceprovideraccount'', ''psprefund'', ''betaenvironmentprovider'', ''crmcustomer'', ''ticket'', ''ticketconversation'', ''defaultenabledfeatureflags'', ''customerloadprofile'', ''featureflagchange'', ''socialtariffexport'', ''socialtariffimportheader'', ''socialtariffimportline'', ''frenchereportinvoicecandidate'', ''frenchereportsubmission'''
     ErrorCode:
       type: integer
     EstimableContractDTO:
@@ -3662,10 +3771,11 @@ components:
         suggestion:
           $ref: '#/components/schemas/ConsumerGroupSuggestion'
         consumerGroup:
-          type: object
           oneOf:
+            - enum:
+                - 
+              nullable: true
             - $ref: '#/components/schemas/ConsumerGroupDTO'
-          nullable: true
     MeteringType:
       enum:
         - none

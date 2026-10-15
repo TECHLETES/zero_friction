@@ -18,7 +18,6 @@ Name | Type | Description | Notes
 **budget_code** | **str** |  | 
 **structure_code** | **str** |  | 
 **movement_code** | **str** |  | 
-**custom_entity_property_settings** | [**BergerLevraultCustomEntityPropertySettingsRequestDTO**](BergerLevraultCustomEntityPropertySettingsRequestDTO.md) |  | [optional] 
 
 ## Example
 

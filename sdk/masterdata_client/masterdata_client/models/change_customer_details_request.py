@@ -38,8 +38,8 @@ class ChangeCustomerDetailsRequest(BaseModel):
     ssin: Optional[StrictStr]
     ssin_country: CountryCode = Field(alias="ssinCountry")
     company_name: Optional[StrictStr] = Field(alias="companyName")
-    organization_number: Optional[StrictStr] = Field(default=None, alias="organizationNumber")
-    vat_number: Optional[StrictStr] = Field(default=None, alias="vatNumber")
+    organization_number: Optional[StrictStr] = Field(alias="organizationNumber")
+    vat_number: Optional[StrictStr] = Field(alias="vatNumber")
     country_code: Optional[CountryCode] = Field(default=None, alias="countryCode")
     customer_type: Optional[CustomerType] = Field(default=None, alias="customerType")
     changed_by_portal: Optional[StrictBool] = Field(default=None, alias="changedByPortal")

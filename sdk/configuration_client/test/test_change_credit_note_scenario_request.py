@@ -40,6 +40,7 @@ class TestChangeCreditNoteScenarioRequest(unittest.TestCase):
                     show_balance = True, 
                     show_vat_specs = True, 
                     show_custom_information = True, 
+                    show_subtotal_before_advances = True, 
                     envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
                         margin_position = 'left', 
                         margin = 56, 
@@ -62,6 +63,7 @@ class TestChangeCreditNoteScenarioRequest(unittest.TestCase):
                     show_balance = True, 
                     show_vat_specs = True, 
                     show_custom_information = True, 
+                    show_subtotal_before_advances = True, 
                     envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
                         margin_position = 'left', 
                         margin = 56, 

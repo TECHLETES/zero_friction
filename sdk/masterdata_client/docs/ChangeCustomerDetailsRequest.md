@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 **ssin** | **str** |  | 
 **ssin_country** | [**CountryCode**](CountryCode.md) |  | 
 **company_name** | **str** |  | 
-**organization_number** | **str** |  | [optional] 
-**vat_number** | **str** |  | [optional] 
+**organization_number** | **str** |  | 
+**vat_number** | **str** |  | 
 **country_code** | [**CountryCode**](CountryCode.md) |  | [optional] 
 **customer_type** | [**CustomerType**](CustomerType.md) |  | [optional] 
 **changed_by_portal** | **bool** |  | [optional] 

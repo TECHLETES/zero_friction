@@ -22,6 +22,10 @@ Method | HTTP request | Description
 [**get_syntheticloadprofiles**](DefaultApi.md#get_syntheticloadprofiles) | **GET** /SyntheticLoadProfiles | Retrieves all synthetic load profiles
 [**post_consumergroups**](DefaultApi.md#post_consumergroups) | **POST** /ConsumerGroups | Creates a new consumer group
 [**post_estimations_buckets_consumptions**](DefaultApi.md#post_estimations_buckets_consumptions) | **POST** /Estimations/buckets/consumptions | Retrieves the estimated consumptions for service locations grouped by buckets
+[**put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate**](DefaultApi.md#put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate) | **PUT** /EstimableContracts/{estimablecontractid}/eav/currentandnextyear/estimate | Starts the estimation of the annual volume for the current and next year of the specified estimable contract
+[**put_estimablecontracts_estimablecontractid_eav_year_estimate**](DefaultApi.md#put_estimablecontracts_estimablecontractid_eav_year_estimate) | **PUT** /EstimableContracts/{estimablecontractid}/eav/{year}/estimate | Starts the estimation of the annual volume for a specific year of the specified estimable contract
+[**put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext**](DefaultApi.md#put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext) | **PUT** /EstimableContracts/servicelocations/{servicelocationid}/eav/currentandnextyear/estimate | Starts the estimation of the annual volume for the current and next year of the specified service location
+[**put_propertygroupforecastingconfiguration_propertygroupid_consumergroups**](DefaultApi.md#put_propertygroupforecastingconfiguration_propertygroupid_consumergroups) | **PUT** /PropertyGroupForecastingConfiguration/{propertygroupid}/consumergroups | Updates consumer group configuration an existing property group
 [**update_consumer_group**](DefaultApi.md#update_consumer_group) | **PUT** /ConsumerGroups/{consumergroupid} | Updates an existing consumer group
 [**update_property_group_config_consumer_groups**](DefaultApi.md#update_property_group_config_consumer_groups) | **POST** /PropertyGroupForecastingConfiguration/{propertygroupid}/consumergroups | Updates consumer group configuration an existing property group
 
@@ -1680,6 +1684,375 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **404** | Not Found |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate**
+> ApiResponseDTOOfboolean put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate(estimablecontractid, zf_tuuid, zf_ouuid)
+
+Starts the estimation of the annual volume for the current and next year of the specified estimable contract
+
+Starts the estimation of the annual volume for the current and next year of the specified estimable contract
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import forecasting_client
+from forecasting_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from forecasting_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/fct
+# See configuration.py for a list of all supported configuration parameters.
+configuration = forecasting_client.Configuration(
+    host = "https://api.zerofriction.co/api/fct"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with forecasting_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = forecasting_client.DefaultApi(api_client)
+    estimablecontractid = 'estimablecontractid_example' # str | the unique identifier of the estimable contract
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Starts the estimation of the annual volume for the current and next year of the specified estimable contract
+        api_response = api_instance.put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate(estimablecontractid, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **estimablecontractid** | **str**| the unique identifier of the estimable contract | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_estimablecontracts_estimablecontractid_eav_year_estimate**
+> ApiResponseDTOOfboolean put_estimablecontracts_estimablecontractid_eav_year_estimate(estimablecontractid, year, zf_tuuid, zf_ouuid)
+
+Starts the estimation of the annual volume for a specific year of the specified estimable contract
+
+Starts the estimation of the annual volume for a specific year of the specified estimable contract
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import forecasting_client
+from forecasting_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from forecasting_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/fct
+# See configuration.py for a list of all supported configuration parameters.
+configuration = forecasting_client.Configuration(
+    host = "https://api.zerofriction.co/api/fct"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with forecasting_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = forecasting_client.DefaultApi(api_client)
+    estimablecontractid = 'estimablecontractid_example' # str | the unique identifier of the estimable contract
+    year = 56 # int | The applicable year for the estimation
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Starts the estimation of the annual volume for a specific year of the specified estimable contract
+        api_response = api_instance.put_estimablecontracts_estimablecontractid_eav_year_estimate(estimablecontractid, year, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_estimablecontracts_estimablecontractid_eav_year_estimate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_estimablecontracts_estimablecontractid_eav_year_estimate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **estimablecontractid** | **str**| the unique identifier of the estimable contract | 
+ **year** | **int**| The applicable year for the estimation | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext**
+> ApiResponseDTOOfboolean put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext(servicelocationid, zf_tuuid, zf_ouuid)
+
+Starts the estimation of the annual volume for the current and next year of the specified service location
+
+Starts the estimation of the annual volume for the current and next year of the specified service location
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import forecasting_client
+from forecasting_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from forecasting_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/fct
+# See configuration.py for a list of all supported configuration parameters.
+configuration = forecasting_client.Configuration(
+    host = "https://api.zerofriction.co/api/fct"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with forecasting_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = forecasting_client.DefaultApi(api_client)
+    servicelocationid = 'servicelocationid_example' # str | the unique identifier of the estimable service location
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Starts the estimation of the annual volume for the current and next year of the specified service location
+        api_response = api_instance.put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext(servicelocationid, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **servicelocationid** | **str**| the unique identifier of the estimable service location | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_propertygroupforecastingconfiguration_propertygroupid_consumergroups**
+> ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO put_propertygroupforecastingconfiguration_propertygroupid_consumergroups(propertygroupid, zf_tuuid, zf_ouuid, update_property_group_forecasting_config_consumer_groups_request=update_property_group_forecasting_config_consumer_groups_request)
+
+Updates consumer group configuration an existing property group
+
+Updates consumer group configuration an existing property group
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import forecasting_client
+from forecasting_client.models.api_response_dtoof_property_group_forecasting_configuration_dto import ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO
+from forecasting_client.models.update_property_group_forecasting_config_consumer_groups_request import UpdatePropertyGroupForecastingConfigConsumerGroupsRequest
+from forecasting_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/fct
+# See configuration.py for a list of all supported configuration parameters.
+configuration = forecasting_client.Configuration(
+    host = "https://api.zerofriction.co/api/fct"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with forecasting_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = forecasting_client.DefaultApi(api_client)
+    propertygroupid = 'propertygroupid_example' # str | The unique identifier of the property group to update consumer group configuration on
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_property_group_forecasting_config_consumer_groups_request = {"consumerGroups":{}} # UpdatePropertyGroupForecastingConfigConsumerGroupsRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Updates consumer group configuration an existing property group
+        api_response = api_instance.put_propertygroupforecastingconfiguration_propertygroupid_consumergroups(propertygroupid, zf_tuuid, zf_ouuid, update_property_group_forecasting_config_consumer_groups_request=update_property_group_forecasting_config_consumer_groups_request)
+        print("The response of DefaultApi->put_propertygroupforecastingconfiguration_propertygroupid_consumergroups:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_propertygroupforecastingconfiguration_propertygroupid_consumergroups: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **propertygroupid** | **str**| The unique identifier of the property group to update consumer group configuration on | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_property_group_forecasting_config_consumer_groups_request** | [**UpdatePropertyGroupForecastingConfigConsumerGroupsRequest**](UpdatePropertyGroupForecastingConfigConsumerGroupsRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO**](ApiResponseDTOOfPropertyGroupForecastingConfigurationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
 **200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

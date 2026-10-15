@@ -36,6 +36,7 @@ class TestUpdateCustomerBankAccountRequest(unittest.TestCase):
         if include_optional:
             return UpdateCustomerBankAccountRequest(
                 is_default = True,
+                changed_by_portal = True,
                 active_mandate = billing_client.models.update_customer_bank_account_active_mandate_request.UpdateCustomerBankAccountActiveMandateRequest(
                     number = '', 
                     type = 'core', 

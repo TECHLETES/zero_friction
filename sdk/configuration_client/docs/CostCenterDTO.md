@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** |  | [optional] 
-**code** | **str** |  | 
-**external_accounting_metadata** | [**ExternalAccountingMetadataDTO**](ExternalAccountingMetadataDTO.md) |  | 
+**code** | **str** |  | [optional] 
+**external_accounting_metadata** | [**ExternalAccountingMetadataDTO**](ExternalAccountingMetadataDTO.md) |  | [optional] 
 **organisation_id** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
 **entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 

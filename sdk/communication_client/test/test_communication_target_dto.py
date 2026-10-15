@@ -52,7 +52,8 @@ class TestCommunicationTargetDTO(unittest.TestCase):
                     line_two = '', ),
                 email = '',
                 preferred_communication_type = 'none',
-                mobile_phone_number = ''
+                mobile_phone_number = '',
+                recipient_address = ''
             )
         else:
             return CommunicationTargetDTO(

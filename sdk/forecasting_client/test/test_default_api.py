@@ -152,6 +152,34 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate(self) -> None:
+        """Test case for put_estimablecontracts_estimablecontractid_eav_currentandnextyear_estimate
+
+        Starts the estimation of the annual volume for the current and next year of the specified estimable contract
+        """
+        pass
+
+    def test_put_estimablecontracts_estimablecontractid_eav_year_estimate(self) -> None:
+        """Test case for put_estimablecontracts_estimablecontractid_eav_year_estimate
+
+        Starts the estimation of the annual volume for a specific year of the specified estimable contract
+        """
+        pass
+
+    def test_put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext(self) -> None:
+        """Test case for put_estimablecontracts_servicelocations_servicelocationid_eav_currentandnext
+
+        Starts the estimation of the annual volume for the current and next year of the specified service location
+        """
+        pass
+
+    def test_put_propertygroupforecastingconfiguration_propertygroupid_consumergroups(self) -> None:
+        """Test case for put_propertygroupforecastingconfiguration_propertygroupid_consumergroups
+
+        Updates consumer group configuration an existing property group
+        """
+        pass
+
     def test_update_consumer_group(self) -> None:
         """Test case for update_consumer_group
 

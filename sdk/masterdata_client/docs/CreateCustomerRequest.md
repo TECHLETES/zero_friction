@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **ssin_country** | [**CountryCode**](CountryCode.md) |  | 
 **customer_type** | [**CustomerType**](CustomerType.md) |  | 
 **company_name** | **str** |  | 
-**vat_number** | **str** |  | [optional] 
+**vat_number** | **str** |  | 
 **organization_number** | **str** |  | 
 **payment_terms_id** | **str** |  | [optional] 
 **default_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | 

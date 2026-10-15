@@ -33,6 +33,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_migrationadmin_latest_version(self) -> None:
+        """Test case for get_migrationadmin_latest_version
+
+        /MigrationAdmin/latest-version - GET
+        """
+        pass
+
     def test_get_productusage(self) -> None:
         """Test case for get_productusage
 
@@ -103,6 +110,27 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_post_communicationprovideraccounts_id_resumeonboarding(self) -> None:
+        """Test case for post_communicationprovideraccounts_id_resumeonboarding
+
+        Resumes Suspended provider onboarding and returns a new verification URL.
+        """
+        pass
+
+    def test_post_communicationprovideraccounts_type_prevalidateonboarding(self) -> None:
+        """Test case for post_communicationprovideraccounts_type_prevalidateonboarding
+
+        Soft-gates organisation identifiers for provider onboarding without starting onboarding. Always returns HTTP 200; Success=false when identifiers are invalid (no DomainNotification toasts).
+        """
+        pass
+
+    def test_post_communicationprovideraccounts_type_startonboarding(self) -> None:
+        """Test case for post_communicationprovideraccounts_type_startonboarding
+
+        Starts synchronous onboarding for a communication provider account and returns the verification URL.
+        """
+        pass
+
     def test_post_communicationsubjects_bulk_ignore(self) -> None:
         """Test case for post_communicationsubjects_bulk_ignore
 
@@ -131,6 +159,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_post_webhook_einvoicing_recommand(self) -> None:
+        """Test case for post_webhook_einvoicing_recommand
+
+        Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
+        """
+        pass
+
     def test_post_webhook_email_sendgrid(self) -> None:
         """Test case for post_webhook_email_sendgrid
 
@@ -149,6 +184,41 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for post_webhook_sms_twilio_tenantid_organisationid_communicationentryid
 
         Handles SMS delivery status callbacks from Twilio.
+        """
+        pass
+
+    def test_put_communicationentries_resend(self) -> None:
+        """Test case for put_communicationentries_resend
+
+        Resends a communication entry using the same settings as the original.
+        """
+        pass
+
+    def test_put_communicationprovideraccounts_id_disconnect(self) -> None:
+        """Test case for put_communicationprovideraccounts_id_disconnect
+
+        Disconnect a communication provider account and set it to inactive status.
+        """
+        pass
+
+    def test_put_communicationprovideraccounts_id_resumeonboarding(self) -> None:
+        """Test case for put_communicationprovideraccounts_id_resumeonboarding
+
+        Resumes Suspended provider onboarding and returns a new verification URL.
+        """
+        pass
+
+    def test_put_communicationsubjects_bulk_ignore(self) -> None:
+        """Test case for put_communicationsubjects_bulk_ignore
+
+        Ignores communication subjects in bulk.
+        """
+        pass
+
+    def test_put_communicationsubjects_bulk_sendvia(self) -> None:
+        """Test case for put_communicationsubjects_bulk_sendvia
+
+        Sends communication subjects via a method in bulk.
         """
         pass
 

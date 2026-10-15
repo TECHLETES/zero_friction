@@ -34,8 +34,9 @@ class EndNotePdfTemplateRequest(BaseModel):
     show_vat_specs: Optional[StrictBool] = Field(default=None, alias="showVatSpecs")
     show_custom_information: Optional[StrictBool] = Field(default=None, alias="showCustomInformation")
     unit_price_excl_vat_for_persons: Optional[StrictBool] = Field(default=None, alias="unitPriceExclVatForPersons")
+    show_subtotal_before_advances: Optional[StrictBool] = Field(default=None, alias="showSubtotalBeforeAdvances")
     envelope_settings: Optional[EnvelopeSettingsRequest] = Field(default=None, alias="envelopeSettings")
-    __properties: ClassVar[List[str]] = ["costAllocation", "showCountry", "showPriceFormulae", "showBalance", "showVatSpecs", "showCustomInformation", "unitPriceExclVatForPersons", "envelopeSettings"]
+    __properties: ClassVar[List[str]] = ["costAllocation", "showCountry", "showPriceFormulae", "showBalance", "showVatSpecs", "showCustomInformation", "unitPriceExclVatForPersons", "showSubtotalBeforeAdvances", "envelopeSettings"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,6 +104,7 @@ class EndNotePdfTemplateRequest(BaseModel):
             "showVatSpecs": obj.get("showVatSpecs"),
             "showCustomInformation": obj.get("showCustomInformation"),
             "unitPriceExclVatForPersons": obj.get("unitPriceExclVatForPersons"),
+            "showSubtotalBeforeAdvances": obj.get("showSubtotalBeforeAdvances"),
             "envelopeSettings": EnvelopeSettingsRequest.from_dict(obj["envelopeSettings"]) if obj.get("envelopeSettings") is not None else None
         })
         return _obj

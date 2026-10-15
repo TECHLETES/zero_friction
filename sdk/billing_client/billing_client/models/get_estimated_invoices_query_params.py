@@ -29,6 +29,7 @@ class GetEstimatedInvoicesQueryParams(BaseModel):
     """ # noqa: E501
     customer_id: Optional[StrictStr] = Field(default=None, alias="customerId")
     contract_id: Optional[StrictStr] = Field(default=None, alias="contractId")
+    product_id: Optional[StrictStr] = Field(default=None, alias="productId")
     overlapping_period_start_date_time: Optional[datetime] = Field(default=None, alias="overlappingPeriodStartDateTime")
     overlapping_period_end_date_time: Optional[datetime] = Field(default=None, alias="overlappingPeriodEndDateTime")
     apply_filters_over_included_ids: Optional[StrictBool] = Field(default=None, alias="applyFiltersOverIncludedIds")
@@ -36,7 +37,7 @@ class GetEstimatedInvoicesQueryParams(BaseModel):
     include_only_ids: Optional[List[StrictStr]] = Field(default=None, alias="includeOnlyIds")
     exclude_ids: Optional[List[StrictStr]] = Field(default=None, alias="excludeIds")
     page_size: Optional[StrictInt] = Field(default=None, alias="pageSize")
-    __properties: ClassVar[List[str]] = ["customerId", "contractId", "overlappingPeriodStartDateTime", "overlappingPeriodEndDateTime", "applyFiltersOverIncludedIds", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
+    __properties: ClassVar[List[str]] = ["customerId", "contractId", "productId", "overlappingPeriodStartDateTime", "overlappingPeriodEndDateTime", "applyFiltersOverIncludedIds", "flexSearch", "includeOnlyIds", "excludeIds", "pageSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,6 +112,7 @@ class GetEstimatedInvoicesQueryParams(BaseModel):
         _obj = cls.model_validate({
             "customerId": obj.get("customerId"),
             "contractId": obj.get("contractId"),
+            "productId": obj.get("productId"),
             "overlappingPeriodStartDateTime": obj.get("overlappingPeriodStartDateTime"),
             "overlappingPeriodEndDateTime": obj.get("overlappingPeriodEndDateTime"),
             "applyFiltersOverIncludedIds": obj.get("applyFiltersOverIncludedIds"),

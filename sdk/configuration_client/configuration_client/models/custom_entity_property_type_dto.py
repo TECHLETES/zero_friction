@@ -41,6 +41,8 @@ class CustomEntityPropertyTypeDTO(BaseModel):
     translated_fields: Optional[Dict[str, Dict[str, StrictStr]]] = Field(default=None, alias="translatedFields")
     show_in_header: Optional[StrictBool] = Field(default=None, alias="showInHeader")
     tag_color: Optional[CustomEntityPropertyTypeTagColor] = Field(default=None, alias="tagColor")
+    feature_flag: Optional[StrictStr] = Field(default=None, alias="featureFlag")
+    is_locked: Optional[StrictBool] = Field(default=None, alias="isLocked")
     id: Optional[StrictStr] = None
     entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
     created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
@@ -48,7 +50,7 @@ class CustomEntityPropertyTypeDTO(BaseModel):
     etag: Optional[StrictStr] = Field(default=None, alias="_etag")
     has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
     is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
-    __properties: ClassVar[List[str]] = ["name", "description", "deleted", "entitySubjectType", "valueType", "localisationLevel", "localisedFields", "translatedFields", "showInHeader", "tagColor", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
+    __properties: ClassVar[List[str]] = ["name", "description", "deleted", "entitySubjectType", "valueType", "localisationLevel", "localisedFields", "translatedFields", "showInHeader", "tagColor", "featureFlag", "isLocked", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -129,6 +131,8 @@ class CustomEntityPropertyTypeDTO(BaseModel):
             "translatedFields": obj.get("translatedFields"),
             "showInHeader": obj.get("showInHeader"),
             "tagColor": obj.get("tagColor"),
+            "featureFlag": obj.get("featureFlag"),
+            "isLocked": obj.get("isLocked"),
             "id": obj.get("id"),
             "entityType": obj.get("entityType"),
             "createdDateTime": obj.get("createdDateTime"),

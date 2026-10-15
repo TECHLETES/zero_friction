@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **email** | **str** |  | [optional] 
 **preferred_communication_type** | [**CommunicationType**](CommunicationType.md) |  | [optional] 
 **mobile_phone_number** | **str** |  | [optional] 
+**recipient_address** | **str** |  | [optional] 
 
 ## Example
 

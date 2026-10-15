@@ -39,7 +39,8 @@ class TestPortalBillingSettingsDTO(unittest.TestCase):
                 allow_customer_to_change_invoice_address = True,
                 hide_invoice_section = True,
                 hide_payment_reference = True,
-                require_birth_date_for_persons = True
+                require_birth_date_for_persons = True,
+                hide_estimated_invoice = True
             )
         else:
             return PortalBillingSettingsDTO(

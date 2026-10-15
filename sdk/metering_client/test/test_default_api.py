@@ -68,6 +68,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_delete_measurements_bulk_delete(self) -> None:
+        """Test case for delete_measurements_bulk_delete
+
+        Bulk deletes measurements based on specified criteria.
+        """
+        pass
+
     def test_delete_measurements_extchuuid_delete_measurementid(self) -> None:
         """Test case for delete_measurements_extchuuid_delete_measurementid
 
@@ -562,6 +569,76 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for post_serviceconsumptions_yearlyaverage
 
         Gets yearly average consumption per service location
+        """
+        pass
+
+    def test_put_consumptions_extchuuid_recalculate(self) -> None:
+        """Test case for put_consumptions_extchuuid_recalculate
+
+        Recalculates consumption values for a specific channel within a given date range.
+        """
+        pass
+
+    def test_put_integrations_import_process(self) -> None:
+        """Test case for put_integrations_import_process
+
+        Processes all selected imports if they have the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since bee
+        """
+        pass
+
+    def test_put_integrations_import_process_meteringimportid(self) -> None:
+        """Test case for put_integrations_import_process_meteringimportid
+
+        Processes the import if it has the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the 
+        """
+        pass
+
+    def test_put_integrations_import_processall(self) -> None:
+        """Test case for put_integrations_import_processall
+
+        Processes all imports that have status 'To process' and 'Processed with issues'
+        """
+        pass
+
+    def test_put_meteringissues_bulk_ignore(self) -> None:
+        """Test case for put_meteringissues_bulk_ignore
+
+        Ignores multiple metering issues in bulk.
+        """
+        pass
+
+    def test_put_meteringissues_bulk_resolve(self) -> None:
+        """Test case for put_meteringissues_bulk_resolve
+
+        Resolves multiple metering issues in bulk.
+        """
+        pass
+
+    def test_put_meteringissues_issueid_ignore(self) -> None:
+        """Test case for put_meteringissues_issueid_ignore
+
+        Ignores a specific metering issue.
+        """
+        pass
+
+    def test_put_meteringissues_issueid_resolve(self) -> None:
+        """Test case for put_meteringissues_issueid_resolve
+
+        Resolves a specific metering issue.
+        """
+        pass
+
+    def test_put_meteringprovideraccounts_id(self) -> None:
+        """Test case for put_meteringprovideraccounts_id
+
+        Updates an existing metering provider account by id.
+        """
+        pass
+
+    def test_put_meteringprovideraccounts_id_deactivate(self) -> None:
+        """Test case for put_meteringprovideraccounts_id_deactivate
+
+        Deactivates a metering provider account by id (sets status to inactive).
         """
         pass
 

@@ -30,8 +30,8 @@ class CostCenterDTO(BaseModel):
     CostCenterDTO
     """ # noqa: E501
     description: Optional[StrictStr] = None
-    code: StrictStr
-    external_accounting_metadata: ExternalAccountingMetadataDTO = Field(alias="externalAccountingMetadata")
+    code: Optional[StrictStr] = None
+    external_accounting_metadata: Optional[ExternalAccountingMetadataDTO] = Field(default=None, alias="externalAccountingMetadata")
     organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
     id: Optional[StrictStr] = None
     entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
@@ -88,6 +88,11 @@ class CostCenterDTO(BaseModel):
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
+
+        # set to None if code (nullable) is None
+        # and model_fields_set contains the field
+        if self.code is None and "code" in self.model_fields_set:
+            _dict['code'] = None
 
         return _dict
 

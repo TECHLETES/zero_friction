@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class CommunicationProviderType(str, Enum):
     """
-    Possible values: 'sendgridemail', 'twiliosms', 'pingenpostal', 'chorusproeinvoicing', 'peppoleinvoicing'
+    Possible values: 'sendgridemail', 'twiliosms', 'pingenpostal', 'chorusproeinvoicing', 'peppoleinvoicing', 'recommandeinvoicing'
     """
 
     """
@@ -31,6 +31,7 @@ class CommunicationProviderType(str, Enum):
     PINGENPOSTAL = 'pingenpostal'
     CHORUSPROEINVOICING = 'chorusproeinvoicing'
     PEPPOLEINVOICING = 'peppoleinvoicing'
+    RECOMMANDEINVOICING = 'recommandeinvoicing'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

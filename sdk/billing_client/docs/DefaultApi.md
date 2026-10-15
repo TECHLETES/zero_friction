@@ -8,11 +8,16 @@ Method | HTTP request | Description
 [**change_advance_amount**](DefaultApi.md#change_advance_amount) | **POST** /BillingRelations/b/{billreluuid}/changeadvanceamount | Changes the advance amount for a specific billing relation.
 [**confirm**](DefaultApi.md#confirm) | **POST** /CustomerBankAccounts/{customerBankAccountId}/confirm | Confirms a specific customer bank account.
 [**delete**](DefaultApi.md#delete) | **DELETE** /CustomerBankAccounts/{customerBankAccountId}/delete | Deletes a specific customer bank account.
+[**delete_incomingbankingtransactions_bulk_delete**](DefaultApi.md#delete_incomingbankingtransactions_bulk_delete) | **DELETE** /IncomingBankingTransactions/bulk/delete | Bulk deletes incoming banking transactions based on the provided request.
 [**delete_incomingbankingtransactions_incomingbankingtransactionid**](DefaultApi.md#delete_incomingbankingtransactions_incomingbankingtransactionid) | **DELETE** /IncomingBankingTransactions/{incomingBankingTransactionId} | Deletes a specific incoming banking transaction by its ID.
 [**delete_incomingmutations_incomingmutationid_ignore**](DefaultApi.md#delete_incomingmutations_incomingmutationid_ignore) | **DELETE** /IncomingMutations/{incomingMutationId}/ignore | Ignores a specific incoming mutation.
+[**delete_invoices_bulk_delete**](DefaultApi.md#delete_invoices_bulk_delete) | **DELETE** /Invoices/bulk/delete | Deletes multiple invoices in bulk.
 [**delete_invoices_invoiceuuid**](DefaultApi.md#delete_invoices_invoiceuuid) | **DELETE** /Invoices/{invoiceuuid} | Deletes an invoice by its UUID.
+[**delete_outgoingbankingtransactions_bulk_delete**](DefaultApi.md#delete_outgoingbankingtransactions_bulk_delete) | **DELETE** /OutgoingBankingTransactions/bulk/delete | Bulk deletes outgoing banking transactions.
 [**delete_outgoingbankingtransactions_outgoingbankingtransactionid**](DefaultApi.md#delete_outgoingbankingtransactions_outgoingbankingtransactionid) | **DELETE** /OutgoingBankingTransactions/{outgoingBankingTransactionId} | Deletes an outgoing banking transaction by its ID.
+[**delete_outgoingmutations_bulk_delete**](DefaultApi.md#delete_outgoingmutations_bulk_delete) | **DELETE** /OutgoingMutations/bulk/delete | Bulk deletes outgoing mutations.
 [**delete_outgoingmutations_outgoingmutationid**](DefaultApi.md#delete_outgoingmutations_outgoingmutationid) | **DELETE** /OutgoingMutations/{outgoingMutationId} | Deletes an outgoing mutation by ID.
+[**delete_paymentplans_bulk_delete**](DefaultApi.md#delete_paymentplans_bulk_delete) | **DELETE** /PaymentPlans/bulk/delete | Bulk deletes payment plans based on the provided query parameters.
 [**delete_paymentplans_id**](DefaultApi.md#delete_paymentplans_id) | **DELETE** /PaymentPlans/{id} | Deletes a payment plan.
 [**filter_all_billing_completenesses**](DefaultApi.md#filter_all_billing_completenesses) | **POST** /BillingCompletenesses/filter | Retrieves all billing completenesses based on the provided query parameters.
 [**get_accountingexportproviders_id**](DefaultApi.md#get_accountingexportproviders_id) | **GET** /AccountingExportProviders/{id} | Retrieves a single accounting export provider account by its unique identifier.
@@ -99,12 +104,14 @@ Method | HTTP request | Description
 [**post_billingcompletenesses_billingcompletenessid_manuallyclose**](DefaultApi.md#post_billingcompletenesses_billingcompletenessid_manuallyclose) | **POST** /BillingCompletenesses/{billingCompletenessId}/manuallyclose | Manually closes a specific billing completeness.
 [**post_billingcompletenesses_billingcompletenessid_reopen**](DefaultApi.md#post_billingcompletenesses_billingcompletenessid_reopen) | **POST** /BillingCompletenesses/{billingCompletenessId}/reopen | Reopens a manually closed billing completeness.
 [**post_billingcompletenesses_billingcompletenessid_skipadvanceperiod**](DefaultApi.md#post_billingcompletenesses_billingcompletenessid_skipadvanceperiod) | **POST** /BillingCompletenesses/{billingCompletenessId}/skipadvanceperiod | Skips an advance period for a specific billing completeness.
+[**post_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation**](DefaultApi.md#post_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation) | **POST** /BillingCompletenesses/{billingCompletenessId}/triggerinvoiceestimation | (Re)triggers invoice estimation for a specific billing completeness.
 [**post_billingcompletenesses_bulk_billintermediately**](DefaultApi.md#post_billingcompletenesses_bulk_billintermediately) | **POST** /BillingCompletenesses/bulk/billintermediately | Bills multiple billing completenesses intermediately in bulk.
 [**post_billingcompletenesses_bulk_changenextinvoiceenddate**](DefaultApi.md#post_billingcompletenesses_bulk_changenextinvoiceenddate) | **POST** /BillingCompletenesses/bulk/changenextinvoiceenddate | Changes the next invoice end date for a specific billing relation.
 [**post_billingcompletenesses_bulk_manuallyclose**](DefaultApi.md#post_billingcompletenesses_bulk_manuallyclose) | **POST** /BillingCompletenesses/bulk/manuallyclose | Manually closes multiple billing completenesses in bulk.
 [**post_billingcompletenesses_bulk_reopen**](DefaultApi.md#post_billingcompletenesses_bulk_reopen) | **POST** /BillingCompletenesses/bulk/reopen | Reopens multiple manually closed billing completenesses in bulk.
 [**post_billingcompletenesses_bulk_skipadvanceperiod**](DefaultApi.md#post_billingcompletenesses_bulk_skipadvanceperiod) | **POST** /BillingCompletenesses/bulk/skipadvanceperiod | Skips advance periods for multiple billing completenesses in bulk.
 [**post_billingcompletenesses_bulk_triggerbilling**](DefaultApi.md#post_billingcompletenesses_bulk_triggerbilling) | **POST** /BillingCompletenesses/bulk/triggerbilling | Triggers billing for multiple billing completenesses in bulk.
+[**post_billingcompletenesses_bulk_triggerinvoiceestimation**](DefaultApi.md#post_billingcompletenesses_bulk_triggerinvoiceestimation) | **POST** /BillingCompletenesses/bulk/triggerinvoiceestimation | (Re)triggers invoice estimation for multiple billing completenesses in bulk.
 [**post_billingcompletenesses_filter_overviewcount**](DefaultApi.md#post_billingcompletenesses_filter_overviewcount) | **POST** /BillingCompletenesses/filter/overviewcount | Retrieves the overview count of billing completeness based on the provided query parameters.
 [**post_collectioncases_bulk_markclosed**](DefaultApi.md#post_collectioncases_bulk_markclosed) | **POST** /CollectionCases/bulk/markclosed | Marks multiple collection cases as manually closed in bulk.
 [**post_collectioncases_collectioncaseid_markclosed**](DefaultApi.md#post_collectioncases_collectioncaseid_markclosed) | **POST** /CollectionCases/{collectioncaseid}/markclosed | Marks a collection case as manually closed.
@@ -127,8 +134,8 @@ Method | HTTP request | Description
 [**post_custaging_filter**](DefaultApi.md#post_custaging_filter) | **POST** /CustAging/filter | Retrieves all customer aging headers based on the provided query parameters.
 [**post_custaging_filter_detailed**](DefaultApi.md#post_custaging_filter_detailed) | **POST** /CustAging/filter/detailed | Retrieves detailed customer aging lines based on the provided query parameters.
 [**post_custaging_filter_overviewcount**](DefaultApi.md#post_custaging_filter_overviewcount) | **POST** /CustAging/filter/overviewcount | Retrieves the overview count of customer aging lines based on the provided query parameters.
-[**post_estimatedinvoices_br_billingrelationid**](DefaultApi.md#post_estimatedinvoices_br_billingrelationid) | **POST** /EstimatedInvoices/br/{billingRelationId} | Manually triggers invoice estimation for a specific billing relation.
 [**post_estimatedinvoices_filter**](DefaultApi.md#post_estimatedinvoices_filter) | **POST** /EstimatedInvoices/filter | Retrieves all estimated invoices based on the provided query parameters and filters.
+[**post_estimatedinvoices_filter_overviewcount**](DefaultApi.md#post_estimatedinvoices_filter_overviewcount) | **POST** /EstimatedInvoices/filter/overviewcount | Returns how many estimated invoices match each quick filter under the same body filters as the list.
 [**post_incomingbankingtransactions_bulk_delete**](DefaultApi.md#post_incomingbankingtransactions_bulk_delete) | **POST** /IncomingBankingTransactions/bulk/delete | Bulk deletes incoming banking transactions based on the provided request.
 [**post_incomingbankingtransactions_bulk_process**](DefaultApi.md#post_incomingbankingtransactions_bulk_process) | **POST** /IncomingBankingTransactions/bulk/process | Bulk processes incoming banking transactions based on the provided request.
 [**post_incomingbankingtransactions_export**](DefaultApi.md#post_incomingbankingtransactions_export) | **POST** /IncomingBankingTransactions/export | Exports incoming banking transactions based on the provided request.
@@ -248,6 +255,106 @@ Method | HTTP request | Description
 [**post_transactions_transactionuuid_settle_settlementtransactionid**](DefaultApi.md#post_transactions_transactionuuid_settle_settlementtransactionid) | **POST** /Transactions/{transactionuuid}/settle/{settlementTransactionId} | Settles a single transaction for a specific transaction UUID.
 [**post_transactions_transactionuuid_undo**](DefaultApi.md#post_transactions_transactionuuid_undo) | **POST** /Transactions/{transactionuuid}/undo | Undoes all settlements of a specific transaction.
 [**post_transactions_transactionuuid_undo_settlementtransactionid**](DefaultApi.md#post_transactions_transactionuuid_undo_settlementtransactionid) | **POST** /Transactions/{transactionuuid}/undo/{settlementTransactionId} | Undoes a single settlement of a specific transaction.
+[**put_accountingexportproviders_id**](DefaultApi.md#put_accountingexportproviders_id) | **PUT** /AccountingExportProviders/{id} | Updates an existing accounting export provider account by id.
+[**put_accountingexportproviders_id_deactivate**](DefaultApi.md#put_accountingexportproviders_id_deactivate) | **PUT** /AccountingExportProviders/{id}/deactivate | Deactivates an accounting export provider account by id (sets status to inactive).
+[**put_annualstatements_annualstatementuuid_send**](DefaultApi.md#put_annualstatements_annualstatementuuid_send) | **PUT** /AnnualStatements/{annualStatementuuid}/send | Sends an annual statement via email.
+[**put_annualstatements_annualstatementuuid_sendviapostal**](DefaultApi.md#put_annualstatements_annualstatementuuid_sendviapostal) | **PUT** /AnnualStatements/{annualStatementuuid}/sendviapostal | Sends an annual statement via postal mail.
+[**put_annualstatements_bulk_send**](DefaultApi.md#put_annualstatements_bulk_send) | **PUT** /AnnualStatements/bulk/send | Sends multiple annual statements via email in bulk.
+[**put_annualstatements_bulk_sendviapostal**](DefaultApi.md#put_annualstatements_bulk_sendviapostal) | **PUT** /AnnualStatements/bulk/sendviapostal | Sends multiple annual statements via postal mail in bulk.
+[**put_billingcompletenesses_billingcompletenessid_billintermediately**](DefaultApi.md#put_billingcompletenesses_billingcompletenessid_billintermediately) | **PUT** /BillingCompletenesses/{billingCompletenessId}/billintermediately | Bills a specific billing completeness intermediately.
+[**put_billingcompletenesses_billingcompletenessid_changenextinvoiceenddate**](DefaultApi.md#put_billingcompletenesses_billingcompletenessid_changenextinvoiceenddate) | **PUT** /BillingCompletenesses/{billingCompletenessId}/changenextinvoiceenddate | Changes the next invoice end date for a specific billing relation.
+[**put_billingcompletenesses_billingcompletenessid_manuallyclose**](DefaultApi.md#put_billingcompletenesses_billingcompletenessid_manuallyclose) | **PUT** /BillingCompletenesses/{billingCompletenessId}/manuallyclose | Manually closes a specific billing completeness.
+[**put_billingcompletenesses_billingcompletenessid_reopen**](DefaultApi.md#put_billingcompletenesses_billingcompletenessid_reopen) | **PUT** /BillingCompletenesses/{billingCompletenessId}/reopen | Reopens a manually closed billing completeness.
+[**put_billingcompletenesses_billingcompletenessid_skipadvanceperiod**](DefaultApi.md#put_billingcompletenesses_billingcompletenessid_skipadvanceperiod) | **PUT** /BillingCompletenesses/{billingCompletenessId}/skipadvanceperiod | Skips an advance period for a specific billing completeness.
+[**put_billingcompletenesses_billingcompletenessid_triggerbilling**](DefaultApi.md#put_billingcompletenesses_billingcompletenessid_triggerbilling) | **PUT** /BillingCompletenesses/{billingCompletenessId}/triggerbilling | Triggers billing for a specific billing completeness.
+[**put_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation**](DefaultApi.md#put_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation) | **PUT** /BillingCompletenesses/{billingCompletenessId}/triggerinvoiceestimation | (Re)triggers invoice estimation for a specific billing completeness.
+[**put_billingcompletenesses_bulk_billintermediately**](DefaultApi.md#put_billingcompletenesses_bulk_billintermediately) | **PUT** /BillingCompletenesses/bulk/billintermediately | Bills multiple billing completenesses intermediately in bulk.
+[**put_billingcompletenesses_bulk_changenextinvoiceenddate**](DefaultApi.md#put_billingcompletenesses_bulk_changenextinvoiceenddate) | **PUT** /BillingCompletenesses/bulk/changenextinvoiceenddate | Changes the next invoice end date for a specific billing relation.
+[**put_billingcompletenesses_bulk_manuallyclose**](DefaultApi.md#put_billingcompletenesses_bulk_manuallyclose) | **PUT** /BillingCompletenesses/bulk/manuallyclose | Manually closes multiple billing completenesses in bulk.
+[**put_billingcompletenesses_bulk_reopen**](DefaultApi.md#put_billingcompletenesses_bulk_reopen) | **PUT** /BillingCompletenesses/bulk/reopen | Reopens multiple manually closed billing completenesses in bulk.
+[**put_billingcompletenesses_bulk_skipadvanceperiod**](DefaultApi.md#put_billingcompletenesses_bulk_skipadvanceperiod) | **PUT** /BillingCompletenesses/bulk/skipadvanceperiod | Skips advance periods for multiple billing completenesses in bulk.
+[**put_billingcompletenesses_bulk_triggerbilling**](DefaultApi.md#put_billingcompletenesses_bulk_triggerbilling) | **PUT** /BillingCompletenesses/bulk/triggerbilling | Triggers billing for multiple billing completenesses in bulk.
+[**put_billingcompletenesses_bulk_triggerinvoiceestimation**](DefaultApi.md#put_billingcompletenesses_bulk_triggerinvoiceestimation) | **PUT** /BillingCompletenesses/bulk/triggerinvoiceestimation | (Re)triggers invoice estimation for multiple billing completenesses in bulk.
+[**put_billingrelations_b_billreluuid_changeadvanceamount**](DefaultApi.md#put_billingrelations_b_billreluuid_changeadvanceamount) | **PUT** /BillingRelations/b/{billreluuid}/changeadvanceamount | Changes the advance amount for a specific billing relation.
+[**put_billingrelations_b_billreluuid_updateadvanceperiodpercentages**](DefaultApi.md#put_billingrelations_b_billreluuid_updateadvanceperiodpercentages) | **PUT** /BillingRelations/b/{billreluuid}/updateadvanceperiodpercentages | Updates the advance period percentages for a billing relation with estimated invoice percentage advances.
+[**put_collectioncases_bulk_markclosed**](DefaultApi.md#put_collectioncases_bulk_markclosed) | **PUT** /CollectionCases/bulk/markclosed | Marks multiple collection cases as manually closed in bulk.
+[**put_collectioncases_collectioncaseid_markclosed**](DefaultApi.md#put_collectioncases_collectioncaseid_markclosed) | **PUT** /CollectionCases/{collectioncaseid}/markclosed | Marks a collection case as manually closed.
+[**put_collectioncases_collectioncaseid_pause**](DefaultApi.md#put_collectioncases_collectioncaseid_pause) | **PUT** /CollectionCases/{collectioncaseid}/pause | Pauses a collection case.
+[**put_collectioncases_collectioncaseid_process**](DefaultApi.md#put_collectioncases_collectioncaseid_process) | **PUT** /CollectionCases/{collectioncaseid}/process | Processes the collection case
+[**put_collectioncases_collectioncaseid_resume**](DefaultApi.md#put_collectioncases_collectioncaseid_resume) | **PUT** /CollectionCases/{collectioncaseid}/resume | Resumes a collection case.
+[**put_collectioncases_collectioncaseid_stepid_close**](DefaultApi.md#put_collectioncases_collectioncaseid_stepid_close) | **PUT** /CollectionCases/{collectioncaseid}/{stepId}/close | Closes a specific collection case step.
+[**put_collectioncases_collectioncaseid_stepid_execute**](DefaultApi.md#put_collectioncases_collectioncaseid_stepid_execute) | **PUT** /CollectionCases/{collectioncaseid}/{stepId}/execute | Executes a specific collection case step.
+[**put_collectioncases_collectioncaseid_stepid_markmanualsent**](DefaultApi.md#put_collectioncases_collectioncaseid_stepid_markmanualsent) | **PUT** /CollectionCases/{collectioncaseid}/{stepId}/markmanualsent | Confirms a manual (physical) communication was sent and closes the step.
+[**put_collectioncases_collectioncaseid_stepid_retry**](DefaultApi.md#put_collectioncases_collectioncaseid_stepid_retry) | **PUT** /CollectionCases/{collectioncaseid}/{stepId}/retry | Retries a specific collection case step.
+[**put_collectioncases_collectioncaseid_stepid_sendviamail**](DefaultApi.md#put_collectioncases_collectioncaseid_stepid_sendviamail) | **PUT** /CollectionCases/{collectioncaseid}/{stepId}/sendviamail | Sends a specific collection case step via email.
+[**put_collectioncases_collectioncaseid_stepid_sendviapostal**](DefaultApi.md#put_collectioncases_collectioncaseid_stepid_sendviapostal) | **PUT** /CollectionCases/{collectioncaseid}/{stepId}/sendviapostal | Sends a specific collection case step via postal mail.
+[**put_collectioncases_collectioncaseid_stepid_skip**](DefaultApi.md#put_collectioncases_collectioncaseid_stepid_skip) | **PUT** /CollectionCases/{collectioncaseid}/{stepId}/skip | Skips a specific collection case step.
+[**put_collectioncases_entityid_customproperties**](DefaultApi.md#put_collectioncases_entityid_customproperties) | **PUT** /CollectionCases/{entityId}/customproperties | /CollectionCases/{entityId}/customproperties - PUT
+[**put_customerbankaccounts_customerbankaccountid_confirm**](DefaultApi.md#put_customerbankaccounts_customerbankaccountid_confirm) | **PUT** /CustomerBankAccounts/{customerBankAccountId}/confirm | Confirms a specific customer bank account.
+[**put_customerbankaccounts_customerbankaccountid_update**](DefaultApi.md#put_customerbankaccounts_customerbankaccountid_update) | **PUT** /CustomerBankAccounts/{customerBankAccountId}/update | Updates a specific customer bank account.
+[**put_incomingbankingtransactions_bulk_process**](DefaultApi.md#put_incomingbankingtransactions_bulk_process) | **PUT** /IncomingBankingTransactions/bulk/process | Bulk processes incoming banking transactions based on the provided request.
+[**put_incomingbankingtransactions_incomingbankingtransactionid_mutations_ignor**](DefaultApi.md#put_incomingbankingtransactions_incomingbankingtransactionid_mutations_ignor) | **PUT** /IncomingBankingTransactions/{incomingBankingTransactionId}/mutations/ignore | Ignores multiple incoming mutations for a specific incoming banking transaction.
+[**put_incomingbankingtransactions_incomingbankingtransactionid_process**](DefaultApi.md#put_incomingbankingtransactions_incomingbankingtransactionid_process) | **PUT** /IncomingBankingTransactions/{incomingBankingTransactionId}/process | Processes a specific incoming banking transaction by its ID.
+[**put_incomingbankingtransactions_incomingbankingtransactionid_updateibanconfi**](DefaultApi.md#put_incomingbankingtransactions_incomingbankingtransactionid_updateibanconfi) | **PUT** /IncomingBankingTransactions/{incomingBankingTransactionId}/updateIbanConfirmation | Updates the IBAN confirmation of an Iban used in a specific incoming banking transaction.
+[**put_incomingmutations_bulk_ignore**](DefaultApi.md#put_incomingmutations_bulk_ignore) | **PUT** /IncomingMutations/bulk/ignore | Bulk ignores incoming mutations based on the provided request.
+[**put_incomingmutations_bulk_reset**](DefaultApi.md#put_incomingmutations_bulk_reset) | **PUT** /IncomingMutations/bulk/reset | Bulk resets the matching status of incoming mutations based on the provided request.
+[**put_incomingmutations_incomingmutationid_manualmatch**](DefaultApi.md#put_incomingmutations_incomingmutationid_manualmatch) | **PUT** /IncomingMutations/{incomingMutationId}/manualmatch | Manually matches a specific incoming mutation.
+[**put_incomingmutations_incomingmutationid_reset**](DefaultApi.md#put_incomingmutations_incomingmutationid_reset) | **PUT** /IncomingMutations/{incomingMutationId}/reset | Resets the matching status of a specific incoming mutation.
+[**put_invoices_bulk_approve**](DefaultApi.md#put_invoices_bulk_approve) | **PUT** /Invoices/bulk/approve | Approves multiple invoices in bulk.
+[**put_invoices_bulk_changeexportstatus**](DefaultApi.md#put_invoices_bulk_changeexportstatus) | **PUT** /Invoices/bulk/changeexportstatus | Changes the export status of multiple invoices in bulk.
+[**put_invoices_bulk_changepaymentdetails**](DefaultApi.md#put_invoices_bulk_changepaymentdetails) | **PUT** /Invoices/bulk/changepaymentdetails | Changes the payment details of multiple invoices in bulk.
+[**put_invoices_bulk_marksent**](DefaultApi.md#put_invoices_bulk_marksent) | **PUT** /Invoices/bulk/marksent | Marks multiple invoices as sent in bulk.
+[**put_invoices_bulk_markskipped**](DefaultApi.md#put_invoices_bulk_markskipped) | **PUT** /Invoices/bulk/markskipped | Marks multiple invoices as skipped in bulk.
+[**put_invoices_bulk_regenerate**](DefaultApi.md#put_invoices_bulk_regenerate) | **PUT** /Invoices/bulk/regenerate | Regenerates multiple invoices in bulk.
+[**put_invoices_bulk_send**](DefaultApi.md#put_invoices_bulk_send) | **PUT** /Invoices/bulk/send | Sends multiple invoices via email in bulk.
+[**put_invoices_bulk_sendviaeinvoicing**](DefaultApi.md#put_invoices_bulk_sendviaeinvoicing) | **PUT** /Invoices/bulk/sendviaeinvoicing | Sends multiple invoices via EInvoicing in bulk.
+[**put_invoices_bulk_sendviapostal**](DefaultApi.md#put_invoices_bulk_sendviapostal) | **PUT** /Invoices/bulk/sendviapostal | Sends multiple invoices via postal mail in bulk.
+[**put_invoices_invoiceuuid_approve**](DefaultApi.md#put_invoices_invoiceuuid_approve) | **PUT** /Invoices/{invoiceuuid}/approve | Approves an invoice.
+[**put_invoices_invoiceuuid_changeexportstatus**](DefaultApi.md#put_invoices_invoiceuuid_changeexportstatus) | **PUT** /Invoices/{invoiceuuid}/changeexportstatus | Changes the export status of an invoice.
+[**put_invoices_invoiceuuid_changenewadvanceamount**](DefaultApi.md#put_invoices_invoiceuuid_changenewadvanceamount) | **PUT** /Invoices/{invoiceuuid}/changenewadvanceamount | Changes the new advance amount of an invoice.
+[**put_invoices_invoiceuuid_changepaymentdetails**](DefaultApi.md#put_invoices_invoiceuuid_changepaymentdetails) | **PUT** /Invoices/{invoiceuuid}/changepaymentdetails | Changes the payment method of an invoice.
+[**put_invoices_invoiceuuid_marksent**](DefaultApi.md#put_invoices_invoiceuuid_marksent) | **PUT** /Invoices/{invoiceuuid}/marksent | Marks an invoice as sent.
+[**put_invoices_invoiceuuid_markskipped**](DefaultApi.md#put_invoices_invoiceuuid_markskipped) | **PUT** /Invoices/{invoiceuuid}/markskipped | Marks an invoice as skipped.
+[**put_invoices_invoiceuuid_notetocustomer**](DefaultApi.md#put_invoices_invoiceuuid_notetocustomer) | **PUT** /Invoices/{invoiceuuid}/notetocustomer | Update the note to customer from a specific invoice
+[**put_invoices_invoiceuuid_regenerate**](DefaultApi.md#put_invoices_invoiceuuid_regenerate) | **PUT** /Invoices/{invoiceuuid}/regenerate | Regenerates an invoice.
+[**put_invoices_invoiceuuid_send**](DefaultApi.md#put_invoices_invoiceuuid_send) | **PUT** /Invoices/{invoiceuuid}/send | Sends an invoice via email.
+[**put_invoices_invoiceuuid_sendviaeinvoicing**](DefaultApi.md#put_invoices_invoiceuuid_sendviaeinvoicing) | **PUT** /Invoices/{invoiceuuid}/sendviaeinvoicing | Sends an invoice via EInvoicing.
+[**put_invoices_invoiceuuid_sendviapostal**](DefaultApi.md#put_invoices_invoiceuuid_sendviapostal) | **PUT** /Invoices/{invoiceuuid}/sendviapostal | Sends an invoice via postal mail.
+[**put_outgoingbankingtransactions_bulk_manuallycancel**](DefaultApi.md#put_outgoingbankingtransactions_bulk_manuallycancel) | **PUT** /OutgoingBankingTransactions/bulk/manuallycancel | Bulk manually cancels outgoing banking transactions.
+[**put_outgoingbankingtransactions_bulk_manuallyconfirm**](DefaultApi.md#put_outgoingbankingtransactions_bulk_manuallyconfirm) | **PUT** /OutgoingBankingTransactions/bulk/manuallyconfirm | Bulk manually confirms outgoing banking transactions.
+[**put_outgoingbankingtransactions_bulk_send**](DefaultApi.md#put_outgoingbankingtransactions_bulk_send) | **PUT** /OutgoingBankingTransactions/bulk/send | Bulk sends outgoing banking transactions via the configured channel for each company bank account (active SFTP banking data provider, or Twikey when enabled and linked).
+[**put_outgoingbankingtransactions_outgoingbankingtransactionid_bankaccount**](DefaultApi.md#put_outgoingbankingtransactions_outgoingbankingtransactionid_bankaccount) | **PUT** /OutgoingBankingTransactions/{outgoingBankingTransactionId}/bankaccount | Updates the company bank account for an outgoing banking transaction.
+[**put_outgoingbankingtransactions_outgoingbankingtransactionid_collectiondate**](DefaultApi.md#put_outgoingbankingtransactions_outgoingbankingtransactionid_collectiondate) | **PUT** /OutgoingBankingTransactions/{outgoingBankingTransactionId}/collectiondate | Updates the collection date for an outgoing banking transaction.
+[**put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallycancel**](DefaultApi.md#put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallycancel) | **PUT** /OutgoingBankingTransactions/{outgoingBankingTransactionId}/manuallycancel | Manually cancels an outgoing banking transaction.
+[**put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallyconfirm**](DefaultApi.md#put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallyconfirm) | **PUT** /OutgoingBankingTransactions/{outgoingBankingTransactionId}/manuallyconfirm | Manually confirms an outgoing banking transaction.
+[**put_outgoingmutations_outgoingmutationid**](DefaultApi.md#put_outgoingmutations_outgoingmutationid) | **PUT** /OutgoingMutations/{outgoingMutationId} | Updates an outgoing mutation.
+[**put_paymentplans_bulk_activate**](DefaultApi.md#put_paymentplans_bulk_activate) | **PUT** /PaymentPlans/bulk/activate | Bulk activates payment plans based on the provided query parameters.
+[**put_paymentplans_bulk_cancel**](DefaultApi.md#put_paymentplans_bulk_cancel) | **PUT** /PaymentPlans/bulk/cancel | Bulk cancels payment plans based on the provided query parameters.
+[**put_paymentplans_bulk_collect_deferred_off_session**](DefaultApi.md#put_paymentplans_bulk_collect_deferred_off_session) | **PUT** /PaymentPlans/bulk/collect-deferred-off-session | Bulk collect for PSP-deferred off-session payment plans: resolves collectable installments and confirms their payment intents.
+[**put_paymentplans_bulk_pause**](DefaultApi.md#put_paymentplans_bulk_pause) | **PUT** /PaymentPlans/bulk/pause | Bulk pauses payment plans based on the provided query parameters.
+[**put_paymentplans_bulk_reopen_cancelled**](DefaultApi.md#put_paymentplans_bulk_reopen_cancelled) | **PUT** /PaymentPlans/bulk/reopen-cancelled | Bulk reopens cancelled payment plans. No customer communication is sent.
+[**put_paymentplans_bulk_resume**](DefaultApi.md#put_paymentplans_bulk_resume) | **PUT** /PaymentPlans/bulk/resume | Bulk resumes payment plans based on the provided query parameters.
+[**put_paymentplans_entityid_customproperties**](DefaultApi.md#put_paymentplans_entityid_customproperties) | **PUT** /PaymentPlans/{entityId}/customproperties | /PaymentPlans/{entityId}/customproperties - PUT
+[**put_paymentplans_id**](DefaultApi.md#put_paymentplans_id) | **PUT** /PaymentPlans/{id} | Updates an existing payment plan.
+[**put_paymentplans_id_activate**](DefaultApi.md#put_paymentplans_id_activate) | **PUT** /PaymentPlans/{id}/activate | Activates a payment plan.
+[**put_paymentplans_id_cancel**](DefaultApi.md#put_paymentplans_id_cancel) | **PUT** /PaymentPlans/{id}/cancel | Cancels a payment plan.
+[**put_paymentplans_id_pause**](DefaultApi.md#put_paymentplans_id_pause) | **PUT** /PaymentPlans/{id}/pause | Pauses a payment plan (e.g., when customer is in distress).
+[**put_paymentplans_id_reopen_cancelled**](DefaultApi.md#put_paymentplans_id_reopen_cancelled) | **PUT** /PaymentPlans/{id}/reopen-cancelled | Reopens a cancelled payment plan: restores open installments and recalculates status from current dates. Does not send customer communication (no scenario e-mails).
+[**put_paymentplans_id_resume**](DefaultApi.md#put_paymentplans_id_resume) | **PUT** /PaymentPlans/{id}/resume | Resumes a payment plan from paused status.
+[**put_paymentplans_paymentplanid_resend_reminder**](DefaultApi.md#put_paymentplans_paymentplanid_resend_reminder) | **PUT** /PaymentPlans/{paymentPlanId}/resend-reminder | Try resending a reminder of a payment plan installment in case the generation of the payment intent failed
+[**put_payments_bulk_reverse**](DefaultApi.md#put_payments_bulk_reverse) | **PUT** /Payments/bulk/reverse | Bulk manually reverses payments.
+[**put_payments_paymentid_reverse**](DefaultApi.md#put_payments_paymentid_reverse) | **PUT** /Payments/{paymentId}/reverse | Manually reverses a payment.
+[**put_propertygroupbillingconfiguration**](DefaultApi.md#put_propertygroupbillingconfiguration) | **PUT** /PropertyGroupBillingConfiguration | Updates a billing configuration for a property group.
+[**put_propertygroupbillingconfiguration_entityid_translations**](DefaultApi.md#put_propertygroupbillingconfiguration_entityid_translations) | **PUT** /PropertyGroupBillingConfiguration/{entityId}/translations | /PropertyGroupBillingConfiguration/{entityId}/translations - PUT
+[**put_propertygroupbillingconfiguration_propertygroupid_notetocustomer**](DefaultApi.md#put_propertygroupbillingconfiguration_propertygroupid_notetocustomer) | **PUT** /PropertyGroupBillingConfiguration/{propertygroupid}/notetocustomer | Updates the note to customer for a specific property group.
+[**put_propertygroupbillingconfiguration_propertygroupid_timeofusecalendars**](DefaultApi.md#put_propertygroupbillingconfiguration_propertygroupid_timeofusecalendars) | **PUT** /PropertyGroupBillingConfiguration/{propertygroupid}/timeofusecalendars | Updates the per-utility Time of Use calendar assignment for a specific property group.
+[**put_transactions_accounting_markobsolete**](DefaultApi.md#put_transactions_accounting_markobsolete) | **PUT** /Transactions/accounting/markobsolete | Enqueues marking of all transactions on or before the given date as obsolete for accounting. The actual processing is performed asynchronously by the BillingEngine.
+[**put_transactions_c_customeruuid_runsettlement**](DefaultApi.md#put_transactions_c_customeruuid_runsettlement) | **PUT** /Transactions/c/{customeruuid}/runsettlement | Runs settlement for a specific customer.
+[**put_transactions_transactionuuid_accountingexportstatus**](DefaultApi.md#put_transactions_transactionuuid_accountingexportstatus) | **PUT** /Transactions/{transactionuuid}/accountingExportStatus | Updates the accounting export status of a transaction.
+[**put_transactions_transactionuuid_settle**](DefaultApi.md#put_transactions_transactionuuid_settle) | **PUT** /Transactions/{transactionuuid}/settle | Settles transactions for a specific transaction UUID.
+[**put_transactions_transactionuuid_settle_settlementtransactionid**](DefaultApi.md#put_transactions_transactionuuid_settle_settlementtransactionid) | **PUT** /Transactions/{transactionuuid}/settle/{settlementTransactionId} | Settles a single transaction for a specific transaction UUID.
+[**put_transactions_transactionuuid_undo**](DefaultApi.md#put_transactions_transactionuuid_undo) | **PUT** /Transactions/{transactionuuid}/undo | Undoes all settlements of a specific transaction.
+[**put_transactions_transactionuuid_undo_settlementtransactionid**](DefaultApi.md#put_transactions_transactionuuid_undo_settlementtransactionid) | **PUT** /Transactions/{transactionuuid}/undo/{settlementTransactionId} | Undoes a single settlement of a specific transaction.
 [**update**](DefaultApi.md#update) | **POST** /CustomerBankAccounts/{customerBankAccountId}/update | Updates a specific customer bank account.
 [**update_advance_period_percentages**](DefaultApi.md#update_advance_period_percentages) | **POST** /BillingRelations/b/{billreluuid}/updateadvanceperiodpercentages | Updates the advance period percentages for a billing relation with estimated invoice percentage advances.
 
@@ -301,7 +408,7 @@ with billing_client.ApiClient(configuration) as api_client:
     customeruuid = 'customeruuid_example' # str | The UUID of the customer.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    add_customer_bank_account_request = {"isDefault":true,"activeMandate":{"type":"core","signedDateTime":"string","companyBankAccountId":"string"},"iban":"string","bic":"string"} # AddCustomerBankAccountRequest | The cancellation token. (optional)
+    add_customer_bank_account_request = {"isDefault":true,"changedByPortal":true,"activeMandate":{},"iban":"string","bic":"string"} # AddCustomerBankAccountRequest | The cancellation token. (optional)
 
     try:
         # Adds a new bank account for a specific customer.
@@ -622,6 +729,98 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_incomingbankingtransactions_bulk_delete**
+> ApiResponseDTO delete_incomingbankingtransactions_bulk_delete(zf_tuuid, zf_ouuid, bulk_delete_incoming_banking_transaction_request=bulk_delete_incoming_banking_transaction_request)
+
+Bulk deletes incoming banking transactions based on the provided request.
+
+Bulk deletes incoming banking transactions based on the provided request.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_delete_incoming_banking_transaction_request import BulkDeleteIncomingBankingTransactionRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_delete_incoming_banking_transaction_request = {"onlyValidate":true,"queryParams":{"companyBankAccountId":"string","mutationDateTimeStart":"string","mutationDateTimeEnd":"string","openingBalanceDateStart":"string","openingBalanceDateEnd":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkDeleteIncomingBankingTransactionRequest | Cancellation token. (optional)
+
+    try:
+        # Bulk deletes incoming banking transactions based on the provided request.
+        api_response = api_instance.delete_incomingbankingtransactions_bulk_delete(zf_tuuid, zf_ouuid, bulk_delete_incoming_banking_transaction_request=bulk_delete_incoming_banking_transaction_request)
+        print("The response of DefaultApi->delete_incomingbankingtransactions_bulk_delete:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->delete_incomingbankingtransactions_bulk_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_delete_incoming_banking_transaction_request** | [**BulkDeleteIncomingBankingTransactionRequest**](BulkDeleteIncomingBankingTransactionRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **delete_incomingbankingtransactions_incomingbankingtransactionid**
 > ApiResponseDTOOfboolean delete_incomingbankingtransactions_incomingbankingtransactionid(incoming_banking_transaction_id, zf_tuuid, zf_ouuid)
 
@@ -804,6 +1003,99 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_invoices_bulk_delete**
+> ApiResponseDTOOfboolean delete_invoices_bulk_delete(zf_tuuid, zf_ouuid, bulk_delete_invoice_request=bulk_delete_invoice_request)
+
+Deletes multiple invoices in bulk.
+
+Deletes multiple invoices in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from billing_client.models.bulk_delete_invoice_request import BulkDeleteInvoiceRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_delete_invoice_request = {"onlyValidate":true,"queryParams":{"invoiceType":["string"],"propertyGroupIds":["string"],"productId":"string","customerId":"string","customerType":"string","contractId":"string","invoiceStatus":["string"],"paymentProcessStatus":["string"],"billingCompletenessId":"string","paymentMethod":"string","startDateTime":"string","endDateTime":"string","periodStartDateTime":"string","periodEndDateTime":"string","periodStartDateTimeBegin":"string","periodStartDateTimeEnd":"string","periodEndDateTimeBegin":"string","periodEndDateTimeEnd":"string","paidDateTimeBegin":"string","exportStatus":"string","collectionCaseId":"string","customerGroupId":"string","companyBankAccountId":"string","hasAttachment":true,"paymentPlanId":"string","applyFiltersOverIncludedIds":true,"onlyWithEstimatedOriginMeasurements":true,"onlyCreditedInvoices":true,"autoApprovedFilter":true,"validationScoreMin":0,"validationScoreMax":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkDeleteInvoiceRequest | A token to monitor for cancellation requests. (optional)
+
+    try:
+        # Deletes multiple invoices in bulk.
+        api_response = api_instance.delete_invoices_bulk_delete(zf_tuuid, zf_ouuid, bulk_delete_invoice_request=bulk_delete_invoice_request)
+        print("The response of DefaultApi->delete_invoices_bulk_delete:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->delete_invoices_bulk_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_delete_invoice_request** | [**BulkDeleteInvoiceRequest**](BulkDeleteInvoiceRequest.md)| A token to monitor for cancellation requests. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**204** | No Content |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **delete_invoices_invoiceuuid**
 > ApiResponseDTOOfboolean delete_invoices_invoiceuuid(invoiceuuid, zf_tuuid, zf_ouuid)
 
@@ -892,6 +1184,98 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **404** | Not Found |  -  |
 **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_outgoingbankingtransactions_bulk_delete**
+> ApiResponseDTO delete_outgoingbankingtransactions_bulk_delete(zf_tuuid, zf_ouuid, bulk_delete_outgoing_banking_transaction_request=bulk_delete_outgoing_banking_transaction_request)
+
+Bulk deletes outgoing banking transactions.
+
+Bulk deletes outgoing banking transactions.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_delete_outgoing_banking_transaction_request import BulkDeleteOutgoingBankingTransactionRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_delete_outgoing_banking_transaction_request = {"onlyValidate":true,"queryParams":{"companyBankAccountIds":["string"],"outgoingBankingTransactionType":"string","mutationDateTimeStart":"string","mutationDateTimeEnd":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkDeleteOutgoingBankingTransactionRequest | Cancellation token. (optional)
+
+    try:
+        # Bulk deletes outgoing banking transactions.
+        api_response = api_instance.delete_outgoingbankingtransactions_bulk_delete(zf_tuuid, zf_ouuid, bulk_delete_outgoing_banking_transaction_request=bulk_delete_outgoing_banking_transaction_request)
+        print("The response of DefaultApi->delete_outgoingbankingtransactions_bulk_delete:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->delete_outgoingbankingtransactions_bulk_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_delete_outgoing_banking_transaction_request** | [**BulkDeleteOutgoingBankingTransactionRequest**](BulkDeleteOutgoingBankingTransactionRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -986,6 +1370,98 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_outgoingmutations_bulk_delete**
+> ApiResponseDTOOfOutgoingMutationDTO delete_outgoingmutations_bulk_delete(zf_tuuid, zf_ouuid, bulk_delete_outgoing_mutation_request=bulk_delete_outgoing_mutation_request)
+
+Bulk deletes outgoing mutations.
+
+Bulk deletes outgoing mutations.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_outgoing_mutation_dto import ApiResponseDTOOfOutgoingMutationDTO
+from billing_client.models.bulk_delete_outgoing_mutation_request import BulkDeleteOutgoingMutationRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_delete_outgoing_mutation_request = {"onlyValidate":true,"queryParams":{"outgoingBankingTransactionId":"string","status":"string","referenceType":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkDeleteOutgoingMutationRequest | The cancellation token. (optional)
+
+    try:
+        # Bulk deletes outgoing mutations.
+        api_response = api_instance.delete_outgoingmutations_bulk_delete(zf_tuuid, zf_ouuid, bulk_delete_outgoing_mutation_request=bulk_delete_outgoing_mutation_request)
+        print("The response of DefaultApi->delete_outgoingmutations_bulk_delete:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->delete_outgoingmutations_bulk_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_delete_outgoing_mutation_request** | [**BulkDeleteOutgoingMutationRequest**](BulkDeleteOutgoingMutationRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfOutgoingMutationDTO**](ApiResponseDTOOfOutgoingMutationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **delete_outgoingmutations_outgoingmutationid**
 > ApiResponseDTOOfboolean delete_outgoingmutations_outgoingmutationid(outgoing_mutation_id, zf_tuuid, zf_ouuid)
 
@@ -1074,6 +1550,98 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **404** | Not Found |  -  |
 **204** | No Content |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_paymentplans_bulk_delete**
+> ApiResponseDTO delete_paymentplans_bulk_delete(zf_tuuid, zf_ouuid, bulk_delete_payment_plan_request=bulk_delete_payment_plan_request)
+
+Bulk deletes payment plans based on the provided query parameters.
+
+Bulk deletes payment plans based on the provided query parameters.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_delete_payment_plan_request import BulkDeletePaymentPlanRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_delete_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkDeletePaymentPlanRequest | The cancellation token. (optional)
+
+    try:
+        # Bulk deletes payment plans based on the provided query parameters.
+        api_response = api_instance.delete_paymentplans_bulk_delete(zf_tuuid, zf_ouuid, bulk_delete_payment_plan_request=bulk_delete_payment_plan_request)
+        print("The response of DefaultApi->delete_paymentplans_bulk_delete:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->delete_paymentplans_bulk_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_delete_payment_plan_request** | [**BulkDeletePaymentPlanRequest**](BulkDeletePaymentPlanRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 **400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7826,7 +8394,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_accounting_export_provider_request = {"providerType":"bergerlevraultesedit","settings":{"__type":"BergerLevraultEseditProviderSettingsDTO","providerType":"bergerlevraultesedit","host":"string","port":0,"userName":"string","password":"string","directory":"string","authenticationMethod":"password","publicKey":"string","unc":"string","budgetCode":"string","structureCode":"string","movementCode":"string","customEntityPropertySettings":{"customerNatureCEPId":"string","customerCategoryCEPId":"string","propertyGroupECadreBudgetaireCEPId":"string","propertyGroupSectorCodeCEPId":"string","propertyGroupBudgetingFrameworkCEPId":"string"}}} # CreateAccountingExportProviderRequest |  (optional)
+    create_accounting_export_provider_request = {"providerType":"bergerlevraultesedit","settings":{}} # CreateAccountingExportProviderRequest |  (optional)
 
     try:
         # Creates a new accounting export provider account for the current organisation, or sets status to Active if an account already exists for the provider type.
@@ -8014,7 +8582,7 @@ with billing_client.ApiClient(configuration) as api_client:
     id = 'id_example' # str | 
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_accounting_export_provider_request = {"providerType":"bergerlevraultesedit","settings":{"__type":"BergerLevraultEseditProviderSettingsDTO","providerType":"bergerlevraultesedit","host":"string","port":0,"userName":"string","password":"string","directory":"string","authenticationMethod":"password","publicKey":"string","unc":"string","budgetCode":"string","structureCode":"string","movementCode":"string","customEntityPropertySettings":{"customerNatureCEPId":"string","customerCategoryCEPId":"string","propertyGroupECadreBudgetaireCEPId":"string","propertyGroupSectorCodeCEPId":"string","propertyGroupBudgetingFrameworkCEPId":"string"}}} # UpdateAccountingExportProviderRequest |  (optional)
+    update_accounting_export_provider_request = {"providerType":"bergerlevraultesedit","settings":{}} # UpdateAccountingExportProviderRequest |  (optional)
 
     try:
         # Updates an existing accounting export provider account by id.
@@ -8294,7 +8862,7 @@ with billing_client.ApiClient(configuration) as api_client:
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
     order_by = 'order_by_example' # str |  (optional)
     continuation_token = 'continuation_token_example' # str |  (optional)
-    get_accounting_export_runs_query_params = {"providerId":"string","providerType":"string","statuses":["successful"],"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetAccountingExportRunsQueryParams |  (optional)
+    get_accounting_export_runs_query_params = {"providerId":"string","providerType":{},"statuses":["successful"],"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetAccountingExportRunsQueryParams |  (optional)
 
     try:
         # Retrieves accounting export runs for the current organisation with optional filtering and paging.
@@ -9456,6 +10024,97 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **post_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation**
+> ApiResponseDTOOfBillingCompletenessDTO post_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation(billing_completeness_id, zf_tuuid, zf_ouuid)
+
+(Re)triggers invoice estimation for a specific billing completeness.
+
+(Re)triggers invoice estimation for a specific billing completeness.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_billing_completeness_dto import ApiResponseDTOOfBillingCompletenessDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    billing_completeness_id = 'billing_completeness_id_example' # str | The ID of the billing completeness.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # (Re)triggers invoice estimation for a specific billing completeness.
+        api_response = api_instance.post_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation(billing_completeness_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->post_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->post_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **billing_completeness_id** | **str**| The ID of the billing completeness. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfBillingCompletenessDTO**](ApiResponseDTOOfBillingCompletenessDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **post_billingcompletenesses_bulk_billintermediately**
 > ApiResponseDTO post_billingcompletenesses_bulk_billintermediately(zf_tuuid, zf_ouuid, bulk_bill_billing_completeness_intermediately_request=bulk_bill_billing_completeness_intermediately_request)
 
@@ -9985,6 +10644,98 @@ Name | Type | Description  | Notes
  **zf_tuuid** | **str**| Tenant ID | 
  **zf_ouuid** | **str**| Organisation ID | 
  **bulk_trigger_billing_completeness_request** | [**BulkTriggerBillingCompletenessRequest**](BulkTriggerBillingCompletenessRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_billingcompletenesses_bulk_triggerinvoiceestimation**
+> ApiResponseDTO post_billingcompletenesses_bulk_triggerinvoiceestimation(zf_tuuid, zf_ouuid, bulk_trigger_invoice_estimation_for_billing_completeness_request=bulk_trigger_invoice_estimation_for_billing_completeness_request)
+
+(Re)triggers invoice estimation for multiple billing completenesses in bulk.
+
+(Re)triggers invoice estimation for multiple billing completenesses in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_trigger_invoice_estimation_for_billing_completeness_request import BulkTriggerInvoiceEstimationForBillingCompletenessRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_trigger_invoice_estimation_for_billing_completeness_request = {"onlyValidate":true,"queryParams":{"billingRelationId":"string","customerId":"string","propertyGroupIds":["string"],"contractId":"string","invoiceType":"string","billingMethod":"string","statementType":"string","status":"string","onlyOpen":true,"skipBlocked":true,"periodStartDateTime":"string","periodEndDateTime":"string","invoicingCheckpointStartDateTime":"string","invoicingCheckpointEndDateTime":"string","customerType":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkTriggerInvoiceEstimationForBillingCompletenessRequest | The cancellation token. (optional)
+
+    try:
+        # (Re)triggers invoice estimation for multiple billing completenesses in bulk.
+        api_response = api_instance.post_billingcompletenesses_bulk_triggerinvoiceestimation(zf_tuuid, zf_ouuid, bulk_trigger_invoice_estimation_for_billing_completeness_request=bulk_trigger_invoice_estimation_for_billing_completeness_request)
+        print("The response of DefaultApi->post_billingcompletenesses_bulk_triggerinvoiceestimation:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->post_billingcompletenesses_bulk_triggerinvoiceestimation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_trigger_invoice_estimation_for_billing_completeness_request** | [**BulkTriggerInvoiceEstimationForBillingCompletenessRequest**](BulkTriggerInvoiceEstimationForBillingCompletenessRequest.md)| The cancellation token. | [optional] 
 
 ### Return type
 
@@ -11735,7 +12486,7 @@ with billing_client.ApiClient(configuration) as api_client:
     invoiceid = 'invoiceid_example' # str | The ID of the invoice.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    assign_invoice_to_collection_case_request = {"collectionFlowId":"string","collectionCaseNumber":"string","lastExecutedStep":0,"lastStepExecutedAt":"string","status":"string","induceCharge":true} # AssignInvoiceToCollectionCaseRequest | The cancellation token. (optional)
+    assign_invoice_to_collection_case_request = {"collectionFlowId":"string","collectionCaseNumber":"string","lastExecutedStep":0,"lastStepExecutedAt":"string","status":{},"induceCharge":true} # AssignInvoiceToCollectionCaseRequest | The cancellation token. (optional)
 
     try:
         # Creates a collection case for a specific invoice. Supports both normal creation and migration scenarios.
@@ -12057,99 +12808,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_estimatedinvoices_br_billingrelationid**
-> ApiResponseDTOOfboolean post_estimatedinvoices_br_billingrelationid(billing_relation_id, zf_tuuid, zf_ouuid)
-
-Manually triggers invoice estimation for a specific billing relation.
-
-Manually triggers invoice estimation for a specific billing relation.
-
-### Example
-
-* Api Key Authentication (apiKeyQuery):
-* Api Key Authentication (apiKeyHeader):
-
-```python
-import billing_client
-from billing_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
-from billing_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
-# See configuration.py for a list of all supported configuration parameters.
-configuration = billing_client.Configuration(
-    host = "https://api.zerofriction.co/api/bill"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: apiKeyQuery
-configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
-
-# Configure API key authorization: apiKeyHeader
-configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with billing_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = billing_client.DefaultApi(api_client)
-    billing_relation_id = 'billing_relation_id_example' # str | The ID of the billing relation.
-    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
-    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-
-    try:
-        # Manually triggers invoice estimation for a specific billing relation.
-        api_response = api_instance.post_estimatedinvoices_br_billingrelationid(billing_relation_id, zf_tuuid, zf_ouuid)
-        print("The response of DefaultApi->post_estimatedinvoices_br_billingrelationid:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling DefaultApi->post_estimatedinvoices_br_billingrelationid: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **billing_relation_id** | **str**| The ID of the billing relation. | 
- **zf_tuuid** | **str**| Tenant ID | 
- **zf_ouuid** | **str**| Organisation ID | 
-
-### Return type
-
-[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
-
-### Authorization
-
-[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**404** | Not Found |  -  |
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **post_estimatedinvoices_filter**
-> ApiResponseDTOOfPagedResponseModelDTOOfEstimatedInvoiceDTO post_estimatedinvoices_filter(zf_tuuid, zf_ouuid, order_by=order_by, continuation_token=continuation_token, get_estimated_invoices_query_params=get_estimated_invoices_query_params)
+> ApiResponseDTOOfPagedResponseModelDTOOfEstimatedInvoiceDTO post_estimatedinvoices_filter(zf_tuuid, zf_ouuid, order_by=order_by, name=name, id=id, continuation_token=continuation_token, get_estimated_invoices_query_params=get_estimated_invoices_query_params)
 
 Retrieves all estimated invoices based on the provided query parameters and filters.
 
@@ -12197,12 +12857,14 @@ with billing_client.ApiClient(configuration) as api_client:
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
     order_by = 'order_by_example' # str | The order by clause. (optional)
+    name = 'name_example' # str |  (optional)
+    id = 56 # int |  (optional)
     continuation_token = 'continuation_token_example' # str | The continuation token for pagination. (optional)
-    get_estimated_invoices_query_params = {"customerId":"string","contractId":"string","overlappingPeriodStartDateTime":"string","overlappingPeriodEndDateTime":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetEstimatedInvoicesQueryParams | The cancellation token. (optional)
+    get_estimated_invoices_query_params = {"customerId":"string","contractId":"string","productId":"string","overlappingPeriodStartDateTime":"string","overlappingPeriodEndDateTime":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetEstimatedInvoicesQueryParams | The cancellation token. (optional)
 
     try:
         # Retrieves all estimated invoices based on the provided query parameters and filters.
-        api_response = api_instance.post_estimatedinvoices_filter(zf_tuuid, zf_ouuid, order_by=order_by, continuation_token=continuation_token, get_estimated_invoices_query_params=get_estimated_invoices_query_params)
+        api_response = api_instance.post_estimatedinvoices_filter(zf_tuuid, zf_ouuid, order_by=order_by, name=name, id=id, continuation_token=continuation_token, get_estimated_invoices_query_params=get_estimated_invoices_query_params)
         print("The response of DefaultApi->post_estimatedinvoices_filter:\n")
         pprint(api_response)
     except Exception as e:
@@ -12219,6 +12881,8 @@ Name | Type | Description  | Notes
  **zf_tuuid** | **str**| Tenant ID | 
  **zf_ouuid** | **str**| Organisation ID | 
  **order_by** | **str**| The order by clause. | [optional] 
+ **name** | **str**|  | [optional] 
+ **id** | **int**|  | [optional] 
  **continuation_token** | **str**| The continuation token for pagination. | [optional] 
  **get_estimated_invoices_query_params** | [**GetEstimatedInvoicesQueryParams**](GetEstimatedInvoicesQueryParams.md)| The cancellation token. | [optional] 
 
@@ -12240,6 +12904,97 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A paged response containing the filtered estimated invoices. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_estimatedinvoices_filter_overviewcount**
+> ApiResponseDTOOfEstimatedInvoiceOverviewCountDTO post_estimatedinvoices_filter_overviewcount(zf_tuuid, zf_ouuid, get_estimated_invoices_query_params=get_estimated_invoices_query_params)
+
+Returns how many estimated invoices match each quick filter under the same body filters as the list.
+
+Returns how many estimated invoices match each quick filter under the same body filters as the list.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_estimated_invoice_overview_count_dto import ApiResponseDTOOfEstimatedInvoiceOverviewCountDTO
+from billing_client.models.get_estimated_invoices_query_params import GetEstimatedInvoicesQueryParams
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    get_estimated_invoices_query_params = {"customerId":"string","contractId":"string","productId":"string","overlappingPeriodStartDateTime":"string","overlappingPeriodEndDateTime":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetEstimatedInvoicesQueryParams | The cancellation token. (optional)
+
+    try:
+        # Returns how many estimated invoices match each quick filter under the same body filters as the list.
+        api_response = api_instance.post_estimatedinvoices_filter_overviewcount(zf_tuuid, zf_ouuid, get_estimated_invoices_query_params=get_estimated_invoices_query_params)
+        print("The response of DefaultApi->post_estimatedinvoices_filter_overviewcount:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->post_estimatedinvoices_filter_overviewcount: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **get_estimated_invoices_query_params** | [**GetEstimatedInvoicesQueryParams**](GetEstimatedInvoicesQueryParams.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfEstimatedInvoiceOverviewCountDTO**](ApiResponseDTOOfEstimatedInvoiceOverviewCountDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Counts for each estimated invoice quick filter. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -14147,7 +14902,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    export_outgoing_mandate_groups_request = {"groupIds":["string"],"formatType":"string"} # ExportOutgoingMandateGroupsRequest | Cancellation token. (optional)
+    export_outgoing_mandate_groups_request = {"groupIds":["string"],"formatType":{}} # ExportOutgoingMandateGroupsRequest | Cancellation token. (optional)
 
     try:
         # Exports not-sent mandate records for the selected groups. Returns a single .txt file for one group or a .zip for multiple.
@@ -14605,7 +15360,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_change_payment_details_request = {"onlyValidate":true,"queryParams":{"invoiceType":["string"],"propertyGroupIds":["string"],"productId":"string","customerId":"string","customerType":"string","contractId":"string","invoiceStatus":["string"],"paymentProcessStatus":["string"],"billingCompletenessId":"string","paymentMethod":"string","startDateTime":"string","endDateTime":"string","periodStartDateTime":"string","periodEndDateTime":"string","periodStartDateTimeBegin":"string","periodStartDateTimeEnd":"string","periodEndDateTimeBegin":"string","periodEndDateTimeEnd":"string","paidDateTimeBegin":"string","exportStatus":"string","collectionCaseId":"string","customerGroupId":"string","companyBankAccountId":"string","hasAttachment":true,"paymentPlanId":"string","applyFiltersOverIncludedIds":true,"onlyWithEstimatedOriginMeasurements":true,"onlyCreditedInvoices":true,"autoApprovedFilter":true,"validationScoreMin":0,"validationScoreMax":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","newPaymentMethod":"sct","collectionDate":"string","pspInstrument":{"paymentMethodId":"string","category":"string","last4":"string","bankCode":"string"}} # BulkChangePaymentDetailsRequest | A token to monitor for cancellation requests. (optional)
+    bulk_change_payment_details_request = {"onlyValidate":true,"queryParams":{"invoiceType":["string"],"propertyGroupIds":["string"],"productId":"string","customerId":"string","customerType":"string","contractId":"string","invoiceStatus":["string"],"paymentProcessStatus":["string"],"billingCompletenessId":"string","paymentMethod":"string","startDateTime":"string","endDateTime":"string","periodStartDateTime":"string","periodEndDateTime":"string","periodStartDateTimeBegin":"string","periodStartDateTimeEnd":"string","periodEndDateTimeBegin":"string","periodEndDateTimeEnd":"string","paidDateTimeBegin":"string","exportStatus":"string","collectionCaseId":"string","customerGroupId":"string","companyBankAccountId":"string","hasAttachment":true,"paymentPlanId":"string","applyFiltersOverIncludedIds":true,"onlyWithEstimatedOriginMeasurements":true,"onlyCreditedInvoices":true,"autoApprovedFilter":true,"validationScoreMin":0,"validationScoreMax":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","newPaymentMethod":"sct","collectionDate":"string","pspInstrument":{}} # BulkChangePaymentDetailsRequest | A token to monitor for cancellation requests. (optional)
 
     try:
         # Changes the payment details of multiple invoices in bulk.
@@ -16186,7 +16941,7 @@ with billing_client.ApiClient(configuration) as api_client:
     invoiceuuid = 'invoiceuuid_example' # str | The UUID of the invoice.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    change_payment_details_request = {"newPaymentMethod":"sct","collectionDate":"string","pspInstrument":{"paymentMethodId":"string","category":"string","last4":"string","bankCode":"string"}} # ChangePaymentDetailsRequest | The cancellation token. (optional)
+    change_payment_details_request = {"newPaymentMethod":"sct","collectionDate":"string","pspInstrument":{}} # ChangePaymentDetailsRequest | The cancellation token. (optional)
 
     try:
         # Changes the payment method of an invoice.
@@ -17475,7 +18230,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_assign_payment_plans_to_outgoing_banking_transaction_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":"string","startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":"string","isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","allApplicable":true,"outgoingBankingTransactionType":"paymentrequests","paymentPlanIds":["string"],"addToNewOutgoingBankingTransactions":true,"overriddenCollectionDate":"string"} # BulkAssignPaymentPlansToOutgoingBankingTransactionRequest | The cancellation token. (optional)
+    bulk_assign_payment_plans_to_outgoing_banking_transaction_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","allApplicable":true,"outgoingBankingTransactionType":"paymentrequests","paymentPlanIds":["string"],"addToNewOutgoingBankingTransactions":true,"overriddenCollectionDate":"string"} # BulkAssignPaymentPlansToOutgoingBankingTransactionRequest | The cancellation token. (optional)
 
     try:
         # Bulk assigns payment plans to outgoing banking transactions.
@@ -18877,7 +19632,7 @@ with billing_client.ApiClient(configuration) as api_client:
     id = 56 # int |  (optional)
     order_by = 'order_by_example' # str |  (optional)
     continuation_token = 'continuation_token_example' # str |  (optional)
-    get_outgoing_mandate_export_groups_query_params = {"companyBankAccountId":"string","status":"string"} # GetOutgoingMandateExportGroupsQueryParams |  (optional)
+    get_outgoing_mandate_export_groups_query_params = billing_client.GetOutgoingMandateExportGroupsQueryParams() # GetOutgoingMandateExportGroupsQueryParams |  (optional)
 
     try:
         # Retrieves outgoing mandate export groups with optional filtering and pagination. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
@@ -19251,7 +20006,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_activate_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":"string","startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":"string","isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkActivatePaymentPlanRequest | The cancellation token. (optional)
+    bulk_activate_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkActivatePaymentPlanRequest | The cancellation token. (optional)
 
     try:
         # Bulk activates payment plans based on the provided query parameters.
@@ -19343,7 +20098,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_cancel_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":"string","startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":"string","isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","reason":"string"} # BulkCancelPaymentPlanRequest | The cancellation token. (optional)
+    bulk_cancel_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","reason":"string"} # BulkCancelPaymentPlanRequest | The cancellation token. (optional)
 
     try:
         # Bulk cancels payment plans based on the provided query parameters.
@@ -19435,7 +20190,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_collect_deferred_off_session_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":"string","startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":"string","isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkCollectDeferredOffSessionPaymentPlanRequest |  (optional)
+    bulk_collect_deferred_off_session_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkCollectDeferredOffSessionPaymentPlanRequest |  (optional)
 
     try:
         # Bulk collect for PSP-deferred off-session payment plans: resolves collectable installments and confirms their payment intents.
@@ -19527,7 +20282,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_delete_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":"string","startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":"string","isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkDeletePaymentPlanRequest | The cancellation token. (optional)
+    bulk_delete_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkDeletePaymentPlanRequest | The cancellation token. (optional)
 
     try:
         # Bulk deletes payment plans based on the provided query parameters.
@@ -19619,7 +20374,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_pause_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":"string","startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":"string","isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","reason":"string"} # BulkPausePaymentPlanRequest | The cancellation token. (optional)
+    bulk_pause_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","reason":"string"} # BulkPausePaymentPlanRequest | The cancellation token. (optional)
 
     try:
         # Bulk pauses payment plans based on the provided query parameters.
@@ -19711,7 +20466,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_reopen_cancelled_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":"string","startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":"string","isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","recalculateRemainingInstallmentDates":true} # BulkReopenCancelledPaymentPlanRequest | The cancellation token. (optional)
+    bulk_reopen_cancelled_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","recalculateRemainingInstallmentDates":true} # BulkReopenCancelledPaymentPlanRequest | The cancellation token. (optional)
 
     try:
         # Bulk reopens cancelled payment plans. No customer communication is sent.
@@ -19803,7 +20558,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_resume_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":"string","startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":"string","isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","recalculateInstallments":true} # BulkResumePaymentPlanRequest | The cancellation token. (optional)
+    bulk_resume_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","recalculateInstallments":true} # BulkResumePaymentPlanRequest | The cancellation token. (optional)
 
     try:
         # Bulk resumes payment plans based on the provided query parameters.
@@ -20083,7 +20838,7 @@ with billing_client.ApiClient(configuration) as api_client:
     id = 56 # int |  (optional)
     order_by = 'order_by_example' # str | The order by clause. (optional)
     continuation_token = 'continuation_token_example' # str | The continuation token for pagination. (optional)
-    payment_plan_query_params = {"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":"string","startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":"string","isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # PaymentPlanQueryParams | The cancellation token. (optional)
+    payment_plan_query_params = {"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # PaymentPlanQueryParams | The cancellation token. (optional)
 
     try:
         # Retrieves payment plans with optional filtering and pagination. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
@@ -20554,7 +21309,7 @@ with billing_client.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The ID of the payment plan.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    reopen_cancelled_payment_plan_request = {"recalculateRemainingInstallmentDates":true} # ReopenCancelledPaymentPlanRequest | The cancellation token. (optional)
+    reopen_cancelled_payment_plan_request = billing_client.ReopenCancelledPaymentPlanRequest() # ReopenCancelledPaymentPlanRequest | The cancellation token. (optional)
 
     try:
         # Reopens a cancelled payment plan: restores open installments and recalculates status from current dates. Does not send customer communication (no scenario e-mails).
@@ -20741,7 +21496,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    payment_plan_query_params = {"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":"string","startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":"string","isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # PaymentPlanQueryParams | The cancellation token. (optional)
+    payment_plan_query_params = {"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # PaymentPlanQueryParams | The cancellation token. (optional)
 
     try:
         # Retrieves the overview count of payment plans based on the provided query parameters.
@@ -20928,7 +21683,7 @@ with billing_client.ApiClient(configuration) as api_client:
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
     name = 'name_example' # str |  (optional)
     id = 56 # int |  (optional)
-    payment_plan_query_params = {"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":"string","startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":"string","isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # PaymentPlanQueryParams | The cancellation token. (optional)
+    payment_plan_query_params = {"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # PaymentPlanQueryParams | The cancellation token. (optional)
 
     try:
         # Gets preview data for eligible installments that can be added to outgoing banking file.
@@ -21114,7 +21869,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_reverse_payment_request = {"onlyValidate":true,"queryParams":{"paymentType":"string","customerId":"string","startDateTime":"string","endDateTime":"string","pspProviderAccountZfhId":"string","pspRequestedPaymentRail":"string","pspRefundStatuses":["string"],"prepaymentAccountId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","reversalAdditionalInformation":"string"} # BulkReversePaymentRequest | The cancellation token. (optional)
+    bulk_reverse_payment_request = {"onlyValidate":true,"queryParams":{"paymentType":"string","customerId":"string","startDateTime":"string","endDateTime":"string","pspProviderAccountZfhId":"string","pspRequestedPaymentRail":{},"pspRefundStatuses":["string"],"prepaymentAccountId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","reversalAdditionalInformation":"string"} # BulkReversePaymentRequest | The cancellation token. (optional)
 
     try:
         # Bulk manually reverses payments.
@@ -21211,7 +21966,7 @@ with billing_client.ApiClient(configuration) as api_client:
     id = 56 # int |  (optional)
     order_by = 'order_by_example' # str | The order by clause. (optional)
     continuation_token = 'continuation_token_example' # str | The continuation token for pagination. (optional)
-    get_payments_query_params = {"paymentType":"string","customerId":"string","startDateTime":"string","endDateTime":"string","pspProviderAccountZfhId":"string","pspRequestedPaymentRail":"string","pspRefundStatuses":["string"],"prepaymentAccountId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetPaymentsQueryParams | The cancellation token. (optional)
+    get_payments_query_params = billing_client.GetPaymentsQueryParams() # GetPaymentsQueryParams | The cancellation token. (optional)
 
     try:
         # Gets all payments with optional filtering and ordering. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
@@ -21307,7 +22062,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    get_payments_query_params = {"paymentType":"string","customerId":"string","startDateTime":"string","endDateTime":"string","pspProviderAccountZfhId":"string","pspRequestedPaymentRail":"string","pspRefundStatuses":["string"],"prepaymentAccountId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetPaymentsQueryParams | The cancellation token. (optional)
+    get_payments_query_params = {"paymentType":"string","customerId":"string","startDateTime":"string","endDateTime":"string","pspProviderAccountZfhId":"string","pspRequestedPaymentRail":{},"pspRefundStatuses":["string"],"prepaymentAccountId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetPaymentsQueryParams | The cancellation token. (optional)
 
     try:
         # Gets the overview count of payments. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
@@ -21492,7 +22247,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_property_group_billing_configuration_request = {"propertyGroup":{"id":"string","name":"string"},"companyBankAccountId":"string","advanceFrequency":"none","invoiceFrequency":"monthly","invoiceDay":0,"invoiceMonth":0,"productId":"string","paymentTermsId":"string","defaultBillingMethod":"string"} # UpdatePropertyGroupBillingConfigurationRequest | The cancellation token. (optional)
+    update_property_group_billing_configuration_request = {"propertyGroup":{},"companyBankAccountId":"string","advanceFrequency":"none","invoiceFrequency":"monthly","invoiceDay":0,"invoiceMonth":0,"productId":"string","paymentTermsId":"string","defaultBillingMethod":{}} # UpdatePropertyGroupBillingConfigurationRequest | The cancellation token. (optional)
 
     try:
         # Updates a billing configuration for a property group.
@@ -22324,7 +23079,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_request_accounting_transaction_export_request = {"queryParams":{"customeruuid":"string","referenceDate":"string","periodStartDate":"string","periodEndDate":"string","createdStartDate":"string","createdEndDate":"string","hideCredits":true,"onlyOverdue":true,"onlyOpen":true,"propertyGroupId":"string","companyBankAccountId":"string","amountSign":"string","openAmountMinimum":0,"openAmountMaximum":0,"onlyCount":true,"transactionReferenceType":"string","invoiceTypes":["string"],"paymentPlanId":"string","excludeActivePaymentPlans":true,"onlyInPaymentPlan":true,"onlyInCollectionCase":true,"transactionType":"string","transactionTypes":["string"],"accountExportStatus":"string","onlyCreditBilling":true,"prepaymentAccountId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","onlyValidate":true} # BulkRequestAccountingTransactionExportRequest | The cancellation token. (optional)
+    bulk_request_accounting_transaction_export_request = {"queryParams":{"customeruuid":"string","referenceDate":"string","periodStartDate":"string","periodEndDate":"string","createdStartDate":"string","createdEndDate":"string","hideCredits":true,"onlyOverdue":true,"onlyOpen":true,"propertyGroupId":"string","companyBankAccountId":"string","amountSign":"string","openAmountMinimum":0,"openAmountMaximum":0,"onlyCount":true,"transactionReferenceType":"string","invoiceTypes":["string"],"paymentPlanId":"string","excludeActivePaymentPlans":true,"onlyInPaymentPlan":true,"onlyInCollectionCase":true,"transactionType":{},"transactionTypes":["string"],"accountExportStatus":{},"onlyCreditBilling":true,"prepaymentAccountId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","onlyValidate":true} # BulkRequestAccountingTransactionExportRequest | The cancellation token. (optional)
 
     try:
         # Export transactions to the accounting integration that failed before.
@@ -22696,7 +23451,7 @@ with billing_client.ApiClient(configuration) as api_client:
     name = 'name_example' # str |  (optional)
     id = 56 # int |  (optional)
     continuation_token = 'continuation_token_example' # str | The continuation token. (optional)
-    get_transactions_query_params = {"customeruuid":"string","referenceDate":"string","periodStartDate":"string","periodEndDate":"string","createdStartDate":"string","createdEndDate":"string","hideCredits":true,"onlyOverdue":true,"onlyOpen":true,"propertyGroupId":"string","companyBankAccountId":"string","amountSign":"string","openAmountMinimum":0,"openAmountMaximum":0,"onlyCount":true,"transactionReferenceType":"string","invoiceTypes":["string"],"paymentPlanId":"string","excludeActivePaymentPlans":true,"onlyInPaymentPlan":true,"onlyInCollectionCase":true,"transactionType":"string","transactionTypes":["string"],"accountExportStatus":"string","onlyCreditBilling":true,"prepaymentAccountId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetTransactionsQueryParams | The cancellation token. (optional)
+    get_transactions_query_params = {"customeruuid":"string","referenceDate":"string","periodStartDate":"string","periodEndDate":"string","createdStartDate":"string","createdEndDate":"string","hideCredits":true,"onlyOverdue":true,"onlyOpen":true,"propertyGroupId":"string","companyBankAccountId":"string","amountSign":"string","openAmountMinimum":0,"openAmountMaximum":0,"onlyCount":true,"transactionReferenceType":"string","invoiceTypes":["string"],"paymentPlanId":"string","excludeActivePaymentPlans":true,"onlyInPaymentPlan":true,"onlyInCollectionCase":true,"transactionType":{},"transactionTypes":["string"],"accountExportStatus":{},"onlyCreditBilling":true,"prepaymentAccountId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetTransactionsQueryParams | The cancellation token. (optional)
 
     try:
         # Gets all transactions. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
@@ -22792,7 +23547,7 @@ with billing_client.ApiClient(configuration) as api_client:
     api_instance = billing_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    get_transactions_query_params = {"customeruuid":"string","referenceDate":"string","periodStartDate":"string","periodEndDate":"string","createdStartDate":"string","createdEndDate":"string","hideCredits":true,"onlyOverdue":true,"onlyOpen":true,"propertyGroupId":"string","companyBankAccountId":"string","amountSign":"string","openAmountMinimum":0,"openAmountMaximum":0,"onlyCount":true,"transactionReferenceType":"string","invoiceTypes":["string"],"paymentPlanId":"string","excludeActivePaymentPlans":true,"onlyInPaymentPlan":true,"onlyInCollectionCase":true,"transactionType":"string","transactionTypes":["string"],"accountExportStatus":"string","onlyCreditBilling":true,"prepaymentAccountId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetTransactionsQueryParams | The cancellation token. (optional)
+    get_transactions_query_params = {"customeruuid":"string","referenceDate":"string","periodStartDate":"string","periodEndDate":"string","createdStartDate":"string","createdEndDate":"string","hideCredits":true,"onlyOverdue":true,"onlyOpen":true,"propertyGroupId":"string","companyBankAccountId":"string","amountSign":"string","openAmountMinimum":0,"openAmountMaximum":0,"onlyCount":true,"transactionReferenceType":"string","invoiceTypes":["string"],"paymentPlanId":"string","excludeActivePaymentPlans":true,"onlyInPaymentPlan":true,"onlyInCollectionCase":true,"transactionType":{},"transactionTypes":["string"],"accountExportStatus":{},"onlyCreditBilling":true,"prepaymentAccountId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetTransactionsQueryParams | The cancellation token. (optional)
 
     try:
         # Gets the overview count of transactions. This endpoint accepts query params in the request body to avoid long URLs for large ID selections.
@@ -22884,7 +23639,7 @@ with billing_client.ApiClient(configuration) as api_client:
     transactionuuid = 'transactionuuid_example' # str | The unique identifier of the transaction to update.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    set_transaction_accounting_export_status_request = {"accountExportStatus":"pending","accountExportDetails":{"exportedOn":"string","exportFailureDetails":"string","exportFailureReason":"string","timeoutRetryCount":0}} # SetTransactionAccountingExportStatusRequest | The cancellation token. (optional)
+    set_transaction_accounting_export_status_request = {"accountExportStatus":"pending","accountExportDetails":{}} # SetTransactionAccountingExportStatusRequest | The cancellation token. (optional)
 
     try:
         # Updates the accounting export status of a transaction.
@@ -23300,6 +24055,9276 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **put_accountingexportproviders_id**
+> ApiResponseDTOOfAccountingExportProviderDTO put_accountingexportproviders_id(id, zf_tuuid, zf_ouuid, update_accounting_export_provider_request=update_accounting_export_provider_request)
+
+Updates an existing accounting export provider account by id.
+
+Updates an existing accounting export provider account by id.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_accounting_export_provider_dto import ApiResponseDTOOfAccountingExportProviderDTO
+from billing_client.models.update_accounting_export_provider_request import UpdateAccountingExportProviderRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    id = 'id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_accounting_export_provider_request = {"providerType":"bergerlevraultesedit","settings":{}} # UpdateAccountingExportProviderRequest |  (optional)
+
+    try:
+        # Updates an existing accounting export provider account by id.
+        api_response = api_instance.put_accountingexportproviders_id(id, zf_tuuid, zf_ouuid, update_accounting_export_provider_request=update_accounting_export_provider_request)
+        print("The response of DefaultApi->put_accountingexportproviders_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_accountingexportproviders_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_accounting_export_provider_request** | [**UpdateAccountingExportProviderRequest**](UpdateAccountingExportProviderRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfAccountingExportProviderDTO**](ApiResponseDTOOfAccountingExportProviderDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_accountingexportproviders_id_deactivate**
+> ApiResponseDTOOfboolean put_accountingexportproviders_id_deactivate(id, zf_tuuid, zf_ouuid)
+
+Deactivates an accounting export provider account by id (sets status to inactive).
+
+Deactivates an accounting export provider account by id (sets status to inactive).
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    id = 'id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Deactivates an accounting export provider account by id (sets status to inactive).
+        api_response = api_instance.put_accountingexportproviders_id_deactivate(id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_accountingexportproviders_id_deactivate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_accountingexportproviders_id_deactivate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**404** | Not Found |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_annualstatements_annualstatementuuid_send**
+> ApiResponseDTOOfAnnualStatementDTO put_annualstatements_annualstatementuuid_send(annual_statementuuid, zf_tuuid, zf_ouuid, apply_start_communication_idempotency=apply_start_communication_idempotency)
+
+Sends an annual statement via email.
+
+Sends an annual statement via email.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_annual_statement_dto import ApiResponseDTOOfAnnualStatementDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    annual_statementuuid = 'annual_statementuuid_example' # str | The ID of the annual statement.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    apply_start_communication_idempotency = True # bool | When true, uses idempotency for StartCommunication (automatic send). User-initiated sends should pass false. (optional) (default to True)
+
+    try:
+        # Sends an annual statement via email.
+        api_response = api_instance.put_annualstatements_annualstatementuuid_send(annual_statementuuid, zf_tuuid, zf_ouuid, apply_start_communication_idempotency=apply_start_communication_idempotency)
+        print("The response of DefaultApi->put_annualstatements_annualstatementuuid_send:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_annualstatements_annualstatementuuid_send: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **annual_statementuuid** | **str**| The ID of the annual statement. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **apply_start_communication_idempotency** | **bool**| When true, uses idempotency for StartCommunication (automatic send). User-initiated sends should pass false. | [optional] [default to True]
+
+### Return type
+
+[**ApiResponseDTOOfAnnualStatementDTO**](ApiResponseDTOOfAnnualStatementDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_annualstatements_annualstatementuuid_sendviapostal**
+> ApiResponseDTOOfAnnualStatementDTO put_annualstatements_annualstatementuuid_sendviapostal(annual_statementuuid, zf_tuuid, zf_ouuid, apply_start_communication_idempotency=apply_start_communication_idempotency)
+
+Sends an annual statement via postal mail.
+
+Sends an annual statement via postal mail.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_annual_statement_dto import ApiResponseDTOOfAnnualStatementDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    annual_statementuuid = 'annual_statementuuid_example' # str | The ID of the annual statement.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    apply_start_communication_idempotency = False # bool | When true, uses idempotency for StartCommunication (automatic send). User-initiated sends should pass false. (optional) (default to False)
+
+    try:
+        # Sends an annual statement via postal mail.
+        api_response = api_instance.put_annualstatements_annualstatementuuid_sendviapostal(annual_statementuuid, zf_tuuid, zf_ouuid, apply_start_communication_idempotency=apply_start_communication_idempotency)
+        print("The response of DefaultApi->put_annualstatements_annualstatementuuid_sendviapostal:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_annualstatements_annualstatementuuid_sendviapostal: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **annual_statementuuid** | **str**| The ID of the annual statement. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **apply_start_communication_idempotency** | **bool**| When true, uses idempotency for StartCommunication (automatic send). User-initiated sends should pass false. | [optional] [default to False]
+
+### Return type
+
+[**ApiResponseDTOOfAnnualStatementDTO**](ApiResponseDTOOfAnnualStatementDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_annualstatements_bulk_send**
+> ApiResponseDTO put_annualstatements_bulk_send(zf_tuuid, zf_ouuid, bulk_send_annual_statement_via_mail_request=bulk_send_annual_statement_via_mail_request)
+
+Sends multiple annual statements via email in bulk.
+
+Sends multiple annual statements via email in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_send_annual_statement_via_mail_request import BulkSendAnnualStatementViaMailRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_send_annual_statement_via_mail_request = {"onlyValidate":true,"queryParams":{"customerId":"string","statuses":["string"],"year":0,"limit":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","applyStartCommunicationIdempotency":true} # BulkSendAnnualStatementViaMailRequest | The cancellation token. (optional)
+
+    try:
+        # Sends multiple annual statements via email in bulk.
+        api_response = api_instance.put_annualstatements_bulk_send(zf_tuuid, zf_ouuid, bulk_send_annual_statement_via_mail_request=bulk_send_annual_statement_via_mail_request)
+        print("The response of DefaultApi->put_annualstatements_bulk_send:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_annualstatements_bulk_send: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_send_annual_statement_via_mail_request** | [**BulkSendAnnualStatementViaMailRequest**](BulkSendAnnualStatementViaMailRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_annualstatements_bulk_sendviapostal**
+> ApiResponseDTO put_annualstatements_bulk_sendviapostal(zf_tuuid, zf_ouuid, bulk_send_annual_statement_via_postal_request=bulk_send_annual_statement_via_postal_request)
+
+Sends multiple annual statements via postal mail in bulk.
+
+Sends multiple annual statements via postal mail in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_send_annual_statement_via_postal_request import BulkSendAnnualStatementViaPostalRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_send_annual_statement_via_postal_request = {"onlyValidate":true,"queryParams":{"customerId":"string","statuses":["string"],"year":0,"limit":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","applyStartCommunicationIdempotency":true} # BulkSendAnnualStatementViaPostalRequest | The cancellation token. (optional)
+
+    try:
+        # Sends multiple annual statements via postal mail in bulk.
+        api_response = api_instance.put_annualstatements_bulk_sendviapostal(zf_tuuid, zf_ouuid, bulk_send_annual_statement_via_postal_request=bulk_send_annual_statement_via_postal_request)
+        print("The response of DefaultApi->put_annualstatements_bulk_sendviapostal:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_annualstatements_bulk_sendviapostal: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_send_annual_statement_via_postal_request** | [**BulkSendAnnualStatementViaPostalRequest**](BulkSendAnnualStatementViaPostalRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_billingcompletenessid_billintermediately**
+> ApiResponseDTOOfBillingCompletenessDTO put_billingcompletenesses_billingcompletenessid_billintermediately(billing_completeness_id, zf_tuuid, zf_ouuid, bill_billing_completeness_intermediately_request=bill_billing_completeness_intermediately_request)
+
+Bills a specific billing completeness intermediately.
+
+Bills a specific billing completeness intermediately.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_billing_completeness_dto import ApiResponseDTOOfBillingCompletenessDTO
+from billing_client.models.bill_billing_completeness_intermediately_request import BillBillingCompletenessIntermediatelyRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    billing_completeness_id = 'billing_completeness_id_example' # str | The ID of the billing completeness.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bill_billing_completeness_intermediately_request = {"endDateTime":"string"} # BillBillingCompletenessIntermediatelyRequest | The cancellation token. (optional)
+
+    try:
+        # Bills a specific billing completeness intermediately.
+        api_response = api_instance.put_billingcompletenesses_billingcompletenessid_billintermediately(billing_completeness_id, zf_tuuid, zf_ouuid, bill_billing_completeness_intermediately_request=bill_billing_completeness_intermediately_request)
+        print("The response of DefaultApi->put_billingcompletenesses_billingcompletenessid_billintermediately:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_billingcompletenessid_billintermediately: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **billing_completeness_id** | **str**| The ID of the billing completeness. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bill_billing_completeness_intermediately_request** | [**BillBillingCompletenessIntermediatelyRequest**](BillBillingCompletenessIntermediatelyRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfBillingCompletenessDTO**](ApiResponseDTOOfBillingCompletenessDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_billingcompletenessid_changenextinvoiceenddate**
+> ApiResponseDTO put_billingcompletenesses_billingcompletenessid_changenextinvoiceenddate(billing_completeness_id, zf_tuuid, zf_ouuid, change_next_invoice_end_date_request=change_next_invoice_end_date_request)
+
+Changes the next invoice end date for a specific billing relation.
+
+Changes the next invoice end date for a specific billing relation.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.change_next_invoice_end_date_request import ChangeNextInvoiceEndDateRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    billing_completeness_id = 'billing_completeness_id_example' # str | The ID of the billing completeness.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    change_next_invoice_end_date_request = {"fromFirstOpenPeriod":true,"endDateTime":"string"} # ChangeNextInvoiceEndDateRequest | The cancellation token. (optional)
+
+    try:
+        # Changes the next invoice end date for a specific billing relation.
+        api_response = api_instance.put_billingcompletenesses_billingcompletenessid_changenextinvoiceenddate(billing_completeness_id, zf_tuuid, zf_ouuid, change_next_invoice_end_date_request=change_next_invoice_end_date_request)
+        print("The response of DefaultApi->put_billingcompletenesses_billingcompletenessid_changenextinvoiceenddate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_billingcompletenessid_changenextinvoiceenddate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **billing_completeness_id** | **str**| The ID of the billing completeness. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **change_next_invoice_end_date_request** | [**ChangeNextInvoiceEndDateRequest**](ChangeNextInvoiceEndDateRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_billingcompletenessid_manuallyclose**
+> ApiResponseDTOOfBillingCompletenessDTO put_billingcompletenesses_billingcompletenessid_manuallyclose(billing_completeness_id, zf_tuuid, zf_ouuid)
+
+Manually closes a specific billing completeness.
+
+Manually closes a specific billing completeness.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_billing_completeness_dto import ApiResponseDTOOfBillingCompletenessDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    billing_completeness_id = 'billing_completeness_id_example' # str | The ID of the billing completeness.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Manually closes a specific billing completeness.
+        api_response = api_instance.put_billingcompletenesses_billingcompletenessid_manuallyclose(billing_completeness_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_billingcompletenesses_billingcompletenessid_manuallyclose:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_billingcompletenessid_manuallyclose: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **billing_completeness_id** | **str**| The ID of the billing completeness. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfBillingCompletenessDTO**](ApiResponseDTOOfBillingCompletenessDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_billingcompletenessid_reopen**
+> ApiResponseDTOOfBillingCompletenessDTO put_billingcompletenesses_billingcompletenessid_reopen(billing_completeness_id, zf_tuuid, zf_ouuid)
+
+Reopens a manually closed billing completeness.
+
+Reopens a manually closed billing completeness.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_billing_completeness_dto import ApiResponseDTOOfBillingCompletenessDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    billing_completeness_id = 'billing_completeness_id_example' # str | The ID of the billing completeness.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Reopens a manually closed billing completeness.
+        api_response = api_instance.put_billingcompletenesses_billingcompletenessid_reopen(billing_completeness_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_billingcompletenesses_billingcompletenessid_reopen:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_billingcompletenessid_reopen: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **billing_completeness_id** | **str**| The ID of the billing completeness. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfBillingCompletenessDTO**](ApiResponseDTOOfBillingCompletenessDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_billingcompletenessid_skipadvanceperiod**
+> ApiResponseDTOOfBillingCompletenessDTO put_billingcompletenesses_billingcompletenessid_skipadvanceperiod(billing_completeness_id, zf_tuuid, zf_ouuid, skip_advance_period_request=skip_advance_period_request)
+
+Skips an advance period for a specific billing completeness.
+
+Skips an advance period for a specific billing completeness.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_billing_completeness_dto import ApiResponseDTOOfBillingCompletenessDTO
+from billing_client.models.skip_advance_period_request import SkipAdvancePeriodRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    billing_completeness_id = 'billing_completeness_id_example' # str | The ID of the billing completeness.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    skip_advance_period_request = {"startDateTime":"string","endDateTime":"string"} # SkipAdvancePeriodRequest | The cancellation token. (optional)
+
+    try:
+        # Skips an advance period for a specific billing completeness.
+        api_response = api_instance.put_billingcompletenesses_billingcompletenessid_skipadvanceperiod(billing_completeness_id, zf_tuuid, zf_ouuid, skip_advance_period_request=skip_advance_period_request)
+        print("The response of DefaultApi->put_billingcompletenesses_billingcompletenessid_skipadvanceperiod:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_billingcompletenessid_skipadvanceperiod: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **billing_completeness_id** | **str**| The ID of the billing completeness. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **skip_advance_period_request** | [**SkipAdvancePeriodRequest**](SkipAdvancePeriodRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfBillingCompletenessDTO**](ApiResponseDTOOfBillingCompletenessDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_billingcompletenessid_triggerbilling**
+> ApiResponseDTOOfBillingCompletenessDTO put_billingcompletenesses_billingcompletenessid_triggerbilling(billing_completeness_id, zf_tuuid, zf_ouuid, trigger_billing_completeness_request=trigger_billing_completeness_request)
+
+Triggers billing for a specific billing completeness.
+
+Triggers billing for a specific billing completeness.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_billing_completeness_dto import ApiResponseDTOOfBillingCompletenessDTO
+from billing_client.models.trigger_billing_completeness_request import TriggerBillingCompletenessRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    billing_completeness_id = 'billing_completeness_id_example' # str | The ID of the billing completeness.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    trigger_billing_completeness_request = {"onlyAdvances":true,"recalculateIfNeeded":true,"advanceUntilDateTime":"string","overrideEstimatedMeasurementCreation":true} # TriggerBillingCompletenessRequest | The cancellation token. (optional)
+
+    try:
+        # Triggers billing for a specific billing completeness.
+        api_response = api_instance.put_billingcompletenesses_billingcompletenessid_triggerbilling(billing_completeness_id, zf_tuuid, zf_ouuid, trigger_billing_completeness_request=trigger_billing_completeness_request)
+        print("The response of DefaultApi->put_billingcompletenesses_billingcompletenessid_triggerbilling:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_billingcompletenessid_triggerbilling: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **billing_completeness_id** | **str**| The ID of the billing completeness. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **trigger_billing_completeness_request** | [**TriggerBillingCompletenessRequest**](TriggerBillingCompletenessRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfBillingCompletenessDTO**](ApiResponseDTOOfBillingCompletenessDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation**
+> ApiResponseDTOOfBillingCompletenessDTO put_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation(billing_completeness_id, zf_tuuid, zf_ouuid)
+
+(Re)triggers invoice estimation for a specific billing completeness.
+
+(Re)triggers invoice estimation for a specific billing completeness.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_billing_completeness_dto import ApiResponseDTOOfBillingCompletenessDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    billing_completeness_id = 'billing_completeness_id_example' # str | The ID of the billing completeness.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # (Re)triggers invoice estimation for a specific billing completeness.
+        api_response = api_instance.put_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation(billing_completeness_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_billingcompletenessid_triggerinvoiceestimation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **billing_completeness_id** | **str**| The ID of the billing completeness. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfBillingCompletenessDTO**](ApiResponseDTOOfBillingCompletenessDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_bulk_billintermediately**
+> ApiResponseDTO put_billingcompletenesses_bulk_billintermediately(zf_tuuid, zf_ouuid, bulk_bill_billing_completeness_intermediately_request=bulk_bill_billing_completeness_intermediately_request)
+
+Bills multiple billing completenesses intermediately in bulk.
+
+Bills multiple billing completenesses intermediately in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_bill_billing_completeness_intermediately_request import BulkBillBillingCompletenessIntermediatelyRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_bill_billing_completeness_intermediately_request = {"onlyValidate":true,"queryParams":{"billingRelationId":"string","customerId":"string","propertyGroupIds":["string"],"contractId":"string","invoiceType":"string","billingMethod":"string","statementType":"string","status":"string","onlyOpen":true,"skipBlocked":true,"periodStartDateTime":"string","periodEndDateTime":"string","invoicingCheckpointStartDateTime":"string","invoicingCheckpointEndDateTime":"string","customerType":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","endDateTime":"string"} # BulkBillBillingCompletenessIntermediatelyRequest | The cancellation token. (optional)
+
+    try:
+        # Bills multiple billing completenesses intermediately in bulk.
+        api_response = api_instance.put_billingcompletenesses_bulk_billintermediately(zf_tuuid, zf_ouuid, bulk_bill_billing_completeness_intermediately_request=bulk_bill_billing_completeness_intermediately_request)
+        print("The response of DefaultApi->put_billingcompletenesses_bulk_billintermediately:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_bulk_billintermediately: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_bill_billing_completeness_intermediately_request** | [**BulkBillBillingCompletenessIntermediatelyRequest**](BulkBillBillingCompletenessIntermediatelyRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_bulk_changenextinvoiceenddate**
+> ApiResponseDTO put_billingcompletenesses_bulk_changenextinvoiceenddate(zf_tuuid, zf_ouuid, bulk_change_next_invoice_end_date_request=bulk_change_next_invoice_end_date_request)
+
+Changes the next invoice end date for a specific billing relation.
+
+Changes the next invoice end date for a specific billing relation.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_change_next_invoice_end_date_request import BulkChangeNextInvoiceEndDateRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_change_next_invoice_end_date_request = {"onlyValidate":true,"queryParams":{"billingRelationId":"string","customerId":"string","propertyGroupIds":["string"],"contractId":"string","invoiceType":"string","billingMethod":"string","statementType":"string","status":"string","onlyOpen":true,"skipBlocked":true,"periodStartDateTime":"string","periodEndDateTime":"string","invoicingCheckpointStartDateTime":"string","invoicingCheckpointEndDateTime":"string","customerType":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","fromFirstOpenPeriod":true,"endDateTime":"string"} # BulkChangeNextInvoiceEndDateRequest | The cancellation token. (optional)
+
+    try:
+        # Changes the next invoice end date for a specific billing relation.
+        api_response = api_instance.put_billingcompletenesses_bulk_changenextinvoiceenddate(zf_tuuid, zf_ouuid, bulk_change_next_invoice_end_date_request=bulk_change_next_invoice_end_date_request)
+        print("The response of DefaultApi->put_billingcompletenesses_bulk_changenextinvoiceenddate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_bulk_changenextinvoiceenddate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_change_next_invoice_end_date_request** | [**BulkChangeNextInvoiceEndDateRequest**](BulkChangeNextInvoiceEndDateRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_bulk_manuallyclose**
+> ApiResponseDTO put_billingcompletenesses_bulk_manuallyclose(zf_tuuid, zf_ouuid, bulk_manually_close_billing_completeness_request=bulk_manually_close_billing_completeness_request)
+
+Manually closes multiple billing completenesses in bulk.
+
+Manually closes multiple billing completenesses in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_manually_close_billing_completeness_request import BulkManuallyCloseBillingCompletenessRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_manually_close_billing_completeness_request = {"onlyValidate":true,"queryParams":{"billingRelationId":"string","customerId":"string","propertyGroupIds":["string"],"contractId":"string","invoiceType":"string","billingMethod":"string","statementType":"string","status":"string","onlyOpen":true,"skipBlocked":true,"periodStartDateTime":"string","periodEndDateTime":"string","invoicingCheckpointStartDateTime":"string","invoicingCheckpointEndDateTime":"string","customerType":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkManuallyCloseBillingCompletenessRequest | The cancellation token. (optional)
+
+    try:
+        # Manually closes multiple billing completenesses in bulk.
+        api_response = api_instance.put_billingcompletenesses_bulk_manuallyclose(zf_tuuid, zf_ouuid, bulk_manually_close_billing_completeness_request=bulk_manually_close_billing_completeness_request)
+        print("The response of DefaultApi->put_billingcompletenesses_bulk_manuallyclose:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_bulk_manuallyclose: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_manually_close_billing_completeness_request** | [**BulkManuallyCloseBillingCompletenessRequest**](BulkManuallyCloseBillingCompletenessRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_bulk_reopen**
+> ApiResponseDTO put_billingcompletenesses_bulk_reopen(zf_tuuid, zf_ouuid, bulk_reopen_billing_completeness_request=bulk_reopen_billing_completeness_request)
+
+Reopens multiple manually closed billing completenesses in bulk.
+
+Reopens multiple manually closed billing completenesses in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_reopen_billing_completeness_request import BulkReopenBillingCompletenessRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_reopen_billing_completeness_request = {"onlyValidate":true,"queryParams":{"billingRelationId":"string","customerId":"string","propertyGroupIds":["string"],"contractId":"string","invoiceType":"string","billingMethod":"string","statementType":"string","status":"string","onlyOpen":true,"skipBlocked":true,"periodStartDateTime":"string","periodEndDateTime":"string","invoicingCheckpointStartDateTime":"string","invoicingCheckpointEndDateTime":"string","customerType":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkReopenBillingCompletenessRequest | The cancellation token. (optional)
+
+    try:
+        # Reopens multiple manually closed billing completenesses in bulk.
+        api_response = api_instance.put_billingcompletenesses_bulk_reopen(zf_tuuid, zf_ouuid, bulk_reopen_billing_completeness_request=bulk_reopen_billing_completeness_request)
+        print("The response of DefaultApi->put_billingcompletenesses_bulk_reopen:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_bulk_reopen: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_reopen_billing_completeness_request** | [**BulkReopenBillingCompletenessRequest**](BulkReopenBillingCompletenessRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_bulk_skipadvanceperiod**
+> ApiResponseDTO put_billingcompletenesses_bulk_skipadvanceperiod(zf_tuuid, zf_ouuid, bulk_skip_advance_period_request=bulk_skip_advance_period_request)
+
+Skips advance periods for multiple billing completenesses in bulk.
+
+Skips advance periods for multiple billing completenesses in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_skip_advance_period_request import BulkSkipAdvancePeriodRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_skip_advance_period_request = {"onlyValidate":true,"queryParams":{"billingRelationId":"string","customerId":"string","propertyGroupIds":["string"],"contractId":"string","invoiceType":"string","billingMethod":"string","statementType":"string","status":"string","onlyOpen":true,"skipBlocked":true,"periodStartDateTime":"string","periodEndDateTime":"string","invoicingCheckpointStartDateTime":"string","invoicingCheckpointEndDateTime":"string","customerType":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","startDateTime":"string","endDateTime":"string"} # BulkSkipAdvancePeriodRequest | The cancellation token. (optional)
+
+    try:
+        # Skips advance periods for multiple billing completenesses in bulk.
+        api_response = api_instance.put_billingcompletenesses_bulk_skipadvanceperiod(zf_tuuid, zf_ouuid, bulk_skip_advance_period_request=bulk_skip_advance_period_request)
+        print("The response of DefaultApi->put_billingcompletenesses_bulk_skipadvanceperiod:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_bulk_skipadvanceperiod: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_skip_advance_period_request** | [**BulkSkipAdvancePeriodRequest**](BulkSkipAdvancePeriodRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_bulk_triggerbilling**
+> ApiResponseDTO put_billingcompletenesses_bulk_triggerbilling(zf_tuuid, zf_ouuid, bulk_trigger_billing_completeness_request=bulk_trigger_billing_completeness_request)
+
+Triggers billing for multiple billing completenesses in bulk.
+
+Triggers billing for multiple billing completenesses in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_trigger_billing_completeness_request import BulkTriggerBillingCompletenessRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_trigger_billing_completeness_request = {"onlyValidate":true,"queryParams":{"billingRelationId":"string","customerId":"string","propertyGroupIds":["string"],"contractId":"string","invoiceType":"string","billingMethod":"string","statementType":"string","status":"string","onlyOpen":true,"skipBlocked":true,"periodStartDateTime":"string","periodEndDateTime":"string","invoicingCheckpointStartDateTime":"string","invoicingCheckpointEndDateTime":"string","customerType":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","onlyAdvances":true,"recalculateIfNeeded":true,"advanceUntilDateTime":"string","overrideEstimatedMeasurementCreation":true} # BulkTriggerBillingCompletenessRequest | The cancellation token. (optional)
+
+    try:
+        # Triggers billing for multiple billing completenesses in bulk.
+        api_response = api_instance.put_billingcompletenesses_bulk_triggerbilling(zf_tuuid, zf_ouuid, bulk_trigger_billing_completeness_request=bulk_trigger_billing_completeness_request)
+        print("The response of DefaultApi->put_billingcompletenesses_bulk_triggerbilling:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_bulk_triggerbilling: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_trigger_billing_completeness_request** | [**BulkTriggerBillingCompletenessRequest**](BulkTriggerBillingCompletenessRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingcompletenesses_bulk_triggerinvoiceestimation**
+> ApiResponseDTO put_billingcompletenesses_bulk_triggerinvoiceestimation(zf_tuuid, zf_ouuid, bulk_trigger_invoice_estimation_for_billing_completeness_request=bulk_trigger_invoice_estimation_for_billing_completeness_request)
+
+(Re)triggers invoice estimation for multiple billing completenesses in bulk.
+
+(Re)triggers invoice estimation for multiple billing completenesses in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_trigger_invoice_estimation_for_billing_completeness_request import BulkTriggerInvoiceEstimationForBillingCompletenessRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_trigger_invoice_estimation_for_billing_completeness_request = {"onlyValidate":true,"queryParams":{"billingRelationId":"string","customerId":"string","propertyGroupIds":["string"],"contractId":"string","invoiceType":"string","billingMethod":"string","statementType":"string","status":"string","onlyOpen":true,"skipBlocked":true,"periodStartDateTime":"string","periodEndDateTime":"string","invoicingCheckpointStartDateTime":"string","invoicingCheckpointEndDateTime":"string","customerType":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkTriggerInvoiceEstimationForBillingCompletenessRequest | The cancellation token. (optional)
+
+    try:
+        # (Re)triggers invoice estimation for multiple billing completenesses in bulk.
+        api_response = api_instance.put_billingcompletenesses_bulk_triggerinvoiceestimation(zf_tuuid, zf_ouuid, bulk_trigger_invoice_estimation_for_billing_completeness_request=bulk_trigger_invoice_estimation_for_billing_completeness_request)
+        print("The response of DefaultApi->put_billingcompletenesses_bulk_triggerinvoiceestimation:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingcompletenesses_bulk_triggerinvoiceestimation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_trigger_invoice_estimation_for_billing_completeness_request** | [**BulkTriggerInvoiceEstimationForBillingCompletenessRequest**](BulkTriggerInvoiceEstimationForBillingCompletenessRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingrelations_b_billreluuid_changeadvanceamount**
+> ApiResponseDTOOfBillingRelationDTO put_billingrelations_b_billreluuid_changeadvanceamount(billreluuid, zf_tuuid, zf_ouuid, change_advance_amount_request=change_advance_amount_request)
+
+Changes the advance amount for a specific billing relation.
+
+Changes the advance amount for a specific billing relation.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_billing_relation_dto import ApiResponseDTOOfBillingRelationDTO
+from billing_client.models.change_advance_amount_request import ChangeAdvanceAmountRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    billreluuid = 'billreluuid_example' # str | The UUID of the billing relation.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    change_advance_amount_request = {"newAdvanceAmount":0,"changedBy":"systeminvoicecalculation","sendConfirmationEmail":true} # ChangeAdvanceAmountRequest | The cancellation token. (optional)
+
+    try:
+        # Changes the advance amount for a specific billing relation.
+        api_response = api_instance.put_billingrelations_b_billreluuid_changeadvanceamount(billreluuid, zf_tuuid, zf_ouuid, change_advance_amount_request=change_advance_amount_request)
+        print("The response of DefaultApi->put_billingrelations_b_billreluuid_changeadvanceamount:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingrelations_b_billreluuid_changeadvanceamount: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **billreluuid** | **str**| The UUID of the billing relation. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **change_advance_amount_request** | [**ChangeAdvanceAmountRequest**](ChangeAdvanceAmountRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfBillingRelationDTO**](ApiResponseDTOOfBillingRelationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_billingrelations_b_billreluuid_updateadvanceperiodpercentages**
+> ApiResponseDTOOfBillingRelationDTO put_billingrelations_b_billreluuid_updateadvanceperiodpercentages(billreluuid, zf_tuuid, zf_ouuid, update_advance_period_percentages_request=update_advance_period_percentages_request)
+
+Updates the advance period percentages for a billing relation with estimated invoice percentage advances.
+
+Updates the advance period percentages for a billing relation with estimated invoice percentage advances.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_billing_relation_dto import ApiResponseDTOOfBillingRelationDTO
+from billing_client.models.update_advance_period_percentages_request import UpdateAdvancePeriodPercentagesRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    billreluuid = 'billreluuid_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_advance_period_percentages_request = {"advancePeriodPercentages":[{"periodIndex":0,"percentage":0}]} # UpdateAdvancePeriodPercentagesRequest |  (optional)
+
+    try:
+        # Updates the advance period percentages for a billing relation with estimated invoice percentage advances.
+        api_response = api_instance.put_billingrelations_b_billreluuid_updateadvanceperiodpercentages(billreluuid, zf_tuuid, zf_ouuid, update_advance_period_percentages_request=update_advance_period_percentages_request)
+        print("The response of DefaultApi->put_billingrelations_b_billreluuid_updateadvanceperiodpercentages:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_billingrelations_b_billreluuid_updateadvanceperiodpercentages: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **billreluuid** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_advance_period_percentages_request** | [**UpdateAdvancePeriodPercentagesRequest**](UpdateAdvancePeriodPercentagesRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfBillingRelationDTO**](ApiResponseDTOOfBillingRelationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectioncases_bulk_markclosed**
+> ApiResponseDTOOfCollectionCaseDTO put_collectioncases_bulk_markclosed(zf_tuuid, zf_ouuid, bulk_mark_collection_case_manually_closed_request=bulk_mark_collection_case_manually_closed_request)
+
+Marks multiple collection cases as manually closed in bulk.
+
+Marks multiple collection cases as manually closed in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_collection_case_dto import ApiResponseDTOOfCollectionCaseDTO
+from billing_client.models.bulk_mark_collection_case_manually_closed_request import BulkMarkCollectionCaseManuallyClosedRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_mark_collection_case_manually_closed_request = {"onlyValidate":true,"queryParams":{"workflowId":"string","customerId":"string","propertyGroupIds":["string"],"nextActionDueFrom":"string","nextActionDueTo":"string","openAmountLowerLimit":0,"customerGroupId":"string","excludeActivePaymentPlans":true,"inPaymentPlan":true,"statuses":["string"],"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","writeOffFees":true,"writeOffHandlingType":"nowriteoff"} # BulkMarkCollectionCaseManuallyClosedRequest | A token to monitor for cancellation requests. (optional)
+
+    try:
+        # Marks multiple collection cases as manually closed in bulk.
+        api_response = api_instance.put_collectioncases_bulk_markclosed(zf_tuuid, zf_ouuid, bulk_mark_collection_case_manually_closed_request=bulk_mark_collection_case_manually_closed_request)
+        print("The response of DefaultApi->put_collectioncases_bulk_markclosed:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectioncases_bulk_markclosed: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_mark_collection_case_manually_closed_request** | [**BulkMarkCollectionCaseManuallyClosedRequest**](BulkMarkCollectionCaseManuallyClosedRequest.md)| A token to monitor for cancellation requests. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionCaseDTO**](ApiResponseDTOOfCollectionCaseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectioncases_collectioncaseid_markclosed**
+> ApiResponseDTOOfCollectionCaseDTO put_collectioncases_collectioncaseid_markclosed(collectioncaseid, zf_tuuid, zf_ouuid, mark_collection_case_manually_closed_request=mark_collection_case_manually_closed_request)
+
+Marks a collection case as manually closed.
+
+Marks a collection case as manually closed.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_collection_case_dto import ApiResponseDTOOfCollectionCaseDTO
+from billing_client.models.mark_collection_case_manually_closed_request import MarkCollectionCaseManuallyClosedRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    collectioncaseid = 'collectioncaseid_example' # str | The ID of the collection case.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    mark_collection_case_manually_closed_request = {"writeOffFees":true,"writeOffHandlingType":"nowriteoff"} # MarkCollectionCaseManuallyClosedRequest | The cancellation token. (optional)
+
+    try:
+        # Marks a collection case as manually closed.
+        api_response = api_instance.put_collectioncases_collectioncaseid_markclosed(collectioncaseid, zf_tuuid, zf_ouuid, mark_collection_case_manually_closed_request=mark_collection_case_manually_closed_request)
+        print("The response of DefaultApi->put_collectioncases_collectioncaseid_markclosed:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectioncases_collectioncaseid_markclosed: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collectioncaseid** | **str**| The ID of the collection case. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **mark_collection_case_manually_closed_request** | [**MarkCollectionCaseManuallyClosedRequest**](MarkCollectionCaseManuallyClosedRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionCaseDTO**](ApiResponseDTOOfCollectionCaseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectioncases_collectioncaseid_pause**
+> ApiResponseDTOOfCollectionCaseDTO put_collectioncases_collectioncaseid_pause(collectioncaseid, zf_tuuid, zf_ouuid)
+
+Pauses a collection case.
+
+Pauses a collection case.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_collection_case_dto import ApiResponseDTOOfCollectionCaseDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    collectioncaseid = 'collectioncaseid_example' # str | The ID of the collection case.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Pauses a collection case.
+        api_response = api_instance.put_collectioncases_collectioncaseid_pause(collectioncaseid, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_collectioncases_collectioncaseid_pause:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectioncases_collectioncaseid_pause: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collectioncaseid** | **str**| The ID of the collection case. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionCaseDTO**](ApiResponseDTOOfCollectionCaseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectioncases_collectioncaseid_process**
+> ApiResponseDTOOfCollectionCaseDTO put_collectioncases_collectioncaseid_process(collectioncaseid, zf_tuuid, zf_ouuid, manually_process_collection_case_request=manually_process_collection_case_request)
+
+Processes the collection case
+
+Processes the collection case
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_collection_case_dto import ApiResponseDTOOfCollectionCaseDTO
+from billing_client.models.manually_process_collection_case_request import ManuallyProcessCollectionCaseRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    collectioncaseid = 'collectioncaseid_example' # str | The ID of the collection case.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    manually_process_collection_case_request = {"executeUntil":"string"} # ManuallyProcessCollectionCaseRequest | The cancellation token. (optional)
+
+    try:
+        # Processes the collection case
+        api_response = api_instance.put_collectioncases_collectioncaseid_process(collectioncaseid, zf_tuuid, zf_ouuid, manually_process_collection_case_request=manually_process_collection_case_request)
+        print("The response of DefaultApi->put_collectioncases_collectioncaseid_process:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectioncases_collectioncaseid_process: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collectioncaseid** | **str**| The ID of the collection case. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **manually_process_collection_case_request** | [**ManuallyProcessCollectionCaseRequest**](ManuallyProcessCollectionCaseRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionCaseDTO**](ApiResponseDTOOfCollectionCaseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectioncases_collectioncaseid_resume**
+> ApiResponseDTOOfCollectionCaseDTO put_collectioncases_collectioncaseid_resume(collectioncaseid, zf_tuuid, zf_ouuid)
+
+Resumes a collection case.
+
+Resumes a collection case.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_collection_case_dto import ApiResponseDTOOfCollectionCaseDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    collectioncaseid = 'collectioncaseid_example' # str | The ID of the collection case.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Resumes a collection case.
+        api_response = api_instance.put_collectioncases_collectioncaseid_resume(collectioncaseid, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_collectioncases_collectioncaseid_resume:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectioncases_collectioncaseid_resume: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collectioncaseid** | **str**| The ID of the collection case. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionCaseDTO**](ApiResponseDTOOfCollectionCaseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectioncases_collectioncaseid_stepid_close**
+> ApiResponseDTOOfCollectionCaseDTO put_collectioncases_collectioncaseid_stepid_close(collectioncaseid, step_id, zf_tuuid, zf_ouuid)
+
+Closes a specific collection case step.
+
+Closes a specific collection case step.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_collection_case_dto import ApiResponseDTOOfCollectionCaseDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    collectioncaseid = 'collectioncaseid_example' # str | The ID of the collection case.
+    step_id = 'step_id_example' # str | The ID of the step to close.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Closes a specific collection case step.
+        api_response = api_instance.put_collectioncases_collectioncaseid_stepid_close(collectioncaseid, step_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_collectioncases_collectioncaseid_stepid_close:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectioncases_collectioncaseid_stepid_close: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collectioncaseid** | **str**| The ID of the collection case. | 
+ **step_id** | **str**| The ID of the step to close. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionCaseDTO**](ApiResponseDTOOfCollectionCaseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectioncases_collectioncaseid_stepid_execute**
+> ApiResponseDTOOfCollectionCaseDTO put_collectioncases_collectioncaseid_stepid_execute(collectioncaseid, step_id, zf_tuuid, zf_ouuid)
+
+Executes a specific collection case step.
+
+Executes a specific collection case step.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_collection_case_dto import ApiResponseDTOOfCollectionCaseDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    collectioncaseid = 'collectioncaseid_example' # str | The ID of the collection case.
+    step_id = 'step_id_example' # str | The ID of the step to execute.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Executes a specific collection case step.
+        api_response = api_instance.put_collectioncases_collectioncaseid_stepid_execute(collectioncaseid, step_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_collectioncases_collectioncaseid_stepid_execute:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectioncases_collectioncaseid_stepid_execute: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collectioncaseid** | **str**| The ID of the collection case. | 
+ **step_id** | **str**| The ID of the step to execute. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionCaseDTO**](ApiResponseDTOOfCollectionCaseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectioncases_collectioncaseid_stepid_markmanualsent**
+> ApiResponseDTOOfCollectionCaseDTO put_collectioncases_collectioncaseid_stepid_markmanualsent(collectioncaseid, step_id, zf_tuuid, zf_ouuid)
+
+Confirms a manual (physical) communication was sent and closes the step.
+
+Confirms a manual (physical) communication was sent and closes the step.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_collection_case_dto import ApiResponseDTOOfCollectionCaseDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    collectioncaseid = 'collectioncaseid_example' # str | 
+    step_id = 'step_id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Confirms a manual (physical) communication was sent and closes the step.
+        api_response = api_instance.put_collectioncases_collectioncaseid_stepid_markmanualsent(collectioncaseid, step_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_collectioncases_collectioncaseid_stepid_markmanualsent:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectioncases_collectioncaseid_stepid_markmanualsent: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collectioncaseid** | **str**|  | 
+ **step_id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionCaseDTO**](ApiResponseDTOOfCollectionCaseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectioncases_collectioncaseid_stepid_retry**
+> ApiResponseDTOOfCollectionCaseDTO put_collectioncases_collectioncaseid_stepid_retry(collectioncaseid, step_id, zf_tuuid, zf_ouuid)
+
+Retries a specific collection case step.
+
+Retries a specific collection case step.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_collection_case_dto import ApiResponseDTOOfCollectionCaseDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    collectioncaseid = 'collectioncaseid_example' # str | The ID of the collection case.
+    step_id = 'step_id_example' # str | The ID of the step to retry.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Retries a specific collection case step.
+        api_response = api_instance.put_collectioncases_collectioncaseid_stepid_retry(collectioncaseid, step_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_collectioncases_collectioncaseid_stepid_retry:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectioncases_collectioncaseid_stepid_retry: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collectioncaseid** | **str**| The ID of the collection case. | 
+ **step_id** | **str**| The ID of the step to retry. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionCaseDTO**](ApiResponseDTOOfCollectionCaseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectioncases_collectioncaseid_stepid_sendviamail**
+> ApiResponseDTOOfCollectionCaseDTO put_collectioncases_collectioncaseid_stepid_sendviamail(collectioncaseid, step_id, zf_tuuid, zf_ouuid)
+
+Sends a specific collection case step via email.
+
+Sends a specific collection case step via email.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_collection_case_dto import ApiResponseDTOOfCollectionCaseDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    collectioncaseid = 'collectioncaseid_example' # str | The ID of the collection case.
+    step_id = 'step_id_example' # str | The ID of the step to send via email.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Sends a specific collection case step via email.
+        api_response = api_instance.put_collectioncases_collectioncaseid_stepid_sendviamail(collectioncaseid, step_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_collectioncases_collectioncaseid_stepid_sendviamail:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectioncases_collectioncaseid_stepid_sendviamail: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collectioncaseid** | **str**| The ID of the collection case. | 
+ **step_id** | **str**| The ID of the step to send via email. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionCaseDTO**](ApiResponseDTOOfCollectionCaseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectioncases_collectioncaseid_stepid_sendviapostal**
+> ApiResponseDTOOfCollectionCaseDTO put_collectioncases_collectioncaseid_stepid_sendviapostal(collectioncaseid, step_id, zf_tuuid, zf_ouuid)
+
+Sends a specific collection case step via postal mail.
+
+Sends a specific collection case step via postal mail.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_collection_case_dto import ApiResponseDTOOfCollectionCaseDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    collectioncaseid = 'collectioncaseid_example' # str | The ID of the collection case.
+    step_id = 'step_id_example' # str | The ID of the step to send via postal mail.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Sends a specific collection case step via postal mail.
+        api_response = api_instance.put_collectioncases_collectioncaseid_stepid_sendviapostal(collectioncaseid, step_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_collectioncases_collectioncaseid_stepid_sendviapostal:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectioncases_collectioncaseid_stepid_sendviapostal: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collectioncaseid** | **str**| The ID of the collection case. | 
+ **step_id** | **str**| The ID of the step to send via postal mail. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionCaseDTO**](ApiResponseDTOOfCollectionCaseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectioncases_collectioncaseid_stepid_skip**
+> ApiResponseDTOOfCollectionCaseDTO put_collectioncases_collectioncaseid_stepid_skip(collectioncaseid, step_id, zf_tuuid, zf_ouuid, execute_next_step_immediately=execute_next_step_immediately)
+
+Skips a specific collection case step.
+
+Skips a specific collection case step.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_collection_case_dto import ApiResponseDTOOfCollectionCaseDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    collectioncaseid = 'collectioncaseid_example' # str | The ID of the collection case.
+    step_id = 'step_id_example' # str | The ID of the step to skip.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    execute_next_step_immediately = True # bool | Whether to execute the next step immediately. (optional)
+
+    try:
+        # Skips a specific collection case step.
+        api_response = api_instance.put_collectioncases_collectioncaseid_stepid_skip(collectioncaseid, step_id, zf_tuuid, zf_ouuid, execute_next_step_immediately=execute_next_step_immediately)
+        print("The response of DefaultApi->put_collectioncases_collectioncaseid_stepid_skip:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectioncases_collectioncaseid_stepid_skip: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collectioncaseid** | **str**| The ID of the collection case. | 
+ **step_id** | **str**| The ID of the step to skip. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **execute_next_step_immediately** | **bool**| Whether to execute the next step immediately. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionCaseDTO**](ApiResponseDTOOfCollectionCaseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_collectioncases_entityid_customproperties**
+> ApiResponseDTOOfCollectionCaseDTO put_collectioncases_entityid_customproperties(entity_id, zf_tuuid, zf_ouuid, update_custom_entity_properties_request=update_custom_entity_properties_request)
+
+/CollectionCases/{entityId}/customproperties - PUT
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_collection_case_dto import ApiResponseDTOOfCollectionCaseDTO
+from billing_client.models.update_custom_entity_properties_request import UpdateCustomEntityPropertiesRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    entity_id = 'entity_id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_custom_entity_properties_request = {"properties":[{"customEntityPropertyTypeId":"string","values":[{"startDateTime":"string","endDateTime":"string","valueDecimal":0,"valueString":"string","valueBoolean":true,"valueNumber":0,"valueDateTime":"string","valueDropdown":["string"]}]}]} # UpdateCustomEntityPropertiesRequest |  (optional)
+
+    try:
+        # /CollectionCases/{entityId}/customproperties - PUT
+        api_response = api_instance.put_collectioncases_entityid_customproperties(entity_id, zf_tuuid, zf_ouuid, update_custom_entity_properties_request=update_custom_entity_properties_request)
+        print("The response of DefaultApi->put_collectioncases_entityid_customproperties:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_collectioncases_entityid_customproperties: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_custom_entity_properties_request** | [**UpdateCustomEntityPropertiesRequest**](UpdateCustomEntityPropertiesRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfCollectionCaseDTO**](ApiResponseDTOOfCollectionCaseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_customerbankaccounts_customerbankaccountid_confirm**
+> ApiResponseDTOOfCustomerBankAccountDTO put_customerbankaccounts_customerbankaccountid_confirm(customer_bank_account_id, zf_tuuid, zf_ouuid)
+
+Confirms a specific customer bank account.
+
+Confirms a specific customer bank account.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_customer_bank_account_dto import ApiResponseDTOOfCustomerBankAccountDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    customer_bank_account_id = 'customer_bank_account_id_example' # str | The ID of the customer bank account.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Confirms a specific customer bank account.
+        api_response = api_instance.put_customerbankaccounts_customerbankaccountid_confirm(customer_bank_account_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_customerbankaccounts_customerbankaccountid_confirm:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_customerbankaccounts_customerbankaccountid_confirm: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customer_bank_account_id** | **str**| The ID of the customer bank account. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfCustomerBankAccountDTO**](ApiResponseDTOOfCustomerBankAccountDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_customerbankaccounts_customerbankaccountid_update**
+> ApiResponseDTOOfCustomerBankAccountDTO put_customerbankaccounts_customerbankaccountid_update(customer_bank_account_id, zf_tuuid, zf_ouuid, update_customer_bank_account_request=update_customer_bank_account_request)
+
+Updates a specific customer bank account.
+
+Updates a specific customer bank account.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_customer_bank_account_dto import ApiResponseDTOOfCustomerBankAccountDTO
+from billing_client.models.update_customer_bank_account_request import UpdateCustomerBankAccountRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    customer_bank_account_id = 'customer_bank_account_id_example' # str | The ID of the customer bank account.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_customer_bank_account_request = {"isDefault":true,"changedByPortal":true,"activeMandate":{},"iban":"string","bic":"string"} # UpdateCustomerBankAccountRequest | The cancellation token. (optional)
+
+    try:
+        # Updates a specific customer bank account.
+        api_response = api_instance.put_customerbankaccounts_customerbankaccountid_update(customer_bank_account_id, zf_tuuid, zf_ouuid, update_customer_bank_account_request=update_customer_bank_account_request)
+        print("The response of DefaultApi->put_customerbankaccounts_customerbankaccountid_update:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_customerbankaccounts_customerbankaccountid_update: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customer_bank_account_id** | **str**| The ID of the customer bank account. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_customer_bank_account_request** | [**UpdateCustomerBankAccountRequest**](UpdateCustomerBankAccountRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfCustomerBankAccountDTO**](ApiResponseDTOOfCustomerBankAccountDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_incomingbankingtransactions_bulk_process**
+> ApiResponseDTO put_incomingbankingtransactions_bulk_process(zf_tuuid, zf_ouuid, bulk_process_incoming_banking_transaction_request=bulk_process_incoming_banking_transaction_request)
+
+Bulk processes incoming banking transactions based on the provided request.
+
+Bulk processes incoming banking transactions based on the provided request.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_process_incoming_banking_transaction_request import BulkProcessIncomingBankingTransactionRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_process_incoming_banking_transaction_request = {"onlyValidate":true,"queryParams":{"companyBankAccountId":"string","mutationDateTimeStart":"string","mutationDateTimeEnd":"string","openingBalanceDateStart":"string","openingBalanceDateEnd":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkProcessIncomingBankingTransactionRequest | Cancellation token. (optional)
+
+    try:
+        # Bulk processes incoming banking transactions based on the provided request.
+        api_response = api_instance.put_incomingbankingtransactions_bulk_process(zf_tuuid, zf_ouuid, bulk_process_incoming_banking_transaction_request=bulk_process_incoming_banking_transaction_request)
+        print("The response of DefaultApi->put_incomingbankingtransactions_bulk_process:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_incomingbankingtransactions_bulk_process: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_process_incoming_banking_transaction_request** | [**BulkProcessIncomingBankingTransactionRequest**](BulkProcessIncomingBankingTransactionRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_incomingbankingtransactions_incomingbankingtransactionid_mutations_ignor**
+> ApiResponseDTOOfPagedResponseModelDTOOfIncomingMutationDTO put_incomingbankingtransactions_incomingbankingtransactionid_mutations_ignor(incoming_banking_transaction_id, zf_tuuid, zf_ouuid, ignore_incoming_mutations_request=ignore_incoming_mutations_request)
+
+Ignores multiple incoming mutations for a specific incoming banking transaction.
+
+Ignores multiple incoming mutations for a specific incoming banking transaction.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_paged_response_model_dtoof_incoming_mutation_dto import ApiResponseDTOOfPagedResponseModelDTOOfIncomingMutationDTO
+from billing_client.models.ignore_incoming_mutations_request import IgnoreIncomingMutationsRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    incoming_banking_transaction_id = 'incoming_banking_transaction_id_example' # str | ID of the incoming banking transaction.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    ignore_incoming_mutations_request = {"incomingMutationIds":["string"]} # IgnoreIncomingMutationsRequest | Cancellation token. (optional)
+
+    try:
+        # Ignores multiple incoming mutations for a specific incoming banking transaction.
+        api_response = api_instance.put_incomingbankingtransactions_incomingbankingtransactionid_mutations_ignor(incoming_banking_transaction_id, zf_tuuid, zf_ouuid, ignore_incoming_mutations_request=ignore_incoming_mutations_request)
+        print("The response of DefaultApi->put_incomingbankingtransactions_incomingbankingtransactionid_mutations_ignor:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_incomingbankingtransactions_incomingbankingtransactionid_mutations_ignor: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **incoming_banking_transaction_id** | **str**| ID of the incoming banking transaction. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **ignore_incoming_mutations_request** | [**IgnoreIncomingMutationsRequest**](IgnoreIncomingMutationsRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPagedResponseModelDTOOfIncomingMutationDTO**](ApiResponseDTOOfPagedResponseModelDTOOfIncomingMutationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_incomingbankingtransactions_incomingbankingtransactionid_process**
+> ApiResponseDTOOfIncomingBankingTransactionDTO put_incomingbankingtransactions_incomingbankingtransactionid_process(incoming_banking_transaction_id, zf_tuuid, zf_ouuid)
+
+Processes a specific incoming banking transaction by its ID.
+
+Processes a specific incoming banking transaction by its ID.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_incoming_banking_transaction_dto import ApiResponseDTOOfIncomingBankingTransactionDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    incoming_banking_transaction_id = 'incoming_banking_transaction_id_example' # str | ID of the incoming banking transaction.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Processes a specific incoming banking transaction by its ID.
+        api_response = api_instance.put_incomingbankingtransactions_incomingbankingtransactionid_process(incoming_banking_transaction_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_incomingbankingtransactions_incomingbankingtransactionid_process:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_incomingbankingtransactions_incomingbankingtransactionid_process: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **incoming_banking_transaction_id** | **str**| ID of the incoming banking transaction. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfIncomingBankingTransactionDTO**](ApiResponseDTOOfIncomingBankingTransactionDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_incomingbankingtransactions_incomingbankingtransactionid_updateibanconfi**
+> ApiResponseDTOOfIncomingBankingTransactionDTO put_incomingbankingtransactions_incomingbankingtransactionid_updateibanconfi(incoming_banking_transaction_id, zf_tuuid, zf_ouuid, update_incoming_banking_transaction_iban_request=update_incoming_banking_transaction_iban_request)
+
+Updates the IBAN confirmation of an Iban used in a specific incoming banking transaction.
+
+Updates the IBAN confirmation of an Iban used in a specific incoming banking transaction.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_incoming_banking_transaction_dto import ApiResponseDTOOfIncomingBankingTransactionDTO
+from billing_client.models.update_incoming_banking_transaction_iban_request import UpdateIncomingBankingTransactionIbanRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    incoming_banking_transaction_id = 'incoming_banking_transaction_id_example' # str | ID of the incoming banking transaction.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_incoming_banking_transaction_iban_request = {"customerId":"string","iban":"string","confirm":true} # UpdateIncomingBankingTransactionIbanRequest | Cancellation token. (optional)
+
+    try:
+        # Updates the IBAN confirmation of an Iban used in a specific incoming banking transaction.
+        api_response = api_instance.put_incomingbankingtransactions_incomingbankingtransactionid_updateibanconfi(incoming_banking_transaction_id, zf_tuuid, zf_ouuid, update_incoming_banking_transaction_iban_request=update_incoming_banking_transaction_iban_request)
+        print("The response of DefaultApi->put_incomingbankingtransactions_incomingbankingtransactionid_updateibanconfi:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_incomingbankingtransactions_incomingbankingtransactionid_updateibanconfi: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **incoming_banking_transaction_id** | **str**| ID of the incoming banking transaction. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_incoming_banking_transaction_iban_request** | [**UpdateIncomingBankingTransactionIbanRequest**](UpdateIncomingBankingTransactionIbanRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfIncomingBankingTransactionDTO**](ApiResponseDTOOfIncomingBankingTransactionDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_incomingmutations_bulk_ignore**
+> ApiResponseDTO put_incomingmutations_bulk_ignore(zf_tuuid, zf_ouuid, bulk_ignore_incoming_mutations_request=bulk_ignore_incoming_mutations_request)
+
+Bulk ignores incoming mutations based on the provided request.
+
+Bulk ignores incoming mutations based on the provided request.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_ignore_incoming_mutations_request import BulkIgnoreIncomingMutationsRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_ignore_incoming_mutations_request = {"onlyValidate":true,"queryParams":{"status":"string","incomingMutationType":"string","incomingBankingTransactionId":"string","transactionDateStart":"string","transactionDateEnd":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkIgnoreIncomingMutationsRequest | Cancellation token. (optional)
+
+    try:
+        # Bulk ignores incoming mutations based on the provided request.
+        api_response = api_instance.put_incomingmutations_bulk_ignore(zf_tuuid, zf_ouuid, bulk_ignore_incoming_mutations_request=bulk_ignore_incoming_mutations_request)
+        print("The response of DefaultApi->put_incomingmutations_bulk_ignore:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_incomingmutations_bulk_ignore: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_ignore_incoming_mutations_request** | [**BulkIgnoreIncomingMutationsRequest**](BulkIgnoreIncomingMutationsRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_incomingmutations_bulk_reset**
+> ApiResponseDTO put_incomingmutations_bulk_reset(zf_tuuid, zf_ouuid, bulk_reset_incoming_mutations_request=bulk_reset_incoming_mutations_request)
+
+Bulk resets the matching status of incoming mutations based on the provided request.
+
+Bulk resets the matching status of incoming mutations based on the provided request.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_reset_incoming_mutations_request import BulkResetIncomingMutationsRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_reset_incoming_mutations_request = {"onlyValidate":true,"queryParams":{"status":"string","incomingMutationType":"string","incomingBankingTransactionId":"string","transactionDateStart":"string","transactionDateEnd":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkResetIncomingMutationsRequest | Cancellation token. (optional)
+
+    try:
+        # Bulk resets the matching status of incoming mutations based on the provided request.
+        api_response = api_instance.put_incomingmutations_bulk_reset(zf_tuuid, zf_ouuid, bulk_reset_incoming_mutations_request=bulk_reset_incoming_mutations_request)
+        print("The response of DefaultApi->put_incomingmutations_bulk_reset:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_incomingmutations_bulk_reset: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_reset_incoming_mutations_request** | [**BulkResetIncomingMutationsRequest**](BulkResetIncomingMutationsRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_incomingmutations_incomingmutationid_manualmatch**
+> ApiResponseDTOOfIncomingMutationDTO put_incomingmutations_incomingmutationid_manualmatch(incoming_mutation_id, zf_tuuid, zf_ouuid, manual_match_incoming_mutation_request=manual_match_incoming_mutation_request)
+
+Manually matches a specific incoming mutation.
+
+Manually matches a specific incoming mutation.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_incoming_mutation_dto import ApiResponseDTOOfIncomingMutationDTO
+from billing_client.models.manual_match_incoming_mutation_request import ManualMatchIncomingMutationRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    incoming_mutation_id = 'incoming_mutation_id_example' # str | ID of the incoming mutation.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    manual_match_incoming_mutation_request = {"outgoingBankingTransactionId":"string","outgoingMutationId":"string","customerId":"string","matchingTransactions":[{"matchingTransactionId":"string","amountToSettle":0}]} # ManualMatchIncomingMutationRequest | Cancellation token. (optional)
+
+    try:
+        # Manually matches a specific incoming mutation.
+        api_response = api_instance.put_incomingmutations_incomingmutationid_manualmatch(incoming_mutation_id, zf_tuuid, zf_ouuid, manual_match_incoming_mutation_request=manual_match_incoming_mutation_request)
+        print("The response of DefaultApi->put_incomingmutations_incomingmutationid_manualmatch:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_incomingmutations_incomingmutationid_manualmatch: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **incoming_mutation_id** | **str**| ID of the incoming mutation. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **manual_match_incoming_mutation_request** | [**ManualMatchIncomingMutationRequest**](ManualMatchIncomingMutationRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfIncomingMutationDTO**](ApiResponseDTOOfIncomingMutationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_incomingmutations_incomingmutationid_reset**
+> ApiResponseDTOOfIncomingMutationDTO put_incomingmutations_incomingmutationid_reset(incoming_mutation_id, zf_tuuid, zf_ouuid)
+
+Resets the matching status of a specific incoming mutation.
+
+Resets the matching status of a specific incoming mutation.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_incoming_mutation_dto import ApiResponseDTOOfIncomingMutationDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    incoming_mutation_id = 'incoming_mutation_id_example' # str | ID of the incoming mutation.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Resets the matching status of a specific incoming mutation.
+        api_response = api_instance.put_incomingmutations_incomingmutationid_reset(incoming_mutation_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_incomingmutations_incomingmutationid_reset:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_incomingmutations_incomingmutationid_reset: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **incoming_mutation_id** | **str**| ID of the incoming mutation. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfIncomingMutationDTO**](ApiResponseDTOOfIncomingMutationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_bulk_approve**
+> ApiResponseDTOOfInvoiceDTO put_invoices_bulk_approve(zf_tuuid, zf_ouuid, bulk_approve_invoice_request=bulk_approve_invoice_request)
+
+Approves multiple invoices in bulk.
+
+Approves multiple invoices in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.bulk_approve_invoice_request import BulkApproveInvoiceRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_approve_invoice_request = {"onlyValidate":true,"queryParams":{"invoiceType":["string"],"propertyGroupIds":["string"],"productId":"string","customerId":"string","customerType":"string","contractId":"string","invoiceStatus":["string"],"paymentProcessStatus":["string"],"billingCompletenessId":"string","paymentMethod":"string","startDateTime":"string","endDateTime":"string","periodStartDateTime":"string","periodEndDateTime":"string","periodStartDateTimeBegin":"string","periodStartDateTimeEnd":"string","periodEndDateTimeBegin":"string","periodEndDateTimeEnd":"string","paidDateTimeBegin":"string","exportStatus":"string","collectionCaseId":"string","customerGroupId":"string","companyBankAccountId":"string","hasAttachment":true,"paymentPlanId":"string","applyFiltersOverIncludedIds":true,"onlyWithEstimatedOriginMeasurements":true,"onlyCreditedInvoices":true,"autoApprovedFilter":true,"validationScoreMin":0,"validationScoreMax":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","invoiceDate":"string"} # BulkApproveInvoiceRequest | A token to monitor for cancellation requests. (optional)
+
+    try:
+        # Approves multiple invoices in bulk.
+        api_response = api_instance.put_invoices_bulk_approve(zf_tuuid, zf_ouuid, bulk_approve_invoice_request=bulk_approve_invoice_request)
+        print("The response of DefaultApi->put_invoices_bulk_approve:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_bulk_approve: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_approve_invoice_request** | [**BulkApproveInvoiceRequest**](BulkApproveInvoiceRequest.md)| A token to monitor for cancellation requests. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_bulk_changeexportstatus**
+> ApiResponseDTOOfInvoiceDTO put_invoices_bulk_changeexportstatus(zf_tuuid, zf_ouuid, bulk_change_export_status_request=bulk_change_export_status_request)
+
+Changes the export status of multiple invoices in bulk.
+
+Changes the export status of multiple invoices in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.bulk_change_export_status_request import BulkChangeExportStatusRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_change_export_status_request = {"onlyValidate":true,"queryParams":{"invoiceType":["string"],"propertyGroupIds":["string"],"productId":"string","customerId":"string","customerType":"string","contractId":"string","invoiceStatus":["string"],"paymentProcessStatus":["string"],"billingCompletenessId":"string","paymentMethod":"string","startDateTime":"string","endDateTime":"string","periodStartDateTime":"string","periodEndDateTime":"string","periodStartDateTimeBegin":"string","periodStartDateTimeEnd":"string","periodEndDateTimeBegin":"string","periodEndDateTimeEnd":"string","paidDateTimeBegin":"string","exportStatus":"string","collectionCaseId":"string","customerGroupId":"string","companyBankAccountId":"string","hasAttachment":true,"paymentPlanId":"string","applyFiltersOverIncludedIds":true,"onlyWithEstimatedOriginMeasurements":true,"onlyCreditedInvoices":true,"autoApprovedFilter":true,"validationScoreMin":0,"validationScoreMax":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","exportStatus":"notexported"} # BulkChangeExportStatusRequest | A token to monitor for cancellation requests. (optional)
+
+    try:
+        # Changes the export status of multiple invoices in bulk.
+        api_response = api_instance.put_invoices_bulk_changeexportstatus(zf_tuuid, zf_ouuid, bulk_change_export_status_request=bulk_change_export_status_request)
+        print("The response of DefaultApi->put_invoices_bulk_changeexportstatus:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_bulk_changeexportstatus: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_change_export_status_request** | [**BulkChangeExportStatusRequest**](BulkChangeExportStatusRequest.md)| A token to monitor for cancellation requests. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_bulk_changepaymentdetails**
+> ApiResponseDTOOfInvoiceDTO put_invoices_bulk_changepaymentdetails(zf_tuuid, zf_ouuid, bulk_change_payment_details_request=bulk_change_payment_details_request)
+
+Changes the payment details of multiple invoices in bulk.
+
+Changes the payment details of multiple invoices in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.bulk_change_payment_details_request import BulkChangePaymentDetailsRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_change_payment_details_request = {"onlyValidate":true,"queryParams":{"invoiceType":["string"],"propertyGroupIds":["string"],"productId":"string","customerId":"string","customerType":"string","contractId":"string","invoiceStatus":["string"],"paymentProcessStatus":["string"],"billingCompletenessId":"string","paymentMethod":"string","startDateTime":"string","endDateTime":"string","periodStartDateTime":"string","periodEndDateTime":"string","periodStartDateTimeBegin":"string","periodStartDateTimeEnd":"string","periodEndDateTimeBegin":"string","periodEndDateTimeEnd":"string","paidDateTimeBegin":"string","exportStatus":"string","collectionCaseId":"string","customerGroupId":"string","companyBankAccountId":"string","hasAttachment":true,"paymentPlanId":"string","applyFiltersOverIncludedIds":true,"onlyWithEstimatedOriginMeasurements":true,"onlyCreditedInvoices":true,"autoApprovedFilter":true,"validationScoreMin":0,"validationScoreMax":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","newPaymentMethod":"sct","collectionDate":"string","pspInstrument":{}} # BulkChangePaymentDetailsRequest | A token to monitor for cancellation requests. (optional)
+
+    try:
+        # Changes the payment details of multiple invoices in bulk.
+        api_response = api_instance.put_invoices_bulk_changepaymentdetails(zf_tuuid, zf_ouuid, bulk_change_payment_details_request=bulk_change_payment_details_request)
+        print("The response of DefaultApi->put_invoices_bulk_changepaymentdetails:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_bulk_changepaymentdetails: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_change_payment_details_request** | [**BulkChangePaymentDetailsRequest**](BulkChangePaymentDetailsRequest.md)| A token to monitor for cancellation requests. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_bulk_marksent**
+> ApiResponseDTOOfInvoiceDTO put_invoices_bulk_marksent(zf_tuuid, zf_ouuid, bulk_mark_invoice_sent_request=bulk_mark_invoice_sent_request)
+
+Marks multiple invoices as sent in bulk.
+
+Marks multiple invoices as sent in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.bulk_mark_invoice_sent_request import BulkMarkInvoiceSentRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_mark_invoice_sent_request = {"onlyValidate":true,"queryParams":{"invoiceType":["string"],"propertyGroupIds":["string"],"productId":"string","customerId":"string","customerType":"string","contractId":"string","invoiceStatus":["string"],"paymentProcessStatus":["string"],"billingCompletenessId":"string","paymentMethod":"string","startDateTime":"string","endDateTime":"string","periodStartDateTime":"string","periodEndDateTime":"string","periodStartDateTimeBegin":"string","periodStartDateTimeEnd":"string","periodEndDateTimeBegin":"string","periodEndDateTimeEnd":"string","paidDateTimeBegin":"string","exportStatus":"string","collectionCaseId":"string","customerGroupId":"string","companyBankAccountId":"string","hasAttachment":true,"paymentPlanId":"string","applyFiltersOverIncludedIds":true,"onlyWithEstimatedOriginMeasurements":true,"onlyCreditedInvoices":true,"autoApprovedFilter":true,"validationScoreMin":0,"validationScoreMax":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkMarkInvoiceSentRequest | A token to monitor for cancellation requests. (optional)
+
+    try:
+        # Marks multiple invoices as sent in bulk.
+        api_response = api_instance.put_invoices_bulk_marksent(zf_tuuid, zf_ouuid, bulk_mark_invoice_sent_request=bulk_mark_invoice_sent_request)
+        print("The response of DefaultApi->put_invoices_bulk_marksent:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_bulk_marksent: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_mark_invoice_sent_request** | [**BulkMarkInvoiceSentRequest**](BulkMarkInvoiceSentRequest.md)| A token to monitor for cancellation requests. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_bulk_markskipped**
+> ApiResponseDTOOfInvoiceDTO put_invoices_bulk_markskipped(zf_tuuid, zf_ouuid, bulk_mark_invoice_sent_skipped_request=bulk_mark_invoice_sent_skipped_request)
+
+Marks multiple invoices as skipped in bulk.
+
+Marks multiple invoices as skipped in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.bulk_mark_invoice_sent_skipped_request import BulkMarkInvoiceSentSkippedRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_mark_invoice_sent_skipped_request = {"onlyValidate":true,"queryParams":{"invoiceType":["string"],"propertyGroupIds":["string"],"productId":"string","customerId":"string","customerType":"string","contractId":"string","invoiceStatus":["string"],"paymentProcessStatus":["string"],"billingCompletenessId":"string","paymentMethod":"string","startDateTime":"string","endDateTime":"string","periodStartDateTime":"string","periodEndDateTime":"string","periodStartDateTimeBegin":"string","periodStartDateTimeEnd":"string","periodEndDateTimeBegin":"string","periodEndDateTimeEnd":"string","paidDateTimeBegin":"string","exportStatus":"string","collectionCaseId":"string","customerGroupId":"string","companyBankAccountId":"string","hasAttachment":true,"paymentPlanId":"string","applyFiltersOverIncludedIds":true,"onlyWithEstimatedOriginMeasurements":true,"onlyCreditedInvoices":true,"autoApprovedFilter":true,"validationScoreMin":0,"validationScoreMax":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkMarkInvoiceSentSkippedRequest | A token to monitor for cancellation requests. (optional)
+
+    try:
+        # Marks multiple invoices as skipped in bulk.
+        api_response = api_instance.put_invoices_bulk_markskipped(zf_tuuid, zf_ouuid, bulk_mark_invoice_sent_skipped_request=bulk_mark_invoice_sent_skipped_request)
+        print("The response of DefaultApi->put_invoices_bulk_markskipped:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_bulk_markskipped: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_mark_invoice_sent_skipped_request** | [**BulkMarkInvoiceSentSkippedRequest**](BulkMarkInvoiceSentSkippedRequest.md)| A token to monitor for cancellation requests. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_bulk_regenerate**
+> ApiResponseDTOOfInvoiceDTO put_invoices_bulk_regenerate(zf_tuuid, zf_ouuid, bulk_regenerate_invoice_request=bulk_regenerate_invoice_request)
+
+Regenerates multiple invoices in bulk.
+
+Regenerates multiple invoices in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.bulk_regenerate_invoice_request import BulkRegenerateInvoiceRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_regenerate_invoice_request = {"onlyValidate":true,"queryParams":{"invoiceType":["string"],"propertyGroupIds":["string"],"productId":"string","customerId":"string","customerType":"string","contractId":"string","invoiceStatus":["string"],"paymentProcessStatus":["string"],"billingCompletenessId":"string","paymentMethod":"string","startDateTime":"string","endDateTime":"string","periodStartDateTime":"string","periodEndDateTime":"string","periodStartDateTimeBegin":"string","periodStartDateTimeEnd":"string","periodEndDateTimeBegin":"string","periodEndDateTimeEnd":"string","paidDateTimeBegin":"string","exportStatus":"string","collectionCaseId":"string","customerGroupId":"string","companyBankAccountId":"string","hasAttachment":true,"paymentPlanId":"string","applyFiltersOverIncludedIds":true,"onlyWithEstimatedOriginMeasurements":true,"onlyCreditedInvoices":true,"autoApprovedFilter":true,"validationScoreMin":0,"validationScoreMax":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkRegenerateInvoiceRequest | A token to monitor for cancellation requests. (optional)
+
+    try:
+        # Regenerates multiple invoices in bulk.
+        api_response = api_instance.put_invoices_bulk_regenerate(zf_tuuid, zf_ouuid, bulk_regenerate_invoice_request=bulk_regenerate_invoice_request)
+        print("The response of DefaultApi->put_invoices_bulk_regenerate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_bulk_regenerate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_regenerate_invoice_request** | [**BulkRegenerateInvoiceRequest**](BulkRegenerateInvoiceRequest.md)| A token to monitor for cancellation requests. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_bulk_send**
+> ApiResponseDTOOfInvoiceDTO put_invoices_bulk_send(zf_tuuid, zf_ouuid, bulk_send_invoice_request=bulk_send_invoice_request)
+
+Sends multiple invoices via email in bulk.
+
+Sends multiple invoices via email in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.bulk_send_invoice_request import BulkSendInvoiceRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_send_invoice_request = {"onlyValidate":true,"queryParams":{"invoiceType":["string"],"propertyGroupIds":["string"],"productId":"string","customerId":"string","customerType":"string","contractId":"string","invoiceStatus":["string"],"paymentProcessStatus":["string"],"billingCompletenessId":"string","paymentMethod":"string","startDateTime":"string","endDateTime":"string","periodStartDateTime":"string","periodEndDateTime":"string","periodStartDateTimeBegin":"string","periodStartDateTimeEnd":"string","periodEndDateTimeBegin":"string","periodEndDateTimeEnd":"string","paidDateTimeBegin":"string","exportStatus":"string","collectionCaseId":"string","customerGroupId":"string","companyBankAccountId":"string","hasAttachment":true,"paymentPlanId":"string","applyFiltersOverIncludedIds":true,"onlyWithEstimatedOriginMeasurements":true,"onlyCreditedInvoices":true,"autoApprovedFilter":true,"validationScoreMin":0,"validationScoreMax":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","communicationType":"none","applyStartCommunicationIdempotency":true} # BulkSendInvoiceRequest | A token to monitor for cancellation requests. (optional)
+
+    try:
+        # Sends multiple invoices via email in bulk.
+        api_response = api_instance.put_invoices_bulk_send(zf_tuuid, zf_ouuid, bulk_send_invoice_request=bulk_send_invoice_request)
+        print("The response of DefaultApi->put_invoices_bulk_send:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_bulk_send: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_send_invoice_request** | [**BulkSendInvoiceRequest**](BulkSendInvoiceRequest.md)| A token to monitor for cancellation requests. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_bulk_sendviaeinvoicing**
+> ApiResponseDTOOfInvoiceDTO put_invoices_bulk_sendviaeinvoicing(zf_tuuid, zf_ouuid, bulk_send_invoice_request=bulk_send_invoice_request)
+
+Sends multiple invoices via EInvoicing in bulk.
+
+Sends multiple invoices via EInvoicing in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.bulk_send_invoice_request import BulkSendInvoiceRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_send_invoice_request = {"onlyValidate":true,"queryParams":{"invoiceType":["string"],"propertyGroupIds":["string"],"productId":"string","customerId":"string","customerType":"string","contractId":"string","invoiceStatus":["string"],"paymentProcessStatus":["string"],"billingCompletenessId":"string","paymentMethod":"string","startDateTime":"string","endDateTime":"string","periodStartDateTime":"string","periodEndDateTime":"string","periodStartDateTimeBegin":"string","periodStartDateTimeEnd":"string","periodEndDateTimeBegin":"string","periodEndDateTimeEnd":"string","paidDateTimeBegin":"string","exportStatus":"string","collectionCaseId":"string","customerGroupId":"string","companyBankAccountId":"string","hasAttachment":true,"paymentPlanId":"string","applyFiltersOverIncludedIds":true,"onlyWithEstimatedOriginMeasurements":true,"onlyCreditedInvoices":true,"autoApprovedFilter":true,"validationScoreMin":0,"validationScoreMax":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","communicationType":"none","applyStartCommunicationIdempotency":true} # BulkSendInvoiceRequest | A token to monitor for cancellation requests. (optional)
+
+    try:
+        # Sends multiple invoices via EInvoicing in bulk.
+        api_response = api_instance.put_invoices_bulk_sendviaeinvoicing(zf_tuuid, zf_ouuid, bulk_send_invoice_request=bulk_send_invoice_request)
+        print("The response of DefaultApi->put_invoices_bulk_sendviaeinvoicing:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_bulk_sendviaeinvoicing: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_send_invoice_request** | [**BulkSendInvoiceRequest**](BulkSendInvoiceRequest.md)| A token to monitor for cancellation requests. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_bulk_sendviapostal**
+> ApiResponseDTOOfInvoiceDTO put_invoices_bulk_sendviapostal(zf_tuuid, zf_ouuid, bulk_send_invoice_request=bulk_send_invoice_request)
+
+Sends multiple invoices via postal mail in bulk.
+
+Sends multiple invoices via postal mail in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.bulk_send_invoice_request import BulkSendInvoiceRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_send_invoice_request = {"onlyValidate":true,"queryParams":{"invoiceType":["string"],"propertyGroupIds":["string"],"productId":"string","customerId":"string","customerType":"string","contractId":"string","invoiceStatus":["string"],"paymentProcessStatus":["string"],"billingCompletenessId":"string","paymentMethod":"string","startDateTime":"string","endDateTime":"string","periodStartDateTime":"string","periodEndDateTime":"string","periodStartDateTimeBegin":"string","periodStartDateTimeEnd":"string","periodEndDateTimeBegin":"string","periodEndDateTimeEnd":"string","paidDateTimeBegin":"string","exportStatus":"string","collectionCaseId":"string","customerGroupId":"string","companyBankAccountId":"string","hasAttachment":true,"paymentPlanId":"string","applyFiltersOverIncludedIds":true,"onlyWithEstimatedOriginMeasurements":true,"onlyCreditedInvoices":true,"autoApprovedFilter":true,"validationScoreMin":0,"validationScoreMax":0,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","communicationType":"none","applyStartCommunicationIdempotency":true} # BulkSendInvoiceRequest | A token to monitor for cancellation requests. (optional)
+
+    try:
+        # Sends multiple invoices via postal mail in bulk.
+        api_response = api_instance.put_invoices_bulk_sendviapostal(zf_tuuid, zf_ouuid, bulk_send_invoice_request=bulk_send_invoice_request)
+        print("The response of DefaultApi->put_invoices_bulk_sendviapostal:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_bulk_sendviapostal: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_send_invoice_request** | [**BulkSendInvoiceRequest**](BulkSendInvoiceRequest.md)| A token to monitor for cancellation requests. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_invoiceuuid_approve**
+> ApiResponseDTOOfInvoiceDTO put_invoices_invoiceuuid_approve(invoiceuuid, zf_tuuid, zf_ouuid, approve_invoice_request=approve_invoice_request)
+
+Approves an invoice.
+
+Approves an invoice.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.approve_invoice_request import ApproveInvoiceRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    invoiceuuid = 'invoiceuuid_example' # str | The UUID of the invoice.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    approve_invoice_request = {"invoiceDate":"string"} # ApproveInvoiceRequest | The cancellation token. (optional)
+
+    try:
+        # Approves an invoice.
+        api_response = api_instance.put_invoices_invoiceuuid_approve(invoiceuuid, zf_tuuid, zf_ouuid, approve_invoice_request=approve_invoice_request)
+        print("The response of DefaultApi->put_invoices_invoiceuuid_approve:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_invoiceuuid_approve: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invoiceuuid** | **str**| The UUID of the invoice. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **approve_invoice_request** | [**ApproveInvoiceRequest**](ApproveInvoiceRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_invoiceuuid_changeexportstatus**
+> ApiResponseDTOOfInvoiceDTO put_invoices_invoiceuuid_changeexportstatus(invoiceuuid, zf_tuuid, zf_ouuid, change_export_status_request=change_export_status_request)
+
+Changes the export status of an invoice.
+
+Changes the export status of an invoice.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.change_export_status_request import ChangeExportStatusRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    invoiceuuid = 'invoiceuuid_example' # str | The UUID of the invoice.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    change_export_status_request = {"exportStatus":"notexported"} # ChangeExportStatusRequest | The cancellation token. (optional)
+
+    try:
+        # Changes the export status of an invoice.
+        api_response = api_instance.put_invoices_invoiceuuid_changeexportstatus(invoiceuuid, zf_tuuid, zf_ouuid, change_export_status_request=change_export_status_request)
+        print("The response of DefaultApi->put_invoices_invoiceuuid_changeexportstatus:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_invoiceuuid_changeexportstatus: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invoiceuuid** | **str**| The UUID of the invoice. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **change_export_status_request** | [**ChangeExportStatusRequest**](ChangeExportStatusRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_invoiceuuid_changenewadvanceamount**
+> ApiResponseDTOOfInvoiceDTO put_invoices_invoiceuuid_changenewadvanceamount(invoiceuuid, zf_tuuid, zf_ouuid, change_new_advance_amount_request=change_new_advance_amount_request)
+
+Changes the new advance amount of an invoice.
+
+Changes the new advance amount of an invoice.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.change_new_advance_amount_request import ChangeNewAdvanceAmountRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    invoiceuuid = 'invoiceuuid_example' # str | The UUID of the invoice.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    change_new_advance_amount_request = {"newAdvanceAmountInclVAT":0} # ChangeNewAdvanceAmountRequest | The cancellation token. (optional)
+
+    try:
+        # Changes the new advance amount of an invoice.
+        api_response = api_instance.put_invoices_invoiceuuid_changenewadvanceamount(invoiceuuid, zf_tuuid, zf_ouuid, change_new_advance_amount_request=change_new_advance_amount_request)
+        print("The response of DefaultApi->put_invoices_invoiceuuid_changenewadvanceamount:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_invoiceuuid_changenewadvanceamount: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invoiceuuid** | **str**| The UUID of the invoice. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **change_new_advance_amount_request** | [**ChangeNewAdvanceAmountRequest**](ChangeNewAdvanceAmountRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_invoiceuuid_changepaymentdetails**
+> ApiResponseDTOOfInvoiceDTO put_invoices_invoiceuuid_changepaymentdetails(invoiceuuid, zf_tuuid, zf_ouuid, change_payment_details_request=change_payment_details_request)
+
+Changes the payment method of an invoice.
+
+Changes the payment method of an invoice.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.change_payment_details_request import ChangePaymentDetailsRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    invoiceuuid = 'invoiceuuid_example' # str | The UUID of the invoice.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    change_payment_details_request = {"newPaymentMethod":"sct","collectionDate":"string","pspInstrument":{}} # ChangePaymentDetailsRequest | The cancellation token. (optional)
+
+    try:
+        # Changes the payment method of an invoice.
+        api_response = api_instance.put_invoices_invoiceuuid_changepaymentdetails(invoiceuuid, zf_tuuid, zf_ouuid, change_payment_details_request=change_payment_details_request)
+        print("The response of DefaultApi->put_invoices_invoiceuuid_changepaymentdetails:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_invoiceuuid_changepaymentdetails: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invoiceuuid** | **str**| The UUID of the invoice. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **change_payment_details_request** | [**ChangePaymentDetailsRequest**](ChangePaymentDetailsRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_invoiceuuid_marksent**
+> ApiResponseDTOOfInvoiceDTO put_invoices_invoiceuuid_marksent(invoiceuuid, zf_tuuid, zf_ouuid)
+
+Marks an invoice as sent.
+
+Marks an invoice as sent.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    invoiceuuid = 'invoiceuuid_example' # str | The UUID of the invoice.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Marks an invoice as sent.
+        api_response = api_instance.put_invoices_invoiceuuid_marksent(invoiceuuid, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_invoices_invoiceuuid_marksent:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_invoiceuuid_marksent: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invoiceuuid** | **str**| The UUID of the invoice. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_invoiceuuid_markskipped**
+> ApiResponseDTOOfInvoiceDTO put_invoices_invoiceuuid_markskipped(invoiceuuid, zf_tuuid, zf_ouuid)
+
+Marks an invoice as skipped.
+
+Marks an invoice as skipped.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    invoiceuuid = 'invoiceuuid_example' # str | The UUID of the invoice.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Marks an invoice as skipped.
+        api_response = api_instance.put_invoices_invoiceuuid_markskipped(invoiceuuid, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_invoices_invoiceuuid_markskipped:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_invoiceuuid_markskipped: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invoiceuuid** | **str**| The UUID of the invoice. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_invoiceuuid_notetocustomer**
+> ApiResponseDTOOfInvoiceDTO put_invoices_invoiceuuid_notetocustomer(invoiceuuid, zf_tuuid, zf_ouuid, change_note_to_customer_request=change_note_to_customer_request)
+
+Update the note to customer from a specific invoice
+
+Update the note to customer from a specific invoice
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.models.change_note_to_customer_request import ChangeNoteToCustomerRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    invoiceuuid = 'invoiceuuid_example' # str | The UUID of the invoice.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    change_note_to_customer_request = {"noteToCustomer":"string"} # ChangeNoteToCustomerRequest | The cancellation token. (optional)
+
+    try:
+        # Update the note to customer from a specific invoice
+        api_response = api_instance.put_invoices_invoiceuuid_notetocustomer(invoiceuuid, zf_tuuid, zf_ouuid, change_note_to_customer_request=change_note_to_customer_request)
+        print("The response of DefaultApi->put_invoices_invoiceuuid_notetocustomer:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_invoiceuuid_notetocustomer: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invoiceuuid** | **str**| The UUID of the invoice. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **change_note_to_customer_request** | [**ChangeNoteToCustomerRequest**](ChangeNoteToCustomerRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_invoiceuuid_regenerate**
+> ApiResponseDTOOfInvoiceDTO put_invoices_invoiceuuid_regenerate(invoiceuuid, zf_tuuid, zf_ouuid)
+
+Regenerates an invoice.
+
+Regenerates an invoice.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    invoiceuuid = 'invoiceuuid_example' # str | The UUID of the invoice.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Regenerates an invoice.
+        api_response = api_instance.put_invoices_invoiceuuid_regenerate(invoiceuuid, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_invoices_invoiceuuid_regenerate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_invoiceuuid_regenerate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invoiceuuid** | **str**| The UUID of the invoice. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_invoiceuuid_send**
+> ApiResponseDTOOfInvoiceDTO put_invoices_invoiceuuid_send(invoiceuuid, zf_tuuid, zf_ouuid, apply_start_communication_idempotency=apply_start_communication_idempotency)
+
+Sends an invoice via email.
+
+Sends an invoice via email.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    invoiceuuid = 'invoiceuuid_example' # str | The UUID of the invoice.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    apply_start_communication_idempotency = True # bool | When true, uses idempotency for StartCommunication (automatic send). User-initiated sends should pass false. (optional) (default to True)
+
+    try:
+        # Sends an invoice via email.
+        api_response = api_instance.put_invoices_invoiceuuid_send(invoiceuuid, zf_tuuid, zf_ouuid, apply_start_communication_idempotency=apply_start_communication_idempotency)
+        print("The response of DefaultApi->put_invoices_invoiceuuid_send:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_invoiceuuid_send: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invoiceuuid** | **str**| The UUID of the invoice. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **apply_start_communication_idempotency** | **bool**| When true, uses idempotency for StartCommunication (automatic send). User-initiated sends should pass false. | [optional] [default to True]
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_invoiceuuid_sendviaeinvoicing**
+> ApiResponseDTOOfInvoiceDTO put_invoices_invoiceuuid_sendviaeinvoicing(invoiceuuid, zf_tuuid, zf_ouuid, apply_start_communication_idempotency=apply_start_communication_idempotency)
+
+Sends an invoice via EInvoicing.
+
+Sends an invoice via EInvoicing.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    invoiceuuid = 'invoiceuuid_example' # str | The UUID of the invoice.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    apply_start_communication_idempotency = True # bool | When true, uses idempotency for StartCommunication (automatic send). User-initiated sends should pass false. (optional) (default to True)
+
+    try:
+        # Sends an invoice via EInvoicing.
+        api_response = api_instance.put_invoices_invoiceuuid_sendviaeinvoicing(invoiceuuid, zf_tuuid, zf_ouuid, apply_start_communication_idempotency=apply_start_communication_idempotency)
+        print("The response of DefaultApi->put_invoices_invoiceuuid_sendviaeinvoicing:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_invoiceuuid_sendviaeinvoicing: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invoiceuuid** | **str**| The UUID of the invoice. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **apply_start_communication_idempotency** | **bool**| When true, uses idempotency for StartCommunication (automatic send). User-initiated sends should pass false. | [optional] [default to True]
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_invoices_invoiceuuid_sendviapostal**
+> ApiResponseDTOOfInvoiceDTO put_invoices_invoiceuuid_sendviapostal(invoiceuuid, zf_tuuid, zf_ouuid, apply_start_communication_idempotency=apply_start_communication_idempotency)
+
+Sends an invoice via postal mail.
+
+Sends an invoice via postal mail.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_invoice_dto import ApiResponseDTOOfInvoiceDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    invoiceuuid = 'invoiceuuid_example' # str | The UUID of the invoice.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    apply_start_communication_idempotency = True # bool | When true, uses idempotency for StartCommunication (automatic send). User-initiated sends should pass false. (optional) (default to True)
+
+    try:
+        # Sends an invoice via postal mail.
+        api_response = api_instance.put_invoices_invoiceuuid_sendviapostal(invoiceuuid, zf_tuuid, zf_ouuid, apply_start_communication_idempotency=apply_start_communication_idempotency)
+        print("The response of DefaultApi->put_invoices_invoiceuuid_sendviapostal:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_invoices_invoiceuuid_sendviapostal: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invoiceuuid** | **str**| The UUID of the invoice. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **apply_start_communication_idempotency** | **bool**| When true, uses idempotency for StartCommunication (automatic send). User-initiated sends should pass false. | [optional] [default to True]
+
+### Return type
+
+[**ApiResponseDTOOfInvoiceDTO**](ApiResponseDTOOfInvoiceDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_outgoingbankingtransactions_bulk_manuallycancel**
+> ApiResponseDTO put_outgoingbankingtransactions_bulk_manuallycancel(zf_tuuid, zf_ouuid, bulk_manually_cancel_outgoing_banking_transaction_request=bulk_manually_cancel_outgoing_banking_transaction_request)
+
+Bulk manually cancels outgoing banking transactions.
+
+Bulk manually cancels outgoing banking transactions.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_manually_cancel_outgoing_banking_transaction_request import BulkManuallyCancelOutgoingBankingTransactionRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_manually_cancel_outgoing_banking_transaction_request = {"onlyValidate":true,"queryParams":{"companyBankAccountIds":["string"],"outgoingBankingTransactionType":"string","mutationDateTimeStart":"string","mutationDateTimeEnd":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkManuallyCancelOutgoingBankingTransactionRequest | Cancellation token. (optional)
+
+    try:
+        # Bulk manually cancels outgoing banking transactions.
+        api_response = api_instance.put_outgoingbankingtransactions_bulk_manuallycancel(zf_tuuid, zf_ouuid, bulk_manually_cancel_outgoing_banking_transaction_request=bulk_manually_cancel_outgoing_banking_transaction_request)
+        print("The response of DefaultApi->put_outgoingbankingtransactions_bulk_manuallycancel:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_outgoingbankingtransactions_bulk_manuallycancel: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_manually_cancel_outgoing_banking_transaction_request** | [**BulkManuallyCancelOutgoingBankingTransactionRequest**](BulkManuallyCancelOutgoingBankingTransactionRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_outgoingbankingtransactions_bulk_manuallyconfirm**
+> ApiResponseDTO put_outgoingbankingtransactions_bulk_manuallyconfirm(zf_tuuid, zf_ouuid, bulk_override_outgoing_banking_transaction_bank_confirmation_request=bulk_override_outgoing_banking_transaction_bank_confirmation_request)
+
+Bulk manually confirms outgoing banking transactions.
+
+Bulk manually confirms outgoing banking transactions.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_override_outgoing_banking_transaction_bank_confirmation_request import BulkOverrideOutgoingBankingTransactionBankConfirmationRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_override_outgoing_banking_transaction_bank_confirmation_request = {"onlyValidate":true,"queryParams":{"companyBankAccountIds":["string"],"outgoingBankingTransactionType":"string","mutationDateTimeStart":"string","mutationDateTimeEnd":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkOverrideOutgoingBankingTransactionBankConfirmationRequest | Cancellation token. (optional)
+
+    try:
+        # Bulk manually confirms outgoing banking transactions.
+        api_response = api_instance.put_outgoingbankingtransactions_bulk_manuallyconfirm(zf_tuuid, zf_ouuid, bulk_override_outgoing_banking_transaction_bank_confirmation_request=bulk_override_outgoing_banking_transaction_bank_confirmation_request)
+        print("The response of DefaultApi->put_outgoingbankingtransactions_bulk_manuallyconfirm:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_outgoingbankingtransactions_bulk_manuallyconfirm: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_override_outgoing_banking_transaction_bank_confirmation_request** | [**BulkOverrideOutgoingBankingTransactionBankConfirmationRequest**](BulkOverrideOutgoingBankingTransactionBankConfirmationRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_outgoingbankingtransactions_bulk_send**
+> ApiResponseDTO put_outgoingbankingtransactions_bulk_send(zf_tuuid, zf_ouuid, bulk_send_outgoing_banking_transactions_request=bulk_send_outgoing_banking_transactions_request)
+
+Bulk sends outgoing banking transactions via the configured channel for each company bank account (active SFTP banking data provider, or Twikey when enabled and linked).
+
+Bulk sends outgoing banking transactions via the configured channel for each company bank account
+(active SFTP banking data provider, or Twikey when enabled and linked).
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_send_outgoing_banking_transactions_request import BulkSendOutgoingBankingTransactionsRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_send_outgoing_banking_transactions_request = {"onlyValidate":true,"queryParams":{"companyBankAccountIds":["string"],"outgoingBankingTransactionType":"string","mutationDateTimeStart":"string","mutationDateTimeEnd":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkSendOutgoingBankingTransactionsRequest | Cancellation token. (optional)
+
+    try:
+        # Bulk sends outgoing banking transactions via the configured channel for each company bank account (active SFTP banking data provider, or Twikey when enabled and linked).
+        api_response = api_instance.put_outgoingbankingtransactions_bulk_send(zf_tuuid, zf_ouuid, bulk_send_outgoing_banking_transactions_request=bulk_send_outgoing_banking_transactions_request)
+        print("The response of DefaultApi->put_outgoingbankingtransactions_bulk_send:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_outgoingbankingtransactions_bulk_send: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_send_outgoing_banking_transactions_request** | [**BulkSendOutgoingBankingTransactionsRequest**](BulkSendOutgoingBankingTransactionsRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_outgoingbankingtransactions_outgoingbankingtransactionid_bankaccount**
+> ApiResponseDTOOfOutgoingBankingTransactionDTO put_outgoingbankingtransactions_outgoingbankingtransactionid_bankaccount(outgoing_banking_transaction_id, zf_tuuid, zf_ouuid, update_outgoing_banking_transaction_bank_account_request=update_outgoing_banking_transaction_bank_account_request)
+
+Updates the company bank account for an outgoing banking transaction.
+
+Updates the company bank account for an outgoing banking transaction.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_outgoing_banking_transaction_dto import ApiResponseDTOOfOutgoingBankingTransactionDTO
+from billing_client.models.update_outgoing_banking_transaction_bank_account_request import UpdateOutgoingBankingTransactionBankAccountRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    outgoing_banking_transaction_id = 'outgoing_banking_transaction_id_example' # str | ID of the outgoing banking transaction.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_outgoing_banking_transaction_bank_account_request = {"companyBankAccountId":"string"} # UpdateOutgoingBankingTransactionBankAccountRequest | Cancellation token. (optional)
+
+    try:
+        # Updates the company bank account for an outgoing banking transaction.
+        api_response = api_instance.put_outgoingbankingtransactions_outgoingbankingtransactionid_bankaccount(outgoing_banking_transaction_id, zf_tuuid, zf_ouuid, update_outgoing_banking_transaction_bank_account_request=update_outgoing_banking_transaction_bank_account_request)
+        print("The response of DefaultApi->put_outgoingbankingtransactions_outgoingbankingtransactionid_bankaccount:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_outgoingbankingtransactions_outgoingbankingtransactionid_bankaccount: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **outgoing_banking_transaction_id** | **str**| ID of the outgoing banking transaction. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_outgoing_banking_transaction_bank_account_request** | [**UpdateOutgoingBankingTransactionBankAccountRequest**](UpdateOutgoingBankingTransactionBankAccountRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfOutgoingBankingTransactionDTO**](ApiResponseDTOOfOutgoingBankingTransactionDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_outgoingbankingtransactions_outgoingbankingtransactionid_collectiondate**
+> ApiResponseDTOOfOutgoingBankingTransactionDTO put_outgoingbankingtransactions_outgoingbankingtransactionid_collectiondate(outgoing_banking_transaction_id, zf_tuuid, zf_ouuid, update_outgoing_banking_transaction_collection_date_request=update_outgoing_banking_transaction_collection_date_request)
+
+Updates the collection date for an outgoing banking transaction.
+
+Updates the collection date for an outgoing banking transaction.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_outgoing_banking_transaction_dto import ApiResponseDTOOfOutgoingBankingTransactionDTO
+from billing_client.models.update_outgoing_banking_transaction_collection_date_request import UpdateOutgoingBankingTransactionCollectionDateRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    outgoing_banking_transaction_id = 'outgoing_banking_transaction_id_example' # str | ID of the outgoing banking transaction.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_outgoing_banking_transaction_collection_date_request = {"collectionDate":"string"} # UpdateOutgoingBankingTransactionCollectionDateRequest | Cancellation token. (optional)
+
+    try:
+        # Updates the collection date for an outgoing banking transaction.
+        api_response = api_instance.put_outgoingbankingtransactions_outgoingbankingtransactionid_collectiondate(outgoing_banking_transaction_id, zf_tuuid, zf_ouuid, update_outgoing_banking_transaction_collection_date_request=update_outgoing_banking_transaction_collection_date_request)
+        print("The response of DefaultApi->put_outgoingbankingtransactions_outgoingbankingtransactionid_collectiondate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_outgoingbankingtransactions_outgoingbankingtransactionid_collectiondate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **outgoing_banking_transaction_id** | **str**| ID of the outgoing banking transaction. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_outgoing_banking_transaction_collection_date_request** | [**UpdateOutgoingBankingTransactionCollectionDateRequest**](UpdateOutgoingBankingTransactionCollectionDateRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfOutgoingBankingTransactionDTO**](ApiResponseDTOOfOutgoingBankingTransactionDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallycancel**
+> ApiResponseDTOOfOutgoingBankingTransactionDTO put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallycancel(outgoing_banking_transaction_id, zf_tuuid, zf_ouuid)
+
+Manually cancels an outgoing banking transaction.
+
+Manually cancels an outgoing banking transaction.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_outgoing_banking_transaction_dto import ApiResponseDTOOfOutgoingBankingTransactionDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    outgoing_banking_transaction_id = 'outgoing_banking_transaction_id_example' # str | ID of the outgoing banking transaction.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Manually cancels an outgoing banking transaction.
+        api_response = api_instance.put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallycancel(outgoing_banking_transaction_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallycancel:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallycancel: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **outgoing_banking_transaction_id** | **str**| ID of the outgoing banking transaction. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfOutgoingBankingTransactionDTO**](ApiResponseDTOOfOutgoingBankingTransactionDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallyconfirm**
+> ApiResponseDTOOfOutgoingBankingTransactionDTO put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallyconfirm(outgoing_banking_transaction_id, zf_tuuid, zf_ouuid)
+
+Manually confirms an outgoing banking transaction.
+
+Manually confirms an outgoing banking transaction.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_outgoing_banking_transaction_dto import ApiResponseDTOOfOutgoingBankingTransactionDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    outgoing_banking_transaction_id = 'outgoing_banking_transaction_id_example' # str | ID of the outgoing banking transaction.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Manually confirms an outgoing banking transaction.
+        api_response = api_instance.put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallyconfirm(outgoing_banking_transaction_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallyconfirm:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_outgoingbankingtransactions_outgoingbankingtransactionid_manuallyconfirm: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **outgoing_banking_transaction_id** | **str**| ID of the outgoing banking transaction. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfOutgoingBankingTransactionDTO**](ApiResponseDTOOfOutgoingBankingTransactionDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_outgoingmutations_outgoingmutationid**
+> ApiResponseDTOOfOutgoingMutationDTO put_outgoingmutations_outgoingmutationid(outgoing_mutation_id, zf_tuuid, zf_ouuid, update_outgoing_mutation_entry_request=update_outgoing_mutation_entry_request)
+
+Updates an outgoing mutation.
+
+Updates an outgoing mutation.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_outgoing_mutation_dto import ApiResponseDTOOfOutgoingMutationDTO
+from billing_client.models.update_outgoing_mutation_entry_request import UpdateOutgoingMutationEntryRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    outgoing_mutation_id = 'outgoing_mutation_id_example' # str | The ID of the outgoing mutation.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_outgoing_mutation_entry_request = {"amount":0,"paymentReference":"string","iban":"string"} # UpdateOutgoingMutationEntryRequest | The cancellation token. (optional)
+
+    try:
+        # Updates an outgoing mutation.
+        api_response = api_instance.put_outgoingmutations_outgoingmutationid(outgoing_mutation_id, zf_tuuid, zf_ouuid, update_outgoing_mutation_entry_request=update_outgoing_mutation_entry_request)
+        print("The response of DefaultApi->put_outgoingmutations_outgoingmutationid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_outgoingmutations_outgoingmutationid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **outgoing_mutation_id** | **str**| The ID of the outgoing mutation. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_outgoing_mutation_entry_request** | [**UpdateOutgoingMutationEntryRequest**](UpdateOutgoingMutationEntryRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfOutgoingMutationDTO**](ApiResponseDTOOfOutgoingMutationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_bulk_activate**
+> ApiResponseDTO put_paymentplans_bulk_activate(zf_tuuid, zf_ouuid, bulk_activate_payment_plan_request=bulk_activate_payment_plan_request)
+
+Bulk activates payment plans based on the provided query parameters.
+
+Bulk activates payment plans based on the provided query parameters.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_activate_payment_plan_request import BulkActivatePaymentPlanRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_activate_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkActivatePaymentPlanRequest | The cancellation token. (optional)
+
+    try:
+        # Bulk activates payment plans based on the provided query parameters.
+        api_response = api_instance.put_paymentplans_bulk_activate(zf_tuuid, zf_ouuid, bulk_activate_payment_plan_request=bulk_activate_payment_plan_request)
+        print("The response of DefaultApi->put_paymentplans_bulk_activate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_bulk_activate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_activate_payment_plan_request** | [**BulkActivatePaymentPlanRequest**](BulkActivatePaymentPlanRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_bulk_cancel**
+> ApiResponseDTO put_paymentplans_bulk_cancel(zf_tuuid, zf_ouuid, bulk_cancel_payment_plan_request=bulk_cancel_payment_plan_request)
+
+Bulk cancels payment plans based on the provided query parameters.
+
+Bulk cancels payment plans based on the provided query parameters.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_cancel_payment_plan_request import BulkCancelPaymentPlanRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_cancel_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","reason":"string"} # BulkCancelPaymentPlanRequest | The cancellation token. (optional)
+
+    try:
+        # Bulk cancels payment plans based on the provided query parameters.
+        api_response = api_instance.put_paymentplans_bulk_cancel(zf_tuuid, zf_ouuid, bulk_cancel_payment_plan_request=bulk_cancel_payment_plan_request)
+        print("The response of DefaultApi->put_paymentplans_bulk_cancel:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_bulk_cancel: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_cancel_payment_plan_request** | [**BulkCancelPaymentPlanRequest**](BulkCancelPaymentPlanRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_bulk_collect_deferred_off_session**
+> ApiResponseDTO put_paymentplans_bulk_collect_deferred_off_session(zf_tuuid, zf_ouuid, bulk_collect_deferred_off_session_payment_plan_request=bulk_collect_deferred_off_session_payment_plan_request)
+
+Bulk collect for PSP-deferred off-session payment plans: resolves collectable installments and confirms their payment intents.
+
+Bulk collect for PSP-deferred off-session payment plans: resolves collectable installments and confirms their payment intents.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_collect_deferred_off_session_payment_plan_request import BulkCollectDeferredOffSessionPaymentPlanRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_collect_deferred_off_session_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkCollectDeferredOffSessionPaymentPlanRequest |  (optional)
+
+    try:
+        # Bulk collect for PSP-deferred off-session payment plans: resolves collectable installments and confirms their payment intents.
+        api_response = api_instance.put_paymentplans_bulk_collect_deferred_off_session(zf_tuuid, zf_ouuid, bulk_collect_deferred_off_session_payment_plan_request=bulk_collect_deferred_off_session_payment_plan_request)
+        print("The response of DefaultApi->put_paymentplans_bulk_collect_deferred_off_session:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_bulk_collect_deferred_off_session: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_collect_deferred_off_session_payment_plan_request** | [**BulkCollectDeferredOffSessionPaymentPlanRequest**](BulkCollectDeferredOffSessionPaymentPlanRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_bulk_pause**
+> ApiResponseDTO put_paymentplans_bulk_pause(zf_tuuid, zf_ouuid, bulk_pause_payment_plan_request=bulk_pause_payment_plan_request)
+
+Bulk pauses payment plans based on the provided query parameters.
+
+Bulk pauses payment plans based on the provided query parameters.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_pause_payment_plan_request import BulkPausePaymentPlanRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_pause_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","reason":"string"} # BulkPausePaymentPlanRequest | The cancellation token. (optional)
+
+    try:
+        # Bulk pauses payment plans based on the provided query parameters.
+        api_response = api_instance.put_paymentplans_bulk_pause(zf_tuuid, zf_ouuid, bulk_pause_payment_plan_request=bulk_pause_payment_plan_request)
+        print("The response of DefaultApi->put_paymentplans_bulk_pause:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_bulk_pause: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_pause_payment_plan_request** | [**BulkPausePaymentPlanRequest**](BulkPausePaymentPlanRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_bulk_reopen_cancelled**
+> ApiResponseDTO put_paymentplans_bulk_reopen_cancelled(zf_tuuid, zf_ouuid, bulk_reopen_cancelled_payment_plan_request=bulk_reopen_cancelled_payment_plan_request)
+
+Bulk reopens cancelled payment plans. No customer communication is sent.
+
+Bulk reopens cancelled payment plans. No customer communication is sent.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_reopen_cancelled_payment_plan_request import BulkReopenCancelledPaymentPlanRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_reopen_cancelled_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","recalculateRemainingInstallmentDates":true} # BulkReopenCancelledPaymentPlanRequest | The cancellation token. (optional)
+
+    try:
+        # Bulk reopens cancelled payment plans. No customer communication is sent.
+        api_response = api_instance.put_paymentplans_bulk_reopen_cancelled(zf_tuuid, zf_ouuid, bulk_reopen_cancelled_payment_plan_request=bulk_reopen_cancelled_payment_plan_request)
+        print("The response of DefaultApi->put_paymentplans_bulk_reopen_cancelled:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_bulk_reopen_cancelled: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_reopen_cancelled_payment_plan_request** | [**BulkReopenCancelledPaymentPlanRequest**](BulkReopenCancelledPaymentPlanRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_bulk_resume**
+> ApiResponseDTO put_paymentplans_bulk_resume(zf_tuuid, zf_ouuid, bulk_resume_payment_plan_request=bulk_resume_payment_plan_request)
+
+Bulk resumes payment plans based on the provided query parameters.
+
+Bulk resumes payment plans based on the provided query parameters.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.bulk_resume_payment_plan_request import BulkResumePaymentPlanRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_resume_payment_plan_request = {"onlyValidate":true,"queryParams":{"paymentPlanNumber":"string","debtorId":"string","customerAccountNumber":"string","customerName":"string","statuses":["string"],"installmentStatus":{},"startDateFrom":"string","startDateTo":"string","dueDateFrom":"string","dueDateTo":"string","amountFrom":0,"amountTo":0,"remainingAmountGreaterThen":0,"paymentFrequency":["string"],"paymentMethod":{},"isOverdue":true,"isReadyForCollection":true,"propertyGroupIds":["string"],"collectionCaseId":"string","paymentReference":"string","customerGroupId":"string","applyFiltersOverIncludedIds":true,"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","recalculateInstallments":true} # BulkResumePaymentPlanRequest | The cancellation token. (optional)
+
+    try:
+        # Bulk resumes payment plans based on the provided query parameters.
+        api_response = api_instance.put_paymentplans_bulk_resume(zf_tuuid, zf_ouuid, bulk_resume_payment_plan_request=bulk_resume_payment_plan_request)
+        print("The response of DefaultApi->put_paymentplans_bulk_resume:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_bulk_resume: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_resume_payment_plan_request** | [**BulkResumePaymentPlanRequest**](BulkResumePaymentPlanRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_entityid_customproperties**
+> ApiResponseDTOOfPaymentPlanDTO put_paymentplans_entityid_customproperties(entity_id, zf_tuuid, zf_ouuid, update_custom_entity_properties_request=update_custom_entity_properties_request)
+
+/PaymentPlans/{entityId}/customproperties - PUT
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_payment_plan_dto import ApiResponseDTOOfPaymentPlanDTO
+from billing_client.models.update_custom_entity_properties_request import UpdateCustomEntityPropertiesRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    entity_id = 'entity_id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_custom_entity_properties_request = {"properties":[{"customEntityPropertyTypeId":"string","values":[{"startDateTime":"string","endDateTime":"string","valueDecimal":0,"valueString":"string","valueBoolean":true,"valueNumber":0,"valueDateTime":"string","valueDropdown":["string"]}]}]} # UpdateCustomEntityPropertiesRequest |  (optional)
+
+    try:
+        # /PaymentPlans/{entityId}/customproperties - PUT
+        api_response = api_instance.put_paymentplans_entityid_customproperties(entity_id, zf_tuuid, zf_ouuid, update_custom_entity_properties_request=update_custom_entity_properties_request)
+        print("The response of DefaultApi->put_paymentplans_entityid_customproperties:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_entityid_customproperties: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_custom_entity_properties_request** | [**UpdateCustomEntityPropertiesRequest**](UpdateCustomEntityPropertiesRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentPlanDTO**](ApiResponseDTOOfPaymentPlanDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_id**
+> ApiResponseDTOOfPaymentPlanDTO put_paymentplans_id(id, zf_tuuid, zf_ouuid, update_payment_plan_request=update_payment_plan_request)
+
+Updates an existing payment plan.
+
+Updates an existing payment plan.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_payment_plan_dto import ApiResponseDTOOfPaymentPlanDTO
+from billing_client.models.update_payment_plan_request import UpdatePaymentPlanRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    id = 'id_example' # str | The ID of the payment plan to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_payment_plan_request = {"totalAmount":0,"status":"draft","paymentFrequency":"weekly","paymentConfigurationType":"duration","amountPerInstallment":0,"duration":0,"startDate":"string","paymentMethod":"sct","enableRemindersCommunication":true,"preferredCommunicationType":"none","overdueDays":0,"sendConfigurationUpdateCommunication":true,"minimumFinalInstallmentAmount":0} # UpdatePaymentPlanRequest | The cancellation token. (optional)
+
+    try:
+        # Updates an existing payment plan.
+        api_response = api_instance.put_paymentplans_id(id, zf_tuuid, zf_ouuid, update_payment_plan_request=update_payment_plan_request)
+        print("The response of DefaultApi->put_paymentplans_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The ID of the payment plan to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_payment_plan_request** | [**UpdatePaymentPlanRequest**](UpdatePaymentPlanRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentPlanDTO**](ApiResponseDTOOfPaymentPlanDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_id_activate**
+> ApiResponseDTOOfPaymentPlanDTO put_paymentplans_id_activate(id, zf_tuuid, zf_ouuid)
+
+Activates a payment plan.
+
+Activates a payment plan.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_payment_plan_dto import ApiResponseDTOOfPaymentPlanDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    id = 'id_example' # str | The ID of the payment plan to activate.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Activates a payment plan.
+        api_response = api_instance.put_paymentplans_id_activate(id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_paymentplans_id_activate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_id_activate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The ID of the payment plan to activate. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentPlanDTO**](ApiResponseDTOOfPaymentPlanDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_id_cancel**
+> ApiResponseDTOOfPaymentPlanDTO put_paymentplans_id_cancel(id, zf_tuuid, zf_ouuid, cancel_payment_plan_request=cancel_payment_plan_request)
+
+Cancels a payment plan.
+
+Cancels a payment plan.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_payment_plan_dto import ApiResponseDTOOfPaymentPlanDTO
+from billing_client.models.cancel_payment_plan_request import CancelPaymentPlanRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    id = 'id_example' # str | The ID of the payment plan to cancel.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    cancel_payment_plan_request = {"reason":"string"} # CancelPaymentPlanRequest | The cancellation token. (optional)
+
+    try:
+        # Cancels a payment plan.
+        api_response = api_instance.put_paymentplans_id_cancel(id, zf_tuuid, zf_ouuid, cancel_payment_plan_request=cancel_payment_plan_request)
+        print("The response of DefaultApi->put_paymentplans_id_cancel:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_id_cancel: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The ID of the payment plan to cancel. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **cancel_payment_plan_request** | [**CancelPaymentPlanRequest**](CancelPaymentPlanRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentPlanDTO**](ApiResponseDTOOfPaymentPlanDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_id_pause**
+> ApiResponseDTOOfPaymentPlanDTO put_paymentplans_id_pause(id, zf_tuuid, zf_ouuid, pause_payment_plan_request=pause_payment_plan_request)
+
+Pauses a payment plan (e.g., when customer is in distress).
+
+Pauses a payment plan (e.g., when customer is in distress).
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_payment_plan_dto import ApiResponseDTOOfPaymentPlanDTO
+from billing_client.models.pause_payment_plan_request import PausePaymentPlanRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    id = 'id_example' # str | The ID of the payment plan to pause.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    pause_payment_plan_request = {"reason":"string"} # PausePaymentPlanRequest | The cancellation token. (optional)
+
+    try:
+        # Pauses a payment plan (e.g., when customer is in distress).
+        api_response = api_instance.put_paymentplans_id_pause(id, zf_tuuid, zf_ouuid, pause_payment_plan_request=pause_payment_plan_request)
+        print("The response of DefaultApi->put_paymentplans_id_pause:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_id_pause: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The ID of the payment plan to pause. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **pause_payment_plan_request** | [**PausePaymentPlanRequest**](PausePaymentPlanRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentPlanDTO**](ApiResponseDTOOfPaymentPlanDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_id_reopen_cancelled**
+> ApiResponseDTOOfPaymentPlanDTO put_paymentplans_id_reopen_cancelled(id, zf_tuuid, zf_ouuid, reopen_cancelled_payment_plan_request=reopen_cancelled_payment_plan_request)
+
+Reopens a cancelled payment plan: restores open installments and recalculates status from current dates. Does not send customer communication (no scenario e-mails).
+
+Reopens a cancelled payment plan: restores open installments and recalculates status from current dates.
+Does not send customer communication (no scenario e-mails).
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_payment_plan_dto import ApiResponseDTOOfPaymentPlanDTO
+from billing_client.models.reopen_cancelled_payment_plan_request import ReopenCancelledPaymentPlanRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    id = 'id_example' # str | The ID of the payment plan.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    reopen_cancelled_payment_plan_request = billing_client.ReopenCancelledPaymentPlanRequest() # ReopenCancelledPaymentPlanRequest | The cancellation token. (optional)
+
+    try:
+        # Reopens a cancelled payment plan: restores open installments and recalculates status from current dates. Does not send customer communication (no scenario e-mails).
+        api_response = api_instance.put_paymentplans_id_reopen_cancelled(id, zf_tuuid, zf_ouuid, reopen_cancelled_payment_plan_request=reopen_cancelled_payment_plan_request)
+        print("The response of DefaultApi->put_paymentplans_id_reopen_cancelled:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_id_reopen_cancelled: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The ID of the payment plan. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **reopen_cancelled_payment_plan_request** | [**ReopenCancelledPaymentPlanRequest**](ReopenCancelledPaymentPlanRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentPlanDTO**](ApiResponseDTOOfPaymentPlanDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_id_resume**
+> ApiResponseDTOOfPaymentPlanDTO put_paymentplans_id_resume(id, zf_tuuid, zf_ouuid, resume_payment_plan_request=resume_payment_plan_request)
+
+Resumes a payment plan from paused status.
+
+Resumes a payment plan from paused status.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_payment_plan_dto import ApiResponseDTOOfPaymentPlanDTO
+from billing_client.models.resume_payment_plan_request import ResumePaymentPlanRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    id = 'id_example' # str | The ID of the payment plan to resume.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    resume_payment_plan_request = {"recalculateInstallments":true} # ResumePaymentPlanRequest | The cancellation token. (optional)
+
+    try:
+        # Resumes a payment plan from paused status.
+        api_response = api_instance.put_paymentplans_id_resume(id, zf_tuuid, zf_ouuid, resume_payment_plan_request=resume_payment_plan_request)
+        print("The response of DefaultApi->put_paymentplans_id_resume:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_id_resume: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The ID of the payment plan to resume. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **resume_payment_plan_request** | [**ResumePaymentPlanRequest**](ResumePaymentPlanRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentPlanDTO**](ApiResponseDTOOfPaymentPlanDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_paymentplans_paymentplanid_resend_reminder**
+> ApiResponseDTOOfPaymentPlanDTO put_paymentplans_paymentplanid_resend_reminder(payment_plan_id, zf_tuuid, zf_ouuid, resend_payment_plan_reminder_request=resend_payment_plan_reminder_request)
+
+Try resending a reminder of a payment plan installment in case the generation of the payment intent failed
+
+Try resending a reminder of a payment plan installment in case the generation of the payment intent failed
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_payment_plan_dto import ApiResponseDTOOfPaymentPlanDTO
+from billing_client.models.resend_payment_plan_reminder_request import ResendPaymentPlanReminderRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    payment_plan_id = 'payment_plan_id_example' # str | The ID of the payment plan.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    resend_payment_plan_reminder_request = {"paymentPlanInstallmentId":"string","applyStartCommunicationIdempotency":true} # ResendPaymentPlanReminderRequest | The cancellation token. (optional)
+
+    try:
+        # Try resending a reminder of a payment plan installment in case the generation of the payment intent failed
+        api_response = api_instance.put_paymentplans_paymentplanid_resend_reminder(payment_plan_id, zf_tuuid, zf_ouuid, resend_payment_plan_reminder_request=resend_payment_plan_reminder_request)
+        print("The response of DefaultApi->put_paymentplans_paymentplanid_resend_reminder:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_paymentplans_paymentplanid_resend_reminder: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payment_plan_id** | **str**| The ID of the payment plan. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **resend_payment_plan_reminder_request** | [**ResendPaymentPlanReminderRequest**](ResendPaymentPlanReminderRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentPlanDTO**](ApiResponseDTOOfPaymentPlanDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_payments_bulk_reverse**
+> ApiResponseDTOOfPaymentDTO put_payments_bulk_reverse(zf_tuuid, zf_ouuid, bulk_reverse_payment_request=bulk_reverse_payment_request)
+
+Bulk manually reverses payments.
+
+Bulk manually reverses payments.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_payment_dto import ApiResponseDTOOfPaymentDTO
+from billing_client.models.bulk_reverse_payment_request import BulkReversePaymentRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_reverse_payment_request = {"onlyValidate":true,"queryParams":{"paymentType":"string","customerId":"string","startDateTime":"string","endDateTime":"string","pspProviderAccountZfhId":"string","pspRequestedPaymentRail":{},"pspRefundStatuses":["string"],"prepaymentAccountId":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","reversalAdditionalInformation":"string"} # BulkReversePaymentRequest | The cancellation token. (optional)
+
+    try:
+        # Bulk manually reverses payments.
+        api_response = api_instance.put_payments_bulk_reverse(zf_tuuid, zf_ouuid, bulk_reverse_payment_request=bulk_reverse_payment_request)
+        print("The response of DefaultApi->put_payments_bulk_reverse:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_payments_bulk_reverse: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_reverse_payment_request** | [**BulkReversePaymentRequest**](BulkReversePaymentRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentDTO**](ApiResponseDTOOfPaymentDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_payments_paymentid_reverse**
+> ApiResponseDTOOfPaymentDTO put_payments_paymentid_reverse(payment_id, zf_tuuid, zf_ouuid, reverse_payment_request=reverse_payment_request)
+
+Manually reverses a payment.
+
+Manually reverses a payment.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_payment_dto import ApiResponseDTOOfPaymentDTO
+from billing_client.models.reverse_payment_request import ReversePaymentRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    payment_id = 'payment_id_example' # str | The ID of the payment to reverse.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    reverse_payment_request = {"reversalAdditionalInformation":"string"} # ReversePaymentRequest | The cancellation token. (optional)
+
+    try:
+        # Manually reverses a payment.
+        api_response = api_instance.put_payments_paymentid_reverse(payment_id, zf_tuuid, zf_ouuid, reverse_payment_request=reverse_payment_request)
+        print("The response of DefaultApi->put_payments_paymentid_reverse:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_payments_paymentid_reverse: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payment_id** | **str**| The ID of the payment to reverse. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **reverse_payment_request** | [**ReversePaymentRequest**](ReversePaymentRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPaymentDTO**](ApiResponseDTOOfPaymentDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_propertygroupbillingconfiguration**
+> ApiResponseDTOOfPropertyGroupBillingConfigurationDTO put_propertygroupbillingconfiguration(zf_tuuid, zf_ouuid, update_property_group_billing_configuration_request=update_property_group_billing_configuration_request)
+
+Updates a billing configuration for a property group.
+
+Updates a billing configuration for a property group.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_property_group_billing_configuration_dto import ApiResponseDTOOfPropertyGroupBillingConfigurationDTO
+from billing_client.models.update_property_group_billing_configuration_request import UpdatePropertyGroupBillingConfigurationRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_property_group_billing_configuration_request = {"propertyGroup":{},"companyBankAccountId":"string","advanceFrequency":"none","invoiceFrequency":"monthly","invoiceDay":0,"invoiceMonth":0,"productId":"string","paymentTermsId":"string","defaultBillingMethod":{}} # UpdatePropertyGroupBillingConfigurationRequest | The cancellation token. (optional)
+
+    try:
+        # Updates a billing configuration for a property group.
+        api_response = api_instance.put_propertygroupbillingconfiguration(zf_tuuid, zf_ouuid, update_property_group_billing_configuration_request=update_property_group_billing_configuration_request)
+        print("The response of DefaultApi->put_propertygroupbillingconfiguration:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_propertygroupbillingconfiguration: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_property_group_billing_configuration_request** | [**UpdatePropertyGroupBillingConfigurationRequest**](UpdatePropertyGroupBillingConfigurationRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPropertyGroupBillingConfigurationDTO**](ApiResponseDTOOfPropertyGroupBillingConfigurationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_propertygroupbillingconfiguration_entityid_translations**
+> ApiResponseDTO put_propertygroupbillingconfiguration_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+
+/PropertyGroupBillingConfiguration/{entityId}/translations - PUT
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.update_entity_translation_request import UpdateEntityTranslationRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    entity_id = 'entity_id_example' # str | 
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_entity_translation_request = {"translatedFields":{}} # UpdateEntityTranslationRequest |  (optional)
+
+    try:
+        # /PropertyGroupBillingConfiguration/{entityId}/translations - PUT
+        api_response = api_instance.put_propertygroupbillingconfiguration_entityid_translations(entity_id, zf_tuuid, zf_ouuid, update_entity_translation_request=update_entity_translation_request)
+        print("The response of DefaultApi->put_propertygroupbillingconfiguration_entityid_translations:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_propertygroupbillingconfiguration_entityid_translations: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_id** | **str**|  | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_entity_translation_request** | [**UpdateEntityTranslationRequest**](UpdateEntityTranslationRequest.md)|  | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_propertygroupbillingconfiguration_propertygroupid_notetocustomer**
+> ApiResponseDTOOfPropertyGroupBillingConfigurationDTO put_propertygroupbillingconfiguration_propertygroupid_notetocustomer(propertygroupid, zf_tuuid, zf_ouuid, update_property_group_billing_configuration_note_to_customer_request=update_property_group_billing_configuration_note_to_customer_request)
+
+Updates the note to customer for a specific property group.
+
+Updates the note to customer for a specific property group.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_property_group_billing_configuration_dto import ApiResponseDTOOfPropertyGroupBillingConfigurationDTO
+from billing_client.models.update_property_group_billing_configuration_note_to_customer_request import UpdatePropertyGroupBillingConfigurationNoteToCustomerRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    propertygroupid = 'propertygroupid_example' # str | The property group ID.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_property_group_billing_configuration_note_to_customer_request = {"noteToCustomer":"string"} # UpdatePropertyGroupBillingConfigurationNoteToCustomerRequest | The cancellation token. (optional)
+
+    try:
+        # Updates the note to customer for a specific property group.
+        api_response = api_instance.put_propertygroupbillingconfiguration_propertygroupid_notetocustomer(propertygroupid, zf_tuuid, zf_ouuid, update_property_group_billing_configuration_note_to_customer_request=update_property_group_billing_configuration_note_to_customer_request)
+        print("The response of DefaultApi->put_propertygroupbillingconfiguration_propertygroupid_notetocustomer:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_propertygroupbillingconfiguration_propertygroupid_notetocustomer: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **propertygroupid** | **str**| The property group ID. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_property_group_billing_configuration_note_to_customer_request** | [**UpdatePropertyGroupBillingConfigurationNoteToCustomerRequest**](UpdatePropertyGroupBillingConfigurationNoteToCustomerRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPropertyGroupBillingConfigurationDTO**](ApiResponseDTOOfPropertyGroupBillingConfigurationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_propertygroupbillingconfiguration_propertygroupid_timeofusecalendars**
+> ApiResponseDTOOfPropertyGroupBillingConfigurationDTO put_propertygroupbillingconfiguration_propertygroupid_timeofusecalendars(propertygroupid, zf_tuuid, zf_ouuid, update_property_group_billing_configuration_time_of_use_calendars_request=update_property_group_billing_configuration_time_of_use_calendars_request)
+
+Updates the per-utility Time of Use calendar assignment for a specific property group.
+
+Updates the per-utility Time of Use calendar assignment for a specific property group.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_property_group_billing_configuration_dto import ApiResponseDTOOfPropertyGroupBillingConfigurationDTO
+from billing_client.models.update_property_group_billing_configuration_time_of_use_calendars_request import UpdatePropertyGroupBillingConfigurationTimeOfUseCalendarsRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    propertygroupid = 'propertygroupid_example' # str | The property group ID.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_property_group_billing_configuration_time_of_use_calendars_request = {"timeOfUseCalendarIds":{}} # UpdatePropertyGroupBillingConfigurationTimeOfUseCalendarsRequest | The cancellation token. (optional)
+
+    try:
+        # Updates the per-utility Time of Use calendar assignment for a specific property group.
+        api_response = api_instance.put_propertygroupbillingconfiguration_propertygroupid_timeofusecalendars(propertygroupid, zf_tuuid, zf_ouuid, update_property_group_billing_configuration_time_of_use_calendars_request=update_property_group_billing_configuration_time_of_use_calendars_request)
+        print("The response of DefaultApi->put_propertygroupbillingconfiguration_propertygroupid_timeofusecalendars:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_propertygroupbillingconfiguration_propertygroupid_timeofusecalendars: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **propertygroupid** | **str**| The property group ID. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_property_group_billing_configuration_time_of_use_calendars_request** | [**UpdatePropertyGroupBillingConfigurationTimeOfUseCalendarsRequest**](UpdatePropertyGroupBillingConfigurationTimeOfUseCalendarsRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfPropertyGroupBillingConfigurationDTO**](ApiResponseDTOOfPropertyGroupBillingConfigurationDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_transactions_accounting_markobsolete**
+> ApiResponseDTO put_transactions_accounting_markobsolete(zf_tuuid, zf_ouuid, mark_transactions_obsolete_request=mark_transactions_obsolete_request)
+
+Enqueues marking of all transactions on or before the given date as obsolete for accounting. The actual processing is performed asynchronously by the BillingEngine.
+
+Enqueues marking of all transactions on or before the given date as obsolete for accounting.
+The actual processing is performed asynchronously by the BillingEngine.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dto import ApiResponseDTO
+from billing_client.models.mark_transactions_obsolete_request import MarkTransactionsObsoleteRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    mark_transactions_obsolete_request = {"obsoleteBeforeDate":"string"} # MarkTransactionsObsoleteRequest | The cancellation token. (optional)
+
+    try:
+        # Enqueues marking of all transactions on or before the given date as obsolete for accounting. The actual processing is performed asynchronously by the BillingEngine.
+        api_response = api_instance.put_transactions_accounting_markobsolete(zf_tuuid, zf_ouuid, mark_transactions_obsolete_request=mark_transactions_obsolete_request)
+        print("The response of DefaultApi->put_transactions_accounting_markobsolete:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_transactions_accounting_markobsolete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **mark_transactions_obsolete_request** | [**MarkTransactionsObsoleteRequest**](MarkTransactionsObsoleteRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_transactions_c_customeruuid_runsettlement**
+> ApiResponseDTOOfListOfTransactionDTO put_transactions_c_customeruuid_runsettlement(customeruuid, zf_tuuid, zf_ouuid)
+
+Runs settlement for a specific customer.
+
+Runs settlement for a specific customer.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_list_of_transaction_dto import ApiResponseDTOOfListOfTransactionDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    customeruuid = 'customeruuid_example' # str | The customer UUID.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Runs settlement for a specific customer.
+        api_response = api_instance.put_transactions_c_customeruuid_runsettlement(customeruuid, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_transactions_c_customeruuid_runsettlement:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_transactions_c_customeruuid_runsettlement: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customeruuid** | **str**| The customer UUID. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfListOfTransactionDTO**](ApiResponseDTOOfListOfTransactionDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_transactions_transactionuuid_accountingexportstatus**
+> ApiResponseDTOOfTransactionDTO put_transactions_transactionuuid_accountingexportstatus(transactionuuid, zf_tuuid, zf_ouuid, set_transaction_accounting_export_status_request=set_transaction_accounting_export_status_request)
+
+Updates the accounting export status of a transaction.
+
+Updates the accounting export status of a transaction.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_transaction_dto import ApiResponseDTOOfTransactionDTO
+from billing_client.models.set_transaction_accounting_export_status_request import SetTransactionAccountingExportStatusRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    transactionuuid = 'transactionuuid_example' # str | The unique identifier of the transaction to update.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    set_transaction_accounting_export_status_request = {"accountExportStatus":"pending","accountExportDetails":{}} # SetTransactionAccountingExportStatusRequest | The cancellation token. (optional)
+
+    try:
+        # Updates the accounting export status of a transaction.
+        api_response = api_instance.put_transactions_transactionuuid_accountingexportstatus(transactionuuid, zf_tuuid, zf_ouuid, set_transaction_accounting_export_status_request=set_transaction_accounting_export_status_request)
+        print("The response of DefaultApi->put_transactions_transactionuuid_accountingexportstatus:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_transactions_transactionuuid_accountingexportstatus: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transactionuuid** | **str**| The unique identifier of the transaction to update. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **set_transaction_accounting_export_status_request** | [**SetTransactionAccountingExportStatusRequest**](SetTransactionAccountingExportStatusRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfTransactionDTO**](ApiResponseDTOOfTransactionDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_transactions_transactionuuid_settle**
+> ApiResponseDTOOfTransactionDTO put_transactions_transactionuuid_settle(transactionuuid, zf_tuuid, zf_ouuid, settle_transactions_request=settle_transactions_request)
+
+Settles transactions for a specific transaction UUID.
+
+Settles transactions for a specific transaction UUID.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_transaction_dto import ApiResponseDTOOfTransactionDTO
+from billing_client.models.settle_transactions_request import SettleTransactionsRequest
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    transactionuuid = 'transactionuuid_example' # str | The transaction UUID.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    settle_transactions_request = {"transactionIds":["string"]} # SettleTransactionsRequest | The cancellation token. (optional)
+
+    try:
+        # Settles transactions for a specific transaction UUID.
+        api_response = api_instance.put_transactions_transactionuuid_settle(transactionuuid, zf_tuuid, zf_ouuid, settle_transactions_request=settle_transactions_request)
+        print("The response of DefaultApi->put_transactions_transactionuuid_settle:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_transactions_transactionuuid_settle: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transactionuuid** | **str**| The transaction UUID. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **settle_transactions_request** | [**SettleTransactionsRequest**](SettleTransactionsRequest.md)| The cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfTransactionDTO**](ApiResponseDTOOfTransactionDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_transactions_transactionuuid_settle_settlementtransactionid**
+> ApiResponseDTOOfTransactionDTO put_transactions_transactionuuid_settle_settlementtransactionid(transactionuuid, settlement_transaction_id, zf_tuuid, zf_ouuid)
+
+Settles a single transaction for a specific transaction UUID.
+
+Settles a single transaction for a specific transaction UUID.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_transaction_dto import ApiResponseDTOOfTransactionDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    transactionuuid = 'transactionuuid_example' # str | The transaction UUID.
+    settlement_transaction_id = 'settlement_transaction_id_example' # str | The settlement transaction ID.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Settles a single transaction for a specific transaction UUID.
+        api_response = api_instance.put_transactions_transactionuuid_settle_settlementtransactionid(transactionuuid, settlement_transaction_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_transactions_transactionuuid_settle_settlementtransactionid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_transactions_transactionuuid_settle_settlementtransactionid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transactionuuid** | **str**| The transaction UUID. | 
+ **settlement_transaction_id** | **str**| The settlement transaction ID. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfTransactionDTO**](ApiResponseDTOOfTransactionDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_transactions_transactionuuid_undo**
+> ApiResponseDTOOfTransactionDTO put_transactions_transactionuuid_undo(transactionuuid, zf_tuuid, zf_ouuid)
+
+Undoes all settlements of a specific transaction.
+
+Undoes all settlements of a specific transaction.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_transaction_dto import ApiResponseDTOOfTransactionDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    transactionuuid = 'transactionuuid_example' # str | The transaction UUID.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Undoes all settlements of a specific transaction.
+        api_response = api_instance.put_transactions_transactionuuid_undo(transactionuuid, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_transactions_transactionuuid_undo:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_transactions_transactionuuid_undo: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transactionuuid** | **str**| The transaction UUID. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfTransactionDTO**](ApiResponseDTOOfTransactionDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_transactions_transactionuuid_undo_settlementtransactionid**
+> ApiResponseDTOOfTransactionDTO put_transactions_transactionuuid_undo_settlementtransactionid(transactionuuid, settlement_transaction_id, zf_tuuid, zf_ouuid)
+
+Undoes a single settlement of a specific transaction.
+
+Undoes a single settlement of a specific transaction.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import billing_client
+from billing_client.models.api_response_dtoof_transaction_dto import ApiResponseDTOOfTransactionDTO
+from billing_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/bill
+# See configuration.py for a list of all supported configuration parameters.
+configuration = billing_client.Configuration(
+    host = "https://api.zerofriction.co/api/bill"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with billing_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = billing_client.DefaultApi(api_client)
+    transactionuuid = 'transactionuuid_example' # str | The transaction UUID.
+    settlement_transaction_id = 'settlement_transaction_id_example' # str | The settlement transaction ID.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Undoes a single settlement of a specific transaction.
+        api_response = api_instance.put_transactions_transactionuuid_undo_settlementtransactionid(transactionuuid, settlement_transaction_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_transactions_transactionuuid_undo_settlementtransactionid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_transactions_transactionuuid_undo_settlementtransactionid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transactionuuid** | **str**| The transaction UUID. | 
+ **settlement_transaction_id** | **str**| The settlement transaction ID. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfTransactionDTO**](ApiResponseDTOOfTransactionDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update**
 > ApiResponseDTOOfCustomerBankAccountDTO update(customer_bank_account_id, zf_tuuid, zf_ouuid, update_customer_bank_account_request=update_customer_bank_account_request)
 
@@ -23349,7 +33374,7 @@ with billing_client.ApiClient(configuration) as api_client:
     customer_bank_account_id = 'customer_bank_account_id_example' # str | The ID of the customer bank account.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_customer_bank_account_request = {"isDefault":true,"activeMandate":{"number":"string","type":"core","signedDateTime":"string","companyBankAccountId":"string"},"iban":"string","bic":"string"} # UpdateCustomerBankAccountRequest | The cancellation token. (optional)
+    update_customer_bank_account_request = {"isDefault":true,"changedByPortal":true,"activeMandate":{},"iban":"string","bic":"string"} # UpdateCustomerBankAccountRequest | The cancellation token. (optional)
 
     try:
         # Updates a specific customer bank account.

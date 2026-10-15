@@ -39,6 +39,7 @@ class TestCreditNotePdfTemplateDTO(unittest.TestCase):
                 show_balance = True,
                 show_vat_specs = True,
                 show_custom_information = True,
+                show_subtotal_before_advances = True,
                 provider_managed_template_file_name = '',
                 envelope_settings = configuration_client.models.envelope_settings_dto.EnvelopeSettingsDTO(
                     margin_position = 'left', 

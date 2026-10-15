@@ -37,8 +37,17 @@ class TestPagedResponseModelDTOOfEstimatedInvoiceDTO(unittest.TestCase):
             return PagedResponseModelDTOOfEstimatedInvoiceDTO(
                 results = [
                     billing_client.models.estimated_invoice_dto.EstimatedInvoiceDTO(
-                        customer_id = '', 
-                        contract_id = '', 
+                        debtor = billing_client.models.debtor_dto.DebtorDTO(
+                            customer_id = '', 
+                            display_name = '', 
+                            customer_account_number = '', 
+                            customer_type = 'person', 
+                            customer_group = billing_client.models.customer_group_reference_dto.CustomerGroupReferenceDTO(
+                                id = '', 
+                                name = '', ), ), 
+                        contract = billing_client.models.contract_reference_dto.ContractReferenceDTO(
+                            contract_id = '', 
+                            contract_number = '', ), 
                         original_billing_completeness_id = '', 
                         product = billing_client.models.product_reference_dto.ProductReferenceDTO(
                             id = '', 
@@ -68,7 +77,15 @@ class TestPagedResponseModelDTOOfEstimatedInvoiceDTO(unittest.TestCase):
                                 paid = True, 
                                 invoice_id = '', )
                             ], 
-                        accuracy = 'low', )
+                        accuracy = 'low', 
+                        organisation_id = '', 
+                        id = '', 
+                        entity_type = 'none', 
+                        created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        discriminator = '', 
+                        _etag = '', 
+                        has_errors = True, 
+                        is_read_only = True, )
                     ],
                 has_next_page = True,
                 next_page_token = '',

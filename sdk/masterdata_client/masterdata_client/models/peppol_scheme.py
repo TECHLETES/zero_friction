@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PeppolScheme(str, Enum):
     """
-    Possible values: 'belgium_enterprisenumber', 'belgium_vatnumber', 'belgium_gln', 'netherlands_kvknumber', 'netherlands_oin', 'netherlands_vatnumber'
+    Possible values: 'belgium_enterprisenumber', 'belgium_vatnumber', 'belgium_gln', 'netherlands_kvknumber', 'netherlands_oin', 'netherlands_vatnumber', 'france_siren', 'france_routingcode'
     """
 
     """
@@ -32,6 +32,8 @@ class PeppolScheme(str, Enum):
     NETHERLANDS_KVKNUMBER = 'netherlands_kvknumber'
     NETHERLANDS_OIN = 'netherlands_oin'
     NETHERLANDS_VATNUMBER = 'netherlands_vatnumber'
+    FRANCE_SIREN = 'france_siren'
+    FRANCE_ROUTINGCODE = 'france_routingcode'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

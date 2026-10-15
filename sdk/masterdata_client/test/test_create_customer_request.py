@@ -96,6 +96,7 @@ class TestCreateCustomerRequest(unittest.TestCase):
                 ssin_country = 'aut',
                 customer_type = 'person',
                 company_name = '',
+                vat_number = '',
                 organization_number = '',
                 default_payment_method = 'sct',
                 invoice_address = masterdata_client.models.address_dto.AddressDTO(

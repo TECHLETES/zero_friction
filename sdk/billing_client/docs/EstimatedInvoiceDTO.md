@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** |  | [optional] 
-**contract_id** | **str** |  | [optional] 
+**debtor** | [**DebtorDTO**](DebtorDTO.md) |  | [optional] 
+**contract** | [**ContractReferenceDTO**](ContractReferenceDTO.md) |  | [optional] 
 **original_billing_completeness_id** | **str** |  | [optional] 
 **product** | [**ProductReferenceDTO**](ProductReferenceDTO.md) |  | [optional] 
 **calculation_date** | **datetime** |  | [optional] 
@@ -19,6 +19,14 @@ Name | Type | Description | Notes
 **lines** | [**List[EstimatedInvoiceLineDTO]**](EstimatedInvoiceLineDTO.md) |  | [optional] 
 **advances** | [**List[EstimatedAdvancePeriodDTO]**](EstimatedAdvancePeriodDTO.md) |  | [optional] 
 **accuracy** | [**Level**](Level.md) |  | [optional] 
+**organisation_id** | **str** |  | [optional] 
+**id** | **str** |  | [optional] 
+**entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
+**created_date_time** | **datetime** |  | [optional] 
+**discriminator** | **str** |  | [optional] 
+**etag** | **str** |  | [optional] 
+**has_errors** | **bool** |  | [optional] 
+**is_read_only** | **bool** |  | [optional] 
 
 ## Example
 

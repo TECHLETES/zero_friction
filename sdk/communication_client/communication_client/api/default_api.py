@@ -25,10 +25,12 @@ from communication_client.models.api_response_dtoof_communication_product_usage_
 from communication_client.models.api_response_dtoof_communication_provider_account_dto import ApiResponseDTOOfCommunicationProviderAccountDTO
 from communication_client.models.api_response_dtoof_communication_subject_dto import ApiResponseDTOOfCommunicationSubjectDTO
 from communication_client.models.api_response_dtoof_communication_subject_overview_count_dto import ApiResponseDTOOfCommunicationSubjectOverviewCountDTO
+from communication_client.models.api_response_dtoof_migration_latest_version_dto import ApiResponseDTOOfMigrationLatestVersionDTO
 from communication_client.models.api_response_dtoof_paged_response_model_dtoof_communication_entry_dto import ApiResponseDTOOfPagedResponseModelDTOOfCommunicationEntryDTO
 from communication_client.models.api_response_dtoof_paged_response_model_dtoof_communication_provider_account_dto import ApiResponseDTOOfPagedResponseModelDTOOfCommunicationProviderAccountDTO
 from communication_client.models.api_response_dtoof_paged_response_model_dtoof_communication_subject_dto import ApiResponseDTOOfPagedResponseModelDTOOfCommunicationSubjectDTO
 from communication_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from communication_client.models.api_response_dto_ofstring import ApiResponseDTOOfstring
 from communication_client.models.bulk_ignore_communication_subjects_request import BulkIgnoreCommunicationSubjectsRequest
 from communication_client.models.bulk_send_communication_subjects_via_request import BulkSendCommunicationSubjectsViaRequest
 from communication_client.models.create_communication_provider_account_request import CreateCommunicationProviderAccountRequest
@@ -38,6 +40,7 @@ from communication_client.models.get_communication_entries_query_params import G
 from communication_client.models.get_communication_provider_accounts_query_params import GetCommunicationProviderAccountsQueryParams
 from communication_client.models.get_communication_subjects_query_params import GetCommunicationSubjectsQueryParams
 from communication_client.models.resend_communication_entry_request import ResendCommunicationEntryRequest
+from communication_client.models.start_communication_provider_onboarding_request import StartCommunicationProviderOnboardingRequest
 
 from communication_client.api_client import ApiClient, RequestSerialized
 from communication_client.api_response import ApiResponse
@@ -351,6 +354,252 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/CommunicationSubjects/{entitySubjectType}/{subjectId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_migrationadmin_latest_version(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfMigrationLatestVersionDTO:
+        """/MigrationAdmin/latest-version - GET
+
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_migrationadmin_latest_version_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMigrationLatestVersionDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_migrationadmin_latest_version_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfMigrationLatestVersionDTO]:
+        """/MigrationAdmin/latest-version - GET
+
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_migrationadmin_latest_version_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMigrationLatestVersionDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_migrationadmin_latest_version_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """/MigrationAdmin/latest-version - GET
+
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_migrationadmin_latest_version_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMigrationLatestVersionDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_migrationadmin_latest_version_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/MigrationAdmin/latest-version',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3603,6 +3852,924 @@ class DefaultApi:
 
 
     @validate_call
+    def post_communicationprovideraccounts_id_resumeonboarding(
+        self,
+        id: Annotated[StrictStr, Field(description="The communication provider account ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfstring:
+        """Resumes Suspended provider onboarding and returns a new verification URL.
+
+        Resumes Suspended provider onboarding and returns a new verification URL.
+
+        :param id: The communication provider account ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_communicationprovideraccounts_id_resumeonboarding_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTOOfstring",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def post_communicationprovideraccounts_id_resumeonboarding_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The communication provider account ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfstring]:
+        """Resumes Suspended provider onboarding and returns a new verification URL.
+
+        Resumes Suspended provider onboarding and returns a new verification URL.
+
+        :param id: The communication provider account ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_communicationprovideraccounts_id_resumeonboarding_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTOOfstring",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def post_communicationprovideraccounts_id_resumeonboarding_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The communication provider account ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Resumes Suspended provider onboarding and returns a new verification URL.
+
+        Resumes Suspended provider onboarding and returns a new verification URL.
+
+        :param id: The communication provider account ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_communicationprovideraccounts_id_resumeonboarding_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTOOfstring",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _post_communicationprovideraccounts_id_resumeonboarding_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/CommunicationProviderAccounts/{id}/resumeonboarding',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def post_communicationprovideraccounts_type_prevalidateonboarding(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        start_communication_provider_onboarding_request: Annotated[Optional[StartCommunicationProviderOnboardingRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """Soft-gates organisation identifiers for provider onboarding without starting onboarding. Always returns HTTP 200; Success=false when identifiers are invalid (no DomainNotification toasts).
+
+        Soft-gates organisation identifiers for provider onboarding without starting onboarding. Always returns HTTP 200; Success=false when identifiers are invalid (no DomainNotification toasts).
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param start_communication_provider_onboarding_request: Propagates notification that operations should be canceled.
+        :type start_communication_provider_onboarding_request: StartCommunicationProviderOnboardingRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_communicationprovideraccounts_type_prevalidateonboarding_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            start_communication_provider_onboarding_request=start_communication_provider_onboarding_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def post_communicationprovideraccounts_type_prevalidateonboarding_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        start_communication_provider_onboarding_request: Annotated[Optional[StartCommunicationProviderOnboardingRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """Soft-gates organisation identifiers for provider onboarding without starting onboarding. Always returns HTTP 200; Success=false when identifiers are invalid (no DomainNotification toasts).
+
+        Soft-gates organisation identifiers for provider onboarding without starting onboarding. Always returns HTTP 200; Success=false when identifiers are invalid (no DomainNotification toasts).
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param start_communication_provider_onboarding_request: Propagates notification that operations should be canceled.
+        :type start_communication_provider_onboarding_request: StartCommunicationProviderOnboardingRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_communicationprovideraccounts_type_prevalidateonboarding_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            start_communication_provider_onboarding_request=start_communication_provider_onboarding_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def post_communicationprovideraccounts_type_prevalidateonboarding_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        start_communication_provider_onboarding_request: Annotated[Optional[StartCommunicationProviderOnboardingRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Soft-gates organisation identifiers for provider onboarding without starting onboarding. Always returns HTTP 200; Success=false when identifiers are invalid (no DomainNotification toasts).
+
+        Soft-gates organisation identifiers for provider onboarding without starting onboarding. Always returns HTTP 200; Success=false when identifiers are invalid (no DomainNotification toasts).
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param start_communication_provider_onboarding_request: Propagates notification that operations should be canceled.
+        :type start_communication_provider_onboarding_request: StartCommunicationProviderOnboardingRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_communicationprovideraccounts_type_prevalidateonboarding_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            start_communication_provider_onboarding_request=start_communication_provider_onboarding_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _post_communicationprovideraccounts_type_prevalidateonboarding_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        start_communication_provider_onboarding_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if start_communication_provider_onboarding_request is not None:
+            _body_params = start_communication_provider_onboarding_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/CommunicationProviderAccounts/type/prevalidateonboarding',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def post_communicationprovideraccounts_type_startonboarding(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        start_communication_provider_onboarding_request: Annotated[Optional[StartCommunicationProviderOnboardingRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfstring:
+        """Starts synchronous onboarding for a communication provider account and returns the verification URL.
+
+        Starts synchronous onboarding for a communication provider account and returns the verification URL.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param start_communication_provider_onboarding_request: Propagates notification that operations should be canceled.
+        :type start_communication_provider_onboarding_request: StartCommunicationProviderOnboardingRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_communicationprovideraccounts_type_startonboarding_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            start_communication_provider_onboarding_request=start_communication_provider_onboarding_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTOOfstring",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def post_communicationprovideraccounts_type_startonboarding_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        start_communication_provider_onboarding_request: Annotated[Optional[StartCommunicationProviderOnboardingRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfstring]:
+        """Starts synchronous onboarding for a communication provider account and returns the verification URL.
+
+        Starts synchronous onboarding for a communication provider account and returns the verification URL.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param start_communication_provider_onboarding_request: Propagates notification that operations should be canceled.
+        :type start_communication_provider_onboarding_request: StartCommunicationProviderOnboardingRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_communicationprovideraccounts_type_startonboarding_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            start_communication_provider_onboarding_request=start_communication_provider_onboarding_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTOOfstring",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def post_communicationprovideraccounts_type_startonboarding_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        start_communication_provider_onboarding_request: Annotated[Optional[StartCommunicationProviderOnboardingRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Starts synchronous onboarding for a communication provider account and returns the verification URL.
+
+        Starts synchronous onboarding for a communication provider account and returns the verification URL.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param start_communication_provider_onboarding_request: Propagates notification that operations should be canceled.
+        :type start_communication_provider_onboarding_request: StartCommunicationProviderOnboardingRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_communicationprovideraccounts_type_startonboarding_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            start_communication_provider_onboarding_request=start_communication_provider_onboarding_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTOOfstring",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _post_communicationprovideraccounts_type_startonboarding_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        start_communication_provider_onboarding_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if start_communication_provider_onboarding_request is not None:
+            _body_params = start_communication_provider_onboarding_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/CommunicationProviderAccounts/type/startonboarding',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def post_communicationsubjects_bulk_ignore(
         self,
         zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
@@ -4911,6 +6078,258 @@ class DefaultApi:
 
 
     @validate_call
+    def post_webhook_einvoicing_recommand(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
+
+        Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_webhook_einvoicing_recommand_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def post_webhook_einvoicing_recommand_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
+
+        Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_webhook_einvoicing_recommand_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def post_webhook_einvoicing_recommand_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
+
+        Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_webhook_einvoicing_recommand_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _post_webhook_einvoicing_recommand_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/Webhook/einvoicing/recommand',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def post_webhook_email_sendgrid(
         self,
         _request_timeout: Union[
@@ -5696,6 +7115,1536 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/Webhook/sms/twilio/{tenantId}/{organisationId}/{communicationEntryId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_communicationentries_resend(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        resend_communication_entry_request: Annotated[Optional[ResendCommunicationEntryRequest], Field(description="The cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Resends a communication entry using the same settings as the original.
+
+        Resends a communication entry using the same settings as the original.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param resend_communication_entry_request: The cancellation token.
+        :type resend_communication_entry_request: ResendCommunicationEntryRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationentries_resend_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            resend_communication_entry_request=resend_communication_entry_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_communicationentries_resend_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        resend_communication_entry_request: Annotated[Optional[ResendCommunicationEntryRequest], Field(description="The cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Resends a communication entry using the same settings as the original.
+
+        Resends a communication entry using the same settings as the original.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param resend_communication_entry_request: The cancellation token.
+        :type resend_communication_entry_request: ResendCommunicationEntryRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationentries_resend_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            resend_communication_entry_request=resend_communication_entry_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_communicationentries_resend_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        resend_communication_entry_request: Annotated[Optional[ResendCommunicationEntryRequest], Field(description="The cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Resends a communication entry using the same settings as the original.
+
+        Resends a communication entry using the same settings as the original.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param resend_communication_entry_request: The cancellation token.
+        :type resend_communication_entry_request: ResendCommunicationEntryRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationentries_resend_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            resend_communication_entry_request=resend_communication_entry_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_communicationentries_resend_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        resend_communication_entry_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if resend_communication_entry_request is not None:
+            _body_params = resend_communication_entry_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CommunicationEntries/resend',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_communicationprovideraccounts_id_disconnect(
+        self,
+        id: Annotated[StrictStr, Field(description="The communication provider account ID to disconnect")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfCommunicationProviderAccountDTO:
+        """Disconnect a communication provider account and set it to inactive status.
+
+        Disconnect a communication provider account and set it to inactive status.
+
+        :param id: The communication provider account ID to disconnect (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationprovideraccounts_id_disconnect_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfCommunicationProviderAccountDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_communicationprovideraccounts_id_disconnect_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The communication provider account ID to disconnect")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfCommunicationProviderAccountDTO]:
+        """Disconnect a communication provider account and set it to inactive status.
+
+        Disconnect a communication provider account and set it to inactive status.
+
+        :param id: The communication provider account ID to disconnect (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationprovideraccounts_id_disconnect_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfCommunicationProviderAccountDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_communicationprovideraccounts_id_disconnect_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The communication provider account ID to disconnect")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Disconnect a communication provider account and set it to inactive status.
+
+        Disconnect a communication provider account and set it to inactive status.
+
+        :param id: The communication provider account ID to disconnect (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationprovideraccounts_id_disconnect_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfCommunicationProviderAccountDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_communicationprovideraccounts_id_disconnect_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CommunicationProviderAccounts/{id}/disconnect',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_communicationprovideraccounts_id_resumeonboarding(
+        self,
+        id: Annotated[StrictStr, Field(description="The communication provider account ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfstring:
+        """Resumes Suspended provider onboarding and returns a new verification URL.
+
+        Resumes Suspended provider onboarding and returns a new verification URL.
+
+        :param id: The communication provider account ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationprovideraccounts_id_resumeonboarding_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTOOfstring",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_communicationprovideraccounts_id_resumeonboarding_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The communication provider account ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfstring]:
+        """Resumes Suspended provider onboarding and returns a new verification URL.
+
+        Resumes Suspended provider onboarding and returns a new verification URL.
+
+        :param id: The communication provider account ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationprovideraccounts_id_resumeonboarding_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTOOfstring",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_communicationprovideraccounts_id_resumeonboarding_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The communication provider account ID.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Resumes Suspended provider onboarding and returns a new verification URL.
+
+        Resumes Suspended provider onboarding and returns a new verification URL.
+
+        :param id: The communication provider account ID. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationprovideraccounts_id_resumeonboarding_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ApiResponseDTOOfstring",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_communicationprovideraccounts_id_resumeonboarding_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CommunicationProviderAccounts/{id}/resumeonboarding',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_communicationsubjects_bulk_ignore(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_ignore_communication_subjects_request: Annotated[Optional[BulkIgnoreCommunicationSubjectsRequest], Field(description="The cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """Ignores communication subjects in bulk.
+
+        Ignores communication subjects in bulk.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_ignore_communication_subjects_request: The cancellation token.
+        :type bulk_ignore_communication_subjects_request: BulkIgnoreCommunicationSubjectsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationsubjects_bulk_ignore_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_ignore_communication_subjects_request=bulk_ignore_communication_subjects_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_communicationsubjects_bulk_ignore_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_ignore_communication_subjects_request: Annotated[Optional[BulkIgnoreCommunicationSubjectsRequest], Field(description="The cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """Ignores communication subjects in bulk.
+
+        Ignores communication subjects in bulk.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_ignore_communication_subjects_request: The cancellation token.
+        :type bulk_ignore_communication_subjects_request: BulkIgnoreCommunicationSubjectsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationsubjects_bulk_ignore_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_ignore_communication_subjects_request=bulk_ignore_communication_subjects_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_communicationsubjects_bulk_ignore_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_ignore_communication_subjects_request: Annotated[Optional[BulkIgnoreCommunicationSubjectsRequest], Field(description="The cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Ignores communication subjects in bulk.
+
+        Ignores communication subjects in bulk.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_ignore_communication_subjects_request: The cancellation token.
+        :type bulk_ignore_communication_subjects_request: BulkIgnoreCommunicationSubjectsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationsubjects_bulk_ignore_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_ignore_communication_subjects_request=bulk_ignore_communication_subjects_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_communicationsubjects_bulk_ignore_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        bulk_ignore_communication_subjects_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if bulk_ignore_communication_subjects_request is not None:
+            _body_params = bulk_ignore_communication_subjects_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CommunicationSubjects/bulk/ignore',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_communicationsubjects_bulk_sendvia(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_send_communication_subjects_via_request: Optional[BulkSendCommunicationSubjectsViaRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfCommunicationSubjectDTO:
+        """Sends communication subjects via a method in bulk.
+
+        Sends communication subjects via a method in bulk.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_send_communication_subjects_via_request: 
+        :type bulk_send_communication_subjects_via_request: BulkSendCommunicationSubjectsViaRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationsubjects_bulk_sendvia_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_send_communication_subjects_via_request=bulk_send_communication_subjects_via_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfCommunicationSubjectDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_communicationsubjects_bulk_sendvia_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_send_communication_subjects_via_request: Optional[BulkSendCommunicationSubjectsViaRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfCommunicationSubjectDTO]:
+        """Sends communication subjects via a method in bulk.
+
+        Sends communication subjects via a method in bulk.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_send_communication_subjects_via_request: 
+        :type bulk_send_communication_subjects_via_request: BulkSendCommunicationSubjectsViaRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationsubjects_bulk_sendvia_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_send_communication_subjects_via_request=bulk_send_communication_subjects_via_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfCommunicationSubjectDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_communicationsubjects_bulk_sendvia_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_send_communication_subjects_via_request: Optional[BulkSendCommunicationSubjectsViaRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Sends communication subjects via a method in bulk.
+
+        Sends communication subjects via a method in bulk.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_send_communication_subjects_via_request: 
+        :type bulk_send_communication_subjects_via_request: BulkSendCommunicationSubjectsViaRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_communicationsubjects_bulk_sendvia_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_send_communication_subjects_via_request=bulk_send_communication_subjects_via_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfCommunicationSubjectDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_communicationsubjects_bulk_sendvia_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        bulk_send_communication_subjects_via_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if bulk_send_communication_subjects_via_request is not None:
+            _body_params = bulk_send_communication_subjects_via_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/CommunicationSubjects/bulk/sendvia',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

@@ -36,7 +36,10 @@ class TestPortalSelfServiceOptionsDTO(unittest.TestCase):
         if include_optional:
             return PortalSelfServiceOptionsDTO(
                 allow_edit_communication_details = True,
-                allow_edit_personal_information = True
+                allow_change_communication_language = True,
+                allow_edit_personal_information = True,
+                allow_change_banking_details = True,
+                allow_sdd_to_sct = True
             )
         else:
             return PortalSelfServiceOptionsDTO(

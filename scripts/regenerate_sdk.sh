@@ -17,15 +17,17 @@ clients=(
   "RegionalRegulations-1-0.yaml|regionalregulations_client"
 )
 auto_approve=0
+force_regenerate=0
 fetch_options=()
 
 usage() {
   cat <<'EOF'
-Usage: scripts/regenerate_sdk.sh [--yes|--non-interactive] [--api-version VERSION] [--base-url URL]
+Usage: scripts/regenerate_sdk.sh [--yes|--non-interactive] [--force] [--api-version VERSION] [--base-url URL]
 
-Fetch current OpenAPI specs, prompt before regenerating if any differ, then
-regenerate all SDK clients. --yes and --non-interactive accept spec updates
-without prompting. Fetch options are passed to fetch_openapi_specs.py.
+Fetch current OpenAPI specs and regenerate all SDK clients when they differ.
+If specs match, regeneration is skipped unless --force is supplied. --yes and
+--non-interactive accept spec updates without prompting. Fetch options are
+passed to fetch_openapi_specs.py.
 EOF
 }
 
@@ -33,6 +35,10 @@ while [[ "$#" -gt 0 ]]; do
   case "$1" in
     --yes|-y|--non-interactive)
       auto_approve=1
+      shift
+      ;;
+    --force)
+      force_regenerate=1
       shift
       ;;
     --api-version|--base-url)
@@ -136,6 +142,10 @@ if [[ "${#changed_specs[@]}" -gt 0 ]]; then
   fi
 else
   printf 'Fetched OpenAPI specs match the current files.\n'
+  if [[ "$force_regenerate" -eq 0 ]]; then
+    printf 'SDK regeneration skipped; use --force to regenerate unchanged specs.\n'
+    exit 0
+  fi
 fi
 
 if ! command -v docker >/dev/null 2>&1; then

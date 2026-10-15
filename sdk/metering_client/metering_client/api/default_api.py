@@ -1977,6 +1977,318 @@ class DefaultApi:
 
 
     @validate_call
+    def delete_measurements_bulk_delete(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_delete_measurement_request: Annotated[Optional[BulkDeleteMeasurementRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Bulk deletes measurements based on specified criteria.
+
+        Bulk deletes measurements based on specified criteria.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_delete_measurement_request: Cancellation token.
+        :type bulk_delete_measurement_request: BulkDeleteMeasurementRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_measurements_bulk_delete_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_delete_measurement_request=bulk_delete_measurement_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_measurements_bulk_delete_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_delete_measurement_request: Annotated[Optional[BulkDeleteMeasurementRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Bulk deletes measurements based on specified criteria.
+
+        Bulk deletes measurements based on specified criteria.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_delete_measurement_request: Cancellation token.
+        :type bulk_delete_measurement_request: BulkDeleteMeasurementRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_measurements_bulk_delete_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_delete_measurement_request=bulk_delete_measurement_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_measurements_bulk_delete_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_delete_measurement_request: Annotated[Optional[BulkDeleteMeasurementRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Bulk deletes measurements based on specified criteria.
+
+        Bulk deletes measurements based on specified criteria.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_delete_measurement_request: Cancellation token.
+        :type bulk_delete_measurement_request: BulkDeleteMeasurementRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_measurements_bulk_delete_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_delete_measurement_request=bulk_delete_measurement_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_measurements_bulk_delete_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        bulk_delete_measurement_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if bulk_delete_measurement_request is not None:
+            _body_params = bulk_delete_measurement_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/Measurements/bulk/delete',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def delete_measurements_extchuuid_delete_measurementid(
         self,
         extchuuid: Annotated[StrictStr, Field(description="The external channel identifier.")],
@@ -27245,6 +27557,3151 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/ServiceConsumptions/yearlyaverage',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_consumptions_extchuuid_recalculate(
+        self,
+        extchuuid: Annotated[StrictStr, Field(description="The external channel UUID to recalculate consumption data for.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        start_date_time: Annotated[Optional[datetime], Field(description="The start date and time for the consumption data range to recalculate.")] = None,
+        end_date_time: Annotated[Optional[datetime], Field(description="The end date and time for the consumption data range to recalculate.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Recalculates consumption values for a specific channel within a given date range.
+
+        Recalculates consumption values for a specific channel within a given date range.
+
+        :param extchuuid: The external channel UUID to recalculate consumption data for. (required)
+        :type extchuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param start_date_time: The start date and time for the consumption data range to recalculate.
+        :type start_date_time: datetime
+        :param end_date_time: The end date and time for the consumption data range to recalculate.
+        :type end_date_time: datetime
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_consumptions_extchuuid_recalculate_serialize(
+            extchuuid=extchuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            start_date_time=start_date_time,
+            end_date_time=end_date_time,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_consumptions_extchuuid_recalculate_with_http_info(
+        self,
+        extchuuid: Annotated[StrictStr, Field(description="The external channel UUID to recalculate consumption data for.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        start_date_time: Annotated[Optional[datetime], Field(description="The start date and time for the consumption data range to recalculate.")] = None,
+        end_date_time: Annotated[Optional[datetime], Field(description="The end date and time for the consumption data range to recalculate.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Recalculates consumption values for a specific channel within a given date range.
+
+        Recalculates consumption values for a specific channel within a given date range.
+
+        :param extchuuid: The external channel UUID to recalculate consumption data for. (required)
+        :type extchuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param start_date_time: The start date and time for the consumption data range to recalculate.
+        :type start_date_time: datetime
+        :param end_date_time: The end date and time for the consumption data range to recalculate.
+        :type end_date_time: datetime
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_consumptions_extchuuid_recalculate_serialize(
+            extchuuid=extchuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            start_date_time=start_date_time,
+            end_date_time=end_date_time,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_consumptions_extchuuid_recalculate_without_preload_content(
+        self,
+        extchuuid: Annotated[StrictStr, Field(description="The external channel UUID to recalculate consumption data for.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        start_date_time: Annotated[Optional[datetime], Field(description="The start date and time for the consumption data range to recalculate.")] = None,
+        end_date_time: Annotated[Optional[datetime], Field(description="The end date and time for the consumption data range to recalculate.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Recalculates consumption values for a specific channel within a given date range.
+
+        Recalculates consumption values for a specific channel within a given date range.
+
+        :param extchuuid: The external channel UUID to recalculate consumption data for. (required)
+        :type extchuuid: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param start_date_time: The start date and time for the consumption data range to recalculate.
+        :type start_date_time: datetime
+        :param end_date_time: The end date and time for the consumption data range to recalculate.
+        :type end_date_time: datetime
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_consumptions_extchuuid_recalculate_serialize(
+            extchuuid=extchuuid,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            start_date_time=start_date_time,
+            end_date_time=end_date_time,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_consumptions_extchuuid_recalculate_serialize(
+        self,
+        extchuuid,
+        zf_tuuid,
+        zf_ouuid,
+        start_date_time,
+        end_date_time,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if extchuuid is not None:
+            _path_params['extchuuid'] = extchuuid
+        # process the query parameters
+        if start_date_time is not None:
+            if isinstance(start_date_time, datetime):
+                _query_params.append(
+                    (
+                        'startDateTime',
+                        start_date_time.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('startDateTime', start_date_time))
+            
+        if end_date_time is not None:
+            if isinstance(end_date_time, datetime):
+                _query_params.append(
+                    (
+                        'endDateTime',
+                        end_date_time.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('endDateTime', end_date_time))
+            
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Consumptions/{extchuuid}/recalculate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_integrations_import_process(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_process_metering_import_request: Annotated[Optional[BulkProcessMeteringImportRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """Processes all selected imports if they have the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since bee
+
+        Processes all selected imports if they have the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the new measurements will be processed as well.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_process_metering_import_request: Propagates notification that operations should be canceled.
+        :type bulk_process_metering_import_request: BulkProcessMeteringImportRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_import_process_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_process_metering_import_request=bulk_process_metering_import_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_integrations_import_process_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_process_metering_import_request: Annotated[Optional[BulkProcessMeteringImportRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """Processes all selected imports if they have the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since bee
+
+        Processes all selected imports if they have the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the new measurements will be processed as well.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_process_metering_import_request: Propagates notification that operations should be canceled.
+        :type bulk_process_metering_import_request: BulkProcessMeteringImportRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_import_process_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_process_metering_import_request=bulk_process_metering_import_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_integrations_import_process_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_process_metering_import_request: Annotated[Optional[BulkProcessMeteringImportRequest], Field(description="Propagates notification that operations should be canceled.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Processes all selected imports if they have the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since bee
+
+        Processes all selected imports if they have the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the new measurements will be processed as well.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_process_metering_import_request: Propagates notification that operations should be canceled.
+        :type bulk_process_metering_import_request: BulkProcessMeteringImportRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_import_process_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_process_metering_import_request=bulk_process_metering_import_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_integrations_import_process_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        bulk_process_metering_import_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if bulk_process_metering_import_request is not None:
+            _body_params = bulk_process_metering_import_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Integrations/import/process',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_integrations_import_process_meteringimportid(
+        self,
+        metering_import_id: Annotated[StrictStr, Field(description="Unique identifier of the import")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTO:
+        """Processes the import if it has the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the 
+
+        Processes the import if it has the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the new measurements will be processed as well.
+
+        :param metering_import_id: Unique identifier of the import (required)
+        :type metering_import_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_import_process_meteringimportid_serialize(
+            metering_import_id=metering_import_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ApiResponseDTO",
+            '200': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_integrations_import_process_meteringimportid_with_http_info(
+        self,
+        metering_import_id: Annotated[StrictStr, Field(description="Unique identifier of the import")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTO]:
+        """Processes the import if it has the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the 
+
+        Processes the import if it has the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the new measurements will be processed as well.
+
+        :param metering_import_id: Unique identifier of the import (required)
+        :type metering_import_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_import_process_meteringimportid_serialize(
+            metering_import_id=metering_import_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ApiResponseDTO",
+            '200': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_integrations_import_process_meteringimportid_without_preload_content(
+        self,
+        metering_import_id: Annotated[StrictStr, Field(description="Unique identifier of the import")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Processes the import if it has the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the 
+
+        Processes the import if it has the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the new measurements will be processed as well.
+
+        :param metering_import_id: Unique identifier of the import (required)
+        :type metering_import_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_import_process_meteringimportid_serialize(
+            metering_import_id=metering_import_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ApiResponseDTO",
+            '200': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_integrations_import_process_meteringimportid_serialize(
+        self,
+        metering_import_id,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if metering_import_id is not None:
+            _path_params['meteringImportId'] = metering_import_id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Integrations/import/process/{meteringImportId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_integrations_import_processall(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Processes all imports that have status 'To process' and 'Processed with issues'
+
+        Processes all imports that have status 'To process' and 'Processed with issues'
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_import_processall_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ApiResponseDTO",
+            '200': "ApiResponseDTOOfboolean",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_integrations_import_processall_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Processes all imports that have status 'To process' and 'Processed with issues'
+
+        Processes all imports that have status 'To process' and 'Processed with issues'
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_import_processall_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ApiResponseDTO",
+            '200': "ApiResponseDTOOfboolean",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_integrations_import_processall_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Processes all imports that have status 'To process' and 'Processed with issues'
+
+        Processes all imports that have status 'To process' and 'Processed with issues'
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_integrations_import_processall_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '400': "ApiResponseDTO",
+            '200': "ApiResponseDTOOfboolean",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_integrations_import_processall_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/Integrations/import/processall',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_meteringissues_bulk_ignore(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_ignore_metering_issue_request: Annotated[Optional[BulkIgnoreMeteringIssueRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Ignores multiple metering issues in bulk.
+
+        Ignores multiple metering issues in bulk.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_ignore_metering_issue_request: Cancellation token.
+        :type bulk_ignore_metering_issue_request: BulkIgnoreMeteringIssueRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringissues_bulk_ignore_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_ignore_metering_issue_request=bulk_ignore_metering_issue_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_meteringissues_bulk_ignore_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_ignore_metering_issue_request: Annotated[Optional[BulkIgnoreMeteringIssueRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Ignores multiple metering issues in bulk.
+
+        Ignores multiple metering issues in bulk.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_ignore_metering_issue_request: Cancellation token.
+        :type bulk_ignore_metering_issue_request: BulkIgnoreMeteringIssueRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringissues_bulk_ignore_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_ignore_metering_issue_request=bulk_ignore_metering_issue_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_meteringissues_bulk_ignore_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_ignore_metering_issue_request: Annotated[Optional[BulkIgnoreMeteringIssueRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Ignores multiple metering issues in bulk.
+
+        Ignores multiple metering issues in bulk.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_ignore_metering_issue_request: Cancellation token.
+        :type bulk_ignore_metering_issue_request: BulkIgnoreMeteringIssueRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringissues_bulk_ignore_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_ignore_metering_issue_request=bulk_ignore_metering_issue_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_meteringissues_bulk_ignore_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        bulk_ignore_metering_issue_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if bulk_ignore_metering_issue_request is not None:
+            _body_params = bulk_ignore_metering_issue_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/MeteringIssues/bulk/ignore',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_meteringissues_bulk_resolve(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_resolve_metering_issue_request: Annotated[Optional[BulkResolveMeteringIssueRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Resolves multiple metering issues in bulk.
+
+        Resolves multiple metering issues in bulk.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_resolve_metering_issue_request: Cancellation token.
+        :type bulk_resolve_metering_issue_request: BulkResolveMeteringIssueRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringissues_bulk_resolve_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_resolve_metering_issue_request=bulk_resolve_metering_issue_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_meteringissues_bulk_resolve_with_http_info(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_resolve_metering_issue_request: Annotated[Optional[BulkResolveMeteringIssueRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Resolves multiple metering issues in bulk.
+
+        Resolves multiple metering issues in bulk.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_resolve_metering_issue_request: Cancellation token.
+        :type bulk_resolve_metering_issue_request: BulkResolveMeteringIssueRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringissues_bulk_resolve_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_resolve_metering_issue_request=bulk_resolve_metering_issue_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_meteringissues_bulk_resolve_without_preload_content(
+        self,
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        bulk_resolve_metering_issue_request: Annotated[Optional[BulkResolveMeteringIssueRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Resolves multiple metering issues in bulk.
+
+        Resolves multiple metering issues in bulk.
+
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param bulk_resolve_metering_issue_request: Cancellation token.
+        :type bulk_resolve_metering_issue_request: BulkResolveMeteringIssueRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringissues_bulk_resolve_serialize(
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            bulk_resolve_metering_issue_request=bulk_resolve_metering_issue_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_meteringissues_bulk_resolve_serialize(
+        self,
+        zf_tuuid,
+        zf_ouuid,
+        bulk_resolve_metering_issue_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if bulk_resolve_metering_issue_request is not None:
+            _body_params = bulk_resolve_metering_issue_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/MeteringIssues/bulk/resolve',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_meteringissues_issueid_ignore(
+        self,
+        issue_id: Annotated[StrictStr, Field(description="ID of the metering issue to ignore.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        ignore_metering_issue_request: Annotated[Optional[IgnoreMeteringIssueRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfMeteringIssueDTO:
+        """Ignores a specific metering issue.
+
+        Ignores a specific metering issue.
+
+        :param issue_id: ID of the metering issue to ignore. (required)
+        :type issue_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param ignore_metering_issue_request: Cancellation token.
+        :type ignore_metering_issue_request: IgnoreMeteringIssueRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringissues_issueid_ignore_serialize(
+            issue_id=issue_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            ignore_metering_issue_request=ignore_metering_issue_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMeteringIssueDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_meteringissues_issueid_ignore_with_http_info(
+        self,
+        issue_id: Annotated[StrictStr, Field(description="ID of the metering issue to ignore.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        ignore_metering_issue_request: Annotated[Optional[IgnoreMeteringIssueRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfMeteringIssueDTO]:
+        """Ignores a specific metering issue.
+
+        Ignores a specific metering issue.
+
+        :param issue_id: ID of the metering issue to ignore. (required)
+        :type issue_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param ignore_metering_issue_request: Cancellation token.
+        :type ignore_metering_issue_request: IgnoreMeteringIssueRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringissues_issueid_ignore_serialize(
+            issue_id=issue_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            ignore_metering_issue_request=ignore_metering_issue_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMeteringIssueDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_meteringissues_issueid_ignore_without_preload_content(
+        self,
+        issue_id: Annotated[StrictStr, Field(description="ID of the metering issue to ignore.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        ignore_metering_issue_request: Annotated[Optional[IgnoreMeteringIssueRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Ignores a specific metering issue.
+
+        Ignores a specific metering issue.
+
+        :param issue_id: ID of the metering issue to ignore. (required)
+        :type issue_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param ignore_metering_issue_request: Cancellation token.
+        :type ignore_metering_issue_request: IgnoreMeteringIssueRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringissues_issueid_ignore_serialize(
+            issue_id=issue_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            ignore_metering_issue_request=ignore_metering_issue_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMeteringIssueDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_meteringissues_issueid_ignore_serialize(
+        self,
+        issue_id,
+        zf_tuuid,
+        zf_ouuid,
+        ignore_metering_issue_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if issue_id is not None:
+            _path_params['issueId'] = issue_id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if ignore_metering_issue_request is not None:
+            _body_params = ignore_metering_issue_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/MeteringIssues/{issueId}/ignore',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_meteringissues_issueid_resolve(
+        self,
+        issue_id: Annotated[StrictStr, Field(description="ID of the metering issue to resolve.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        resolve_metering_issue_request: Annotated[Optional[ResolveMeteringIssueRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfMeteringIssueDTO:
+        """Resolves a specific metering issue.
+
+        Resolves a specific metering issue.
+
+        :param issue_id: ID of the metering issue to resolve. (required)
+        :type issue_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param resolve_metering_issue_request: Cancellation token.
+        :type resolve_metering_issue_request: ResolveMeteringIssueRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringissues_issueid_resolve_serialize(
+            issue_id=issue_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            resolve_metering_issue_request=resolve_metering_issue_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMeteringIssueDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_meteringissues_issueid_resolve_with_http_info(
+        self,
+        issue_id: Annotated[StrictStr, Field(description="ID of the metering issue to resolve.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        resolve_metering_issue_request: Annotated[Optional[ResolveMeteringIssueRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfMeteringIssueDTO]:
+        """Resolves a specific metering issue.
+
+        Resolves a specific metering issue.
+
+        :param issue_id: ID of the metering issue to resolve. (required)
+        :type issue_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param resolve_metering_issue_request: Cancellation token.
+        :type resolve_metering_issue_request: ResolveMeteringIssueRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringissues_issueid_resolve_serialize(
+            issue_id=issue_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            resolve_metering_issue_request=resolve_metering_issue_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMeteringIssueDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_meteringissues_issueid_resolve_without_preload_content(
+        self,
+        issue_id: Annotated[StrictStr, Field(description="ID of the metering issue to resolve.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        resolve_metering_issue_request: Annotated[Optional[ResolveMeteringIssueRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Resolves a specific metering issue.
+
+        Resolves a specific metering issue.
+
+        :param issue_id: ID of the metering issue to resolve. (required)
+        :type issue_id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param resolve_metering_issue_request: Cancellation token.
+        :type resolve_metering_issue_request: ResolveMeteringIssueRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringissues_issueid_resolve_serialize(
+            issue_id=issue_id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            resolve_metering_issue_request=resolve_metering_issue_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMeteringIssueDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_meteringissues_issueid_resolve_serialize(
+        self,
+        issue_id,
+        zf_tuuid,
+        zf_ouuid,
+        resolve_metering_issue_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if issue_id is not None:
+            _path_params['issueId'] = issue_id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if resolve_metering_issue_request is not None:
+            _body_params = resolve_metering_issue_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/MeteringIssues/{issueId}/resolve',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_meteringprovideraccounts_id(
+        self,
+        id: Annotated[StrictStr, Field(description="The unique identifier of the metering provider account.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_metering_provider_account_request: Annotated[Optional[UpdateMeteringProviderAccountRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfMeteringProviderAccountDTO:
+        """Updates an existing metering provider account by id.
+
+        Updates an existing metering provider account by id.
+
+        :param id: The unique identifier of the metering provider account. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_metering_provider_account_request: Cancellation token.
+        :type update_metering_provider_account_request: UpdateMeteringProviderAccountRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringprovideraccounts_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_metering_provider_account_request=update_metering_provider_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMeteringProviderAccountDTO",
+            '400': "ApiResponseDTO",
+            '404': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_meteringprovideraccounts_id_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The unique identifier of the metering provider account.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_metering_provider_account_request: Annotated[Optional[UpdateMeteringProviderAccountRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfMeteringProviderAccountDTO]:
+        """Updates an existing metering provider account by id.
+
+        Updates an existing metering provider account by id.
+
+        :param id: The unique identifier of the metering provider account. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_metering_provider_account_request: Cancellation token.
+        :type update_metering_provider_account_request: UpdateMeteringProviderAccountRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringprovideraccounts_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_metering_provider_account_request=update_metering_provider_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMeteringProviderAccountDTO",
+            '400': "ApiResponseDTO",
+            '404': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_meteringprovideraccounts_id_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The unique identifier of the metering provider account.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        update_metering_provider_account_request: Annotated[Optional[UpdateMeteringProviderAccountRequest], Field(description="Cancellation token.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates an existing metering provider account by id.
+
+        Updates an existing metering provider account by id.
+
+        :param id: The unique identifier of the metering provider account. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param update_metering_provider_account_request: Cancellation token.
+        :type update_metering_provider_account_request: UpdateMeteringProviderAccountRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringprovideraccounts_id_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            update_metering_provider_account_request=update_metering_provider_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfMeteringProviderAccountDTO",
+            '400': "ApiResponseDTO",
+            '404': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_meteringprovideraccounts_id_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        update_metering_provider_account_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+        if update_metering_provider_account_request is not None:
+            _body_params = update_metering_provider_account_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json', 
+                        'text/json', 
+                        'application/*+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/MeteringProviderAccounts/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def put_meteringprovideraccounts_id_deactivate(
+        self,
+        id: Annotated[StrictStr, Field(description="The unique identifier of the metering provider account to deactivate.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDTOOfboolean:
+        """Deactivates a metering provider account by id (sets status to inactive).
+
+        Deactivates a metering provider account by id (sets status to inactive).
+
+        :param id: The unique identifier of the metering provider account to deactivate. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringprovideraccounts_id_deactivate_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '404': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def put_meteringprovideraccounts_id_deactivate_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The unique identifier of the metering provider account to deactivate.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDTOOfboolean]:
+        """Deactivates a metering provider account by id (sets status to inactive).
+
+        Deactivates a metering provider account by id (sets status to inactive).
+
+        :param id: The unique identifier of the metering provider account to deactivate. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringprovideraccounts_id_deactivate_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '404': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def put_meteringprovideraccounts_id_deactivate_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The unique identifier of the metering provider account to deactivate.")],
+        zf_tuuid: Annotated[StrictStr, Field(description="Tenant ID")],
+        zf_ouuid: Annotated[StrictStr, Field(description="Organisation ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Deactivates a metering provider account by id (sets status to inactive).
+
+        Deactivates a metering provider account by id (sets status to inactive).
+
+        :param id: The unique identifier of the metering provider account to deactivate. (required)
+        :type id: str
+        :param zf_tuuid: Tenant ID (required)
+        :type zf_tuuid: str
+        :param zf_ouuid: Organisation ID (required)
+        :type zf_ouuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._put_meteringprovideraccounts_id_deactivate_serialize(
+            id=id,
+            zf_tuuid=zf_tuuid,
+            zf_ouuid=zf_ouuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDTOOfboolean",
+            '404': "ApiResponseDTO",
+            '400': "ApiResponseDTO",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _put_meteringprovideraccounts_id_deactivate_serialize(
+        self,
+        id,
+        zf_tuuid,
+        zf_ouuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if zf_tuuid is not None:
+            _header_params['zf-tuuid'] = zf_tuuid
+        if zf_ouuid is not None:
+            _header_params['zf-ouuid'] = zf_ouuid
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/plain', 
+                    'application/json', 
+                    'text/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyQuery', 
+            'apiKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/MeteringProviderAccounts/{id}/deactivate',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

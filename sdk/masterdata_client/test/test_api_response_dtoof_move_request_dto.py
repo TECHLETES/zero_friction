@@ -141,8 +141,8 @@ class TestApiResponseDTOOfMoveRequestDTO(unittest.TestCase):
                         estimations = [
                             masterdata_client.models.contract_estimation_dto.ContractEstimationDTO(
                                 metering_type = 'none', 
-                                value = 1.337, 
-                                consumer_group_id = '', )
+                                consumer_group_id = '', 
+                                consumption_quantity = 1.337, )
                             ], 
                         internal_contract_id = '', 
                         external_contract_id = '', 

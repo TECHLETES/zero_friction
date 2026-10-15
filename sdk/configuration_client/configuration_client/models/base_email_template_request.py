@@ -20,6 +20,9 @@ import re  # noqa: F401
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Optional
 from configuration_client.models.base_email_template_request_update_annual_statement_email_template_request import BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest
+from configuration_client.models.base_email_template_request_update_portal_banking_details_changed_email_template_request import BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest
+from configuration_client.models.base_email_template_request_update_portal_collection_day_changed_email_template_request import BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest
+from configuration_client.models.base_email_template_request_update_portal_communication_language_changed_email_template_request import BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest
 from configuration_client.models.base_email_template_request_update_portal_customer_account_confirmation_email_template_request import BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest
 from configuration_client.models.base_email_template_request_update_portal_customer_reset_account_email_template_request import BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest
 from configuration_client.models.base_email_template_request_update_portal_customer_reset_password_email_template_request import BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest
@@ -32,7 +35,7 @@ from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
 from typing_extensions import Literal, Self
 from pydantic import Field
 
-BASEEMAILTEMPLATEREQUEST_ANY_OF_SCHEMAS = ["BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest"]
+BASEEMAILTEMPLATEREQUEST_ANY_OF_SCHEMAS = ["BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest"]
 
 class BaseEmailTemplateRequest(BaseModel):
     """
@@ -53,15 +56,21 @@ class BaseEmailTemplateRequest(BaseModel):
     anyof_schema_6_validator: Optional[BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest] = None
     # data type: BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest
     anyof_schema_7_validator: Optional[BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest] = None
+    # data type: BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest
+    anyof_schema_8_validator: Optional[BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest] = None
+    # data type: BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest
+    anyof_schema_9_validator: Optional[BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest] = None
+    # data type: BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest
+    anyof_schema_10_validator: Optional[BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest] = None
     # data type: BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest
-    anyof_schema_8_validator: Optional[BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest] = None
+    anyof_schema_11_validator: Optional[BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest] = None
     # data type: BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest
-    anyof_schema_9_validator: Optional[BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest] = None
+    anyof_schema_12_validator: Optional[BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest] = None
     if TYPE_CHECKING:
-        actual_instance: Optional[Union[BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest]] = None
+        actual_instance: Optional[Union[BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest]] = None
     else:
         actual_instance: Any = None
-    any_of_schemas: Set[str] = { "BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest" }
+    any_of_schemas: Set[str] = { "BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest", "BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest" }
 
     model_config = {
         "validate_assignment": True,
@@ -127,6 +136,24 @@ class BaseEmailTemplateRequest(BaseModel):
         else:
             return v
 
+        # validate data type: BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest
+        if not isinstance(v, BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest`")
+        else:
+            return v
+
+        # validate data type: BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest
+        if not isinstance(v, BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest`")
+        else:
+            return v
+
+        # validate data type: BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest
+        if not isinstance(v, BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest`")
+        else:
+            return v
+
         # validate data type: BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest
         if not isinstance(v, BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest):
             error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest`")
@@ -141,7 +168,7 @@ class BaseEmailTemplateRequest(BaseModel):
 
         if error_messages:
             # no match
-            raise ValueError("No match found when setting the actual_instance in BaseEmailTemplateRequest with anyOf schemas: BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting the actual_instance in BaseEmailTemplateRequest with anyOf schemas: BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -196,13 +223,31 @@ class BaseEmailTemplateRequest(BaseModel):
             return instance
         except (ValidationError, ValueError) as e:
              error_messages.append(str(e))
-        # anyof_schema_8_validator: Optional[BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest] = None
+        # anyof_schema_8_validator: Optional[BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_9_validator: Optional[BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_10_validator: Optional[BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_11_validator: Optional[BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest] = None
         try:
             instance.actual_instance = BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest.from_json(json_str)
             return instance
         except (ValidationError, ValueError) as e:
              error_messages.append(str(e))
-        # anyof_schema_9_validator: Optional[BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest] = None
+        # anyof_schema_12_validator: Optional[BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest] = None
         try:
             instance.actual_instance = BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest.from_json(json_str)
             return instance
@@ -211,7 +256,7 @@ class BaseEmailTemplateRequest(BaseModel):
 
         if error_messages:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into BaseEmailTemplateRequest with anyOf schemas: BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into BaseEmailTemplateRequest with anyOf schemas: BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -225,7 +270,7 @@ class BaseEmailTemplateRequest(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], BaseEmailTemplateRequestUpdateAnnualStatementEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalBankingDetailsChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCollectionDayChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCommunicationLanguageChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerAccountConfirmationEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetAccountEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalCustomerResetPasswordEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalEmailChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalInvoiceAddressChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalMobileChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePortalPersonalInformationChangedEmailTemplateRequest, BaseEmailTemplateRequestUpdatePrepaymentStatementEmailTemplateRequest]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

@@ -28,10 +28,11 @@ class UpdateCustomerBankAccountRequest(BaseModel):
     UpdateCustomerBankAccountRequest
     """ # noqa: E501
     is_default: Optional[StrictBool] = Field(default=None, alias="isDefault")
+    changed_by_portal: Optional[StrictBool] = Field(default=None, alias="changedByPortal")
     active_mandate: Optional[UpdateCustomerBankAccountActiveMandateRequest] = Field(default=None, alias="activeMandate")
     iban: Optional[StrictStr] = None
     bic: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["isDefault", "activeMandate", "iban", "bic"]
+    __properties: ClassVar[List[str]] = ["isDefault", "changedByPortal", "activeMandate", "iban", "bic"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,6 +104,7 @@ class UpdateCustomerBankAccountRequest(BaseModel):
 
         _obj = cls.model_validate({
             "isDefault": obj.get("isDefault"),
+            "changedByPortal": obj.get("changedByPortal"),
             "activeMandate": UpdateCustomerBankAccountActiveMandateRequest.from_dict(obj["activeMandate"]) if obj.get("activeMandate") is not None else None,
             "iban": obj.get("iban"),
             "bic": obj.get("bic")

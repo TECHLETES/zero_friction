@@ -29,11 +29,11 @@ class AddMeasurementRequest(BaseModel):
     """
     AddMeasurementRequest
     """ # noqa: E501
-    start_date_time: Optional[datetime] = Field(default=None, alias="startDateTime")
-    end_date_time: datetime = Field(alias="endDateTime")
-    value: Optional[Union[StrictFloat, StrictInt]] = None
-    external_channel_identifier: Optional[StrictStr] = Field(alias="externalChannelIdentifier")
-    meter_id: Optional[StrictStr] = Field(alias="meterId")
+    start_date_time: Optional[datetime] = Field(default=None, description="Optional start of the period the value covers. Omit for a point-in-time meter reading; when set it must differ from endDateTime.", alias="startDateTime")
+    end_date_time: datetime = Field(description="Moment of the reading (ISO 8601 with offset, e.g. 2026-09-01T00:00:00+02:00).", alias="endDateTime")
+    value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The reading, as a JSON number in the channel's unit of measure (channels[].unitOfMeasure on the meter).")
+    external_channel_identifier: Optional[StrictStr] = Field(description="The meter channel to write to: channels[].externalIdentifier from zf_get on masterdata/Meters with the meterId. Not the serial number.", alias="externalChannelIdentifier")
+    meter_id: Optional[StrictStr] = Field(description="Id of the meter, not its serial number. Resolve a serial number with zf_search on masterdata/Meters, filters { \"meterSerialNumbers\": [\"<serial>\"] }.", alias="meterId")
     skip_validation: Optional[StrictBool] = Field(default=None, alias="skipValidation")
     resolve_issues_manually: Optional[StrictBool] = Field(default=None, alias="resolveIssuesManually")
     reading_origin: Optional[MeasurementReadingOrigin] = Field(default=None, alias="readingOrigin")

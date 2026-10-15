@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**create_muting_rule**](DefaultApi.md#create_muting_rule) | **POST** /MutingRules | Creates multiple muting rules in bulk
 [**delete_integrations_import**](DefaultApi.md#delete_integrations_import) | **DELETE** /Integrations/import | Deletes imports based on provided id&#39;s. If there are too many id&#39;s, deletes are done asynchronously
 [**delete_integrations_import_meteringimportid**](DefaultApi.md#delete_integrations_import_meteringimportid) | **DELETE** /Integrations/import/{meteringImportId} | Delete an existing import by it&#39;s identifier
+[**delete_measurements_bulk_delete**](DefaultApi.md#delete_measurements_bulk_delete) | **DELETE** /Measurements/bulk/delete | Bulk deletes measurements based on specified criteria.
 [**delete_measurements_extchuuid_delete_measurementid**](DefaultApi.md#delete_measurements_extchuuid_delete_measurementid) | **DELETE** /Measurements/{extchuuid}/delete/{measurementId} | Deletes a specific measurement from an external channel.
 [**delete_meteringprovideraccounts_id**](DefaultApi.md#delete_meteringprovideraccounts_id) | **DELETE** /MeteringProviderAccounts/{id} | Deletes a metering provider account by id.
 [**get_all_muting_rules**](DefaultApi.md#get_all_muting_rules) | **GET** /MutingRules/getall | Retrieves all muting rules with optional filtering
@@ -81,6 +82,16 @@ Method | HTTP request | Description
 [**post_serviceconsumptions_buckets**](DefaultApi.md#post_serviceconsumptions_buckets) | **POST** /ServiceConsumptions/buckets | Gets consumption data for service locations grouped by provided buckets
 [**post_serviceconsumptions_export_sum**](DefaultApi.md#post_serviceconsumptions_export_sum) | **POST** /ServiceConsumptions/export/sum | Gets sum of consumption values for a list of service locations
 [**post_serviceconsumptions_yearlyaverage**](DefaultApi.md#post_serviceconsumptions_yearlyaverage) | **POST** /ServiceConsumptions/yearlyaverage | Gets yearly average consumption per service location
+[**put_consumptions_extchuuid_recalculate**](DefaultApi.md#put_consumptions_extchuuid_recalculate) | **PUT** /Consumptions/{extchuuid}/recalculate | Recalculates consumption values for a specific channel within a given date range.
+[**put_integrations_import_process**](DefaultApi.md#put_integrations_import_process) | **PUT** /Integrations/import/process | Processes all selected imports if they have the status &#39;Validation failed&#39;, &#39;To process&#39;, or &#39;Processed with issues&#39;. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since bee
+[**put_integrations_import_process_meteringimportid**](DefaultApi.md#put_integrations_import_process_meteringimportid) | **PUT** /Integrations/import/process/{meteringImportId} | Processes the import if it has the status &#39;Validation failed&#39;, &#39;To process&#39;, or &#39;Processed with issues&#39;. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the 
+[**put_integrations_import_processall**](DefaultApi.md#put_integrations_import_processall) | **PUT** /Integrations/import/processall | Processes all imports that have status &#39;To process&#39; and &#39;Processed with issues&#39;
+[**put_meteringissues_bulk_ignore**](DefaultApi.md#put_meteringissues_bulk_ignore) | **PUT** /MeteringIssues/bulk/ignore | Ignores multiple metering issues in bulk.
+[**put_meteringissues_bulk_resolve**](DefaultApi.md#put_meteringissues_bulk_resolve) | **PUT** /MeteringIssues/bulk/resolve | Resolves multiple metering issues in bulk.
+[**put_meteringissues_issueid_ignore**](DefaultApi.md#put_meteringissues_issueid_ignore) | **PUT** /MeteringIssues/{issueId}/ignore | Ignores a specific metering issue.
+[**put_meteringissues_issueid_resolve**](DefaultApi.md#put_meteringissues_issueid_resolve) | **PUT** /MeteringIssues/{issueId}/resolve | Resolves a specific metering issue.
+[**put_meteringprovideraccounts_id**](DefaultApi.md#put_meteringprovideraccounts_id) | **PUT** /MeteringProviderAccounts/{id} | Updates an existing metering provider account by id.
+[**put_meteringprovideraccounts_id_deactivate**](DefaultApi.md#put_meteringprovideraccounts_id_deactivate) | **PUT** /MeteringProviderAccounts/{id}/deactivate | Deactivates a metering provider account by id (sets status to inactive).
 
 
 # **cancel_muting_rule_by_aggregate_details**
@@ -633,6 +644,98 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **404** | Not Found |  -  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_measurements_bulk_delete**
+> ApiResponseDTOOfboolean delete_measurements_bulk_delete(zf_tuuid, zf_ouuid, bulk_delete_measurement_request=bulk_delete_measurement_request)
+
+Bulk deletes measurements based on specified criteria.
+
+Bulk deletes measurements based on specified criteria.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import metering_client
+from metering_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from metering_client.models.bulk_delete_measurement_request import BulkDeleteMeasurementRequest
+from metering_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = metering_client.Configuration(
+    host = "https://api.zerofriction.co/api/me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with metering_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = metering_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_delete_measurement_request = {"onlyValidate":true,"queryParams":{"externalChannelIdentifier":"string","startDateTime":"string","endDateTime":"string","showInvalid":true,"dataFrequency":"pt1m","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkDeleteMeasurementRequest | Cancellation token. (optional)
+
+    try:
+        # Bulk deletes measurements based on specified criteria.
+        api_response = api_instance.delete_measurements_bulk_delete(zf_tuuid, zf_ouuid, bulk_delete_measurement_request=bulk_delete_measurement_request)
+        print("The response of DefaultApi->delete_measurements_bulk_delete:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->delete_measurements_bulk_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_delete_measurement_request** | [**BulkDeleteMeasurementRequest**](BulkDeleteMeasurementRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 
@@ -5414,7 +5517,7 @@ with metering_client.ApiClient(configuration) as api_client:
     api_instance = metering_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    add_measurement_request = {"startDateTime":"string","endDateTime":"string","value":0,"externalChannelIdentifier":"string","meterId":"string","skipValidation":true,"resolveIssuesManually":true,"readingOrigin":"string","readingMethod":"string"} # AddMeasurementRequest | Cancellation token. (optional)
+    add_measurement_request = {"startDateTime":"string","endDateTime":"string","value":0,"externalChannelIdentifier":"string","meterId":"string","skipValidation":true,"resolveIssuesManually":true,"readingOrigin":{},"readingMethod":{}} # AddMeasurementRequest | Cancellation token. (optional)
 
     try:
         # Adds a new measurement for an external channel.
@@ -5689,7 +5792,7 @@ with metering_client.ApiClient(configuration) as api_client:
     api_instance = metering_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    validate_measurement_request = {"startDateTime":"string","endDateTime":"string","value":0,"readingOrigin":"string","meterId":"string","externalChannelId":"string"} # ValidateMeasurementRequest | Cancellation token. (optional)
+    validate_measurement_request = {"startDateTime":"string","endDateTime":"string","value":0,"readingOrigin":{},"meterId":"string","externalChannelId":"string"} # ValidateMeasurementRequest | Cancellation token. (optional)
 
     try:
         # Validates measurements against business rules without persisting them.
@@ -5974,7 +6077,7 @@ with metering_client.ApiClient(configuration) as api_client:
     api_instance = metering_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    bulk_resolve_metering_issue_request = {"onlyValidate":true,"queryParams":{"meterIds":["string"],"noticedStartDateTime":"string","noticedEndDateTime":"string","statuses":["unresolved"],"propertyGroupIds":["string"],"meterModelIds":["string"],"errors":["consumptionnegative"],"readingOrigins":["device"],"dataProviderIds":["string"],"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","message":"string","resolutionValue":{"type":"Measurement","value":0}} # BulkResolveMeteringIssueRequest | Cancellation token. (optional)
+    bulk_resolve_metering_issue_request = {"onlyValidate":true,"queryParams":{"meterIds":["string"],"noticedStartDateTime":"string","noticedEndDateTime":"string","statuses":["unresolved"],"propertyGroupIds":["string"],"meterModelIds":["string"],"errors":["consumptionnegative"],"readingOrigins":["device"],"dataProviderIds":["string"],"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","message":"string","resolutionValue":{}} # BulkResolveMeteringIssueRequest | Cancellation token. (optional)
 
     try:
         # Resolves multiple metering issues in bulk.
@@ -6361,7 +6464,7 @@ with metering_client.ApiClient(configuration) as api_client:
     issue_id = 'issue_id_example' # str | ID of the metering issue to resolve.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    resolve_metering_issue_request = {"message":"string","resolutionValue":{"type":"Measurement","value":0}} # ResolveMeteringIssueRequest | Cancellation token. (optional)
+    resolve_metering_issue_request = {"message":"string","resolutionValue":{}} # ResolveMeteringIssueRequest | Cancellation token. (optional)
 
     try:
         # Resolves a specific metering issue.
@@ -6642,7 +6745,7 @@ with metering_client.ApiClient(configuration) as api_client:
     api_instance = metering_client.DefaultApi(api_client)
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    create_metering_provider_account_request = {"providerType":"brunatawms","settings":{"__type":"BrunataWMS","authenticationClientId":"string","endpointUrl":"string","authenticationClientSecret":"string","supportedBuildingNumbers":[0]}} # CreateMeteringProviderAccountRequest | Cancellation token. (optional)
+    create_metering_provider_account_request = {"providerType":"brunatawms","settings":{}} # CreateMeteringProviderAccountRequest | Cancellation token. (optional)
 
     try:
         # Creates a new metering provider account for the current tenant, or updates settings and sets status to Active if an account already exists for the provider type.
@@ -6830,7 +6933,7 @@ with metering_client.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier of the metering provider account.
     zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
-    update_metering_provider_account_request = {"providerType":"brunatawms","settings":{"__type":"BrunataWMS","authenticationClientId":"string","endpointUrl":"string","authenticationClientSecret":"string","supportedBuildingNumbers":[0]}} # UpdateMeteringProviderAccountRequest | Cancellation token. (optional)
+    update_metering_provider_account_request = {"providerType":"brunatawms","settings":{}} # UpdateMeteringProviderAccountRequest | Cancellation token. (optional)
 
     try:
         # Updates an existing metering provider account by id.
@@ -7018,7 +7121,7 @@ with metering_client.ApiClient(configuration) as api_client:
     zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
     order_by = 'order_by_example' # str | Optional sort expression (e.g. property name or path). (optional)
     continuation_token = 'continuation_token_example' # str | Optional continuation token for the next page (from response header). (optional)
-    get_metering_provider_runs_query_params = {"providerType":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetMeteringProviderRunsQueryParams | Cancellation token. (optional)
+    get_metering_provider_runs_query_params = {"providerType":{},"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0} # GetMeteringProviderRunsQueryParams | Cancellation token. (optional)
 
     try:
         # Retrieves metering provider runs for the current tenant with optional filtering and paging.
@@ -7519,6 +7622,939 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of average service consumption per service location |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_consumptions_extchuuid_recalculate**
+> ApiResponseDTOOfboolean put_consumptions_extchuuid_recalculate(extchuuid, zf_tuuid, zf_ouuid, start_date_time=start_date_time, end_date_time=end_date_time)
+
+Recalculates consumption values for a specific channel within a given date range.
+
+Recalculates consumption values for a specific channel within a given date range.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import metering_client
+from metering_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from metering_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = metering_client.Configuration(
+    host = "https://api.zerofriction.co/api/me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with metering_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = metering_client.DefaultApi(api_client)
+    extchuuid = 'extchuuid_example' # str | The external channel UUID to recalculate consumption data for.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    start_date_time = '2013-10-20T19:20:30+01:00' # datetime | The start date and time for the consumption data range to recalculate. (optional)
+    end_date_time = '2013-10-20T19:20:30+01:00' # datetime | The end date and time for the consumption data range to recalculate. (optional)
+
+    try:
+        # Recalculates consumption values for a specific channel within a given date range.
+        api_response = api_instance.put_consumptions_extchuuid_recalculate(extchuuid, zf_tuuid, zf_ouuid, start_date_time=start_date_time, end_date_time=end_date_time)
+        print("The response of DefaultApi->put_consumptions_extchuuid_recalculate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_consumptions_extchuuid_recalculate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **extchuuid** | **str**| The external channel UUID to recalculate consumption data for. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **start_date_time** | **datetime**| The start date and time for the consumption data range to recalculate. | [optional] 
+ **end_date_time** | **datetime**| The end date and time for the consumption data range to recalculate. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A boolean indicating whether the recalculation was successful. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_integrations_import_process**
+> ApiResponseDTO put_integrations_import_process(zf_tuuid, zf_ouuid, bulk_process_metering_import_request=bulk_process_metering_import_request)
+
+Processes all selected imports if they have the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since bee
+
+Processes all selected imports if they have the status 'Validation failed', 'To process', or 'Processed with issues'.
+Before processing valid measurements, it revalidates any current invalid measurements.
+
+For example, if a meter or channel did not exist when the import was created but has since been added,
+the new measurements will be processed as well.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import metering_client
+from metering_client.models.api_response_dto import ApiResponseDTO
+from metering_client.models.bulk_process_metering_import_request import BulkProcessMeteringImportRequest
+from metering_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = metering_client.Configuration(
+    host = "https://api.zerofriction.co/api/me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with metering_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = metering_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_process_metering_import_request = {"onlyValidate":true,"queryParams":{"status":["string"],"communicationType":"string","meteringFormat":"string","createdStartDateTime":"string","createdEndDateTime":"string","flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string"} # BulkProcessMeteringImportRequest | Propagates notification that operations should be canceled. (optional)
+
+    try:
+        # Processes all selected imports if they have the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since bee
+        api_response = api_instance.put_integrations_import_process(zf_tuuid, zf_ouuid, bulk_process_metering_import_request=bulk_process_metering_import_request)
+        print("The response of DefaultApi->put_integrations_import_process:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_integrations_import_process: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_process_metering_import_request** | [**BulkProcessMeteringImportRequest**](BulkProcessMeteringImportRequest.md)| Propagates notification that operations should be canceled. | [optional] 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_integrations_import_process_meteringimportid**
+> ApiResponseDTO put_integrations_import_process_meteringimportid(metering_import_id, zf_tuuid, zf_ouuid)
+
+Processes the import if it has the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the 
+
+Processes the import if it has the status 'Validation failed', 'To process', or 'Processed with issues'.
+Before processing valid measurements, it revalidates any current invalid measurements.
+
+For example, if a meter or channel did not exist when the import was created but has since been added,
+the new measurements will be processed as well.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import metering_client
+from metering_client.models.api_response_dto import ApiResponseDTO
+from metering_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = metering_client.Configuration(
+    host = "https://api.zerofriction.co/api/me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with metering_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = metering_client.DefaultApi(api_client)
+    metering_import_id = 'metering_import_id_example' # str | Unique identifier of the import
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Processes the import if it has the status 'Validation failed', 'To process', or 'Processed with issues'. Before processing valid measurements, it revalidates any current invalid measurements.  For example, if a meter or channel did not exist when the import was created but has since been added, the 
+        api_response = api_instance.put_integrations_import_process_meteringimportid(metering_import_id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_integrations_import_process_meteringimportid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_integrations_import_process_meteringimportid: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **metering_import_id** | **str**| Unique identifier of the import | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTO**](ApiResponseDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_integrations_import_processall**
+> ApiResponseDTOOfboolean put_integrations_import_processall(zf_tuuid, zf_ouuid)
+
+Processes all imports that have status 'To process' and 'Processed with issues'
+
+Processes all imports that have status 'To process' and 'Processed with issues'
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import metering_client
+from metering_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from metering_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = metering_client.Configuration(
+    host = "https://api.zerofriction.co/api/me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with metering_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = metering_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Processes all imports that have status 'To process' and 'Processed with issues'
+        api_response = api_instance.put_integrations_import_processall(zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_integrations_import_processall:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_integrations_import_processall: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad Request |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_meteringissues_bulk_ignore**
+> ApiResponseDTOOfboolean put_meteringissues_bulk_ignore(zf_tuuid, zf_ouuid, bulk_ignore_metering_issue_request=bulk_ignore_metering_issue_request)
+
+Ignores multiple metering issues in bulk.
+
+Ignores multiple metering issues in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import metering_client
+from metering_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from metering_client.models.bulk_ignore_metering_issue_request import BulkIgnoreMeteringIssueRequest
+from metering_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = metering_client.Configuration(
+    host = "https://api.zerofriction.co/api/me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with metering_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = metering_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_ignore_metering_issue_request = {"onlyValidate":true,"queryParams":{"meterIds":["string"],"noticedStartDateTime":"string","noticedEndDateTime":"string","statuses":["unresolved"],"propertyGroupIds":["string"],"meterModelIds":["string"],"errors":["consumptionnegative"],"readingOrigins":["device"],"dataProviderIds":["string"],"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","message":"string"} # BulkIgnoreMeteringIssueRequest | Cancellation token. (optional)
+
+    try:
+        # Ignores multiple metering issues in bulk.
+        api_response = api_instance.put_meteringissues_bulk_ignore(zf_tuuid, zf_ouuid, bulk_ignore_metering_issue_request=bulk_ignore_metering_issue_request)
+        print("The response of DefaultApi->put_meteringissues_bulk_ignore:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_meteringissues_bulk_ignore: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_ignore_metering_issue_request** | [**BulkIgnoreMeteringIssueRequest**](BulkIgnoreMeteringIssueRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_meteringissues_bulk_resolve**
+> ApiResponseDTOOfboolean put_meteringissues_bulk_resolve(zf_tuuid, zf_ouuid, bulk_resolve_metering_issue_request=bulk_resolve_metering_issue_request)
+
+Resolves multiple metering issues in bulk.
+
+Resolves multiple metering issues in bulk.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import metering_client
+from metering_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from metering_client.models.bulk_resolve_metering_issue_request import BulkResolveMeteringIssueRequest
+from metering_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = metering_client.Configuration(
+    host = "https://api.zerofriction.co/api/me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with metering_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = metering_client.DefaultApi(api_client)
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    bulk_resolve_metering_issue_request = {"onlyValidate":true,"queryParams":{"meterIds":["string"],"noticedStartDateTime":"string","noticedEndDateTime":"string","statuses":["unresolved"],"propertyGroupIds":["string"],"meterModelIds":["string"],"errors":["consumptionnegative"],"readingOrigins":["device"],"dataProviderIds":["string"],"flexSearch":"string","includeOnlyIds":["string"],"excludeIds":["string"],"pageSize":0},"quickFilter":"string","message":"string","resolutionValue":{}} # BulkResolveMeteringIssueRequest | Cancellation token. (optional)
+
+    try:
+        # Resolves multiple metering issues in bulk.
+        api_response = api_instance.put_meteringissues_bulk_resolve(zf_tuuid, zf_ouuid, bulk_resolve_metering_issue_request=bulk_resolve_metering_issue_request)
+        print("The response of DefaultApi->put_meteringissues_bulk_resolve:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_meteringissues_bulk_resolve: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **bulk_resolve_metering_issue_request** | [**BulkResolveMeteringIssueRequest**](BulkResolveMeteringIssueRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_meteringissues_issueid_ignore**
+> ApiResponseDTOOfMeteringIssueDTO put_meteringissues_issueid_ignore(issue_id, zf_tuuid, zf_ouuid, ignore_metering_issue_request=ignore_metering_issue_request)
+
+Ignores a specific metering issue.
+
+Ignores a specific metering issue.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import metering_client
+from metering_client.models.api_response_dtoof_metering_issue_dto import ApiResponseDTOOfMeteringIssueDTO
+from metering_client.models.ignore_metering_issue_request import IgnoreMeteringIssueRequest
+from metering_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = metering_client.Configuration(
+    host = "https://api.zerofriction.co/api/me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with metering_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = metering_client.DefaultApi(api_client)
+    issue_id = 'issue_id_example' # str | ID of the metering issue to ignore.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    ignore_metering_issue_request = {"message":"string"} # IgnoreMeteringIssueRequest | Cancellation token. (optional)
+
+    try:
+        # Ignores a specific metering issue.
+        api_response = api_instance.put_meteringissues_issueid_ignore(issue_id, zf_tuuid, zf_ouuid, ignore_metering_issue_request=ignore_metering_issue_request)
+        print("The response of DefaultApi->put_meteringissues_issueid_ignore:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_meteringissues_issueid_ignore: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **issue_id** | **str**| ID of the metering issue to ignore. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **ignore_metering_issue_request** | [**IgnoreMeteringIssueRequest**](IgnoreMeteringIssueRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfMeteringIssueDTO**](ApiResponseDTOOfMeteringIssueDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_meteringissues_issueid_resolve**
+> ApiResponseDTOOfMeteringIssueDTO put_meteringissues_issueid_resolve(issue_id, zf_tuuid, zf_ouuid, resolve_metering_issue_request=resolve_metering_issue_request)
+
+Resolves a specific metering issue.
+
+Resolves a specific metering issue.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import metering_client
+from metering_client.models.api_response_dtoof_metering_issue_dto import ApiResponseDTOOfMeteringIssueDTO
+from metering_client.models.resolve_metering_issue_request import ResolveMeteringIssueRequest
+from metering_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = metering_client.Configuration(
+    host = "https://api.zerofriction.co/api/me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with metering_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = metering_client.DefaultApi(api_client)
+    issue_id = 'issue_id_example' # str | ID of the metering issue to resolve.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    resolve_metering_issue_request = {"message":"string","resolutionValue":{}} # ResolveMeteringIssueRequest | Cancellation token. (optional)
+
+    try:
+        # Resolves a specific metering issue.
+        api_response = api_instance.put_meteringissues_issueid_resolve(issue_id, zf_tuuid, zf_ouuid, resolve_metering_issue_request=resolve_metering_issue_request)
+        print("The response of DefaultApi->put_meteringissues_issueid_resolve:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_meteringissues_issueid_resolve: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **issue_id** | **str**| ID of the metering issue to resolve. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **resolve_metering_issue_request** | [**ResolveMeteringIssueRequest**](ResolveMeteringIssueRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfMeteringIssueDTO**](ApiResponseDTOOfMeteringIssueDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_meteringprovideraccounts_id**
+> ApiResponseDTOOfMeteringProviderAccountDTO put_meteringprovideraccounts_id(id, zf_tuuid, zf_ouuid, update_metering_provider_account_request=update_metering_provider_account_request)
+
+Updates an existing metering provider account by id.
+
+Updates an existing metering provider account by id.
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import metering_client
+from metering_client.models.api_response_dtoof_metering_provider_account_dto import ApiResponseDTOOfMeteringProviderAccountDTO
+from metering_client.models.update_metering_provider_account_request import UpdateMeteringProviderAccountRequest
+from metering_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = metering_client.Configuration(
+    host = "https://api.zerofriction.co/api/me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with metering_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = metering_client.DefaultApi(api_client)
+    id = 'id_example' # str | The unique identifier of the metering provider account.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+    update_metering_provider_account_request = {"providerType":"brunatawms","settings":{}} # UpdateMeteringProviderAccountRequest | Cancellation token. (optional)
+
+    try:
+        # Updates an existing metering provider account by id.
+        api_response = api_instance.put_meteringprovideraccounts_id(id, zf_tuuid, zf_ouuid, update_metering_provider_account_request=update_metering_provider_account_request)
+        print("The response of DefaultApi->put_meteringprovideraccounts_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_meteringprovideraccounts_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the metering provider account. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+ **update_metering_provider_account_request** | [**UpdateMeteringProviderAccountRequest**](UpdateMeteringProviderAccountRequest.md)| Cancellation token. | [optional] 
+
+### Return type
+
+[**ApiResponseDTOOfMeteringProviderAccountDTO**](ApiResponseDTOOfMeteringProviderAccountDTO.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **put_meteringprovideraccounts_id_deactivate**
+> ApiResponseDTOOfboolean put_meteringprovideraccounts_id_deactivate(id, zf_tuuid, zf_ouuid)
+
+Deactivates a metering provider account by id (sets status to inactive).
+
+Deactivates a metering provider account by id (sets status to inactive).
+
+### Example
+
+* Api Key Authentication (apiKeyQuery):
+* Api Key Authentication (apiKeyHeader):
+
+```python
+import metering_client
+from metering_client.models.api_response_dto_ofboolean import ApiResponseDTOOfboolean
+from metering_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.zerofriction.co/api/me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = metering_client.Configuration(
+    host = "https://api.zerofriction.co/api/me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyQuery
+configuration.api_key['apiKeyQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyQuery'] = 'Bearer'
+
+# Configure API key authorization: apiKeyHeader
+configuration.api_key['apiKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with metering_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = metering_client.DefaultApi(api_client)
+    id = 'id_example' # str | The unique identifier of the metering provider account to deactivate.
+    zf_tuuid = '{\"Tenant ID\":\"{{zf-tuuid}}\"}' # str | Tenant ID
+    zf_ouuid = '{\"Organisation ID\":\"{{zf-ouuid}}\"}' # str | Organisation ID
+
+    try:
+        # Deactivates a metering provider account by id (sets status to inactive).
+        api_response = api_instance.put_meteringprovideraccounts_id_deactivate(id, zf_tuuid, zf_ouuid)
+        print("The response of DefaultApi->put_meteringprovideraccounts_id_deactivate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->put_meteringprovideraccounts_id_deactivate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier of the metering provider account to deactivate. | 
+ **zf_tuuid** | **str**| Tenant ID | 
+ **zf_ouuid** | **str**| Organisation ID | 
+
+### Return type
+
+[**ApiResponseDTOOfboolean**](ApiResponseDTOOfboolean.md)
+
+### Authorization
+
+[apiKeyQuery](../README.md#apiKeyQuery), [apiKeyHeader](../README.md#apiKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**404** | Not Found |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -27,8 +27,11 @@ class PortalSelfServiceOptionsDTO(BaseModel):
     PortalSelfServiceOptionsDTO
     """ # noqa: E501
     allow_edit_communication_details: Optional[StrictBool] = Field(default=None, alias="allowEditCommunicationDetails")
+    allow_change_communication_language: Optional[StrictBool] = Field(default=None, alias="allowChangeCommunicationLanguage")
     allow_edit_personal_information: Optional[StrictBool] = Field(default=None, alias="allowEditPersonalInformation")
-    __properties: ClassVar[List[str]] = ["allowEditCommunicationDetails", "allowEditPersonalInformation"]
+    allow_change_banking_details: Optional[StrictBool] = Field(default=None, alias="allowChangeBankingDetails")
+    allow_sdd_to_sct: Optional[StrictBool] = Field(default=None, alias="allowSddToSct")
+    __properties: ClassVar[List[str]] = ["allowEditCommunicationDetails", "allowChangeCommunicationLanguage", "allowEditPersonalInformation", "allowChangeBankingDetails", "allowSddToSct"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,7 +85,10 @@ class PortalSelfServiceOptionsDTO(BaseModel):
 
         _obj = cls.model_validate({
             "allowEditCommunicationDetails": obj.get("allowEditCommunicationDetails"),
-            "allowEditPersonalInformation": obj.get("allowEditPersonalInformation")
+            "allowChangeCommunicationLanguage": obj.get("allowChangeCommunicationLanguage"),
+            "allowEditPersonalInformation": obj.get("allowEditPersonalInformation"),
+            "allowChangeBankingDetails": obj.get("allowChangeBankingDetails"),
+            "allowSddToSct": obj.get("allowSddToSct")
         })
         return _obj
 

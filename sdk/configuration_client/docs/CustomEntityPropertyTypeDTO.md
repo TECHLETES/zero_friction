@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **translated_fields** | **Dict[str, Dict[str, str]]** |  | [optional] 
 **show_in_header** | **bool** |  | [optional] 
 **tag_color** | [**CustomEntityPropertyTypeTagColor**](CustomEntityPropertyTypeTagColor.md) |  | [optional] 
+**feature_flag** | **str** |  | [optional] 
+**is_locked** | **bool** |  | [optional] 
 **id** | **str** |  | [optional] 
 **entity_type** | [**EntitySubjectType**](EntitySubjectType.md) |  | [optional] 
 **created_date_time** | **datetime** |  | [optional] 

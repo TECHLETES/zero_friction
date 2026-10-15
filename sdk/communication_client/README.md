@@ -105,6 +105,7 @@ All URIs are relative to *https://api.zerofriction.co/api/comm*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**get_communicationsubjects_entitysubjecttype_subjectid**](docs/DefaultApi.md#get_communicationsubjects_entitysubjecttype_subjectid) | **GET** /CommunicationSubjects/{entitySubjectType}/{subjectId} | Retrieves all CommunicationSubjects for a subject
+*DefaultApi* | [**get_migrationadmin_latest_version**](docs/DefaultApi.md#get_migrationadmin_latest_version) | **GET** /MigrationAdmin/latest-version | /MigrationAdmin/latest-version - GET
 *DefaultApi* | [**get_productusage**](docs/DefaultApi.md#get_productusage) | **GET** /ProductUsage | Gets the communication product usage snapshot with integrations per organization.
 *DefaultApi* | [**post_communicationentries_downloadzip**](docs/DefaultApi.md#post_communicationentries_downloadzip) | **POST** /CommunicationEntries/downloadzip | Downloads a zip file containing the specified communication entries.
 *DefaultApi* | [**post_communicationentries_filter**](docs/DefaultApi.md#post_communicationentries_filter) | **POST** /CommunicationEntries/filter | Retrieves communication entries across the organization based on the provided query parameters and filters.
@@ -115,13 +116,22 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**post_communicationprovideraccounts**](docs/DefaultApi.md#post_communicationprovideraccounts) | **POST** /CommunicationProviderAccounts | Create a new communication provider account.
 *DefaultApi* | [**post_communicationprovideraccounts_filter**](docs/DefaultApi.md#post_communicationprovideraccounts_filter) | **POST** /CommunicationProviderAccounts/filter | Retrieve communication provider accounts based on the provided query parameters.
 *DefaultApi* | [**post_communicationprovideraccounts_id_disconnect**](docs/DefaultApi.md#post_communicationprovideraccounts_id_disconnect) | **POST** /CommunicationProviderAccounts/{id}/disconnect | Disconnect a communication provider account and set it to inactive status.
+*DefaultApi* | [**post_communicationprovideraccounts_id_resumeonboarding**](docs/DefaultApi.md#post_communicationprovideraccounts_id_resumeonboarding) | **POST** /CommunicationProviderAccounts/{id}/resumeonboarding | Resumes Suspended provider onboarding and returns a new verification URL.
+*DefaultApi* | [**post_communicationprovideraccounts_type_prevalidateonboarding**](docs/DefaultApi.md#post_communicationprovideraccounts_type_prevalidateonboarding) | **POST** /CommunicationProviderAccounts/type/prevalidateonboarding | Soft-gates organisation identifiers for provider onboarding without starting onboarding. Always returns HTTP 200; Success&#x3D;false when identifiers are invalid (no DomainNotification toasts).
+*DefaultApi* | [**post_communicationprovideraccounts_type_startonboarding**](docs/DefaultApi.md#post_communicationprovideraccounts_type_startonboarding) | **POST** /CommunicationProviderAccounts/type/startonboarding | Starts synchronous onboarding for a communication provider account and returns the verification URL.
 *DefaultApi* | [**post_communicationsubjects_bulk_ignore**](docs/DefaultApi.md#post_communicationsubjects_bulk_ignore) | **POST** /CommunicationSubjects/bulk/ignore | Ignores communication subjects in bulk.
 *DefaultApi* | [**post_communicationsubjects_bulk_sendvia**](docs/DefaultApi.md#post_communicationsubjects_bulk_sendvia) | **POST** /CommunicationSubjects/bulk/sendvia | Sends communication subjects via a method in bulk.
 *DefaultApi* | [**post_communicationsubjects_filter**](docs/DefaultApi.md#post_communicationsubjects_filter) | **POST** /CommunicationSubjects/filter | Retrieves communication entries across the organization based on the provided query parameters and filters.
 *DefaultApi* | [**post_communicationsubjects_filter_overviewcount**](docs/DefaultApi.md#post_communicationsubjects_filter_overviewcount) | **POST** /CommunicationSubjects/filter/overviewcount | Retrieves the overview count of communication entries across the organization.
+*DefaultApi* | [**post_webhook_einvoicing_recommand**](docs/DefaultApi.md#post_webhook_einvoicing_recommand) | **POST** /Webhook/einvoicing/recommand | Handles Recommand webhook events (e-invoicing) and triggers transformation and queueing.
 *DefaultApi* | [**post_webhook_email_sendgrid**](docs/DefaultApi.md#post_webhook_email_sendgrid) | **POST** /Webhook/email/sendgrid | Handles SendGrid webhook events and triggers transformation and queueing.
 *DefaultApi* | [**post_webhook_postal_pingen**](docs/DefaultApi.md#post_webhook_postal_pingen) | **POST** /Webhook/postal/pingen | Handles Pingen webhook events (postal) and triggers transformation and queueing.
 *DefaultApi* | [**post_webhook_sms_twilio_tenantid_organisationid_communicationentryid**](docs/DefaultApi.md#post_webhook_sms_twilio_tenantid_organisationid_communicationentryid) | **POST** /Webhook/sms/twilio/{tenantId}/{organisationId}/{communicationEntryId} | Handles SMS delivery status callbacks from Twilio.
+*DefaultApi* | [**put_communicationentries_resend**](docs/DefaultApi.md#put_communicationentries_resend) | **PUT** /CommunicationEntries/resend | Resends a communication entry using the same settings as the original.
+*DefaultApi* | [**put_communicationprovideraccounts_id_disconnect**](docs/DefaultApi.md#put_communicationprovideraccounts_id_disconnect) | **PUT** /CommunicationProviderAccounts/{id}/disconnect | Disconnect a communication provider account and set it to inactive status.
+*DefaultApi* | [**put_communicationprovideraccounts_id_resumeonboarding**](docs/DefaultApi.md#put_communicationprovideraccounts_id_resumeonboarding) | **PUT** /CommunicationProviderAccounts/{id}/resumeonboarding | Resumes Suspended provider onboarding and returns a new verification URL.
+*DefaultApi* | [**put_communicationsubjects_bulk_ignore**](docs/DefaultApi.md#put_communicationsubjects_bulk_ignore) | **PUT** /CommunicationSubjects/bulk/ignore | Ignores communication subjects in bulk.
+*DefaultApi* | [**put_communicationsubjects_bulk_sendvia**](docs/DefaultApi.md#put_communicationsubjects_bulk_sendvia) | **PUT** /CommunicationSubjects/bulk/sendvia | Sends communication subjects via a method in bulk.
 
 
 ## Documentation For Models
@@ -134,10 +144,12 @@ Class | Method | HTTP request | Description
  - [ApiResponseDTOOfCommunicationProviderAccountDTO](docs/ApiResponseDTOOfCommunicationProviderAccountDTO.md)
  - [ApiResponseDTOOfCommunicationSubjectDTO](docs/ApiResponseDTOOfCommunicationSubjectDTO.md)
  - [ApiResponseDTOOfCommunicationSubjectOverviewCountDTO](docs/ApiResponseDTOOfCommunicationSubjectOverviewCountDTO.md)
+ - [ApiResponseDTOOfMigrationLatestVersionDTO](docs/ApiResponseDTOOfMigrationLatestVersionDTO.md)
  - [ApiResponseDTOOfPagedResponseModelDTOOfCommunicationEntryDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationEntryDTO.md)
  - [ApiResponseDTOOfPagedResponseModelDTOOfCommunicationProviderAccountDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationProviderAccountDTO.md)
  - [ApiResponseDTOOfPagedResponseModelDTOOfCommunicationSubjectDTO](docs/ApiResponseDTOOfPagedResponseModelDTOOfCommunicationSubjectDTO.md)
  - [ApiResponseDTOOfboolean](docs/ApiResponseDTOOfboolean.md)
+ - [ApiResponseDTOOfstring](docs/ApiResponseDTOOfstring.md)
  - [BulkIgnoreCommunicationSubjectsRequest](docs/BulkIgnoreCommunicationSubjectsRequest.md)
  - [BulkSendCommunicationSubjectsViaRequest](docs/BulkSendCommunicationSubjectsViaRequest.md)
  - [CommunicationEntryDTO](docs/CommunicationEntryDTO.md)
@@ -167,12 +179,14 @@ Class | Method | HTTP request | Description
  - [InvoiceType](docs/InvoiceType.md)
  - [LocalisedErrorDTO](docs/LocalisedErrorDTO.md)
  - [LocalisedErrorDTOMessageValue](docs/LocalisedErrorDTOMessageValue.md)
+ - [MigrationLatestVersionDTO](docs/MigrationLatestVersionDTO.md)
  - [MoveRequestType](docs/MoveRequestType.md)
  - [PagedResponseModelDTOOfCommunicationEntryDTO](docs/PagedResponseModelDTOOfCommunicationEntryDTO.md)
  - [PagedResponseModelDTOOfCommunicationProviderAccountDTO](docs/PagedResponseModelDTOOfCommunicationProviderAccountDTO.md)
  - [PagedResponseModelDTOOfCommunicationSubjectDTO](docs/PagedResponseModelDTOOfCommunicationSubjectDTO.md)
  - [ProblemDetails](docs/ProblemDetails.md)
  - [ResendCommunicationEntryRequest](docs/ResendCommunicationEntryRequest.md)
+ - [StartCommunicationProviderOnboardingRequest](docs/StartCommunicationProviderOnboardingRequest.md)
  - [StringSegment](docs/StringSegment.md)
  - [SubjectReferenceParametersDTO](docs/SubjectReferenceParametersDTO.md)
  - [SubjectReferenceParametersDTOBillingRelationSubjectReferenceParametersDTO](docs/SubjectReferenceParametersDTOBillingRelationSubjectReferenceParametersDTO.md)

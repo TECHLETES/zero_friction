@@ -42,6 +42,7 @@ class TestEndNotePdfTemplateRequest(unittest.TestCase):
                 show_vat_specs = True,
                 show_custom_information = True,
                 unit_price_excl_vat_for_persons = True,
+                show_subtotal_before_advances = True,
                 envelope_settings = configuration_client.models.envelope_settings_request.EnvelopeSettingsRequest(
                     margin_position = 'left', 
                     margin = 56, 

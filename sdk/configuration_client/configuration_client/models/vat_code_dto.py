@@ -17,8 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from configuration_client.models.entity_subject_type import EntitySubjectType
+from configuration_client.models.external_accounting_metadata_dto import ExternalAccountingMetadataDTO
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,10 +29,18 @@ class VatCodeDTO(BaseModel):
     """
     VatCodeDTO
     """ # noqa: E501
-    id: Optional[StrictStr] = None
-    code: Optional[StrictStr] = None
     description: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["id", "code", "description"]
+    code: Optional[StrictStr] = None
+    external_accounting_metadata: Optional[ExternalAccountingMetadataDTO] = Field(default=None, alias="externalAccountingMetadata")
+    organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
+    id: Optional[StrictStr] = None
+    entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")
+    created_date_time: Optional[datetime] = Field(default=None, alias="createdDateTime")
+    discriminator: Optional[StrictStr] = None
+    etag: Optional[StrictStr] = Field(default=None, alias="_etag")
+    has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
+    is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
+    __properties: ClassVar[List[str]] = ["description", "code", "externalAccountingMetadata", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,20 +81,18 @@ class VatCodeDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if id (nullable) is None
+        # override the default output from pydantic by calling `to_dict()` of external_accounting_metadata
+        if self.external_accounting_metadata:
+            _dict['externalAccountingMetadata'] = self.external_accounting_metadata.to_dict()
+        # set to None if description (nullable) is None
         # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
+        if self.description is None and "description" in self.model_fields_set:
+            _dict['description'] = None
 
         # set to None if code (nullable) is None
         # and model_fields_set contains the field
         if self.code is None and "code" in self.model_fields_set:
             _dict['code'] = None
-
-        # set to None if description (nullable) is None
-        # and model_fields_set contains the field
-        if self.description is None and "description" in self.model_fields_set:
-            _dict['description'] = None
 
         return _dict
 
@@ -97,9 +106,17 @@ class VatCodeDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
+            "description": obj.get("description"),
             "code": obj.get("code"),
-            "description": obj.get("description")
+            "externalAccountingMetadata": ExternalAccountingMetadataDTO.from_dict(obj["externalAccountingMetadata"]) if obj.get("externalAccountingMetadata") is not None else None,
+            "organisationId": obj.get("organisationId"),
+            "id": obj.get("id"),
+            "entityType": obj.get("entityType"),
+            "createdDateTime": obj.get("createdDateTime"),
+            "discriminator": obj.get("discriminator"),
+            "_etag": obj.get("_etag"),
+            "hasErrors": obj.get("hasErrors"),
+            "isReadOnly": obj.get("isReadOnly")
         })
         return _obj
 

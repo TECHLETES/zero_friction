@@ -54,6 +54,8 @@ class TestApiResponseDTOOfPagedResponseModelDTOOfCustomEntityPropertyTypeDTO(uni
                                 }, 
                             show_in_header = True, 
                             tag_color = 'blue', 
+                            feature_flag = '', 
+                            is_locked = True, 
                             id = '', 
                             entity_type = 'none', 
                             created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

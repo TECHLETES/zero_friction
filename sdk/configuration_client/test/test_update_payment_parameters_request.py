@@ -48,22 +48,19 @@ class TestUpdatePaymentParametersRequest(unittest.TestCase):
                 block_automatic_refunding = True,
                 default_collection_delay = 'delayuntilfixeddayofmonth',
                 default_collection_delay_value = 56,
-                allow_resident_to_choose_collection_day = True,
                 allow_customer_collection_day_override = True,
-                selectable_collection_days = [
-                    56
-                    ],
                 matching_rules = [
                     configuration_client.models.base_bank_statement_matching_rule_dto.BaseBankStatementMatchingRuleDTO()
+                    ],
+                allow_resident_to_choose_collection_day = True,
+                selectable_collection_days = [
+                    56
                     ]
             )
         else:
             return UpdatePaymentParametersRequest(
                 payment_terms_id = '',
                 default_collection_delay = 'delayuntilfixeddayofmonth',
-                selectable_collection_days = [
-                    56
-                    ],
         )
         """
 

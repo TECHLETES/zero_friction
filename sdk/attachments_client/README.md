@@ -108,6 +108,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**delete_attachments_subjecttype_subjectid_auuid**](docs/DefaultApi.md#delete_attachments_subjecttype_subjectid_auuid) | **DELETE** /Attachments/{subjectType}/{subjectId}/{auuid} | Deletes a specific attachment associated with a specific subject entity.
 *DefaultApi* | [**delete_entity_attachment**](docs/DefaultApi.md#delete_entity_attachment) | **DELETE** /EntityAttachments/{eauuid} | Deletes a specific entity attachment.
 *DefaultApi* | [**delete_entity_attachment_group**](docs/DefaultApi.md#delete_entity_attachment_group) | **DELETE** /EntityAttachmentGroups/{subjectType}/{subjectId}/{eauuid} | Deletes a specific entity attachment group.
+*DefaultApi* | [**delete_entityattachmentgroups_bulk_delete**](docs/DefaultApi.md#delete_entityattachmentgroups_bulk_delete) | **DELETE** /EntityAttachmentGroups/bulk/delete | Bulk deletes entity attachment groups.
+*DefaultApi* | [**delete_entityattachments_bulk_delete**](docs/DefaultApi.md#delete_entityattachments_bulk_delete) | **DELETE** /EntityAttachments/bulk/delete | Bulk deletes entity attachments.
 *DefaultApi* | [**download_entity_attachment_groups**](docs/DefaultApi.md#download_entity_attachment_groups) | **POST** /EntityAttachmentGroups/{subjectType}/{subjectId}/download | Downloads attachments for a specific entity.
 *DefaultApi* | [**download_entity_attachment_groups_only_by_id**](docs/DefaultApi.md#download_entity_attachment_groups_only_by_id) | **POST** /EntityAttachmentGroups/download | Downloads attachments by request only.
 *DefaultApi* | [**download_entity_attachments**](docs/DefaultApi.md#download_entity_attachments) | **POST** /EntityAttachments/download | Downloads attachments for a specific entity.

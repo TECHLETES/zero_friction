@@ -13,10 +13,10 @@ Name | Type | Description | Notes
 **block_automatic_refunding** | **bool** |  | [optional] 
 **default_collection_delay** | [**PaymentDelay**](PaymentDelay.md) |  | 
 **default_collection_delay_value** | **int** |  | [optional] 
-**allow_resident_to_choose_collection_day** | **bool** |  | [optional] 
 **allow_customer_collection_day_override** | **bool** |  | [optional] 
-**selectable_collection_days** | **List[int]** |  | 
 **matching_rules** | [**List[BaseBankStatementMatchingRuleDTO]**](BaseBankStatementMatchingRuleDTO.md) |  | [optional] 
+**allow_resident_to_choose_collection_day** | **bool** |  | [optional] 
+**selectable_collection_days** | **List[int]** |  | [optional] 
 
 ## Example
 

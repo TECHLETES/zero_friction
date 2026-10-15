@@ -43,8 +43,8 @@ class TestUpdateMoveRequestRequest(unittest.TestCase):
                         utility_type = 'none', 
                         unit_of_measure = 'none', 
                         metering_type = 'none', 
-                        value = 1.337, 
-                        consumer_group_id = '', )
+                        consumer_group_id = '', 
+                        consumption_quantity = 1.337, )
                     ],
                 billing_properties = masterdata_client.models.contract_details_billing_properties_base_dto.ContractDetailsBillingPropertiesBaseDTO()
             )
@@ -55,8 +55,8 @@ class TestUpdateMoveRequestRequest(unittest.TestCase):
                         utility_type = 'none', 
                         unit_of_measure = 'none', 
                         metering_type = 'none', 
-                        value = 1.337, 
-                        consumer_group_id = '', )
+                        consumer_group_id = '', 
+                        consumption_quantity = 1.337, )
                     ],
                 billing_properties = masterdata_client.models.contract_details_billing_properties_base_dto.ContractDetailsBillingPropertiesBaseDTO(),
         )

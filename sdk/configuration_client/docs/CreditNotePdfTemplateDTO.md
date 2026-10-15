@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **show_balance** | **bool** |  | [optional] 
 **show_vat_specs** | **bool** |  | [optional] 
 **show_custom_information** | **bool** |  | [optional] 
+**show_subtotal_before_advances** | **bool** |  | [optional] 
 **provider_managed_template_file_name** | **str** |  | [optional] 
 **envelope_settings** | [**EnvelopeSettingsDTO**](EnvelopeSettingsDTO.md) |  | [optional] 
 **render_header_footer** | **bool** |  | [optional] 

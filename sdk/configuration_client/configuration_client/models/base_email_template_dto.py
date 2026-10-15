@@ -21,6 +21,9 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, f
 from typing import Optional
 from configuration_client.models.base_email_template_dto_annual_statement_email_template_dto import BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO
 from configuration_client.models.base_email_template_dto_base import BaseEmailTemplateDTOBase
+from configuration_client.models.base_email_template_dto_portal_banking_details_changed_email_template_dto import BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO
+from configuration_client.models.base_email_template_dto_portal_collection_day_changed_email_template_dto import BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO
+from configuration_client.models.base_email_template_dto_portal_communication_language_changed_email_template_dto import BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO
 from configuration_client.models.base_email_template_dto_portal_confirmation_email_template_dto import BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO
 from configuration_client.models.base_email_template_dto_portal_email_changed_email_template_dto import BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO
 from configuration_client.models.base_email_template_dto_portal_invoice_address_changed_email_template_dto import BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO
@@ -32,7 +35,7 @@ from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
 from typing_extensions import Literal, Self
 from pydantic import Field
 
-BASEEMAILTEMPLATEDTO_ANY_OF_SCHEMAS = ["BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO", "BaseEmailTemplateDTOBase", "BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO", "BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO", "BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO"]
+BASEEMAILTEMPLATEDTO_ANY_OF_SCHEMAS = ["BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO", "BaseEmailTemplateDTOBase", "BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO", "BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO", "BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO"]
 
 class BaseEmailTemplateDTO(BaseModel):
     """
@@ -51,17 +54,23 @@ class BaseEmailTemplateDTO(BaseModel):
     anyof_schema_5_validator: Optional[BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO] = None
     # data type: BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO
     anyof_schema_6_validator: Optional[BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO] = None
+    # data type: BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO
+    anyof_schema_7_validator: Optional[BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO] = None
+    # data type: BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO
+    anyof_schema_8_validator: Optional[BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO] = None
+    # data type: BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO
+    anyof_schema_9_validator: Optional[BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO] = None
     # data type: BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO
-    anyof_schema_7_validator: Optional[BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO] = None
+    anyof_schema_10_validator: Optional[BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO] = None
     # data type: BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO
-    anyof_schema_8_validator: Optional[BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO] = None
+    anyof_schema_11_validator: Optional[BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO] = None
     # data type: BaseEmailTemplateDTOBase
-    anyof_schema_9_validator: Optional[BaseEmailTemplateDTOBase] = None
+    anyof_schema_12_validator: Optional[BaseEmailTemplateDTOBase] = None
     if TYPE_CHECKING:
-        actual_instance: Optional[Union[BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO, BaseEmailTemplateDTOBase, BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO, BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO, BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO]] = None
+        actual_instance: Optional[Union[BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO, BaseEmailTemplateDTOBase, BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO, BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO, BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO]] = None
     else:
         actual_instance: Any = None
-    any_of_schemas: Set[str] = { "BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO", "BaseEmailTemplateDTOBase", "BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO", "BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO", "BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO" }
+    any_of_schemas: Set[str] = { "BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO", "BaseEmailTemplateDTOBase", "BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO", "BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO", "BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO", "BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO" }
 
     model_config = {
         "validate_assignment": True,
@@ -118,6 +127,24 @@ class BaseEmailTemplateDTO(BaseModel):
         else:
             return v
 
+        # validate data type: BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO
+        if not isinstance(v, BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO`")
+        else:
+            return v
+
+        # validate data type: BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO
+        if not isinstance(v, BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO`")
+        else:
+            return v
+
+        # validate data type: BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO
+        if not isinstance(v, BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO`")
+        else:
+            return v
+
         # validate data type: BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO
         if not isinstance(v, BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO):
             error_messages.append(f"Error! Input type `{type(v)}` is not `BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO`")
@@ -138,7 +165,7 @@ class BaseEmailTemplateDTO(BaseModel):
 
         if error_messages:
             # no match
-            raise ValueError("No match found when setting the actual_instance in BaseEmailTemplateDTO with anyOf schemas: BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO, BaseEmailTemplateDTOBase, BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO, BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO, BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting the actual_instance in BaseEmailTemplateDTO with anyOf schemas: BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO, BaseEmailTemplateDTOBase, BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO, BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO, BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -187,19 +214,37 @@ class BaseEmailTemplateDTO(BaseModel):
             return instance
         except (ValidationError, ValueError) as e:
              error_messages.append(str(e))
-        # anyof_schema_7_validator: Optional[BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO] = None
+        # anyof_schema_7_validator: Optional[BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_8_validator: Optional[BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_9_validator: Optional[BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO] = None
+        try:
+            instance.actual_instance = BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        # anyof_schema_10_validator: Optional[BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO] = None
         try:
             instance.actual_instance = BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO.from_json(json_str)
             return instance
         except (ValidationError, ValueError) as e:
              error_messages.append(str(e))
-        # anyof_schema_8_validator: Optional[BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO] = None
+        # anyof_schema_11_validator: Optional[BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO] = None
         try:
             instance.actual_instance = BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO.from_json(json_str)
             return instance
         except (ValidationError, ValueError) as e:
              error_messages.append(str(e))
-        # anyof_schema_9_validator: Optional[BaseEmailTemplateDTOBase] = None
+        # anyof_schema_12_validator: Optional[BaseEmailTemplateDTOBase] = None
         try:
             instance.actual_instance = BaseEmailTemplateDTOBase.from_json(json_str)
             return instance
@@ -208,7 +253,7 @@ class BaseEmailTemplateDTO(BaseModel):
 
         if error_messages:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into BaseEmailTemplateDTO with anyOf schemas: BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO, BaseEmailTemplateDTOBase, BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO, BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO, BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into BaseEmailTemplateDTO with anyOf schemas: BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO, BaseEmailTemplateDTOBase, BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO, BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO, BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -222,7 +267,7 @@ class BaseEmailTemplateDTO(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO, BaseEmailTemplateDTOBase, BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO, BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO, BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], BaseEmailTemplateDTOAnnualStatementEmailTemplateDTO, BaseEmailTemplateDTOBase, BaseEmailTemplateDTOPortalBankingDetailsChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalCollectionDayChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalCommunicationLanguageChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalConfirmationEmailTemplateDTO, BaseEmailTemplateDTOPortalEmailChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalInvoiceAddressChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalMobileChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalPersonalInformationChangedEmailTemplateDTO, BaseEmailTemplateDTOPortalResetPasswordEmailTemplateDTO, BaseEmailTemplateDTOPrepaymentStatementEmailTemplateDTO]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

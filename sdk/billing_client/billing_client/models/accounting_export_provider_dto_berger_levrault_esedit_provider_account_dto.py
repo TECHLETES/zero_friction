@@ -22,7 +22,6 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from billing_client.models.accounting_export_provider_status import AccountingExportProviderStatus
 from billing_client.models.accounting_export_provider_type import AccountingExportProviderType
-from billing_client.models.berger_levrault_custom_entity_property_settings_dto import BergerLevraultCustomEntityPropertySettingsDTO
 from billing_client.models.entity_subject_type import EntitySubjectType
 from billing_client.models.ssh_authentication_method import SshAuthenticationMethod
 from typing import Optional, Set
@@ -45,7 +44,6 @@ class AccountingExportProviderDTOBergerLevraultEseditProviderAccountDTO(BaseMode
     budget_code: Optional[StrictStr] = Field(default=None, alias="budgetCode")
     structure_code: Optional[StrictStr] = Field(default=None, alias="structureCode")
     movement_code: Optional[StrictStr] = Field(default=None, alias="movementCode")
-    custom_entity_property_settings: Optional[BergerLevraultCustomEntityPropertySettingsDTO] = Field(default=None, alias="customEntityPropertySettings")
     status: Optional[AccountingExportProviderStatus] = None
     organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
     id: Optional[StrictStr] = None
@@ -55,7 +53,7 @@ class AccountingExportProviderDTOBergerLevraultEseditProviderAccountDTO(BaseMode
     etag: Optional[StrictStr] = Field(default=None, alias="_etag")
     has_errors: Optional[StrictBool] = Field(default=None, alias="hasErrors")
     is_read_only: Optional[StrictBool] = Field(default=None, alias="isReadOnly")
-    __properties: ClassVar[List[str]] = ["__type", "providerType", "host", "port", "userName", "password", "directory", "authenticationMethod", "publicKey", "unc", "budgetCode", "structureCode", "movementCode", "customEntityPropertySettings", "status", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
+    __properties: ClassVar[List[str]] = ["__type", "providerType", "host", "port", "userName", "password", "directory", "authenticationMethod", "publicKey", "unc", "budgetCode", "structureCode", "movementCode", "status", "organisationId", "id", "entityType", "createdDateTime", "discriminator", "_etag", "hasErrors", "isReadOnly"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -106,9 +104,6 @@ class AccountingExportProviderDTOBergerLevraultEseditProviderAccountDTO(BaseMode
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of custom_entity_property_settings
-        if self.custom_entity_property_settings:
-            _dict['customEntityPropertySettings'] = self.custom_entity_property_settings.to_dict()
         # set to None if host (nullable) is None
         # and model_fields_set contains the field
         if self.host is None and "host" in self.model_fields_set:
@@ -154,11 +149,6 @@ class AccountingExportProviderDTOBergerLevraultEseditProviderAccountDTO(BaseMode
         if self.movement_code is None and "movement_code" in self.model_fields_set:
             _dict['movementCode'] = None
 
-        # set to None if custom_entity_property_settings (nullable) is None
-        # and model_fields_set contains the field
-        if self.custom_entity_property_settings is None and "custom_entity_property_settings" in self.model_fields_set:
-            _dict['customEntityPropertySettings'] = None
-
         return _dict
 
     @classmethod
@@ -184,7 +174,6 @@ class AccountingExportProviderDTOBergerLevraultEseditProviderAccountDTO(BaseMode
             "budgetCode": obj.get("budgetCode"),
             "structureCode": obj.get("structureCode"),
             "movementCode": obj.get("movementCode"),
-            "customEntityPropertySettings": BergerLevraultCustomEntityPropertySettingsDTO.from_dict(obj["customEntityPropertySettings"]) if obj.get("customEntityPropertySettings") is not None else None,
             "status": obj.get("status"),
             "organisationId": obj.get("organisationId"),
             "id": obj.get("id"),

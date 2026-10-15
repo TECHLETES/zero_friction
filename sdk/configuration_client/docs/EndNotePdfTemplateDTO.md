@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **show_custom_information** | **bool** |  | [optional] 
 **show_price_formulae** | **bool** |  | [optional] 
 **unit_price_excl_vat_for_persons** | **bool** |  | [optional] 
+**show_subtotal_before_advances** | **bool** |  | [optional] 
 **provider_managed_template_file_name** | **str** |  | [optional] 
 **envelope_settings** | [**EnvelopeSettingsDTO**](EnvelopeSettingsDTO.md) |  | [optional] 
 **render_header_footer** | **bool** |  | [optional] 

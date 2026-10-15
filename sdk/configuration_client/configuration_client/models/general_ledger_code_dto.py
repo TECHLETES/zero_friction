@@ -31,7 +31,7 @@ class GeneralLedgerCodeDTO(BaseModel):
     """ # noqa: E501
     description: Optional[StrictStr] = None
     code: Optional[StrictStr] = None
-    external_accounting_metadata: ExternalAccountingMetadataDTO = Field(alias="externalAccountingMetadata")
+    external_accounting_metadata: Optional[ExternalAccountingMetadataDTO] = Field(default=None, alias="externalAccountingMetadata")
     organisation_id: Optional[StrictStr] = Field(default=None, alias="organisationId")
     id: Optional[StrictStr] = None
     entity_type: Optional[EntitySubjectType] = Field(default=None, alias="entityType")

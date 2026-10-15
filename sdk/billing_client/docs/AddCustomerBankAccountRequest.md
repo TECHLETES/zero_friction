@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **is_default** | **bool** |  | [optional] 
+**changed_by_portal** | **bool** |  | [optional] 
 **active_mandate** | [**AddCustomerBankAccountActiveMandateRequest**](AddCustomerBankAccountActiveMandateRequest.md) |  | [optional] 
 **iban** | **str** |  | [optional] 
 **bic** | **str** |  | [optional] 

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**consumer_group_id** | **str** |  | 
+**consumer_group_id** | **str** |  | [optional] 
 **unit_of_measure** | [**UnitOfMeasure**](UnitOfMeasure.md) |  | 
 **consumption_quantity** | **float** |  | [optional] 
 **start_date** | **datetime** |  | [optional] 
