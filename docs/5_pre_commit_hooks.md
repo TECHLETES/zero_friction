@@ -26,7 +26,7 @@ The following hooks are currently configured:
 | `detect-secrets` | Detect and prevent committing secrets |
 | `jupytext` | Sync `.ipynb` and `.py` notebook pairs |
 | `mypy` | Type check Python code with mypy |
-| `pyupgrade` | Modernize Python syntax for Python 3.12 |
+| `pyupgrade` | Modernize Python syntax for Python 3.11 |
 | `ruff` | Lint Python code with Ruff (includes import sorting) |
 | `bandit` | Run Python security linting |
 | `pydocstyle` | Validate docstring conventions |

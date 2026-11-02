@@ -5,6 +5,8 @@ API suite. It combines eight generated API clients under `sdk/` with the
 hand-maintained `zero_friction/` package, which provides shared configuration,
 authentication, and a unified client surface.
 
+The unified package supports Python 3.11 and newer.
+
 ## Installation
 
 Install the SDK directly from GitHub:

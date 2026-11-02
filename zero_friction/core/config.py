@@ -1,7 +1,7 @@
 """Configuration and token lifecycle helpers for the unified SDK."""
 
 import os
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import cast
 
 from dotenv import load_dotenv
@@ -65,7 +65,7 @@ class ZeroFrictionConfig:
         return cast(
             bool,
             (
-                datetime.now(timezone.utc) + timedelta(seconds=buffer_sec)
+                datetime.now(UTC) + timedelta(seconds=buffer_sec)
                 >= self.token_expires_at
             ),
         )
@@ -73,9 +73,7 @@ class ZeroFrictionConfig:
     def update_token(self, oauth_token: str, expires_in: int) -> None:
         """Update the access token and its expiration timestamp."""
         self.oauth_token = oauth_token
-        self.token_expires_at = datetime.now(timezone.utc) + timedelta(
-            seconds=expires_in
-        )
+        self.token_expires_at = datetime.now(UTC) + timedelta(seconds=expires_in)
 
     def refresh_token(self) -> None:
         """Retrieve and store a fresh OAuth token."""

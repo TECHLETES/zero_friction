@@ -12,7 +12,7 @@ source or generated client is the source of truth.
 - Use `uv` for Python commands, dependency changes, and the virtual environment.
 - Declare dependencies in `pyproject.toml`, then run `uv lock && uv sync`.
 - Do not use `pip install` directly or commit `.env` and credentials.
-- Preserve the public package name, Python 3.9+ compatibility, and SDK client
+- Preserve the public package name, Python 3.11+ compatibility, and SDK client
   package structure unless the task explicitly changes them.
 - Prefer small changes that follow the existing package and generated-code
   conventions. Do not rewrite unrelated generated clients.

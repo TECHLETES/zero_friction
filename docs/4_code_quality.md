@@ -64,7 +64,7 @@ Ruff provides fast linting and catches many code issues before commit.
 - Replaces flake8 and pyupgrade in a single fast tool
 - Configured via `pyproject.toml` with enabled rules: E (pycodestyle), F (pyflakes), I (import sorting), B (bugbear), UP (pyupgrade)
 - Automatically fixes issues when possible
-- Target version set to Python 3.12 with 88-character line length
+- Target version set to Python 3.11 with 88-character line length
 
 **Run manually:**
 
@@ -85,7 +85,7 @@ Black is the opinionated formatter used to ensure all code is styled consistentl
 
 - Used alongside Ruff for full formatting consistency
 - Auto-formats code during pre-commit hooks
-- Configured in `pyproject.toml` with 88-character line length and Python 3.12 target
+- Configured in `pyproject.toml` with 88-character line length and Python 3.11 target
 - Integrated with the pre-commit `black` hook
 
 **Run manually:**
@@ -104,9 +104,9 @@ uv run black .
 
 All tools are configured in `pyproject.toml`:
 
-- **MyPy**: Strict mode enabled with Python 3.12 target, excludes migrations and notebooks
-- **Ruff**: Targets Python 3.12 with rules E, F, I, B, UP enabled, respects .gitignore
-- **Black**: 88-character line length, Python 3.12 target version
+- **MyPy**: Strict mode enabled with Python 3.11 target, excludes migrations and notebooks
+- **Ruff**: Targets Python 3.11 with rules E, F, I, B, UP enabled, respects .gitignore
+- **Black**: 88-character line length, Python 3.11 target version
 - **Beartype**: Automatically enabled for `utils` and `example` packages during testing
 - **Pytest**: Configured with coverage reporting and beartype integration
 

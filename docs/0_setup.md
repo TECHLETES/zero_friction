@@ -1,8 +1,7 @@
 # Setup: Open the Devcontainer
 
 The devcontainer is the only supported development setup for this template.
-The container provides Python 3.12, `uv`, Docker tooling, the project
-dependencies, pre-commit, and the configured VS Code extensions.
+The unified SDK supports Python 3.11 and newer. The container provides Python 3.12, `uv`, Docker tooling, the project dependencies, pre-commit, and the configured VS Code extensions.
 
 ## Prerequisites
 

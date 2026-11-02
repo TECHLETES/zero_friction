@@ -233,7 +233,7 @@ mypy --config-file=pyproject.toml --show-traceback .
 
 # Check Python version match
 python --version
-# Ensure version >= 3.12
+# Ensure version >= 3.11
 ```
 
 ---

@@ -94,7 +94,7 @@ repos:
     hooks:
       - id: pyupgrade
         name: pyupgrade (modernize Python syntax)
-        args: [--py312-plus]
+        args: [--py311-plus]
         types: [python]
 
   # Linting and formatting with ruff
