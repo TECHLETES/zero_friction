@@ -30,15 +30,9 @@ def rebind_symbol_everywhere(models_pkg: Any, symbol_name: str, new_obj: Any) ->
 
 def apply_patches() -> None:
     """Run all registered patch functions once."""
-    from .apply_patched_billing_calculations_type_parameters_dto import (
-        apply_patched_billing_calculations_type_parameters_dto,
-    )
     from .apply_patched_country_code import apply_patched_country_code
 
-    for fn in [
-        apply_patched_billing_calculations_type_parameters_dto,
-        apply_patched_country_code,
-    ]:
+    for fn in [apply_patched_country_code]:
         _apply_once(fn)
 
 
