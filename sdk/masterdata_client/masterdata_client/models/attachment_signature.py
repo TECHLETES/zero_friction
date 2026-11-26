@@ -34,7 +34,7 @@ class AttachmentSignature(BaseModel):
     origin: EntityAttachmentOrigin
     product_attachment_id: Optional[StrictStr] = Field(default=None, alias="productAttachmentId")
     attachment_file_id: StrictStr = Field(alias="attachmentFileId")
-    entity_attachment_group_id: StrictStr = Field(alias="entityAttachmentGroupId")
+    entity_attachment_group_id: Optional[StrictStr] = Field(alias="entityAttachmentGroupId")
     sign_date: Optional[datetime] = Field(default=None, alias="signDate")
     viewed_date: Optional[datetime] = Field(default=None, alias="viewedDate")
     __properties: ClassVar[List[str]] = ["culture", "attachmentFileName", "errorCode", "origin", "productAttachmentId", "attachmentFileId", "entityAttachmentGroupId", "signDate", "viewedDate"]
@@ -78,6 +78,11 @@ class AttachmentSignature(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if entity_attachment_group_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.entity_attachment_group_id is None and "entity_attachment_group_id" in self.model_fields_set:
+            _dict['entityAttachmentGroupId'] = None
+
         # set to None if sign_date (nullable) is None
         # and model_fields_set contains the field
         if self.sign_date is None and "sign_date" in self.model_fields_set:
