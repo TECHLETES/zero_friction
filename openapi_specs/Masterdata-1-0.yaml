@@ -39747,8 +39747,10 @@ components:
           $ref: '#/components/schemas/EntityAttachmentOrigin'
         productAttachmentId:
           type: string
+          nullable: true
         attachmentFileId:
           type: string
+          nullable: true
         entityAttachmentGroupId:
           type: string
           nullable: true
