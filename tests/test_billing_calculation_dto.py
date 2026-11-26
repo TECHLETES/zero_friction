@@ -1,17 +1,25 @@
 """Tests for generated billing calculation DTO parsing and serialization."""
 
 import json
-
-from configuration_client.models.billing_calculation_type_parameters_dto import (
-    BillingCalculationTypeParametersDTO,
-)
-from configuration_client.models.billing_item_dto import BillingItemDTO
-
-import zero_friction  # noqa: F401  # Apply SDK runtime patches before DTO imports.
+from importlib import import_module
+from importlib.util import find_spec
 
 
 def test_billing_item_roundtrip_uses_generated_calculation_dto() -> None:
     """Preserve custom entity calculation fields through the generated DTO."""
+    import zero_friction  # noqa: F401  # Initialize the unified SDK package.
+
+    assert find_spec("zero_friction.patches") is None
+
+    models_module = import_module(
+        "configuration_client.models.billing_calculation_type_parameters_dto"
+    )
+    item_module = import_module("configuration_client.models.billing_item_dto")
+    BillingCalculationTypeParametersDTO = (
+        models_module.BillingCalculationTypeParametersDTO
+    )
+    BillingItemDTO = item_module.BillingItemDTO
+
     payload = {
         "name": "fixture billing item",
         "calculationParameters": {
@@ -26,10 +34,7 @@ def test_billing_item_roundtrip_uses_generated_calculation_dto() -> None:
     dto = BillingItemDTO.from_json(json.dumps(payload))
 
     assert dto is not None
-    assert (
-        BillingCalculationTypeParametersDTO.__module__
-        == "configuration_client.models.billing_calculation_type_parameters_dto"
-    )
+    assert type(dto.calculation_parameters) is BillingCalculationTypeParametersDTO
     assert dto.calculation_parameters is not None
 
     serialized = json.dumps(dto.to_dict(), default=str)

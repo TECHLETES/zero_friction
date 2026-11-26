@@ -18,9 +18,6 @@ from metering_client import Configuration as MeteringConfiguration
 from regionalregulations_client import ApiClient as RegionalRegulationsClient
 from regionalregulations_client import Configuration as RegionalRegulationsConfiguration
 
-from zero_friction.patches.core import apply_patches
-from zero_friction.patches.patched_customers_api import PatchedCustomersApi
-
 from .config import ZeroFrictionConfig
 from .sdk_utils import (
     create_api_classes_for_client,
@@ -37,8 +34,6 @@ class SDKClient:
         """Initialize service clients from the supplied configuration."""
         if not isinstance(config, ZeroFrictionConfig):
             raise TypeError("config must be an instance of ZeroFrictionConfig.")
-
-        apply_patches()
 
         self.config = config
         self.oauth_token = self.config.oauth_token
@@ -124,16 +119,6 @@ class SDKClient:
         for attr, module in sdk_modules.items():
             client_instance = getattr(self, attr)
             create_api_classes_for_client(module, client_instance)
-
-        # Patch specific methods
-        masterdata_customer_api = (
-            self.masterdata_client.default_api
-            if hasattr(self.masterdata_client, "default_api")
-            else self.masterdata_client.customers_api
-        )
-        self.masterdata_client.customers_api = PatchedCustomersApi(
-            masterdata_customer_api
-        )
 
         # Now wrap call_api of every client for retry/rate-limit handling.
         # A single shared rate limiter is used so all 8 clients count against
